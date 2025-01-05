@@ -1,0 +1,377 @@
+
+ForestWormBoss.png
+size: 4096,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/Antler_Top_Left
+  rotate: false
+  xy: 1753, 639
+  size: 300, 511
+  orig: 300, 511
+  offset: 0, 0
+  index: -1
+images/Antler_Top_Left2
+  rotate: false
+  xy: 3804, 1398
+  size: 282, 420
+  orig: 282, 420
+  offset: 0, 0
+  index: -1
+images/Antler_Top_Right
+  rotate: false
+  xy: 740, 1330
+  size: 273, 522
+  orig: 273, 522
+  offset: 0, 0
+  index: -1
+images/Antlers_Left
+  rotate: true
+  xy: 1035, 1675
+  size: 570, 887
+  orig: 570, 887
+  offset: 0, 0
+  index: -1
+images/Antlers_Left2
+  rotate: true
+  xy: 2067, 1463
+  size: 570, 887
+  orig: 570, 887
+  offset: 0, 0
+  index: -1
+images/Antlers_Right
+  rotate: true
+  xy: 3093, 2380
+  size: 558, 937
+  orig: 558, 937
+  offset: 0, 0
+  index: -1
+images/Antlers_Right2
+  rotate: true
+  xy: 3093, 1820
+  size: 558, 937
+  orig: 558, 937
+  offset: 0, 0
+  index: -1
+images/Body_Bottom
+  rotate: false
+  xy: 3065, 1180
+  size: 737, 638
+  orig: 737, 638
+  offset: 0, 0
+  index: -1
+images/Body_Mid
+  rotate: false
+  xy: 2, 119
+  size: 679, 461
+  orig: 679, 461
+  offset: 0, 0
+  index: -1
+images/Body_Mid2
+  rotate: false
+  xy: 1006, 424
+  size: 681, 518
+  orig: 681, 518
+  offset: 0, 0
+  index: -1
+images/Crown
+  rotate: false
+  xy: 2956, 1518
+  size: 99, 173
+  orig: 99, 173
+  offset: 0, 0
+  index: -1
+images/CrownEye
+  rotate: false
+  xy: 4032, 2890
+  size: 54, 48
+  orig: 54, 48
+  offset: 0, 0
+  index: -1
+images/CrownEye_Closed
+  rotate: false
+  xy: 4032, 2866
+  size: 52, 22
+  orig: 52, 22
+  offset: 0, 0
+  index: -1
+images/DigMound_1_Big
+  rotate: false
+  xy: 3057, 751
+  size: 635, 212
+  orig: 635, 212
+  offset: 0, 0
+  index: -1
+images/DigMound_2_Big
+  rotate: false
+  xy: 3057, 965
+  size: 651, 213
+  orig: 651, 213
+  offset: 0, 0
+  index: -1
+images/DigMound_3_Big
+  rotate: false
+  xy: 3034, 521
+  size: 631, 228
+  orig: 631, 228
+  offset: 0, 0
+  index: -1
+images/Eye_Big
+  rotate: false
+  xy: 1924, 1871
+  size: 141, 186
+  orig: 141, 186
+  offset: 0, 0
+  index: -1
+images/Eye_Big2
+  rotate: true
+  xy: 1689, 450
+  size: 187, 197
+  orig: 187, 197
+  offset: 0, 0
+  index: -1
+images/Eye_Big_Shut
+  rotate: true
+  xy: 2956, 1935
+  size: 98, 128
+  orig: 98, 128
+  offset: 0, 0
+  index: -1
+images/Eye_Big_Summon
+  rotate: false
+  xy: 1924, 2059
+  size: 142, 186
+  orig: 142, 186
+  offset: 0, 0
+  index: -1
+images/Eye_Small
+  rotate: false
+  xy: 3710, 1083
+  size: 78, 95
+  orig: 78, 95
+  offset: 0, 0
+  index: -1
+images/Eye_Small_Shut
+  rotate: true
+  xy: 3988, 557
+  size: 64, 75
+  orig: 64, 75
+  offset: 0, 0
+  index: -1
+images/Eye_Small_Summon
+  rotate: true
+  xy: 2956, 1436
+  size: 80, 96
+  orig: 80, 96
+  offset: 0, 0
+  index: -1
+images/Eye_Summon2
+  rotate: true
+  xy: 2686, 100
+  size: 188, 198
+  orig: 188, 198
+  offset: 0, 0
+  index: -1
+images/Eye_Summon3
+  rotate: false
+  xy: 3516, 347
+  size: 136, 172
+  orig: 136, 172
+  offset: 0, 0
+  index: -1
+images/Head
+  rotate: false
+  xy: 2, 2044
+  size: 1031, 894
+  orig: 1031, 894
+  offset: 0, 0
+  index: -1
+images/Head2
+  rotate: false
+  xy: 2068, 2035
+  size: 1023, 903
+  orig: 1023, 903
+  offset: 0, 0
+  index: -1
+images/Head_Dead
+  rotate: false
+  xy: 1035, 2247
+  size: 1031, 691
+  orig: 1031, 691
+  offset: 0, 0
+  index: -1
+images/MonsterHeart_glow
+  rotate: false
+  xy: 2686, 487
+  size: 213, 186
+  orig: 219, 194
+  offset: 3, 4
+  index: -1
+images/MouthSlime
+  rotate: true
+  xy: 3710, 623
+  size: 458, 332
+  orig: 458, 332
+  offset: 0, 0
+  index: -1
+images/Mouth_Back
+  rotate: false
+  xy: 2055, 188
+  size: 629, 542
+  orig: 761, 711
+  offset: 88, 37
+  index: -1
+images/Mouth_Front
+  rotate: false
+  xy: 2, 1313
+  size: 736, 729
+  orig: 736, 729
+  offset: 0, 0
+  index: -1
+images/Mouth_Front2
+  rotate: false
+  xy: 1015, 944
+  size: 736, 729
+  orig: 736, 729
+  offset: 0, 0
+  index: -1
+images/Mouth_Front_Btm
+  rotate: false
+  xy: 2, 582
+  size: 736, 729
+  orig: 736, 729
+  offset: 0, 0
+  index: -1
+images/Mouth_Front_Btm2
+  rotate: false
+  xy: 2065, 732
+  size: 736, 729
+  orig: 736, 729
+  offset: 0, 0
+  index: -1
+images/Mouth_Mid
+  rotate: false
+  xy: 2901, 2
+  size: 613, 517
+  orig: 873, 790
+  offset: 135, 112
+  index: -1
+images/blood_explosion0001
+  rotate: true
+  xy: 2956, 1693
+  size: 93, 100
+  orig: 323, 313
+  offset: 93, 132
+  index: -1
+images/blood_explosion0002
+  rotate: true
+  xy: 1888, 485
+  size: 152, 153
+  orig: 323, 313
+  offset: 70, 120
+  index: -1
+images/blood_explosion0003
+  rotate: false
+  xy: 2686, 290
+  size: 203, 195
+  orig: 323, 313
+  offset: 48, 106
+  index: -1
+images/blood_explosion0004
+  rotate: false
+  xy: 2803, 675
+  size: 229, 218
+  orig: 323, 313
+  offset: 33, 95
+  index: -1
+images/blood_explosion0005
+  rotate: false
+  xy: 740, 593
+  size: 249, 233
+  orig: 323, 313
+  offset: 20, 73
+  index: -1
+images/blood_explosion0006
+  rotate: false
+  xy: 2803, 1194
+  size: 258, 240
+  orig: 323, 313
+  offset: 15, 66
+  index: -1
+images/blood_explosion0007
+  rotate: false
+  xy: 740, 828
+  size: 264, 245
+  orig: 323, 313
+  offset: 9, 58
+  index: -1
+images/blood_explosion0008
+  rotate: false
+  xy: 740, 1075
+  size: 272, 253
+  orig: 323, 313
+  offset: 6, 47
+  index: -1
+images/blood_explosion0009
+  rotate: false
+  xy: 3804, 1138
+  size: 282, 258
+  orig: 323, 313
+  offset: 3, 39
+  index: -1
+images/blood_explosion0010
+  rotate: true
+  xy: 740, 295
+  size: 296, 247
+  orig: 323, 313
+  offset: 3, 38
+  index: -1
+images/blood_explosion0011
+  rotate: true
+  xy: 2803, 895
+  size: 297, 252
+  orig: 323, 313
+  offset: 4, 21
+  index: -1
+images/blood_explosion0012
+  rotate: false
+  xy: 1753, 1152
+  size: 304, 253
+  orig: 323, 313
+  offset: 2, 4
+  index: -1
+images/blood_explosion0013
+  rotate: false
+  xy: 1753, 1407
+  size: 310, 218
+  orig: 323, 313
+  offset: 1, 20
+  index: -1
+images/blood_explosion0014
+  rotate: false
+  xy: 740, 1854
+  size: 279, 188
+  orig: 323, 313
+  offset: 0, 30
+  index: -1
+images/blood_explosion0015
+  rotate: false
+  xy: 3667, 428
+  size: 319, 193
+  orig: 323, 313
+  offset: 0, 5
+  index: -1
+images/blood_explosion0016
+  rotate: true
+  xy: 1924, 1627
+  size: 242, 137
+  orig: 323, 313
+  offset: 25, 34
+  index: -1
+images/blood_explosion0017
+  rotate: true
+  xy: 2956, 1788
+  size: 145, 107
+  orig: 323, 313
+  offset: 28, 18
+  index: -1

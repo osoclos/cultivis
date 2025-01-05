@@ -1,0 +1,85 @@
+{
+    "Flower": {
+        "name": "Flower Necklace",
+        "category": 0,
+
+        "variant": "Necklaces/Necklace_1"
+    },
+    
+    "Feather": {
+        "name": "Feather Necklace",
+        "category": 0,
+
+        "variant": "Necklaces/Necklace_2"
+    },
+    
+    "Skull": {
+        "name": "Skull Necklace",
+        "category": 0,
+
+        "variant": "Necklaces/Necklace_3"
+    },
+    
+    "Nature": {
+        "name": "Nature's Necklace",
+        "category": 0,
+
+        "variant": "Necklaces/Necklace_4"
+    },
+    
+    "Moon": {
+        "name": "Moon Necklace",
+        "category": 0,
+
+        "variant": "Necklaces/Necklace_5"
+    },
+    
+    "Missionary": {
+        "name": "Missionary Necklace",
+        "category": 1,
+
+        "variant": "Necklaces/Necklace_Missionary"
+    },
+    
+    "Loyalty": {
+        "name": "Loyalty Necklace",
+        "category": 1,
+
+        "variant": "Necklaces/Necklace_Loyalty"
+    },
+    
+    "Demonic": {
+        "name": "Demonic Necklace",
+        "category": 1,
+
+        "variant": "Necklaces/Necklace_Demonic"
+    },
+    
+    "Gold_Skull": {
+        "name": "Gold_Skull Necklace",
+        "category": 1,
+
+        "variant": "Necklaces/Necklace_Gold_Skull"
+    },
+    
+    "Bell": {
+        "name": "Bell Necklace",
+        "category": 2,
+
+        "variant": "Necklaces/Necklace_Bell"
+    },
+    
+    "Light": {
+        "name": "Light Necklace",
+        "category": 2,
+
+        "variant": "Necklaces/Necklace_Light"
+    },
+
+    "Dark": {
+        "name": "Dark Necklace",
+        "category": 2,
+
+        "variant": "Necklaces/Necklace_Dark"
+    }
+}

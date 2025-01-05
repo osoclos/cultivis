@@ -1,0 +1,46 @@
+{
+    "Bartender": {
+        "name": "Brewing Flat Cap",
+        "variant": "Hats/Bartender"
+    },
+    
+    "Chef": {
+        "name": "Clean Toque",
+        "variant": "Hats/Chef"
+    },
+    
+    "Tax_Enforcer": {
+        "name": "Ominous Fedora",
+        "variant": "Hats/Enforcer"
+    },
+    
+    "Faith_Enforcer": {
+        "name": "Holy Top Hat",
+        "variant": "Hats/FaithEnforcer"
+    },
+    
+    "Farmer": {
+        "name": "Woven Straw Hat",
+        "variant": "Hats/Farm"
+    },
+    
+    "Lumberjack": {
+        "name": "Comfy Bomber Cap",
+        "variant": "Hats/Lumberjack"
+    },
+    
+    "Miner": {
+        "name": "Candled Hard Hat",
+        "variant": "Hats/Miner"
+    },
+    
+    "Nudist": {
+        "name": "Mayflower Wreath",
+        "variant": "Hats/Nudist"
+    },
+    
+    "Refiner": {
+        "name": "Refiner's Mitre",
+        "variant": "Hats/Refinery"
+    }
+}

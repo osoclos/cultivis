@@ -1,0 +1,22 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "forbidden-animations.schema.json",
+
+    "title": "Forbidden Animations",
+    "description": "Animations that are not allowed to be displayed in the visualizer",
+
+    "type": "object",
+    "properties": {
+        "follower": {
+            "type": "array",
+            "items": { "type": "string" }
+        },
+
+        "player": {
+            "type": "array",
+            "items": { "type": "string" }
+        }
+    },
+
+    "required": ["follower", "player"]
+}

@@ -1,0 +1,134 @@
+{
+    "creature": {
+        "Lamb": {
+            "name": "Lamb",
+            "variant": "Lamb"
+        },
+        
+        "Goat": {
+            "name": "Goat",
+            "variant": "Goat"
+        }
+    },
+
+    "fleece": {
+        "Lamb": {
+            "name": "Fleece of the Lamb",
+            "category": 0,
+
+            "variant": "Lamb_0"
+        },
+
+        "Goat": {
+            "name": "Fleece of the Goat",
+            "category": 0,
+
+            "variant": "Goat"
+        },
+
+        "Golden": {
+            "name": "Golden Fleece",
+            "category": 0,
+
+            "variant": "Lamb_1"
+        },
+
+        "Glass": {
+            "name": "Fleece of the Glass Cannon",
+            "category": 0,
+
+            "variant": "Lamb_2"
+        },
+
+        "Diseased": {
+            "name": "Fleece of the Diseased Heart",
+            "category": 0,
+
+            "variant": "Lamb_3"
+        },
+
+        "Fates": {
+            "name": "Fleece of the Fates",
+            "category": 0,
+
+            "variant": "Lamb_4"
+        },
+
+        "Fragile": {
+            "name": "Fleece of Fragile Fortitude",
+            "category": 0,
+
+            "variant": "Lamb_5"
+        },
+
+        "Cursed": {
+            "name": "Fleece of a Cursed Crusade",
+            "category": 1,
+
+            "variant": "Lamb_6"
+        },
+
+        "Berserker": {
+            "name": "Fleece of the Berserker",
+            "category": 1,
+
+            "variant": "Lamb_7"
+        },
+
+        "Fervor": {
+            "name": "Fleece of Fervor's Favor",
+            "category": 1,
+
+            "variant": "Lamb_8"
+        },
+
+        "Hobbled": {
+            "name": "Fleece of the Hobbled Heels",
+            "category": 1,
+
+            "variant": "Lamb_9"
+        },
+
+        "Heretic": {
+            "name": "Fleece of the Heretics",
+            "category": 2,
+
+            "variant": "Lamb_999"
+        },
+
+        "Natural": {
+            "name": "Fleece of the Natural",
+            "category": 2,
+
+            "variant": "Lamb_1001"
+        },
+
+        "Silk": {
+            "name": "Silk Fleece",
+            "category": 2,
+
+            "variant": "Lamb_1002"
+        },
+
+        "God": {
+            "name": "God of Death Fleece",
+            "category": 2,
+
+            "variant": "Lamb_1000"
+        },
+
+        "Cowboy": {
+            "name": "Cowboy",
+            "category": 2,
+
+            "variant": "Lamb_676"
+        },
+
+        "Rags": {
+            "name": "Rags",
+            "category": 0,
+
+            "variant": "Lamb_Intro"
+        }
+    }
+}

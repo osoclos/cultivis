@@ -1,0 +1,41 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "necklace-data.schema.json",
+
+    "title": "Necklace Data",
+    "description": "Information on necklaces that provides metadata and attributes to how to visualize necklaces",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/Id" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The display name of this necklace"
+            },
+
+            "category": {
+                "type": "integer",
+                "description": "The category index in the outfit menu which this necklace belongs to",
+
+                "minimum": 0,
+                "maximum": 2
+            },
+
+            "variant": {
+                "type": "string",
+                "description": "The variant name of this necklace"
+            }
+        },
+
+        "required": ["name", "category", "variant"]
+    },
+
+    "definitions": {
+        "Id": {
+            "type": "string",
+            "enum": ["Flower", "Feather", "Skull", "Nature", "Moon", "Missionary", "Loyalty", "Demonic", "Gold_Skull", "Bell", "Light", "Dark"]
+        }
+    }
+}

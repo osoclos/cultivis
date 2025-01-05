@@ -1,0 +1,636 @@
+
+FrogBoss.png
+size: 4096,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/Arm_Left_Btm
+  rotate: true
+  xy: 2820, 572
+  size: 225, 244
+  orig: 225, 244
+  offset: 0, 0
+  index: -1
+images/Arm_Left_Btm2
+  rotate: true
+  xy: 2363, 931
+  size: 232, 261
+  orig: 232, 261
+  offset: 0, 0
+  index: -1
+images/Arm_Left_Top
+  rotate: true
+  xy: 3066, 414
+  size: 190, 244
+  orig: 190, 244
+  offset: 0, 0
+  index: -1
+images/Arm_Left_Top2
+  rotate: true
+  xy: 3066, 606
+  size: 190, 244
+  orig: 190, 244
+  offset: 0, 0
+  index: -1
+images/Arm_Right_Btm
+  rotate: true
+  xy: 1811, 1780
+  size: 285, 276
+  orig: 285, 276
+  offset: 0, 0
+  index: -1
+images/Arm_Right_Btm2
+  rotate: false
+  xy: 1795, 1084
+  size: 285, 262
+  orig: 285, 262
+  offset: 0, 0
+  index: -1
+images/Arm_Right_Top
+  rotate: true
+  xy: 1640, 609
+  size: 154, 187
+  orig: 196, 189
+  offset: 21, 1
+  index: -1
+images/Arm_Right_Top2
+  rotate: true
+  xy: 1451, 622
+  size: 154, 187
+  orig: 196, 189
+  offset: 21, 1
+  index: -1
+images/Body
+  rotate: false
+  xy: 1078, 2067
+  size: 1009, 913
+  orig: 1049, 913
+  offset: 40, 0
+  index: -1
+images/BodyDead
+  rotate: false
+  xy: 2, 2406
+  size: 1074, 574
+  orig: 1074, 883
+  offset: 0, 0
+  index: -1
+images/CheekLeft
+  rotate: false
+  xy: 3418, 222
+  size: 124, 185
+  orig: 124, 185
+  offset: 0, 0
+  index: -1
+images/CheekLeft2
+  rotate: false
+  xy: 3428, 665
+  size: 136, 177
+  orig: 136, 177
+  offset: 0, 0
+  index: -1
+images/CheekRight2
+  rotate: true
+  xy: 1451, 462
+  size: 158, 185
+  orig: 158, 186
+  offset: 0, 1
+  index: -1
+images/Cloak
+  rotate: false
+  xy: 3569, 1288
+  size: 355, 641
+  orig: 355, 641
+  offset: 0, 0
+  index: -1
+images/Cloak2
+  rotate: true
+  xy: 2824, 1460
+  size: 349, 641
+  orig: 349, 641
+  offset: 0, 0
+  index: -1
+images/Crown
+  rotate: true
+  xy: 3877, 923
+  size: 144, 217
+  orig: 144, 217
+  offset: 0, 0
+  index: -1
+images/CrownEye
+  rotate: false
+  xy: 1013, 2355
+  size: 59, 49
+  orig: 59, 49
+  offset: 0, 0
+  index: -1
+images/CrownEye_Shut
+  rotate: false
+  xy: 4017, 2413
+  size: 47, 37
+  orig: 47, 37
+  offset: 0, 0
+  index: -1
+images/Eye_Back
+  rotate: false
+  xy: 3049, 208
+  size: 212, 204
+  orig: 212, 204
+  offset: 0, 0
+  index: -1
+images/Eye_Back_Blink_0
+  rotate: false
+  xy: 3781, 205
+  size: 212, 203
+  orig: 212, 203
+  offset: 0, 0
+  index: -1
+images/Eye_Back_Blink_1
+  rotate: false
+  xy: 3758, 2
+  size: 212, 201
+  orig: 212, 201
+  offset: 0, 0
+  index: -1
+images/Eye_Back_Shut
+  rotate: false
+  xy: 3544, 172
+  size: 212, 203
+  orig: 212, 203
+  offset: 0, 0
+  index: -1
+images/Eye_Big
+  rotate: false
+  xy: 1261, 591
+  size: 188, 185
+  orig: 188, 185
+  offset: 0, 0
+  index: -1
+images/Eye_Big_Blink_0
+  rotate: false
+  xy: 2626, 776
+  size: 192, 182
+  orig: 192, 182
+  offset: 0, 0
+  index: -1
+images/Eye_Big_Blink_1
+  rotate: false
+  xy: 707, 512
+  size: 192, 182
+  orig: 192, 182
+  offset: 0, 0
+  index: -1
+images/Eye_Big_Shut
+  rotate: false
+  xy: 1054, 589
+  size: 205, 187
+  orig: 205, 187
+  offset: 0, 0
+  index: -1
+images/Eye_Small
+  rotate: false
+  xy: 3421, 409
+  size: 128, 123
+  orig: 128, 123
+  offset: 0, 0
+  index: -1
+images/Eye_Small_Blink_0
+  rotate: true
+  xy: 3448, 1333
+  size: 125, 118
+  orig: 125, 118
+  offset: 0, 0
+  index: -1
+images/Eye_Small_Blink_1
+  rotate: true
+  xy: 3448, 1206
+  size: 125, 118
+  orig: 125, 118
+  offset: 0, 0
+  index: -1
+images/Eye_Small_Shut
+  rotate: false
+  xy: 3422, 534
+  size: 142, 129
+  orig: 142, 129
+  offset: 0, 0
+  index: -1
+images/Eye_Socket_Left
+  rotate: false
+  xy: 2576, 535
+  size: 240, 239
+  orig: 240, 249
+  offset: 0, 10
+  index: -1
+images/Eye_Socket_Right
+  rotate: true
+  xy: 3852, 676
+  size: 245, 241
+  orig: 245, 257
+  offset: 0, 16
+  index: -1
+images/Eye_Socket_Right2
+  rotate: true
+  xy: 2823, 799
+  size: 245, 249
+  orig: 245, 249
+  offset: 0, 0
+  index: -1
+images/Hand_Left
+  rotate: false
+  xy: 1795, 978
+  size: 279, 104
+  orig: 279, 104
+  offset: 0, 0
+  index: -1
+images/Hand_Left2
+  rotate: true
+  xy: 3926, 1069
+  size: 243, 160
+  orig: 243, 162
+  offset: 0, 2
+  index: -1
+images/Hand_Right
+  rotate: true
+  xy: 3988, 1645
+  size: 328, 106
+  orig: 328, 106
+  offset: 0, 0
+  index: -1
+images/Hand_Right2
+  rotate: false
+  xy: 1811, 1348
+  size: 270, 175
+  orig: 270, 175
+  offset: 0, 0
+  index: -1
+images/Head
+  rotate: false
+  xy: 2852, 2457
+  size: 761, 523
+  orig: 761, 523
+  offset: 0, 0
+  index: -1
+images/Head2
+  rotate: false
+  xy: 2089, 2457
+  size: 761, 523
+  orig: 761, 523
+  offset: 0, 0
+  index: -1
+images/HeadLeader
+  rotate: false
+  xy: 3615, 2417
+  size: 400, 286
+  orig: 400, 286
+  offset: 0, 0
+  index: -1
+images/Leg_Back_Btm
+  rotate: true
+  xy: 742, 916
+  size: 218, 312
+  orig: 218, 312
+  offset: 0, 0
+  index: -1
+images/Leg_Back_Top
+  rotate: true
+  xy: 3568, 1052
+  size: 234, 307
+  orig: 234, 307
+  offset: 0, 0
+  index: -1
+images/MonsterHeart_glow
+  rotate: false
+  xy: 3566, 377
+  size: 213, 186
+  orig: 219, 194
+  offset: 3, 4
+  index: -1
+images/Mouth
+  rotate: true
+  xy: 2089, 1811
+  size: 644, 738
+  orig: 644, 738
+  offset: 0, 0
+  index: -1
+images/Mouth Shut
+  rotate: true
+  xy: 2089, 1165
+  size: 644, 733
+  orig: 644, 733
+  offset: 0, 0
+  index: -1
+images/Mouth2
+  rotate: true
+  xy: 2829, 1811
+  size: 644, 738
+  orig: 644, 738
+  offset: 0, 0
+  index: -1
+images/Mouth3
+  rotate: true
+  xy: 1071, 1421
+  size: 644, 738
+  orig: 644, 738
+  offset: 0, 0
+  index: -1
+images/Mouth4
+  rotate: true
+  xy: 2, 846
+  size: 644, 738
+  orig: 644, 738
+  offset: 0, 0
+  index: -1
+images/Mouth_Back
+  rotate: true
+  xy: 2, 215
+  size: 629, 703
+  orig: 629, 703
+  offset: 0, 0
+  index: -1
+images/Mouth_Mid
+  rotate: true
+  xy: 1067, 778
+  size: 641, 726
+  orig: 641, 726
+  offset: 0, 0
+  index: -1
+images/Robes_Left
+  rotate: true
+  xy: 3612, 2197
+  size: 218, 381
+  orig: 218, 381
+  offset: 0, 0
+  index: -1
+images/Robes_Right
+  rotate: true
+  xy: 3610, 1931
+  size: 264, 376
+  orig: 264, 376
+  offset: 0, 0
+  index: -1
+images/Slime_1
+  rotate: false
+  xy: 3569, 2342
+  size: 41, 113
+  orig: 41, 113
+  offset: 0, 0
+  index: -1
+images/Slime_2
+  rotate: true
+  xy: 3995, 2270
+  size: 39, 89
+  orig: 39, 89
+  offset: 0, 0
+  index: -1
+images/Slime_3
+  rotate: false
+  xy: 3569, 2166
+  size: 39, 174
+  orig: 45, 174
+  offset: 6, 0
+  index: -1
+images/Slime_4
+  rotate: false
+  xy: 1013, 1916
+  size: 56, 240
+  orig: 56, 240
+  offset: 0, 0
+  index: -1
+images/Slime_5
+  rotate: false
+  xy: 1013, 2158
+  size: 58, 195
+  orig: 68, 195
+  offset: 0, 0
+  index: -1
+images/Slime_7
+  rotate: false
+  xy: 4017, 2452
+  size: 49, 251
+  orig: 49, 251
+  offset: 0, 0
+  index: -1
+images/Slime_8
+  rotate: false
+  xy: 3569, 2041
+  size: 33, 123
+  orig: 33, 123
+  offset: 0, 0
+  index: -1
+images/Stick_1
+  rotate: true
+  xy: 742, 1331
+  size: 159, 323
+  orig: 159, 323
+  offset: 0, 0
+  index: -1
+images/Stick_1_2
+  rotate: false
+  xy: 3926, 1314
+  size: 164, 329
+  orig: 164, 329
+  offset: 0, 0
+  index: -1
+images/Stick_2
+  rotate: true
+  xy: 3615, 2705
+  size: 90, 457
+  orig: 90, 457
+  offset: 0, 0
+  index: -1
+images/Stick_2_2
+  rotate: true
+  xy: 3615, 2797
+  size: 90, 457
+  orig: 90, 457
+  offset: 0, 0
+  index: -1
+images/Stick_3
+  rotate: true
+  xy: 3615, 2889
+  size: 91, 460
+  orig: 91, 460
+  offset: 0, 0
+  index: -1
+images/Stick_3_2
+  rotate: false
+  xy: 3995, 1975
+  size: 33, 293
+  orig: 33, 293
+  offset: 0, 0
+  index: -1
+images/Stick_4
+  rotate: true
+  xy: 3136, 1301
+  size: 157, 310
+  orig: 157, 310
+  offset: 0, 0
+  index: -1
+images/Stick_4_2
+  rotate: true
+  xy: 2824, 1301
+  size: 157, 310
+  orig: 157, 310
+  offset: 0, 0
+  index: -1
+images/Stick_5
+  rotate: true
+  xy: 3566, 565
+  size: 225, 279
+  orig: 225, 279
+  offset: 0, 0
+  index: -1
+images/Stick_5_2
+  rotate: true
+  xy: 1795, 765
+  size: 211, 268
+  orig: 211, 268
+  offset: 0, 0
+  index: -1
+images/Stick_6
+  rotate: true
+  xy: 3428, 844
+  size: 116, 137
+  orig: 116, 137
+  offset: 0, 0
+  index: -1
+images/Stick_7
+  rotate: false
+  xy: 3312, 361
+  size: 104, 147
+  orig: 104, 147
+  offset: 0, 0
+  index: -1
+images/Stick_8
+  rotate: false
+  xy: 3312, 657
+  size: 108, 139
+  orig: 108, 139
+  offset: 0, 0
+  index: -1
+images/blood_explosion0001
+  rotate: false
+  xy: 3995, 2311
+  size: 93, 100
+  orig: 323, 313
+  offset: 93, 132
+  index: -1
+images/blood_explosion0002
+  rotate: true
+  xy: 3263, 207
+  size: 152, 153
+  orig: 323, 313
+  offset: 70, 120
+  index: -1
+images/blood_explosion0003
+  rotate: true
+  xy: 2626, 960
+  size: 203, 195
+  orig: 323, 313
+  offset: 48, 106
+  index: -1
+images/blood_explosion0004
+  rotate: false
+  xy: 2818, 352
+  size: 229, 218
+  orig: 323, 313
+  offset: 33, 95
+  index: -1
+images/blood_explosion0005
+  rotate: false
+  xy: 2325, 696
+  size: 249, 233
+  orig: 323, 313
+  offset: 20, 73
+  index: -1
+images/blood_explosion0006
+  rotate: false
+  xy: 2065, 733
+  size: 258, 240
+  orig: 323, 313
+  offset: 15, 66
+  index: -1
+images/blood_explosion0007
+  rotate: true
+  xy: 3847, 410
+  size: 264, 245
+  orig: 323, 313
+  offset: 9, 58
+  index: -1
+images/blood_explosion0008
+  rotate: false
+  xy: 1811, 1525
+  size: 272, 253
+  orig: 323, 313
+  offset: 6, 47
+  index: -1
+images/blood_explosion0009
+  rotate: false
+  xy: 3568, 792
+  size: 282, 258
+  orig: 323, 313
+  offset: 3, 39
+  index: -1
+images/blood_explosion0010
+  rotate: false
+  xy: 3130, 798
+  size: 296, 247
+  orig: 323, 313
+  offset: 3, 38
+  index: -1
+images/blood_explosion0011
+  rotate: false
+  xy: 3130, 1047
+  size: 297, 252
+  orig: 323, 313
+  offset: 4, 21
+  index: -1
+images/blood_explosion0012
+  rotate: false
+  xy: 2824, 1046
+  size: 304, 253
+  orig: 323, 313
+  offset: 2, 4
+  index: -1
+images/blood_explosion0013
+  rotate: false
+  xy: 742, 696
+  size: 310, 218
+  orig: 323, 313
+  offset: 1, 20
+  index: -1
+images/blood_explosion0014
+  rotate: false
+  xy: 2082, 975
+  size: 279, 188
+  orig: 323, 313
+  offset: 0, 30
+  index: -1
+images/blood_explosion0015
+  rotate: false
+  xy: 742, 1136
+  size: 319, 193
+  orig: 323, 313
+  offset: 0, 5
+  index: -1
+images/blood_explosion0016
+  rotate: true
+  xy: 3429, 962
+  size: 242, 137
+  orig: 323, 313
+  offset: 25, 34
+  index: -1
+images/blood_explosion0017
+  rotate: true
+  xy: 3312, 510
+  size: 145, 107
+  orig: 323, 313
+  offset: 28, 18
+  index: -1
+images/body2
+  rotate: false
+  xy: 2, 1492
+  size: 1009, 912
+  orig: 1049, 912
+  offset: 40, 0
+  index: -1

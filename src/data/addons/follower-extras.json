@@ -1,0 +1,272 @@
+{
+    "Deer": { "category": 0 },
+    "Pig": { "category": 0 },
+    "Dog": { "category": 0 },
+    "Cat": { "category": 0 },
+    "Fox": { "category": 0 },
+    "Fish": { "category": 0 },
+    "Pangolin": { "category": 0 },
+    "Shrew": { "category": 0 },
+    "Unicorn": { "category": 0 },
+    "Axolotl": { "category": 0 },
+    "Starfish": { "category": 0 },
+    "Red Panda": { "category": 0 },
+    "Poop": { "category": 0 },
+    "Massive Monster": {
+        "name": "Monster",
+        "category": 0
+    },
+
+    "Crab": { "category": 0 },
+    "Night Wolf": {
+        "name": "Wolf",
+        "category": 0
+    },
+
+    "Snail": { "category": 0 },
+    "Owl": { "category": 0 },
+    "Butterfly": { "category": 0 },
+    "Koala": { "category": 0 },
+    "Shrimp": { "category": 0 },
+    "Snake": { "category": 0 },
+    "Worm": { "category": 0 },
+    "Mushroom": { "category": 0 },
+
+    "Bee": { "category": 1 },
+    "Tapir": { "category": 1 },
+    "Turtle": { "category": 1 },
+    "Monkey": { "category": 1 },
+    "Narwal": {
+        "name": "Narwhal",
+        "category": 1
+    },
+
+    "Moose": { "category": 1 },
+    "Gorilla": { "category": 1 },
+    "Mosquito": { "category": 1 },
+    "Goldfish": { "category": 1 },
+    "Possum": { "category": 1 },
+    "Hammerhead": { "category": 1 },
+    "Llama": { "category": 1 },
+    "Tiger": { "category": 1 },
+    "Sphynx": { "category": 1 },
+    "LadyBug": {
+        "name": "Ladybug",
+        "category": 1
+    },
+
+    "TwitchMouse": {
+        "name": "Twitch Mouse",
+        "category": 1
+    },
+
+    "TwitchCat": {
+        "name": "Twitch Cat",
+        "category": 1
+    },
+
+    "TwitchDog": {
+        "name": "Frankerz",
+        "category": 1
+    },
+
+    "TwitchDogAlt": {
+        "name": "Ralpherz",
+        "category": 1
+    },
+
+    "TwitchPoggers": {
+        "name": "Poggers",
+        "category": 1
+    },
+
+    "Lion": { "category": 1 },
+    "Penguin": { "category": 1 },
+    "Pelican": { "category": 1 },
+    "Kiwi": { "category": 1 },
+    "DogTeddy": {
+        "name": "Teddy Dog",
+        "category": 1
+    },
+
+    "Camel": { "category": 1 },
+    "Anteater": { "category": 1 },
+    "Skunk": { "category": 1 },
+    "Panda": { "category": 1 },
+    "Enchida": {
+        "name": "Echidna",
+        "category": 1
+    },
+
+    "Boss Death Cat": {
+        "name": "Narinder",
+        "category": 2
+    },
+    
+    "CultLeader 1": {
+        "name": "Leshy",
+        "category": 2,
+
+        "variants": ["CultLeader 1 Healed"]
+    },
+    
+    "CultLeader 2": {
+        "name": "Heket",
+        "category": 2,
+
+        "variants": ["CultLeader 2 Healed"]
+    },
+    
+    "CultLeader 3": {
+        "name": "Kallamar",
+        "category": 2,
+
+        "variants": ["CultLeader 3 Healed"]
+    },
+    
+    "CultLeader 4": {
+        "name": "Shamura",
+        "category": 2,
+
+        "variants": ["CultLeader 4 Healed"]
+    },
+    
+    "Baal": { "category": 2 },
+    "Aym": { "category": 2 },
+    "Sozo": {
+        "category": 2,
+        "variants": ["SozoOld"]
+    },
+
+    "Jalala": { "category": 2 },
+    "Rinor": { "category": 2 },
+    "Abomination": { "category": 2 },
+    "Seal": { "category": 2 },
+    "Lemur": { "category": 2 },
+    "Caterpillar": { "category": 2 },
+    "Webber": { "category": 2 },
+    "Volvy": { "category": 2 },
+    "StarBunny": { "category": 2 },
+    "Crow": { "category": 2 },
+    "BatDemon": { "category": 2 },
+    "DeerSkull": { "category": 2 },
+    "Cthulhu": { "category": 2 },
+
+    "DeerRitual": {
+        "name": "Stag",
+        "category": 3
+    },
+    
+    "Poppy": {
+        "name": "Schnauzer",
+        "category": 3
+    },
+
+    "Cow": { "category": 3 },
+    "Horse": { "category": 3 },
+    "Hedgehog": { "category": 3 },
+    "Rabbit": { "category": 3 },
+    "Chicken": { "category": 3 },
+    "Squirrel": { "category": 3 },
+    "Boss Mama Worm": {
+        "name": "Amdusias",
+        "category": 3
+    },
+
+    "Boss Mama Maggot": {
+        "name": "Valefar",
+        "category": 3
+    },
+
+    "Boss Burrow Worm": {
+        "name": "Barbatos",
+        "category": 3
+    },
+
+    "Boss Beholder 1": {
+        "name": "Agares",
+        "category": 3
+    },
+
+    "Giraffe": { "category": 4 },
+    "Bison": { "category": 4 },
+    "Frog": { "category": 4 },
+    "Capybara": { "category": 4 },
+    "Fennec Fox": { "category": 4 },
+    "Rhino": { "category": 4 },
+    "Eagle": { "category": 4 },
+    "Boss Flying Burp Frog": {
+        "name": "Eligos",
+        "category": 4
+    },
+
+    "Boss Egg Hopper": {
+        "name": "Gusion",
+        "category": 4
+    },
+
+    "Boss Mortar Hopper": {
+        "name": "Zepar",
+        "category": 4
+    },
+
+    "Boss Beholder 2": {
+        "name": "Bathin",
+        "category": 4
+    },
+
+    "Crocodile": { "category": 5 },
+    "Elephant": { "category": 5 },
+    "Hippo": { "category": 5 },
+    "Otter": { "category": 5 },
+    "Seahorse": { "category": 5 },
+    "Duck": { "category": 5 },
+    "Boss Spiker": {
+        "name": "Saleos",
+        "category": 5
+    },
+
+    "Boss Charger": {
+        "name": "Haborym",
+        "category": 5
+    },
+
+    "Boss Scuttle Turret": {
+        "name": "Baalzebub",
+        "category": 5
+    },
+
+    "Boss Beholder 3": {
+        "name": "Astaroth",
+        "category": 5
+    },
+
+    "Racoon": {
+        "name": "Raccoon",
+        "category": 6
+    },
+
+    "Bear": { "category": 6 },
+    "Bat": { "category": 6 },
+    "Beetle": { "category": 6 },
+    "Badger": { "category": 6 },
+    "Boss Spider Jump": {
+        "name": "Focalor",
+        "category": 6
+    },
+
+    "Boss Millipede Poisoner": {
+        "name": "Vephar",
+        "category": 6
+    },
+
+    "Boss Scorpion": {
+        "name": "Hauras",
+        "category": 6
+    },
+
+    "Boss Beholder 4": {
+        "name": "Allocer",
+        "category": 6
+    }
+}

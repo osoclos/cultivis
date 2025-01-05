@@ -1,0 +1,5 @@
+canvas#display {
+    display: block;
+
+    border-style: solid;
+}

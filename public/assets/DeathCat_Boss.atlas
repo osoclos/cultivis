@@ -1,0 +1,412 @@
+
+DeathCat_Boss.png
+size: 4096,4096
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Boss/Arm_Btm
+  rotate: false
+  xy: 3305, 2421
+  size: 745, 290
+  orig: 745, 290
+  offset: 0, 0
+  index: -1
+Boss/Arm_Top
+  rotate: false
+  xy: 3298, 2178
+  size: 640, 241
+  orig: 640, 241
+  offset: 0, 0
+  index: -1
+Boss/BodyBtm
+  rotate: false
+  xy: 1276, 3534
+  size: 1097, 559
+  orig: 1097, 559
+  offset: 0, 0
+  index: -1
+Boss/BodyTop
+  rotate: false
+  xy: 2, 3468
+  size: 1272, 625
+  orig: 1272, 625
+  offset: 0, 0
+  index: -1
+Boss/Ear_Left
+  rotate: true
+  xy: 3305, 2713
+  size: 306, 771
+  orig: 306, 771
+  offset: 0, 0
+  index: -1
+Boss/Ear_Normal
+  rotate: false
+  xy: 2164, 2216
+  size: 207, 508
+  orig: 207, 508
+  offset: 0, 0
+  index: -1
+Boss/Ear_Right
+  rotate: false
+  xy: 933, 2255
+  size: 308, 796
+  orig: 308, 796
+  offset: 0, 0
+  index: -1
+Boss/EyeBrow
+  rotate: false
+  xy: 2886, 1697
+  size: 175, 144
+  orig: 175, 144
+  offset: 0, 0
+  index: -1
+Boss/EyeLeft
+  rotate: true
+  xy: 3291, 1369
+  size: 227, 263
+  orig: 227, 263
+  offset: 0, 0
+  index: -1
+Boss/EyeRed
+  rotate: true
+  xy: 3087, 2258
+  size: 222, 209
+  orig: 222, 209
+  offset: 0, 0
+  index: -1
+Boss/EyeRight
+  rotate: true
+  xy: 1222, 1687
+  size: 222, 256
+  orig: 222, 256
+  offset: 0, 0
+  index: -1
+Boss/EyeShut
+  rotate: false
+  xy: 881, 1584
+  size: 246, 160
+  orig: 246, 160
+  offset: 0, 0
+  index: -1
+Boss/Eye_Hole
+  rotate: false
+  xy: 3892, 1830
+  size: 200, 206
+  orig: 200, 206
+  offset: 0, 0
+  index: -1
+Boss/Eye_Hole2
+  rotate: true
+  xy: 2164, 1997
+  size: 217, 206
+  orig: 217, 206
+  offset: 0, 0
+  index: -1
+Boss/Eye_Hole3
+  rotate: true
+  xy: 1724, 1692
+  size: 217, 237
+  orig: 217, 237
+  offset: 0, 0
+  index: -1
+Boss/Eye_Middle
+  rotate: false
+  xy: 1480, 1611
+  size: 228, 159
+  orig: 228, 159
+  offset: 0, 0
+  index: -1
+Boss/Eye_Middle_Open
+  rotate: true
+  xy: 3087, 2034
+  size: 222, 209
+  orig: 222, 209
+  offset: 0, 0
+  index: -1
+Boss/FaceBlinds
+  rotate: true
+  xy: 1276, 2726
+  size: 806, 1003
+  orig: 806, 1003
+  offset: 0, 0
+  index: -1
+Boss/Hand
+  rotate: true
+  xy: 3298, 1598
+  size: 578, 592
+  orig: 578, 592
+  offset: 0, 0
+  index: -1
+Boss/HeadWings
+  rotate: true
+  xy: 2, 1847
+  size: 813, 919
+  orig: 893, 979
+  offset: 0, 0
+  index: -1
+Boss/HeadWings_dead
+  rotate: true
+  xy: 1243, 1911
+  size: 813, 919
+  orig: 893, 979
+  offset: 0, 0
+  index: -1
+Boss/Head_Closed
+  rotate: false
+  xy: 2375, 3288
+  size: 1010, 805
+  orig: 1010, 805
+  offset: 0, 0
+  index: -1
+Boss/Head_Dead
+  rotate: false
+  xy: 2374, 2482
+  size: 929, 804
+  orig: 929, 804
+  offset: 0, 0
+  index: -1
+Boss/Head_Dead_Back
+  rotate: false
+  xy: 2, 1556
+  size: 877, 289
+  orig: 877, 289
+  offset: 0, 0
+  index: -1
+Boss/Head_Open
+  rotate: false
+  xy: 2, 2662
+  size: 929, 804
+  orig: 929, 804
+  offset: 0, 0
+  index: -1
+Boss/MonsterHeart
+  rotate: false
+  xy: 2164, 1840
+  size: 180, 155
+  orig: 180, 155
+  offset: 0, 0
+  index: -1
+Boss/Mouth
+  rotate: false
+  xy: 3387, 3366
+  size: 661, 343
+  orig: 661, 343
+  offset: 0, 0
+  index: -1
+Boss/Mouth_Back
+  rotate: false
+  xy: 2373, 2103
+  size: 712, 377
+  orig: 712, 377
+  offset: 0, 0
+  index: -1
+Boss/Mouth_Btm
+  rotate: false
+  xy: 3387, 3021
+  size: 661, 343
+  orig: 661, 343
+  offset: 0, 0
+  index: -1
+Boss/Mouth_Mid
+  rotate: false
+  xy: 3387, 3711
+  size: 692, 382
+  orig: 768, 460
+  offset: 28, 64
+  index: -1
+Boss/Pupil
+  rotate: false
+  xy: 2886, 1531
+  size: 172, 164
+  orig: 172, 164
+  offset: 0, 0
+  index: -1
+Boss/SideEye_1_1
+  rotate: true
+  xy: 3940, 2038
+  size: 227, 149
+  orig: 227, 149
+  offset: 0, 0
+  index: -1
+Boss/SideEye_1_2
+  rotate: false
+  xy: 3063, 1636
+  size: 230, 145
+  orig: 230, 145
+  offset: 0, 0
+  index: -1
+Boss/SideEye_1_3
+  rotate: true
+  xy: 1963, 1682
+  size: 227, 143
+  orig: 227, 143
+  offset: 0, 0
+  index: -1
+Boss/SideEye_1_4
+  rotate: false
+  xy: 2108, 1695
+  size: 227, 143
+  orig: 227, 143
+  offset: 0, 0
+  index: -1
+Boss/SideEye_1_5
+  rotate: false
+  xy: 2108, 1550
+  size: 227, 143
+  orig: 227, 143
+  offset: 0, 0
+  index: -1
+Boss/SideEye_2_1
+  rotate: true
+  xy: 2281, 3407
+  size: 125, 92
+  orig: 125, 92
+  offset: 0, 0
+  index: -1
+Boss/SideEye_2_2
+  rotate: true
+  xy: 2281, 3155
+  size: 123, 91
+  orig: 123, 91
+  offset: 0, 0
+  index: -1
+Boss/SideEye_2_3
+  rotate: true
+  xy: 2281, 3030
+  size: 123, 91
+  orig: 123, 91
+  offset: 0, 0
+  index: -1
+Boss/SideEye_2_4
+  rotate: true
+  xy: 2281, 2906
+  size: 122, 91
+  orig: 122, 91
+  offset: 0, 0
+  index: -1
+Boss/SideEye_2_5
+  rotate: true
+  xy: 2281, 3280
+  size: 125, 91
+  orig: 125, 91
+  offset: 0, 0
+  index: -1
+Boss/blood_explosion0001
+  rotate: true
+  xy: 2954, 1861
+  size: 93, 100
+  orig: 323, 313
+  offset: 93, 132
+  index: -1
+Boss/blood_explosion0002
+  rotate: true
+  xy: 3940, 2267
+  size: 152, 153
+  orig: 323, 313
+  offset: 70, 120
+  index: -1
+Boss/blood_explosion0003
+  rotate: true
+  xy: 3892, 1625
+  size: 203, 195
+  orig: 323, 313
+  offset: 48, 106
+  index: -1
+Boss/blood_explosion0004
+  rotate: false
+  xy: 3060, 1416
+  size: 229, 218
+  orig: 323, 313
+  offset: 33, 95
+  index: -1
+Boss/blood_explosion0005
+  rotate: true
+  xy: 3063, 1783
+  size: 249, 233
+  orig: 323, 313
+  offset: 20, 73
+  index: -1
+Boss/blood_explosion0006
+  rotate: false
+  xy: 3556, 1356
+  size: 258, 240
+  orig: 323, 313
+  offset: 15, 66
+  index: -1
+Boss/blood_explosion0007
+  rotate: false
+  xy: 2620, 1596
+  size: 264, 245
+  orig: 323, 313
+  offset: 9, 58
+  index: -1
+Boss/blood_explosion0008
+  rotate: false
+  xy: 2346, 1599
+  size: 272, 253
+  orig: 323, 313
+  offset: 6, 47
+  index: -1
+Boss/blood_explosion0009
+  rotate: false
+  xy: 2670, 1843
+  size: 282, 258
+  orig: 323, 313
+  offset: 3, 39
+  index: -1
+Boss/blood_explosion0010
+  rotate: false
+  xy: 2372, 1854
+  size: 296, 247
+  orig: 323, 313
+  offset: 3, 38
+  index: -1
+Boss/blood_explosion0011
+  rotate: false
+  xy: 923, 1746
+  size: 297, 252
+  orig: 323, 313
+  offset: 4, 21
+  index: -1
+Boss/blood_explosion0012
+  rotate: false
+  xy: 923, 2000
+  size: 304, 253
+  orig: 323, 313
+  offset: 2, 4
+  index: -1
+Boss/blood_explosion0013
+  rotate: false
+  xy: 933, 3053
+  size: 310, 218
+  orig: 323, 313
+  offset: 1, 20
+  index: -1
+Boss/blood_explosion0014
+  rotate: true
+  xy: 3892, 1344
+  size: 279, 188
+  orig: 323, 313
+  offset: 0, 30
+  index: -1
+Boss/blood_explosion0015
+  rotate: false
+  xy: 933, 3273
+  size: 319, 193
+  orig: 323, 313
+  offset: 0, 5
+  index: -1
+Boss/blood_explosion0016
+  rotate: false
+  xy: 1480, 1772
+  size: 242, 137
+  orig: 323, 313
+  offset: 25, 34
+  index: -1
+Boss/blood_explosion0017
+  rotate: true
+  xy: 2954, 1956
+  size: 145, 107
+  orig: 323, 313
+  offset: 28, 18
+  index: -1

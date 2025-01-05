@@ -1,0 +1,36 @@
+{
+    "include": ["svelte.config.ts", "vite.config.ts", "setup/**/*.ts"],
+    "exclude": ["setup/generator/src/**/*.ts"],
+
+    "compilerOptions": {
+        // Type Checking
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "strict": true,
+
+        // Modules
+        "allowImportingTsExtensions": true,
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "noUncheckedSideEffectImports": true,
+        "types": ["@types/bun"],
+
+        // Emit
+        "noEmit": true,
+
+        // Interop Constraints
+        "isolatedModules": true,
+
+        // Language and Environment
+        "lib": ["ES2023"],
+        "moduleDetection": "force",
+        "target": "ES2022",
+
+        // Projects
+        "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+
+        // Completeness
+        "skipLibCheck": true,
+    }
+}

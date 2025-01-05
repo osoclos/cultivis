@@ -1,0 +1,246 @@
+{
+    "Default_Clothing": {
+        "name": "Acolyte Robes",
+        "category": 0
+    },
+
+    "Normal9_Clothing": {
+        "name": "Picnic Attire",
+        "category": 0
+    },
+
+    "Normal8_Clothing": {
+        "name": "Night Shirt",
+        "category": 0
+    },
+
+    "Normal7_Clothing": {
+        "name": "Grass Skirt",
+        "category": 0
+    },
+
+    "Normal6_Clothing": {
+        "name": "Sensible Dress",
+        "category": 0
+    },
+
+    "Normal5_Clothing": {
+        "name": "Modest Robe",
+        "category": 0
+    },
+
+    "Normal4_Clothing": {
+        "name": "Scholar Shirt",
+        "category": 0
+    },
+
+    "Normal3_Clothing": {
+        "name": "Ragged Robes",
+        "category": 0
+    },
+
+    "Normal2_Clothing": {
+        "name": "Laborer Tunic",
+        "category": 0
+    },
+
+    "Normal1_Clothing": {
+        "name": "Peasant Robes",
+        "category": 0
+    },
+
+    "Normal12_Clothing": {
+        "name": "Genteel Jacket",
+        "category": 0
+    },
+
+    "Normal11_Clothing": {
+        "name": "Evening Frock",
+        "category": 0
+    },
+
+    "Normal10_Clothing": {
+        "name": "Merchant Shirt",
+        "category": 0
+    },
+
+    "Naked_Clothing": {
+        "name": "Naked",
+        "category": 0,
+
+        "variants": ["Clothes/Naked_Old"]
+    },
+
+    "Rags": {
+        "name": "Torn Rags",
+        "category": 0,
+
+        "variants": ["Clothes/Rags"]
+    },
+
+    "Missionary": {
+        "name": "Missionary's Backpack",
+        "category": 0,
+
+        "variants": ["Clothes/Sherpa"]
+    },
+
+    "Undertaker": {
+        "name": "Undertaker's Robes",
+        "category": 0,
+
+        "variants": ["Clothes/Undertaker"]
+    },
+
+    "Holiday": {
+        "name": "Aloha Shirt",
+        "category": 0,
+
+        "variants": ["Clothes/Holiday"]
+    },
+
+    "Old": {
+        "name": "Senior Garment",
+        "category": 0,
+
+        "variants": ["Clothes/Robes_Old"]
+    },
+
+    "Baby": {
+        "name": "Comfy Diapers",
+        "category": 0,
+        
+        "variants": ["Clothes/Baby"]
+    },
+
+    "Warrior_Clothing": {
+        "name": "Warrior's Cuirass",
+        "category": 1
+    },
+
+    "Special_7_Clothing": {
+        "name": "Jester Costume",
+        "category": 1
+    },
+
+    "Special_6_Clothing": {
+        "name": "Drinktender Vest",
+        "category": 1
+    },
+
+    "Special_5_Clothing": {
+        "name": "Fancy Robes",
+        "category": 1
+    },
+
+    "Special_4_Clothing": {
+        "name": "Maid Dress",
+        "category": 1
+    },
+
+    "Special_3_Clothing": {
+        "name": "Ceremonial Robe",
+        "category": 1
+    },
+
+    "Special_2_Clothing": {
+        "name": "Knight Armour",
+        "category": 1
+    },
+
+    "Special_1_Clothing": {
+        "name": "Chef's Jacket",
+        "category": 1
+    },
+
+    "Fancy_Suit_Clothing": {
+        "name": "Wedding Suit",
+        "category": 1
+    },
+
+    "Fancy_Clothing": {
+        "name": "Wedding Dress",
+        "category": 1
+    },
+
+    "Baal_Robes": {
+        "name": "Baal's Robes",
+        "category": 1,
+
+        "variants": ["Clothes/Robes_Baal"]
+    },
+
+    "Aym_Robes": {
+        "name": "Aym's Robes",
+        "category": 1,
+
+        "variants": ["Clothes/Robes_Aym"]
+    },
+
+    "Sozo_Backpack": {
+        "name": "Sozo's Backpack",
+        "category": 1,
+
+        "variants": ["Clothes/Sozo"]
+    },
+
+    "Heretic_DLC_Clothing": {
+        "name": "Acolyte of the Old Faith",
+        "category": 2
+    },
+
+    "Heretic_DLC_Clothing2": {
+        "name": "Enforcer of the Old Faith",
+        "category": 2
+    },
+
+    "DLC_6": {
+        "name": "Olympian",
+        "category": 2
+    },
+
+    "DLC_5": {
+        "name": "Officer Suit",
+        "category": 2
+    },
+
+    "DLC_4": {
+        "name": "Mystic Robes",
+        "category": 2
+    },
+
+    "DLC_3": {
+        "name": "Gothic Dress",
+        "category": 2
+    },
+
+    "DLC_2": {
+        "name": "Yeoman Coat",
+        "category": 2
+    },
+
+    "DLC_1": {
+        "name": "Garb of the Kawaii",
+        "category": 2
+    },
+
+    "Cultist_DLC_Clothing": {
+        "name": "Spring Tunic",
+        "category": 2
+    },
+
+    "Cultist_DLC_Clothing2": {
+        "name": "Flowering Frock",
+        "category": 2
+    },
+
+    "Pilgrim_DLC_Clothing": {
+        "name": "Jalala's Coat",
+        "category": 2
+    },
+
+    "Pilgrim_DLC_Clothing2": {
+        "name": "Rinor's Robes",
+        "category": 2
+    }
+}

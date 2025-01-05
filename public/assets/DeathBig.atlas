@@ -1,0 +1,419 @@
+
+DeathBig.png
+size: 4096,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/ArmLeft
+  rotate: false
+  xy: 2491, 5
+  size: 411, 443
+  orig: 411, 443
+  offset: 0, 0
+  index: -1
+images/ArmRight
+  rotate: false
+  xy: 2223, 1596
+  size: 405, 443
+  orig: 405, 443
+  offset: 0, 0
+  index: -1
+images/BODY_BOTTOM
+  rotate: true
+  xy: 2, 1207
+  size: 832, 634
+  orig: 832, 634
+  offset: 0, 0
+  index: -1
+images/BODY_BOTTOM_NoChain
+  rotate: true
+  xy: 2, 373
+  size: 832, 634
+  orig: 832, 634
+  offset: 0, 0
+  index: -1
+images/BODY_LOWER
+  rotate: false
+  xy: 1661, 1368
+  size: 560, 671
+  orig: 560, 671
+  offset: 0, 0
+  index: -1
+images/BODY_LOWER_NoChain
+  rotate: true
+  xy: 2366, 648
+  size: 560, 671
+  orig: 560, 671
+  offset: 0, 0
+  index: -1
+images/Big Crown
+  rotate: true
+  xy: 2, 37
+  size: 334, 411
+  orig: 334, 411
+  offset: 0, 0
+  index: -1
+images/Big Crown 2
+  rotate: true
+  xy: 2223, 1368
+  size: 226, 301
+  orig: 226, 301
+  offset: 0, 0
+  index: -1
+images/Big_Crown_Eye
+  rotate: false
+  xy: 2403, 450
+  size: 131, 68
+  orig: 131, 68
+  offset: 0, 0
+  index: -1
+images/Big_Crown_Eye_Closed
+  rotate: false
+  xy: 1165, 1165
+  size: 125, 42
+  orig: 131, 68
+  offset: 3, 1
+  index: -1
+images/Chain
+  rotate: true
+  xy: 898, 632
+  size: 66, 1036
+  orig: 66, 1036
+  offset: 0, 0
+  index: -1
+images/ChainPiece_1
+  rotate: true
+  xy: 2766, 458
+  size: 63, 95
+  orig: 63, 95
+  offset: 0, 0
+  index: -1
+images/ChainPiece_2
+  rotate: true
+  xy: 2258, 455
+  size: 63, 143
+  orig: 63, 143
+  offset: 0, 0
+  index: -1
+images/ChainPiece_3
+  rotate: true
+  xy: 2659, 457
+  size: 63, 105
+  orig: 63, 105
+  offset: 0, 0
+  index: -1
+images/ChainPiece_4
+  rotate: false
+  xy: 2863, 466
+  size: 58, 58
+  orig: 58, 58
+  offset: 0, 0
+  index: -1
+images/ChainPiece_5
+  rotate: true
+  xy: 2072, 456
+  size: 61, 184
+  orig: 61, 184
+  offset: 0, 0
+  index: -1
+images/Clamp
+  rotate: true
+  xy: 1661, 1213
+  size: 153, 152
+  orig: 153, 152
+  offset: 0, 0
+  index: -1
+images/Clamp_Open
+  rotate: true
+  xy: 1100, 451
+  size: 179, 178
+  orig: 179, 178
+  offset: 0, 0
+  index: -1
+images/Eye_Angry_Left
+  rotate: false
+  xy: 2814, 526
+  size: 118, 120
+  orig: 118, 120
+  offset: 0, 0
+  index: -1
+images/Eye_Angry_Middle
+  rotate: true
+  xy: 2562, 522
+  size: 124, 128
+  orig: 124, 128
+  offset: 0, 0
+  index: -1
+images/Eye_Angry_Right
+  rotate: true
+  xy: 2692, 523
+  size: 123, 120
+  orig: 123, 120
+  offset: 0, 0
+  index: -1
+images/Eye_Normal
+  rotate: true
+  xy: 2431, 522
+  size: 124, 129
+  orig: 124, 129
+  offset: 0, 0
+  index: -1
+images/Eye_Shut
+  rotate: false
+  xy: 96, 2
+  size: 88, 33
+  orig: 88, 33
+  offset: 0, 0
+  index: -1
+images/Eye_Smile_Left
+  rotate: true
+  xy: 2479, 1250
+  size: 116, 106
+  orig: 116, 106
+  offset: 0, 0
+  index: -1
+images/Eye_Smile_Middle
+  rotate: false
+  xy: 2934, 540
+  size: 122, 106
+  orig: 122, 106
+  offset: 0, 0
+  index: -1
+images/Eye_Smile_Right
+  rotate: true
+  xy: 2526, 1478
+  size: 116, 106
+  orig: 116, 106
+  offset: 0, 0
+  index: -1
+images/Eye_Squint
+  rotate: false
+  xy: 2399, 1281
+  size: 78, 85
+  orig: 78, 85
+  offset: 0, 0
+  index: -1
+images/Eye_Squint_Middle
+  rotate: false
+  xy: 1541, 703
+  size: 78, 45
+  orig: 78, 45
+  offset: 0, 0
+  index: -1
+images/FACE_BLINDS
+  rotate: true
+  xy: 415, 32
+  size: 339, 377
+  orig: 339, 473
+  offset: 0, 96
+  index: -1
+images/Fire/Fire_0
+  rotate: true
+  xy: 1936, 640
+  size: 108, 221
+  orig: 150, 275
+  offset: 21, 27
+  index: -1
+images/Fire/Fire_1
+  rotate: true
+  xy: 2228, 520
+  size: 118, 201
+  orig: 150, 275
+  offset: 16, 37
+  index: -1
+images/Fire/Fire_2
+  rotate: true
+  xy: 1998, 519
+  size: 119, 228
+  orig: 150, 275
+  offset: 15, 24
+  index: -1
+images/Fire/Fire_3
+  rotate: true
+  xy: 1533, 514
+  size: 116, 249
+  orig: 150, 275
+  offset: 17, 13
+  index: -1
+images/Fire/Fire_4
+  rotate: true
+  xy: 1280, 514
+  size: 116, 251
+  orig: 150, 275
+  offset: 17, 12
+  index: -1
+images/Fire/Fire_5
+  rotate: true
+  xy: 2159, 640
+  size: 108, 205
+  orig: 150, 275
+  offset: 21, 35
+  index: -1
+images/Fire/Fire_6
+  rotate: true
+  xy: 1784, 515
+  size: 115, 212
+  orig: 150, 275
+  offset: 17, 32
+  index: -1
+images/HEAD
+  rotate: true
+  xy: 2630, 1673
+  size: 366, 336
+  orig: 366, 336
+  offset: 0, 0
+  index: -1
+images/HandSlimeLeft
+  rotate: true
+  xy: 1280, 436
+  size: 76, 201
+  orig: 76, 201
+  offset: 0, 0
+  index: -1
+images/HandSlimeRight
+  rotate: true
+  xy: 1871, 451
+  size: 62, 199
+  orig: 62, 199
+  offset: 0, 0
+  index: -1
+images/HoodTop
+  rotate: false
+  xy: 2923, 28
+  size: 492, 496
+  orig: 492, 496
+  offset: 0, 0
+  index: -1
+images/Mouth_Angry
+  rotate: false
+  xy: 1675, 441
+  size: 194, 71
+  orig: 194, 71
+  offset: 0, 0
+  index: -1
+images/Mouth_Grin
+  rotate: false
+  xy: 1815, 1262
+  size: 194, 104
+  orig: 194, 104
+  offset: 0, 0
+  index: -1
+images/Mouth_Happy
+  rotate: false
+  xy: 2011, 1261
+  size: 192, 105
+  orig: 192, 105
+  offset: 0, 0
+  index: -1
+images/Mouth_Happy2
+  rotate: false
+  xy: 2205, 1264
+  size: 192, 102
+  orig: 192, 102
+  offset: 0, 0
+  index: -1
+images/Mouth_Happy3
+  rotate: false
+  xy: 1483, 437
+  size: 190, 75
+  orig: 190, 75
+  offset: 0, 0
+  index: -1
+images/Mouth_Shut
+  rotate: false
+  xy: 2325, 1210
+  size: 100, 52
+  orig: 100, 52
+  offset: 0, 0
+  index: -1
+images/Mouth_Smile
+  rotate: false
+  xy: 638, 375
+  size: 167, 46
+  orig: 167, 46
+  offset: 0, 0
+  index: -1
+images/Mouth_Talk
+  rotate: false
+  xy: 2536, 459
+  size: 121, 61
+  orig: 121, 61
+  offset: 0, 0
+  index: -1
+images/Mouth_Talk2
+  rotate: false
+  xy: 2205, 1209
+  size: 118, 53
+  orig: 118, 53
+  offset: 0, 0
+  index: -1
+images/Mouth_Talk3
+  rotate: false
+  xy: 2, 3
+  size: 92, 32
+  orig: 92, 32
+  offset: 0, 0
+  index: -1
+images/RingBlast
+  rotate: true
+  xy: 898, 429
+  size: 201, 200
+  orig: 201, 200
+  offset: 0, 0
+  index: -1
+images/TransformFace_1
+  rotate: true
+  xy: 638, 423
+  size: 275, 258
+  orig: 275, 258
+  offset: 0, 0
+  index: -1
+images/TransformFace_2
+  rotate: false
+  xy: 2587, 1225
+  size: 274, 251
+  orig: 274, 251
+  offset: 0, 0
+  index: -1
+images/WildGhostAura/idle/WildGhostAura_Idle_0001
+  rotate: true
+  xy: 1541, 750
+  size: 457, 786
+  orig: 570, 987
+  offset: 91, 14
+  index: -1
+images/WildGhostAura/idle/WildGhostAura_Idle_0002
+  rotate: false
+  xy: 1165, 1209
+  size: 494, 830
+  orig: 570, 987
+  offset: 76, 13
+  index: -1
+images/WildGhostAura/idle/WildGhostAura_Idle_0003
+  rotate: true
+  xy: 807, 2
+  size: 419, 855
+  orig: 570, 987
+  offset: 68, 14
+  index: -1
+images/WildGhostAura/idle/WildGhostAura_Idle_0004
+  rotate: true
+  xy: 1664, 29
+  size: 406, 825
+  orig: 570, 987
+  offset: 73, 32
+  index: -1
+images/WildGhostAura/idle/WildGhostAura_Idle_0005
+  rotate: false
+  xy: 638, 1165
+  size: 525, 874
+  orig: 570, 987
+  offset: 36, 16
+  index: -1
+images/WildGhostAura/idle/WildGhostAura_Idle_0006
+  rotate: true
+  xy: 638, 700
+  size: 463, 901
+  orig: 570, 987
+  offset: 94, 17
+  index: -1

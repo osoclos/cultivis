@@ -1,0 +1,39 @@
+{
+    "extends": "@tsconfig/svelte/tsconfig.json",
+    "include": ["src/**/*.svelte", "src/**/*.ts"],
+
+    "compilerOptions": {
+        // Type Checking
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "strict": true,
+
+        // Modules
+        "allowImportingTsExtensions": true,
+        "module": "ESNext",
+        "moduleResolution": "Bundler",
+        "noUncheckedSideEffectImports": true,
+        "paths": { "/*": ["./*", "./public/*"] },
+        "resolveJsonModule": true,
+        "types": ["./lib/spine-ts/build/spine-webgl.d.ts"],
+
+        // Emit
+        "noEmit": true,
+
+        // Interop Constraints
+        "isolatedModules": true,
+
+        // Language and Environment
+        "lib": ["ES2020", "DOM", "DOM.Iterable"],
+        "moduleDetection": "force",
+        "target": "ES2020",
+        "useDefineForClassFields": true,
+
+        // Completeness
+        "skipLibCheck": true
+    }
+}
+
+
+

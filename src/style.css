@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Lapture Bold";
+    src: url("/static/fonts/Lapture-Bold.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Fira Sans";
+    src: url("/static/fonts/Fira-Sans.ttf");
+}
+
+@font-face {
+    font-family: "Copyright Symbol";
+    src: url("/static/fonts/Open-Sans.ttf");
+    unicode-range: U+00A9;
+}
+
+@theme {
+    --default-font-family: "Copyright Symbol", "Lapture Bold", Georgia, "Times New Roman", Times, serif;
+    
+    --color-primary: #01d5a2;
+    --color-secondary: #000000;
+    
+    --color-inactive: #545454;
+    --color-active: #f5edd5;
+
+    --color-highlight: #f32002;
+    --color-undertone: #160f00;
+
+    --color-bright: #ffd201;
+    --color-dark: #0a0a0a;
+
+    --color-night: #0f0f0f;
+    --color-night-border: #1a1a1a;
+
+    --font-subtitle: "Copyright Symbol", "Fira Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@layer theme {
+    * { @apply cursor-[url("/static/ui/cursor.png"),_auto]; }
+}

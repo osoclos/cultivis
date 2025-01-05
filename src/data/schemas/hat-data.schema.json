@@ -1,0 +1,33 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "hat-data.schema.json",
+
+    "title": "Hat Data",
+    "description": "Information on hats that provides metadata and attributes to how to visualize hats",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/Id" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The display name of this hat"
+            },
+
+            "variant": {
+                "type": "string",
+                "description": "The variant name of this hat"
+            }
+        },
+
+        "required": ["name", "variant"]
+    },
+
+    "definitions": {
+        "Id": {
+            "type": "string",
+            "enum": ["Bartender", "Chef", "Tax_Enforcer", "Faith_Enforcer", "Farmer", "Lumberjack", "Miner", "Nudist", "Refiner"]
+        }
+    }
+}

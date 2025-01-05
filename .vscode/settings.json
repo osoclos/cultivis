@@ -1,0 +1,134 @@
+{
+    "cSpell.words": [
+        "Agares",
+        "Allocer",
+        "Amdusias",
+        "Anchordeep",
+        "Anura",
+        "Astaroth",
+        "Baalzebub",
+        "Barbatos",
+        "Bathin",
+        "coprophiliac",
+        "COTL",
+        "cotlgif",
+        "CultiVis",
+        "daisyui",
+        "Darkwood",
+        "Devolver",
+        "Eligos",
+        "Enchida",
+        "fillbowl",
+        "fmod",
+        "Focalor",
+        "Frankerz",
+        "gifenc",
+        "givesignal",
+        "guantlets",
+        "Gusion",
+        "Haborym",
+        "Hauras",
+        "heket",
+        "holdingobject",
+        "Jalala",
+        "kallamar",
+        "Lapture",
+        "leshy",
+        "Narinder",
+        "Nightwolf",
+        "oldstuff",
+        "onaccept",
+        "onactorclick",
+        "onadd",
+        "onclickcapture",
+        "onkeyfocus",
+        "onpinch",
+        "onproceed",
+        "onshift",
+        "pageerror",
+        "pocams",
+        "Poggers",
+        "Ralpherz",
+        "requestfailed",
+        "Rinor",
+        "Saleos",
+        "Segoe",
+        "shamura",
+        "Shroom",
+        "skel",
+        "Sozo",
+        "Sozonius",
+        "Sphynx",
+        "startrun",
+        "steamapps",
+        "stoprun",
+        "surrogateescape",
+        "swiftshader",
+        "Tahoma",
+        "Uniformi",
+        "upng",
+        "Valefar",
+        "Vephar",
+        "Volvy",
+        "Zepar"
+    ],
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "/follower-extras.json"
+            ],
+
+            "url": "/src/data/addons/schemas/follower-extras.schema.json"
+        },
+        {
+            "fileMatch": [
+                "/clothing-extras.json"
+            ],
+            
+            "url": "/src/data/addons/schemas/clothing-extras.schema.json"
+        },
+        {
+            "fileMatch": [
+                "/necklace-data.json"
+            ],
+
+            "url": "/src/data/schemas/necklace-data.schema.json"
+        },
+        {
+            "fileMatch": [
+                "/hat-data.json"
+            ],
+            
+            "url": "/src/data/schemas/hat-data.schema.json"
+        },
+        {
+            "fileMatch": [
+                "/sequence-data.json"
+            ],
+
+            "url": "/src/data/schemas/sequence-data.schema.json"
+        },
+        {
+            "fileMatch": [
+                "/scenario-data.json"
+            ],
+
+            "url": "/src/data/schemas/scenario-data.schema.json"
+        },
+        {
+            "fileMatch": [
+                "/player-data.json"
+            ],
+
+            "url": "/src/data/schemas/player-data.schema.json"
+        },
+        {
+            "fileMatch": [
+                "/forbidden-animations.json"
+            ],
+
+            "url": "/src/data/schemas/forbidden-animations.schema.json"
+        }
+    ],
+    "typescript.tsdk": "node_modules\\typescript\\lib"
+}

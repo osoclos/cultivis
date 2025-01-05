@@ -1,0 +1,9 @@
+{
+    "extends": "./tsconfig.app.json",
+    "include": ["setup/generator/src/**/*.ts"],
+
+    "compilerOptions": {
+        // Modules
+        "paths": { "@/*": ["./src/*"] }
+    }
+}
