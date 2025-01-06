@@ -4,6 +4,7 @@
 
     interface Options {
         size: VectorObject;
+        lockAspectRatio: boolean;
 
         fitScene: boolean;
         cropScene: boolean;
@@ -13,6 +14,7 @@
 
     let {
         size = $bindable(),
+        lockAspectRatio = $bindable(),
 
         fitScene = $bindable(),
         cropScene = $bindable(),
@@ -21,7 +23,7 @@
     }: Props = $props();
 
     function oninput() {
-        input({ size, fitScene, cropScene });
+        input({ size, lockAspectRatio, fitScene, cropScene });
     }
 </script>
 
@@ -36,6 +38,10 @@
             
             <Label label="Height">
                 <NumberInput label="Height" bind:value={size.y} unit="px" max={Infinity} {oninput} />
+            </Label>
+
+            <Label class="my-3" label="Lock Aspect Ratio">
+                <Toggle label="Lock Aspect Ratio" bind:enabled={lockAspectRatio} {oninput} />
             </Label>
         {/if}
 

@@ -57,13 +57,16 @@
         Vector.arrToObj(values, scale);
     }
 
-    function onclick() {
+    function onclick({ target }: MouseEvent) {
+        if (target === (editable ? inputElement : button)) return;
         if (href) {
             link.focus();
             return;
         }
         
+        (editable ? inputElement : button).click();
         (editable ? inputElement : button).focus();
+
         click();
     }
 </script>

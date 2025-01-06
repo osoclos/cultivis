@@ -490,6 +490,11 @@ export class Vector implements VectorObject {
         return x + y;
     }
 
+    grad(origin: Vector = Vector.Zero): number {
+        const { x, y } = Vector.sub(this, origin);
+        return y / x;
+    }
+
     ang(origin: Vector = Vector.Zero): number {
         const { x, y } = Vector.sub(this, origin);
         return Math.atan2(y, x);

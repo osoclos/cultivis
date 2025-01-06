@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Snippet } from "svelte";
+    import { type Snippet } from "svelte";
     import { twMerge } from "tailwind-merge";
 
     import { DividerTitle } from "../base";
@@ -34,15 +34,15 @@
 
     let {
         children = $bindable(),
-        titles,
+        titles = $bindable(),
 
-        minColumns = 0,
+        minColumns = 1,
         maxColumns = 10,
 
         autoColumns = true,
 
         columns = $bindable(0),
-        rows = $bindable(Array(titles.length).fill(0)),
+        rows = $bindable(Array(1000).fill(0)),
 
         tileWidth = 100,
         tileHeight = 100,

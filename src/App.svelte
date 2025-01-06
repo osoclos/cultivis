@@ -21,7 +21,6 @@
     let exporter: Exporter;
     
     let categoryIdx: number = $state(0);
-    let isMobile: boolean = matchMedia("(max-width: 768px)").matches;
 
     let actors: ActorObject[] | null = $state(null);
     let actorIdx: number = $state(-1);
@@ -35,9 +34,10 @@
     let actorObj: ActorObject | null = $state(null);
 
     let size = $state(new Vector(640, 360).toObj());
+    let lockAspectRatio = $state(false);
 
     // svelte-ignore state_referenced_locally
-    isMobile && Vector.fromObj(size).swap().cloneObj(size);
+    matchMedia("(max-width: 768px)").matches && Vector.fromObj(size).swap().cloneObj(size);
 
     let fitScene: boolean = $state(false);
     let cropScene: boolean = $state(false);
@@ -182,8 +182,28 @@
         link.click();
     }
 
+    function setSceneSize() {
+        if (lockAspectRatio) {
+            if (scene.size.x !== size.x) {
+                const { x } = size;
+                const ratio = scene.size.grad();
+
+                size.y = ratio * x;
+            } else if (scene.size.y !== size.y) {
+                const { y } = size;
+                const ratio = Vector.swap(scene.size).grad();
+
+                size.x = ratio * y;
+            }
+        }
+
+        scene.size.copyObj(size);
+    }
+
     function setCroppedScene() {
+        scene.size.copyObj(size);
         scene.resetCamera();
+
         if (!cropScene) return;
 
         Vector.ceil(scene.sceneSize).cloneObj(size);
@@ -199,17 +219,17 @@
 </div>
 
 <div class="lg:w-140 lg:h-dvh bg-black">
-    <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-140 select-none" bind:selectedIdx={categoryIdx} enableKeyInput />
-    <div class="no-scrollbar overflow-y-auto flex flex-col {categoryIdx === 1 ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
+    <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-140 select-none" bind:selectedIdx={categoryIdx} enableKeyInput={actorIdx < 0|| matchMedia("(max-width: 768px)").matches} />
+    <div class="no-scrollbar lg:overflow-y-auto flex flex-col {categoryIdx === 1 ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
         {#if categoryIdx === 0}
             <CharacterList bind:actors enableKeyInput={actorIdx < 0} onadd={addActor} onactorclick={selectActor} />
 
             <div class={["lg:absolute lg:top-0 w-full lg:w-140 lg:h-full bg-black transition-[left,_filter] duration-500", actorIdx < 0 ? "lg:-left-210 lg:brightness-0 lg:ease-in" : "lg:left-0 lg:brightness-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                 {#if actor && actorObj}
                     {#if isFollowerObj(actorObj)}
-                        <FollowerNavigation class="no-scrollbar overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} enableKeyInput={!showActorMenu} onproceed={selectFollowerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : actorIdx = -1} />
+                        <FollowerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} enableKeyInput={!showActorMenu} onproceed={selectFollowerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : actorIdx = -1} />
                     {:else if isPlayerObj(actorObj)}
-                        <PlayerNavigation class="no-scrollbar overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-full" player={actor as Player} obj={actorObj} enableKeyInput={!showActorMenu} onproceed={selectPlayerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : actorIdx = -1} />
+                        <PlayerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-full" player={actor as Player} obj={actorObj} enableKeyInput={!showActorMenu} onproceed={selectPlayerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : actorIdx = -1} />
                     {/if}
                 {/if}
             </div>
@@ -217,9 +237,9 @@
             <div class={["lg:absolute lg:top-0 w-full lg:w-140 lg:h-full bg-black transition-[left,_filter] duration-500", !showActorMenu ? "lg:-left-210 lg:brightness-0 lg:ease-in" : "lg:left-0 lg:brightness-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
                 {#if actor && actorObj}
                     {#if isFollowerObj(actorObj) && followerMenu}
-                        <FollowerMenus class="no-scrollbar overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-full" follower={actor as Follower} obj={actorObj} menu={followerMenu} enableKeyInput />
+                        <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-full" follower={actor as Follower} obj={actorObj} menu={followerMenu} enableKeyInput />
                     {:else if isPlayerObj(actorObj) && playerMenu}
-                        <PlayerMenus class="no-scrollbar overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-full" player={actor as Player} obj={actorObj} menu={playerMenu} enableKeyInput />
+                        <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-full" player={actor as Player} obj={actorObj} menu={playerMenu} enableKeyInput />
                     {/if}
                 {/if}
             </div>
@@ -227,7 +247,7 @@
             <Header title="Export Options" />
 
             <div class="flex flex-col gap-12">
-                <Size bind:size bind:fitScene bind:cropScene oninput={({ fitScene, cropScene }) => fitScene || cropScene ? setCroppedScene() : scene.size.copyObj(size)} />
+                <Size bind:size bind:lockAspectRatio bind:fitScene bind:cropScene oninput={({ fitScene, cropScene }) => fitScene || cropScene ? setCroppedScene() : setSceneSize()} />
                 <Timing bind:duration bind:trimLongest oninput={({ trimLongest }) => trimLongest && (duration = MoreMath.round(Math.max(...scene.actors.map(({ duration }) => duration), 0), 2))} />
             </div>
             

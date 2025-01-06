@@ -44,7 +44,7 @@
 
         autoColumns = true,
 
-        columns = $bindable(minColumns * +!autoColumns),
+        columns = $bindable(maxColumns * +!autoColumns),
         rows = $bindable(0),
 
         tileWidth = 100,
@@ -67,12 +67,12 @@
     const focusPos = $state(Vector[focusFirst ? "Zero" : "NegOne"].toObj());
     const focusIdx = $derived(Vector.NegOne.equalsObj(focusPos) ? -1 : focusPos.x + focusPos.y * columns);
 
-    const paddingElements = $derived(Math.max(maxColumns - container.childElementCount, 0));
+    const paddingElements = $derived(Math.max(Math.max(columns, maxColumns) - ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0).length, 0));
     onMount(() => {
         const resizer = new ResizeObserver(([entry]) => {
             const { inlineSize: width } = entry.contentBoxSize[0];
 
-            if (autoColumns) columns = Math.floor((width + gapWidth) / (tileWidth + gapWidth));
+            if (autoColumns) columns = MoreMath.clamp(Math.floor((width + gapWidth) / (tileWidth + gapWidth)), minColumns, maxColumns);
             rows = Math.ceil((container?.childElementCount ?? 0) / columns);
         });
 
@@ -181,6 +181,6 @@
 <div bind:this={container} use:focusEvents use:keyEvents class={twMerge("grid place-content-center w-full", className)} style:grid-template-columns="repeat(auto-fit, {tileWidth}px)" style:grid-template-rows="repeat(auto-fit, {tileHeight}px)" style:column-gap="{gapWidth}px" style:row-gap="{gapHeight}px" style:min-width="{(tileWidth + gapWidth) * minColumns - gapWidth}px" style:max-width="{(tileWidth + gapWidth) * maxColumns - gapWidth}px">
     {@render children?.()}
     {#each Array(paddingElements).keys() as i (i)}
-        <div></div>
+        <div tabindex="-1"></div>
     {/each}
 </div>
