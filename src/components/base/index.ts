@@ -14,5 +14,6 @@ import DividerTitle from "./DividerTitle.svelte";
 import LabelTitle from "./LabelTitle.svelte";
 
 import NavTip from "./NavTip.svelte";
+import ProgressRing from "./ProgressRing.svelte";
 
-export { Slider, Tab, Toggle, BannerButton, NumberInput, Dropdown, Label, Notice, Header, DividerTitle, LabelTitle, NavTip };
+export { Slider, Tab, Toggle, BannerButton, NumberInput, Dropdown, Label, Notice, Header, DividerTitle, LabelTitle, NavTip, ProgressRing };

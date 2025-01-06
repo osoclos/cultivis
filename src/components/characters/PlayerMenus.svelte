@@ -23,6 +23,8 @@
 
         class?: string;
         enableKeyInput?: boolean;
+
+        onupdate?: VoidFunction;
     }
 
     let {
@@ -32,7 +34,9 @@
         menu = $bindable("creature"),
 
         class: className,
-        enableKeyInput = false
+        enableKeyInput = false,
+
+        onupdate: update = () => {}
     }: Props = $props();
 
     function getTitle(menu: PlayerMenuNames): string {
@@ -45,11 +49,15 @@
     function updateCreature(id: PlayerCreatureId) {
         player.creature = id;
         obj.creature = id;
+
+        update();
     }
 
     function updateFleece(id: PlayerFleeceId) {
         player.fleece = id;
         obj.fleece = id;
+
+        update();
     }
 </script>
 

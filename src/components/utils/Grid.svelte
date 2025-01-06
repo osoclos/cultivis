@@ -77,6 +77,7 @@
         });
 
         resizer.observe(container);
+        return () => resizer.disconnect();
     });
 
     function updateVecFromIdx(i: number) {

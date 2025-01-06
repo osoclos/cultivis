@@ -45,10 +45,11 @@
     };
 
     const keyEvents: Action<HTMLDivElement> = (container) => {
-        if (!children || !enableKeyInput) return;
+        if (!children) return;
+
         function onKeyDown(evt: KeyboardEvent) {
             const { code } = evt;
-            if (!["KeyQ", "KeyR"].includes(code) || document.activeElement instanceof HTMLInputElement) return;
+            if (!["KeyQ", "KeyR"].includes(code) || document.activeElement instanceof HTMLInputElement || !enableKeyInput) return;
 
             evt.preventDefault();
 
@@ -56,6 +57,7 @@
             const idxOffset = +toNextElement || -1;
 
             selectedIdx = MoreMath.clamp(selectedIdx + idxOffset, 0, container.childElementCount - 1);
+            click(selectedIdx);
         }
 
         $effect(() => {

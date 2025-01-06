@@ -70,7 +70,7 @@
     import { colorSets, followerMetadata, forbiddenAnimations } from "../../data";
     import { FOLLOWER_IDS, type FollowerId } from "../../data/types";
     
-    import { Random, Vector } from "../../utils";
+    import { Random, Vector, type VectorObject } from "../../utils";
 
     interface Props {
         follower: Follower;
@@ -78,6 +78,8 @@
 
         class?: string;
         enableKeyInput?: boolean;
+
+        onupdate?: VoidFunction;
 
         onproceed?: (menu: FollowerMenuNames) => void;
         onexit?: (removeFollower: boolean) => void;
@@ -89,6 +91,8 @@
 
         class: className,
         enableKeyInput = false,
+
+        onupdate: update = () => {},
 
         onproceed: proceed = () => {},
         onexit: exit = () => {}
@@ -104,11 +108,22 @@
         obj.form = form;
         obj.formVariantIdx = formVariantIdx;
         obj.formColorSetIdx = formColorSetIdx;
+
+        update();
     }
 
     function updateName(name: string) {
         follower.label = name;
         obj.label = name;
+
+        update();
+    }
+
+    function updatePosition(pos: VectorObject = obj.pos) {
+        follower.pos.copyObj(pos);
+        !follower.pos.equalsObj(obj.pos) && follower.pos.cloneObj(obj.pos);
+
+        update();
     }
 
     function updateScaleX(x: number) {
@@ -116,6 +131,8 @@
 
         follower.scale.x = x;
         obj.scale.x = x;
+
+        update();
     }
 
     function updateScaleY(y: number) {
@@ -123,6 +140,18 @@
 
         follower.scale.y = y;
         obj.scale.y = y;
+
+        update();
+    }
+
+    function resetScale() {
+        follower.scale.copyObj(Vector.One).cloneObj(obj.scale);
+        update();
+    }
+
+    function updateAnimation(animation: string) {
+        follower.setAnimation(animation);
+        update();
     }
 </script>
 
@@ -150,15 +179,15 @@
                     
                         <div class="flex flex-col gap-2 w-80 sm:w-90">
                             <Label label="X Position">
-                                <NumberInput label="X Position" bind:value={obj.pos.x} unit="px" min={-Infinity} max={Infinity} oninput={() => follower.pos.copyObj(obj.pos)} />
+                                <NumberInput label="X Position" bind:value={obj.pos.x} unit="px" min={-Infinity} max={Infinity} oninput={() => updatePosition()} />
                             </Label>
 
                             <Label label="Y Position">
-                                <NumberInput label="Y Position" bind:value={obj.pos.y} unit="px" min={-Infinity} max={Infinity} oninput={() => follower.pos.copyObj(obj.pos)} />
+                                <NumberInput label="Y Position" bind:value={obj.pos.y} unit="px" min={-Infinity} max={Infinity} oninput={() => updatePosition()} />
                             </Label>
                         </div>
 
-                        <BannerButton label="Reset Position" onclick={() => follower.pos.copyObj(Vector.Zero).cloneObj(obj.pos)} />
+                        <BannerButton label="Reset Position" onclick={() => updatePosition(Vector.Zero.toObj())} />
                     </div>
 
                     <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
@@ -175,7 +204,7 @@
                             </Label>
                         </div>
 
-                        <BannerButton label="Reset Scale" onclick={() => follower.scale.copyObj(Vector.One).cloneObj(obj.scale)} />
+                        <BannerButton label="Reset Scale" onclick={resetScale} />
                     </div>
 
                     <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
@@ -188,7 +217,7 @@
                         </Label>
 
                         <Label class="h-24" label="Selected Animation">
-                            <Dropdown options={follower.animationNames.filter((name) => !(forbiddenAnimations.follower.includes(`!${name}`) || forbiddenAnimations.follower.some((keyword) => !keyword.startsWith("!") && name.includes(keyword)))).sort()} bind:value={obj.animation} label="Select Animation" oninput={(animation) => follower.setAnimation(animation)} />
+                            <Dropdown options={follower.animationNames.filter((name) => !(forbiddenAnimations.follower.includes(`!${name}`) || forbiddenAnimations.follower.some((keyword) => !keyword.startsWith("!") && name.includes(keyword)))).sort()} bind:value={obj.animation} label="Select Animation" oninput={updateAnimation} />
                         </Label>
                     </div>
                 </div>

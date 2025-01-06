@@ -23,6 +23,8 @@
 
         class?: string;
         enableKeyInput?: boolean;
+
+        onupdate?: VoidFunction;
     }
 
     let {
@@ -32,7 +34,9 @@
         menu = $bindable("form"),
 
         class: className,
-        enableKeyInput = false
+        enableKeyInput = false,
+
+        onupdate: update = () => {}
     }: Props = $props();
 
     function getTitle(menu: FollowerMenuNames): string {
@@ -75,41 +79,57 @@
     function updateForm(id: FollowerId) {
         follower.form = id;
         obj.form = id;
+
+        update();
     }
 
     function updateClothing(id: ClothingId) {
         follower.clothing = id;
         obj.clothing = id;
+
+        update();
     }
 
     function updateNecklace(id: NecklaceId | null) {
         follower.necklace = id;
         obj.necklace = id;
+
+        update();
     }
 
     function updateHat(id: HatId | null) {
         follower.hat = id;
         obj.hat = id;
+
+        update();
     }
 
     function updateFormColorSetIdx(i: number) {
         follower.formColorSetIdx = i;
         obj.formColorSetIdx = i;
+
+        update();
     }
 
     function updateClothingColorSetIdx(i: number) {
         follower.clothingColorSetIdx = i;
         obj.clothingColorSetIdx = i;
+
+        update();
     }
 
     function updateFormVariantIdx(i: number) {
         follower.formVariantIdx = i;
         obj.formVariantIdx = i;
+
+        update();
     }
 
     function updateClothingVariantIdx(i: number) {
         follower.clothingVariantIdx = i;
         obj.clothingVariantIdx = i;
+
+        update();
     }
 </script>
 

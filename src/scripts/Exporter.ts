@@ -22,7 +22,7 @@ export class Exporter {
         return new Exporter(canvas, gl, scene, factory, gifManager);
     }
 
-    async exportScene(obj: SceneObject, duration: number, size: Vector) {
+    async exportScene(obj: SceneObject, duration: number, size: Vector, onProgress: (percent: number) => void = () => {}) {
         const [width, height] = size;
 
         this.resetScene();
@@ -42,10 +42,13 @@ export class Exporter {
                     const buffer = this.gifManager.end();
                     resolve(buffer);
 
+                    onProgress(1.0);
                     return;
                 }
 
+                onProgress(time / duration);
                 time += delta;
+                
                 setTimeout(() => draw(delta));
             };
 

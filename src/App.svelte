@@ -1,7 +1,7 @@
 <script lang="ts">
-    import { onDestroy } from "svelte";
+    import { onMount } from "svelte";
 
-    import { BannerButton, Header, NavTip } from "./components/base";
+    import { BannerButton, Header, Label, NavTip, ProgressRing } from "./components/base";
     import { SceneCanvas, Categories, TermsDisclaimer } from "./components/misc";
     
     import { CharacterList, FollowerMenus, FollowerNavigation, PlayerMenus, PlayerNavigation, getRandomFollowerAppearance, getRandomPlayerAppearance, getSpecialFollowerName } from "./components/characters";
@@ -21,6 +21,7 @@
     let exporter: Exporter;
     
     let categoryIdx: number = $state(0);
+    let isMobile: boolean = $state(matchMedia("(max-width: 768px)").matches);
 
     let actors: ActorObject[] | null = $state(null);
     let actorIdx: number = $state(-1);
@@ -37,7 +38,7 @@
     let lockAspectRatio = $state(false);
 
     // svelte-ignore state_referenced_locally
-    matchMedia("(max-width: 768px)").matches && Vector.fromObj(size).swap().cloneObj(size);
+    isMobile && Vector.fromObj(size).swap().cloneObj(size);
 
     let fitScene: boolean = $state(false);
     let cropScene: boolean = $state(false);
@@ -45,32 +46,44 @@
     let duration: number = $state(5);
     let trimLongest: boolean = $state(false);
 
-    function onKeyDown(evt: KeyboardEvent) {
-        const { code } = evt;
-        if (!["KeyE", "KeyF"].includes(code) || document.activeElement instanceof HTMLInputElement) return;
-        
-        evt.preventDefault();
-        
-        if (code === "KeyE") {
-            (document.activeElement as HTMLElement).click();
-            return;
-        }
-        
-        if (showActorMenu) {
-            showActorMenu = false;
-            return;
-        }
-        
-        if (actorIdx >= 0) {
-            actorIdx = -1;
-            return;
-        }
-    }
+    let exportPercent: number = $state(-1);
 
-    window.addEventListener("keydown", onKeyDown);
-    onDestroy(() => {
-        window.removeEventListener("keydown", onKeyDown);
-        exporter?.dispose();
+    onMount(() => {
+        function onKeyDown(evt: KeyboardEvent) {
+            const { code } = evt;
+            if (!["KeyE", "KeyF"].includes(code) || document.activeElement instanceof HTMLInputElement) return;
+            
+            evt.preventDefault();
+            
+            if (code === "KeyE") {
+                (document.activeElement as HTMLElement).click();
+                return;
+            }
+            
+            if (showActorMenu) {
+                showActorMenu = false;
+                return;
+            }
+            
+            if (actorIdx >= 0) {
+                actorIdx = -1;
+                return;
+            }
+        }
+
+        function onResize() {
+            isMobile = matchMedia("(max-width: 768px)").matches;
+        }
+    
+        window.addEventListener("keydown", onKeyDown);
+        window.addEventListener("resize", onResize);
+
+        return () => {
+            window.removeEventListener("keydown", onKeyDown);
+            window.removeEventListener("resize", onResize);
+
+            exporter?.dispose();
+        };
     });
 
     async function init(initScene: Scene, initFactory: Factory) {
@@ -142,6 +155,8 @@
         actors?.splice(actorIdx, 1);
 
         actorIdx = -1;
+
+        updateSceneFromChanges();
     }
     
     function selectActor(i: number) {
@@ -168,9 +183,16 @@
         showActorMenu = true;
     }
 
+    function hideCharacterMenus() {
+        actorIdx = -1;
+        showActorMenu = false;
+    }
+
     async function exportScene() {
+        if (exportPercent >= 0) return;
+
         const sceneObj = scene.toObj();
-        const buffer = await exporter.exportScene(sceneObj, duration, Vector.fromObj(size));
+        const buffer = await exporter.exportScene(sceneObj, duration, Vector.fromObj(size), (percent) => exportPercent = percent);
 
         const blob = new Blob([buffer], { type: "image/gif" });
         const url = URL.createObjectURL(blob);
@@ -180,6 +202,12 @@
         link.download = "cultivis-export.gif";
 
         link.click();
+        exportPercent = -1;
+    }
+
+    function updateSceneFromChanges() {
+        fitScene || cropScene ? setCroppedScene() : setSceneSize();
+        trimLongest && (duration = MoreMath.round(Math.max(...scene.actors.map(({ duration }) => duration), 0), 2))
     }
 
     function setSceneSize() {
@@ -219,7 +247,7 @@
 </div>
 
 <div class="lg:w-140 lg:h-dvh bg-black">
-    <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-140 select-none" bind:selectedIdx={categoryIdx} enableKeyInput={actorIdx < 0|| matchMedia("(max-width: 768px)").matches} />
+    <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-140 select-none" bind:selectedIdx={categoryIdx} enableKeyInput={actorIdx < 0 || isMobile} onclick={hideCharacterMenus} />
     <div class="no-scrollbar lg:overflow-y-auto flex flex-col {categoryIdx === 1 ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
         {#if categoryIdx === 0}
             <CharacterList bind:actors enableKeyInput={actorIdx < 0} onadd={addActor} onactorclick={selectActor} />
@@ -227,9 +255,9 @@
             <div class={["lg:absolute lg:top-0 w-full lg:w-140 lg:h-full bg-black transition-[left,_filter] duration-500", actorIdx < 0 ? "lg:-left-210 lg:brightness-0 lg:ease-in" : "lg:left-0 lg:brightness-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                 {#if actor && actorObj}
                     {#if isFollowerObj(actorObj)}
-                        <FollowerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} enableKeyInput={!showActorMenu} onproceed={selectFollowerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : actorIdx = -1} />
+                        <FollowerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} enableKeyInput={!showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectFollowerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : actorIdx = -1} />
                     {:else if isPlayerObj(actorObj)}
-                        <PlayerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-full" player={actor as Player} obj={actorObj} enableKeyInput={!showActorMenu} onproceed={selectPlayerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : actorIdx = -1} />
+                        <PlayerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} enableKeyInput={!showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectPlayerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : actorIdx = -1} />
                     {/if}
                 {/if}
             </div>
@@ -237,9 +265,9 @@
             <div class={["lg:absolute lg:top-0 w-full lg:w-140 lg:h-full bg-black transition-[left,_filter] duration-500", !showActorMenu ? "lg:-left-210 lg:brightness-0 lg:ease-in" : "lg:left-0 lg:brightness-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
                 {#if actor && actorObj}
                     {#if isFollowerObj(actorObj) && followerMenu}
-                        <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-full" follower={actor as Follower} obj={actorObj} menu={followerMenu} enableKeyInput />
+                        <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={followerMenu} enableKeyInput onupdate={updateSceneFromChanges} />
                     {:else if isPlayerObj(actorObj) && playerMenu}
-                        <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-full" player={actor as Player} obj={actorObj} menu={playerMenu} enableKeyInput />
+                        <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={playerMenu} enableKeyInput onupdate={updateSceneFromChanges} />
                     {/if}
                 {/if}
             </div>
@@ -251,7 +279,13 @@
                 <Timing bind:duration bind:trimLongest oninput={({ trimLongest }) => trimLongest && (duration = MoreMath.round(Math.max(...scene.actors.map(({ duration }) => duration), 0), 2))} />
             </div>
             
-            <BannerButton label="Export Scene" onclick={exportScene} />
+            <BannerButton label={exportPercent < 0 ? "Export Scene" : "Exporting"} onclick={exportScene} />
+            
+            {#if exportPercent >= 0}
+                <Label class="w-80 sm:w-90" label="Export Progress">
+                    <ProgressRing percent={exportPercent} label="Export Progress" />
+                </Label>
+            {/if}
         {:else if categoryIdx === 2}
             <CreationDetails />
             <SpecialThanks />
@@ -260,10 +294,10 @@
 </div>
 
 <div class="not-lg:hidden flex fixed bottom-0 left-0 flex-row gap-8 p-6 pt-4 w-140 bg-black">
-    <NavTip key="E" label="Accept" />
+    <NavTip key="E" code="KeyE" label="Accept" />
     
     {#if categoryIdx === 0 && actorIdx >= 0}
-    <NavTip key="F" label="Back" />
+        <NavTip key="F" code="KeyF" label="Back" />
     {/if}
 </div>
 
