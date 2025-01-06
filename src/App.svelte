@@ -56,7 +56,10 @@
             evt.preventDefault();
             
             if (code === "KeyE") {
-                (document.activeElement as HTMLElement).click();
+                const element = document.activeElement as HTMLElement;
+                element.click();
+                element.blur();
+
                 return;
             }
             
@@ -154,8 +157,7 @@
         scene.removeActors(actor!);
         actors?.splice(actorIdx, 1);
 
-        actorIdx = -1;
-
+        unselectActor();
         updateSceneFromChanges();
     }
     
@@ -164,6 +166,11 @@
 
         actor = scene.actors[actorIdx] ?? null;
         actorObj = actors?.[i] ?? null;
+    }
+
+    function unselectActor() {
+        actorIdx = -1;
+        showActorMenu = false;
     }
 
     function manipulateActor() {
@@ -255,9 +262,9 @@
             <div class={["lg:absolute lg:top-0 w-full lg:w-140 lg:h-full bg-black transition-[left,_filter] duration-500", actorIdx < 0 ? "lg:-left-210 lg:brightness-0 lg:ease-in" : "lg:left-0 lg:brightness-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                 {#if actor && actorObj}
                     {#if isFollowerObj(actorObj)}
-                        <FollowerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} enableKeyInput={!showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectFollowerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : actorIdx = -1} />
+                        <FollowerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} enableKeyInput={actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectFollowerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
                     {:else if isPlayerObj(actorObj)}
-                        <PlayerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} enableKeyInput={!showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectPlayerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : actorIdx = -1} />
+                        <PlayerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} enableKeyInput={actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectPlayerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
                     {/if}
                 {/if}
             </div>
@@ -265,9 +272,9 @@
             <div class={["lg:absolute lg:top-0 w-full lg:w-140 lg:h-full bg-black transition-[left,_filter] duration-500", !showActorMenu ? "lg:-left-210 lg:brightness-0 lg:ease-in" : "lg:left-0 lg:brightness-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
                 {#if actor && actorObj}
                     {#if isFollowerObj(actorObj) && followerMenu}
-                        <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={followerMenu} enableKeyInput onupdate={updateSceneFromChanges} />
+                        <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={followerMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                     {:else if isPlayerObj(actorObj) && playerMenu}
-                        <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={playerMenu} enableKeyInput onupdate={updateSceneFromChanges} />
+                        <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={playerMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                     {/if}
                 {/if}
             </div>

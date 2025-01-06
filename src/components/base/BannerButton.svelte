@@ -57,16 +57,15 @@
         Vector.arrToObj(values, scale);
     }
 
-    function onclick({ target }: MouseEvent) {
-        if (target === (editable ? inputElement : button)) return;
-        if (href) {
-            link.focus();
-            return;
-        }
+    function onclick() {
+        // if people complain that they need to double click on mobile, tell them its a feature ;)
+        (href
+            ? link
+            : editable
+                ? inputElement
+                : button
+        ).focus();
         
-        (editable ? inputElement : button).click();
-        (editable ? inputElement : button).focus();
-
         click();
     }
 </script>
