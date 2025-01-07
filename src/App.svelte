@@ -2,7 +2,7 @@
     import { onMount } from "svelte";
 
     import { BannerButton, Header, Label, NavTip, ProgressRing } from "./components/base";
-    import { SceneCanvas, Categories, TermsDisclaimer } from "./components/misc";
+    import { SceneCanvas, Categories, TermsDisclaimer, TOS_VERSION } from "./components/misc";
     
     import { CharacterList, FollowerMenus, FollowerNavigation, PlayerMenus, PlayerNavigation, getRandomFollowerAppearance, getRandomPlayerAppearance, getSpecialFollowerName } from "./components/characters";
     import { Size, Timing } from "./components/exporting";
@@ -22,6 +22,7 @@
     
     let categoryIdx: number = $state(0);
     let isMobile: boolean = $state(matchMedia("(max-width: 768px)").matches);
+    let termsAcknowledged: boolean = $state(localStorage.getItem("terms-acknowledged") === TOS_VERSION);
 
     let actors: ActorObject[] | null = $state(null);
     let actorIdx: number = $state(-1);
@@ -254,17 +255,17 @@
 </div>
 
 <div class="lg:w-140 lg:h-dvh bg-black">
-    <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-140 select-none" bind:selectedIdx={categoryIdx} enableKeyInput={actorIdx < 0 || isMobile} onclick={hideCharacterMenus} />
+    <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-140 select-none" bind:selectedIdx={categoryIdx} enableKeyInput={termsAcknowledged && (actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
     <div class="no-scrollbar lg:overflow-y-auto flex flex-col {categoryIdx === 1 ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
         {#if categoryIdx === 0}
-            <CharacterList bind:actors enableKeyInput={actorIdx < 0} onadd={addActor} onactorclick={selectActor} />
+            <CharacterList bind:actors enableKeyInput={termsAcknowledged && actorIdx < 0} onadd={addActor} onactorclick={selectActor} />
 
             <div class={["lg:absolute lg:top-0 w-full lg:w-140 lg:h-full bg-black transition-[left,_filter] duration-500", actorIdx < 0 ? "lg:-left-210 lg:brightness-0 lg:ease-in" : "lg:left-0 lg:brightness-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                 {#if actor && actorObj}
                     {#if isFollowerObj(actorObj)}
-                        <FollowerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} enableKeyInput={actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectFollowerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
+                        <FollowerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} enableKeyInput={termsAcknowledged && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectFollowerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
                     {:else if isPlayerObj(actorObj)}
-                        <PlayerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} enableKeyInput={actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectPlayerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
+                        <PlayerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} enableKeyInput={termsAcknowledged && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectPlayerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
                     {/if}
                 {/if}
             </div>
@@ -272,9 +273,9 @@
             <div class={["lg:absolute lg:top-0 w-full lg:w-140 lg:h-full bg-black transition-[left,_filter] duration-500", !showActorMenu ? "lg:-left-210 lg:brightness-0 lg:ease-in" : "lg:left-0 lg:brightness-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
                 {#if actor && actorObj}
                     {#if isFollowerObj(actorObj) && followerMenu}
-                        <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={followerMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                        <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={followerMenu} enableKeyInput={termsAcknowledged && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                     {:else if isPlayerObj(actorObj) && playerMenu}
-                        <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={playerMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                        <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={playerMenu} enableKeyInput={termsAcknowledged && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                     {/if}
                 {/if}
             </div>
@@ -308,7 +309,7 @@
     {/if}
 </div>
 
-<TermsDisclaimer />
+<TermsDisclaimer bind:termsAcknowledged />
 
 <style>
     :global(.no-scrollbar) { scrollbar-width: none; }

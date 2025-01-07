@@ -4,3 +4,4 @@ import Categories from "./Categories.svelte";
 import TermsDisclaimer from "./TermsDisclaimer.svelte";
 
 export { SceneCanvas, Categories, TermsDisclaimer };
+export { TOS_VERSION } from "./TermsDisclaimer.svelte";
