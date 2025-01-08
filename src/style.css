@@ -3,16 +3,23 @@
 @font-face {
     font-family: "Lapture Bold";
     src: url("/static/fonts/Lapture-Bold.otf") format("opentype");
+
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Fira Sans";
     src: url("/static/fonts/Fira-Sans.ttf");
+
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Copyright Symbol";
     src: url("/static/fonts/Open-Sans.ttf");
+
+    font-display: swap;
+    
     unicode-range: U+00A9;
 }
 
@@ -22,7 +29,7 @@
     --color-primary: #01d5a2;
     --color-secondary: #000000;
     
-    --color-inactive: #545454;
+    --color-inactive: #757575;
     --color-active: #f5edd5;
 
     --color-highlight: #f32002;

@@ -21,7 +21,10 @@
     let exporter: Exporter;
     
     let categoryIdx: number = $state(0);
-    let isMobile: boolean = $state(matchMedia("(max-width: 768px)").matches);
+
+    let isOnPhone: boolean = $state(false);
+    let isMobile: boolean = $state(false);
+
     let termsAcknowledged: boolean = $state(localStorage.getItem("terms-acknowledged") === TOS_VERSION);
 
     let actors: ActorObject[] | null = $state(null);
@@ -38,9 +41,6 @@
     let size = $state(new Vector(640, 360).toObj());
     let lockAspectRatio = $state(false);
 
-    // svelte-ignore state_referenced_locally
-    isMobile && Vector.fromObj(size).swap().cloneObj(size);
-
     let fitScene: boolean = $state(false);
     let cropScene: boolean = $state(false);
 
@@ -48,6 +48,9 @@
     let trimLongest: boolean = $state(false);
 
     let exportPercent: number = $state(-1);
+
+    // svelte-ignore state_referenced_locally
+    matchMedia("(max-width: 768px)").matches && Vector.fromObj(size).swap().cloneObj(size);
 
     onMount(() => {
         function onKeyDown(evt: KeyboardEvent) {
@@ -75,16 +78,17 @@
             }
         }
 
-        function onResize() {
+        const resizer = new ResizeObserver(() => {
+            isOnPhone = matchMedia("(max-width: 600px)").matches;
             isMobile = matchMedia("(max-width: 768px)").matches;
-        }
-    
+        });
+
         window.addEventListener("keydown", onKeyDown);
-        window.addEventListener("resize", onResize);
+        resizer.observe(document.documentElement);
 
         return () => {
             window.removeEventListener("keydown", onKeyDown);
-            window.removeEventListener("resize", onResize);
+            resizer.disconnect();
 
             exporter?.dispose();
         };
@@ -309,7 +313,7 @@
     {/if}
 </div>
 
-<TermsDisclaimer bind:termsAcknowledged />
+<TermsDisclaimer bind:termsAcknowledged bind:isOnPhone />
 
 <style>
     :global(.no-scrollbar) { scrollbar-width: none; }
