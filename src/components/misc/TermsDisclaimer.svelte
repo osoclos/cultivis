@@ -27,7 +27,7 @@
     }
     
     function onclick() {
-        // localStorage.setItem("terms-acknowledged", TOS_VERSION);
+        localStorage.setItem("terms-acknowledged", TOS_VERSION);
         termsAcknowledged = true;
     }
 </script>
