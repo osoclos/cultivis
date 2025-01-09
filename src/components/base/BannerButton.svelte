@@ -1,5 +1,7 @@
 <script lang="ts">
+    import { prefersReducedMotion } from "svelte/motion";
     import { twMerge } from "tailwind-merge";
+
     import { Random, Vector } from "../../utils";
 
     interface Props {
@@ -46,6 +48,11 @@
     resetScale();
 
     function resetScale() {
+        if (prefersReducedMotion.current) {
+            Vector.valToObj(scale, 1.0);
+            return;
+        }
+
         const values: number[] = [];
         for (const _ of Array(2).keys()) {
             const expandBanner = Random.percent(75);

@@ -4,7 +4,7 @@
     import { BannerButton, Header, Label, NavTip, ProgressRing } from "./components/base";
     import { SceneCanvas, Categories, TermsDisclaimer, TOS_VERSION } from "./components/misc";
     
-    import { CharacterList, FollowerMenus, FollowerNavigation, PlayerMenus, PlayerNavigation, getRandomFollowerAppearance, getRandomPlayerAppearance, getSpecialFollowerName } from "./components/characters";
+    import { CharacterList, FollowerMenus, FollowerNavigation, PlayerMenus, PlayerNavigation, getRandomFollowerAppearance, getSpecialFollowerName } from "./components/characters";
     import { Size, Timing } from "./components/exporting";
     import { CreationDetails, SpecialThanks } from "./components/credits";
 
@@ -140,9 +140,7 @@
             }
 
             case Player.name: {
-                const [creature, fleece] = getRandomPlayerAppearance();
-
-                const player = await factory.player(creature, fleece, Random.id(), "Lamb");
+                const player = await factory.player("Lamb", "Lamb", Random.id(), "Lamb");
                 player.setAnimation("idle");
 
                 addedActor = player;
@@ -264,7 +262,7 @@
         {#if categoryIdx === 0}
             <CharacterList bind:actors enableKeyInput={termsAcknowledged && actorIdx < 0} onadd={addActor} onactorclick={selectActor} />
 
-            <div class={["lg:absolute lg:top-0 w-full lg:w-140 lg:h-full bg-black transition-[left,_filter] duration-500", actorIdx < 0 ? "lg:-left-210 lg:brightness-0 lg:ease-in" : "lg:left-0 lg:brightness-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
+            <div class={["lg:absolute lg:top-0 w-full lg:w-140 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                 {#if actor && actorObj}
                     {#if isFollowerObj(actorObj)}
                         <FollowerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} enableKeyInput={termsAcknowledged && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectFollowerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
@@ -274,7 +272,7 @@
                 {/if}
             </div>
 
-            <div class={["lg:absolute lg:top-0 w-full lg:w-140 lg:h-full bg-black transition-[left,_filter] duration-500", !showActorMenu ? "lg:-left-210 lg:brightness-0 lg:ease-in" : "lg:left-0 lg:brightness-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
+            <div class={["lg:absolute lg:top-0 w-full lg:w-140 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", !showActorMenu ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
                 {#if actor && actorObj}
                     {#if isFollowerObj(actorObj) && followerMenu}
                         <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={followerMenu} enableKeyInput={termsAcknowledged && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />

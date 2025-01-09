@@ -89,7 +89,7 @@
     };
 </script>
 
-<button use:focusEvent class={twMerge("flex flex-row gap-12 justify-center items-center px-6 py-4 w-fit bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight transition-[outline] duration-75", className)} aria-label={label} {onclick}>
+<button use:focusEvent class={twMerge("flex flex-row gap-12 justify-center items-center px-6 py-4 w-fit bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", className)} aria-label={label} {onclick}>
     <div class="aspect-square w-20">
         <SpritesheetImage {label} src={getSrc()} x={getX()} y={getY()} width={80} height={80} tileWidth={getType() === "Actor" ? 100 : 64} tileHeight={getType() === "Actor" ? 100 : 64} />
     </div>

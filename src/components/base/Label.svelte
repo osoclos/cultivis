@@ -13,7 +13,7 @@
 
     const { children, label, class: className }: Props = $props();
 
-    const pointerEvent: Action<HTMLDivElement> = (container) => {
+    const pointerEvents: Action<HTMLDivElement> = (container) => {
         function onClick() {
             const lastChild = container.lastElementChild as HTMLElement;
             const inputGrandchild = [...lastChild.children].find((child) => child instanceof HTMLInputElement || child instanceof HTMLSelectElement);
@@ -40,7 +40,7 @@
     };
 </script>
 
-<div use:pointerEvent class={twMerge("group flex flex-row justify-between items-center w-full max-w-160", className)}>
-    <p class="font-subtitle italic tracking-widest text-inactive group-hover:text-active transition-[color] duration-75">{label}</p>
+<div use:pointerEvents class={twMerge("group flex flex-row justify-between items-center w-full max-w-160", className)}>
+    <p class="font-subtitle italic tracking-widest text-inactive group-hover:text-active not-motion-reduce:transition-[color] not-motion-reduce:duration-75">{label}</p>
     {@render children?.()}
 </div>

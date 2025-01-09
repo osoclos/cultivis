@@ -37,7 +37,7 @@
     }
 </script>
 
-<button class={twMerge("flex flex-row gap-1 p-1 font-subtitle text-inactive focus-within:text-active tracking-widest bg-dark rounded-xs outline-0 focus-within:outline-3 outline-highlight transition-[outline] duration-75", className)} aria-label={label}>
+<button class={twMerge("flex flex-row gap-1 p-1 font-subtitle text-inactive focus-within:text-active tracking-widest bg-dark rounded-xs outline-0 focus-within:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", className)} aria-label={label}>
     <input bind:this={inputElement} type="number" bind:value class="no-arrows w-12 text-end outline-none" {step} {min} {max} name={label} {oninput} onpointerenter={() => inputElement.focus()} />
     {#if unit}
         <p>{unit}</p>
