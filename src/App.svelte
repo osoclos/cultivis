@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount } from "svelte";
+    import { onDestroy, onMount } from "svelte";
 
     import { BannerButton, Header, Label, NavTip, ProgressRing } from "./components/base";
     import { SceneCanvas, Categories, TermsDisclaimer, TOS_VERSION } from "./components/misc";
@@ -52,46 +52,46 @@
     // svelte-ignore state_referenced_locally
     matchMedia("(max-width: 768px)").matches && Vector.fromObj(size).swap().cloneObj(size);
 
-    onMount(() => {
-        function onKeyDown(evt: KeyboardEvent) {
-            const { code } = evt;
-            if (!["KeyE", "KeyF"].includes(code) || document.activeElement instanceof HTMLInputElement) return;
-            
-            evt.preventDefault();
-            
-            if (code === "KeyE") {
-                const element = document.activeElement as HTMLElement;
-                element.click();
-                element.blur();
+    function onKeyDown(evt: KeyboardEvent) {
+        const { code } = evt;
+        if (!["KeyE", "KeyF"].includes(code) || document.activeElement instanceof HTMLInputElement) return;
+        
+        evt.preventDefault();
+        
+        if (code === "KeyE") {
+            const element = document.activeElement as HTMLElement;
+            element.click();
+            element.blur();
 
-                return;
-            }
-            
-            if (showActorMenu) {
-                showActorMenu = false;
-                return;
-            }
-            
-            if (actorIdx >= 0) {
-                actorIdx = -1;
-                return;
-            }
+            return;
         }
+        
+        if (showActorMenu) {
+            showActorMenu = false;
+            return;
+        }
+        
+        if (actorIdx >= 0) {
+            actorIdx = -1;
+            return;
+        }
+    }
 
-        const resizer = new ResizeObserver(() => {
-            isOnPhone = matchMedia("(max-width: 600px)").matches;
-            isMobile = matchMedia("(max-width: 768px)").matches;
-        });
+    const resizer = new ResizeObserver(() => {
+        isOnPhone = matchMedia("(max-width: 600px)").matches;
+        isMobile = matchMedia("(max-width: 768px)").matches;
+    });
 
+    onMount(() => {
         window.addEventListener("keydown", onKeyDown);
         resizer.observe(document.documentElement);
+    });
 
-        return () => {
-            window.removeEventListener("keydown", onKeyDown);
-            resizer.disconnect();
+    onDestroy(() => {
+        window.removeEventListener("keydown", onKeyDown);
+        resizer.disconnect();
 
-            exporter?.dispose();
-        };
+        exporter?.dispose();
     });
 
     async function init(initScene: Scene, initFactory: Factory) {
@@ -99,17 +99,16 @@
         scene.size.copyObj(size);
 
         factory = initFactory;
-
         exporter = await Exporter.create();
         
-        const deer = await factory.follower("Deer", "Default_Clothing");
+        const deer = factory.follower("Deer", "Default_Clothing");
         deer.setAnimation("idle");
 
         deer.label = "Deer";
         deer.pos.setX(-180);
         deer.flipX = true;
 
-        const lamb = await factory.player("Lamb", "Lamb");
+        const lamb = factory.player("Lamb", "Lamb");
         lamb.setAnimation("idle");
 
         lamb.label = "Lamb";

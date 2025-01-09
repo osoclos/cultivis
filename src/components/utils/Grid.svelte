@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { onMount, type Snippet } from "svelte";
+    import { onDestroy, onMount, type Snippet } from "svelte";
     import type { Action } from "svelte/action";
 
     import { twMerge } from "tailwind-merge";
@@ -68,17 +68,15 @@
     const focusIdx = $derived(Vector.NegOne.equalsObj(focusPos) ? -1 : focusPos.x + focusPos.y * columns);
 
     const paddingElements = $derived(Math.max(Math.max(columns, maxColumns) - ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0).length, 0));
-    onMount(() => {
-        const resizer = new ResizeObserver(([entry]) => {
-            const { inlineSize: width } = entry.contentBoxSize[0];
+    const resizer = new ResizeObserver(([entry]) => {
+        const { inlineSize: width } = entry.contentBoxSize[0];
 
-            if (autoColumns) columns = MoreMath.clamp(Math.floor((width + gapWidth) / (tileWidth + gapWidth)), minColumns, maxColumns);
-            rows = Math.ceil((container?.childElementCount ?? 0) / columns);
-        });
-
-        resizer.observe(container);
-        return () => resizer.disconnect();
+        if (autoColumns) columns = MoreMath.clamp(Math.floor((width + gapWidth) / (tileWidth + gapWidth)), minColumns, maxColumns);
+        rows = Math.ceil((container?.childElementCount ?? 0) / columns);
     });
+
+    onMount(() => resizer.observe(container));
+    onDestroy(() => resizer.disconnect());
 
     function updateVecFromIdx(i: number) {
         Vector.valToObj(focusPos, i % columns, Math.floor(i / columns));

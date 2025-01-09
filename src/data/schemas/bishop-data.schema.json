@@ -1,0 +1,54 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "bishop-data.schema.json",
+
+    "title": "Bishop Data",
+    "description": "Information on bishops that provides metadata and attributes to how to visualize bishops",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/Id" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The display name of this bishop"
+            },
+
+            "src": { "$ref": "#/definitions/Sources" },
+            "bossSrc": { "$ref": "#/definitions/Sources" }
+        },
+
+        "required": ["name", "src"]
+    },
+
+    "definitions": {
+        "Id": {
+            "type": "string",
+            "enum": ["Worm", "Frog", "Jelly", "Spider"]
+        },
+
+        "Sources": {
+            "type": "object",
+            "properties": {
+                "textures": {
+                    "anyOf": [
+                        {
+                            "type": "object",
+                            "additionalProperties": { "type": "string" }
+                        },
+                        {
+                            "type": "array",
+                            "items": { "type": "string" }
+                        }
+                    ]
+                },
+
+                "atlas": { "type": "string" },
+                "skeleton": { "type": "string" }
+            },
+
+            "required": ["textures", "atlas", "skeleton"]
+        }
+    }
+}

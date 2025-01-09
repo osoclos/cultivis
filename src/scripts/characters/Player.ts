@@ -48,7 +48,7 @@ export class Player extends Actor implements PlayerObject {
         return playerData.fleece[this.fleece];
     }
 
-    clone(creature: PlayerCreatureId = this.creature, fleece: PlayerFleeceId = this.fleece, id: string = Random.id(), label: string = `${this.label} (Copy)`) {
+    clone(id: string = Random.id(), label: string = `${this.label} (Copy)`, creature: PlayerCreatureId = this.creature, fleece: PlayerFleeceId = this.fleece) {
         const { skeleton, animationState } = this;
         const player = new Player(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), creature, fleece, id, label);
         

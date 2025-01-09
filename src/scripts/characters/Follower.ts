@@ -136,7 +136,7 @@ export class Follower extends Actor implements FollowerObject {
         this.update();
     }
 
-    clone(form: FollowerId = this.form, clothing: ClothingId = this.clothing, id: string = Random.id(), label: string = `${this.label} (Copy)`) {
+    clone(id: string = Random.id(), label: string = `${this.label} (Copy)`, form: FollowerId = this.form, clothing: ClothingId = this.clothing) {
         const { skeleton, animationState } = this;
 
         const follower = new Follower(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), form, clothing, id, label);

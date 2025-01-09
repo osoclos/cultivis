@@ -124,6 +124,13 @@
         },
         {
             "fileMatch": [
+                "/bishop-data.json"
+            ],
+
+            "url": "/src/data/schemas/bishop-data.schema.json"
+        },
+        {
+            "fileMatch": [
                 "/forbidden-animations.json"
             ],
 

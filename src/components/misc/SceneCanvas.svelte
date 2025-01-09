@@ -5,6 +5,8 @@
     import { InteractiveCanvas } from "../utils";
     
     import { Factory, Scene } from "../../scripts";
+    import { Follower, Player } from "../../scripts/characters";
+
     import { Vector } from "../../utils";
 
     let canvas: HTMLCanvasElement;
@@ -67,7 +69,7 @@
         scene = new Scene(gl);
         
         factory = await Factory.create(gl, "assets");
-        await factory.loadAll();
+        await factory.load(Follower, Player)
 
         load(scene, factory, canvas);
         requestAnimationFrame(draw);

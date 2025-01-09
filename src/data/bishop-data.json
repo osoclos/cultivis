@@ -1,0 +1,49 @@
+{
+    "Worm": {
+        "name": "Leshy",
+        "src": {
+            "textures": ["ForestCultLeader.png"],
+            "atlas": "ForestCultLeader.atlas",
+            "skeleton": "ForestCultLeader.skel"
+        },
+
+        "bossSrc": {
+            "textures": ["ForestWormBoss.png"],
+            "atlas": "ForestWormBoss.atlas",
+            "skeleton": "ForestWormBoss.skel"
+        }
+    },
+
+    "Frog": {
+        "name": "Heket",
+        "src": {
+            "textures": ["FrogCultLeader.png"],
+            "atlas": "FrogCultLeader.atlas",
+            "skeleton": "FrogCultLeader.skel"
+        },
+
+        "bossSrc": {
+            "textures": ["FrogBoss.png"],
+            "atlas": "FrogBoss.atlas",
+            "skeleton": "FrogBoss.skel"
+        }
+    },
+
+    "Jelly": {
+        "name": "Kallamar",
+        "src": {
+            "textures": ["JellyBoss.png"],
+            "atlas": "JellyBoss.atlas",
+            "skeleton": "JellyBoss.skel"
+        }
+    },
+
+    "Spider": {
+        "name": "Shamura",
+        "src": {
+            "textures": ["Spider.png"],
+            "atlas": "Spider.atlas",
+            "skeleton": "Spider.skel"
+        }
+    }
+}
