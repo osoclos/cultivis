@@ -34,7 +34,7 @@
             case "Boss Spider Jump":
             case "Boss Millipede Poisoner":
             case "Boss Scorpion":
-            case "Boss Beholder 4": return followerMetadata[form].name;
+            case "Boss Beholder 4": return followerData.forms[form].name;
 
             // rest in peace poppy
             case "Poppy":
@@ -50,8 +50,10 @@
 
     export function getRandomFollowerAppearance(): [FollowerId, number, number] {
         const form = Random.item(FOLLOWER_IDS);
-        const formVariantIdx = Random.int(followerMetadata[form].variants.length);
-        const formColorSetIdx = Random.int(colorSets.followers[form].length + colorSets.standard.length);
+        const { variants, sets } = followerData.forms[form];
+        
+        const formVariantIdx = Random.int(variants.length);
+        const formColorSetIdx = Random.int(sets.length + followerData.generalColorSets.length);
 
         return [form, formVariantIdx, formColorSetIdx];
     }
@@ -67,7 +69,7 @@
 
     import type { Follower, FollowerObject } from "../../scripts/characters";
     
-    import { colorSets, followerMetadata, forbiddenAnimations } from "../../data";
+    import { followerData, forbiddenAnimations } from "../../data";
     import { FOLLOWER_IDS, type FollowerId } from "../../data/types";
     
     import { Random, Vector, type VectorObject } from "../../utils";

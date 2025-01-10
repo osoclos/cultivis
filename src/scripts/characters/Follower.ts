@@ -1,7 +1,7 @@
 import { Actor, type ActorObject } from "..";
 
-import { followerMetadata, colorSets, clothingData, necklaceData, hatData } from "../../data";
-import type { ColorSet, FollowerId, ClothingId, ClothingData, FollowerMetadata, NecklaceId, HatId, NecklaceData, HatData } from "../../data/types";
+import { followerData } from "../../data";
+import type { ColorSet, FollowerId, ClothingId, ClothingData, FormData, NecklaceId, HatId, NecklaceData, HatData } from "../../data/types";
 
 import { MoreMath, Random } from "../../utils";
 
@@ -17,7 +17,7 @@ export class Follower extends Actor implements FollowerObject {
     #hat: HatId | null;
 
     private indexes: FollowerIndexes
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, form: FollowerId, clothing: ClothingId, id: string = Random.id(), label: string = followerMetadata[form].name) {
+    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, form: FollowerId, clothing: ClothingId, id: string = Random.id(), label: string = followerData.forms[form].name) {
         super(skeleton, animationState, id, label);
 
         this.#form = form;
@@ -80,24 +80,24 @@ export class Follower extends Actor implements FollowerObject {
         this.update();
     }
 
-    get formData(): FollowerMetadata {
-        return followerMetadata[this.form];
+    get formData(): FormData {
+        return followerData.forms[this.form];
     }
 
     get clothingData(): ClothingData {
-        return clothingData[this.clothing];
+        return followerData.clothing[this.clothing];
     }
 
     get necklaceData(): NecklaceData | null {
-        return this.necklace ? necklaceData[this.necklace] : null;
+        return this.necklace ? followerData.necklaces[this.necklace] : null;
     }
 
     get hatData(): HatData | null {
-        return this.hat ? hatData[this.hat] : null;
+        return this.hat ? followerData.hats[this.hat] : null;
     }
 
     get colorSetData(): ColorSet[] {
-        return [...colorSets.followers[this.form], ...colorSets.standard];
+        return [...followerData.forms[this.form].sets, ...followerData.generalColorSets];
     }
 
     get formVariantIdx(): number {
@@ -154,7 +154,7 @@ export class Follower extends Actor implements FollowerObject {
         this.setSkin(formData.variants[formVariantIdx]);
         this.addSkins(clothingData.variants[clothingVariantIdx]);
 
-        !clothingData.useFromSource && this.applyColors(clothingData.sets![clothingColorSetIdx]);
+        clothingData.sets && this.applyColors(clothingData.sets![clothingColorSetIdx]);
         this.applyColors(colorSetData[formColorSetIdx]);
 
         necklaceData && this.addSkins(necklaceData.variant);

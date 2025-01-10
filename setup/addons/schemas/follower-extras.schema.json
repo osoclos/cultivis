@@ -3,7 +3,7 @@
     "$id": "follower-extras.schema.json",
 
     "title": "Follower Extras",
-    "description": "Additional information on follower forms that adds/replaces metadata to extracted/Worshipper_Data.dat",
+    "description": "Additional information on follower forms that adds/replaces metadata to extracted/Worshipper_Data.dat.",
     
     "type": "object",
     "propertyNames": { "$ref": "#/definitions/Id" },
@@ -12,12 +12,12 @@
         "properties": {
             "name": {
                 "type": "string",
-                "description": "The display name of this follower"
+                "description": "The display name of this follower."
             },
 
             "category": {
                 "type": "integer",
-                "description": "The category index in the indoctrination menu which this follower belongs to",
+                "description": "The category index in the indoctrination menu which this follower belongs to.",
 
                 "minimum": 0,
                 "maximum": 6
@@ -25,7 +25,7 @@
 
             "variants": {
                 "type": "array",
-                "description": "Additional variants that are added onto this follower's original variants",
+                "description": "Additional variants that are added onto this follower's original variants.",
 
                 "items": { "type": "string" }
             }

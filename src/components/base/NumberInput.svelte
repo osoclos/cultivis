@@ -1,6 +1,6 @@
 <script lang="ts">
     import { twMerge } from "tailwind-merge";
-  import { MoreMath } from "/src/utils";
+    import { MoreMath } from "../../utils";
 
     interface Props {
         label: string;

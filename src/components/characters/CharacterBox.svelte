@@ -7,8 +7,8 @@
     import type { ActorObject } from "../../scripts";
     import { isFollowerObj, isPlayerObj } from "../../scripts/characters";
 
-    import { followerMetadata, playerData } from "../../data";
-  import { FOLLOWER_CATEGORIES, followerIdsByCategory } from "/src/data/types";
+    import { followerData, playerData } from "../../data";
+    import { FOLLOWER_CATEGORIES, followerIdsByCategory } from "../../data/types";
 
     interface Props {
         actor: ActorObject;
@@ -37,7 +37,7 @@
 
     function getInfo(): string {
         switch (true) {
-            case isFollowerObj(actor): return `Form: ${followerMetadata[actor.form].name}`;
+            case isFollowerObj(actor): return `Form: ${followerData.forms[actor.form].name}`;
             case isPlayerObj(actor): return `Creature: ${playerData.creature[actor.creature].name}`;
             
             default: return "";
@@ -49,7 +49,7 @@
             case isFollowerObj(actor): return "/static/assets/followers.png";
             case isPlayerObj(actor): return "/static/assets/player.png";
             
-            default: return "/src/ui/cancel.png";
+            default: return "/static/ui/cancel.png";
 
         }
     }
@@ -65,7 +65,7 @@
 
     function getY(): number {
         switch (true) {
-            case isFollowerObj(actor): return followerMetadata[actor.form].category;
+            case isFollowerObj(actor): return followerData.forms[actor.form].category;
 
             case isPlayerObj(actor):
             default: return 0;

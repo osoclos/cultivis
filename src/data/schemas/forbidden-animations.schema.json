@@ -3,7 +3,7 @@
     "$id": "forbidden-animations.schema.json",
 
     "title": "Forbidden Animations",
-    "description": "Animations that are not allowed to be displayed in the visualizer",
+    "description": "Animations that are not allowed to be displayed in the visualizer.",
 
     "type": "object",
     "properties": {

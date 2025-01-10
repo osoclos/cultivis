@@ -6,7 +6,7 @@ import ViteExpress from "vite-express";
 import multer from "multer";
 import sharp from "sharp";
 
-import { followerMetadata, clothingData, necklaceData } from "../src/data";
+import { followerData } from "../src/data";
 import { CLOTHING_CATEGORY_LENGTH, CLOTHING_IDS, type ClothingId, FOLLOWER_CATEGORY_LENGTH, FOLLOWER_IDS, type FollowerId, NECKLACE_CATEGORY_LENGTH, type NecklaceId } from "../src/data/types";
 
 const PORT: number = 3000;
@@ -30,7 +30,7 @@ app.post("/followers", data.array("files"), (req) => {
     const buffers: Buffer[][] = Array(FOLLOWER_CATEGORY_LENGTH).fill(null).map(() => []);
     for (const { buffer, originalname } of req.files as Express.Multer.File[]) {
         const id = originalname.replace(".dat", "") as FollowerId;
-        const { category } = followerMetadata[id];
+        const { category } = followerData.forms[id];
 
         buffers[category].push(buffer);
     }
@@ -44,7 +44,7 @@ app.post("/clothing", data.array("files"), (req) => {
     const buffers: Buffer[][] = Array(CLOTHING_CATEGORY_LENGTH).fill(null).map(() => []);
     for (const { buffer, originalname } of req.files as Express.Multer.File[]) {
         const id = originalname.replace(".dat", "") as ClothingId;
-        const { category } = clothingData[id];
+        const { category } = followerData.clothing[id];
 
         buffers[category].push(buffer);
     }
@@ -72,7 +72,7 @@ app.post("/necklaces", data.array("files"), (req) => {
     const buffers: Buffer[][] = Array(NECKLACE_CATEGORY_LENGTH).fill(null).map(() => []);
     for (const { buffer, originalname } of req.files as Express.Multer.File[]) {
         const id = originalname.replace(".dat", "") as NecklaceId;
-        const { category } = necklaceData[id];
+        const { category } = followerData.necklaces[id];
 
         buffers[category].push(buffer);
     }

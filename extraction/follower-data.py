@@ -5,7 +5,7 @@ import UnityPy
 import UnityPy.classes
 
 ENV_PATH = "C:/Program Files (x86)/Steam/steamapps/common/Cult of the Lamb/Cult Of The Lamb_Data/resources.assets"
-OUTPUT_DIR = "src/data/extracted"
+OUTPUT_DIR = "../setup/extracted"
 
 env = UnityPy.load(ENV_PATH)
 worshipper_data: bytes

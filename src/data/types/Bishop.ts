@@ -14,5 +14,5 @@ export interface BishopSources {
     skeleton: string;
 }
 
-export const BISHOP_IDS = ["Worm", "Frog", "Jelly", "Spider"] as const;
+export const BISHOP_IDS = ["Worm", "Frog", "Jelly", "Spider", "Cat"] as const;
 export type BishopId = typeof BISHOP_IDS[number];

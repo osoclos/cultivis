@@ -3,7 +3,7 @@
     "$id": "bishop-data.schema.json",
 
     "title": "Bishop Data",
-    "description": "Information on bishops that provides metadata and attributes to how to visualize bishops",
+    "description": "Information on bishops that provides metadata and attributes to how to visualize bishops.",
 
     "type": "object",
     "propertyNames": { "$ref": "#/definitions/Id" },
@@ -12,11 +12,18 @@
         "properties": {
             "name": {
                 "type": "string",
-                "description": "The display name of this bishop"
+                "description": "The display name of this bishop."
             },
 
-            "src": { "$ref": "#/definitions/Sources" },
-            "bossSrc": { "$ref": "#/definitions/Sources" }
+            "src": {
+                "$ref": "#/definitions/Sources",
+                "description": "The source paths to the files needed to load the bishop (in normal form)."
+            },
+
+            "bossSrc": {
+                "$ref": "#/definitions/Sources",
+                "description": "The source paths to the files needed to load the bishop (in boss form)."
+            }
         },
 
         "required": ["name", "src"]
@@ -25,7 +32,7 @@
     "definitions": {
         "Id": {
             "type": "string",
-            "enum": ["Worm", "Frog", "Jelly", "Spider"]
+            "enum": ["Worm", "Frog", "Jelly", "Spider", "Cat"]
         },
 
         "Sources": {

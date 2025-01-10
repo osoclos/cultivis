@@ -9,8 +9,8 @@
     import { Header } from "../base";
     import { MultiGrid, SpritesheetImage } from "../utils";
 
-    import { clothingData, colorSets, followerMetadata, hatData, necklaceData } from "../../data";
-    import { CLOTHING_IDS, clothingIdsByCategory, FOLLOWER_IDS, followerIdsByCategory, HATS_ID, necklaceIdsByCategory, type ClothingCategoryName, type ClothingData, type ClothingId, type ColorSet, type FollowerCategoryName, type FollowerId, type FollowerMetadata, type HatId, type NecklaceCategoryName, type NecklaceData, type NecklaceId } from "../../data/types";
+    import { followerData } from "../../data";
+    import { CLOTHING_IDS, clothingIdsByCategory, FOLLOWER_IDS, followerIdsByCategory, HATS_ID, necklaceIdsByCategory, type ClothingCategoryName, type ClothingData, type ClothingId, type ColorSet, type FollowerCategoryName, type FollowerId, type FormData, type HatId, type NecklaceCategoryName, type NecklaceData, type NecklaceId } from "../../data/types";
 
     import type { Follower, FollowerObject } from "../../scripts/characters";
     import { Color, Random } from "../../utils";
@@ -61,10 +61,10 @@
         }
     }
 
-    const followerColorSets = $derived(colorSets.followers[obj.form]);
-    const generalColorSets = $derived(colorSets.standard);
+    const followerColorSets = $derived(followerData.forms[obj.form].sets);
+    const generalColorSets = $derived(followerData.generalColorSets);
 
-    const clothingColorSets = $derived(clothingData[obj.clothing].sets);
+    const clothingColorSets = $derived(followerData.clothing[obj.clothing].sets);
 
     function findMostPopularColor(set: ColorSet) {
         const slotLengths = set.map(({ slots }) => slots.length);
@@ -73,8 +73,8 @@
         return set[i].color;
     }
 
-    const followerVariants = $derived(followerMetadata[obj.form].variants);
-    const clothingVariants = $derived(clothingData[obj.clothing].variants);
+    const followerVariants = $derived(followerData.forms[obj.form].variants);
+    const clothingVariants = $derived(followerData.clothing[obj.clothing].variants);
 
     function updateForm(id: FollowerId) {
         follower.form = id;
@@ -143,7 +143,7 @@
                     <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />
                 </BoxOption>
 
-                {#each Object.values(followerIdsByCategory)[y].map<[FollowerId, FollowerMetadata]>((id) => [id, followerMetadata[id]]) as [id, { name }], x (x)}
+                {#each Object.values(followerIdsByCategory)[y].map<[FollowerId, FormData]>((id) => [id, followerData.forms[id]]) as [id, { name }], x (x)}
                     <BoxOption label={name} selected={id === obj.form} onclick={() => updateForm(id)}>
                         <SpritesheetImage label={name} src="/static/assets/followers.png" {x} {y} tileWidth={64} tileHeight={64} />
                     </BoxOption>
@@ -153,7 +153,7 @@
                     <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />
                 </BoxOption>
 
-                {#each Object.values(clothingIdsByCategory)[y].map<[ClothingId, ClothingData]>((id) => [id, clothingData[id]]) as [id, { name }], x (x) }
+                {#each Object.values(clothingIdsByCategory)[y].map<[ClothingId, ClothingData]>((id) => [id, followerData.clothing[id]]) as [id, { name }], x (x) }
                     <BoxOption label={name} selected={id === obj.clothing} onclick={() => updateClothing(id)}>
                         <SpritesheetImage label={name} src="/static/assets/clothing.png" {x} {y} tileWidth={64} tileHeight={64} />
                     </BoxOption>
@@ -170,7 +170,7 @@
                         <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />
                     </BoxOption>
 
-                    {#each Object.values(necklaceIdsByCategory)[y].map<[NecklaceId, NecklaceData]>((id) => [id, necklaceData[id]]) as [id, { name }], x (x) }
+                    {#each Object.values(necklaceIdsByCategory)[y].map<[NecklaceId, NecklaceData]>((id) => [id, followerData.necklaces[id]]) as [id, { name }], x (x) }
                         <BoxOption label={name} selected={id === obj.necklace} onclick={() => updateNecklace(id)}>
                             <SpritesheetImage label={name} src="/static/assets/necklaces.png" {x} {y} tileWidth={64} tileHeight={64} />
                         </BoxOption>
@@ -184,7 +184,7 @@
                         <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />
                     </BoxOption>
         
-                    {#each Object.entries(hatData) as [id, { name }], x (x) }
+                    {#each Object.entries(followerData.hats) as [id, { name }], x (x) }
                         <BoxOption label={name} selected={id === obj.hat} onclick={() => updateHat(id as HatId)}>
                             <SpritesheetImage label={name} src="/static/assets/hats.png" {x} y={0} tileWidth={64} tileHeight={64} />
                         </BoxOption>

@@ -1,21 +1,19 @@
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
 import { Vector } from "../utils";
 
-import { Follower, isFollowerObj, isPlayerObj, Player } from "./characters";
+import { Follower, isBishopObj, isFollowerObj, isPlayerObj, Player } from "./characters";
 import { GIFManager } from "./managers";
 
 export class Exporter {
-    private constructor(public canvas: OffscreenCanvas, public gl: WebGLRenderingContext, public scene: Scene, public factory: Factory, private gifManager: GIFManager) {}
-    static async create() {
-        const canvas = new OffscreenCanvas(300, 150);
-        
-        const gl = canvas.getContext("webgl");
+    private constructor(public canvas: HTMLCanvasElement | OffscreenCanvas, public gl: WebGLRenderingContext, public scene: Scene, public factory: Factory, private gifManager: GIFManager) {}
+    static async create(canvas: HTMLCanvasElement | OffscreenCanvas = new OffscreenCanvas(300, 150), exporterFactory?: Factory) {
+        const gl = canvas.getContext("webgl") as WebGLRenderingContext;
         if (!gl) throw new Error("Unable to retrieve context from canvas");
 
         const scene = new Scene(gl);
-        const factory = await Factory.create(gl, "assets");
 
-        await factory.loadAll();
+        const factory = exporterFactory ?? await Factory.create(gl, "assets");
+        !exporterFactory && await factory.loadAll();
 
         const gifManager = new GIFManager();
 
@@ -95,7 +93,7 @@ export class Exporter {
                 if (!this.factory.loadedFollower) await this.factory.load(Follower);
                 const { form, clothing } = obj;
                 
-                const follower = await this.factory.follower(form, clothing, id, label);
+                const follower = this.factory.follower(form, clothing, id, label);
                 follower.copyFromObj(obj);
 
                 actor = follower;
@@ -106,10 +104,21 @@ export class Exporter {
                 if (!this.factory.loadedPlayer) await this.factory.load(Player);
                 const { creature, fleece } = obj;
                 
-                const player = await this.factory.player(creature, fleece, id, label);
+                const player = this.factory.player(creature, fleece, id, label);
                 player.copyFromObj(obj);
 
                 actor = player;
+                break;
+            }
+
+            case isBishopObj(obj): {
+                const { bishop: id, isBoss } = obj;
+                if (!this.factory.getLoadedBishop(id, isBoss)) await this.factory.loadBishop(id, isBoss);
+
+                const bishop = await this.factory.bishop(id, isBoss, id, label);
+                bishop.copyFromObj(obj);
+
+                actor = bishop;
                 break;
             }
 
@@ -120,7 +129,7 @@ export class Exporter {
         return actor;
     }
 
-    private getPixels(x: number = 0, y: number = 0, width: number = this.gl.drawingBufferWidth, height: number = this.gl.drawingBufferHeight, flipY: boolean = true) {
+    getPixels(x: number = 0, y: number = 0, width: number = this.gl.drawingBufferWidth, height: number = this.gl.drawingBufferHeight, flipY: boolean = true) {
         const bufferSize = width * height * 4; // width * height * 4 RGBA values
         
         const pixels = new Uint8Array(bufferSize);

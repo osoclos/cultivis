@@ -1,0 +1,203 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "follower-data.schema.json",
+
+    "title": "Follower Data",
+    "description": "Information on followers that provides form, clothing and accessory metadata",
+
+    "type": "object",
+    "properties": {
+        "forms": {
+            "type": "object",
+            "propertyNames": { "$ref": "#/definitions/FormId" },
+
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The display name of this follower."
+                    },
+
+                    "category": {
+                        "type": "integer",
+                        "description": "The category index in the indoctrination menu which this follower belongs to.",
+
+                        "minimum": 0,
+                        "maximum": 6
+                    },
+
+                    "variants": {
+                        "type": "array",
+                        "description": "A list of variants that can be selected when this follower form is applied.",
+
+                        "items": { "type": "string" }
+                    },
+
+                    "sets": {
+                        "type": "array",
+                        "description": "A list of color sets that can be selected when this follower form is applied.",
+
+                        "items": { "$ref": "#/definitions/ColorSet" }
+                    }
+                },
+
+                "required": ["name", "category", "variants", "sets"]
+            }
+        },
+
+        "clothing": {
+            "type": "object",
+            "propertyNames": { "$ref": "#/definitions/ClothingId" },
+
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The display name of this clothing item."
+                    },
+
+                    "category": {
+                        "type": "integer",
+                        "description": "The category index in the tailor selection menu which this clothing item belongs to.",
+
+                        "minimum": 0,
+                        "maximum": 2
+                    },
+
+                    "variants": {
+                        "type": "array",
+                        "description": "A list of variants that can be selected when this clothing item is worn.",
+
+                        "items": { "type": "string" }
+                    },
+
+                    "sets": {
+                        "type": "array",
+                        "description": "A list of color sets that can be selected when this clothing item is worn.",
+
+                        "items": { "$ref": "#/definitions/ColorSet" }
+                    }
+                },
+
+                "required": ["name", "category", "variants"]
+            }
+        },
+
+        "necklaces": {
+            "type": "object",
+            "propertyNames": { "$ref": "#/definitions/NecklaceId" },
+
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The display name of this necklace"
+                    },
+
+                    "category": {
+                        "type": "integer",
+                        "description": "The category index in the outfit menu which this necklace belongs to",
+
+                        "minimum": 0,
+                        "maximum": 2
+                    },
+
+                    "variant": {
+                        "type": "string",
+                        "description": "The variant name of this necklace"
+                    }
+                },
+                
+                "required": ["name", "category", "variant"]
+            }
+        },
+        
+        "hats": {
+            "type": "object",
+            "propertyNames": { "$ref": "#/definitions/HatId" },
+
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type`": "string",
+                        "description": "The display name of this hat"
+                    },
+
+                    "variant": {
+                        "type": "string",
+                        "description": "The variant name of this hat"
+                    }
+                },
+                
+                "required": ["name", "variant"]
+            }
+        },
+
+        "generalColorSets": {
+            "type": "array",
+            "description": "A list of color sets that can be selected for all followers.",
+
+            "items": { "$ref": "#/definitions/ColorSet" }
+        }
+    },
+
+    "required": ["forms", "clothing", "necklaces", "hats", "generalColorSets"],
+    "definitions": {
+        "FormId": {
+            "type": "string",
+            "enum": ["Deer", "Pig", "Dog", "Cat", "Fox", "Fish", "Pangolin", "Shrew", "Unicorn", "Axolotl", "Starfish", "Red Panda", "Poop", "Massive Monster", "Crab", "Night Wolf", "Snail", "Owl", "Butterfly", "Koala", "Shrimp", "Snake", "Worm", "Mushroom", "Bee", "Tapir", "Turtle", "Monkey", "Narwal", "Moose", "Gorilla", "Mosquito", "Goldfish", "Possum", "Hammerhead", "Llama", "Tiger", "Sphynx", "LadyBug", "TwitchMouse", "TwitchCat", "TwitchDog", "TwitchDogAlt", "TwitchPoggers", "Lion", "Penguin", "Pelican", "Kiwi", "DogTeddy", "Camel", "Anteater", "Skunk", "Panda", "Enchida", "Boss Death Cat", "CultLeader 1", "CultLeader 2", "CultLeader 3", "CultLeader 4", "Baal", "Aym", "Sozo", "Jalala", "Rinor", "Abomination", "Seal", "Lemur", "Caterpillar", "Webber", "Volvy", "StarBunny", "Crow", "BatDemon", "DeerSkull", "Cthulhu", "DeerRitual", "Poppy", "Cow", "Horse", "Hedgehog", "Rabbit", "Chicken", "Squirrel", "Boss Mama Worm", "Boss Mama Maggot", "Boss Burrow Worm", "Boss Beholder 1", "Giraffe", "Bison", "Frog", "Capybara", "Fennec Fox", "Rhino", "Eagle", "Boss Flying Burp Frog", "Boss Egg Hopper", "Boss Mortar Hopper", "Boss Beholder 2", "Crocodile", "Elephant", "Hippo", "Otter", "Seahorse", "Duck", "Boss Spiker", "Boss Charger", "Boss Scuttle Turret", "Boss Beholder 3", "Racoon", "Bear", "Bat", "Beetle", "Badger", "Boss Spider Jump", "Boss Millipede Poisoner", "Boss Scorpion", "Boss Beholder 4"]
+        },
+
+        "ClothingId": {
+            "type": "string",
+            "enum": ["Default_Clothing", "Normal9_Clothing", "Normal8_Clothing", "Normal7_Clothing", "Normal6_Clothing", "Normal5_Clothing", "Normal4_Clothing", "Normal3_Clothing", "Normal2_Clothing", "Normal1_Clothing", "Normal12_Clothing", "Normal11_Clothing", "Normal10_Clothing", "Naked_Clothing", "Rags", "Temple Robes", "Missionary", "Undertaker", "Holiday", "Old", "Baby", "Warrior_Clothing", "Special_7_Clothing", "Special_6_Clothing", "Special_5_Clothing", "Special_4_Clothing", "Special_3_Clothing", "Special_2_Clothing", "Special_1_Clothing", "Fancy_Suit_Clothing", "Fancy_Clothing", "Baal_Robes", "Aym_Robes", "Sozo_Backpack", "Heretic_DLC_Clothing", "Heretic_DLC_Clothing2", "DLC_6", "DLC_5", "DLC_4", "DLC_3", "DLC_2", "DLC_1", "Cultist_DLC_Clothing", "Cultist_DLC_Clothing2", "Pilgrim_DLC_Clothing", "Pilgrim_DLC_Clothing2"]
+        },
+
+        "NecklaceId": {
+            "type": "string",
+            "enum": ["Flower", "Feather", "Skull", "Nature", "Moon", "Missionary", "Loyalty", "Demonic", "Gold_Skull", "Bell", "Light", "Dark"]
+        },
+
+        "HatId": {
+            "type": "string",
+            "enum": ["Bartender", "Chef", "Tax_Enforcer", "Faith_Enforcer", "Farmer", "Lumberjack", "Miner", "Nudist", "Refiner"]
+        },
+
+        "ColorSet": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "color": {
+                        "type": "object",
+                        "properties": {
+                            "r": { "$ref": "#/definitions/NormalFloat" },
+                            "g": { "$ref": "#/definitions/NormalFloat" },
+                            "b": { "$ref": "#/definitions/NormalFloat" },
+                            "a": { "$ref": "#/definitions/NormalFloat" }
+                        },
+
+                        "required": ["r", "g", "b", "a"]
+                    },
+
+                    "slots": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                    }
+                },
+
+                "required": ["color", "slots"]
+            }
+        },
+
+        "NormalFloat": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+        }
+    }
+}

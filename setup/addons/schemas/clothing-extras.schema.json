@@ -3,7 +3,7 @@
     "$id": "clothing-extras.schema.json",
 
     "title": "Clothing Extras",
-    "description": "Additional information on clothing items that add/replaces metadata to .dat files in the extracted/clothing folder",
+    "description": "Additional information on clothing items that add/replaces metadata to .dat files in the extracted/clothing folder.",
 
     "type": "object",
     "propertyNames": { "$ref": "#/definitions/Id" },
@@ -12,12 +12,12 @@
         "properties": {
             "name": {
                 "type": "string",
-                "description": "The display name of this clothing item"
+                "description": "The display name of this clothing item."
             },
 
             "category": {
                 "type": "integer",
-                "description": "The category index in the tailor selection menu which this clothing item belongs to",
+                "description": "The category index in the tailor selection menu which this clothing item belongs to.",
 
                 "minimum": 0,
                 "maximum": 2
@@ -25,7 +25,7 @@
 
             "variants": {
                 "type": "array",
-                "description": "Additional variants that are added onto this clothing item's original variants",
+                "description": "Additional variants that are added onto this clothing item's original variants.",
 
                 "items": { "type": "string" }
             }

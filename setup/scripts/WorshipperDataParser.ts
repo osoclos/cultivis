@@ -1,25 +1,26 @@
 import { deepEquals } from "bun";
 
-import type { ColorSet, FollowerForm } from "../../src/data/types";
-import type { ColorObject } from "../../src/utils";
-
+import { WorshipperData } from "../types";
 import { DataReader } from "../utils";
+
+import type { ColorSet } from "../../src/data/types";
+import type { ColorObject } from "../../src/utils";
 
 export class WorshipperDataParser extends DataReader {
     private static readonly MONO_BEHAVIOUR_METADATA_LENGTH: number = 11;
     private static readonly FOLLOWER_METADATA_ATTRIBUTE_LENGTH: number = 4;
 
-    parse(): [ColorSet[], FollowerForm[]] {
+    parse(): [ColorSet[], WorshipperData[]] {
         // Unity MonoBehaviour component metadata (redundant)
         for (const _ of Array(WorshipperDataParser.MONO_BEHAVIOUR_METADATA_LENGTH).keys()) this.readUint32();
 
-        const standardColorSets: ColorSet[] = Array(this.readUint32()).fill(null).map(this.readSet.bind(this));
-        const followerForms: FollowerForm[] = Array(this.readUint32()).fill(null).map(this.readForm.bind(this));
+        const generalColorSets: ColorSet[] = Array(this.readUint32()).fill(null).map(this.readSet.bind(this));
+        const worshipperData: WorshipperData[] = Array(this.readUint32()).fill(null).map(this.readData.bind(this));
 
-        return [standardColorSets, followerForms];
+        return [generalColorSets, worshipperData];
     }
 
-    private readForm() {
+    private readData() {
         const id = this.readString();
         const category = this.readUint32();
 
@@ -29,7 +30,7 @@ export class WorshipperDataParser extends DataReader {
         const variants: string[] = Array(this.readUint32()).fill(null).map(this.readString.bind(this));
         const sets: ColorSet[] = Array(this.readUint32()).fill(null).map(this.readSet.bind(this));
 
-        const form: FollowerForm = { id, category, variants, sets };
+        const form: WorshipperData = { id, category, variants, sets };
         if (hasAttributes) form.attributes = { isUnique, hasSpecialEvents, mustBeDiscovered };
         
         return form;

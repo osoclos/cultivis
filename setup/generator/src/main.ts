@@ -1,9 +1,8 @@
 import "./style.css";
 
-import { Scene, Factory } from "@/scripts";
-import { ExportManager } from "@/scripts/managers";
+import { Scene, Factory, Exporter } from "@/scripts";
 
-import { clothingData, followerMetadata, hatData, necklaceData } from "@/data";
+import { followerData } from "@/data";
 import { CLOTHING_IDS, type ClothingId, FOLLOWER_IDS, HATS_ID, NECKLACE_IDS, PLAYER_CREATURE_IDS, PLAYER_FLEECE_IDS } from "@/data/types";
 
 import { Color, type ColorObject } from "@/utils";
@@ -32,10 +31,12 @@ const factory = await Factory.create(gl, "assets");
 
 await factory.loadAll();
 
-const follower = await factory.follower("Deer", "Default_Clothing");
+const exporter = await Exporter.create(canvas, factory);
+
+const follower = factory.follower("Deer", "Default_Clothing");
 follower.hidden = true;
 
-const player = await factory.player("Lamb", "Lamb");
+const player = factory.player("Lamb", "Lamb");
 player.hidden = true;
 
 scene.addActors(follower, player);
@@ -91,7 +92,7 @@ clothingExporter.addEventListener("click", () => {
     
     const form = new FormData();
     for (const id of CLOTHING_IDS) {
-        const { variants, sets = [[]] } = clothingData[id];
+        const { variants, sets = [[]] } = followerData.clothing[id];
 
         follower.setSkin(variants[0]);
         follower.applyColors(sets[0].concat({
@@ -127,7 +128,7 @@ variantExporter.addEventListener("click", () => {
     const form = new FormData();
     for (const id of FOLLOWER_IDS) {
         follower.form = id;
-        for (const i of Array(followerMetadata[id].variants.length).keys()) {
+        for (const i of Array(followerData.forms[id].variants.length).keys()) {
             follower.formVariantIdx = i;
             follower.reset();
 
@@ -151,8 +152,8 @@ variantExporter.addEventListener("click", () => {
     
     for (const id of CLOTHING_IDS) {
         follower.clothing = id;
-        for (const i of Array(clothingData[id].variants.length).keys()) {
-            const { variants, sets = [[]] } = clothingData[id];
+        for (const i of Array(followerData.clothing[id].variants.length).keys()) {
+            const { variants, sets = [[]] } = followerData.clothing[id];
             
             follower.setSkin(variants[i]);
             follower.applyColors(sets[0].concat({
@@ -188,7 +189,7 @@ necklaceExporter.addEventListener("click", () => {
     
     const form = new FormData();
     for (const id of NECKLACE_IDS) {
-        const { variant } = necklaceData[id];
+        const { variant } = followerData.necklaces[id];
         follower.setSkin(variant);
 
         appendPixelsToForm(form, id);
@@ -218,7 +219,7 @@ hatExporter.addEventListener("click", () => {
     
     const form = new FormData();
     for (const id of HATS_ID) {
-        const { variant } = hatData[id];
+        const { variant } = followerData.hats[id];
         follower.setSkin(variant);
 
         appendPixelsToForm(form, id);
@@ -272,7 +273,7 @@ playerExporter.addEventListener("click", () => {
 const appendPixelsToForm = (form: FormData, name: string) => {
     scene.render(0);
 
-    const pixels = ExportManager.exportGLFrame(gl);
+    const pixels = exporter.getPixels();
     const blob = new Blob([pixels], { type: "application/octet-stream" });
 
     form.append("files", blob, `${name}.dat`);

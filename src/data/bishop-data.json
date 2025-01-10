@@ -45,5 +45,20 @@
             "atlas": "Spider.atlas",
             "skeleton": "Spider.skel"
         }
+    },
+
+    "Cat": {
+        "name": "Narinder",
+        "src": {
+            "textures": ["DeathCat_Boss.png"],
+            "atlas": "DeathCat_Boss.atlas",
+            "skeleton": "DeathCat_Boss.skel"
+        },
+
+        "bossSrc": {
+            "textures": ["DeathBig.png"],
+            "atlas": "DeathBig.atlas",
+            "skeleton": "DeathBig.skel"
+        }
     }
 }

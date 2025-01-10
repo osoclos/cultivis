@@ -3,7 +3,7 @@
     "$id": "player-data.schema.json",
 
     "title": "Player Data",
-    "description": "Information on players that provides metadata and attributes to how to visualize players",
+    "description": "Information on players that provides creature and fleece metadata.",
 
     "type": "object",
     "properties": {
@@ -15,12 +15,12 @@
                 "properties": {
                     "name": {
                         "type": "string",
-                        "description": "The display name of this creature"
+                        "description": "The display name of this creature."
                     },
 
                     "variant": {
                         "type": "string",
-                        "description": "The variant name of this creature"
+                        "description": "The variant name of this creature."
                     }
                 },
 
@@ -36,12 +36,12 @@
                 "properties": {
                     "name": {
                         "type": "string",
-                        "description": "The display name of this fleece"
+                        "description": "The display name of this fleece."
                     },
 
                     "category": {
                         "type": "integer",
-                        "description": "The category index in the crown menu which this fleece belongs to",
+                        "description": "The category index in the crown menu which this fleece belongs to.",
 
                         "minimum": 0,
                         "maximum": 2
@@ -49,7 +49,7 @@
 
                     "variant": {
                         "type": "string",
-                        "description": "The variant name of this fleece"
+                        "description": "The variant name of this fleece."
                     }
                 },
 
@@ -62,7 +62,7 @@
     "definitions": {
         "CreatureId": {
             "type": "string",
-            "enum": ["Lamb", "Goat", "Snake", "Owl"]
+            "enum": ["Lamb", "Goat"]
         },
 
         "FleeceId": {

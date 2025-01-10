@@ -1,9 +1,10 @@
 import { deepEquals } from "bun";
 
-import { CLOTHING_DLCS, type ClothingMetadata, type ClothingDLC, type ColorSet } from "../../src/data/types";
-import type { ColorObject } from "../../src/utils";
-
+import { CLOTHING_DLCS, type ClothingMetadata, type ClothingDLC } from "../types";
 import { DataReader } from "../utils";
+
+import type { ColorSet } from "../../src/data/types";
+import type { ColorObject } from "../../src/utils";
 
 export class ClothingDataParser extends DataReader {
     private static readonly MONO_BEHAVIOUR_METADATA_LENGTH: number[] = [7, 3];
