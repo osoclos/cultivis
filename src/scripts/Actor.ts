@@ -253,8 +253,8 @@ export class Actor implements ActorObject {
         this.checkManipulation();
     }
 
-    private checkManipulation() {
-        if (!this.oldPos.equals(this.pos)) {
+    checkManipulation(forceManipulate: boolean = false) {
+        if (forceManipulate || !this.oldPos.equals(this.pos)) {
             this.oldPos.copy(this.pos);
 
             const { x, y } = this.pos;
@@ -265,7 +265,7 @@ export class Actor implements ActorObject {
             this.skeleton.y = y - offsetY - sizeY / 2;
         }
 
-        if (!this.oldScale.equals(this.scale)) {
+        if (forceManipulate || !this.oldScale.equals(this.scale)) {
             this.oldScale.copy(this.scale);
 
             const { x, y } = this.scale;

@@ -154,11 +154,13 @@ export class Follower extends Actor implements FollowerObject {
         this.setSkin(formData.variants[formVariantIdx]);
         this.addSkins(clothingData.variants[clothingVariantIdx]);
 
-        clothingData.sets && this.applyColors(clothingData.sets![clothingColorSetIdx]);
         this.applyColors(colorSetData[formColorSetIdx]);
+        clothingData.sets && this.applyColors(clothingData.sets![clothingColorSetIdx]);
 
         necklaceData && this.addSkins(necklaceData.variant);
         hatData && this.addSkins(hatData.variant);
+
+        // TODO: fix weird red overlay on sherpa, etc. clothing
 
         this.tick();
     }

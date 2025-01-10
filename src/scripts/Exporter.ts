@@ -13,7 +13,9 @@ export class Exporter {
         const scene = new Scene(gl);
 
         const factory = exporterFactory ?? await Factory.create(gl, "assets");
-        !exporterFactory && await factory.loadAll();
+        
+        // when bishop customisation is ready uncomment this: !exporterFactory && await factory.loadAll();
+        !exporterFactory && await factory.load(Follower, Player);
 
         const gifManager = new GIFManager();
 

@@ -207,7 +207,7 @@
                     </BoxOption>
         
                     {#each generalColorSets as set, i (i) }
-                        <BoxOption label="General Follower Color {i}" selected={i + followerColorSets.length === obj.formColorSetIdx} onclick={() => obj.formColorSetIdx = i + followerColorSets.length}>
+                        <BoxOption label="General Follower Color {i}" selected={i + followerColorSets.length === obj.formColorSetIdx} onclick={() => updateFormColorSetIdx(i + followerColorSets.length)}>
                             <div class="m-3 w-10 h-10 rounded-full border-2 border-[#00000030]" style:background-color={Color.objToStr(findMostPopularColor(set))}></div>
                         </BoxOption>
                     {/each}

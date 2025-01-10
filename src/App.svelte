@@ -101,20 +101,17 @@
         factory = initFactory;
         exporter = await Exporter.create();
         
-        const deer = factory.follower("Deer", "Default_Clothing");
-        deer.setAnimation("idle");
+        const deer = addActor(Follower, false) as Follower;
+        deer.form = "Deer";
+        deer.formVariantIdx = 0;
+        deer.formColorSetIdx = 0;
 
         deer.label = "Deer";
         deer.pos.setX(-180);
         deer.flipX = true;
 
-        const lamb = factory.player("Lamb", "Lamb");
-        lamb.setAnimation("idle");
-
-        lamb.label = "Lamb";
-        lamb.pos.setX(180);
-
-        scene.addActors(deer, lamb);
+        const player = addActor(Player, false) as Player;
+        player.pos.setX(180);
 
         scene.resetCamera();
         scene.scale *= 1.5;
@@ -122,13 +119,13 @@
         actors = scene.actors.map((actor) => actor.toObj());
     }
 
-    async function addActor(actor: typeof Actor) {
+    function addActor(actor: typeof Actor, updateActorIdx: boolean = true): Actor | undefined {
         let addedActor: Actor;
         switch (actor.name) {
             case Follower.name: {
                 const [form, formVariantIdx, formColorSetIdx] = getRandomFollowerAppearance();
 
-                const follower = await factory.follower(form, "Default_Clothing", Random.id(), getSpecialFollowerName(form, formVariantIdx));
+                const follower = factory.follower(form, "Default_Clothing", Random.id(), getSpecialFollowerName(form, formVariantIdx));
                 follower.setAnimation("idle");
 
                 follower.formVariantIdx = formVariantIdx;
@@ -139,7 +136,7 @@
             }
 
             case Player.name: {
-                const player = await factory.player("Lamb", "Lamb", Random.id(), "Lamb");
+                const player = factory.player("Lamb", "Lamb", Random.id(), "Lamb");
                 player.setAnimation("idle");
 
                 addedActor = player;
@@ -149,10 +146,13 @@
             default: return
         }
 
+        addedActor.checkManipulation(true);
+        
         scene.addActors(addedActor);
         actors = scene.actors.map((actor) => actor.toObj());
 
-        selectActor((actors?.length ?? 0) - 1);
+        updateActorIdx && selectActor((actors?.length ?? 0) - 1);
+        return addedActor;
     }
 
     function removeActor() {

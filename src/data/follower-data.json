@@ -8745,7 +8745,8 @@
             "name": "Leshy",
             "category": 2,
             "variants": [
-                "CultLeader 1"
+                "CultLeader 1",
+                "CultLeader 1 Healed"
             ],
             "sets": [
                 [
@@ -8774,7 +8775,8 @@
             "name": "Heket",
             "category": 2,
             "variants": [
-                "CultLeader 2"
+                "CultLeader 2",
+                "CultLeader 2 Healed"
             ],
             "sets": [
                 [
@@ -8813,7 +8815,8 @@
             "name": "Kallamar",
             "category": 2,
             "variants": [
-                "CultLeader 3"
+                "CultLeader 3",
+                "CultLeader 3 Healed"
             ],
             "sets": [
                 [
@@ -8852,7 +8855,8 @@
             "name": "Shamura",
             "category": 2,
             "variants": [
-                "CultLeader 4"
+                "CultLeader 4",
+                "CultLeader 4 Healed"
             ],
             "sets": [
                 [
@@ -8959,7 +8963,8 @@
             "name": "Sozo",
             "category": 2,
             "variants": [
-                "Sozo"
+                "Sozo",
+                "SozoOld"
             ],
             "sets": [
                 [
@@ -20063,7 +20068,8 @@
             "name": "Naked",
             "category": 0,
             "variants": [
-                "Clothes/Naked_Base"
+                "Clothes/Naked_Base",
+                "Clothes/Naked_Old"
             ],
             "sets": [
                 [
@@ -20123,32 +20129,44 @@
         "Rags": {
             "name": "Torn Rags",
             "category": 0,
-            "variants": []
+            "variants": [
+                "Clothes/Rags"
+            ]
         },
         "Missionary": {
             "name": "Missionary's Backpack",
             "category": 0,
-            "variants": []
+            "variants": [
+                "Clothes/Sherpa"
+            ]
         },
         "Undertaker": {
             "name": "Undertaker's Robes",
             "category": 0,
-            "variants": []
+            "variants": [
+                "Clothes/Undertaker"
+            ]
         },
         "Holiday": {
             "name": "Aloha Shirt",
             "category": 0,
-            "variants": []
+            "variants": [
+                "Clothes/Holiday"
+            ]
         },
         "Old": {
             "name": "Senior Garment",
             "category": 0,
-            "variants": []
+            "variants": [
+                "Clothes/Robes_Old"
+            ]
         },
         "Baby": {
             "name": "Comfy Diapers",
             "category": 0,
-            "variants": []
+            "variants": [
+                "Clothes/Baby"
+            ]
         },
         "Warrior_Clothing": {
             "name": "Warrior's Cuirass",
@@ -23397,17 +23415,23 @@
         "Baal_Robes": {
             "name": "Baal's Robes",
             "category": 1,
-            "variants": []
+            "variants": [
+                "Clothes/Robes_Baal"
+            ]
         },
         "Aym_Robes": {
             "name": "Aym's Robes",
             "category": 1,
-            "variants": []
+            "variants": [
+                "Clothes/Robes_Aym"
+            ]
         },
         "Sozo_Backpack": {
             "name": "Sozo's Backpack",
             "category": 1,
-            "variants": []
+            "variants": [
+                "Clothes/Sozo"
+            ]
         },
         "Heretic_DLC_Clothing": {
             "name": "Acolyte of the Old Faith",

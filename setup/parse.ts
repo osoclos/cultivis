@@ -31,7 +31,7 @@ for (const id of FOLLOWER_IDS) {
     const { category: originalCategory, variants, sets } = worshipperData.find(({ id: form }) => form === id)!;
     const { name = id, category = originalCategory, variants: additionalVariants = [] } = followerExtras[id] ?? {};
     
-    variants.concat(additionalVariants);
+    variants.push(...additionalVariants);
     formData[id] = { name, category, variants, sets };
 }
 
@@ -49,9 +49,9 @@ for (const filename of fs.readdirSync(CLOTHING_DATA_DIR)) {
 const clothingData = {} as ClothingDataJSON;
 for (const id of CLOTHING_IDS) {
     const { variants = [], sets } = clothingMetadata[id] ?? {};
-    const { name = id, category, variants: additionalVariants = [] } = clothingExtras[id] ?? { category: 0 };
+    const { name = id, category = 0, variants: additionalVariants = [] } = clothingExtras[id] ?? {};
 
-    variants.concat(additionalVariants);
+    variants.push(...additionalVariants);
     clothingData[id] = { name, category, variants, sets };
 }
 
