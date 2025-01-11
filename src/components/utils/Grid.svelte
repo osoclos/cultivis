@@ -67,7 +67,7 @@
     const focusPos = $state(Vector[focusFirst ? "Zero" : "NegOne"].toObj());
     const focusIdx = $derived(Vector.NegOne.equalsObj(focusPos) ? -1 : focusPos.x + focusPos.y * columns);
 
-    const paddingElements = $derived(Math.max(Math.max(columns, maxColumns) - ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0).length, 0));
+    const paddingElements = $derived(Math.max(maxColumns - ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0).length, 0));
     const resizer = new ResizeObserver(([entry]) => {
         const { inlineSize: width } = entry.contentBoxSize[0];
 

@@ -56,7 +56,7 @@
             case "clothing": return Object.keys(clothingIdsByCategory);
             case "accessory": return [...Object.keys(necklaceIdsByCategory), "Hats"];
             
-            case "color": return ["Follower Form Colors", "General Follower Colors", "Clothing Colors"];
+            case "color": return ["Follower Form Colors", "General Follower Colors", "Clothing Colors"].slice(0, 2 + +(clothingColorSets?.length ?? 0));
             case "variant": return ["Follower Form Variants", "Clothing Variants"];
         }
     }

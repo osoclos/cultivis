@@ -11,7 +11,7 @@ export class Follower extends Actor implements FollowerObject {
     static readonly ATLAS_FILENAME: string = "Follower.atlas";
     static readonly SKELETON_FILENAME: string = "Follower.skel";
 
-    #form: FollowerId;
+    private _form: FollowerId;
     #clothing: ClothingId;
     #necklace: NecklaceId | null;
     #hat: HatId | null;
@@ -20,7 +20,7 @@ export class Follower extends Actor implements FollowerObject {
     constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, form: FollowerId, clothing: ClothingId, id: string = Random.id(), label: string = followerData.forms[form].name) {
         super(skeleton, animationState, id, label);
 
-        this.#form = form;
+        this._form = form;
         this.#clothing = clothing;
         this.#necklace = null;
         this.#hat = null;
@@ -41,11 +41,11 @@ export class Follower extends Actor implements FollowerObject {
     }
 
     get form(): FollowerId {
-        return this.#form;
+        return this._form;
     }
 
     set form(form: FollowerId) {
-        this.#form = form;
+        this._form = form;
         this.clampIndexes();
 
         this.update();
@@ -160,9 +160,13 @@ export class Follower extends Actor implements FollowerObject {
         necklaceData && this.addSkins(necklaceData.variant);
         hatData && this.addSkins(hatData.variant);
 
-        // TODO: fix weird red overlay on sherpa, etc. clothing
-
+        if (this.form === "Deer") this.skeleton.slots[46].attachment = null as unknown as spine.Attachment;
         this.tick();
+    }
+
+    setAnimation(name: string) {
+        super.setAnimation(name);
+        if (this.form === "Deer") this.skeleton.slots[46].attachment = null as unknown as spine.Attachment;
     }
 
     copyFromObj(obj: FollowerObject) {
