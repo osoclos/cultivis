@@ -88,7 +88,7 @@
 </script>
 
 <div>
-    <div use:pointerEvents class="rainbow-gradient aspect-square grid place-items-center w-24 rounded-full">
+    <div use:pointerEvents class="aspect-square grid place-items-center w-24 bg-conic-[in_hsl_longer_hue] from-[#ff0000] to-[#ff0000] rounded-full">
         <div bind:this={triangle} class="aspect-square grid relative justify-center w-20 bg-secondary rounded-full" style:transform="rotate({hue}deg)">
             <div class="triangle aspect-square w-16" style:background-color="hsl({hue}deg 100% 50%)"></div>
             <div class="triangle aspect-square absolute top-0 left-1/2 w-16 bg-gradient-to-br from-transparent from-33% to-white -translate-x-1/2"></div>
@@ -99,5 +99,4 @@
 
 <style>
     .triangle { clip-path: polygon(50% 0%, 100% 100%, 0% 100%); }
-    .rainbow-gradient { background-image: conic-gradient(hsl(0deg 100% 50%), hsl(30deg 100% 50%), hsl(60deg 100% 50%), hsl(90deg 100% 50%), hsl(120deg 100% 50%), hsl(150deg 100% 50%), hsl(180deg 100% 50%), hsl(210deg 100% 50%), hsl(240deg 100% 50%), hsl(270deg 100% 50%), hsl(300deg 100% 50%), hsl(360deg 100% 50%)) }
 </style>

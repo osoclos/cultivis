@@ -13,7 +13,7 @@ export class Player extends Actor implements PlayerObject {
     #creature: PlayerCreatureId;
     #fleece: PlayerFleeceId;
 
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, creature: PlayerCreatureId, fleece: PlayerFleeceId, id: string = Random.id(), label: string = "Player") {
+    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id: string = Random.id(), label: string = playerData.creature.Lamb.name, creature: PlayerCreatureId = "Lamb", fleece: PlayerFleeceId = "Lamb") {
         super(skeleton, animationState, id, label);
 
         this.#creature = creature;
@@ -50,7 +50,7 @@ export class Player extends Actor implements PlayerObject {
 
     clone(id: string = Random.id(), label: string = `${this.label} (Copy)`, creature: PlayerCreatureId = this.creature, fleece: PlayerFleeceId = this.fleece) {
         const { skeleton, animationState } = this;
-        const player = new Player(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), creature, fleece, id, label);
+        const player = new Player(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, creature, fleece);
         
         return player;
     }

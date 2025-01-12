@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onDestroy, onMount } from "svelte";
 
-    import { BannerButton, Header, Label, NavTip, ProgressRing } from "./components/base";
+    import { BannerButton, Header, Label, LabelTitle, NavTip, Notice, ProgressRing } from "./components/base";
     import { SceneCanvas, Categories, TermsDisclaimer, TOS_VERSION } from "./components/misc";
     
     import { CharacterList, FollowerMenus, FollowerNavigation, PlayerMenus, PlayerNavigation, getRandomFollowerAppearance, getSpecialFollowerName } from "./components/characters";
@@ -9,7 +9,7 @@
     import { CreationDetails, SpecialThanks } from "./components/credits";
 
     import { Actor, Exporter, Factory, Scene, type ActorObject } from "./scripts";
-    import { Follower, isFollowerObj, isPlayerObj, Player } from "./scripts/characters";
+    import { Follower, isFollowerObj, isPlayerObj, Narinder, Player } from "./scripts/characters";
 
     import { MoreMath, Random, Vector } from "./utils";
     import type { FollowerMenuNames, PlayerMenuNames } from "./components/characters";
@@ -99,24 +99,38 @@
         scene.size.copyObj(size);
 
         factory = initFactory;
+
+        // uncomment this when finished with debugging with bishops: await factory.load(Follower, Player);
+        await factory.load(Follower, Player, Narinder);
+
         exporter = await Exporter.create();
         
-        const deer = addActor(Follower, false) as Follower;
-        deer.form = "Deer";
-        deer.formVariantIdx = 0;
-        deer.formColorSetIdx = 0;
-
+        const deer = factory.follower("Deer", "Default_Clothing");
         deer.label = "Deer";
+        deer.setAnimation("idle");
+
         deer.pos.setX(-180);
         deer.flipX = true;
 
-        const player = addActor(Player, false) as Player;
+        const player = factory.player("Lamb", "Lamb");
+        player.label = "Lamb";
+        player.setAnimation("idle");
+
         player.pos.setX(180);
 
+        const narinder = factory.narinder("Mega_Boss");
+        narinder.label = "Narinder";
+        narinder.eyeState = 0;
+
+        // narinder.setAnimation("idle-crouched");
+        
+        console.log(narinder.animationNames, narinder.skinNames);
+
+        scene.addActors(deer, player, narinder);
+        actors = scene.actors.map((actor) => actor.toObj());
+        
         scene.resetCamera();
         scene.scale *= 1.5;
-
-        actors = scene.actors.map((actor) => actor.toObj());
     }
 
     function addActor(actor: typeof Actor, updateActorIdx: boolean = true): Actor | undefined {
@@ -145,8 +159,6 @@
 
             default: return
         }
-
-        addedActor.checkManipulation(true);
         
         scene.addActors(addedActor);
         actors = scene.actors.map((actor) => actor.toObj());
@@ -225,12 +237,12 @@
                 const { x } = size;
                 const ratio = scene.size.grad();
 
-                size.y = ratio * x;
+                size.y = Math.round(ratio * x);
             } else if (scene.size.y !== size.y) {
                 const { y } = size;
                 const ratio = Vector.swap(scene.size).grad();
 
-                size.x = ratio * y;
+                size.x = Math.round(ratio * y);
             }
         }
 
@@ -251,32 +263,32 @@
     }
 </script>
 
-<div class="aspect-square grid lg:order-1 place-items-center px-4 w-full lg:w-[calc(100dvw_-35rem)] h-[calc(100dvh_-_74px)] lg:h-dvh">
+<div class="aspect-square grid lg:order-1 place-items-center px-4 w-full lg:w-[calc(100dvw_-40rem)] h-[calc(100dvh_-_74px)] lg:h-dvh">
     <SceneCanvas disableManipulation={fitScene} manipulationIdx={actorIdx} onshift={manipulateActor} onscroll={manipulateActor} onzoom={manipulateActor} onpinch={manipulateActor} class="inline-block max-h-[calc(100dvh_-_106px)]" style="aspect-ratio: {size.x} / {size.y}; max-width: calc((100dvh - 106px) * {size.x} / {size.y})" onload={init} />
 </div>
 
-<div class="lg:w-140 lg:h-dvh bg-black">
-    <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-140 select-none" bind:selectedIdx={categoryIdx} enableKeyInput={termsAcknowledged && (actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
+<div class="lg:w-160 lg:h-dvh bg-black">
+    <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:selectedIdx={categoryIdx} enableKeyInput={termsAcknowledged && (actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
     <div class="no-scrollbar lg:overflow-y-auto flex flex-col {categoryIdx === 1 ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
         {#if categoryIdx === 0}
             <CharacterList bind:actors enableKeyInput={termsAcknowledged && actorIdx < 0} onadd={addActor} onactorclick={selectActor} />
 
-            <div class={["lg:absolute lg:top-0 w-full lg:w-140 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
+            <div class={["lg:absolute lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                 {#if actor && actorObj}
                     {#if isFollowerObj(actorObj)}
-                        <FollowerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} enableKeyInput={termsAcknowledged && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectFollowerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
+                        <FollowerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} enableKeyInput={termsAcknowledged && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectFollowerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
                     {:else if isPlayerObj(actorObj)}
-                        <PlayerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} enableKeyInput={termsAcknowledged && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectPlayerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
+                        <PlayerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} enableKeyInput={termsAcknowledged && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectPlayerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
                     {/if}
                 {/if}
             </div>
 
-            <div class={["lg:absolute lg:top-0 w-full lg:w-140 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", !showActorMenu ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
+            <div class={["lg:absolute lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", !showActorMenu ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
                 {#if actor && actorObj}
                     {#if isFollowerObj(actorObj) && followerMenu}
-                        <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={followerMenu} enableKeyInput={termsAcknowledged && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                        <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={followerMenu} enableKeyInput={termsAcknowledged && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                     {:else if isPlayerObj(actorObj) && playerMenu}
-                        <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-140 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={playerMenu} enableKeyInput={termsAcknowledged && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                        <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={playerMenu} enableKeyInput={termsAcknowledged && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                     {/if}
                 {/if}
             </div>
@@ -288,7 +300,7 @@
                 <Timing bind:duration bind:trimLongest oninput={({ trimLongest }) => trimLongest && (duration = MoreMath.round(Math.max(...scene.actors.map(({ duration }) => duration), 0), 2))} />
             </div>
             
-            <BannerButton label={exportPercent < 0 ? "Export Scene" : "Exporting"} onclick={exportScene} />
+            <BannerButton label={exportPercent < 0 ? "Export Scene" : "Exporting..."} onclick={exportScene} />
             
             {#if exportPercent >= 0}
                 <Label class="w-80 sm:w-90" label="Export Progress">
@@ -296,13 +308,16 @@
                 </Label>
             {/if}
         {:else if categoryIdx === 2}
+            <LabelTitle class="-mb-8" title="Changelog" />
+            <Notice label="Coming Soon!" />
+        {:else if categoryIdx === 3}
             <CreationDetails />
             <SpecialThanks />
         {/if}
     </div>
 </div>
 
-<div class="not-lg:hidden flex fixed bottom-0 left-0 flex-row gap-8 p-6 pt-4 w-140 bg-black">
+<div class="not-lg:hidden flex fixed bottom-0 left-0 flex-row gap-8 p-6 pt-4 w-160 bg-black">
     <NavTip key="E" code="KeyE" label="Accept" />
     
     {#if categoryIdx === 0 && actorIdx >= 0}

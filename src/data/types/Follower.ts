@@ -1,4 +1,4 @@
-import type { ColorSet } from "./ColorSet";
+import type { ColorObject } from "../../utils";
 import followerData from "../follower-data.json";
 
 export interface FollowerDataJSON {
@@ -95,3 +95,9 @@ export interface HatData {
 
 export const HATS_ID = ["Bartender", "Chef", "Tax_Enforcer", "Faith_Enforcer", "Farmer", "Lumberjack", "Miner", "Nudist", "Refiner"] as const;
 export type HatId = typeof HATS_ID[number];
+
+export type ColorSet = ColorSetItem[];
+export interface ColorSetItem {
+    color: ColorObject;
+    slots: string[];
+}

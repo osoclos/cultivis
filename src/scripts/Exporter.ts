@@ -1,7 +1,7 @@
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
 import { Vector } from "../utils";
 
-import { Follower, isBishopObj, isFollowerObj, isPlayerObj, Player } from "./characters";
+import { Follower, isBishopObj, isFollowerObj, isNarinderObj, isPlayerObj, Player } from "./characters";
 import { GIFManager } from "./managers";
 
 export class Exporter {
@@ -13,8 +13,6 @@ export class Exporter {
         const scene = new Scene(gl);
 
         const factory = exporterFactory ?? await Factory.create(gl, "assets");
-        
-        // when bishop customisation is ready uncomment this: !exporterFactory && await factory.loadAll();
         !exporterFactory && await factory.load(Follower, Player);
 
         const gifManager = new GIFManager();
@@ -92,7 +90,7 @@ export class Exporter {
 
         switch (true) {
             case isFollowerObj(obj): {
-                if (!this.factory.loadedFollower) await this.factory.load(Follower);
+                if (!this.factory.hasLoadedFollower) await this.factory.load(Follower);
                 const { form, clothing } = obj;
                 
                 const follower = this.factory.follower(form, clothing, id, label);
@@ -103,7 +101,7 @@ export class Exporter {
             }
 
             case isPlayerObj(obj): {
-                if (!this.factory.loadedPlayer) await this.factory.load(Player);
+                if (!this.factory.hasLoadedPlayer) await this.factory.load(Player);
                 const { creature, fleece } = obj;
                 
                 const player = this.factory.player(creature, fleece, id, label);
@@ -115,12 +113,23 @@ export class Exporter {
 
             case isBishopObj(obj): {
                 const { bishop: id, isBoss } = obj;
-                if (!this.factory.getLoadedBishop(id, isBoss)) await this.factory.loadBishop(id, isBoss);
+                if (!this.factory.hasLoadedBishop(id, isBoss)) await this.factory.loadBishop(id, isBoss);
 
-                const bishop = await this.factory.bishop(id, isBoss, id, label);
+                const bishop = this.factory.bishop(id, isBoss, id, label);
                 bishop.copyFromObj(obj);
 
                 actor = bishop;
+                break;
+            }
+
+            case isNarinderObj(obj): {
+                const { form } = obj;
+                if (!this.factory.hasLoadedNarinder(form)) await this.factory.loadNarinder(form);
+
+                const narinder = this.factory.narinder(form, id, label);
+                narinder.copyFromObj(obj);
+
+                actor = narinder;
                 break;
             }
 

@@ -1,11 +1,11 @@
-import { BISHOP_IDS, type BishopId, type BishopSources, type ClothingId, type FollowerId, type PlayerCreatureId, type PlayerFleeceId } from "../data/types";
+import { BISHOP_IDS, NARINDER_IDS, type BishopId, type ClothingId, type FollowerId, type NarinderId, type PlayerCreatureId, type PlayerFleeceId } from "../data/types";
 import { Random } from "../utils";
 
-import { Bishop, Follower, Player } from "./characters";
+import { Bishop, Follower, Narinder, Player } from "./characters";
 import { AssetManager } from "./managers";
 
 import { Actor } from "./Actor";
-import { bishopData } from "../data";
+import { bishopData, followerData, narinderData, playerData } from "../data";
 
 export class Factory {
     private _follower!: Follower;
@@ -14,9 +14,13 @@ export class Factory {
     private _bishops: Map<BishopId, Bishop>;
     private _bishopBosses: Map<BishopId, Bishop>;
 
+    private _narinders: Map<NarinderId, Narinder>;
+
     private constructor(private assetManager: AssetManager) {
         this._bishops = new Map();
         this._bishopBosses = new Map();
+
+        this._narinders = new Map();
     }
 
     static async create(gl: WebGLRenderingContext, root: string = "/", actorsToPreload: (typeof Actor)[] = []) {
@@ -28,16 +32,20 @@ export class Factory {
         return factory;
     }
 
-    get loadedFollower(): boolean {
+    get hasLoadedFollower(): boolean {
         return !!this._follower;
     }
 
-    get loadedPlayer(): boolean {
+    get hasLoadedPlayer(): boolean {
         return !!this._player;
     }
 
-    getLoadedBishop(bishop: BishopId, isBoss: boolean): boolean {
+    hasLoadedBishop(bishop: BishopId, isBoss: boolean): boolean {
         return (isBoss ? this._bishopBosses : this._bishops).has(bishop);
+    }
+
+    hasLoadedNarinder(form: NarinderId): boolean {
+        return this._narinders.has(form);
     }
 
     async fetchData(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string): Promise<[spine.Skeleton, spine.AnimationState]> {
@@ -56,18 +64,36 @@ export class Factory {
     }
 
     async load(...actors: (typeof Actor)[]) {
-        if (!this.loadedFollower && actors.some((actor) => actor.name === Follower.name)) {
-            const [skeleton, animationState] = await this.fetchData([Follower.TEXTURE_FILENAME], Follower.ATLAS_FILENAME, Follower.SKELETON_FILENAME);
-            const follower = new Follower(skeleton, animationState, "Deer", "Default_Clothing");
+        for (const { name } of actors) {
+            switch (name) {
+                case Follower.name: {
+                    if (this.hasLoadedFollower) break;
+                    
+                    const [skeleton, animationState] = await this.fetchData([Follower.TEXTURE_FILENAME], Follower.ATLAS_FILENAME, Follower.SKELETON_FILENAME);
+                    this._follower = new Follower(skeleton, animationState, Random.id(), followerData.forms.Deer.name, "Deer", "Default_Clothing");
 
-            this._follower = follower;
-        }
+                    break;
+                }
 
-        if (!this.loadedPlayer && actors.some((actor) => actor.name === Player.name)) {
-            const [skeleton, animationState] = await this.fetchData([Player.TEXTURE_FILENAME], Player.ATLAS_FILENAME, Player.SKELETON_FILENAME);
-            const player = new Player(skeleton, animationState, "Lamb", "Lamb");
+                case Player.name: {
+                    if (this.hasLoadedPlayer) break;
 
-            this._player = player;
+                    const [skeleton, animationState] = await this.fetchData([Player.TEXTURE_FILENAME], Player.ATLAS_FILENAME, Player.SKELETON_FILENAME);
+                    this._player = new Player(skeleton, animationState, Random.id(), playerData.creature.Lamb.name, "Lamb", "Lamb");
+
+                    break;
+                }
+
+                case Bishop.name: {
+                    await Promise.all(BISHOP_IDS.map((id) => Promise.all(Array(2).fill(null).filter((_, i) => !this.hasLoadedBishop(id, !!i)).map((_, i) => this.loadBishop(id, !!i)))));
+                    break;
+                }
+
+                case Narinder.name: {
+                    await Promise.all(NARINDER_IDS.filter((id) => !this.hasLoadedNarinder(id)).map(this.loadNarinder.bind(this)));
+                    break;
+                }
+            }
         }
     }
 
@@ -75,16 +101,23 @@ export class Factory {
         const data = bishopData[id];
         const loadBoss = isBoss && "bossSrc" in data;
 
-        const { textures, atlas, skeleton: skeletonPath } = data[loadBoss ? "bossSrc" : "src"] as BishopSources;
+        const { textures, atlas, skeleton: skeletonPath } = data[loadBoss ? "bossSrc" : "src"]!;
         const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
 
-        const bishop = new Bishop(skeleton, animationState, this, id, isBoss);
+        const bishop = new Bishop(skeleton, animationState, Random.id(), bishopData.Worm.name, id, isBoss);
         (loadBoss ? this._bishopBosses : this._bishops).set(id, bishop);
+    }
+    
+    async loadNarinder(form: NarinderId) {
+        const { textures, atlas, skeleton: skeletonPath } = narinderData[form].src;
+        const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
+
+        const narinder = new Narinder(skeleton, animationState, Random.id(), narinderData.Bishop.name, form);
+        this._narinders.set(form, narinder);
     }
 
     async loadAll() {
-        await this.load(Follower, Player);
-        for (const id of BISHOP_IDS) await Promise.all(Array(2).fill(null).map((_, i) => this.loadBishop(id, !!i)));
+        await this.load(Follower, Player, Bishop, Narinder);
     }
 
     async custom(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string, id: string = Random.id(), label: string = "Custom Actor") {
@@ -100,10 +133,11 @@ export class Factory {
         return this._player.clone(id, label, creature, fleece);
     }
 
-    async bishop(bishopId: BishopId, isBoss: boolean, id: string = Random.id(), label: string = "Copied Bishop") {
-        const bishop = (isBoss && "bossSrc" in bishopData[bishopId] ? this._bishopBosses : this._bishops).get(bishopId)!.clone(id, label, bishopId, isBoss);
-        await bishop.update();
+    bishop(bishopId: BishopId, isBoss: boolean, id: string = Random.id(), label: string = "Copied Bishop") {
+        return (isBoss && "bossSrc" in bishopData[bishopId] ? this._bishopBosses : this._bishops).get(bishopId)!.clone(id, label);
+    }
 
-        return bishop;
+    narinder(form: NarinderId, id: string = Random.id(), label: string = "Copied Narinder") {
+        return this._narinders.get(form)!.clone(id, label);
     }
 }

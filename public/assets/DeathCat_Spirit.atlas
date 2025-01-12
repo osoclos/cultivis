@@ -1,0 +1,272 @@
+
+DeathCat_Spirit.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Spirit/ArmBtm
+  rotate: true
+  xy: 1455, 821
+  size: 104, 319
+  orig: 104, 319
+  offset: 0, 0
+  index: -1
+Spirit/ArmTop
+  rotate: false
+  xy: 1899, 200
+  size: 140, 316
+  orig: 140, 316
+  offset: 0, 0
+  index: -1
+Spirit/Big Crown 2
+  rotate: false
+  xy: 1688, 518
+  size: 226, 301
+  orig: 226, 301
+  offset: 0, 0
+  index: -1
+Spirit/Big_Crown_Eye
+  rotate: true
+  xy: 1916, 721
+  size: 131, 68
+  orig: 131, 68
+  offset: 0, 0
+  index: -1
+Spirit/BodyBtm
+  rotate: true
+  xy: 942, 806
+  size: 708, 511
+  orig: 708, 511
+  offset: 0, 0
+  index: -1
+Spirit/BodyBtm_Back
+  rotate: false
+  xy: 1364, 1722
+  size: 651, 312
+  orig: 651, 312
+  offset: 0, 0
+  index: -1
+Spirit/BodyTop
+  rotate: true
+  xy: 1455, 927
+  size: 604, 450
+  orig: 604, 450
+  offset: 0, 0
+  index: -1
+Spirit/Effect/WildGhostAura_End_0001
+  rotate: true
+  xy: 942, 510
+  size: 294, 744
+  orig: 294, 744
+  offset: 0, 0
+  index: -1
+Spirit/Effect/WildGhostAura_End_0002
+  rotate: true
+  xy: 452, 1235
+  size: 279, 439
+  orig: 302, 744
+  offset: 23, 260
+  index: -1
+Spirit/Effect/WildGhostAura_End_0003
+  rotate: false
+  xy: 892, 299
+  size: 279, 209
+  orig: 302, 744
+  offset: 18, 465
+  index: -1
+Spirit/Effect/WildGhostAura_End_0004
+  rotate: true
+  xy: 1907, 1325
+  size: 230, 137
+  orig: 302, 744
+  offset: 54, 536
+  index: -1
+Spirit/Effect/WildGhostAura_Idle_0007
+  rotate: true
+  xy: 452, 1516
+  size: 518, 910
+  orig: 570, 987
+  offset: 22, 9
+  index: -1
+Spirit/Effect/WildGhostAura_Idle_0008
+  rotate: true
+  xy: 2, 512
+  size: 543, 938
+  orig: 570, 987
+  offset: 0, 0
+  index: -1
+Spirit/Effect/WildGhostAura_Idle_0009
+  rotate: false
+  xy: 2, 1057
+  size: 448, 977
+  orig: 570, 987
+  offset: 73, 10
+  index: -1
+Spirit/Eyes_Angry
+  rotate: false
+  xy: 1364, 1533
+  size: 253, 187
+  orig: 265, 211
+  offset: 6, 24
+  index: -1
+Spirit/Eyes_Angry2
+  rotate: false
+  xy: 1619, 1533
+  size: 253, 187
+  orig: 265, 211
+  offset: 6, 24
+  index: -1
+Spirit/Eyes_Open_1
+  rotate: true
+  xy: 1173, 255
+  size: 253, 187
+  orig: 253, 211
+  offset: 0, 24
+  index: -1
+Spirit/Eyes_Open_2
+  rotate: true
+  xy: 892, 44
+  size: 253, 187
+  orig: 253, 211
+  offset: 0, 24
+  index: -1
+Spirit/Eyes_Open_3
+  rotate: true
+  xy: 1362, 255
+  size: 253, 187
+  orig: 253, 211
+  offset: 0, 24
+  index: -1
+Spirit/Eyes_Shut
+  rotate: false
+  xy: 1081, 66
+  size: 253, 187
+  orig: 253, 211
+  offset: 0, 24
+  index: -1
+Spirit/Eyes_Squint
+  rotate: false
+  xy: 1336, 66
+  size: 253, 187
+  orig: 253, 211
+  offset: 0, 24
+  index: -1
+Spirit/Hand
+  rotate: true
+  xy: 1591, 2
+  size: 177, 233
+  orig: 177, 234
+  offset: 0, 1
+  index: -1
+Spirit/Hand2
+  rotate: false
+  xy: 1874, 1557
+  size: 151, 163
+  orig: 152, 163
+  offset: 0, 0
+  index: -1
+Spirit/HandPray
+  rotate: true
+  xy: 1776, 854
+  size: 71, 201
+  orig: 71, 201
+  offset: 0, 0
+  index: -1
+Spirit/Hand_Summon
+  rotate: true
+  xy: 452, 1082
+  size: 151, 253
+  orig: 151, 254
+  offset: 0, 1
+  index: -1
+Spirit/Head
+  rotate: true
+  xy: 527, 143
+  size: 367, 363
+  orig: 367, 363
+  offset: 0, 0
+  index: -1
+Spirit/Head_Blinds
+  rotate: true
+  xy: 1688, 181
+  size: 335, 209
+  orig: 335, 209
+  offset: 0, 0
+  index: -1
+Spirit/HoodTop
+  rotate: false
+  xy: 2, 97
+  size: 523, 413
+  orig: 523, 413
+  offset: 0, 0
+  index: -1
+Spirit/Mouth_Laugh
+  rotate: false
+  xy: 707, 1162
+  size: 167, 71
+  orig: 167, 71
+  offset: 0, 0
+  index: -1
+Spirit/Mouth_Open
+  rotate: false
+  xy: 707, 1071
+  size: 195, 78
+  orig: 195, 78
+  offset: 0, 0
+  index: -1
+Spirit/Mouth_Shut
+  rotate: true
+  xy: 1907, 1223
+  size: 100, 52
+  orig: 100, 52
+  offset: 0, 0
+  index: -1
+Spirit/Mouth_Talk1
+  rotate: true
+  xy: 1954, 68
+  size: 130, 70
+  orig: 195, 78
+  offset: 31, 6
+  index: -1
+Spirit/Mouth_Talk2
+  rotate: true
+  xy: 1968, 587
+  size: 132, 59
+  orig: 195, 78
+  offset: 30, 9
+  index: -1
+Spirit/Mouth_Talk3
+  rotate: true
+  xy: 893, 1252
+  size: 117, 42
+  orig: 195, 78
+  offset: 41, 12
+  index: -1
+Spirit/Teleport_1
+  rotate: true
+  xy: 893, 1151
+  size: 99, 38
+  orig: 160, 55
+  offset: 35, 12
+  index: -1
+Spirit/Teleport_2
+  rotate: true
+  xy: 893, 1371
+  size: 143, 44
+  orig: 160, 55
+  offset: 11, 7
+  index: -1
+Spirit/Teleport_3
+  rotate: true
+  xy: 1916, 567
+  size: 152, 50
+  orig: 160, 55
+  offset: 4, 3
+  index: -1
+Spirit/Teleport_4
+  rotate: true
+  xy: 1899, 40
+  size: 158, 53
+  orig: 160, 55
+  offset: 1, 1
+  index: -1

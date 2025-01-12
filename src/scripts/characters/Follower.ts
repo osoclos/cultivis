@@ -11,13 +11,15 @@ export class Follower extends Actor implements FollowerObject {
     static readonly ATLAS_FILENAME: string = "Follower.atlas";
     static readonly SKELETON_FILENAME: string = "Follower.skel";
 
+    static readonly DEER_BODY_EXTRA_SLOT_INDEX: number = 46;
+
     private _form: FollowerId;
     #clothing: ClothingId;
     #necklace: NecklaceId | null;
     #hat: HatId | null;
 
     private indexes: FollowerIndexes
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, form: FollowerId, clothing: ClothingId, id: string = Random.id(), label: string = followerData.forms[form].name) {
+    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id: string = Random.id(), label: string = followerData.forms.Deer.name, form: FollowerId = "Deer", clothing: ClothingId = "Default_Clothing") {
         super(skeleton, animationState, id, label);
 
         this._form = form;
@@ -139,7 +141,7 @@ export class Follower extends Actor implements FollowerObject {
     clone(id: string = Random.id(), label: string = `${this.label} (Copy)`, form: FollowerId = this.form, clothing: ClothingId = this.clothing) {
         const { skeleton, animationState } = this;
 
-        const follower = new Follower(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), form, clothing, id, label);
+        const follower = new Follower(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, form, clothing);
         follower.copyFromObj(this.toObj());
 
         follower.form = form;
@@ -160,13 +162,12 @@ export class Follower extends Actor implements FollowerObject {
         necklaceData && this.addSkins(necklaceData.variant);
         hatData && this.addSkins(hatData.variant);
 
-        if (this.form === "Deer") this.skeleton.slots[46].attachment = null as unknown as spine.Attachment;
         this.tick();
     }
 
-    setAnimation(name: string) {
-        super.setAnimation(name);
-        if (this.form === "Deer") this.skeleton.slots[46].attachment = null as unknown as spine.Attachment;
+    resetSkin() {
+        super.resetSkin();
+        if (this.form === "Deer") this.skeleton.slots[Follower.DEER_BODY_EXTRA_SLOT_INDEX].attachment = null as unknown as spine.Attachment;
     }
 
     copyFromObj(obj: FollowerObject) {

@@ -250,10 +250,10 @@ export class Actor implements ActorObject {
         this.#size.copy(Vector.sub(max, min));
 
         this.time = prevTime;
-        this.checkManipulation();
+        this.checkManipulation(true);
     }
 
-    checkManipulation(forceManipulate: boolean = false) {
+    private checkManipulation(forceManipulate: boolean = false) {
         if (forceManipulate || !this.oldPos.equals(this.pos)) {
             this.oldPos.copy(this.pos);
 

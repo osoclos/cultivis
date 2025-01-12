@@ -1,0 +1,37 @@
+{
+    "Bishop": {
+        "name": "Bishop",
+        "src": {
+            "textures": ["DeathBig.png"],
+            "atlas": "DeathBig.atlas",
+            "skeleton": "DeathBig.skel"
+        }
+    },
+
+    "Boss": {
+        "name": "Boss",
+        "src": {
+            "textures": ["DeathCat_Spirit.png"],
+            "atlas": "DeathCat_Spirit.atlas",
+            "skeleton": "DeathCat_Spirit.skel"
+        }
+    },
+
+    "Mega_Boss": {
+        "name": "Final Boss",
+        "src": {
+            "textures": ["DeathCat_Boss.png"],
+            "atlas": "DeathCat_Boss.atlas",
+            "skeleton": "DeathCat_Boss.skel"
+        }
+    },
+
+    "Eyeball": {
+        "name": "Eyeball",
+        "src": {
+            "textures": ["DeathCat_Eyeball.png"],
+            "atlas": "DeathCat_Eyeball.atlas",
+            "skeleton": "DeathCat_Eyeball.skel"
+        }
+    }
+}

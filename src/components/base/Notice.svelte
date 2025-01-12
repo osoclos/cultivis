@@ -10,7 +10,7 @@
 </script>
 
 <div class={twMerge("flex flex-row gap-4 items-center", className)}>
-    <img src="/static/ui/attention.png" alt="" class="not-motion-reduce:oscillate w-7 h-7" width="28" height="28" draggable="false" role="presentation" aria-hidden="true" />
+    <img src="/static/ui/attention.png" alt="" class="oscillate w-7 h-7" width="28" height="28" draggable="false" role="presentation" aria-hidden="true" />
     <p class="font-subtitle italic text-bright">{label}</p>
 </div>
 

@@ -1,0 +1,33 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "narinder-data.schema.json",
+
+    "title": "narinder Data",
+    "description": "Information on Narinder that provides metadata of his different source paths.",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/Id" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The display name of Narinder in this form."
+            },
+
+            "src": {
+                "$ref": "bishop-data.schema.json#/definitions/Sources",
+                "description": "The source paths to the files needed to load Narinder in this form."
+            }
+        },
+
+        "required": ["name", "src"]
+    },
+
+    "definitions": {
+        "Id": {
+            "type": "string",
+            "enum": ["Bishop", "Boss", "Mega_Boss", "Eyeball"]
+        }
+    }
+}

@@ -1,0 +1,83 @@
+
+DeathCat_Eyeball.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+EyeBall/BlackDrips
+  rotate: true
+  xy: 2, 23
+  size: 219, 121
+  orig: 219, 121
+  offset: 0, 0
+  index: -1
+EyeBall/EyeBall
+  rotate: true
+  xy: 2, 244
+  size: 263, 262
+  orig: 263, 262
+  offset: 0, 0
+  index: -1
+EyeBall/EyeBall_Hurt
+  rotate: true
+  xy: 266, 244
+  size: 263, 262
+  orig: 263, 262
+  offset: 0, 0
+  index: -1
+EyeBall/EyeBall_Tendrils
+  rotate: false
+  xy: 307, 61
+  size: 257, 181
+  orig: 257, 181
+  offset: 0, 0
+  index: -1
+EyeBall/EyeBall_Tendrils_Back
+  rotate: true
+  xy: 530, 261
+  size: 246, 98
+  orig: 246, 98
+  offset: 0, 0
+  index: -1
+EyeBall/Pupil
+  rotate: true
+  xy: 630, 344
+  size: 163, 156
+  orig: 163, 156
+  offset: 0, 0
+  index: -1
+EyeBall/Pupil2
+  rotate: true
+  xy: 125, 39
+  size: 203, 180
+  orig: 203, 180
+  offset: 0, 0
+  index: -1
+EyeBall/Pupil_Closed
+  rotate: true
+  xy: 566, 90
+  size: 169, 65
+  orig: 169, 65
+  offset: 0, 0
+  index: -1
+EyeBall/Pupil_Closed2
+  rotate: false
+  xy: 125, 2
+  size: 155, 35
+  orig: 155, 35
+  offset: 0, 0
+  index: -1
+EyeBall/Pupil_Middle
+  rotate: true
+  xy: 307, 7
+  size: 52, 128
+  orig: 52, 128
+  offset: 0, 0
+  index: -1
+EyeBall/Pupil_Middle2
+  rotate: true
+  xy: 633, 217
+  size: 125, 109
+  orig: 125, 109
+  offset: 0, 0
+  index: -1

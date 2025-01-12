@@ -35,6 +35,7 @@
         "Lapture",
         "leshy",
         "Narinder",
+        "narinders",
         "Nightwolf",
         "oldstuff",
         "onaccept",
@@ -93,6 +94,13 @@
             ],
 
             "url": "/src/data/schemas/bishop-data.schema.json"
+        },
+        {
+            "fileMatch": [
+                "/narinder-data.json"
+            ],
+
+            "url": "/src/data/schemas/narinder-data.schema.json"
         },
 
         {
