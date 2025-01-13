@@ -175,10 +175,10 @@
                     "color": {
                         "type": "object",
                         "properties": {
-                            "r": { "$ref": "#/definitions/NormalFloat" },
-                            "g": { "$ref": "#/definitions/NormalFloat" },
-                            "b": { "$ref": "#/definitions/NormalFloat" },
-                            "a": { "$ref": "#/definitions/NormalFloat" }
+                            "r": { "$ref": "#/definitions/ColorValue" },
+                            "g": { "$ref": "#/definitions/ColorValue" },
+                            "b": { "$ref": "#/definitions/ColorValue" },
+                            "a": { "$ref": "#/definitions/ColorValue" }
                         },
 
                         "required": ["r", "g", "b", "a"]
@@ -194,10 +194,10 @@
             }
         },
 
-        "NormalFloat": {
-            "type": "number",
-            "minimum": 0.0,
-            "maximum": 1.0
+        "ColorValue": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 255
         }
     }
 }

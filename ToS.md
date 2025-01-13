@@ -1,4 +1,3 @@
-<!-- Terms of Service ID: 03-01-25 -->
 # CultiVis Terms of Service Agreement
 
 > [!IMPORTANT]

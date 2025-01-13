@@ -1,5 +1,5 @@
 import type { ColorSet } from "../data/types";
-import { Random, Vector, type VectorObject } from "../utils";
+import { Color, Random, Vector, type VectorObject } from "../utils";
 
 export class Actor implements ActorObject {
     pos: Vector;
@@ -182,7 +182,7 @@ export class Actor implements ActorObject {
                 this.skeleton.skin.getAttachmentsForSlot(this.skeleton.findSlotIndex(slot), attachments);
 
                 for (const { attachment } of attachments) {
-                    const { r, g, b, a } = color;
+                    const { r, g, b, a } = Color.fromObj(color).normalize();
                     const spineColor = new spine.Color(r, g, b, a);
 
                     if ("color" in attachment) attachment.color = spineColor;

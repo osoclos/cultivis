@@ -42,7 +42,7 @@
         autoColumns = true,
 
         columns = $bindable(0),
-        rows = $bindable(Array(1000).fill(0)),
+        rows = $bindable(Array(titles.length).fill(0)),
 
         tileWidth = 100,
         tileHeight = 100,

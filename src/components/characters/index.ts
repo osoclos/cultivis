@@ -13,8 +13,8 @@ import ColorWheel from "./ColorWheel.svelte";
 
 export { BoxOption, CharacterBox, CharacterList, FollowerNavigation, PlayerNavigation, FollowerMenus, PlayerMenus, ColorWheel };
 
-export { getRandomFollowerName, getSpecialFollowerName, getRandomFollowerAppearance } from "./FollowerNavigation.svelte";
-export { getRandomPlayerAppearance } from "./PlayerNavigation.svelte";
+export * from "./FollowerNavigation.svelte";
+export * from "./PlayerNavigation.svelte";
 
 export type { FollowerMenuNames } from "./FollowerMenus.svelte";
 export type { PlayerMenuNames } from "./PlayerMenus.svelte";

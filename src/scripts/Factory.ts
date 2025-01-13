@@ -85,7 +85,7 @@ export class Factory {
                 }
 
                 case Bishop.name: {
-                    await Promise.all(BISHOP_IDS.map((id) => Promise.all(Array(2).fill(null).filter((_, i) => !this.hasLoadedBishop(id, !!i)).map((_, i) => this.loadBishop(id, !!i)))));
+                    await Promise.all(BISHOP_IDS.map((id) => Array(2).fill(null).filter((_, i) => !this.hasLoadedBishop(id, !!i)).map((_, i) => this.loadBishop(id, !!i))));
                     break;
                 }
 

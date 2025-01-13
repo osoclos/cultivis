@@ -5,6 +5,8 @@ import { Follower, isBishopObj, isFollowerObj, isNarinderObj, isPlayerObj, Playe
 import { GIFManager } from "./managers";
 
 export class Exporter {
+    static readonly ASSETS_ROOT: string = "assets";
+
     private constructor(public canvas: HTMLCanvasElement | OffscreenCanvas, public gl: WebGLRenderingContext, public scene: Scene, public factory: Factory, private gifManager: GIFManager) {}
     static async create(canvas: HTMLCanvasElement | OffscreenCanvas = new OffscreenCanvas(300, 150), exporterFactory?: Factory) {
         const gl = canvas.getContext("webgl") as WebGLRenderingContext;
@@ -12,7 +14,7 @@ export class Exporter {
 
         const scene = new Scene(gl);
 
-        const factory = exporterFactory ?? await Factory.create(gl, "assets");
+        const factory = exporterFactory ?? await Factory.create(gl, this.ASSETS_ROOT);
         !exporterFactory && await factory.load(Follower, Player);
 
         const gifManager = new GIFManager();
@@ -26,7 +28,7 @@ export class Exporter {
         this.resetScene();
         await this.setupScene(obj, size);
 
-        const buffer = new Promise<Uint8Array>((resolve) => {
+        return new Promise<Uint8Array>((resolve) => {
             this.gifManager.reset();
 
             let time: number = 0;
@@ -52,8 +54,6 @@ export class Exporter {
 
             draw(1 / 50);
         });
-
-        return buffer;
     }
 
     async dispose() {

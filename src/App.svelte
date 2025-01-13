@@ -1,31 +1,36 @@
 <script lang="ts">
     import { onDestroy, onMount } from "svelte";
 
-    import { BannerButton, Header, Label, LabelTitle, NavTip, Notice, ProgressRing } from "./components/base";
-    import { SceneCanvas, Categories, TermsDisclaimer, TOS_VERSION } from "./components/misc";
+    import { BannerButton, Header, Label, NavTip, ProgressRing } from "./components/base";
+    import { SceneCanvas, Categories, News, TermsDisclaimer, TOS_LOCAL_STORAGE_NAME } from "./components/misc";
     
-    import { CharacterList, FollowerMenus, FollowerNavigation, PlayerMenus, PlayerNavigation, getRandomFollowerAppearance, getSpecialFollowerName } from "./components/characters";
+    import { CharacterList, FollowerMenus, FollowerNavigation, type FollowerMenuNames, type PlayerMenuNames, PlayerMenus, PlayerNavigation, getRandomFollowerAppearance, getSpecialFollowerName } from "./components/characters";
     import { Size, Timing } from "./components/exporting";
+
     import { CreationDetails, SpecialThanks } from "./components/credits";
 
     import { Actor, Exporter, Factory, Scene, type ActorObject } from "./scripts";
     import { Follower, isFollowerObj, isPlayerObj, Narinder, Player } from "./scripts/characters";
+    import { NewsManager } from "./scripts/managers";
 
     import { MoreMath, Random, Vector } from "./utils";
-    import type { FollowerMenuNames, PlayerMenuNames } from "./components/characters";
-    
+
     // svelte-ignore non_reactive_update
     let scene: Scene;
     let factory: Factory;
 
     let exporter: Exporter;
+
+    // svelte-ignore non_reactive_update
+    let newsManager: NewsManager;
     
     let categoryIdx: number = $state(0);
 
     let isOnPhone: boolean = $state(false);
     let isMobile: boolean = $state(false);
 
-    let termsAcknowledged: boolean = $state(localStorage.getItem("terms-acknowledged") === TOS_VERSION);
+    let hasAcknowledgedTerms: boolean = $state(!!localStorage.getItem(TOS_LOCAL_STORAGE_NAME));
+    let hasNewNews: boolean = $state(false);
 
     let actors: ActorObject[] | null = $state(null);
     let actorIdx: number = $state(-1);
@@ -82,7 +87,13 @@
         isMobile = matchMedia("(max-width: 768px)").matches;
     });
 
-    onMount(() => {
+    onMount(async () => {
+        exporter = await Exporter.create();
+        newsManager = await NewsManager.create();
+
+        hasAcknowledgedTerms = !await newsManager.hasNewTerms();
+        hasNewNews = await newsManager.loadNews();
+
         window.addEventListener("keydown", onKeyDown);
         resizer.observe(document.documentElement);
     });
@@ -102,8 +113,6 @@
 
         // uncomment this when finished with debugging with bishops: await factory.load(Follower, Player);
         await factory.load(Follower, Player, Narinder);
-
-        exporter = await Exporter.create();
         
         const deer = factory.follower("Deer", "Default_Clothing");
         deer.label = "Deer";
@@ -122,11 +131,7 @@
         narinder.label = "Narinder";
         narinder.eyeState = 0;
 
-        // narinder.setAnimation("idle-crouched");
-        
-        console.log(narinder.animationNames, narinder.skinNames);
-
-        scene.addActors(deer, player, narinder);
+        scene.addActors(narinder, deer, player);
         actors = scene.actors.map((actor) => actor.toObj());
         
         scene.resetCamera();
@@ -268,17 +273,17 @@
 </div>
 
 <div class="lg:w-160 lg:h-dvh bg-black">
-    <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:selectedIdx={categoryIdx} enableKeyInput={termsAcknowledged && (actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
+    <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:selectedIdx={categoryIdx} bind:hasNewNews enableKeyInput={hasAcknowledgedTerms && (actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
     <div class="no-scrollbar lg:overflow-y-auto flex flex-col {categoryIdx === 1 ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
         {#if categoryIdx === 0}
-            <CharacterList bind:actors enableKeyInput={termsAcknowledged && actorIdx < 0} onadd={addActor} onactorclick={selectActor} />
+            <CharacterList bind:actors enableKeyInput={hasAcknowledgedTerms && actorIdx < 0} onadd={addActor} onactorclick={selectActor} />
 
             <div class={["lg:absolute lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                 {#if actor && actorObj}
                     {#if isFollowerObj(actorObj)}
-                        <FollowerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} enableKeyInput={termsAcknowledged && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectFollowerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
+                        <FollowerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectFollowerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
                     {:else if isPlayerObj(actorObj)}
-                        <PlayerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} enableKeyInput={termsAcknowledged && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectPlayerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
+                        <PlayerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectPlayerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
                     {/if}
                 {/if}
             </div>
@@ -286,9 +291,9 @@
             <div class={["lg:absolute lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", !showActorMenu ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
                 {#if actor && actorObj}
                     {#if isFollowerObj(actorObj) && followerMenu}
-                        <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={followerMenu} enableKeyInput={termsAcknowledged && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                        <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={followerMenu} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                     {:else if isPlayerObj(actorObj) && playerMenu}
-                        <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={playerMenu} enableKeyInput={termsAcknowledged && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                        <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={playerMenu} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                     {/if}
                 {/if}
             </div>
@@ -307,9 +312,8 @@
                     <ProgressRing percent={exportPercent} label="Export Progress" />
                 </Label>
             {/if}
-        {:else if categoryIdx === 2}
-            <LabelTitle class="-mb-8" title="Changelog" />
-            <Notice label="Coming Soon!" />
+        {:else if newsManager && categoryIdx === 2}
+            <News {newsManager} />
         {:else if categoryIdx === 3}
             <CreationDetails />
             <SpecialThanks />
@@ -325,7 +329,7 @@
     {/if}
 </div>
 
-<TermsDisclaimer bind:termsAcknowledged bind:isOnPhone />
+<TermsDisclaimer bind:hasAcknowledgedTerms bind:isOnPhone onclick={() => newsManager.storeLatestTermsSha()} />
 
 <style>
     :global(.no-scrollbar) { scrollbar-width: none; }

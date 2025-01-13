@@ -7,6 +7,8 @@
     import { Factory, Scene } from "../../scripts";
     import { Vector } from "../../utils";
 
+    const FACTORY_ASSETS_ROOT: string = "assets";
+
     let canvas: HTMLCanvasElement;
     let gl: WebGLRenderingContext;
 
@@ -66,7 +68,7 @@
         gl = tempGL;
         scene = new Scene(gl);
         
-        factory = await Factory.create(gl, "assets");
+        factory = await Factory.create(gl, FACTORY_ASSETS_ROOT);
 
         load(scene, factory, canvas);
         requestAnimationFrame(draw);

@@ -46,7 +46,8 @@ export class ClothingDataParser extends DataReader {
         for (const _ of Array(this.readUint32()).keys()) {
             const slot = this.readString();
 
-            const [r, g, b, a]: number[] = Array(4).fill(null).map(this.readFloat.bind(this));
+            // multiply by 255 (0xff) to get unnormalized color values and to save space and network usage
+            const [r, g, b, a]: number[] = Array(4).fill(null).map(() => (this.readFloat() * 0xff) | 0);
             const color: ColorObject = { r, g, b, a };
 
             const i = sets.findIndex(({ color: c }) => deepEquals(c, color));

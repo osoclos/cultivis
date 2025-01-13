@@ -31,7 +31,7 @@
         const elements = [...container.children] as HTMLElement[];
 
         function onClick({ target }: MouseEvent) {
-            const i = elements.indexOf(target as HTMLElement);
+            const i = elements.findIndex((element) => element === target as HTMLElement || [...element.children].includes(target as HTMLElement));
             if (i < 0) return;
             
             selectedIdx = i;

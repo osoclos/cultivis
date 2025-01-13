@@ -30,10 +30,10 @@ export class WorshipperDataParser extends DataReader {
         const variants: string[] = Array(this.readUint32()).fill(null).map(this.readString.bind(this));
         const sets: ColorSet[] = Array(this.readUint32()).fill(null).map(this.readSet.bind(this));
 
-        const form: WorshipperData = { id, category, variants, sets };
-        if (hasAttributes) form.attributes = { isUnique, hasSpecialEvents, mustBeDiscovered };
+        const data: WorshipperData = { id, category, variants, sets };
+        if (hasAttributes) data.attributes = { isUnique, hasSpecialEvents, mustBeDiscovered };
         
-        return form;
+        return data;
     }
 
     private readSet() {
@@ -41,7 +41,8 @@ export class WorshipperDataParser extends DataReader {
         for (const _ of Array(this.readUint32()).keys()) {
             const slot = this.readString();
 
-            const [r, g, b, a]: number[] = Array(4).fill(null).map(this.readFloat.bind(this));
+            // multiply by 255 (0xff) to get unnormalized color values and to save space and network usage
+            const [r, g, b, a]: number[] = Array(4).fill(null).map(() => (this.readFloat() * 0xff) | 0);
             const color: ColorObject = { r, g, b, a };
 
             const i = sets.findIndex(({ color: c }) => deepEquals(c, color));
