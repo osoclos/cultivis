@@ -1,7 +1,7 @@
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
 import { Vector } from "../utils";
 
-import { Follower, isBishopObj, isFollowerObj, isNarinderObj, isPlayerObj, Player } from "./characters";
+import { Follower, isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, Player } from "./characters";
 import { GIFManager } from "./managers";
 
 export class Exporter {
@@ -122,14 +122,14 @@ export class Exporter {
                 break;
             }
 
-            case isNarinderObj(obj): {
+            case isTOWW_Obj(obj): {
                 const { form } = obj;
-                if (!this.factory.hasLoadedNarinder(form)) await this.factory.loadNarinder(form);
+                if (!this.factory.hasLoadedTOWW(form)) await this.factory.loadTOWW(form);
 
-                const narinder = this.factory.narinder(form, id, label);
-                narinder.copyFromObj(obj);
+                const toww = this.factory.toww(form, id, label);
+                toww.copyFromObj(obj);
 
-                actor = narinder;
+                actor = toww;
                 break;
             }
 

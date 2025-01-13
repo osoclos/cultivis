@@ -67,6 +67,8 @@
         "surrogateescape",
         "swiftshader",
         "Tahoma",
+        "TOWW",
+        "towws",
         "Uniformi",
         "upng",
         "Valefar",
@@ -98,10 +100,10 @@
         },
         {
             "fileMatch": [
-                "/narinder-data.json"
+                "/toww-data.json"
             ],
 
-            "url": "/src/data/schemas/narinder-data.schema.json"
+            "url": "/src/data/schemas/toww-data.schema.json"
         },
 
         {

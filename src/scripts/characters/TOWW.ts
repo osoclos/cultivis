@@ -1,9 +1,9 @@
-import type { NarinderId } from "../../data/types";
+import type { TOWW_Id } from "../../data/types";
 import { Random } from "../../utils";
 
 import { Actor, type ActorObject } from "../Actor";
 
-export class Narinder extends Actor implements NarinderObject {
+export class TOWW extends Actor implements TOWW_Object {
     static readonly BISHOP_CROWN_SKIN_NAME: string = "Crown";
     static readonly BISHOP_NO_CROWN_SKIN_NAME: string = "NoCrown";
     static readonly BISHOP_NO_CHAINS_SKIN_NAME: string = "NoChains";
@@ -22,10 +22,10 @@ export class Narinder extends Actor implements NarinderObject {
     #eyeState: number | null;
     #isHurt: boolean | null;
 
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id: string = Random.id(), label: string = "Narinder", readonly form: NarinderId = "Bishop") {
+    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id: string = Random.id(), label: string = "The One Who Waits", readonly form: TOWW_Id = "Bishop") {
         super(skeleton, animationState, id, label);
 
-        this.#hasCrown = Array<NarinderId>("Bishop", "Boss").includes(form) ? true : null;
+        this.#hasCrown = Array<TOWW_Id>("Bishop", "Boss").includes(form) ? true : null;
         this.#hasChains = form === "Bishop" ? true : null;
 
         this.#eyeState = form === "Mega_Boss" ? 0 : null;
@@ -39,7 +39,7 @@ export class Narinder extends Actor implements NarinderObject {
     }
 
     set hasCrown(hasCrown: boolean | null) {
-        if (!Array<NarinderId>("Bishop", "Boss").includes(this.form)) return;
+        if (!Array<TOWW_Id>("Bishop", "Boss").includes(this.form)) return;
 
         this.#hasCrown = hasCrown;
         this.update();
@@ -81,10 +81,10 @@ export class Narinder extends Actor implements NarinderObject {
     clone(id: string = Random.id(), label: string = `${this.label} (Copy)`) {
         const { skeleton, animationState, form } = this;
 
-        const narinder = new Narinder(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, form);
-        narinder.copyFromObj(this.toObj());
+        const toww = new TOWW(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, form);
+        toww.copyFromObj(this.toObj());
 
-        return narinder;
+        return toww;
     }
 
     update() {
@@ -93,19 +93,19 @@ export class Narinder extends Actor implements NarinderObject {
         switch (form) {
             case "Bishop":
             case "Boss": {
-                this.setSkin(hasCrown ? Narinder.BISHOP_CROWN_SKIN_NAME : Narinder.BISHOP_NO_CROWN_SKIN_NAME);
-                form === "Bishop" && !hasChains && this.addSkins(Narinder.BISHOP_NO_CHAINS_SKIN_NAME);
+                this.setSkin(hasCrown ? TOWW.BISHOP_CROWN_SKIN_NAME : TOWW.BISHOP_NO_CROWN_SKIN_NAME);
+                form === "Bishop" && !hasChains && this.addSkins(TOWW.BISHOP_NO_CHAINS_SKIN_NAME);
 
                 break;
             }
 
             case "Mega_Boss": {
-                this.setSkin(Narinder.MEGA_BOSS_EYE_STAGES_SKIN_NAME[eyeState!]);
+                this.setSkin(TOWW.MEGA_BOSS_EYE_STAGES_SKIN_NAME[eyeState!]);
                 break;
             }
 
             case "Eyeball": {
-                this.setSkin(isHurt ? Narinder.EYEBALL_HURT_SKIN_NAME : Narinder.EYEBALL_NORMAL_SKIN_NAME);
+                this.setSkin(isHurt ? TOWW.EYEBALL_HURT_SKIN_NAME : TOWW.EYEBALL_NORMAL_SKIN_NAME);
                 break;
             }
         }
@@ -113,7 +113,7 @@ export class Narinder extends Actor implements NarinderObject {
         this.tick();
     }
 
-    copyFromObj(obj: NarinderObject) {
+    copyFromObj(obj: TOWW_Object) {
         const { hasCrown, hasChains, eyeState, isHurt } = obj;
 
         this.hasCrown = hasCrown;
@@ -125,14 +125,14 @@ export class Narinder extends Actor implements NarinderObject {
         super.copyFromObj(obj);
     }
     
-    toObj(): NarinderObject {
+    toObj(): TOWW_Object {
         const { form, hasCrown, hasChains, eyeState, isHurt } = this;
-        return { ...super.toObj(), type: "narinder", form, hasCrown, hasChains, eyeState, isHurt };
+        return { ...super.toObj(), type: "toww", form, hasCrown, hasChains, eyeState, isHurt };
     }
 }
 
-export interface NarinderObject extends ActorObject {
-    form: NarinderId;
+export interface TOWW_Object extends ActorObject {
+    form: TOWW_Id;
 
     hasCrown: boolean | null;
     hasChains: boolean | null;
@@ -141,6 +141,6 @@ export interface NarinderObject extends ActorObject {
     isHurt: boolean | null;
 }
 
-export function isNarinderObj(obj: ActorObject): obj is NarinderObject {
-    return obj instanceof Narinder || obj.type === "narinder";
+export function isTOWW_Obj(obj: ActorObject): obj is TOWW_Object {
+    return obj instanceof TOWW || obj.type === "toww";
 }

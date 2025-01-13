@@ -5,9 +5,9 @@
     import { SpritesheetImage } from "../utils";
 
     import type { ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isNarinderObj, isPlayerObj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj } from "../../scripts/characters";
 
-    import { bishopData, followerData, narinderData, playerData } from "../../data";
+    import { bishopData, followerData, towwData, playerData } from "../../data";
     import { FOLLOWER_CATEGORIES, followerIdsByCategory } from "../../data/types";
 
     interface Props {
@@ -31,7 +31,7 @@
             case isFollowerObj(actor): return "Follower";
             case isPlayerObj(actor): return "Player";
             case isBishopObj(actor): return "Bishop";
-            case isNarinderObj(actor): return "Narinder";
+            case isTOWW_Obj(actor): return "T.O.W.W.";
             
             default: return "Actor";
         }
@@ -42,7 +42,7 @@
             case isFollowerObj(actor): return `Form: ${followerData.forms[actor.form].name}`;
             case isPlayerObj(actor): return `Creature: ${playerData.creature[actor.creature].name}`;
             case isBishopObj(actor): return `Bishop: ${bishopData[actor.bishop].name}`;
-            case isNarinderObj(actor): return `Form: ${narinderData[actor.form].name}`;
+            case isTOWW_Obj(actor): return `Form: ${towwData[actor.form].name}`;
             
             default: return "";
         }
@@ -55,7 +55,7 @@
             
             default: return "/static/ui/cancel.png";
         }
-    }
+    }isTOWW_Obj
 
     function getX(): number {
         switch (true) {

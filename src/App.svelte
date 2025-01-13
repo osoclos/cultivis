@@ -2,7 +2,7 @@
     import { onDestroy, onMount } from "svelte";
 
     import { BannerButton, Header, Label, NavTip, ProgressRing } from "./components/base";
-    import { SceneCanvas, Categories, News, TermsDisclaimer, TOS_LOCAL_STORAGE_NAME } from "./components/misc";
+    import { SceneCanvas, Categories, News, TermsDisclaimer } from "./components/misc";
     
     import { CharacterList, FollowerMenus, FollowerNavigation, type FollowerMenuNames, type PlayerMenuNames, PlayerMenus, PlayerNavigation, getRandomFollowerAppearance, getSpecialFollowerName } from "./components/characters";
     import { Size, Timing } from "./components/exporting";
@@ -10,8 +10,8 @@
     import { CreationDetails, SpecialThanks } from "./components/credits";
 
     import { Actor, Exporter, Factory, Scene, type ActorObject } from "./scripts";
-    import { Follower, isFollowerObj, isPlayerObj, Narinder, Player } from "./scripts/characters";
-    import { NewsManager } from "./scripts/managers";
+    import { Follower, isFollowerObj, isPlayerObj, TOWW, Player } from "./scripts/characters";
+    import { GitManager } from "./scripts/managers";
 
     import { MoreMath, Random, Vector } from "./utils";
 
@@ -22,15 +22,20 @@
     let exporter: Exporter;
 
     // svelte-ignore non_reactive_update
-    let newsManager: NewsManager;
+    let gitManager: GitManager;
     
     let categoryIdx: number = $state(0);
 
     let isOnPhone: boolean = $state(false);
     let isMobile: boolean = $state(false);
 
-    let hasAcknowledgedTerms: boolean = $state(!!localStorage.getItem(TOS_LOCAL_STORAGE_NAME));
+    let hasAcknowledgedTerms: boolean = $state(!!localStorage.getItem(GitManager.TERMS_LOCAL_STORAGE_NAME));
     let hasNewNews: boolean = $state(false);
+
+    let termsChangesSummary: string = $state("");
+
+    let latestTermsDate: string = $state("");
+    let lastUpdatedDate: string = $state("");
 
     let actors: ActorObject[] | null = $state(null);
     let actorIdx: number = $state(-1);
@@ -89,10 +94,15 @@
 
     onMount(async () => {
         exporter = await Exporter.create();
-        newsManager = await NewsManager.create();
+        gitManager = await GitManager.create();
+        
+        termsChangesSummary = await gitManager.getTermsSummary();
+        hasAcknowledgedTerms = !termsChangesSummary;
 
-        hasAcknowledgedTerms = !await newsManager.hasNewTerms();
-        hasNewNews = await newsManager.loadNews();
+        hasNewNews = await gitManager.loadNews();
+
+        ({ latestTermsDate } = gitManager);
+        lastUpdatedDate = await gitManager.getLastUpdatedDate();
 
         window.addEventListener("keydown", onKeyDown);
         resizer.observe(document.documentElement);
@@ -112,7 +122,7 @@
         factory = initFactory;
 
         // uncomment this when finished with debugging with bishops: await factory.load(Follower, Player);
-        await factory.load(Follower, Player, Narinder);
+        await factory.load(Follower, Player, TOWW);
         
         const deer = factory.follower("Deer", "Default_Clothing");
         deer.label = "Deer";
@@ -127,11 +137,11 @@
 
         player.pos.setX(180);
 
-        const narinder = factory.narinder("Mega_Boss");
-        narinder.label = "Narinder";
-        narinder.eyeState = 0;
+        const toww = factory.toww("Mega_Boss");
+        toww.label = "The One Who Waits";
+        toww.eyeState = 0;
 
-        scene.addActors(narinder, deer, player);
+        scene.addActors(toww, deer, player);
         actors = scene.actors.map((actor) => actor.toObj());
         
         scene.resetCamera();
@@ -312,10 +322,10 @@
                     <ProgressRing percent={exportPercent} label="Export Progress" />
                 </Label>
             {/if}
-        {:else if newsManager && categoryIdx === 2}
-            <News {newsManager} />
+        {:else if gitManager && categoryIdx === 2}
+            <News {gitManager} />
         {:else if categoryIdx === 3}
-            <CreationDetails />
+            <CreationDetails bind:lastUpdatedDate />
             <SpecialThanks />
         {/if}
     </div>
@@ -329,7 +339,7 @@
     {/if}
 </div>
 
-<TermsDisclaimer bind:hasAcknowledgedTerms bind:isOnPhone onclick={() => newsManager.storeLatestTermsSha()} />
+<TermsDisclaimer bind:hasAcknowledgedTerms bind:termsChangesSummary bind:latestTermsDate bind:isOnPhone onclick={() => gitManager.updateTermsLocalStorage()} />
 
 <style>
     :global(.no-scrollbar) { scrollbar-width: none; }

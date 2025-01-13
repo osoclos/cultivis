@@ -3,33 +3,25 @@
     import { Header, LabelTitle } from "../base";
 
     interface CreditData {
-        src: string;
-        alt: string;
-
+        label: string;
         href: string;
     }
 
     const credits: Record<string, CreditData[]> = {
         "Assets and Inspiration": [
             {
-                src: "/static/ui/massive-monster.png",
-                alt: "Massive Monster",
-
+                label: "Massive Monster",
                 href: "https://massivemonster.co/"
             },
 
             {
-                src: "/static/ui/devolver-digital.png",
-                alt: "Devolver Digital",
-
+                label: "Devolver Digital",
                 href: "https://devolverdigital.com/"
             }
         ],
 
         "Rendering": [{
-            src: "/static/ui/esoteric-software.png",
-            alt: "Esoteric Software",
-
+            label: "Esoteric Software",
             href: "https://esotericsoftware.com/"
         }]
     };
@@ -39,12 +31,12 @@
     <Header title="Special Thanks" />
 
     <div class="flex flex-col gap-8">
-        {#each Object.entries(credits) as [title, creditData], i (i)}
+        {#each Object.entries(credits) as [title, creditData], y (y)}
             <div class="flex flex-col gap-4 items-center">
                 <LabelTitle {title} />
                 <div class="flex flex-row gap-6 items-center">
-                    {#each creditData as { src, alt, href }, i (i)}
-                        <ImageLink {src} {alt} {href} />
+                    {#each creditData as { label, href }, x (x)}
+                        <ImageLink {label} {href} src="/static/ui/special-thanks.png" {x} {y} />
                     {/each}
                 </div>
             </div>

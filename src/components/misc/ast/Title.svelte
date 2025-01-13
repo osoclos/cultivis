@@ -12,7 +12,7 @@
 {#if $astCtx.type === "element" && $astCtx.tagName === "h1" && $astCtx.children.every(({ type }) => Array<HastNode["type"]>("text", "comment").includes(type))}
     <h1>
         {#each $astCtx.children as child, i (i)}
-            {child}
+            {child.value}
         {/each}
     </h1>
 {/if}

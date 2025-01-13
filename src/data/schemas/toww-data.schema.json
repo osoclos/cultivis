@@ -1,9 +1,9 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema",
-    "$id": "narinder-data.schema.json",
+    "$id": "toww-data.schema.json",
 
-    "title": "narinder Data",
-    "description": "Information on Narinder that provides metadata of his different source paths.",
+    "title": "The One Who Waits Data",
+    "description": "Information on The One Who Waits that provides metadata of his different source paths.",
 
     "type": "object",
     "propertyNames": { "$ref": "#/definitions/Id" },
@@ -12,12 +12,12 @@
         "properties": {
             "name": {
                 "type": "string",
-                "description": "The display name of Narinder in this form."
+                "description": "The display name of The One Who Waits in this form."
             },
 
             "src": {
                 "$ref": "bishop-data.schema.json#/definitions/Sources",
-                "description": "The source paths to the files needed to load Narinder in this form."
+                "description": "The source paths to the files needed to load The One Who Waits in this form."
             }
         },
 

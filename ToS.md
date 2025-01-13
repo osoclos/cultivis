@@ -1,3 +1,4 @@
+<!-- CHANGES_SUMMARY="The terms adds what you can or cannot do or use CultiVis News for." -->
 # CultiVis Terms of Service Agreement
 
 > [!IMPORTANT]
@@ -6,13 +7,23 @@
 > By agreeing to the Terms of Service, you also acknowledge the [Open Source License](LICENSE) (the "OSL") and the terms and conditions underlined in the OSL.
 
 Copyright (c) 2025 osoclos
-Last updated: 7 January 2025. Replaces all prior versions.
+Last updated: 13 January 2025. Replaces all prior versions.
 
 ## Usage
 
-Any user-generated content created from CultiVis is derived from the works of [Massive Monster Games](https://massivemonster.co/) and [Devolver Digital Inc.](https://devolverdigital.com/), and can be considered to be  legally owned by them, though you are allowed to share and distribute the content as long as there is reference or context that can be inferred to their work.
+Any user-generated content created from CultiVis is derived from the works of [Massive Monster Games](https://massivemonster.co/) and [Devolver Digital Inc.](https://devolverdigital.com/), and can be considered to be legally owned by them, though you are allowed to share and distribute the content as long as there is reference or context that can be inferred to their work.
 
 However, if any concerning parties deem your shared content to be inappropriate, derogatory or offensive in any way, the owner will not be held liable against any repercussions you face from posting or publishing said content.
+
+### Usage surrounding CultiVis News
+
+CultiVis News refers to the list of blog articles and changelog sections, which is found under the "News" category in CultiVis. As such, CultiVis News is a part of CultiVis and is not considered a separate product.
+
+CultiVis News includes images that are generated from CultiVis or created by the owner, but does not include content that are sourced from outside CultiVis. For such content, there will be a link/reference to the source and/or the original author.
+
+Any content that is published under CultiVis News is free to be viewed and shared by anyone on any platform. If you wish to make use of the content inside CultiVis News, you may only take inspiration from the text and images.
+
+This does not include copying sections of the texts or pasting the image into software that can produce similar content from said material.
 
 ## Updates, Disruptions and Accessibility
 
