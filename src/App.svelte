@@ -2,11 +2,12 @@
     import { onDestroy, onMount } from "svelte";
 
     import { BannerButton, Header, Label, NavTip, ProgressRing } from "./components/base";
-    import { SceneCanvas, Categories, News, TermsDisclaimer } from "./components/misc";
+    import { SceneCanvas, Categories, TermsDisclaimer } from "./components/misc";
     
     import { CharacterList, FollowerMenus, FollowerNavigation, type FollowerMenuNames, type PlayerMenuNames, PlayerMenus, PlayerNavigation, getRandomFollowerAppearance, getSpecialFollowerName } from "./components/characters";
     import { Size, Timing } from "./components/exporting";
 
+    import { News } from "./components/news";
     import { CreationDetails, SpecialThanks } from "./components/credits";
 
     import { Actor, Exporter, Factory, Scene, type ActorObject } from "./scripts";

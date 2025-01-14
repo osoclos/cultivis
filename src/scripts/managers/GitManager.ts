@@ -46,7 +46,7 @@ export class GitManager {
     async loadNews(): Promise<boolean> {
         let hasNewContent: boolean = false;
 
-        const folders = await this.fetchFromContent("", GitManager.NEWS_REPO_ROOT, true);
+        const folders = await this.fetchFromContent("", GitManager.NEWS_REPO_ROOT, true, true);
         for (const { type, name, path, sha } of folders) {
             if (type === "file") continue;
 
@@ -88,7 +88,7 @@ export class GitManager {
         
         let summary: string = "";
         if (hasNewTerms) {
-            const { content } = await this.fetchFromContent("ToS.md", GitManager.TERMS_REPO_ROOT, false, true);
+            const { content } = await this.fetchFromContent("ToS.md", GitManager.TERMS_REPO_ROOT, false, hasNewTerms);
             const text = this.decodeContent(content);
 
             summary = text.match(/<!-- CHANGES_SUMMARY="(.+)" -->/)?.[1] ?? "";
