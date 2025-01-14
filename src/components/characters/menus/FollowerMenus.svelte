@@ -1,25 +1,30 @@
 <script lang="ts" module>
-    export type FollowerMenuNames = "form" | "clothing" | "accessory" | "color" | "variant";
+    export const FOLLOWER_MENU_NAMES = ["form", "clothing", "accessory", "color", "variant"] as const;
+    export type FollowerMenuName = typeof FOLLOWER_MENU_NAMES[number];
+
+    export function isStrFollowerMenuName(str: string): str is FollowerMenuName {
+        return FOLLOWER_MENU_NAMES.includes(str as FollowerMenuName);
+    }
 </script>
 
 <script lang="ts">
     import { twMerge } from "tailwind-merge";
 
-    import { BoxOption } from ".";
-    import { Header } from "../base";
-    import { MultiGrid, SpritesheetImage } from "../utils";
+    import { BoxOption } from "..";
+    import { Header } from "../../base";
+    import { MultiGrid, SpritesheetImage } from "../../utils";
 
-    import { followerData } from "../../data";
-    import { CLOTHING_IDS, clothingIdsByCategory, FOLLOWER_IDS, followerIdsByCategory, HATS_ID, necklaceIdsByCategory, type ClothingCategoryName, type ClothingData, type ClothingId, type ColorSet, type FollowerCategoryName, type FollowerId, type FormData, type HatId, type NecklaceCategoryName, type NecklaceData, type NecklaceId } from "../../data/types";
+    import { followerData } from "../../../data";
+    import { CLOTHING_IDS, clothingIdsByCategory, FOLLOWER_IDS, followerIdsByCategory, HATS_ID, necklaceIdsByCategory, type ClothingCategoryName, type ClothingData, type ClothingId, type ColorSet, type FollowerCategoryName, type FollowerId, type FormData, type HatId, type NecklaceCategoryName, type NecklaceData, type NecklaceId } from "../../../data/types";
 
-    import type { Follower, FollowerObject } from "../../scripts/characters";
-    import { Color, Random } from "../../utils";
+    import type { Follower, FollowerObject } from "../../../scripts/characters";
+    import { Color, Random } from "../../../utils";
 
     interface Props {
         follower: Follower,
         obj: FollowerObject,
 
-        menu?: FollowerMenuNames;
+        menu?: FollowerMenuName;
 
         class?: string;
         enableKeyInput?: boolean;
@@ -39,7 +44,7 @@
         onupdate: update = () => {}
     }: Props = $props();
 
-    function getTitle(menu: FollowerMenuNames): string {
+    function getTitle(menu: FollowerMenuName): string {
         switch (menu) {
             case "form": return "Choose Form";
             case "clothing": return "Choose Robes";
@@ -50,7 +55,7 @@
         }
     }
 
-    function getGridTitles(menu: FollowerMenuNames): string[] {
+    function getGridTitles(menu: FollowerMenuName): string[] {
         switch (menu) {
             case "form": return Object.keys(followerIdsByCategory);
             case "clothing": return Object.keys(clothingIdsByCategory);

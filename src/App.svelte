@@ -4,26 +4,26 @@
     import { BannerButton, Header, Label, NavTip, ProgressRing } from "./components/base";
     import { SceneCanvas, Categories, TermsDisclaimer } from "./components/misc";
     
-    import { CharacterList, FollowerMenus, FollowerNavigation, type FollowerMenuNames, type PlayerMenuNames, PlayerMenus, PlayerNavigation, getRandomFollowerAppearance, getSpecialFollowerName } from "./components/characters";
+    import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName } from "./components/characters";
     import { Size, Timing } from "./components/exporting";
 
     import { News } from "./components/news";
     import { CreationDetails, SpecialThanks } from "./components/credits";
 
     import { Actor, Exporter, Factory, Scene, type ActorObject } from "./scripts";
-    import { Follower, isFollowerObj, isPlayerObj, TOWW, Player } from "./scripts/characters";
+    import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop } from "./scripts/characters";
     import { GitManager } from "./scripts/managers";
+
+    import { bishopData } from "./data";
+    import { BISHOP_IDS, TOWW_IDS } from "./data/types";
 
     import { MoreMath, Random, Vector } from "./utils";
 
-    // svelte-ignore non_reactive_update
-    let scene: Scene;
-    let factory: Factory;
+    let scene: Scene = $state(Scene.prototype);
+    let factory: Factory = $state(Factory.prototype);
 
     let exporter: Exporter;
-
-    // svelte-ignore non_reactive_update
-    let gitManager: GitManager;
+    let gitManager: GitManager = $state(GitManager.prototype);
     
     let categoryIdx: number = $state(0);
 
@@ -40,10 +40,9 @@
 
     let actors: ActorObject[] | null = $state(null);
     let actorIdx: number = $state(-1);
+    let actorMenu: string | null = $state(null);
 
-    let followerMenu: FollowerMenuNames | null = $state(null);
-    let playerMenu: PlayerMenuNames | null = $state(null);
-
+    let loadingActor: typeof Actor | null = $state(null);
     let showActorMenu: boolean = $state(false);
 
     let actor: Actor | null = $state(null);
@@ -149,10 +148,12 @@
         scene.scale *= 1.5;
     }
 
-    function addActor(actor: typeof Actor, updateActorIdx: boolean = true): Actor | undefined {
+    async function addActor(actor: typeof Actor, updateActorIdx: boolean = true) {
+        loadingActor = actor;
         let addedActor: Actor;
-        switch (actor.name) {
-            case Follower.name: {
+
+        switch (actor) {
+            case Follower: {
                 const [form, formVariantIdx, formColorSetIdx] = getRandomFollowerAppearance();
 
                 const follower = factory.follower(form, "Default_Clothing", Random.id(), getSpecialFollowerName(form, formVariantIdx));
@@ -165,11 +166,62 @@
                 break;
             }
 
-            case Player.name: {
+            case Player: {
                 const player = factory.player("Lamb", "Lamb", Random.id(), "Lamb");
                 player.setAnimation("idle");
 
                 addedActor = player;
+                break;
+            }
+
+            case Bishop: {
+                const id = Random.item(BISHOP_IDS);
+                !factory.hasLoadedBishop(id, false) && await factory.loadBishop(id, false);
+
+                const bishop = factory.bishop(id, false, Random.id(), bishopData[id].name);
+                bishop.setAnimation(id === "Jelly" ? "leader/idle" : "idle");
+
+                addedActor = bishop;
+                break;
+            }
+
+            case TOWW: {
+                const form = Random.item(TOWW_IDS);
+                !factory.hasLoadedTOWW(form) && await factory.loadTOWW(form);
+
+                const toww = factory.toww(form, Random.id(), "The One Who Waits");
+                switch (form) {
+                    case "Bishop": {
+                        toww.hasCrown = true;
+                        toww.hasChains = false;
+
+                        toww.setAnimation("idle-standing");
+                        break;
+                    }
+
+                    case "Boss": {
+                        toww.hasCrown = true;
+                        toww.setAnimation("animation");
+
+                        break;
+                    }
+
+                    case "Mega_Boss": {
+                        toww.eyeState = 0;
+                        toww.setAnimation("animation");
+
+                        break;
+                    }
+
+                    case "Eyeball": {
+                        toww.isInjured = false;
+                        toww.setAnimation("idle");
+
+                        break;
+                    }
+                }
+
+                addedActor = toww;
                 break;
             }
 
@@ -180,7 +232,7 @@
         actors = scene.actors.map((actor) => actor.toObj());
 
         updateActorIdx && selectActor((actors?.length ?? 0) - 1);
-        return addedActor;
+        loadingActor = null;
     }
 
     function removeActor() {
@@ -210,13 +262,8 @@
         Vector.round(actor.scale, 2).cloneObj(actorObj.scale);
     }
 
-    function selectFollowerMenu(menu: FollowerMenuNames) {
-        followerMenu = menu;
-        showActorMenu = true;
-    }
-
-    function selectPlayerMenu(menu: PlayerMenuNames) {
-        playerMenu = menu;
+    function selectMenu(menu: string) {
+        actorMenu = menu;
         showActorMenu = true;
     }
 
@@ -226,8 +273,6 @@
     }
 
     async function exportScene() {
-        if (exportPercent >= 0) return;
-
         const sceneObj = scene.toObj();
         const buffer = await exporter.exportScene(sceneObj, duration, Vector.fromObj(size), (percent) => exportPercent = percent);
 
@@ -287,24 +332,20 @@
     <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:selectedIdx={categoryIdx} bind:hasNewNews enableKeyInput={hasAcknowledgedTerms && (actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
     <div class="no-scrollbar lg:overflow-y-auto flex flex-col {categoryIdx === 1 ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
         {#if categoryIdx === 0}
-            <CharacterList bind:actors enableKeyInput={hasAcknowledgedTerms && actorIdx < 0} onadd={addActor} onactorclick={selectActor} />
+            <CharacterList bind:actors bind:loadingActor enableKeyInput={hasAcknowledgedTerms && actorIdx < 0} onadd={addActor} onactorclick={selectActor} />
 
             <div class={["lg:absolute lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                 {#if actor && actorObj}
-                    {#if isFollowerObj(actorObj)}
-                        <FollowerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectFollowerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
-                    {:else if isPlayerObj(actorObj)}
-                        <PlayerNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectPlayerMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
-                    {/if}
+                    <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {factory} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
                 {/if}
             </div>
 
             <div class={["lg:absolute lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", !showActorMenu ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
-                {#if actor && actorObj}
-                    {#if isFollowerObj(actorObj) && followerMenu}
-                        <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={followerMenu} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
-                    {:else if isPlayerObj(actorObj) && playerMenu}
-                        <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={playerMenu} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                {#if actor && actorObj && actorMenu}
+                    {#if isFollowerObj(actorObj) && isStrFollowerMenuName(actorMenu)}
+                        <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={actorMenu} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                    {:else if isPlayerObj(actorObj) && isStrPlayerMenuName(actorMenu)}
+                        <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={actorMenu} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                     {/if}
                 {/if}
             </div>
@@ -316,7 +357,7 @@
                 <Timing bind:duration bind:trimLongest oninput={({ trimLongest }) => trimLongest && (duration = MoreMath.round(Math.max(...scene.actors.map(({ duration }) => duration), 0), 2))} />
             </div>
             
-            <BannerButton label={exportPercent < 0 ? "Export Scene" : "Exporting..."} onclick={exportScene} />
+            <BannerButton label={exportPercent < 0 ? "Export Scene" : "Exporting..."} disabled={exportPercent >= 0} onclick={exportScene} />
             
             {#if exportPercent >= 0}
                 <Label class="w-80 sm:w-90" label="Export Progress">

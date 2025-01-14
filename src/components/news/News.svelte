@@ -32,7 +32,7 @@
                     {/each}
                 </div>
             {:else}
-                <LabelTitle title="No content available" />
+                <LabelTitle title={gitManager ? "No content available" : "Loading..."} />
             {/if}
         </div>
     {/each}

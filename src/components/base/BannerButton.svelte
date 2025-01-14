@@ -11,6 +11,8 @@
         value?: string;
         placeholder?: string;
 
+        disabled?: boolean;
+
         oninput?: (val: string) => void;
 
         href?: string;
@@ -22,11 +24,8 @@
     
     let button: HTMLButtonElement;
     
-    // svelte-ignore non_reactive_update
-    let inputElement: HTMLInputElement;
-
-    // svelte-ignore non_reactive_update
-    let link: HTMLAnchorElement;
+    let inputElement: HTMLInputElement = $state(document.createElement("input"));
+    let link: HTMLAnchorElement = $state(document.createElement("a"));
 
     let {
         label,
@@ -34,6 +33,8 @@
 
         value = $bindable(label),
         placeholder = label,
+
+        disabled = false,
 
         oninput: input = () => {},
 
@@ -65,6 +66,8 @@
     }
 
     function onclick() {
+        // if (disabled) return;
+
         // if people complain that they need to double click on mobile, tell them its a feature ;)
         (href
             ? link
@@ -77,12 +80,12 @@
     }
 </script>
 
-<button bind:this={button} class={twMerge("group aspect-[410_/_100] relative w-[205px] h-12.5 text-xl tracking-wide text-inactive text-nowrap outline-none", editable ? "focus-within:text-active" : "focus:text-active", className)} aria-label={label} {onclick} onpointerenter={() => document.hasFocus() && button.focus()} onfocus={() => Vector.One.cloneObj(scale)} onblur={resetScale}>
+<button bind:this={button} class={twMerge("group aspect-[410_/_100] relative w-[205px] h-12.5 text-xl tracking-wide text-inactive disabled:text-disabled text-nowrap outline-none", editable ? "focus-within:text-active" : "focus:text-active", className)} {disabled} aria-label={label} {onclick} onpointerenter={() => document.hasFocus() && button.focus()} onfocus={() => Vector.One.cloneObj(scale)} onblur={resetScale}>
     <img src="/static/ui/banner.png" alt="" class="opacity-0 {editable ? "group-focus-within:opacity-100" : "group-focus:opacity-100"} transition-transform duration-75 ease-linear" style:transform={Vector.objToStr(scale, "scale({x}, {y})")} width="205" height="auto" draggable="false" role="presentation" aria-hidden="true" />
     
     <div class={["absolute top-1/2 left-1/2 text-center -translate-1/2", { "flex flex-row gap-2 justify-center items-center text-sm": src }]}>
         {#if editable}
-            <input bind:this={inputElement} type="text" bind:value class="{src ? "w-24" : "w-36"} text-center placeholder-inactive text-ellipsis outline-none" name={label} placeholder={placeholder} autocomplete="off" oninput={() => input(value)} onfocus={() => Vector.One.cloneObj(scale)} onblur={resetScale} />
+            <input bind:this={inputElement} type="text" bind:value class="{src ? "w-24" : "w-36"} text-center placeholder-inactive group-focus:placeholder-active focus:placeholder-active disabled:placeholder-disabled text-ellipsis outline-none" name={label} placeholder={placeholder} {disabled} autocomplete="off" oninput={() => input(value)} onfocus={() => Vector.One.cloneObj(scale)} onblur={resetScale} />
         {:else if href}
             <a bind:this={link} {href} target="_blank">{label}</a>
         {:else}

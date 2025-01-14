@@ -1,25 +1,30 @@
 <script lang="ts" module>
-    export type PlayerMenuNames = "creature" | "fleece";
+    export const PLAYER_MENU_NAMES = ["creature", "fleece"] as const;
+    export type PlayerMenuName = typeof PLAYER_MENU_NAMES[number];
+
+    export function isStrPlayerMenuName(str: string): str is PlayerMenuName {
+        return PLAYER_MENU_NAMES.includes(str as PlayerMenuName);
+    }
 </script>
 
 <script lang="ts">
     import { twMerge } from "tailwind-merge";
 
-    import { BoxOption } from ".";
-    import { Header } from "../base";
-    import { Grid, SpritesheetImage } from "../utils";
+    import { BoxOption } from "..";
+    import { Header } from "../../base";
+    import { Grid, SpritesheetImage } from "../../utils";
 
-    import { playerData } from "../../data";
-    import { PLAYER_CREATURE_IDS, PLAYER_FLEECE_IDS, type PlayerCreatureId, type PlayerFleeceId } from "../../data/types";
+    import { playerData } from "../../../data";
+    import { PLAYER_CREATURE_IDS, PLAYER_FLEECE_IDS, type PlayerCreatureId, type PlayerFleeceId } from "../../../data/types";
 
-    import type { Player, PlayerObject } from "../../scripts/characters";
-    import { Random } from "../../utils";
+    import type { Player, PlayerObject } from "../../../scripts/characters";
+    import { Random } from "../../../utils";
     
     interface Props {
         player: Player,
         obj: PlayerObject,
 
-        menu?: PlayerMenuNames;
+        menu?: PlayerMenuName;
 
         class?: string;
         enableKeyInput?: boolean;
@@ -39,7 +44,7 @@
         onupdate: update = () => {}
     }: Props = $props();
 
-    function getTitle(menu: PlayerMenuNames): string {
+    function getTitle(menu: PlayerMenuName): string {
         switch (menu) {
             case "creature": return "Choose Creature";
             case "fleece": return "Choose Fleece";

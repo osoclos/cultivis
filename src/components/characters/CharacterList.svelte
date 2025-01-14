@@ -4,11 +4,13 @@
     import { MultiList } from "../utils";
 
     import type { Actor, ActorObject } from "../../scripts";
-    import { Follower, Player } from "../../scripts/characters";
+    import { Bishop, Follower, Player, TOWW } from "../../scripts/characters";
 
     interface Props {
         actors: ActorObject[] | null;
         enableKeyInput?: boolean;
+
+        loadingActor?: typeof Actor | null;
 
         onadd?: (actor: typeof Actor) => void;
         onactorclick?: (i: number) => void;
@@ -18,9 +20,20 @@
         actors = $bindable(null),
         enableKeyInput = false,
 
+        loadingActor = $bindable(null),
+
         onadd: add = () => {},
         onactorclick: click = () => {}
     }: Props = $props();
+
+    const addButtonData: Record<string, typeof Actor> = {
+        "Add Follower": Follower,
+        "Add Player": Player,
+        
+        "Add Bishop": Bishop,
+        "Add T.O.W.W": TOWW
+    };
+
 </script>
 
 <MultiList class="gap-8" listClass="flex flex-col gap-0 items-center" titles={["", ""]} {enableKeyInput} focusFirst={matchMedia("(max-width: 768px)").matches}>
@@ -28,8 +41,9 @@
         {#if i == 0}
             <Header class="mb-2" title="Add Character" />
 
-            <BannerButton label="Add Follower" onclick={() => add(Follower)} />
-            <BannerButton label="Add Player" onclick={() => add(Player)} />
+            {#each Object.entries(addButtonData) as [label, actor], i (i)}
+                <BannerButton label={actor === loadingActor ? "Adding..." : label} disabled={!!loadingActor} onclick={() => add(actor)} />
+            {/each}
         {:else if i === 1}
             <Header class="mb-6" title="Choose Character" />
 

@@ -14,13 +14,13 @@ export class TOWW extends Actor implements TOWW_Object {
     static readonly MEGA_BOSS_EYE_STAGES_SKIN_NAME: string[] = ["all", "1", "2", "3"];
 
     static readonly EYEBALL_NORMAL_SKIN_NAME: string = "Normal";
-    static readonly EYEBALL_HURT_SKIN_NAME: string = "Hurt";
+    static readonly EYEBALL_INJURED_SKIN_NAME: string = "Hurt";
 
     #hasCrown: boolean | null;
     #hasChains: boolean | null;
 
     #eyeState: number | null;
-    #isHurt: boolean | null;
+    #isInjured: boolean | null;
 
     constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id: string = Random.id(), label: string = "The One Who Waits", readonly form: TOWW_Id = "Bishop") {
         super(skeleton, animationState, id, label);
@@ -29,7 +29,7 @@ export class TOWW extends Actor implements TOWW_Object {
         this.#hasChains = form === "Bishop" ? true : null;
 
         this.#eyeState = form === "Mega_Boss" ? 0 : null;
-        this.#isHurt = form === "Eyeball" ? false : null;
+        this.#isInjured = form === "Eyeball" ? false : null;
 
         this.update();
     }
@@ -67,14 +67,14 @@ export class TOWW extends Actor implements TOWW_Object {
         this.update();
     }
 
-    get isHurt(): boolean | null {
-        return this.#isHurt;
+    get isInjured(): boolean | null {
+        return this.#isInjured;
     }
 
-    set isHurt(isHurt: boolean | null) {
+    set isInjured(isInjured: boolean | null) {
         if (this.form !== "Eyeball") return;
 
-        this.#isHurt = isHurt;
+        this.#isInjured = isInjured;
         this.update();
     }
 
@@ -88,14 +88,17 @@ export class TOWW extends Actor implements TOWW_Object {
     }
 
     update() {
-        const { form, hasCrown, hasChains, eyeState, isHurt } = this;
-        
+        const { form, hasCrown, hasChains, eyeState, isInjured } = this;
         switch (form) {
-            case "Bishop":
-            case "Boss": {
+            case "Bishop": {
                 this.setSkin(hasCrown ? TOWW.BISHOP_CROWN_SKIN_NAME : TOWW.BISHOP_NO_CROWN_SKIN_NAME);
-                form === "Bishop" && !hasChains && this.addSkins(TOWW.BISHOP_NO_CHAINS_SKIN_NAME);
+                !hasChains && this.addSkins(TOWW.BISHOP_NO_CHAINS_SKIN_NAME);
 
+                break;
+            }
+
+            case "Boss": {
+                this.setSkin(hasCrown ? TOWW.BOSS_CROWN_SKIN_NAME : TOWW.BOSS_NO_CROWN_SKIN_NAME);
                 break;
             }
 
@@ -105,7 +108,7 @@ export class TOWW extends Actor implements TOWW_Object {
             }
 
             case "Eyeball": {
-                this.setSkin(isHurt ? TOWW.EYEBALL_HURT_SKIN_NAME : TOWW.EYEBALL_NORMAL_SKIN_NAME);
+                this.setSkin(isInjured ? TOWW.EYEBALL_INJURED_SKIN_NAME : TOWW.EYEBALL_NORMAL_SKIN_NAME);
                 break;
             }
         }
@@ -114,20 +117,20 @@ export class TOWW extends Actor implements TOWW_Object {
     }
 
     copyFromObj(obj: TOWW_Object) {
-        const { hasCrown, hasChains, eyeState, isHurt } = obj;
+        const { hasCrown, hasChains, eyeState, isInjured } = obj;
 
         this.hasCrown = hasCrown;
         this.hasChains = hasChains;
 
         this.eyeState = eyeState;
-        this.isHurt = isHurt;
+        this.isInjured = isInjured;
         
         super.copyFromObj(obj);
     }
     
     toObj(): TOWW_Object {
-        const { form, hasCrown, hasChains, eyeState, isHurt } = this;
-        return { ...super.toObj(), type: "toww", form, hasCrown, hasChains, eyeState, isHurt };
+        const { form, hasCrown, hasChains, eyeState, isInjured } = this;
+        return { ...super.toObj(), type: "toww", form, hasCrown, hasChains, eyeState, isInjured };
     }
 }
 
@@ -138,7 +141,7 @@ export interface TOWW_Object extends ActorObject {
     hasChains: boolean | null;
 
     eyeState: number | null;
-    isHurt: boolean | null;
+    isInjured: boolean | null;
 }
 
 export function isTOWW_Obj(obj: ActorObject): obj is TOWW_Object {

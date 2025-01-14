@@ -2,20 +2,11 @@ import BoxOption from "./BoxOption.svelte";
 import CharacterBox from "./CharacterBox.svelte";
 
 import CharacterList from "./CharacterList.svelte";
-
-import FollowerNavigation from "./FollowerNavigation.svelte";
-import PlayerNavigation from "./PlayerNavigation.svelte";
-
-import FollowerMenus from "./FollowerMenus.svelte";
-import PlayerMenus from "./PlayerMenus.svelte";
+import CharacterNavigation from "./CharacterNavigation.svelte";
 
 import ColorWheel from "./ColorWheel.svelte";
 
-export { BoxOption, CharacterBox, CharacterList, FollowerNavigation, PlayerNavigation, FollowerMenus, PlayerMenus, ColorWheel };
+export { BoxOption, CharacterBox, CharacterList, CharacterNavigation, ColorWheel };
+export * from "./menus";
 
-export * from "./FollowerNavigation.svelte";
-export * from "./PlayerNavigation.svelte";
-
-export type { FollowerMenuNames } from "./FollowerMenus.svelte";
-export type { PlayerMenuNames } from "./PlayerMenus.svelte";
-
+export * from "./CharacterNavigation.svelte";

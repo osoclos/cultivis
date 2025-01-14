@@ -9,10 +9,17 @@ export class Bishop extends Actor implements BishopObject {
     static readonly NORMAL_SKIN_NAME: string = "Normal";
     static readonly PURGED_SKIN_NAME: string = "Beaten";
 
+    static readonly SHAMURA_BANDAGED_SKIN_NAME: string = "Mask";
+    static readonly SHAMURA_WOUNDED_SKIN_NAME: string = "NoMask";
+
     #isPurged: boolean;
+    #isBandaged: boolean | null;
+
     constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id: string = Random.id(), label: string = bishopData.Worm.name, readonly bishop: BishopId = "Worm", readonly isBoss: boolean = false) {
         super(skeleton, animationState, id, label);
+
         this.#isPurged = false;
+        this.#isBandaged = bishop === "Spider" ? true : null;
         
         this.update();
     }
@@ -26,6 +33,17 @@ export class Bishop extends Actor implements BishopObject {
         this.update();
     }
 
+    get isBandaged(): boolean | null {
+        return this.#isBandaged;
+    }
+
+    set isBandaged(isBandaged: boolean | null) {
+        if (this.bishop !== "Spider") return;
+
+        this.#isBandaged = isBandaged;
+        this.update();
+    }
+
     clone(id: string = Random.id(), label: string = `${this.label} (Copy)`) {
         const { skeleton, animationState, bishop: bishopId, isBoss } = this;
 
@@ -36,22 +54,32 @@ export class Bishop extends Actor implements BishopObject {
     }
 
     update() {
-        const { isPurged } = this;
+        const { bishop, isPurged, isBandaged } = this;
+        this.setSkin(
+            isPurged
+                ? Bishop.PURGED_SKIN_NAME
+                : bishop === "Spider"
+                    ? isBandaged
+                        ? Bishop.SHAMURA_BANDAGED_SKIN_NAME
+                        : Bishop.SHAMURA_WOUNDED_SKIN_NAME
+                : Bishop.NORMAL_SKIN_NAME
+        );
 
-        this.setSkin(isPurged ? Bishop.PURGED_SKIN_NAME : Bishop.NORMAL_SKIN_NAME);
         this.tick();
     }
 
     copyFromObj(obj: BishopObject) {
-        const { isPurged } = obj;
+        const { isPurged, isBandaged } = obj;
+
         this.isPurged = isPurged;
+        this.isBandaged = isBandaged;
 
         super.copyFromObj(obj);
     }
     
     toObj(): BishopObject {
-        const { bishop, isBoss, isPurged } = this;
-        return { ...super.toObj(), type: "bishop", bishop, isBoss, isPurged };
+        const { bishop, isBoss, isPurged, isBandaged } = this;
+        return { ...super.toObj(), type: "bishop", bishop, isBoss, isPurged, isBandaged };
     }
 }
 
@@ -60,6 +88,7 @@ export interface BishopObject extends ActorObject {
     isBoss: boolean;
 
     isPurged: boolean;
+    isBandaged: boolean | null;
 }
 
 export function isBishopObj(obj: ActorObject): obj is BishopObject {
