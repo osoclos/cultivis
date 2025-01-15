@@ -94,7 +94,7 @@
 
     onMount(async () => {
         exporter = await Exporter.create();
-        gitManager = await GitManager.create();
+        gitManager = new GitManager();
         
         termsChangesSummary = await gitManager.getTermsSummary();
         hasAcknowledgedTerms = !termsChangesSummary;

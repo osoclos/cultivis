@@ -4,7 +4,7 @@
     interface Props { lastUpdatedDate: string; }
     const { lastUpdatedDate = $bindable() }: Props = $props();
 
-    const lastUpdatedYear = lastUpdatedDate.match(/(\d+)$/)![1] ?? "";
+    const lastUpdatedYear = $derived(lastUpdatedDate.match(/(\d+)$/)?.[1] ?? "");
 </script>
 
 <div class="flex flex-col gap-4 items-center">

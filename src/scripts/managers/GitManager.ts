@@ -1,14 +1,10 @@
-import { fetchAndCache, resolvePath } from "../../utils";
+import { resolvePath } from "../../utils";
 const MONTH_NAMES: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export class GitManager {
-    static readonly GITHUB_FG_TOKEN: string = import.meta.env.PROD ? import.meta.env.GITHUB_FG_TOKEN : import.meta.env.VITE_GITHUB_FG_TOKEN;
-    
-    static readonly GITHUB_API_ORIGIN: string = "https://api.github.com/repos/osoclos";
-    static readonly GITHUB_API_CONTENT_ENDPOINT: string = "contents";
-    static readonly GITHUB_API_COMMIT_ENDPOINT: string = "commits";
-
-    static readonly CACHE_NAME: string = "git";
+    static readonly PROXY_SERVER_URL: string = import.meta.env.PROD ? "https://cultivis-server.onrender.com/" : "http://localhost:3000/";
+    static readonly PROXY_CONTENT_ROUTE: string = "content";
+    static readonly PROXY_COMMIT_ROUTE: string = "commit";
 
     static readonly NEWS_REPO_ROOT: string = "cultivis-news";
     static readonly TERMS_REPO_ROOT: string = "cultivis";
@@ -25,18 +21,13 @@ export class GitManager {
     private newsSHAs: Map<string, string>;
     private latestTermsUnix: number;
 
-    private constructor(private cache: Cache) {
+    constructor() {
         this.news = new Map();
 
         this.newsSHAs = new Map();
         this.latestTermsUnix = 0;
 
         this.textDecoder = new TextDecoder();
-    }
-
-    static async create() {
-        const cache = await caches.open(this.CACHE_NAME);
-        return new GitManager(cache);
     }
 
     get latestTermsDate(): string {
@@ -46,23 +37,23 @@ export class GitManager {
     async loadNews(): Promise<boolean> {
         let hasNewContent: boolean = false;
 
-        const folders = await this.fetchFromContent("", GitManager.NEWS_REPO_ROOT, true, true);
+        const folders = await this.fetchFromContent("", GitManager.NEWS_REPO_ROOT, true);
         for (const { type, name, path, sha } of folders) {
             if (type === "file") continue;
 
             const prevSha = localStorage.getItem(this.getLocalStorageKey(GitManager.NEWS_LOCAL_STORAGE_NAME, name));
             const forceFetch = sha !== prevSha;
 
-            const files: FolderData[] = await this.fetchFromContent(path, GitManager.NEWS_REPO_ROOT, true, forceFetch);
+            const files: FolderData[] = await this.fetchFromContent(path, GitManager.NEWS_REPO_ROOT, true);
             for (const { type, path } of files) {
                 if (type === "dir") {
-                    const subFiles = await this.fetchFromContent(path, GitManager.NEWS_REPO_ROOT, true, forceFetch);
+                    const subFiles = await this.fetchFromContent(path, GitManager.NEWS_REPO_ROOT, true);
                     files.push(...subFiles);
 
                     continue;
                 }
 
-                const { content } = await this.fetchFromContent(path, GitManager.NEWS_REPO_ROOT, false, forceFetch);
+                const { content } = await this.fetchFromContent(path, GitManager.NEWS_REPO_ROOT, false);
                 const text = this.decodeContent(content);
 
                 this.news.has(name) ? this.news.get(name)!.add(text) : this.news.set(name, new Set([text]));
@@ -78,7 +69,7 @@ export class GitManager {
     async getTermsSummary(): Promise<string> {
         const lastDate = +(localStorage.getItem(GitManager.TERMS_LOCAL_STORAGE_NAME) ?? 0);
 
-        const [{ commit }] = await this.fetchFromCommit("ToS.md", GitManager.TERMS_REPO_ROOT, true, lastDate);
+        const [{ commit }] = await this.fetchFromCommit("ToS.md", GitManager.TERMS_REPO_ROOT, lastDate);
         const { date } = commit.author;
 
         const unixDate = new Date(date).getTime();
@@ -88,7 +79,7 @@ export class GitManager {
         
         let summary: string = "";
         if (hasNewTerms) {
-            const { content } = await this.fetchFromContent("ToS.md", GitManager.TERMS_REPO_ROOT, false, hasNewTerms);
+            const { content } = await this.fetchFromContent("ToS.md", GitManager.TERMS_REPO_ROOT, false);
             const text = this.decodeContent(content);
 
             summary = text.match(/<!-- CHANGES_SUMMARY="(.+)" -->/)?.[1] ?? "";
@@ -98,7 +89,7 @@ export class GitManager {
     }
 
     async getLastUpdatedDate(): Promise<string> {
-        const [{ commit }] = await this.fetchFromCommit("", GitManager.TERMS_REPO_ROOT, true);
+        const [{ commit }] = await this.fetchFromCommit("", GitManager.TERMS_REPO_ROOT);
         const { date } = commit.author;
 
         const unix = new Date(date).getTime();
@@ -113,38 +104,24 @@ export class GitManager {
         this.latestTermsUnix && localStorage.setItem(GitManager.TERMS_LOCAL_STORAGE_NAME, `${this.latestTermsUnix}`);
     }
 
-    private async fetchFromContent<R extends boolean>(path: string, root: string, isDir: R, forceFetch: boolean = true): Promise<typeof isDir extends true ? FolderData[] : FileData> {
-        path = resolvePath(path, GitManager.GITHUB_API_CONTENT_ENDPOINT);
-        const url = resolvePath(path, root, GitManager.GITHUB_API_ORIGIN);
+    private async fetchFromContent<R extends boolean>(path: string, root: string, isDir: R): Promise<typeof isDir extends true ? FolderData[] : FileData> {
+        const url = resolvePath("", GitManager.PROXY_CONTENT_ROUTE, GitManager.PROXY_SERVER_URL);
+        console.log(path, root, url);
+        return fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
 
-        return fetchAndCache(url, this.cache, forceFetch, {
-            headers: {
-                "Accept": "application/vnd.github+json",
-                "Authorization": `Bearer ${GitManager.GITHUB_FG_TOKEN}`,
-                
-                "X-Github-Api-Version": "2022-11-28"
-            }
+            body: JSON.stringify({ path, root })
         }).then((res) => res.json());
     }
 
-    private async fetchFromCommit(path: string, root: string, forceFetch: boolean = true, since: number = 0): Promise<CommitData[]> {
-        const searchParams = new URLSearchParams({
-            since: since ? new Date(since).toISOString() : "1970-01-01T00:00:00.000Z",
-            per_page: "1"
-        });
+    private async fetchFromCommit(path: string, root: string, since?: number): Promise<CommitData[]> {
+        const url = resolvePath("", GitManager.PROXY_COMMIT_ROUTE, GitManager.PROXY_SERVER_URL);
+        return fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
 
-        path && searchParams.append("path", path);
-        
-        path = resolvePath(`?${searchParams.toString()}`, GitManager.GITHUB_API_COMMIT_ENDPOINT);
-        const url = resolvePath(path, root, GitManager.GITHUB_API_ORIGIN).replace("/?", "?");
-
-        return fetchAndCache(url, this.cache, forceFetch, {
-            headers: {
-                "Accept": "application/vnd.github+json",
-                "Authorization": `Bearer ${GitManager.GITHUB_FG_TOKEN}`,
-                
-                "X-Github-Api-Version": "2022-11-28"
-            }
+            body: JSON.stringify({ path, root, since })
         }).then((res) => res.json());
     }
 
