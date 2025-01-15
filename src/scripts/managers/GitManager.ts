@@ -31,7 +31,7 @@ export class GitManager {
     }
 
     get latestTermsDate(): string {
-        return this.parseUnix(this.latestTermsUnix);
+        return this.latestTermsUnix ? this.parseUnix(this.latestTermsUnix) : "";
     }
 
     async loadNews(): Promise<boolean> {
@@ -106,7 +106,6 @@ export class GitManager {
 
     private async fetchFromContent<R extends boolean>(path: string, root: string, isDir: R): Promise<typeof isDir extends true ? FolderData[] : FileData> {
         const url = resolvePath("", GitManager.PROXY_CONTENT_ROUTE, GitManager.PROXY_SERVER_URL);
-        console.log(path, root, url);
         return fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/json" },

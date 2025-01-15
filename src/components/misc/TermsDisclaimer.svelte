@@ -25,16 +25,11 @@
 
         isOnPhone = $bindable(),
 
-        onclick: click = () => {}
+        onclick = () => {}
     }: Props = $props();
 
     let container: HTMLDivElement;
     onMount(() => hasAcknowledgedTerms && container.classList.replace("grid", "hidden"));
-
-    function onclick() {
-        hasAcknowledgedTerms = true;
-        click();
-    }
 </script>
 
 <div bind:this={container} class="grid fixed top-0 left-0 z-100 place-items-center p-0 sm:p-8 w-full h-full bg-[#00000060] {hasAcknowledgedTerms ? "opacity-0" : "opacity-100"} not-motion-reduce:transition-opacity not-motion-reduce:duration-600" role="dialog" ontransitionend={({ target }) => target === container && container.classList.replace("grid", "hidden")}>

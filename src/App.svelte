@@ -316,6 +316,13 @@
         fitScene = true;
         scene.resetCamera();
     }
+
+    function acknowledgeTerms() {
+        if (!gitManager.latestTermsDate) return;
+
+        hasAcknowledgedTerms = true;
+        gitManager.updateTermsLocalStorage();
+    }
 </script>
 
 <div class="aspect-square grid lg:order-1 place-items-center px-4 w-full lg:w-[calc(100dvw_-40rem)] h-[calc(100dvh_-_74px)] lg:h-dvh">
@@ -379,7 +386,7 @@
     {/if}
 </div>
 
-<TermsDisclaimer bind:hasAcknowledgedTerms bind:termsChangesSummary bind:latestTermsDate bind:isOnPhone onclick={() => gitManager.updateTermsLocalStorage()} />
+<TermsDisclaimer bind:hasAcknowledgedTerms bind:termsChangesSummary bind:latestTermsDate bind:isOnPhone onclick={acknowledgeTerms} />
 
 <style>
     :global(.no-scrollbar) { scrollbar-width: none; }
