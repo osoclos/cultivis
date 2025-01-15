@@ -9,7 +9,7 @@
     "scripts": {
         "dev": "vite --open -c vite.config.ts",
         "dev-host": "vite --host --open -c vite.config.ts",
-        "build": "vite build",
+        "build": "vite build --mode production",
         "preview": "vite preview --host --open -c vite.config.ts",
         "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json",
         "extract": "python extraction/assets.py && python extraction/worshipper-data.py && python extraction/clothing-data.py",
