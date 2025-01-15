@@ -201,8 +201,11 @@ export class Actor implements ActorObject {
         for (const skin of this.skinEntries.values()) combinedSkin.addSkin(skin);
         
         this.skeleton.setSkin(combinedSkin);
-
         this.skeleton.setToSetupPose();
+
+        this.animationState.apply(this.skeleton);
+        this.animationState.update(0);
+
         this.skeleton.updateWorldTransform();
     }
 
@@ -219,8 +222,12 @@ export class Actor implements ActorObject {
         const track = this.animationState.tracks[0];
         if (!track || !track.animationEnd) {
             this.reset();
-            this.skeleton.getBounds(this.#offset, this.#size);
 
+            const { x, y } = this.pos;
+            this.skeleton.x = x;
+            this.skeleton.y = y;
+
+            this.skeleton.getBounds(this.#offset, this.#size);
             return;
         }
 

@@ -8,7 +8,7 @@
     import { isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj } from "../../scripts/characters";
 
     import { bishopData, followerData, towwData, playerData } from "../../data";
-    import { FOLLOWER_CATEGORIES, followerIdsByCategory } from "../../data/types";
+    import { BISHOP_IDS, FOLLOWER_CATEGORIES, followerIdsByCategory, PLAYER_CREATURE_IDS } from "../../data/types";
 
     interface Props {
         actor: ActorObject;
@@ -52,6 +52,9 @@
         switch (true) {
             case isFollowerObj(actor): return "/static/assets/followers.png";
             case isPlayerObj(actor): return "/static/assets/player.png";
+
+            case isBishopObj(actor):
+            case isTOWW_Obj(actor): return "/static/assets/crowns.png";
             
             default: return "/static/ui/cancel.png";
         }
@@ -60,7 +63,10 @@
     function getX(): number {
         switch (true) {
             case isFollowerObj(actor): return followerIdsByCategory[FOLLOWER_CATEGORIES[getY()]].indexOf(actor.form);
-            case isPlayerObj(actor): return Object.keys(playerData.creature).indexOf(actor.creature);
+            case isPlayerObj(actor): return PLAYER_CREATURE_IDS.indexOf(actor.creature);
+
+            case isBishopObj(actor): return BISHOP_IDS.indexOf(actor.bishop);
+            case isTOWW_Obj(actor): return BISHOP_IDS.length;
 
             default: return 0;
         }
@@ -71,6 +77,10 @@
             case isFollowerObj(actor): return followerData.forms[actor.form].category;
 
             case isPlayerObj(actor):
+
+            case isBishopObj(actor):
+            case isTOWW_Obj(actor):
+            
             default: return 0;
         }
     }

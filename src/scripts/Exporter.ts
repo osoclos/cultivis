@@ -8,15 +8,19 @@ export class Exporter {
     static readonly ASSETS_ROOT: string = "assets";
 
     private constructor(public canvas: HTMLCanvasElement | OffscreenCanvas, public gl: WebGLRenderingContext, public scene: Scene, public factory: Factory, private gifManager: GIFManager) {}
-    static async create(canvas: HTMLCanvasElement | OffscreenCanvas = new OffscreenCanvas(300, 150), exporterFactory?: Factory) {
-        const gl = canvas.getContext("webgl") as WebGLRenderingContext;
-        if (!gl) throw new Error("Unable to retrieve context from canvas");
+    static async create(scene?: Scene, initFactory?: Factory) {
+        if (!scene) {
+            const canvas = new OffscreenCanvas(300, 150);
 
-        const scene = new Scene(gl);
+            const gl = canvas.getContext("webgl") as WebGLRenderingContext;
+            if (!gl) throw new Error("Unable to retrieve context from canvas");
 
-        const factory = exporterFactory ?? await Factory.create(gl, this.ASSETS_ROOT);
-        !exporterFactory && await factory.load(Follower, Player);
+            scene = new Scene(gl);
+        }
 
+        const { canvas, gl } = scene;
+
+        const factory = initFactory ?? await Factory.create(gl, this.ASSETS_ROOT);
         const gifManager = new GIFManager();
 
         return new Exporter(canvas, gl, scene, factory, gifManager);

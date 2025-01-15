@@ -21,8 +21,8 @@
     import { Color, Random } from "../../../utils";
 
     interface Props {
-        follower: Follower,
-        obj: FollowerObject,
+        follower: Follower;
+        obj: FollowerObject;
 
         menu?: FollowerMenuName;
 

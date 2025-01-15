@@ -21,8 +21,8 @@
     import { Random } from "../../../utils";
     
     interface Props {
-        player: Player,
-        obj: PlayerObject,
+        player: Player;
+        obj: PlayerObject;
 
         menu?: PlayerMenuName;
 

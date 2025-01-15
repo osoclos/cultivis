@@ -36,7 +36,7 @@
                 <LabelTitle {title} />
                 <div class="flex flex-row gap-6 items-center">
                     {#each creditData as { label, href }, x (x)}
-                        <ImageLink {label} {href} src="/static/ui/special-thanks.png" {x} {y} />
+                        <ImageLink {label} {href} src="/static/assets/special-thanks.png" {x} {y} />
                     {/each}
                 </div>
             </div>

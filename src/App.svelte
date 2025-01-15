@@ -4,14 +4,14 @@
     import { BannerButton, Header, Label, NavTip, ProgressRing } from "./components/base";
     import { SceneCanvas, Categories, TermsDisclaimer } from "./components/misc";
     
-    import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName } from "./components/characters";
+    import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, TOWW_MENU_NAME, TOWW_Menus } from "./components/characters";
     import { Size, Timing } from "./components/exporting";
 
     import { News } from "./components/news";
     import { CreationDetails, SpecialThanks } from "./components/credits";
 
     import { Actor, Exporter, Factory, Scene, type ActorObject } from "./scripts";
-    import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop } from "./scripts/characters";
+    import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj } from "./scripts/characters";
     import { GitManager } from "./scripts/managers";
 
     import { bishopData } from "./data";
@@ -121,8 +121,7 @@
 
         factory = initFactory;
 
-        // uncomment this when finished with debugging with bishops: await factory.load(Follower, Player);
-        await factory.load(Follower, Player, TOWW);
+        await factory.load(Follower, Player);
         
         const deer = factory.follower("Deer", "Default_Clothing");
         deer.label = "Deer";
@@ -137,11 +136,7 @@
 
         player.pos.setX(180);
 
-        const toww = factory.toww("Mega_Boss");
-        toww.label = "The One Who Waits";
-        toww.eyeState = 0;
-
-        scene.addActors(toww, deer, player);
+        scene.addActors(deer, player);
         actors = scene.actors.map((actor) => actor.toObj());
         
         scene.resetCamera();
@@ -195,19 +190,13 @@
                         toww.hasCrown = true;
                         toww.hasChains = false;
 
-                        toww.setAnimation("idle-standing");
+                        toww.setAnimation("idle-standing-nochain");
                         break;
                     }
 
-                    case "Boss": {
-                        toww.hasCrown = true;
-                        toww.setAnimation("animation");
-
-                        break;
-                    }
-
+                    case "Boss":
                     case "Mega_Boss": {
-                        toww.eyeState = 0;
+                        form === "Boss" ? toww.hasCrown = true : toww.eyeState = 0;
                         toww.setAnimation("animation");
 
                         break;
@@ -260,6 +249,11 @@
 
         Vector.round(actor.pos, 2).cloneObj(actorObj.pos);
         Vector.round(actor.scale, 2).cloneObj(actorObj.scale);
+    }
+
+    function swapActor(newActor: Actor) {
+        scene.replaceActor(actor!, newActor);
+        actor = newActor;
     }
 
     function selectMenu(menu: string) {
@@ -334,18 +328,22 @@
         {#if categoryIdx === 0}
             <CharacterList bind:actors bind:loadingActor enableKeyInput={hasAcknowledgedTerms && actorIdx < 0} onadd={addActor} onactorclick={selectActor} />
 
-            <div class={["lg:absolute lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
+            <div class={["lg:absolute z-100 lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                 {#if actor && actorObj}
-                    <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {factory} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} />
+                    <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {factory} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} onchange={swapActor} />
                 {/if}
             </div>
 
-            <div class={["lg:absolute lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", !showActorMenu ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
+            <div class={["lg:absolute z-100 lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", !showActorMenu ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
                 {#if actor && actorObj && actorMenu}
                     {#if isFollowerObj(actorObj) && isStrFollowerMenuName(actorMenu)}
                         <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={actorMenu} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                     {:else if isPlayerObj(actorObj) && isStrPlayerMenuName(actorMenu)}
                         <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={actorMenu} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                    {:else if isBishopObj(actorObj) && actorMenu === BISHOP_MENU_NAME}
+                        <BishopMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
+                    {:else if isTOWW_Obj(actorObj) && actorMenu === TOWW_MENU_NAME}
+                        <TOWW_Menus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
                     {/if}
                 {/if}
             </div>
@@ -373,7 +371,7 @@
     </div>
 </div>
 
-<div class="not-lg:hidden flex fixed bottom-0 left-0 flex-row gap-8 p-6 pt-4 w-160 bg-black">
+<div class="not-lg:hidden flex fixed bottom-0 left-0 z-100 flex-row gap-8 p-6 pt-4 w-160 bg-black">
     <NavTip key="E" code="KeyE" label="Accept" />
     
     {#if categoryIdx === 0 && actorIdx >= 0}

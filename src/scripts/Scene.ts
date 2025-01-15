@@ -134,6 +134,13 @@ export class Scene implements SceneObject {
         actors.forEach((actor) => this.#actors.delete(actor));
     }
 
+    replaceActor(actor: Actor, newActor: Actor) {
+        const newActors = this.actors;
+        newActors.splice(newActors.indexOf(actor), 1, newActor);
+
+        this.#actors = new Set(newActors);
+    }
+
     findActor(id: string) {
         return this.actors.find(({ id: key }) => key === id);
     }

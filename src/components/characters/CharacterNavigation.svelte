@@ -1,6 +1,6 @@
 <script lang="ts" module>
     import { FOLLOWER_IDS, type FollowerId, PLAYER_CREATURE_IDS, PLAYER_FLEECE_IDS, type PlayerCreatureId, type PlayerFleeceId } from "../../data/types";
-    import { followerData } from "../../data";
+    import { bishopData, followerData } from "../../data";
 
     const FOLLOWER_STARTING_NAMES: string[] = ["Ja", "Jul", "Na", "No", "Gre", "Bre", "Tre", "Mer", "Ty", "Ar", "An", "Yar", "Fe", "Fi", "The", "Thor", "Al", "Ha", "He", "Joo", "Ma", "Me", "Pa", "Pu"];
     const FOLLOWER_MIDDLE_NAMES: string[] = ["na"].concat(...FOLLOWER_STARTING_NAMES.slice(1, 11).map((name) => name.toLowerCase()));
@@ -91,19 +91,23 @@
         enableKeyInput?: boolean;
 
         onupdate?: VoidFunction;
+        onchange?: (actor: Actor) => void;
 
         onproceed?: (menu: string) => void;
         onexit?: (removeFollower: boolean) => void;
     }
 
-    const {
+    let {
         actor,
         obj,
+
+        factory,
 
         class: className,
         enableKeyInput = false,
 
         onupdate: update = () => {},
+        onchange: change = () => {},
 
         onproceed: proceed = () => {},
         onexit: exit = () => {}
@@ -151,6 +155,43 @@
         }
 
         update();
+    }
+
+    async function updateBishopIsBoss(isBoss: boolean) {
+        if (!isBishopObj(obj) || !isBishopObj(actor)) return;
+        const { bishop: id, label } = obj;
+
+        if (!factory.hasLoadedBishop(id, isBoss)) await factory.loadBishop(id, isBoss);
+        const bishop = factory.bishop(id, isBoss);
+
+        obj.isBoss = isBoss;
+
+        bishop.copyFromObj(obj);
+        bishop.label = label;
+
+        const animation: string =
+            id === "Jelly"
+                ? isBoss
+                    ? "animation"
+                    : "leader/idle" : 
+            id === "Spider" && isBoss
+                ? "idle-boss"
+                : "idle";
+
+        obj.animation = animation;
+        bishop.setAnimation(animation);
+
+        change(bishop);
+    }
+
+    function updateTOWW_HasChains(hasChains: boolean) {
+        if (!isTOWW_Obj(obj) || !isTOWW_Obj(actor)) return;
+        actor.hasChains = hasChains;
+
+        const animation: string = hasChains ? "idle-standing" : "idle-standing-nochain";
+
+        obj.animation = animation;
+        actor.setAnimation(animation);
     }
 
     function updateName(name: string) {
@@ -233,9 +274,11 @@
                             <LabelTitle title="Attributes" />
                         
                             <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
-                                <Label label="Is in Boss Form">
-                                    <Toggle label="Is in Boss Form" bind:enabled={obj.isBoss} oninput={() => /* TODO: add replace actor code here */{}} />
-                                </Label>
+                                {#if "bossSrc" in bishopData[obj.bishop]}
+                                    <Label label="Is in Boss Form">
+                                        <Toggle label="Is in Boss Form" bind:enabled={obj.isBoss} oninput={updateBishopIsBoss} />
+                                    </Label>
+                                {/if}
 
                                 <Label label="Is Purged">
                                     <Toggle label="Is Purged" bind:enabled={obj.isPurged} oninput={(isPurged) => actor.isPurged = isPurged} />
@@ -260,7 +303,7 @@
                                     </Label>
 
                                     <Label label="Has Chains">
-                                        <Toggle label="Has Chains" bind:enabled={obj.hasChains!} oninput={(hasChains) => actor.hasChains = hasChains} />
+                                        <Toggle label="Has Chains" bind:enabled={obj.hasChains!} oninput={updateTOWW_HasChains} />
                                     </Label>
                                 {:else if obj.form === "Boss"}
                                     <Label label="Has Crown">
