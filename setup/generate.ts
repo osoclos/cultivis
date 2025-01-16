@@ -21,7 +21,7 @@ const MAX_TILE_HEIGHT: number = 64;
 const app = express();
 const data = multer();
 
-app.get("/spine-webgl.min.js", (_, res) => res.sendFile(path.join(__dirname, "../public/lib/spine-ts/build/spine-webgl.min.js")));
+app.get("/spine-webgl.js", (_, res) => res.sendFile(path.join(__dirname, "../lib/spine-ts/build/spine-webgl.js")));
 app.use("/assets", express.static(path.join(__dirname, "../public/assets")));
 
 app.post("/followers", data.array("files"), (req) => {
