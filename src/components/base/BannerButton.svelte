@@ -66,8 +66,6 @@
     }
 
     function onclick() {
-        // if (disabled) return;
-
         // if people complain that they need to double click on mobile, tell them its a feature ;)
         (href
             ? link
@@ -81,7 +79,7 @@
 </script>
 
 <button bind:this={button} class={twMerge("group aspect-[410_/_100] relative w-[205px] h-12.5 text-xl tracking-wide text-inactive disabled:text-disabled text-nowrap outline-none", editable ? "focus-within:text-active" : "focus:text-active", className)} {disabled} aria-label={label} {onclick} onpointerenter={() => document.hasFocus() && button.focus()} onfocus={() => Vector.One.cloneObj(scale)} onblur={resetScale}>
-    <img src="/static/ui/banner.png" alt="" class="opacity-0 {editable ? "group-focus-within:opacity-100" : "group-focus:opacity-100"} transition-transform duration-75 ease-linear" style:transform={Vector.objToStr(scale, "scale({x}, {y})")} width="205" height="auto" draggable="false" role="presentation" aria-hidden="true" />
+    <img src="/static/ui/banner.png" alt="" class="opacity-0 {editable ? "group-focus-within:opacity-100" : "group-focus:opacity-100"} transition-transform duration-75 ease-linear" style:transform={Vector.objToStr(scale, "scale({x}, {y})")} width="205" height="50" draggable="false" role="presentation" aria-hidden="true" />
     
     <div class={["absolute top-1/2 left-1/2 text-center -translate-1/2", { "flex flex-row gap-2 justify-center items-center text-sm": src }]}>
         {#if editable}
@@ -93,7 +91,7 @@
         {/if}
 
         {#if src}
-            <img {src} alt="" width="24" height="auto" draggable="false" role="presentation" aria-hidden="true" />
+            <img {src} alt="" width="24" height="24" draggable="false" role="presentation" aria-hidden="true" />
         {/if}
     </div>
 </button>

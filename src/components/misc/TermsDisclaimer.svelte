@@ -32,7 +32,7 @@
     onMount(() => hasAcknowledgedTerms && container.classList.replace("grid", "hidden"));
 </script>
 
-<div bind:this={container} class="grid fixed top-0 left-0 z-100 place-items-center p-0 sm:p-8 w-full h-full bg-[#00000060] {hasAcknowledgedTerms ? "opacity-0" : "opacity-100"} not-motion-reduce:transition-opacity not-motion-reduce:duration-600" role="dialog" ontransitionend={({ target }) => target === container && container.classList.replace("grid", "hidden")}>
+<div bind:this={container} class="grid fixed top-0 left-0 z-100 place-items-center p-0 sm:p-8 w-full h-full bg-[#00000060] {hasAcknowledgedTerms ? "opacity-0" : "opacity-100"} not-motion-reduce:transition-opacity not-motion-reduce:duration-600" role="dialog" aria-label="Terms of Service Disclaimer" ontransitionend={({ target }) => target === container && container.classList.replace("grid", "hidden")}>
     <div class="flex flex-col gap-4 sm:gap-3 items-center pt-6 pb-4 px-4 mx-4 max-w-160 bg-secondary rounded-lg">
         <div class="flex flex-col gap-2">
             <Header title="DISCLAIMER" />
