@@ -2,7 +2,7 @@ import { resolvePath } from "../../utils";
 const MONTH_NAMES: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export class GitManager {
-    static readonly PROXY_SERVER_URL: string = import.meta.env.PROD ? "https://cultivis-server.onrender.com/" : "http://localhost:3000/";
+    static readonly PROXY_SERVER_URL: string = import.meta.env.PROD ? "https://cultivis.onrender.com/" : "http://localhost:3000/";
     static readonly PROXY_CONTENT_ROUTE: string = "content";
     static readonly PROXY_COMMIT_ROUTE: string = "commit";
 

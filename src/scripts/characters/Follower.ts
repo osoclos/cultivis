@@ -11,7 +11,7 @@ export class Follower extends Actor implements FollowerObject {
     static readonly ATLAS_FILENAME: string = "Follower.atlas";
     static readonly SKELETON_FILENAME: string = "Follower.skel";
 
-    static readonly DEER_BODY_EXTRA_SLOT_INDEX: number = 46;
+    static readonly BODY_EXTRA_SLOT_NAME: string = "BODY_EXTRA";
 
     private _form: FollowerId;
     #clothing: ClothingId;
@@ -167,7 +167,7 @@ export class Follower extends Actor implements FollowerObject {
 
     resetSkin() {
         super.resetSkin();
-        if (this.form === "Deer") this.skeleton.slots[Follower.DEER_BODY_EXTRA_SLOT_INDEX].attachment = null as unknown as spine.Attachment;
+        if (this.form === "Deer") this.skeleton.slots[this.skeleton.findSlotIndex(Follower.BODY_EXTRA_SLOT_NAME)].attachment = null as unknown as spine.Attachment;
     }
 
     copyFromObj(obj: FollowerObject) {

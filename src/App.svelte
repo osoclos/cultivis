@@ -95,6 +95,9 @@
     onMount(async () => {
         exporter = await Exporter.create();
         gitManager = new GitManager();
+
+        window.addEventListener("keydown", onKeyDown);
+        resizer.observe(document.documentElement);
         
         termsChangesSummary = await gitManager.getTermsSummary();
         hasAcknowledgedTerms = !termsChangesSummary;
@@ -103,9 +106,6 @@
 
         ({ latestTermsDate } = gitManager);
         lastUpdatedDate = await gitManager.getLastUpdatedDate();
-
-        window.addEventListener("keydown", onKeyDown);
-        resizer.observe(document.documentElement);
     });
 
     onDestroy(() => {
