@@ -15,7 +15,7 @@
     import { GitManager } from "./scripts/managers";
 
     import { bishopData } from "./data";
-    import { BISHOP_IDS, TOWW_IDS } from "./data/types";
+    import { BISHOP_IDS } from "./data/types";
 
     import { MoreMath, Random, Vector } from "./utils";
 
@@ -60,7 +60,7 @@
     let exportPercent: number = $state(-1);
 
     // svelte-ignore state_referenced_locally
-    matchMedia("(max-width: 768px)").matches && Vector.fromObj(size).swap().cloneObj(size);
+    matchMedia("(max-width: 64rem)").matches && Vector.fromObj(size).swap().cloneObj(size);
 
     function onKeyDown(evt: KeyboardEvent) {
         const { code } = evt;
@@ -88,16 +88,16 @@
     }
 
     const resizer = new ResizeObserver(() => {
-        isOnPhone = matchMedia("(max-width: 600px)").matches;
-        isMobile = matchMedia("(max-width: 768px)").matches;
+        isOnPhone = matchMedia("(max-width: 40rem)").matches;
+        isMobile = matchMedia("(max-width: 64rem)").matches;
     });
 
     onMount(async () => {
-        exporter = await Exporter.create();
-        gitManager = new GitManager();
-
         window.addEventListener("keydown", onKeyDown);
         resizer.observe(document.documentElement);
+
+        exporter = await Exporter.create();
+        gitManager = new GitManager();
         
         termsChangesSummary = await gitManager.getTermsSummary();
         hasAcknowledgedTerms = !termsChangesSummary;
@@ -120,7 +120,6 @@
         scene.size.copyObj(size);
 
         factory = initFactory;
-
         await factory.load(Follower, Player);
         
         const deer = factory.follower("Deer", "Default_Clothing");
@@ -181,40 +180,19 @@
             }
 
             case TOWW: {
-                const form = Random.item(TOWW_IDS);
-                !factory.hasLoadedTOWW(form) && await factory.loadTOWW(form);
+                !factory.hasLoadedTOWW("Bishop") && await factory.loadTOWW("Bishop");
 
-                const toww = factory.toww(form, Random.id(), "The One Who Waits");
-                switch (form) {
-                    case "Bishop": {
-                        toww.hasCrown = true;
-                        toww.hasChains = false;
+                const toww = factory.toww("Bishop", Random.id(), "The One Who Waits");
+                toww.hasCrown = true;
+                toww.hasChains = false;
 
-                        toww.setAnimation("idle-standing-nochain");
-                        break;
-                    }
-
-                    case "Boss":
-                    case "Mega_Boss": {
-                        form === "Boss" ? toww.hasCrown = true : toww.eyeState = 0;
-                        toww.setAnimation("animation");
-
-                        break;
-                    }
-
-                    case "Eyeball": {
-                        toww.isInjured = false;
-                        toww.setAnimation("idle");
-
-                        break;
-                    }
-                }
+                toww.setAnimation("idle-standing-nochain");
 
                 addedActor = toww;
                 break;
             }
 
-            default: return
+            default: return;
         }
         
         scene.addActors(addedActor);
@@ -224,9 +202,9 @@
         loadingActor = null;
     }
 
-    function removeActor() {
-        scene.removeActors(actor!);
-        actors?.splice(actorIdx, 1);
+    function removeActor(actor: Actor, i: number) {
+        scene.removeActors(actor);
+        actors?.splice(i, 1);
 
         unselectActor();
         updateSceneFromChanges();
@@ -333,11 +311,11 @@
     <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:selectedIdx={categoryIdx} bind:hasNewNews enableKeyInput={hasAcknowledgedTerms && (actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
     <div class="no-scrollbar lg:overflow-y-auto flex flex-col {categoryIdx === 1 ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
         {#if categoryIdx === 0}
-            <CharacterList bind:actors bind:loadingActor enableKeyInput={hasAcknowledgedTerms && actorIdx < 0} onadd={addActor} onactorclick={selectActor} />
+            <CharacterList bind:actors bind:loadingActor enableKeyInput={hasAcknowledgedTerms && actorIdx < 0} onadd={addActor} onremove={(indexes) => [...indexes].sort((a, b) => b - a).forEach((i) => removeActor(scene.actors[i], i))} onactorclick={selectActor} />
 
             <div class={["lg:absolute z-100 lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                 {#if actor && actorObj}
-                    <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {factory} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectMenu} onexit={(doRemoval) => doRemoval ? removeActor() : unselectActor()} onchange={swapActor} />
+                    <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {factory} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectMenu} onexit={(doRemoval) => doRemoval ? removeActor(actor!, actorIdx) : unselectActor()} onchange={swapActor} />
                 {/if}
             </div>
 

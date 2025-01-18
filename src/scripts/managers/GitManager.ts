@@ -2,7 +2,9 @@ import { resolvePath } from "../../utils";
 const MONTH_NAMES: string[] = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export class GitManager {
-    static readonly PROXY_SERVER_URL: string = import.meta.env.PROD ? "https://cultivis.onrender.com/" : "http://localhost:3000/";
+    static readonly USE_LOCAL_PROXY_PARAM_NAME: string = "use-local-proxy";
+
+    static readonly PROXY_SERVER_URL: string = import.meta.env.PROD || !new URLSearchParams(window.location.search).has(this.USE_LOCAL_PROXY_PARAM_NAME) ? "https://cultivis.onrender.com/" : "http://localhost:3000/";
     static readonly PROXY_CONTENT_ROUTE: string = "content";
     static readonly PROXY_COMMIT_ROUTE: string = "commit";
 
@@ -105,7 +107,7 @@ export class GitManager {
     }
 
     private async fetchFromContent<R extends boolean>(path: string, root: string, isDir: R): Promise<typeof isDir extends true ? FolderData[] : FileData> {
-        const url = resolvePath("", GitManager.PROXY_CONTENT_ROUTE, GitManager.PROXY_SERVER_URL);
+        const url = resolvePath("/", GitManager.PROXY_CONTENT_ROUTE, GitManager.PROXY_SERVER_URL);
         return fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -115,7 +117,7 @@ export class GitManager {
     }
 
     private async fetchFromCommit(path: string, root: string, since?: number): Promise<CommitData[]> {
-        const url = resolvePath("", GitManager.PROXY_COMMIT_ROUTE, GitManager.PROXY_SERVER_URL);
+        const url = resolvePath("/", GitManager.PROXY_COMMIT_ROUTE, GitManager.PROXY_SERVER_URL);
         return fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/json" },

@@ -64,9 +64,9 @@ export class Factory {
     }
 
     async load(...actors: (typeof Actor)[]) {
-        for (const { name } of actors) {
-            switch (name) {
-                case Follower.name: {
+        for (const actor of actors) {
+            switch (actor) {
+                case Follower: {
                     if (this.hasLoadedFollower) break;
                     
                     const [skeleton, animationState] = await this.fetchData([Follower.TEXTURE_FILENAME], Follower.ATLAS_FILENAME, Follower.SKELETON_FILENAME);
@@ -75,7 +75,7 @@ export class Factory {
                     break;
                 }
 
-                case Player.name: {
+                case Player: {
                     if (this.hasLoadedPlayer) break;
 
                     const [skeleton, animationState] = await this.fetchData([Player.TEXTURE_FILENAME], Player.ATLAS_FILENAME, Player.SKELETON_FILENAME);
@@ -84,12 +84,12 @@ export class Factory {
                     break;
                 }
 
-                case Bishop.name: {
+                case Bishop: {
                     await Promise.all(BISHOP_IDS.map((id) => Array(2).fill(null).filter((_, i) => !this.hasLoadedBishop(id, !!i)).map((_, i) => this.loadBishop(id, !!i))));
                     break;
                 }
 
-                case TOWW.name: {
+                case TOWW: {
                     await Promise.all(TOWW_IDS.filter((id) => !this.hasLoadedTOWW(id)).map(this.loadTOWW.bind(this)));
                     break;
                 }

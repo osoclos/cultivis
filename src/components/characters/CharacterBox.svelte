@@ -2,6 +2,7 @@
     import type { Action } from "svelte/action";
     import { twMerge } from "tailwind-merge";
 
+    import { Tickbox } from "../base";
     import { SpritesheetImage } from "../utils";
 
     import type { ActorObject } from "../../scripts";
@@ -13,17 +14,30 @@
     interface Props {
         actor: ActorObject;
 
+        hasTickbox?: boolean;
+        ticked?: boolean;
+
+        isOnPhone?: boolean;
+
         class?: string;
         onclick?: VoidFunction;
+
+        oninput?: (ticked: boolean) => void;
     }
 
-    const {
+    let {
         actor = $bindable(),
 
+        hasTickbox = $bindable(false),
+        ticked = $bindable(false),
+
         class: className,
-        onclick = () => {}
+        onclick: click = () => {},
+
+        oninput: input = () => {}
     }: Props = $props();
 
+    let button: HTMLButtonElement;
     const { label } = $derived(actor);
     
     function getType(): string {
@@ -58,7 +72,7 @@
             
             default: return "/static/ui/cancel.png";
         }
-    }isTOWW_Obj
+    }
 
     function getX(): number {
         switch (true) {
@@ -85,6 +99,18 @@
         }
     }
 
+    function onclick() {
+        if (!hasTickbox) {
+            click();
+            return;
+        }
+
+        button.focus();
+
+        ticked = !ticked;
+        input(ticked);
+    }
+
     const focusEvent: Action<HTMLButtonElement> = (button) => {
         function focus() {
             button.focus();
@@ -102,13 +128,24 @@
     };
 </script>
 
-<button use:focusEvent class={twMerge("flex flex-row justify-between items-center px-6 py-4 w-90 bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", className)} aria-label={label} {onclick}>
+<button bind:this={button} use:focusEvent class={twMerge("flex flex-row justify-between items-center py-4 w-90 bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", hasTickbox ? "px-4 sm:w-100" : "px-6", className)} aria-label={label} {onclick}>
     <div class="w-20 h-20">
         <SpritesheetImage {label} src={getSrc()} x={getX()} y={getY()} width={80} height={80} tileWidth={getSrc() === "/static/ui/cancel.png" ? 100 : 64} tileHeight={getSrc() === "/static/ui/cancel.png" ? 100 : 64} />
     </div>
     
-    <div class="flex flex-col gap-2 text-center text-active text-nowrap">
-        <p class="text-xl">{label}</p>
-        <p class="font-subtitle text-sm italic">Type: {getType()}{getInfo() ? ` | ${getInfo()}` : ""}</p>
+    <div class="flex flex-col {hasTickbox ? "gap-1 sm:gap-2" : "gap-2"} text-center text-active text-nowrap">
+        <p class="{hasTickbox ? "text-lg sm:text-xl" : "text-xl"}">{label}</p>
+        <p class="font-subtitle {hasTickbox ? "text-xs sm:text-sm" : "text-sm"} italic">Type: {getType()}{getInfo() ? ` | ${getInfo()}` : ""}</p>
     </div>
+
+    {#if hasTickbox}
+        <div class="flex flex-row gap-1.5">
+            <div class="flex flex-col gap-2 justify-between items-center h-10">
+                <img src="/static/ui/swirl.png" alt="" class="aspect-[116_/_56] w-6 h-3 rotate-90" width="29" height="14" draggable="false" role="presentation" aria-hidden="true" />
+                <img src="/static/ui/swirl.png" alt="" class="aspect-[116_/_56] w-6 h-3 -rotate-90 -scale-y-100" width="29" height="14" draggable="false" role="presentation" aria-hidden="true" />
+            </div>
+
+            <Tickbox bind:ticked toggleable label="Select Actor?" {onclick} />
+        </div>
+    {/if}
 </button>

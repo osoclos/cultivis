@@ -1,6 +1,7 @@
 import Tab from "./Tab.svelte";
 import Toggle from "./Toggle.svelte";
 import Slider from "./Slider.svelte";
+import Tickbox from "./Tickbox.svelte";
 
 import BannerButton from "./BannerButton.svelte";
 import NumberInput from "./NumberInput.svelte";
@@ -18,4 +19,4 @@ import DividerTitle from "./DividerTitle.svelte";
 import NavTip from "./NavTip.svelte";
 import ProgressRing from "./ProgressRing.svelte";
 
-export { Slider, Tab, Toggle, BannerButton, NumberInput, Dropdown, Label, LabelTitle, Notice, NoticeIcon, Header, DividerTitle, NavTip, ProgressRing };
+export { Slider, Tab, Toggle, Tickbox, BannerButton, NumberInput, Dropdown, Label, LabelTitle, Notice, NoticeIcon, Header, DividerTitle, NavTip, ProgressRing };

@@ -275,18 +275,18 @@
                         
                             <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
                                 {#if "bossSrc" in bishopData[obj.bishop]}
-                                    <Label label="Is in Boss Form">
-                                        <Toggle label="Is in Boss Form" bind:enabled={obj.isBoss} oninput={updateBishopIsBoss} />
+                                    <Label label="Is in Boss Form?">
+                                        <Toggle label="Is in Boss Form?" bind:enabled={obj.isBoss} oninput={updateBishopIsBoss} />
                                     </Label>
                                 {/if}
 
-                                <Label label="Is Purged">
-                                    <Toggle label="Is Purged" bind:enabled={obj.isPurged} oninput={(isPurged) => actor.isPurged = isPurged} />
+                                <Label label="Is Purged?">
+                                    <Toggle label="Is Purged?" bind:enabled={obj.isPurged} oninput={(isPurged) => actor.isPurged = isPurged} />
                                 </Label>
 
                                 {#if obj.bishop === "Spider"}
-                                    <Label label="Is Bandaged">
-                                        <Toggle label="Is Bandaged" bind:enabled={obj.isBandaged!} oninput={(isBandaged) => actor.isBandaged = isBandaged} />
+                                    <Label label="Is Bandaged?">
+                                        <Toggle label="Is Bandaged?" bind:enabled={obj.isBandaged!} oninput={(isBandaged) => actor.isBandaged = isBandaged} />
                                     </Label>
                                 {/if}
                             </div>
@@ -298,24 +298,24 @@
                         
                             <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
                                 {#if obj.form === "Bishop"}
-                                    <Label label="Has Crown">
-                                        <Toggle label="Has Crown" bind:enabled={obj.hasCrown!} oninput={(hasCrown) => actor.hasCrown = hasCrown} />
+                                    <Label label="Has Crown?">
+                                        <Toggle label="Has Crown?" bind:enabled={obj.hasCrown!} oninput={(hasCrown) => actor.hasCrown = hasCrown} />
                                     </Label>
 
-                                    <Label label="Has Chains">
-                                        <Toggle label="Has Chains" bind:enabled={obj.hasChains!} oninput={updateTOWW_HasChains} />
+                                    <Label label="Has Chains?">
+                                        <Toggle label="Has Chains?" bind:enabled={obj.hasChains!} oninput={updateTOWW_HasChains} />
                                     </Label>
                                 {:else if obj.form === "Boss"}
-                                    <Label label="Has Crown">
-                                        <Toggle label="Has Crown" bind:enabled={obj.hasCrown!} oninput={(hasCrown) => actor.hasCrown = hasCrown} />
+                                    <Label label="Has Crown?">
+                                        <Toggle label="Has Crown?" bind:enabled={obj.hasCrown!} oninput={(hasCrown) => actor.hasCrown = hasCrown} />
                                     </Label>
                                 {:else if obj.form === "Mega_Boss"}
                                     <Label label="Number of Missing Eyes">
                                         <Slider class="ml-4" label="Number of Missing Eyes" bind:value={obj.eyeState!} min={0} max={3} step={1} oninput={(eyeState) => actor.eyeState = eyeState} />
                                     </Label>
                                 {:else if obj.form === "Eyeball"}
-                                    <Label label="Is Injured">
-                                        <Toggle label="Is Injured" bind:enabled={obj.isInjured!} oninput={(isInjured) => actor.isInjured = isInjured} />
+                                    <Label label="Is Injured?">
+                                        <Toggle label="Is Injured?" bind:enabled={obj.isInjured!} oninput={(isInjured) => actor.isInjured = isInjured} />
                                     </Label>
                                 {/if}
                             </div>

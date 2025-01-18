@@ -1,59 +1,68 @@
 <script lang="ts">
-    import { CharacterBox } from ".";
+    import { CharacterBox, CharacterItem } from ".";
     import { BannerButton, Header } from "../base";
-    import { MultiList } from "../utils";
+    import { List } from "../utils";
 
     import type { Actor, ActorObject } from "../../scripts";
     import { Bishop, Follower, Player, TOWW } from "../../scripts/characters";
 
     interface Props {
         actors: ActorObject[] | null;
-        enableKeyInput?: boolean;
-
         loadingActor?: typeof Actor | null;
 
+        enableKeyInput?: boolean;
+        
         onadd?: (actor: typeof Actor) => void;
+        onremove?: (indexes: Set<number>) => void;
+
         onactorclick?: (i: number) => void;
     }
 
     let {
         actors = $bindable(null),
-        enableKeyInput = false,
-
         loadingActor = $bindable(null),
 
+        enableKeyInput = false,
+
         onadd: add = () => {},
+        onremove: remove = () => {},
+
         onactorclick: click = () => {}
     }: Props = $props();
 
-    const addButtonData: Record<string, typeof Actor> = {
-        "Add Follower": Follower,
-        "Add Player": Player,
-        
-        "Add Bishop": Bishop,
-        "Add T.O.W.W": TOWW
-    };
+    let removalIndexes: Set<number> | null = $state(null);
+    const isRemoving: boolean = $derived(removalIndexes! instanceof Set);
 
+    function onRemoveButtonClick() {
+        if (isRemoving) remove(removalIndexes!);
+        removalIndexes = isRemoving ? null : new Set();
+    }
 </script>
 
-<MultiList class="gap-8" listClass="flex flex-col gap-0 items-center" titles={["", ""]} {enableKeyInput} focusFirst={matchMedia("(max-width: 768px)").matches}>
-    {#snippet children(_, i)}
-        {#if i == 0}
-            <Header class="mb-2" title="Add Character" />
+<div class="flex flex-col gap-8">
+    <div class="flex flex-col gap-4 items-center">
+        <Header title="Add Character" />
 
-            {#each Object.entries(addButtonData) as [label, actor], i (i)}
-                <BannerButton label={actor === loadingActor ? "Adding..." : label} disabled={!!loadingActor} onclick={() => add(actor)} />
+        <List class="no-scrollbar overflow-y-auto flex-row gap-4 p-2 w-90 sm:w-100" {enableKeyInput} isHorizontal>
+            {#each [Follower, Player, Bishop, TOWW] as actor, i (i)} 
+                <CharacterItem {actor} isLoading={actor === loadingActor} onclick={() => add(actor)} />
             {/each}
-        {:else if i === 1}
-            <Header class="mb-6" title="Choose Character" />
+        </List>
 
-            {#if actors}
+        <BannerButton label={isRemoving ? "Confirm Selection" : "Remove Characters"} onclick={onRemoveButtonClick}/>
+    </div>
+
+    <div class="flex flex-col gap-6 items-center">
+        <Header title="Choose Character" />
+
+        <List class="gap-4" {enableKeyInput}>
+            {#if Array.isArray(actors)}
                 {#each actors.keys() as i (i)}
-                    <CharacterBox class="mb-4 last:mb-0" bind:actor={actors[i]} onclick={() => click(i)} />
+                    <CharacterBox bind:actor={actors[i]} hasTickbox={isRemoving} onclick={() => click(i)} oninput={(ticked) => ticked ? removalIndexes?.add(i) : removalIndexes?.delete(i)} />
                 {/each}
             {:else}
                 <p class="font-subtitle text-center text-active">Loading...</p>
             {/if}
-        {/if}
-    {/snippet}
-</MultiList>
+        </List>
+    </div>
+</div>
