@@ -1,7 +1,7 @@
 import SceneCanvas from "./SceneCanvas.svelte";
-
 import Categories from "./Categories.svelte";
-import TermsDisclaimer from "./TermsDisclaimer.svelte";
 
-export { SceneCanvas, Categories, TermsDisclaimer };
-export * from "./TermsDisclaimer.svelte";
+import LoadingThrobber from "./LoadingThrobber.svelte";
+import LoadingSymbol from "./LoadingSymbol.svelte";
+
+export { SceneCanvas, Categories, LoadingThrobber, LoadingSymbol };

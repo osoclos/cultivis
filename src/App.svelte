@@ -1,8 +1,11 @@
+
 <script lang="ts">
     import { onDestroy, onMount } from "svelte";
+    import { twMerge } from "tailwind-merge";
 
-    import { BannerButton, Header, Label, NavTip, ProgressRing } from "./components/base";
-    import { SceneCanvas, Categories, TermsDisclaimer } from "./components/misc";
+    import { BannerButton, Dialog, Header, Label, NavTip, Notice, ProgressRing } from "./components/base";
+    import { SceneCanvas, Categories, LoadingThrobber, LoadingSymbol } from "./components/misc";
+    import { List } from "./components/utils";
     
     import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, TOWW_MENU_NAME, TOWW_Menus } from "./components/characters";
     import { Size, Timing } from "./components/exporting";
@@ -17,8 +20,11 @@
     import { bishopData } from "./data";
     import { BISHOP_IDS } from "./data/types";
 
-    import { MoreMath, Random, Vector } from "./utils";
+    import { MoreMath, Random, unixToDate, Vector } from "./utils";
 
+    const LOADING_STATES = ["ToSAcknowledgement", "LoadingAssets", "SceneSetup", "FetchingNews"] as const
+    const LOADING_TEXTS = ["Checking ToS Acknowledgement", "Loading Assets", "Setting Up Scene", "Fetching News"];
+    
     let scene: Scene = $state(Scene.prototype);
     let factory: Factory = $state(Factory.prototype);
 
@@ -30,13 +36,11 @@
     let isOnPhone: boolean = $state(false);
     let isMobile: boolean = $state(false);
 
-    let hasAcknowledgedTerms: boolean = $state(!!localStorage.getItem(GitManager.TERMS_LOCAL_STORAGE_NAME));
-    let hasNewNews: boolean = $state(false);
+    let loadingState: number = $state(-1);
+    const loadingText: string = $derived(LOADING_TEXTS[MoreMath.clamp(loadingState, 0, LOADING_STATES.length - 1)]);
 
-    let termsChangesSummary: string = $state("");
-
-    let latestTermsDate: string = $state("");
-    let lastUpdatedDate: string = $state("");
+    const hasUserCompliedToTOS: boolean = $derived(loadingState > LOADING_STATES.indexOf("ToSAcknowledgement"));
+    const hasFinishedLoading: boolean = $derived(loadingState === LOADING_STATES.length);
 
     let actors: ActorObject[] | null = $state(null);
     let actorIdx: number = $state(-1);
@@ -57,7 +61,7 @@
     let duration: number = $state(5);
     let trimLongest: boolean = $state(false);
 
-    let exportPercent: number = $state(-1);
+    let exportProgress: number = $state(-1);
 
     // svelte-ignore state_referenced_locally
     matchMedia("(max-width: 64rem)").matches && Vector.fromObj(size).swap().cloneObj(size);
@@ -96,16 +100,13 @@
         window.addEventListener("keydown", onKeyDown);
         resizer.observe(document.documentElement);
 
-        exporter = await Exporter.create();
-        gitManager = new GitManager();
+        gitManager = await GitManager.create();
+
+        loadingState = LOADING_STATES.indexOf("ToSAcknowledgement");
+        const hasAcknowledgedTerms = await gitManager.areTermsAcknowledged();
         
-        termsChangesSummary = await gitManager.getTermsSummary();
-        hasAcknowledgedTerms = !termsChangesSummary;
-
-        hasNewNews = await gitManager.loadNews();
-
-        ({ latestTermsDate } = gitManager);
-        lastUpdatedDate = await gitManager.getLastUpdatedDate();
+        if (!hasAcknowledgedTerms) return;
+        await acknowledgeTerms();
     });
 
     onDestroy(() => {
@@ -115,13 +116,28 @@
         exporter?.dispose();
     });
 
-    async function init(initScene: Scene, initFactory: Factory) {
-        scene = initScene;
+    async function acknowledgeTerms() {
+        localStorage.setItem(GitManager.TERMS_LOCAL_STORAGE_NAME, `${await gitManager.getTermsUnix()}`);
+        if (scene) await init();
+    }
+
+    function onCanvasLoad(canvasScene: Scene, canvasFactory: Factory) {
+        scene = canvasScene;
         scene.size.copyObj(size);
 
-        factory = initFactory;
+        factory = canvasFactory;
+
+        if (hasUserCompliedToTOS) init();
+    }
+
+    async function init() {
+        loadingState = LOADING_STATES.indexOf("LoadingAssets");
+
         await factory.load(Follower, Player);
-        
+        exporter = await Exporter.create();
+
+        loadingState = LOADING_STATES.indexOf("SceneSetup");
+    
         const deer = factory.follower("Deer", "Default_Clothing");
         deer.label = "Deer";
         deer.setAnimation("idle");
@@ -140,6 +156,13 @@
         
         scene.resetCamera();
         scene.scale *= 1.5;
+
+        await gitManager.getLastUpdatedUnix();
+        
+        loadingState = LOADING_STATES.indexOf("FetchingNews");
+        await gitManager.getNews();
+
+        setTimeout(() => loadingState = LOADING_STATES.length, 400);
     }
 
     async function addActor(actor: typeof Actor, updateActorIdx: boolean = true) {
@@ -246,7 +269,7 @@
 
     async function exportScene() {
         const sceneObj = scene.toObj();
-        const buffer = await exporter.exportScene(sceneObj, duration, Vector.fromObj(size), (percent) => exportPercent = percent);
+        const buffer = await exporter.exportScene(sceneObj, duration, Vector.fromObj(size), (progress) => exportProgress = progress);
 
         const blob = new Blob([buffer], { type: "image/gif" });
         const url = URL.createObjectURL(blob);
@@ -256,7 +279,7 @@
         link.download = "cultivis-export.gif";
 
         link.click();
-        exportPercent = -1;
+        exportProgress = -1;
     }
 
     function updateSceneFromChanges() {
@@ -294,77 +317,95 @@
         fitScene = true;
         scene.resetCamera();
     }
-
-    function acknowledgeTerms() {
-        if (!gitManager.latestTermsDate) return;
-
-        hasAcknowledgedTerms = true;
-        gitManager.updateTermsLocalStorage();
-    }
 </script>
 
-<div class="aspect-square grid lg:order-1 place-items-center px-4 w-full lg:w-[calc(100dvw_-40rem)] h-[calc(100dvh_-_74px)] lg:h-dvh">
-    <SceneCanvas disableManipulation={fitScene} manipulationIdx={actorIdx} onshift={manipulateActor} onscroll={manipulateActor} onzoom={manipulateActor} onpinch={manipulateActor} class="inline-block max-h-[calc(100dvh_-_106px)]" style="aspect-ratio: {size.x} / {size.y}; max-width: calc((100dvh - 106px) * {size.x} / {size.y})" onload={init} />
-</div>
+<div class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-secondary {hasFinishedLoading ? "opacity-0" : "opacity-100"} not-motion-reduce:transition-opacity not-motion-reduce:duration-900 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
+    <LoadingSymbol {isMobile} />
+    <div class="flex absolute {isMobile ? "bottom-4 left-6" : "bottom-10 left-16"} flex-row gap-6 items-center">
+        <LoadingThrobber percent={((loadingState + 1) / LOADING_STATES.length) * 100} {isOnPhone} {isMobile} />
 
-<div class="lg:w-160 lg:h-dvh bg-black">
-    <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:selectedIdx={categoryIdx} bind:hasNewNews enableKeyInput={hasAcknowledgedTerms && (actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
-    <div class="no-scrollbar lg:overflow-y-auto flex flex-col {categoryIdx === 1 ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
-        {#if categoryIdx === 0}
-            <CharacterList bind:actors bind:loadingActor enableKeyInput={hasAcknowledgedTerms && actorIdx < 0} onadd={addActor} onremove={(indexes) => [...indexes].sort((a, b) => b - a).forEach((i) => removeActor(scene.actors[i], i))} onactorclick={selectActor} />
-
-            <div class={["lg:absolute z-100 lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
-                {#if actor && actorObj}
-                    <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {factory} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectMenu} onexit={(doRemoval) => doRemoval ? removeActor(actor!, actorIdx) : unselectActor()} onchange={swapActor} />
-                {/if}
-            </div>
-
-            <div class={["lg:absolute z-100 lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", !showActorMenu ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
-                {#if actor && actorObj && actorMenu}
-                    {#if isFollowerObj(actorObj) && isStrFollowerMenuName(actorMenu)}
-                        <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={actorMenu} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
-                    {:else if isPlayerObj(actorObj) && isStrPlayerMenuName(actorMenu)}
-                        <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={actorMenu} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
-                    {:else if isBishopObj(actorObj) && actorMenu === BISHOP_MENU_NAME}
-                        <BishopMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
-                    {:else if isTOWW_Obj(actorObj) && actorMenu === TOWW_MENU_NAME}
-                        <TOWW_Menus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={hasAcknowledgedTerms && actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
-                    {/if}
-                {/if}
-            </div>
-        {:else if categoryIdx === 1}
-            <Header title="Export Options" />
-
-            <div class="flex flex-col gap-12">
-                <Size bind:size bind:lockAspectRatio bind:fitScene bind:cropScene oninput={({ fitScene, cropScene }) => fitScene || cropScene ? setCroppedScene() : setSceneSize()} />
-                <Timing bind:duration bind:trimLongest oninput={({ trimLongest }) => trimLongest && (duration = MoreMath.round(Math.max(...scene.actors.map(({ duration }) => duration), 0), 2))} />
-            </div>
-            
-            <BannerButton label={exportPercent < 0 ? "Export Scene" : "Exporting..."} disabled={exportPercent >= 0} onclick={exportScene} />
-            
-            {#if exportPercent >= 0}
-                <Label class="w-80 sm:w-90" label="Export Progress">
-                    <ProgressRing percent={exportPercent} label="Export Progress" />
-                </Label>
-            {/if}
-        {:else if gitManager && categoryIdx === 2}
-            <News {gitManager} />
-        {:else if categoryIdx === 3}
-            <CreationDetails bind:lastUpdatedDate />
-            <SpecialThanks />
+        {#if loadingState >= 0}
+            <p class="text-highlight {isMobile ? "text-lg" : "text-2xl"}">{loadingText}... {MoreMath.clamp(loadingState + 1, 1, LOADING_STATES.length)}/{LOADING_STATES.length}</p>
         {/if}
     </div>
 </div>
 
-<div class="not-lg:hidden flex fixed bottom-0 left-0 z-100 flex-row gap-8 p-6 pt-4 w-160 bg-black">
+{#if gitManager}
+    {#await Promise.all([gitManager.areTermsAcknowledged(), gitManager.getTermsSummary(), gitManager.getTermsUnix()]) then [areTermsAcknowledged, changesSummary, termsUnix]}
+        <div class="{areTermsAcknowledged ? "hidden" : "grid"} fixed top-0 left-0 z-100 place-items-center w-full h-full bg-[#00000060] {hasUserCompliedToTOS ? "opacity-0" : "opacity-100"} transition-opacity duration-450 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
+            <Dialog childClass={twMerge("mt-2 sm:mt-4")} title="Disclaimer" description={localStorage.getItem(GitManager.TERMS_LOCAL_STORAGE_NAME) ? `CultiVis has updated its terms of service${termsUnix ? ` on ${unixToDate(termsUnix)}` : ""}. ${changesSummary ? `${changesSummary.slice(0, -changesSummary.endsWith("."))}. ` : ""}You may view the new terms below or close this popup.` : "CultiVis requires you to agree and acknowledge the CultiVis Terms of Service. You may view the terms below or close this popup."}>
+                <Notice class="px-8 pb-4 text-xs sm:text-sm" label="Closing this popup will mean you agree with the Terms of Service." />
+                <List class="flex flex-col justify-center items-center" enableKeyInput focusFirst>
+                    <BannerButton label="View Terms" href="https://github.com/osoclos/cultivis/blob/main/ToS.md" />
+                    <BannerButton label="Close and Accept" onclick={acknowledgeTerms} />
+                </List>
+            </Dialog>
+        </div>
+    {/await}
+{/if}
+
+{#if hasUserCompliedToTOS}
+    <div class="aspect-square {hasFinishedLoading ? "grid" : "hidden"} lg:order-1 place-items-center px-4 w-full lg:w-[calc(100dvw_-40rem)] h-[calc(100dvh_-_74px)] lg:h-dvh">
+        <SceneCanvas class="inline-block max-h-[calc(100dvh_-_106px)]" disableManipulation={fitScene} manipulationIdx={actorIdx} onshift={manipulateActor} onscroll={manipulateActor} onzoom={manipulateActor} onpinch={manipulateActor} style="aspect-ratio: {size.x} / {size.y}; max-width: calc((100dvh - 106px) * {size.x} / {size.y})" onload={onCanvasLoad} />
+    </div>
+
+    <div class={["lg:h-dvh bg-secondary", { "hidden": !hasFinishedLoading }]}>
+        <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:selectedIdx={categoryIdx} {gitManager} enableKeyInput={(actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
+        <div class="no-scrollbar lg:overflow-y-auto flex flex-col {categoryIdx === 1 ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
+            {#if categoryIdx === 0}
+                <CharacterList bind:actors bind:loadingActor enableKeyInput={actorIdx < 0} onadd={addActor} onremove={(indexes) => [...indexes].sort((a, b) => b - a).forEach((i) => removeActor(scene.actors[i], i))} onactorclick={selectActor} />
+
+                <div class={["lg:absolute z-100 lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
+                    {#if actor && actorObj}
+                        <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectMenu} onexit={(doRemoval) => doRemoval ? removeActor(actor!, actorIdx) : unselectActor()} onchange={swapActor} />
+                    {/if}
+                </div>
+
+                <div class={["lg:absolute z-100 lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", !showActorMenu ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
+                    {#if actor && actorObj && actorMenu}
+                        {#if isFollowerObj(actorObj) && isStrFollowerMenuName(actorMenu)}
+                            <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={actorMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                        {:else if isPlayerObj(actorObj) && isStrPlayerMenuName(actorMenu)}
+                            <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={actorMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                        {:else if isBishopObj(actorObj) && actorMenu === BISHOP_MENU_NAME}
+                            <BishopMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
+                        {:else if isTOWW_Obj(actorObj) && actorMenu === TOWW_MENU_NAME}
+                            <TOWW_Menus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
+                        {/if}
+                    {/if}
+                </div>
+            {:else if categoryIdx === 1}
+                <Header title="Export Options" />
+
+                <div class="flex flex-col gap-12">
+                    <Size bind:size bind:lockAspectRatio bind:fitScene bind:cropScene oninput={({ fitScene, cropScene }) => fitScene || cropScene ? setCroppedScene() : setSceneSize()} />
+                    <Timing bind:duration bind:trimLongest oninput={({ trimLongest }) => trimLongest && (duration = MoreMath.round(Math.max(...scene.actors.map(({ duration }) => duration), 0), 2))} />
+                </div>
+                
+                <BannerButton label={exportProgress < 0 ? "Export Scene" : "Exporting..."} disabled={exportProgress >= 0} onclick={exportScene} />
+                
+                {#if exportProgress >= 0}
+                    <Label class="w-80 sm:w-90" label="Export Progress">
+                        <ProgressRing progress={exportProgress} label="Export Progress" />
+                    </Label>
+                {/if}
+            {:else if categoryIdx === 2}
+                <News {gitManager} />
+            {:else if categoryIdx === 3}
+                <CreationDetails {gitManager} />
+                <SpecialThanks />
+            {/if}
+        </div>
+    </div>
+{/if}
+
+<div class="not-lg:hidden flex fixed bottom-0 left-0 z-90 flex-row gap-8 p-6 pt-4 w-160 bg-black">
     <NavTip key="E" code="KeyE" label="Accept" />
     
     {#if categoryIdx === 0 && actorIdx >= 0}
         <NavTip key="F" code="KeyF" label="Back" />
     {/if}
 </div>
-
-<TermsDisclaimer bind:hasAcknowledgedTerms bind:termsChangesSummary bind:latestTermsDate bind:isOnPhone onclick={acknowledgeTerms} />
 
 <style>
     :global(.no-scrollbar) { scrollbar-width: none; }

@@ -43,12 +43,10 @@ export default defineConfig({
                 chunkFileNames: "scripts/[name]-[hash].js",
                 assetFileNames: ({ names }) => names[0].endsWith(".css") ? "styles/[name]-[hash][extname]" : "assets/[name]-[hash][extname]",
 
-                manualChunks(id) {
-                    if (id.includes("node_modules")) return "vendor";
-                }
+                manualChunks: (path: string) => path.includes("node_modules") ? "vendor" : ""
             },
 
-            external: (id) => id.startsWith("/src/lib/")
+            external: (path: string) => path.includes("spine-ts")
         }
     },
 

@@ -43,7 +43,7 @@
     <div class="flex flex-col gap-4 items-center">
         <Header title="Add Character" />
 
-        <List class="no-scrollbar overflow-y-auto flex-row gap-4 p-2 w-90 sm:w-100" {enableKeyInput} isHorizontal>
+        <List class="no-scrollbar overflow-x-auto flex-row gap-4 p-2 w-90 sm:w-100" {enableKeyInput} isHorizontal>
             {#each [Follower, Player, Bishop, TOWW] as actor, i (i)} 
                 <CharacterItem {actor} isLoading={actor === loadingActor} onclick={() => add(actor)} />
             {/each}

@@ -1,7 +1,10 @@
 import { MoreMath } from "./MoreMath";
 
 export class Vector implements VectorObject {
-    static readonly DEFAULT_STR_FORMAT: string = "({x}, {y})";
+    static readonly VAR_X: string = "{x}";
+    static readonly VAR_Y: string = "{y}";
+
+    static readonly DEFAULT_STR_FORMAT: string = `${this.VAR_X}, ${this.VAR_Y}`;
     
     constructor();
     constructor(val: number);
@@ -37,6 +40,15 @@ export class Vector implements VectorObject {
             x = 0,
             y = 0
         ] = arr;
+
+        return new Vector(x, y);
+    }
+
+    static fromStr(str: string, format: string = this.DEFAULT_STR_FORMAT) {
+        const [x, y] = [this.VAR_X, this.VAR_Y].map((val) => {
+            const affixes = format.split(val);
+            return +(affixes.length === 2) * +affixes.reduce((str, affix) => str.replace(affix, ""), str);
+        });
 
         return new Vector(x, y);
     }
@@ -82,6 +94,18 @@ export class Vector implements VectorObject {
 
     static arrToStr(arr: number[], format: string = this.DEFAULT_STR_FORMAT): string {
         return Vector.fromArr(arr).toStr(format);
+    }
+
+    static strToObj(str: string, format: string = this.DEFAULT_STR_FORMAT, obj: Partial<VectorObject> = {}) {
+        return Vector.fromStr(str, format).cloneObj(obj);
+    }
+
+    static strToArr(str: string, format: string = this.DEFAULT_STR_FORMAT, arr: number[] = []): number[] {
+        return Vector.fromStr(str, format).cloneArr(arr);
+    }
+
+    static strToStr(str: string, destFormat: string = this.DEFAULT_STR_FORMAT, srcFormat: string = this.DEFAULT_STR_FORMAT): string {
+        return Vector.fromStr(str, srcFormat).toStr(destFormat);
     }
 
     static get Zero() {
@@ -148,8 +172,16 @@ export class Vector implements VectorObject {
         return this.x;
     }
 
+    set 0(x: number) {
+        this.x = x;
+    }
+
     get 1(): number {
         return this.y;
+    }
+
+    set 1(y: number) {
+        this.y = y;
     }
 
     setX(x: number) {
@@ -234,10 +266,7 @@ export class Vector implements VectorObject {
     }
 
     toStr(format: string = Vector.DEFAULT_STR_FORMAT): string {
-        let str: string = format;
-        ["x", "y"].forEach((name, i) => str = str.replace(`{${name}}`, `${this[i as 0 | 1]}`));
-        
-        return str;
+        return [Vector.VAR_X, Vector.VAR_Y].reduce((str, name, i) => str.replace(name, `${this[i as keyof this]}`), format);
     }
 
     addX(x: number) {

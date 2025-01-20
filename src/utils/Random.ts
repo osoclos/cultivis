@@ -1,5 +1,6 @@
 export class Random {
-    private static readonly ID_REPLACEMENT: string = "{id}";
+    private static readonly VAR_ID: string = "{id}";
+
     static float(max: number): number;
     static float(min: number, max: number): number;
     static float(a: number, b?: number): number;
@@ -43,10 +44,10 @@ export class Random {
         return obj[this.key(obj)];
     }
 
-    static id(length: number = 6, format: string = Random.ID_REPLACEMENT): string {
-        if (!format.includes(Random.ID_REPLACEMENT)) throw new Error(`Format is invalid as it does not contains "${Random.ID_REPLACEMENT}"`);
+    static id(length: number = 6, format: string = Random.VAR_ID): string {
+        if (!format.includes(Random.VAR_ID)) throw new Error(`Format is invalid as it does not contains "${Random.VAR_ID}"`);
         
         const id = Array(Math.ceil(length / 8)).fill(null).map(() => this.hex(0x10 ** Math.min(length, 8))).join("").slice(0, length);
-        return format.replace(Random.ID_REPLACEMENT, id).padStart(length, "0");
+        return format.replace(Random.VAR_ID, id).padStart(length, "0");
     }
 }

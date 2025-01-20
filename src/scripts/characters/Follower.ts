@@ -3,7 +3,7 @@ import { Actor, type ActorObject } from "..";
 import { followerData } from "../../data";
 import type { ColorSet, FollowerId, ClothingId, ClothingData, FormData, NecklaceId, HatId, NecklaceData, HatData } from "../../data/types";
 
-import { MoreMath, Random } from "../../utils";
+import { Color, MoreMath, Random } from "../../utils";
 
 // to add halo, you need to set attachment "halo" to skin "Other/Halo"
 export class Follower extends Actor implements FollowerObject {
@@ -156,8 +156,8 @@ export class Follower extends Actor implements FollowerObject {
         this.setSkin(formData.variants[formVariantIdx]);
         this.addSkins(clothingData.variants[clothingVariantIdx]);
 
+        clothingData.sets && this.applyColors(clothingData.sets[clothingColorSetIdx]);
         this.applyColors(colorSetData[formColorSetIdx]);
-        clothingData.sets && this.applyColors(clothingData.sets![clothingColorSetIdx]);
 
         necklaceData && this.addSkins(necklaceData.variant);
         hatData && this.addSkins(hatData.variant);
@@ -190,6 +190,22 @@ export class Follower extends Actor implements FollowerObject {
     toObj(): FollowerObject {
         const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat } = this;
         return { ...super.toObj(), type: "follower", form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat };
+    }
+
+    applyColors(set: ColorSet) {
+        for (const { color, slots } of set) {
+            for (const slot of slots) {
+                const attachments: spine.SkinEntry[] = [];
+                this.skeleton.skin.getAttachmentsForSlot(this.skeleton.findSlotIndex(slot), attachments);
+
+                for (const { attachment } of attachments) {
+                    const { r, g, b, a } = Color.fromObj(color).normalize();
+                    const spineColor = new spine.Color(r, g, b, a);
+
+                    if ("color" in attachment) attachment.color = spineColor;
+                }
+            }
+        }
     }
 
     private clampIndexes() {

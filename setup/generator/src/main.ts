@@ -3,21 +3,10 @@ import "./style.css";
 import { Scene, Factory, Exporter, Actor } from "@/scripts";
 
 import { followerData } from "@/data";
-import { CLOTHING_IDS, type ClothingId, FOLLOWER_IDS, HATS_ID, NECKLACE_IDS, PLAYER_CREATURE_IDS, PLAYER_FLEECE_IDS, TOWW_IDS } from "@/data/types";
-
-import { Color, type ColorObject } from "@/utils";
+import { CLOTHING_IDS, FOLLOWER_IDS, HATS_ID, NECKLACE_IDS, PLAYER_CREATURE_IDS, PLAYER_FLEECE_IDS, TOWW_IDS } from "@/data/types";
 
 const WIDTH: number = 64;
 const HEIGHT: number = 64;
-
-const EXPOSED_BODY_CLOTHING: ClothingId[] = ["Naked_Clothing", "DLC_6"];
-const BODY_COLOR: ColorObject = {
-    r: 169,
-    g: 130,
-    b: 75
-};
-
-const BODY_SLOTS: string[] = ["BODY_NAKED"];
 
 const canvas = document.querySelector<HTMLCanvasElement>("canvas#display")!;
 canvas.style.width = `${WIDTH}px`;
@@ -71,13 +60,13 @@ clothingExporter.addEventListener("click", () => {
     
     const form = new FormData();
     for (const id of CLOTHING_IDS) {
-        const { variants, sets = [[]] } = followerData.clothing[id];
+        const {
+            variants: [variant],
+            sets: [set] = [[]]
+        } = followerData.clothing[id];
 
-        follower.setSkin(variants[0]);
-        follower.applyColors(sets[0].concat({
-            color: { ...Color.fromObj(BODY_COLOR).normalize(), a: +EXPOSED_BODY_CLOTHING.includes(id) },
-            slots: BODY_SLOTS
-        }));
+        follower.setSkin(variant);
+        follower.applyColors(set);
         
         appendPixelsToForm(form, id);
     }
@@ -115,15 +104,11 @@ variantExporter.addEventListener("click", () => {
     follower.pos.set(-10, 48);
     
     for (const id of CLOTHING_IDS) {
-        follower.clothing = id;
-        for (const i of Array(followerData.clothing[id].variants.length).keys()) {
-            const { variants, sets = [[]] } = followerData.clothing[id];
-            
-            follower.setSkin(variants[i]);
-            follower.applyColors(sets[0].concat({
-                color: { ...Color.fromObj(BODY_COLOR).normalize(), a: +EXPOSED_BODY_CLOTHING.includes(id) },
-                slots: BODY_SLOTS
-            }));
+        const { variants, sets: [set] = [[]] } = followerData.clothing[id];
+
+        for (const [i, variant] of variants.entries()) {
+            follower.setSkin(variant);
+            follower.applyColors(set);
 
             appendPixelsToForm(form, `${id}-${i}`);
         }

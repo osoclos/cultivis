@@ -26,7 +26,7 @@ export class Exporter {
         return new Exporter(canvas, gl, scene, factory, gifManager);
     }
 
-    async exportScene(obj: SceneObject, duration: number, size: Vector, onProgress: (percent: number) => void = () => {}) {
+    async exportScene(obj: SceneObject, duration: number, size: Vector, onProgress: (progress: number) => void = () => {}) {
         const [width, height] = size;
 
         this.resetScene();

@@ -1,5 +1,4 @@
-import type { ColorSet } from "../data/types";
-import { Color, Random, Vector, type VectorObject } from "../utils";
+import { Random, Vector, type VectorObject } from "../utils";
 
 export class Actor implements ActorObject {
     pos: Vector;
@@ -173,22 +172,6 @@ export class Actor implements ActorObject {
 
         this.reset();
         this.updateBounds();
-    }
-
-    applyColors(set: ColorSet) {
-        for (const { color, slots } of set) {
-            for (const slot of slots) {
-                const attachments: spine.SkinEntry[] = [];
-                this.skeleton.skin.getAttachmentsForSlot(this.skeleton.findSlotIndex(slot), attachments);
-
-                for (const { attachment } of attachments) {
-                    const { r, g, b, a } = Color.fromObj(color).normalize();
-                    const spineColor = new spine.Color(r, g, b, a);
-
-                    if ("color" in attachment) attachment.color = spineColor;
-                }
-            }
-        }
     }
 
     reset() {

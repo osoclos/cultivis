@@ -44,7 +44,7 @@
         onupdate: update = () => {}
     }: Props = $props();
 
-    function getTitle(menu: FollowerMenuName): string {
+    const title: string = $derived.by(() => {
         switch (menu) {
             case "form": return "Choose Form";
             case "clothing": return "Choose Robes";
@@ -53,9 +53,9 @@
             case "color": return "Choose Color";
             case "variant": return "Choose Variant";
         }
-    }
+    });
 
-    function getGridTitles(menu: FollowerMenuName): string[] {
+    const dividerTitles: string[] = $derived.by(() => {
         switch (menu) {
             case "form": return Object.keys(followerIdsByCategory);
             case "clothing": return Object.keys(clothingIdsByCategory);
@@ -64,7 +64,7 @@
             case "color": return ["Follower Form Colors", "General Follower Colors", "Clothing Colors"].slice(0, 2 + +(clothingColorSets?.length ?? 0));
             case "variant": return ["Follower Form Variants", "Clothing Variants"];
         }
-    }
+    });
 
     const followerColorSets = $derived(followerData.forms[obj.form].sets);
     const generalColorSets = $derived(followerData.generalColorSets);
@@ -139,9 +139,9 @@
 </script>
 
 <div class={twMerge("flex flex-col gap-2 items-center w-full", className)}>
-    <Header title={getTitle(menu)} />
+    <Header {title} />
 
-    <MultiGrid titles={getGridTitles(menu)} minColumns={4} maxColumns={6} tileWidth={64} tileHeight={64} gapWidth={20} gapHeight={12} {enableKeyInput}>
+    <MultiGrid titles={dividerTitles} minColumns={4} maxColumns={6} tileWidth={64} tileHeight={64} gapWidth={20} gapHeight={12} {enableKeyInput}>
         {#snippet children(category, y)}
             {#if menu === "form"}
                 <BoxOption label="Select Random {category} Form" hideBackground onclick={() => updateForm(Random.item(followerIdsByCategory[category as FollowerCategoryName]))}>
@@ -150,7 +150,7 @@
 
                 {#each Object.values(followerIdsByCategory)[y].map<[FollowerId, FormData]>((id) => [id, followerData.forms[id]]) as [id, { name }], x (x)}
                     <BoxOption label={name} selected={id === obj.form} onclick={() => updateForm(id)}>
-                        <SpritesheetImage label={name} src="/static/assets/followers.png" {x} {y} tileWidth={64} tileHeight={64} />
+                        <SpritesheetImage src="/static/assets/followers.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
                     </BoxOption>
                 {/each}
             {:else if menu === "clothing"}
@@ -160,7 +160,7 @@
 
                 {#each Object.values(clothingIdsByCategory)[y].map<[ClothingId, ClothingData]>((id) => [id, followerData.clothing[id]]) as [id, { name }], x (x) }
                     <BoxOption label={name} selected={id === obj.clothing} onclick={() => updateClothing(id)}>
-                        <SpritesheetImage label={name} src="/static/assets/clothing.png" {x} {y} tileWidth={64} tileHeight={64} />
+                        <SpritesheetImage src="/static/assets/clothing.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
                     </BoxOption>
                 {/each}
             {:else if menu === "accessory"}
@@ -177,7 +177,7 @@
 
                     {#each Object.values(necklaceIdsByCategory)[y].map<[NecklaceId, NecklaceData]>((id) => [id, followerData.necklaces[id]]) as [id, { name }], x (x) }
                         <BoxOption label={name} selected={id === obj.necklace} onclick={() => updateNecklace(id)}>
-                            <SpritesheetImage label={name} src="/static/assets/necklaces.png" {x} {y} tileWidth={64} tileHeight={64} />
+                            <SpritesheetImage src="/static/assets/necklaces.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
                         </BoxOption>
                     {/each}
                 {:else}
@@ -191,7 +191,7 @@
         
                     {#each Object.entries(followerData.hats) as [id, { name }], x (x) }
                         <BoxOption label={name} selected={id === obj.hat} onclick={() => updateHat(id as HatId)}>
-                            <SpritesheetImage label={name} src="/static/assets/hats.png" {x} y={0} tileWidth={64} tileHeight={64} />
+                            <SpritesheetImage src="/static/assets/hats.png" label={name} {x} y={0} tileWidth={64} tileHeight={64} />
                         </BoxOption>
                     {/each}
                 {/if}
@@ -203,7 +203,7 @@
         
                     {#each followerColorSets as set, i (i) }
                         <BoxOption label="Follower Form Color {i}" selected={i === obj.formColorSetIdx} onclick={() => updateFormColorSetIdx(i)}>
-                            <div class="m-3 w-10 h-10 rounded-full border-2 border-[#00000030]" style:background-color={Color.objToStr(findMostPopularColor(set))}></div>
+                            <div class="m-3 w-10 h-10 rounded-full border-2 border-[#00000030]" style:background-color={Color.fromObj(findMostPopularColor(set)).toRGB_Str()}></div>
                         </BoxOption>
                     {/each}
                 {:else if y === 1}
@@ -213,7 +213,7 @@
         
                     {#each generalColorSets as set, i (i) }
                         <BoxOption label="General Follower Color {i}" selected={i + followerColorSets.length === obj.formColorSetIdx} onclick={() => updateFormColorSetIdx(i + followerColorSets.length)}>
-                            <div class="m-3 w-10 h-10 rounded-full border-2 border-[#00000030]" style:background-color={Color.objToStr(findMostPopularColor(set))}></div>
+                            <div class="m-3 w-10 h-10 rounded-full border-2 border-[#00000030]" style:background-color={Color.fromObj(findMostPopularColor(set)).toRGB_Str()}></div>
                         </BoxOption>
                     {/each}
                 {:else if y === 2 && clothingColorSets}
@@ -223,7 +223,7 @@
         
                     {#each clothingColorSets as set, i (i) }
                         <BoxOption label="Clothing Color {i}" selected={i === obj.clothingColorSetIdx} onclick={() => updateClothingColorSetIdx(i)}>
-                            <div class="m-3 w-10 h-10 rounded-full border-2 border-[#00000030]" style:background-color={Color.objToStr(findMostPopularColor(set))}></div>
+                            <div class="m-3 w-10 h-10 rounded-full border-2 border-[#00000030]" style:background-color={Color.fromObj(findMostPopularColor(set)).toRGB_Str()}></div>
                         </BoxOption>
                     {/each}
                 {/if}
@@ -235,7 +235,7 @@
         
                     {#each followerVariants as name, x (x) }
                         <BoxOption label="Form Variant {x}" selected={x === obj.formVariantIdx} onclick={() => updateFormVariantIdx(x)}>
-                            <SpritesheetImage label={name} src="/static/assets/variants.png" {x} y={FOLLOWER_IDS.indexOf(obj.form)} tileWidth={64} tileHeight={64} />
+                            <SpritesheetImage src="/static/assets/variants.png" label={name} {x} y={FOLLOWER_IDS.indexOf(obj.form)} tileWidth={64} tileHeight={64} />
                         </BoxOption>
                     {/each}
                 {:else if y === 1}
@@ -245,7 +245,7 @@
         
                     {#each clothingVariants as name, x (x) }
                         <BoxOption label="Clothing Variant {x}" selected={x === obj.clothingVariantIdx} onclick={() => updateClothingVariantIdx(x)}>
-                            <SpritesheetImage label={name} src="/static/assets/variants.png" {x} y={CLOTHING_IDS.indexOf(obj.clothing) + FOLLOWER_IDS.length} tileWidth={64} tileHeight={64} />
+                            <SpritesheetImage src="/static/assets/variants.png" label={name} {x} y={CLOTHING_IDS.indexOf(obj.clothing) + FOLLOWER_IDS.length} tileWidth={64} tileHeight={64} />
                         </BoxOption>
                     {/each}
                 {/if}

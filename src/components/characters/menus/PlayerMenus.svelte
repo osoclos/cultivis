@@ -44,12 +44,12 @@
         onupdate: update = () => {}
     }: Props = $props();
 
-    function getTitle(menu: PlayerMenuName): string {
+    const title: string = $derived.by(() => {
         switch (menu) {
             case "creature": return "Choose Creature";
             case "fleece": return "Choose Fleece";
         }
-    }
+    });
 
     function updateCreature(id: PlayerCreatureId) {
         player.creature = id;
@@ -67,7 +67,7 @@
 </script>
 
 <div class={twMerge("flex flex-col gap-2 items-center w-full", className)}>
-    <Header title={getTitle(menu)} />
+    <Header {title} />
 
     <Grid minColumns={4} maxColumns={6} tileWidth={64} tileHeight={64} gapWidth={20} gapHeight={12} {enableKeyInput} focusFirst>
         {#if menu === "creature"}
@@ -77,7 +77,7 @@
 
             {#each Object.entries(playerData.creature) as [id, { name }], i (id) }
                 <BoxOption label={name} selected={id === obj.creature} onclick={() => updateCreature(id as PlayerCreatureId)}>
-                    <SpritesheetImage label={name} src="/static/assets/player.png" x={i} y={0} tileWidth={64} tileHeight={64} />
+                    <SpritesheetImage src="/static/assets/player.png" label={name} x={i} y={0} tileWidth={64} tileHeight={64} />
                 </BoxOption>
             {/each}
         {:else if menu === "fleece"}
@@ -87,7 +87,7 @@
 
             {#each Object.entries(playerData.fleece) as [id, { name }], i (id) }
                 <BoxOption label={name} selected={id === obj.fleece} onclick={() => updateFleece(id as PlayerFleeceId)}>
-                    <SpritesheetImage label={name} src="/static/assets/player.png" x={i} y={1} tileWidth={64} tileHeight={64} />
+                    <SpritesheetImage src="/static/assets/player.png" label={name} x={i} y={1} tileWidth={64} tileHeight={64} />
                 </BoxOption>
             {/each}
         {/if}

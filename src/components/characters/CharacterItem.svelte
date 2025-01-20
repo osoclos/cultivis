@@ -23,7 +23,7 @@
         onclick = () => {}
     }: Props = $props();
 
-    function getSrc(): string {
+    const src: string = $derived.by(() => {
         switch (actor) {
             case Follower: return "/static/assets/followers.png";
             case Player: return "/static/assets/player.png";
@@ -33,9 +33,9 @@
             
             default: return "/static/ui/cancel.png";
         }
-    }
+    });
 
-    function getLabel(): string {
+    const label: string = $derived.by(() => {
         if (isLoading) return "Loading...";
         
         switch (actor) {
@@ -47,7 +47,7 @@
             
             default: return "Actor";
         }
-    }
+    });
 
     const focusEvent: Action<HTMLButtonElement> = (button) => {
         function focus() {
@@ -66,10 +66,10 @@
     };
 </script>
 
-<button use:focusEvent class={twMerge("flex flex-col items-center px-4 py-2 gap-2 bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", className)} aria-label={getLabel()} {onclick}>
+<button use:focusEvent class={twMerge("flex flex-col items-center px-4 py-2 gap-2 bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", className)} aria-label={label} {onclick}>
     <div class="w-20 h-20">
-        <SpritesheetImage label={getLabel()} src={getSrc()} x={+(actor === TOWW) * 4} y={0} width={80} height={80} tileWidth={getSrc() === "/static/ui/cancel.png" ? 100 : 64} tileHeight={getSrc() === "/static/ui/cancel.png" ? 100 : 64} />
+        <SpritesheetImage {src} {label} x={+(actor === TOWW) * 4} y={0} width={80} height={80} tileWidth={src === "/static/ui/cancel.png" ? 100 : 64} tileHeight={src === "/static/ui/cancel.png" ? 100 : 64} />
     </div>
     
-    <p class="text-xl text-center text-active text-nowrap">{getLabel()}</p>
+    <p class="text-xl text-center text-active text-nowrap">{label}</p>
 </button>

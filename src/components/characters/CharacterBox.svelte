@@ -39,8 +39,8 @@
 
     let button: HTMLButtonElement;
     const { label } = $derived(actor);
-    
-    function getType(): string {
+
+    const typeName: string = $derived.by(() => {
         switch (true) {
             case isFollowerObj(actor): return "Follower";
             case isPlayerObj(actor): return "Player";
@@ -49,9 +49,9 @@
             
             default: return "Actor";
         }
-    }
+    });
 
-    function getInfo(): string {
+    const info: string = $derived.by(() => {
         switch (true) {
             case isFollowerObj(actor): return `Form: ${followerData.forms[actor.form].name}`;
             case isPlayerObj(actor): return `Creature: ${playerData.creature[actor.creature].name}`;
@@ -60,9 +60,9 @@
             
             default: return "";
         }
-    }
+    });
 
-    function getSrc(): string {
+    const src: string = $derived.by(() => {
         switch (true) {
             case isFollowerObj(actor): return "/static/assets/followers.png";
             case isPlayerObj(actor): return "/static/assets/player.png";
@@ -72,11 +72,11 @@
             
             default: return "/static/ui/cancel.png";
         }
-    }
+    });
 
-    function getX(): number {
+    const x: number = $derived.by(() => {
         switch (true) {
-            case isFollowerObj(actor): return followerIdsByCategory[FOLLOWER_CATEGORIES[getY()]].indexOf(actor.form);
+            case isFollowerObj(actor): return followerIdsByCategory[FOLLOWER_CATEGORIES[y]].indexOf(actor.form);
             case isPlayerObj(actor): return PLAYER_CREATURE_IDS.indexOf(actor.creature);
 
             case isBishopObj(actor): return BISHOP_IDS.indexOf(actor.bishop);
@@ -84,9 +84,9 @@
 
             default: return 0;
         }
-    }
+    });
 
-    function getY(): number {
+    const y: number = $derived.by(() => {
         switch (true) {
             case isFollowerObj(actor): return followerData.forms[actor.form].category;
 
@@ -97,7 +97,7 @@
             
             default: return 0;
         }
-    }
+    });
 
     function onclick() {
         if (!hasTickbox) {
@@ -130,12 +130,12 @@
 
 <button bind:this={button} use:focusEvent class={twMerge("flex flex-row justify-between items-center py-4 w-90 bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", hasTickbox ? "px-4 sm:w-100" : "px-6", className)} aria-label={label} {onclick}>
     <div class="w-20 h-20">
-        <SpritesheetImage {label} src={getSrc()} x={getX()} y={getY()} width={80} height={80} tileWidth={getSrc() === "/static/ui/cancel.png" ? 100 : 64} tileHeight={getSrc() === "/static/ui/cancel.png" ? 100 : 64} />
+        <SpritesheetImage {src} {label} {x} {y} width={80} height={80} tileWidth={src === "/static/ui/cancel.png" ? 100 : 64} tileHeight={src === "/static/ui/cancel.png" ? 100 : 64} />
     </div>
     
     <div class="flex flex-col {hasTickbox ? "gap-1 sm:gap-2" : "gap-2"} text-center text-active text-nowrap">
         <p class="{hasTickbox ? "text-lg sm:text-xl" : "text-xl"}">{label}</p>
-        <p class="font-subtitle {hasTickbox ? "text-xs sm:text-sm" : "text-sm"} italic">Type: {getType()}{getInfo() ? ` | ${getInfo()}` : ""}</p>
+        <p class="font-subtitle {hasTickbox ? "text-xs sm:text-sm" : "text-sm"} italic">Type: {typeName}{info ? ` | ${info}` : ""}</p>
     </div>
 
     {#if hasTickbox}

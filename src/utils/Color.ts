@@ -1,23 +1,32 @@
 import { MoreMath } from "./MoreMath";
 
 export class Color implements ColorObject {
-    static readonly DEFAULT_STR_NON_ALPHA_FORMAT: string = "rgb({r}, {g}, {b})";
-    static readonly DEFAULT_STR_ALPHA_FORMAT: string = "rgba({r}, {g}, {b}, {a})";
+    static readonly VAR_R: string = "{r}";
+    static readonly VAR_G: string = "{g}";
+    static readonly VAR_B: string = "{b}";
+    static readonly VAR_A: string = "{a}";
 
-    #r!: number;
-    #g!: number;
-    #b!: number;
-    #a!: number;
+    static readonly DEFAULT_ALPHA_STR_FORMAT: string = `${this.VAR_R}, ${this.VAR_G}, ${this.VAR_B}, ${this.VAR_A}`;
+    static readonly DEFAULT_NON_ALPHA_STR_FORMAT: string = `${this.VAR_R}, ${this.VAR_G}, ${this.VAR_B}`;
+
+    #r: number;
+    #g: number;
+    #b: number;
+    #a: number;
 
     constructor();
     constructor(val: number);
     constructor(r: number, g: number, b: number);
     constructor(r: number, g: number, b: number, a: number);
-    constructor(r: number = 0x00, g: number = r, b: number = r * +(r !== g), a: number = 0xff) {
-        this.r = this.checkForNormalization(r);
-        this.g = this.checkForNormalization(g);
-        this.b = this.checkForNormalization(b);
-        this.a = this.checkForNormalization(a);
+    constructor(r: number, g: number, b: number, a: number, forceVal: boolean);
+    constructor(r: number = 0x00, g: number = r, b: number = r * +(r !== g), a: number = 0xff, forceVal: boolean = false) {
+        const values: number[] = [r, g, b, a];
+        if (!forceVal && values.every((val) => MoreMath.isInRange(val, 0.0, 1.0))) [r, g, b, a] = values.map((val) => val * 0xff);
+        
+        this.#r = r;
+        this.#g = g;
+        this.#b = b;
+        this.#a = a;
     }
 
     *[Symbol.iterator](): Generator<number, undefined, number | undefined> {
@@ -34,11 +43,12 @@ export class Color implements ColorObject {
     static create(val: number): Color;
     static create(r: number, g: number, b: number): Color;
     static create(r: number, g: number, b: number, a: number): Color;
-    static create(r: number = 0x00, g: number = r, b: number = r * +(r !== g), a: number = 0xff) {
-        return new Color(r, g, b, a);
+    static create(r: number, g: number, b: number, a: number, forceVal: boolean): Color;
+    static create(r: number = 0x00, g: number = r, b: number = r * +(r !== g), a: number = 0xff, forceVal: boolean = false) {
+        return new Color(r, g, b, a, forceVal);
     }
 
-    static fromObj(obj: Partial<ColorObject>) {
+    static fromObj(obj: Partial<ColorObject>, forceVal: boolean = false) {
         const {
             r = 0x00,
             g = 0x00,
@@ -46,10 +56,10 @@ export class Color implements ColorObject {
             a = 0xff
         } = obj;
 
-        return new Color(r, g, b, a);
+        return new Color(r, g, b, a, forceVal);
     }
 
-    static fromArr(arr: number[]) {
+    static fromArr(arr: number[], forceVal: boolean = false) {
         const [
             r = 0x00,
             g = 0x00,
@@ -57,53 +67,77 @@ export class Color implements ColorObject {
             a = 0xff
         ] = arr;
 
-        return new Color(r, g, b, a);
+        return new Color(r, g, b, a, forceVal);
+    }
+
+    static fromStr(str: string, format: string = this.DEFAULT_NON_ALPHA_STR_FORMAT, forceVal: boolean = false) {
+        const [r, g, b, a] = [this.VAR_R, this.VAR_G, this.VAR_B, this.VAR_A].map((val) => {
+            const affixes = format.split(val);
+            return +(affixes.length === 2) * +affixes.reduce((str, affix) => str.replace(affix, ""), str);
+        });
+
+        return new Color(r, g, b, a, forceVal);
     }
 
     static valToObj(obj: Partial<ColorObject>, val: number): ColorObject;
     static valToObj(obj: Partial<ColorObject>, r: number, g: number, b: number): ColorObject;
     static valToObj(obj: Partial<ColorObject>, r: number, g: number, b: number, a: number): ColorObject;
-    static valToObj(obj: Partial<ColorObject>, r: number, g: number = r, b: number = r * +(r !== g), a: number = 0xff) {
-        return new Color(r, g, b, a).cloneObj(obj);
+    static valToObj(obj: Partial<ColorObject>, r: number, g: number, b: number, a: number, forceVal: boolean): ColorObject;
+    static valToObj(obj: Partial<ColorObject>, r: number, g: number = r, b: number = r * +(r !== g), a: number = 0xff, forceVal: boolean = false) {
+        return new Color(r, g, b, a, forceVal).cloneObj(obj);
     }
 
     static valToArr(arr: number[], val: number): number[];
     static valToArr(arr: number[], r: number, g: number, b: number): number[];
     static valToArr(arr: number[], r: number, g: number, b: number, a: number): number[];
-    static valToArr(arr: number[], r: number, g: number = r, b: number = r * +(r !== g), a: number = 0xff): number[] {
-        return new Color(r, g, b, a).cloneArr(arr);
+    static valToArr(arr: number[], r: number, g: number, b: number, a: number, forceVal: boolean): number[];
+    static valToArr(arr: number[], r: number, g: number = r, b: number = r * +(r !== g), a: number = 0xff, forceVal: boolean = false): number[] {
+        return new Color(r, g, b, a, forceVal).cloneArr(arr);
     }
 
     static valToStr(val: number): string;
     static valToStr(r: number, g: number, b: number): string;
     static valToStr(r: number, g: number, b: number, a: number): string;
     static valToStr(r: number, g: number, b: number, a: number, format: string): string;
-    static valToStr(r: number, g: number = r, b: number = r * +(r !== g), a: number = 0xff, format: string = !a || a < 0xff ? this.DEFAULT_STR_ALPHA_FORMAT : this.DEFAULT_STR_NON_ALPHA_FORMAT): string {
-        return new Color(r, g, b, a).toStr(format);
+    static valToStr(r: number, g: number, b: number, a: number, format: string, forceVal: boolean): string;
+    static valToStr(r: number, g: number = r, b: number = r * +(r !== g), a: number = 0xff, format: string = !a || a < 0xff ? this.DEFAULT_ALPHA_STR_FORMAT : this.DEFAULT_NON_ALPHA_STR_FORMAT, forceVal: boolean = false): string {
+        return new Color(r, g, b, a, forceVal).toStr(format);
     }
 
-    static objToObj(src: Partial<ColorObject>, dest: Partial<ColorObject> = {}) {
-        return Color.fromObj(src).cloneObj(dest);
+    static objToObj(src: Partial<ColorObject>, dest: Partial<ColorObject> = {}, forceVal: boolean = false) {
+        return Color.fromObj(src, forceVal).cloneObj(dest);
     }
 
-    static objToArr(obj: Partial<ColorObject>, arr: number[] = []): number[] {
-        return Color.fromObj(obj).cloneArr(arr);
+    static objToArr(obj: Partial<ColorObject>, arr: number[] = [], forceVal: boolean = false): number[] {
+        return Color.fromObj(obj, forceVal).cloneArr(arr);
     }
 
-    static objToStr(obj: Partial<ColorObject>, format: string = !obj.a || obj.a < 0xff ? this.DEFAULT_STR_ALPHA_FORMAT : this.DEFAULT_STR_NON_ALPHA_FORMAT): string {
-        return Color.fromObj(obj).toStr(format);
+    static objToStr(obj: Partial<ColorObject>, format: string = !obj.a || obj.a < 0xff ? this.DEFAULT_ALPHA_STR_FORMAT : this.DEFAULT_NON_ALPHA_STR_FORMAT, forceVal: boolean = false): string {
+        return Color.fromObj(obj, forceVal).toStr(format);
     }
 
-    static arrToObj(arr: number[], obj: Partial<ColorObject> = {}) {
-        return Color.fromArr(arr).cloneObj(obj);
+    static arrToObj(arr: number[], obj: Partial<ColorObject> = {}, forceVal: boolean = false) {
+        return Color.fromArr(arr, forceVal).cloneObj(obj);
     }
 
-    static arrToArr(src: number[], dest: number[] = []): number[] {
-        return Color.fromArr(src).cloneArr(dest);
+    static arrToArr(src: number[], dest: number[] = [], forceVal: boolean = false): number[] {
+        return Color.fromArr(src, forceVal).cloneArr(dest);
     }
 
-    static arrToStr(arr: number[], format: string = !arr[3] || arr[3] < 0xff ? this.DEFAULT_STR_ALPHA_FORMAT : this.DEFAULT_STR_NON_ALPHA_FORMAT): string {
-        return Color.fromArr(arr).toStr(format);
+    static arrToStr(arr: number[], format: string = !arr[3] || arr[3] < 0xff ? this.DEFAULT_ALPHA_STR_FORMAT : this.DEFAULT_NON_ALPHA_STR_FORMAT, forceVal: boolean = false): string {
+        return Color.fromArr(arr, forceVal).toStr(format);
+    }
+
+    static strToObj(str: string, format: string = this.DEFAULT_ALPHA_STR_FORMAT, obj: Partial<ColorObject> = {}, forceVal: boolean = false) {
+        return Color.fromStr(str, format, forceVal).cloneObj(obj);
+    }
+
+    static strToArr(str: string, format: string = this.DEFAULT_ALPHA_STR_FORMAT, arr: number[] = [], forceVal: boolean = false): number[] {
+        return Color.fromStr(str, format, forceVal).cloneArr(arr);
+    }
+
+    static strToStr(str: string, destFormat: string = this.DEFAULT_ALPHA_STR_FORMAT, srcFormat: string = this.DEFAULT_ALPHA_STR_FORMAT, forceVal: boolean = false): string {
+        return Color.fromStr(str, srcFormat, forceVal).toStr(destFormat);
     }
 
     static get Black() {
@@ -178,24 +212,40 @@ export class Color implements ColorObject {
         return this.r;
     }
 
+    set 0(r: number) {
+        this.r = r;
+    }
+
     get 1(): number {
         return this.g;
+    }
+
+    set 1(g: number) {
+        this.g = g;
     }
     
     get 2(): number {
         return this.b;
     }
 
+    set 2(b: number) {
+        this.b = b;
+    }
+
     get 3(): number {
         return this.a;
     }
 
-    get isTransparent(): boolean {
-        return !this.a;
+    set 3(a: number) {
+        this.a = a;
     }
 
-    get isSeeThrough(): boolean {
-        return this.isTransparent || this.a < 0xff;
+    get hasTransparency(): boolean {
+        return !!this.a;
+    }
+
+    get isTransparent(): boolean {
+        return this.a === 0xff;
     }
 
     setR(r: number) {
@@ -218,7 +268,10 @@ export class Color implements ColorObject {
         return this;
     }
 
-    set(r: number, g: number = r, b: number = r * +(r !== g), a: number = 255) {
+    set(r: number, g: number = r, b: number = r * +(r !== g), a: number = 0xff, forceVal: boolean) {
+        const values: number[] = [r, g, b, a];
+        if (!forceVal && values.every((val) => MoreMath.isInRange(val, 0.0, 1.0))) [r, g, b, a] = values.map((val) => val * 0xff);
+
         return this.setR(r).setG(g).setB(b).setA(a);
     }
 
@@ -295,20 +348,29 @@ export class Color implements ColorObject {
         const { r, g, b, a } = this;
         
         const obj: ColorObject = { r, g, b };
-        if (forceAlpha || this.isSeeThrough) obj.a = a;
+        if (forceAlpha || this.hasTransparency) obj.a = a;
 
         return obj;
     }
 
     toArr(forceAlpha: boolean = false): number[] {
-        return [...this].slice(0, 2 + +(forceAlpha || this.isSeeThrough));
+        return [...this].slice(0, 2 + +(forceAlpha || this.hasTransparency));
     }
 
-    toStr(format: string = this.isSeeThrough ? Color.DEFAULT_STR_ALPHA_FORMAT : Color.DEFAULT_STR_NON_ALPHA_FORMAT): string {
-        let str: string = format;
-        ["r", "g", "b", "a"].forEach((name, i) => str = str.replace(`{${name}}`, `${this[i as 0 | 1 | 2 | 3]}`));
-        
-        return str;
+    toStr(format: string = this.hasTransparency ? Color.DEFAULT_ALPHA_STR_FORMAT : Color.DEFAULT_NON_ALPHA_STR_FORMAT): string {
+        return [Color.VAR_R, Color.VAR_G, Color.VAR_B, Color.VAR_A].reduce((str, name, i) => str.replace(name, `${this[i as keyof this]}`), format);;
+    }
+
+    toRGB_Str(): string {
+        return this.toStr(this.hasTransparency ? `rgba(${Color.DEFAULT_ALPHA_STR_FORMAT})` : `rgb(${Color.DEFAULT_NON_ALPHA_STR_FORMAT})`);
+    }
+
+    toHex(forceAlpha: boolean = false): string {
+        return `#${this.toNum(forceAlpha).toString(16)}`;
+    }
+
+    toNum(forceAlpha: boolean = false): number {
+        return this.toArr(forceAlpha).reverse().reduce((num, val, i) => num + val * (0xff ** i));
     }
 
     normalize(): Required<ColorObject> {
@@ -348,10 +410,6 @@ export class Color implements ColorObject {
 
     private clampVal(val: number): number {
         return MoreMath.clamp(val, 0x00, 0xff) | 0;
-    }
-
-    private checkForNormalization(val: number): number {
-        return val < 1.0 ? val * 0xff : val;
     }
 }
 

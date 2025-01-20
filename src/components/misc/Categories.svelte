@@ -4,11 +4,11 @@
     import { NavTip, Tab } from "../base";
     import { Pagination } from "../utils";
 
-    import { MoreMath } from "../../utils";
+    import { GitManager } from "../../scripts/managers";
 
     interface Props {
         selectedIdx?: number;
-        hasNewNews?: boolean;
+        gitManager: GitManager
 
         enableKeyInput?: boolean;
 
@@ -18,7 +18,7 @@
 
     let {
         selectedIdx = $bindable(0),
-        hasNewNews = $bindable(false),
+        gitManager,
 
         enableKeyInput = false,
 
@@ -26,28 +26,33 @@
         onclick: click = () => {}
     }: Props = $props();
 
-    function onclick(i: number) {
-        if (labels[i] === "News") hasNewNews = false;
+    let hasCheckedNews: boolean = $state(false);
+
+    const LABELS = ["Characters", "Exporting", "News", "Credits"] as const;
+    async function onclick(i: number) {
+        if (!hasCheckedNews && LABELS[i] === "News") {
+            hasCheckedNews = true;
+            localStorage.setItem(GitManager.NEWS_LOCAL_STORAGE_NAME, await gitManager.getNewsSha());
+        }
+
         click(i);
     }
-
-    const labels = ["Characters", "Exporting", "News", "Credits"] as const;
 </script>
 
-<div class={twMerge("flex flex-row sm:gap-1 bg-secondary", className)}>
-    <NavTip key="Q" class="not-sm:hidden" />
-    <Pagination bind:selectedIdx {enableKeyInput} {onclick}>
-        {#snippet children(i)}
-            {#each labels as label, j (j)}
-                <Tab {label} selected={j === i} class="scale-75 sm:scale-100 {
-                    MoreMath.isInRange(j, 1, labels.length - 3)
-                        ? "-ml-7 sm:ml-0" :
-                    j === labels.length - 2
-                        ? "-mx-7 sm:mx-0"
-                        : ""
-                }" style="z-index: {(labels.length - j) * 10}" hasNotice={hasNewNews && label === "News"} />
-            {/each}
-        {/snippet}
-    </Pagination>
-    <NavTip key="R" class="not-sm:hidden" />
+<div class={twMerge("flex flex-row gap-1 bg-secondary scale-75 sm:scale-100", className)}>
+    {#await gitManager.areNewsUpdated() then areNewsUpdated}
+        <NavTip key="Q" class="not-sm:hidden" />
+        <Pagination bind:selectedIdx {enableKeyInput} {onclick}>
+            {#snippet children(i)}
+                {#each LABELS as label, j (j)}
+                    {#if label === "News"}
+                        <Tab {label} selected={j === i} style="z-index: {(LABELS.length - j) * 10}" hasNotice={!hasCheckedNews && !areNewsUpdated} />
+                    {:else}
+                        <Tab {label} selected={j === i} style="z-index: {(LABELS.length - j) * 10}" />
+                    {/if}
+                {/each}
+            {/snippet}
+        </Pagination>
+        <NavTip key="R" class="not-sm:hidden" />
+    {/await}
 </div>
