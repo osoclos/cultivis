@@ -25,9 +25,11 @@
                 <Header {title} />
                 
                 {#if name in news}
-                    <div>
-                        {#each news[name] as md, i (i)}
-                            <Markdown {md} plugins={[plugin]} />
+                    <div class="flex flex-col gap-10">
+                        {#each news[name].reverse() as md, i (i)}
+                            <div>
+                                <Markdown {md} plugins={[plugin]} />
+                            </div>
                         {/each}
                     </div>
                 {:else}

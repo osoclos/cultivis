@@ -39,7 +39,7 @@
     let loadingState: number = $state(-1);
     const loadingText: string = $derived(LOADING_TEXTS[MoreMath.clamp(loadingState, 0, LOADING_STATES.length - 1)]);
 
-    const hasUserCompliedToTOS: boolean = $derived(loadingState > LOADING_STATES.indexOf("ToSAcknowledgement"));
+    let hasUserCompliedToTOS: boolean = $state(false);
     const hasFinishedLoading: boolean = $derived(loadingState === LOADING_STATES.length);
 
     let actors: ActorObject[] | null = $state(null);
@@ -103,10 +103,7 @@
         gitManager = await GitManager.create();
 
         loadingState = LOADING_STATES.indexOf("ToSAcknowledgement");
-        const hasAcknowledgedTerms = await gitManager.areTermsAcknowledged();
-        
-        if (!hasAcknowledgedTerms) return;
-        await acknowledgeTerms();
+        if (await gitManager.areTermsAcknowledged()) hasUserCompliedToTOS = true;
     });
 
     onDestroy(() => {
@@ -118,16 +115,17 @@
 
     async function acknowledgeTerms() {
         localStorage.setItem(GitManager.TERMS_LOCAL_STORAGE_NAME, `${await gitManager.getTermsUnix()}`);
-        if (scene) await init();
+        hasUserCompliedToTOS = true;
+
+        if (scene instanceof Scene) await init();
     }
 
-    function onCanvasLoad(canvasScene: Scene, canvasFactory: Factory) {
+    async function onCanvasLoad(canvasScene: Scene, canvasFactory: Factory) {
         scene = canvasScene;
         scene.size.copyObj(size);
 
         factory = canvasFactory;
-
-        if (hasUserCompliedToTOS) init();
+        await init();
     }
 
     async function init() {
@@ -323,14 +321,11 @@
     <LoadingSymbol {isMobile} />
     <div class="flex absolute {isMobile ? "bottom-4 left-6" : "bottom-10 left-16"} flex-row gap-6 items-center">
         <LoadingThrobber percent={((loadingState + 1) / LOADING_STATES.length) * 100} {isOnPhone} {isMobile} />
-
-        {#if loadingState >= 0}
-            <p class="text-highlight {isMobile ? "text-lg" : "text-2xl"}">{loadingText}... {MoreMath.clamp(loadingState + 1, 1, LOADING_STATES.length)}/{LOADING_STATES.length}</p>
-        {/if}
+        <p class={["text-highlight", isMobile ? "text-lg" : "text-2xl",{ "hidden": loadingState < 0 }]}>{loadingText}... {MoreMath.clamp(loadingState + 1, 1, LOADING_STATES.length)}/{LOADING_STATES.length}</p>
     </div>
 </div>
 
-{#if gitManager}
+{#if gitManager instanceof GitManager}
     {#await Promise.all([gitManager.areTermsAcknowledged(), gitManager.getTermsSummary(), gitManager.getTermsUnix()]) then [areTermsAcknowledged, changesSummary, termsUnix]}
         <div class="{areTermsAcknowledged ? "hidden" : "grid"} fixed top-0 left-0 z-100 place-items-center w-full h-full bg-[#00000060] {hasUserCompliedToTOS ? "opacity-0" : "opacity-100"} transition-opacity duration-450 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
             <Dialog childClass={twMerge("mt-2 sm:mt-4")} title="Disclaimer" description={localStorage.getItem(GitManager.TERMS_LOCAL_STORAGE_NAME) ? `CultiVis has updated its terms of service${termsUnix ? ` on ${unixToDate(termsUnix)}` : ""}. ${changesSummary ? `${changesSummary.slice(0, -changesSummary.endsWith("."))}. ` : ""}You may view the new terms below or close this popup.` : "CultiVis requires you to agree and acknowledge the CultiVis Terms of Service. You may view the terms below or close this popup."}>

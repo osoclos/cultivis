@@ -85,7 +85,7 @@
         {#if editable}
             <input bind:this={inputElement} type="text" bind:value class="{src ? "w-24" : "w-36"} text-center placeholder-inactive group-focus:placeholder-active focus:placeholder-active disabled:placeholder-disabled text-ellipsis outline-none" name={label} placeholder={placeholder} {disabled} autocomplete="off" oninput={() => input(value)} onfocus={() => Vector.One.cloneObj(scale)} onblur={resetScale} />
         {:else if href}
-            <a bind:this={link} {href} target="_blank">{label}</a>
+            <a bind:this={link} {href} class="pointer-events-none" target="_blank">{label}</a>
         {:else}
             <p>{label}</p>
         {/if}

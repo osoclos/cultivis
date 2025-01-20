@@ -33,4 +33,4 @@
     }: Props = $props();
 </script>
 
-<div class={twMerge("origin-top-left", className)} style:margin-right="{width - tileWidth}px" style:margin-bottom="{height - tileHeight}px" style:width="{tileWidth}px" style:height="{tileHeight}px" style:background-position="-{x * tileWidth}px -{y * tileHeight}px" style:background-image="url('{src}')" style:transform="scale({width / tileWidth}, {height / tileHeight})" aria-label={label}></div>
+<div class={twMerge("origin-top-left", className)} style:margin-right="{width - tileWidth}px" style:margin-bottom="{height - tileHeight}px" style:width="{tileWidth}px" style:height="{tileHeight}px" style:background-position="-{x * tileWidth}px -{y * tileHeight}px" style:background-image="url('{src}')" style:transform="scale({width / tileWidth}, {height / tileHeight})" role="img" aria-label={label}></div>
