@@ -50,17 +50,10 @@
         bishop.copyFromObj(obj);
         bishop.label = label;
 
-        const animation: string =
-            id === "Jelly"
-                ? isBoss
-                    ? "animation"
-                    : "leader/idle" : 
-            id === "Spider" && isBoss
-                ? "idle-boss"
-                : "idle";
+        const { animation, bossAnimation = animation } = bishopData[id];
 
-        obj.animation = animation;
-        bishop.setAnimation(animation);
+        obj.animation = isBoss ? bossAnimation : animation;
+        bishop.setAnimation(isBoss ? bossAnimation : animation);
 
         update();
         change(bishop);

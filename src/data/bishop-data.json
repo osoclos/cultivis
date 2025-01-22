@@ -11,7 +11,9 @@
             "textures": ["ForestWormBoss.png"],
             "atlas": "ForestWormBoss.atlas",
             "skeleton": "ForestWormBoss.skel"
-        }
+        },
+
+        "animation": "idle"
     },
 
     "Frog": {
@@ -26,7 +28,9 @@
             "textures": ["FrogBoss.png"],
             "atlas": "FrogBoss.atlas",
             "skeleton": "FrogBoss.skel"
-        }
+        },
+
+        "animation": "idle"
     },
 
     "Jelly": {
@@ -35,7 +39,10 @@
             "textures": ["JellyBoss.png"],
             "atlas": "JellyBoss.atlas",
             "skeleton": "JellyBoss.skel"
-        }
+        },
+
+        "animation": "leader/idle",
+        "bossAnimation": "animation"
     },
 
     "Spider": {
@@ -44,6 +51,9 @@
             "textures": ["Spider.png"],
             "atlas": "Spider.atlas",
             "skeleton": "Spider.skel"
-        }
+        },
+
+        "animation": "idle",
+        "bossAnimation": "idle-boss"
     }
 }

@@ -17,7 +17,7 @@
     import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj } from "./scripts/characters";
     import { GitManager } from "./scripts/managers";
 
-    import { bishopData } from "./data";
+    import { bishopData, towwData } from "./data";
     import { BISHOP_IDS } from "./data/types";
 
     import { MoreMath, Random, unixToDate, Vector } from "./utils";
@@ -194,7 +194,9 @@
                 !factory.hasLoadedBishop(id, false) && await factory.loadBishop(id, false);
 
                 const bishop = factory.bishop(id, false, Random.id(), bishopData[id].name);
-                bishop.setAnimation(id === "Jelly" ? "leader/idle" : "idle");
+                
+                const { animation } = bishopData[id];
+                bishop.setAnimation(animation);
 
                 addedActor = bishop;
                 break;
@@ -202,12 +204,18 @@
 
             case TOWW: {
                 !factory.hasLoadedTOWW("Bishop") && await factory.loadTOWW("Bishop");
-
                 const toww = factory.toww("Bishop", Random.id(), "The One Who Waits");
-                toww.hasCrown = true;
-                toww.hasChains = false;
+                
+                const { animation, attributes } = towwData.Bishop;
+                const {
+                    hasCrown = null,
+                    hasChains = null
+                } = attributes;
 
-                toww.setAnimation("idle-standing-nochain");
+                toww.hasCrown = hasCrown;
+                toww.hasChains = hasChains;
+
+                toww.setAnimation(animation);
 
                 addedActor = toww;
                 break;
@@ -329,7 +337,7 @@
     {#await Promise.all([gitManager.areTermsAcknowledged(), gitManager.getTermsSummary(), gitManager.getTermsUnix()]) then [areTermsAcknowledged, changesSummary, termsUnix]}
         <div class="{areTermsAcknowledged ? "hidden" : "grid"} fixed top-0 left-0 z-100 place-items-center w-full h-full bg-[#00000060] {hasUserCompliedToTOS ? "opacity-0" : "opacity-100"} transition-opacity duration-450 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
             <Dialog childClass={twMerge("mt-2 sm:mt-4")} title="Disclaimer" description={localStorage.getItem(GitManager.TERMS_LOCAL_STORAGE_NAME) ? `CultiVis has updated its terms of service${termsUnix ? ` on ${unixToDate(termsUnix)}` : ""}. ${changesSummary ? `${changesSummary.slice(0, -changesSummary.endsWith("."))}. ` : ""}You may view the new terms below or close this popup.` : "CultiVis requires you to agree and acknowledge the CultiVis Terms of Service. You may view the terms below or close this popup."}>
-                <Notice class="px-8 pb-4 text-xs sm:text-sm" label="Closing this popup will mean you agree with the Terms of Service." />
+                <Notice class="px-8 pb-4 text-sm" label="Closing this popup will mean you agree with the Terms of Service." />
                 <List class="flex flex-col justify-center items-center" enableKeyInput focusFirst>
                     <BannerButton label="View Terms" href="https://github.com/osoclos/cultivis/blob/main/ToS.md" />
                     <BannerButton label="Close and Accept" onclick={acknowledgeTerms} />

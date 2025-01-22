@@ -1,4 +1,4 @@
-import { fetchAndCache, resolvePath } from "../../utils";
+import { fetchAndCache, MONTH_NAMES, resolvePath } from "../../utils";
 
 enum Routes {
     Content = "content",
@@ -37,13 +37,20 @@ export class GitManager {
     }
 
     async getNews(): Promise<Record<string, string[]>> {
-        const news: Record<string, string[]> = {};
+        interface FileInfo {
+            date: number;
+
+            text: string;
+            folderName: string;
+        }
+
+        const info: FileInfo[] = [];
         const areNewsUpdated = await this.areNewsUpdated();
 
         const folders = await this.fetch("", GitManager.NEWS_REPO_ROOT, GitManager.PROXY_CONTENT_ROUTE, true, !areNewsUpdated);
-        for (const { name, path } of folders.filter(({ type }) => type === "dir")) {
+        for (const { name: folderName, path } of folders.filter(({ type }) => type === "dir")) {
             const files = await this.fetch(path, GitManager.NEWS_REPO_ROOT, GitManager.PROXY_CONTENT_ROUTE, true, !areNewsUpdated);
-            for (const { type, path } of files) {
+            for (const { type, name, path } of files) {
                 if (type === "dir") {
                     const subFiles = await this.fetch(path, GitManager.NEWS_REPO_ROOT, GitManager.PROXY_CONTENT_ROUTE, true, !areNewsUpdated);
                     files.push(...subFiles);
@@ -54,10 +61,15 @@ export class GitManager {
                 const { content } = await this.fetch(path, GitManager.NEWS_REPO_ROOT, GitManager.PROXY_CONTENT_ROUTE, false) as FileData;
                 const text = this.decodeContent(content);
 
-                name in news ? news[name].push(text) : news[name] = [text];
+                const date = this.filenameToUnix(name);
+                
+                info.push({ date, text, folderName });
             }
         }
 
+        const news: Record<string, string[]> = {};
+        for (const { text, folderName } of info.sort(({ date: a }, { date: b }) => a - b)) folderName in news ? news[folderName].push(text) : news[folderName] = [text];
+        
         return news;
     }
 
@@ -119,6 +131,16 @@ export class GitManager {
         return data;
     }
 
+    private filenameToUnix(name: string): number {
+        const code = name.match(/(\d{2}-){2}\d{2}/)?.[0];
+        if (!code) return 0;
+
+        const [day, month, year]: number[] = code.split("-").map((val) => +val);
+        const date: string = `${day} ${MONTH_NAMES[month]} ${year}`;
+
+        return new Date(date).getTime();
+    }
+
     private decodeContent(b64: string) {
         const binary = atob(b64);
         const buffer = Uint8Array.from(binary, (char) => char.codePointAt(0)!);
@@ -128,7 +150,7 @@ export class GitManager {
 }
 
 interface DataMap<D extends boolean> {
-    [Routes.Content]: D extends true ? FolderData[] : FolderData;
+    [Routes.Content]: D extends true ? (FileData | FolderData)[] : (FileData | FolderData);
     [Routes.Commit]: CommitData[];
 }
 
@@ -149,6 +171,8 @@ interface FolderData {
 interface CommitData {
     sha: string;
     commit: Commit;
+
+    unix: number;
 }
 
 interface Commit { author: Author; }

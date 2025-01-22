@@ -1,7 +1,7 @@
-import type { TOWW_Id } from "../../data/types";
-import { Random } from "../../utils";
+import type { TOWW_Id } from "../../../data/types";
+import { Random } from "../../../utils";
 
-import { Actor, type ActorObject } from "../Actor";
+import { Actor, type ActorObject } from "../../Actor";
 
 export class TOWW extends Actor implements TOWW_Object {
     static readonly BISHOP_CROWN_SKIN_NAME: string = "Crown";

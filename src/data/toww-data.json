@@ -5,6 +5,12 @@
             "textures": ["DeathBig.png"],
             "atlas": "DeathBig.atlas",
             "skeleton": "DeathBig.skel"
+        },
+        
+        "animation": "idle-standing-nochain",
+        "attributes": {
+            "hasCrown": true,
+            "hasChains": false
         }
     },
 
@@ -14,7 +20,10 @@
             "textures": ["DeathCat_Spirit.png"],
             "atlas": "DeathCat_Spirit.atlas",
             "skeleton": "DeathCat_Spirit.skel"
-        }
+        },
+        
+        "animation": "animation",
+        "attributes": { "hasCrown": true }
     },
 
     "Mega_Boss": {
@@ -23,7 +32,10 @@
             "textures": ["DeathCat_Boss.png"],
             "atlas": "DeathCat_Boss.atlas",
             "skeleton": "DeathCat_Boss.skel"
-        }
+        },
+        
+        "animation": "animation",
+        "attributes": { "eyeState": 0 }
     },
 
     "Eyeball": {
@@ -32,6 +44,9 @@
             "textures": ["DeathCat_Eyeball.png"],
             "atlas": "DeathCat_Eyeball.atlas",
             "skeleton": "DeathCat_Eyeball.skel"
-        }
+        },
+        
+        "animation": "idle",
+        "attributes": { "isInjured": false }
     }
 }

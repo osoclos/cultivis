@@ -16,8 +16,18 @@
             },
 
             "src": {
-                "$ref": "bishop-data.schema.json#/definitions/Sources",
+                "$ref": "globals.schema.json#/definitions/Sources",
                 "description": "The source paths to the files needed to load The One Who Waits in this form."
+            },
+
+            "animation": {
+                "type": "string",
+                "description": "The default animation it should play when this form is loaded."
+            },
+
+            "attributes": {
+                "$ref": "#/definitions/Attributes",
+                "description": "The default attributes that this form has when it first loads."
             }
         },
 
@@ -28,6 +38,22 @@
         "Id": {
             "type": "string",
             "enum": ["Bishop", "Boss", "Mega_Boss", "Eyeball"]
+        },
+
+        "Attributes": {
+            "type": "object",
+            "properties": {
+                "hasCrown": { "type": "boolean" },
+                "hasChains": { "type": "boolean" },
+                "eyeState": {
+                    "type": "integer",
+
+                    "minimum": 0,
+                    "maximum": 3
+                },
+
+                "isInjured": { "type": "boolean" }
+            }
         }
     }
 }

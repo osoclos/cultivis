@@ -50,36 +50,24 @@
         toww.copyFromObj(obj);
         toww.label = label;
 
-        switch (form) {
-            case "Bishop": {
-                toww.hasCrown = true;
-                toww.hasChains = false;
+        const { animation, attributes } = towwData[form];
 
-                obj.animation = "idle-standing-nochain";
-                toww.setAnimation("idle-standing-nochain");
+        obj.animation = animation;
+        toww.setAnimation(animation);
 
-                break;
-            }
+        const {
+            hasCrown = null,
+            hasChains = null,
+            
+            eyeState = null,
+            isInjured = null
+        } = attributes;
+        
+        toww.hasCrown = hasCrown;
+        toww.hasChains = hasChains;
 
-            case "Boss":
-            case "Mega_Boss": {
-                form === "Boss" ? toww.hasCrown = true : toww.eyeState = 0;
-
-                obj.animation = "animation";
-                toww.setAnimation("animation");
-
-                break;
-            }
-
-            case "Eyeball": {
-                toww.isInjured = false;
-
-                obj.animation = "idle";
-                toww.setAnimation("idle");
-
-                break;
-            }
-        }
+        toww.eyeState = eyeState;
+        toww.isInjured = isInjured;
 
         update();
         change(toww);

@@ -1,0 +1,32 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "globals.schema.json",
+
+    "title": "Globals",
+    "description": "Globals for JSON schemas",
+
+    "definitions": {
+        "Sources": {
+            "type": "object",
+            "properties": {
+                "textures": {
+                    "anyOf": [
+                        {
+                            "type": "object",
+                            "additionalProperties": { "type": "string" }
+                        },
+                        {
+                            "type": "array",
+                            "items": { "type": "string" }
+                        }
+                    ]
+                },
+
+                "atlas": { "type": "string" },
+                "skeleton": { "type": "string" }
+            },
+
+            "required": ["textures", "atlas", "skeleton"]
+        }
+    }
+}

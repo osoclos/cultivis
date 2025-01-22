@@ -2,7 +2,7 @@ import "./style.css";
 
 import { Scene, Factory, Exporter, Actor } from "@/scripts";
 
-import { followerData } from "@/data";
+import { followerData, towwData } from "@/data";
 import { CLOTHING_IDS, FOLLOWER_IDS, HATS_ID, NECKLACE_IDS, PLAYER_CREATURE_IDS, PLAYER_FLEECE_IDS, TOWW_IDS } from "@/data/types";
 
 const WIDTH: number = 64;
@@ -200,37 +200,22 @@ towwExporter.addEventListener("click", () => {
     for (const id of TOWW_IDS) {
         const toww = factory.toww(id);
         
-        switch (id) {
-            case "Bishop": {
-                toww.hasCrown = true;
-                toww.hasChains = false;
+        const { animation, attributes } = towwData[id];
+        toww.setAnimation(animation);
 
-                toww.setAnimation("idle-standing-nochain");
-                
-                break;
-            }
+        const {
+            hasCrown = null,
+            hasChains = null,
+            
+            eyeState = null,
+            isInjured = null
+        } = attributes;
+        
+        toww.hasCrown = hasCrown;
+        toww.hasChains = hasChains;
 
-            case "Boss": {
-                toww.hasCrown = true;
-                toww.setAnimation("animation");
-                
-                break;
-            }
-
-            case "Mega_Boss": {
-                toww.eyeState = 0;
-                toww.setAnimation("animation");
-
-                break;
-            }
-
-            case "Eyeball": {
-                toww.isInjured = false;
-                toww.setAnimation("idle");
-                
-                break;
-            }
-        }
+        toww.eyeState = eyeState;
+        toww.isInjured = isInjured;
 
         setupScene(toww);
         if (id === "Mega_Boss") {

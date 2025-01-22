@@ -16,46 +16,33 @@
             },
 
             "src": {
-                "$ref": "#/definitions/Sources",
+                "$ref": "globals.schema.json#/definitions/Sources",
                 "description": "The source paths to the files needed to load the bishop (in normal form)."
             },
 
             "bossSrc": {
-                "$ref": "#/definitions/Sources",
+                "$ref": "globals.schema.json#/definitions/Sources",
                 "description": "The source paths to the files needed to load the bishop (in boss form)."
+            },
+
+            "animation": {
+                "type": "string",
+                "description": "The default animation it should play when this bishop is loaded (in normal form)."
+            },
+
+            "bossAnimation": {
+                "type": "string",
+                "description": "The default animation it should play when this bishop is loaded (in boss form)."
             }
         },
 
-        "required": ["name", "src"]
+        "required": ["name", "src", "animation"]
     },
 
     "definitions": {
         "Id": {
             "type": "string",
             "enum": ["Worm", "Frog", "Jelly", "Spider"]
-        },
-
-        "Sources": {
-            "type": "object",
-            "properties": {
-                "textures": {
-                    "anyOf": [
-                        {
-                            "type": "object",
-                            "additionalProperties": { "type": "string" }
-                        },
-                        {
-                            "type": "array",
-                            "items": { "type": "string" }
-                        }
-                    ]
-                },
-
-                "atlas": { "type": "string" },
-                "skeleton": { "type": "string" }
-            },
-
-            "required": ["textures", "atlas", "skeleton"]
         }
     }
 }

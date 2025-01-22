@@ -1,5 +1,4 @@
+export * from "./bosses";
+
 export * from "./Follower";
 export * from "./Player";
-
-export * from "./Bishop";
-export * from "./TOWW";

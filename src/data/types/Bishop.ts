@@ -6,6 +6,9 @@ export interface BishopData {
 
     src: BishopSources;
     bossSrc?: BishopSources;
+
+    animation: string;
+    bossAnimation?: string;
 }
 
 export interface BishopSources {

@@ -1,9 +1,9 @@
-import { bishopData } from "../../data";
-import type { BishopId } from "../../data/types";
+import { bishopData } from "../../../data";
+import type { BishopId } from "../../../data/types";
 
-import { Random } from "../../utils";
+import { Random } from "../../../utils";
 
-import { Actor, type ActorObject } from "../Actor";
+import { Actor, type ActorObject } from "../../Actor";
 
 export class Bishop extends Actor implements BishopObject {
     static readonly NORMAL_SKIN_NAME: string = "Normal";
