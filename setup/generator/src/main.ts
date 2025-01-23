@@ -200,7 +200,7 @@ towwExporter.addEventListener("click", () => {
     for (const id of TOWW_IDS) {
         const toww = factory.toww(id);
         
-        const { animation, attributes } = towwData[id];
+        const { attributes, animation } = towwData[id];
         toww.setAnimation(animation);
 
         const {

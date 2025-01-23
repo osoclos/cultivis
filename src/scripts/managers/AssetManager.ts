@@ -46,4 +46,16 @@ export class AssetManager {
 
         return new spine.Skeleton(data);
     }
+
+    async fetchJSON(path: string, atlas: spine.TextureAtlas) {
+        const buffer = await fetchAndCache(resolvePath(path, this.root), this.skeletonCache).then((res) => res.arrayBuffer());
+        const arr = new Uint8Array(buffer);
+
+        const loader = new spine.AtlasAttachmentLoader(atlas);
+
+        const json = new spine.SkeletonJson(loader);
+        const data = json.readSkeletonData(arr);
+
+        return new spine.Skeleton(data);
+    }
 }

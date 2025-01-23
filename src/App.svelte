@@ -206,7 +206,7 @@
                 !factory.hasLoadedTOWW("Bishop") && await factory.loadTOWW("Bishop");
                 const toww = factory.toww("Bishop", Random.id(), "The One Who Waits");
                 
-                const { animation, attributes } = towwData.Bishop;
+                const { attributes, animation } = towwData.Bishop;
                 const {
                     hasCrown = null,
                     hasChains = null

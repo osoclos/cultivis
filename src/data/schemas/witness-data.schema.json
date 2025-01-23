@@ -1,0 +1,28 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "witness-data.schema.json",
+
+    "title": "Witness Data",
+    "description": "Information on witnesses that provides information on its name",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/Id" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The display name of this witness."
+            }
+        },
+
+        "required": ["name"]
+    },
+
+    "definitions": {
+        "Id": {
+            "type": "string",
+            "enum": ["Darkwood", "Anura", "Anchordeep", "Silk_Cradle"]
+        }
+    }
+}

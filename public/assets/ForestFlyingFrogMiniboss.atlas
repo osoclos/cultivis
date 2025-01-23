@@ -1,0 +1,230 @@
+
+ForestFlyingFrogMiniboss.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/Body
+  rotate: true
+  xy: 769, 163
+  size: 346, 321
+  orig: 346, 321
+  offset: 0, 0
+  index: -1
+images/Body2
+  rotate: true
+  xy: 2, 27
+  size: 482, 421
+  orig: 482, 421
+  offset: 0, 0
+  index: -1
+images/Body2_Tummy
+  rotate: false
+  xy: 1406, 294
+  size: 374, 215
+  orig: 374, 215
+  offset: 0, 0
+  index: -1
+images/BtmLegLeft
+  rotate: false
+  xy: 1223, 2
+  size: 88, 80
+  orig: 88, 80
+  offset: 0, 0
+  index: -1
+images/BtmLegLeft2
+  rotate: true
+  xy: 1241, 95
+  size: 100, 114
+  orig: 100, 114
+  offset: 0, 0
+  index: -1
+images/BtmLegRight
+  rotate: true
+  xy: 1444, 113
+  size: 88, 80
+  orig: 88, 80
+  offset: 0, 0
+  index: -1
+images/BtmLegRight2
+  rotate: false
+  xy: 1024, 42
+  size: 103, 119
+  orig: 103, 119
+  offset: 0, 0
+  index: -1
+images/Cheek_Left
+  rotate: true
+  xy: 1357, 104
+  size: 91, 85
+  orig: 91, 85
+  offset: 0, 0
+  index: -1
+images/Cheek_Left_2
+  rotate: true
+  xy: 915, 39
+  size: 122, 107
+  orig: 122, 107
+  offset: 0, 0
+  index: -1
+images/Cheek_Right
+  rotate: false
+  xy: 1129, 2
+  size: 92, 80
+  orig: 92, 80
+  offset: 0, 0
+  index: -1
+images/Cheek_Right_2
+  rotate: true
+  xy: 666, 14
+  size: 124, 107
+  orig: 124, 107
+  offset: 0, 0
+  index: -1
+images/Eye
+  rotate: true
+  xy: 1418, 13
+  size: 89, 85
+  orig: 89, 85
+  offset: 0, 0
+  index: -1
+images/Eye_Attack
+  rotate: true
+  xy: 1406, 203
+  size: 89, 85
+  orig: 89, 85
+  offset: 0, 0
+  index: -1
+images/Eye_Shut
+  rotate: true
+  xy: 1703, 239
+  size: 53, 49
+  orig: 53, 49
+  offset: 0, 0
+  index: -1
+images/Horns
+  rotate: false
+  xy: 425, 22
+  size: 239, 116
+  orig: 239, 116
+  offset: 0, 0
+  index: -1
+images/Horns2
+  rotate: false
+  xy: 1092, 197
+  size: 312, 312
+  orig: 312, 312
+  offset: 0, 0
+  index: -1
+images/Mouth
+  rotate: false
+  xy: 1505, 22
+  size: 61, 89
+  orig: 61, 89
+  offset: 0, 0
+  index: -1
+images/Mouth_Shut
+  rotate: true
+  xy: 1639, 227
+  size: 65, 62
+  orig: 65, 62
+  offset: 0, 0
+  index: -1
+images/Mouth_Shut2
+  rotate: true
+  xy: 1313, 7
+  size: 86, 103
+  orig: 86, 103
+  offset: 0, 0
+  index: -1
+images/Mouth_Wide
+  rotate: false
+  xy: 1129, 84
+  size: 110, 111
+  orig: 110, 111
+  offset: 0, 0
+  index: -1
+images/Mouth_Wide2
+  rotate: false
+  xy: 775, 7
+  size: 138, 154
+  orig: 138, 154
+  offset: 0, 0
+  index: -1
+images/Paw
+  rotate: true
+  xy: 1526, 132
+  size: 69, 61
+  orig: 69, 61
+  offset: 0, 0
+  index: -1
+images/Paw3
+  rotate: true
+  xy: 1493, 203
+  size: 89, 79
+  orig: 89, 79
+  offset: 0, 0
+  index: -1
+images/TummyBulge_1
+  rotate: true
+  xy: 1782, 421
+  size: 41, 40
+  orig: 41, 40
+  offset: 0, 0
+  index: -1
+images/TummyBulge_2
+  rotate: false
+  xy: 950, 6
+  size: 30, 31
+  orig: 30, 31
+  offset: 0, 0
+  index: -1
+images/TummyBulge_3
+  rotate: true
+  xy: 1754, 243
+  size: 49, 44
+  orig: 49, 44
+  offset: 0, 0
+  index: -1
+images/TummyBulge_4
+  rotate: true
+  xy: 1782, 464
+  size: 45, 43
+  orig: 45, 43
+  offset: 0, 0
+  index: -1
+images/TummyBulge_5
+  rotate: false
+  xy: 915, 4
+  size: 33, 33
+  orig: 33, 33
+  offset: 0, 0
+  index: -1
+images/TummyBulge_6
+  rotate: true
+  xy: 982, 11
+  size: 26, 25
+  orig: 26, 25
+  offset: 0, 0
+  index: -1
+images/TummyBulge_7
+  rotate: true
+  xy: 1574, 226
+  size: 66, 63
+  orig: 66, 64
+  offset: 0, 0
+  index: -1
+images/Wing
+  rotate: true
+  xy: 1589, 2
+  size: 222, 229
+  orig: 222, 229
+  offset: 0, 0
+  index: -1
+images/Wing_2
+  rotate: false
+  xy: 425, 140
+  size: 342, 369
+  orig: 342, 369
+  offset: 0, 0
+  index: -1

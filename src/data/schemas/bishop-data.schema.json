@@ -3,7 +3,7 @@
     "$id": "bishop-data.schema.json",
 
     "title": "Bishop Data",
-    "description": "Information on bishops that provides metadata of their source paths.",
+    "description": "Information on bishops that provides metadata and other related information, such as source files and animations",
 
     "type": "object",
     "propertyNames": { "$ref": "#/definitions/Id" },

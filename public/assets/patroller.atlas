@@ -1,0 +1,979 @@
+
+patroller.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Patroller,Chaser/Chaser Boss/Antler2_1
+  rotate: false
+  xy: 408, 806
+  size: 214, 377
+  orig: 214, 377
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Antler2_2
+  rotate: true
+  xy: 443, 1185
+  size: 187, 392
+  orig: 187, 392
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Antler_1
+  rotate: false
+  xy: 796, 479
+  size: 92, 184
+  orig: 92, 184
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Antler_2
+  rotate: true
+  xy: 1447, 579
+  size: 97, 203
+  orig: 97, 203
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Body_0_2
+  rotate: true
+  xy: 2, 768
+  size: 453, 404
+  orig: 453, 404
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Body_0_Back
+  rotate: false
+  xy: 624, 665
+  size: 273, 226
+  orig: 273, 226
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Body_0_Front
+  rotate: false
+  xy: 408, 670
+  size: 200, 134
+  orig: 200, 199
+  offset: 0, 59
+  index: -1
+Patroller,Chaser/Chaser Boss/Body_1
+  rotate: true
+  xy: 1866, 764
+  size: 205, 172
+  orig: 205, 172
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Body_1_2
+  rotate: false
+  xy: 1365, 1744
+  size: 303, 302
+  orig: 303, 302
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Body_2
+  rotate: true
+  xy: 1589, 438
+  size: 139, 119
+  orig: 139, 119
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Body_2_2
+  rotate: false
+  xy: 837, 1187
+  size: 224, 185
+  orig: 224, 185
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Body_3
+  rotate: false
+  xy: 866, 2
+  size: 85, 85
+  orig: 85, 85
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Body_3_2
+  rotate: true
+  xy: 1178, 507
+  size: 128, 155
+  orig: 128, 155
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Eye
+  rotate: false
+  xy: 1630, 128
+  size: 77, 85
+  orig: 77, 85
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/EyeGoop1
+  rotate: true
+  xy: 1611, 1429
+  size: 22, 67
+  orig: 22, 67
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/EyeGoop2
+  rotate: true
+  xy: 443, 1677
+  size: 16, 57
+  orig: 16, 57
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Eye_Shocked
+  rotate: true
+  xy: 766, 2
+  size: 85, 98
+  orig: 85, 98
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Eye_Transform1
+  rotate: false
+  xy: 1233, 269
+  size: 91, 97
+  orig: 91, 97
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Eye_Transform2
+  rotate: false
+  xy: 1309, 29
+  size: 91, 97
+  orig: 91, 97
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/FleshBall1
+  rotate: false
+  xy: 1532, 162
+  size: 96, 74
+  orig: 96, 74
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/FleshBall2
+  rotate: false
+  xy: 1652, 587
+  size: 56, 46
+  orig: 56, 46
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/FleshBall4
+  rotate: false
+  xy: 2010, 569
+  size: 36, 37
+  orig: 36, 37
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/FleshBall5
+  rotate: false
+  xy: 1857, 171
+  size: 55, 53
+  orig: 55, 53
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/FleshballHead2_1
+  rotate: false
+  xy: 982, 76
+  size: 107, 89
+  orig: 107, 89
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/FleshballHead2_1_Green
+  rotate: false
+  xy: 1214, 178
+  size: 107, 89
+  orig: 107, 89
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/FleshballHead2_2
+  rotate: false
+  xy: 1856, 358
+  size: 139, 132
+  orig: 139, 132
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/FleshballHead2_2_Green
+  rotate: false
+  xy: 1438, 307
+  size: 139, 133
+  orig: 139, 133
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/FleshballHead2_3
+  rotate: true
+  xy: 1965, 1119
+  size: 95, 81
+  orig: 95, 81
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/FleshballHead2_4
+  rotate: false
+  xy: 404, 317
+  size: 198, 150
+  orig: 198, 150
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/FleshballHead2_4_Green
+  rotate: false
+  xy: 890, 505
+  size: 198, 150
+  orig: 198, 150
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/FleshballHead_1
+  rotate: true
+  xy: 1772, 1372
+  size: 79, 74
+  orig: 79, 74
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/FleshballHead_2
+  rotate: true
+  xy: 1207, 29
+  size: 97, 100
+  orig: 97, 100
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/FleshballHead_3
+  rotate: false
+  xy: 1709, 71
+  size: 67, 65
+  orig: 67, 65
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Head
+  rotate: false
+  xy: 1035, 1412
+  size: 288, 281
+  orig: 288, 281
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Head_2
+  rotate: false
+  xy: 987, 1695
+  size: 376, 351
+  orig: 376, 351
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Head_Back
+  rotate: true
+  xy: 894, 897
+  size: 288, 281
+  orig: 288, 281
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Mouth
+  rotate: false
+  xy: 796, 305
+  size: 154, 172
+  orig: 154, 172
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Mouth2
+  rotate: true
+  xy: 1680, 722
+  size: 227, 184
+  orig: 227, 184
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Mouth_Btm
+  rotate: true
+  xy: 1871, 608
+  size: 154, 172
+  orig: 154, 172
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Mouth_Btm2
+  rotate: true
+  xy: 1852, 971
+  size: 216, 111
+  orig: 216, 111
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Tunneler_Ball
+  rotate: false
+  xy: 1105, 368
+  size: 147, 137
+  orig: 147, 137
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Tunneler_Ball_Btm2
+  rotate: false
+  xy: 1365, 1586
+  size: 284, 156
+  orig: 284, 156
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Tunneler_Ball_Btm2_Green
+  rotate: false
+  xy: 1325, 1428
+  size: 284, 156
+  orig: 284, 156
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Tunneler_Mouth
+  rotate: false
+  xy: 1710, 398
+  size: 144, 98
+  orig: 144, 98
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Tunneler_MouthBall2
+  rotate: true
+  xy: 899, 657
+  size: 238, 279
+  orig: 238, 279
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Tunneler_MouthBall2_Closed
+  rotate: true
+  xy: 1447, 678
+  size: 238, 231
+  orig: 238, 231
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Tunneler_MouthBall2_Closed_Green
+  rotate: true
+  xy: 1539, 1188
+  size: 238, 231
+  orig: 238, 231
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Tunneler_MouthBall2_Open
+  rotate: false
+  xy: 1180, 637
+  size: 265, 259
+  orig: 265, 259
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Tunneler_Mouth_Closed
+  rotate: true
+  xy: 1090, 523
+  size: 132, 86
+  orig: 132, 86
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser Boss/Tunneler_Mouth_Wide
+  rotate: true
+  xy: 1335, 476
+  size: 159, 101
+  orig: 159, 101
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Body_0
+  rotate: true
+  xy: 1772, 1189
+  size: 169, 188
+  orig: 169, 188
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Body_1
+  rotate: true
+  xy: 1849, 226
+  size: 130, 135
+  orig: 130, 135
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Body_2
+  rotate: false
+  xy: 1532, 75
+  size: 85, 85
+  orig: 85, 85
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Eyes_Normal
+  rotate: false
+  xy: 1323, 187
+  size: 102, 41
+  orig: 102, 41
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Eyes_Shocked
+  rotate: false
+  xy: 982, 167
+  size: 111, 45
+  orig: 111, 45
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Eyes_Shut
+  rotate: true
+  xy: 1325, 1598
+  size: 95, 33
+  orig: 95, 33
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Grass_Top
+  rotate: true
+  xy: 912, 189
+  size: 114, 68
+  orig: 114, 68
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Head
+  rotate: false
+  xy: 387, 150
+  size: 184, 165
+  orig: 184, 165
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/HeadInner
+  rotate: true
+  xy: 1579, 303
+  size: 133, 127
+  orig: 133, 127
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Head_GrassBit_0
+  rotate: false
+  xy: 1706, 2
+  size: 60, 67
+  orig: 60, 67
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Head_GrassBit_1
+  rotate: true
+  xy: 1778, 71
+  size: 65, 55
+  orig: 65, 55
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Head_StabbyBit_Top_0
+  rotate: false
+  xy: 781, 89
+  size: 114, 98
+  orig: 114, 98
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Head_StabbyBit__0 copy
+  rotate: true
+  xy: 1986, 250
+  size: 106, 60
+  orig: 106, 60
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Mini Chaser images/Antler_1
+  rotate: false
+  xy: 1402, 22
+  size: 53, 104
+  orig: 53, 104
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Mini Chaser images/Antler_2
+  rotate: true
+  xy: 1327, 230
+  size: 48, 105
+  orig: 48, 105
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Mini Chaser images/Body_0
+  rotate: false
+  xy: 1861, 492
+  size: 147, 114
+  orig: 147, 114
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Mini Chaser images/Body_1
+  rotate: false
+  xy: 1319, 380
+  size: 117, 94
+  orig: 117, 94
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Mini Chaser images/Body_2
+  rotate: false
+  xy: 1434, 240
+  size: 107, 65
+  orig: 107, 65
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Mini Chaser images/Face
+  rotate: true
+  xy: 1457, 49
+  size: 97, 73
+  orig: 97, 73
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Mini Chaser images/Head
+  rotate: false
+  xy: 1438, 442
+  size: 149, 135
+  orig: 149, 135
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Mini Chaser images/Head_Back
+  rotate: false
+  xy: 1710, 498
+  size: 149, 135
+  orig: 149, 135
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Mini Chaser images/explode_00
+  rotate: true
+  xy: 1647, 215
+  size: 86, 56
+  orig: 160, 143
+  offset: 16, 47
+  index: -1
+Patroller,Chaser/Mini Chaser images/explode_01
+  rotate: false
+  xy: 1326, 280
+  size: 106, 98
+  orig: 160, 143
+  offset: 10, 27
+  index: -1
+Patroller,Chaser/Mini Chaser images/explode_02
+  rotate: false
+  xy: 982, 214
+  size: 111, 113
+  orig: 160, 143
+  offset: 8, 21
+  index: -1
+Patroller,Chaser/Mini Chaser images/explode_03
+  rotate: false
+  xy: 624, 199
+  size: 113, 118
+  orig: 160, 143
+  offset: 8, 19
+  index: -1
+Patroller,Chaser/Mini Chaser images/explode_04
+  rotate: true
+  xy: 794, 189
+  size: 114, 116
+  orig: 160, 143
+  offset: 8, 19
+  index: -1
+Patroller,Chaser/Mini Chaser images/explode_05
+  rotate: false
+  xy: 1091, 51
+  size: 114, 90
+  orig: 160, 143
+  offset: 9, 34
+  index: -1
+Patroller,Chaser/Mini Chaser images/explode_06
+  rotate: true
+  xy: 613, 6
+  size: 25, 49
+  orig: 160, 143
+  offset: 99, 36
+  index: -1
+Patroller,Chaser/Mini Chaser images/explode_07
+  rotate: true
+  xy: 1995, 1765
+  size: 18, 40
+  orig: 160, 143
+  offset: 107, 39
+  index: -1
+Patroller,Chaser/Mini Chaser images/explode_08
+  rotate: false
+  xy: 2033, 1329
+  size: 13, 29
+  orig: 160, 143
+  offset: 112, 44
+  index: -1
+Patroller,Chaser/Mini Chaser images/explode_09
+  rotate: true
+  xy: 1997, 358
+  size: 9, 20
+  orig: 160, 143
+  offset: 115, 48
+  index: -1
+Patroller,Chaser/Patroller_images/Anlter_0
+  rotate: false
+  xy: 1768, 4
+  size: 64, 65
+  orig: 64, 65
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Patroller_images/Anlter_1
+  rotate: false
+  xy: 573, 196
+  size: 49, 119
+  orig: 49, 119
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Patroller_images/Anlter_3
+  rotate: false
+  xy: 1532, 7
+  size: 68, 66
+  orig: 68, 66
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Patroller_images/Anlter_4
+  rotate: false
+  xy: 739, 199
+  size: 53, 118
+  orig: 53, 118
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Patroller_images/Grass_0
+  rotate: true
+  xy: 1986, 175
+  size: 73, 60
+  orig: 75, 62
+  offset: 1, 1
+  index: -1
+Patroller,Chaser/Patroller_images/Grass_1
+  rotate: true
+  xy: 2019, 1076
+  size: 41, 27
+  orig: 43, 29
+  offset: 1, 1
+  index: -1
+Patroller,Chaser/Patroller_images/Head
+  rotate: false
+  xy: 596, 478
+  size: 198, 185
+  orig: 200, 187
+  offset: 1, 1
+  index: -1
+Patroller,Chaser/Patroller_images/HeadInner
+  rotate: false
+  xy: 1105, 270
+  size: 126, 96
+  orig: 126, 96
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Patroller_images/Symbol
+  rotate: false
+  xy: 1652, 635
+  size: 26, 41
+  orig: 26, 41
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Patroller_images/Twig_0
+  rotate: true
+  xy: 563, 2
+  size: 29, 48
+  orig: 31, 50
+  offset: 1, 1
+  index: -1
+Patroller,Chaser/Pouncer Boss/Antlers1
+  rotate: true
+  xy: 952, 329
+  size: 174, 151
+  orig: 174, 158
+  offset: 0, 7
+  index: -1
+Patroller,Chaser/Pouncer Boss/Antlers2
+  rotate: false
+  xy: 1611, 1453
+  size: 236, 97
+  orig: 236, 97
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Antlers2_1
+  rotate: false
+  xy: 2, 16
+  size: 383, 336
+  orig: 383, 336
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Antlers2_2
+  rotate: false
+  xy: 2, 1695
+  size: 595, 351
+  orig: 595, 351
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Body2_0
+  rotate: false
+  xy: 2, 1223
+  size: 439, 470
+  orig: 439, 470
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Body2_1
+  rotate: false
+  xy: 599, 1677
+  size: 386, 369
+  orig: 386, 369
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Body2_2
+  rotate: false
+  xy: 1177, 898
+  size: 252, 287
+  orig: 252, 287
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Body2_3
+  rotate: false
+  xy: 1655, 951
+  size: 195, 235
+  orig: 195, 235
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Body_0
+  rotate: false
+  xy: 1670, 1765
+  size: 323, 281
+  orig: 323, 281
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Body_1
+  rotate: true
+  xy: 1431, 918
+  size: 267, 222
+  orig: 267, 222
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Body_2
+  rotate: false
+  xy: 604, 319
+  size: 190, 157
+  orig: 190, 157
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Body_3
+  rotate: false
+  xy: 664, 98
+  size: 115, 99
+  orig: 115, 99
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/BounceyParticles
+  rotate: true
+  xy: 897, 96
+  size: 91, 83
+  orig: 91, 83
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Eye_Middle
+  rotate: false
+  xy: 1070, 8
+  size: 109, 41
+  orig: 109, 41
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Eye_Middle_Shocked
+  rotate: false
+  xy: 1213, 128
+  size: 112, 48
+  orig: 112, 48
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Eye_Normal
+  rotate: true
+  xy: 1619, 49
+  size: 77, 85
+  orig: 77, 85
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Eye_Shocked
+  rotate: true
+  xy: 664, 2
+  size: 94, 100
+  orig: 94, 100
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Eye_Shut
+  rotate: false
+  xy: 1800, 152
+  size: 55, 62
+  orig: 55, 62
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Head
+  rotate: false
+  xy: 443, 1374
+  size: 294, 301
+  orig: 294, 301
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Head2
+  rotate: true
+  xy: 2, 354
+  size: 412, 400
+  orig: 412, 400
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Head_Back
+  rotate: false
+  xy: 739, 1374
+  size: 294, 301
+  orig: 294, 301
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/JumpAttack
+  rotate: false
+  xy: 1995, 1785
+  size: 44, 122
+  orig: 44, 122
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Mouth
+  rotate: false
+  xy: 1849, 1360
+  size: 193, 188
+  orig: 193, 188
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Mouth_2
+  rotate: false
+  xy: 624, 893
+  size: 268, 290
+  orig: 268, 290
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Mouth_Shut
+  rotate: false
+  xy: 1680, 635
+  size: 189, 85
+  orig: 189, 85
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/RingAttack
+  rotate: false
+  xy: 1434, 148
+  size: 96, 90
+  orig: 96, 90
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/Sipral
+  rotate: true
+  xy: 953, 12
+  size: 62, 115
+  orig: 62, 115
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/StraightAttack
+  rotate: false
+  xy: 1997, 369
+  size: 49, 121
+  orig: 49, 121
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer Boss/skeletonBody
+  rotate: true
+  xy: 1705, 216
+  size: 63, 94
+  orig: 63, 94
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/Body_1
+  rotate: true
+  xy: 1852, 1550
+  size: 213, 194
+  orig: 213, 194
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/Body_2
+  rotate: false
+  xy: 387, 4
+  size: 174, 144
+  orig: 174, 144
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/Body_3
+  rotate: true
+  xy: 563, 33
+  size: 115, 99
+  orig: 115, 99
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/Body_4
+  rotate: false
+  xy: 1709, 138
+  size: 89, 76
+  orig: 89, 76
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/Eyes_Normal
+  rotate: false
+  xy: 1095, 143
+  size: 116, 62
+  orig: 116, 62
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/Eyes_Shocked
+  rotate: true
+  xy: 1254, 382
+  size: 123, 63
+  orig: 123, 63
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/Eyes_Shut
+  rotate: false
+  xy: 1327, 128
+  size: 105, 57
+  orig: 105, 57
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/Face
+  rotate: false
+  xy: 1708, 281
+  size: 139, 115
+  orig: 139, 115
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/Head
+  rotate: true
+  xy: 1651, 1552
+  size: 190, 199
+  orig: 190, 199
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/Head_Back
+  rotate: false
+  xy: 404, 469
+  size: 190, 199
+  orig: 190, 199
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/Horn_1
+  rotate: true
+  xy: 573, 155
+  size: 39, 51
+  orig: 39, 51
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/Horn_2
+  rotate: false
+  xy: 1801, 225
+  size: 37, 54
+  orig: 37, 54
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/PouncerCrab_Body
+  rotate: false
+  xy: 1063, 1187
+  size: 239, 223
+  orig: 239, 223
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/PouncerCrab_Body_Back
+  rotate: true
+  xy: 1325, 1187
+  size: 239, 212
+  orig: 239, 212
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/PouncerCrab_Eyes
+  rotate: true
+  xy: 1965, 976
+  size: 141, 52
+  orig: 141, 52
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/PouncerCrab_Eyes_Shut
+  rotate: true
+  xy: 1995, 1909
+  size: 137, 45
+  orig: 137, 45
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/PouncerCrab_Leg1
+  rotate: true
+  xy: 1543, 238
+  size: 63, 102
+  orig: 63, 102
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Pouncer/PouncerCrab_Leg2
+  rotate: false
+  xy: 1962, 1216
+  size: 69, 142
+  orig: 69, 142
+  offset: 0, 0
+  index: -1
+WarningIcon
+  rotate: true
+  xy: 1095, 207
+  size: 61, 117
+  orig: 61, 117
+  offset: 0, 0
+  index: -1

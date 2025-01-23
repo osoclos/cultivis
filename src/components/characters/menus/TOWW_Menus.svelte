@@ -50,7 +50,7 @@
         toww.copyFromObj(obj);
         toww.label = label;
 
-        const { animation, attributes } = towwData[form];
+        const { attributes, animation } = towwData[form];
 
         obj.animation = animation;
         toww.setAnimation(animation);

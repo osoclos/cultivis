@@ -1,0 +1,63 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "mini-boss-data.schema.json",
+
+    "title": "Mini Boss Data",
+    "description": "Information on mini bosses that provides metadata and other related information, such as source files and animations",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/Id" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The display name of this mini boss."
+            },
+
+            "src": {
+                "$ref": "globals.schema.json#/definitions/Sources",
+                "description": "The source paths to the files needed to load the mini boss."
+            },
+
+            "skins": {
+                "$ref": "#/definitions/Skins",
+                "description": "The list of skins needed to fully create the mini boss correctly (in normal form)."
+            },
+
+            "backSkins": {
+                "$ref": "#/definitions/Skins",
+                "description": "The list of skins needed to fully create the mini boss correctly (in normal form facing the back)."
+            },
+
+            "upgradedSkins": {
+                "$ref": "#/definitions/Skins",
+                "description": "The list of skins needed to fully create the mini boss correctly (in upgraded form)."
+            },
+
+            "backUpgradedSkins": {
+                "$ref": "#/definitions/Skins",
+                "description": "The list of skins needed to fully create the mini boss correctly (in upgraded form facing the back)."
+            },
+
+            "animation": {
+                "type": "string",
+                "description": "The default animation it should play when this form is loaded."
+            }
+        },
+
+        "required": ["name", "src", "skins", "upgradedSkins", "animation"]
+    },
+
+    "definitions": {
+        "Id": {
+            "type": "string",
+            "enum": ["Mama Worm", "Mama Maggot", "Burrow Worm", "Flying Burp Frog", "Egg Hopper", "Mortar Hopper", "Spiker", "Charger", "Scuttle Turret", "Spider Jump", "Millipede Poisoner", "Scorpion"]
+        },
+
+        "Skins": {
+            "type": "array",
+            "items": { "type": "string" }
+        }
+    }
+}

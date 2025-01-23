@@ -9,6 +9,7 @@
         "Baalzebub",
         "Barbatos",
         "Bathin",
+        "CHASERBOSS",
         "coprophiliac",
         "COTL",
         "cotlgif",
@@ -52,6 +53,7 @@
         "pageerror",
         "pocams",
         "Poggers",
+        "POUNCERBOSS",
         "Ralpherz",
         "Ratau",
         "requestfailed",
@@ -107,6 +109,20 @@
             ],
 
             "url": "/src/data/schemas/toww-data.schema.json"
+        },
+        {
+            "fileMatch": [
+                "/mini-boss-data.json"
+            ],
+
+            "url": "/src/data/schemas/mini-boss-data.schema.json"
+        },
+        {
+            "fileMatch": [
+                "/witness-data.json"
+            ],
+
+            "url": "/src/data/schemas/witness-data.schema.json"
         },
 
         {

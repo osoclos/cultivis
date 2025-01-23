@@ -1,0 +1,664 @@
+
+JellyfishMiniboss.png
+size: 4096,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/ChaserBossEyes
+  rotate: true
+  xy: 957, 28
+  size: 286, 174
+  orig: 286, 174
+  offset: 0, 0
+  index: -1
+images/ChaserBossEyes2
+  rotate: true
+  xy: 1957, 712
+  size: 398, 216
+  orig: 398, 216
+  offset: 0, 0
+  index: -1
+images/ChaserBossEyes2Red
+  rotate: true
+  xy: 2175, 719
+  size: 398, 216
+  orig: 398, 216
+  offset: 0, 0
+  index: -1
+images/ChaserBossEyesShut
+  rotate: true
+  xy: 1353, 317
+  size: 260, 172
+  orig: 260, 172
+  offset: 0, 0
+  index: -1
+images/ChaserBossEyes_Enraged
+  rotate: true
+  xy: 1133, 28
+  size: 286, 174
+  orig: 286, 174
+  offset: 0, 0
+  index: -1
+images/ChaserBossHead
+  rotate: true
+  xy: 957, 1081
+  size: 342, 268
+  orig: 342, 268
+  offset: 0, 0
+  index: -1
+images/ChaserBossHead2
+  rotate: true
+  xy: 1828, 1573
+  size: 473, 423
+  orig: 473, 423
+  offset: 0, 0
+  index: -1
+images/ChaserBossMouth
+  rotate: true
+  xy: 2063, 1438
+  size: 133, 145
+  orig: 133, 145
+  offset: 0, 0
+  index: -1
+images/ChaserBossMouth2
+  rotate: false
+  xy: 2393, 720
+  size: 163, 177
+  orig: 163, 177
+  offset: 0, 0
+  index: -1
+images/ChaserBossMouthBack
+  rotate: false
+  xy: 2575, 399
+  size: 97, 105
+  orig: 97, 105
+  offset: 0, 0
+  index: -1
+images/ChaserBossMouthBack2
+  rotate: true
+  xy: 2210, 1444
+  size: 127, 157
+  orig: 127, 157
+  offset: 0, 0
+  index: -1
+images/ChaserBossMouthShut
+  rotate: false
+  xy: 1100, 446
+  size: 105, 131
+  orig: 105, 131
+  offset: 0, 0
+  index: -1
+images/ChaserBossSpikes
+  rotate: true
+  xy: 1100, 579
+  size: 500, 442
+  orig: 500, 442
+  offset: 0, 0
+  index: -1
+images/ChaserBossSpikes2
+  rotate: true
+  xy: 2, 311
+  size: 764, 650
+  orig: 764, 650
+  offset: 0, 0
+  index: -1
+images/ChaserTongue_1_2
+  rotate: false
+  xy: 389, 13
+  size: 103, 296
+  orig: 103, 296
+  offset: 0, 0
+  index: -1
+images/ChaserTongue_2
+  rotate: false
+  xy: 2327, 488
+  size: 80, 229
+  orig: 80, 229
+  offset: 0, 0
+  index: -1
+images/ChaserTongue_2_2
+  rotate: false
+  xy: 857, 2
+  size: 98, 312
+  orig: 98, 312
+  offset: 0, 0
+  index: -1
+images/ChaserTongue_3
+  rotate: false
+  xy: 2532, 910
+  size: 73, 216
+  orig: 73, 216
+  offset: 0, 0
+  index: -1
+images/ChaserTongue_3_2
+  rotate: false
+  xy: 1527, 326
+  size: 70, 251
+  orig: 70, 251
+  offset: 0, 0
+  index: -1
+images/Drips
+  rotate: false
+  xy: 1886, 1433
+  size: 175, 138
+  orig: 175, 138
+  offset: 0, 0
+  index: -1
+images/Eye
+  rotate: true
+  xy: 2022, 643
+  size: 67, 52
+  orig: 67, 52
+  offset: 0, 0
+  index: -1
+images/ScuttleBossHead
+  rotate: false
+  xy: 494, 18
+  size: 361, 291
+  orig: 361, 291
+  offset: 0, 0
+  index: -1
+images/ScuttleBossHead2
+  rotate: true
+  xy: 1544, 632
+  size: 473, 411
+  orig: 473, 411
+  offset: 0, 0
+  index: -1
+images/ScuttleBossHorns
+  rotate: true
+  xy: 692, 1425
+  size: 621, 367
+  orig: 621, 367
+  offset: 0, 0
+  index: -1
+images/ScuttleBossHorns2
+  rotate: true
+  xy: 2, 1077
+  size: 969, 688
+  orig: 969, 688
+  offset: 0, 0
+  index: -1
+images/ScuttleBossMouth
+  rotate: true
+  xy: 2610, 243
+  size: 154, 153
+  orig: 154, 153
+  offset: 0, 0
+  index: -1
+images/ScuttleBossMouth2
+  rotate: true
+  xy: 1666, 97
+  size: 240, 215
+  orig: 240, 215
+  offset: 0, 0
+  index: -1
+images/ScuttleBossMouthBack
+  rotate: true
+  xy: 2446, 17
+  size: 127, 99
+  orig: 127, 101
+  offset: 0, 2
+  index: -1
+images/ScuttleBossMouth_Closed
+  rotate: false
+  xy: 2157, 591
+  size: 52, 119
+  orig: 52, 119
+  offset: 0, 0
+  index: -1
+images/ScuttleBossMouth_Closed2
+  rotate: true
+  xy: 1681, 342
+  size: 240, 215
+  orig: 240, 215
+  offset: 0, 0
+  index: -1
+images/ScuttleBossSkirt
+  rotate: false
+  xy: 654, 316
+  size: 276, 80
+  orig: 276, 80
+  offset: 0, 0
+  index: -1
+images/ScuttleBossSkirt2
+  rotate: true
+  xy: 2219, 360
+  size: 357, 106
+  orig: 357, 106
+  offset: 0, 0
+  index: -1
+images/ScuttleBossTentacle1
+  rotate: true
+  xy: 1691, 591
+  size: 39, 231
+  orig: 39, 231
+  offset: 0, 0
+  index: -1
+images/ScuttleBossTentacle1_2
+  rotate: false
+  xy: 336, 10
+  size: 51, 299
+  orig: 51, 299
+  offset: 0, 0
+  index: -1
+images/ScuttleBossTentacle2
+  rotate: false
+  xy: 2409, 506
+  size: 90, 212
+  orig: 90, 212
+  offset: 0, 0
+  index: -1
+images/ScuttleBossTentacle2_2
+  rotate: true
+  xy: 1606, 1432
+  size: 119, 278
+  orig: 119, 278
+  offset: 0, 0
+  index: -1
+images/ScuttleBossTentacle3
+  rotate: false
+  xy: 2220, 126
+  size: 59, 232
+  orig: 59, 232
+  offset: 0, 0
+  index: -1
+images/ScuttleBossTentacle3_2
+  rotate: false
+  xy: 174, 5
+  size: 79, 304
+  orig: 79, 304
+  offset: 0, 0
+  index: -1
+images/ScuttleBossTentacle4
+  rotate: false
+  xy: 2342, 146
+  size: 57, 228
+  orig: 57, 228
+  offset: 0, 0
+  index: -1
+images/ScuttleBossTentacle4_2
+  rotate: false
+  xy: 2, 2
+  size: 84, 307
+  orig: 84, 307
+  offset: 0, 0
+  index: -1
+images/ScuttleBossTentacle5
+  rotate: false
+  xy: 1599, 339
+  size: 39, 243
+  orig: 39, 243
+  offset: 0, 0
+  index: -1
+images/ScuttleBossTentacle5_2
+  rotate: false
+  xy: 2133, 1119
+  size: 56, 317
+  orig: 56, 317
+  offset: 0, 0
+  index: -1
+images/Scuttle_Eye_Back
+  rotate: true
+  xy: 1514, 1429
+  size: 122, 90
+  orig: 122, 90
+  offset: 0, 0
+  index: -1
+images/Scuttle_Eye_Back_Big
+  rotate: false
+  xy: 2427, 395
+  size: 146, 109
+  orig: 146, 109
+  offset: 0, 0
+  index: -1
+images/Scuttle_Eye_Back_Big2
+  rotate: true
+  xy: 2607, 926
+  size: 200, 101
+  orig: 200, 101
+  offset: 0, 0
+  index: -1
+images/Scuttle_Eye_Big
+  rotate: true
+  xy: 2620, 155
+  size: 86, 63
+  orig: 86, 63
+  offset: 0, 0
+  index: -1
+images/Scuttle_Eye_Big_Closed2
+  rotate: false
+  xy: 2460, 148
+  size: 158, 63
+  orig: 158, 63
+  offset: 0, 0
+  index: -1
+images/Scuttle_Eye_Closed
+  rotate: true
+  xy: 1957, 633
+  size: 77, 63
+  orig: 77, 63
+  offset: 0, 0
+  index: -1
+images/Scuttle_Eye_Closed2
+  rotate: true
+  xy: 2327, 376
+  size: 110, 98
+  orig: 110, 98
+  offset: 0, 0
+  index: -1
+images/Scuttle_Eye_Closed3
+  rotate: true
+  xy: 2547, 43
+  size: 103, 88
+  orig: 103, 88
+  offset: 0, 0
+  index: -1
+images/SpawnerEyes
+  rotate: false
+  xy: 1869, 3
+  size: 181, 92
+  orig: 181, 92
+  offset: 0, 0
+  index: -1
+images/SpawnerEyesExplosive
+  rotate: true
+  xy: 2558, 727
+  size: 181, 146
+  orig: 181, 146
+  offset: 0, 0
+  index: -1
+images/SpawnerEyesShut
+  rotate: true
+  xy: 2460, 213
+  size: 180, 91
+  orig: 180, 91
+  offset: 0, 0
+  index: -1
+images/SpawnerEyesShutExplosive
+  rotate: false
+  xy: 2052, 5
+  size: 180, 112
+  orig: 180, 112
+  offset: 0, 0
+  index: -1
+images/SpawnerHead
+  rotate: true
+  xy: 2013, 355
+  size: 234, 204
+  orig: 234, 204
+  offset: 0, 0
+  index: -1
+images/SpawnerHead_Explosive
+  rotate: true
+  xy: 2014, 119
+  size: 234, 204
+  orig: 234, 204
+  offset: 0, 0
+  index: -1
+images/SpawnerSpikes
+  rotate: true
+  xy: 1417, 1107
+  size: 318, 219
+  orig: 318, 219
+  offset: 0, 0
+  index: -1
+images/SpawnerTentacle_1
+  rotate: false
+  xy: 2669, 5
+  size: 30, 148
+  orig: 30, 148
+  offset: 0, 0
+  index: -1
+images/SpawnerTentacle_2
+  rotate: true
+  xy: 1469, 4
+  size: 31, 150
+  orig: 31, 150
+  offset: 0, 0
+  index: -1
+images/SpawnerTentacle_3
+  rotate: false
+  xy: 2637, 2
+  size: 30, 151
+  orig: 30, 151
+  offset: 0, 0
+  index: -1
+images/SpikerBossSkirt
+  rotate: false
+  xy: 932, 316
+  size: 276, 80
+  orig: 276, 80
+  offset: 0, 0
+  index: -1
+images/SpikerBossSpike1
+  rotate: false
+  xy: 1590, 78
+  size: 74, 246
+  orig: 74, 246
+  offset: 0, 0
+  index: -1
+images/SpikerBossSpike1_2
+  rotate: false
+  xy: 2457, 900
+  size: 73, 226
+  orig: 73, 226
+  offset: 0, 0
+  index: -1
+images/SpikerBossSpike2
+  rotate: true
+  xy: 1621, 2
+  size: 74, 246
+  orig: 74, 246
+  offset: 0, 0
+  index: -1
+images/SpikerBossSpike2_2
+  rotate: false
+  xy: 2393, 899
+  size: 62, 227
+  orig: 62, 227
+  offset: 0, 0
+  index: -1
+images/SpikerBossTentacle1
+  rotate: true
+  xy: 1924, 591
+  size: 39, 231
+  orig: 39, 231
+  offset: 0, 0
+  index: -1
+images/SpikerBossTentacle2
+  rotate: false
+  xy: 2501, 506
+  size: 90, 212
+  orig: 90, 212
+  offset: 0, 0
+  index: -1
+images/SpikerBossTentacle2_2
+  rotate: false
+  xy: 1469, 37
+  size: 119, 278
+  orig: 119, 278
+  offset: 0, 0
+  index: -1
+images/SpikerBossTentacle3
+  rotate: false
+  xy: 2281, 126
+  size: 59, 232
+  orig: 59, 232
+  offset: 0, 0
+  index: -1
+images/SpikerBossTentacle3_2
+  rotate: false
+  xy: 255, 5
+  size: 79, 304
+  orig: 79, 304
+  offset: 0, 0
+  index: -1
+images/SpikerBossTentacle4
+  rotate: false
+  xy: 2401, 146
+  size: 57, 228
+  orig: 57, 228
+  offset: 0, 0
+  index: -1
+images/SpikerBossTentacle4_2
+  rotate: false
+  xy: 88, 2
+  size: 84, 307
+  orig: 84, 307
+  offset: 0, 0
+  index: -1
+images/SpikerBossTentacle5
+  rotate: false
+  xy: 1640, 339
+  size: 39, 243
+  orig: 39, 243
+  offset: 0, 0
+  index: -1
+images/SpikerBossTentacle5_2
+  rotate: false
+  xy: 2191, 1119
+  size: 56, 317
+  orig: 56, 317
+  offset: 0, 0
+  index: -1
+images/SpikerBoss_Body1
+  rotate: false
+  xy: 2249, 1128
+  size: 374, 314
+  orig: 374, 315
+  offset: 0, 1
+  index: -1
+images/SpikerBoss_Body2
+  rotate: true
+  xy: 1404, 1553
+  size: 493, 422
+  orig: 493, 422
+  offset: 0, 0
+  index: -1
+images/SpikerBoss_Eyes
+  rotate: true
+  xy: 1883, 104
+  size: 236, 129
+  orig: 236, 129
+  offset: 0, 0
+  index: -1
+images/SpikerBoss_Eyes2
+  rotate: true
+  xy: 1638, 1112
+  size: 318, 185
+  orig: 318, 185
+  offset: 0, 0
+  index: -1
+images/SpikerBoss_EyesCharge
+  rotate: false
+  xy: 1276, 1427
+  size: 236, 113
+  orig: 236, 113
+  offset: 0, 0
+  index: -1
+images/SpikerBoss_EyesCharge2
+  rotate: true
+  xy: 1898, 353
+  size: 236, 113
+  orig: 236, 113
+  offset: 0, 0
+  index: -1
+images/SpikerBoss_EyesCharge3
+  rotate: true
+  xy: 1825, 1112
+  size: 318, 152
+  orig: 318, 152
+  offset: 0, 0
+  index: -1
+images/SpikerBoss_EyesCharge4
+  rotate: true
+  xy: 1979, 1113
+  size: 318, 152
+  orig: 318, 152
+  offset: 0, 0
+  index: -1
+images/SpikerBoss_EyesClosed
+  rotate: false
+  xy: 1061, 1426
+  size: 213, 114
+  orig: 213, 114
+  offset: 0, 0
+  index: -1
+images/SpikerBoss_EyesClosed2
+  rotate: true
+  xy: 1309, 31
+  size: 283, 158
+  orig: 283, 158
+  offset: 0, 0
+  index: -1
+images/SpikerBoss_Mouth
+  rotate: false
+  xy: 2234, 8
+  size: 210, 116
+  orig: 210, 116
+  offset: 0, 0
+  index: -1
+images/SpikerBoss_Mouth2
+  rotate: true
+  xy: 1210, 316
+  size: 261, 141
+  orig: 261, 141
+  offset: 0, 0
+  index: -1
+images/SpikerBoss_SpikesBack
+  rotate: true
+  xy: 1227, 1085
+  size: 339, 188
+  orig: 339, 188
+  offset: 0, 0
+  index: -1
+images/SpikerBoss_SpikesBack2
+  rotate: true
+  xy: 654, 398
+  size: 677, 444
+  orig: 677, 444
+  offset: 0, 0
+  index: -1
+images/SpikerBoss_SpikesFront
+  rotate: true
+  xy: 692, 1077
+  size: 346, 263
+  orig: 346, 263
+  offset: 0, 0
+  index: -1
+images/SpikerBoss_SpikesFront2
+  rotate: true
+  xy: 1061, 1542
+  size: 504, 341
+  orig: 504, 341
+  offset: 0, 0
+  index: -1
+images/Teleport_1
+  rotate: false
+  xy: 1100, 405
+  size: 102, 39
+  orig: 160, 55
+  offset: 34, 11
+  index: -1
+images/Teleport_2
+  rotate: false
+  xy: 1544, 584
+  size: 145, 46
+  orig: 160, 55
+  offset: 10, 6
+  index: -1
+images/Teleport_3
+  rotate: false
+  xy: 2685, 189
+  size: 154, 52
+  orig: 160, 55
+  offset: 3, 2
+  index: -1
+images/Teleport_4
+  rotate: true
+  xy: 2553, 233
+  size: 160, 55
+  orig: 160, 55
+  offset: 0, 0
+  index: -1

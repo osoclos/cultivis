@@ -55,7 +55,7 @@ export class Factory {
         for (const path in texturePaths) textures[path] = await this.assetManager.fetchTexture(path);
 
         const atlas = await this.assetManager.fetchAtlas(atlasPath, textures);
-        const skeleton = await this.assetManager.fetchSkeleton(skeletonPath, atlas);
+        const skeleton = await this.assetManager[skeletonPath.endsWith(".json") ? "fetchJSON" : "fetchSkeleton"](skeletonPath, atlas);
 
         const animationStateData = new spine.AnimationStateData(skeleton.data);
         const animationState = new spine.AnimationState(animationStateData);

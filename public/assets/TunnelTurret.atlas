@@ -1,0 +1,685 @@
+
+TunnelTurret.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/Antlers_Btm
+  rotate: false
+  xy: 450, 638
+  size: 258, 92
+  orig: 258, 92
+  offset: 0, 0
+  index: -1
+images/Antlers_Top
+  rotate: false
+  xy: 1833, 405
+  size: 201, 140
+  orig: 201, 140
+  offset: 0, 0
+  index: -1
+images/Body_Btm
+  rotate: false
+  xy: 1396, 343
+  size: 188, 92
+  orig: 188, 92
+  offset: 0, 0
+  index: -1
+images/Body_Top
+  rotate: false
+  xy: 548, 1314
+  size: 177, 115
+  orig: 177, 115
+  offset: 0, 0
+  index: -1
+images/DigMound_1
+  rotate: false
+  xy: 1237, 687
+  size: 158, 62
+  orig: 158, 62
+  offset: 0, 0
+  index: -1
+images/DigMound_1_Big
+  rotate: false
+  xy: 1113, 395
+  size: 281, 108
+  orig: 281, 108
+  offset: 0, 0
+  index: -1
+images/DigMound_2
+  rotate: false
+  xy: 1240, 751
+  size: 162, 65
+  orig: 162, 65
+  offset: 0, 0
+  index: -1
+images/DigMound_2_Big
+  rotate: false
+  xy: 702, 397
+  size: 294, 116
+  orig: 294, 116
+  offset: 0, 0
+  index: -1
+images/DigMound_3
+  rotate: false
+  xy: 1235, 622
+  size: 156, 63
+  orig: 156, 63
+  offset: 0, 0
+  index: -1
+images/DigMound_3_Big
+  rotate: false
+  xy: 1114, 505
+  size: 285, 114
+  orig: 285, 114
+  offset: 0, 0
+  index: -1
+images/DigParticle_1
+  rotate: true
+  xy: 344, 353
+  size: 33, 35
+  orig: 33, 35
+  offset: 0, 0
+  index: -1
+images/DigParticle_2
+  rotate: true
+  xy: 1954, 692
+  size: 22, 23
+  orig: 22, 23
+  offset: 0, 0
+  index: -1
+images/DigParticle_3
+  rotate: true
+  xy: 1833, 797
+  size: 14, 17
+  orig: 14, 17
+  offset: 0, 0
+  index: -1
+images/DigParticle_4
+  rotate: false
+  xy: 998, 479
+  size: 34, 34
+  orig: 34, 34
+  offset: 0, 0
+  index: -1
+images/Fleshball_1
+  rotate: true
+  xy: 1037, 537
+  size: 59, 74
+  orig: 59, 74
+  offset: 0, 0
+  index: -1
+images/Fleshball_1_Green
+  rotate: true
+  xy: 1037, 476
+  size: 59, 74
+  orig: 59, 74
+  offset: 0, 0
+  index: -1
+images/Fleshball_2
+  rotate: false
+  xy: 1722, 168
+  size: 95, 76
+  orig: 95, 76
+  offset: 0, 0
+  index: -1
+images/Fleshball_2_Green
+  rotate: false
+  xy: 1819, 168
+  size: 95, 76
+  orig: 95, 76
+  offset: 0, 0
+  index: -1
+images/Fleshball_3
+  rotate: false
+  xy: 2003, 1270
+  size: 42, 41
+  orig: 42, 41
+  offset: 0, 0
+  index: -1
+images/Fleshball_3_Green
+  rotate: false
+  xy: 952, 354
+  size: 42, 41
+  orig: 42, 41
+  offset: 0, 0
+  index: -1
+images/Mound_Btm
+  rotate: false
+  xy: 445, 392
+  size: 228, 47
+  orig: 228, 47
+  offset: 0, 0
+  index: -1
+images/SwampSpiker_Body
+  rotate: false
+  xy: 448, 441
+  size: 252, 195
+  orig: 252, 195
+  offset: 0, 0
+  index: -1
+images/SwampSpiker_Tooth1
+  rotate: false
+  xy: 396, 597
+  size: 50, 72
+  orig: 50, 72
+  offset: 0, 0
+  index: -1
+images/SwampSpiker_Tooth2
+  rotate: false
+  xy: 1906, 645
+  size: 46, 69
+  orig: 46, 69
+  offset: 0, 0
+  index: -1
+images/SwampSpiker_Tooth3
+  rotate: false
+  xy: 396, 523
+  size: 50, 72
+  orig: 50, 72
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Antlers_Btm
+  rotate: false
+  xy: 1424, 1395
+  size: 577, 221
+  orig: 577, 221
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Antlers_Btm2
+  rotate: false
+  xy: 732, 1255
+  size: 690, 361
+  orig: 690, 361
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Antlers_Front
+  rotate: false
+  xy: 1424, 1288
+  size: 577, 105
+  orig: 577, 105
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Antlers_Front2
+  rotate: false
+  xy: 2, 1431
+  size: 728, 185
+  orig: 728, 185
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Antlers_Top
+  rotate: false
+  xy: 1404, 487
+  size: 427, 324
+  orig: 427, 324
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Antlers_Top2
+  rotate: false
+  xy: 726, 797
+  size: 512, 456
+  orig: 512, 456
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Body_Btm
+  rotate: true
+  xy: 1240, 866
+  size: 387, 174
+  orig: 387, 174
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Body_Btm2
+  rotate: false
+  xy: 1424, 1049
+  size: 567, 237
+  orig: 567, 237
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Body_Top
+  rotate: false
+  xy: 2, 193
+  size: 340, 193
+  orig: 340, 193
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Body_Top2
+  rotate: false
+  xy: 1416, 813
+  size: 437, 234
+  orig: 437, 234
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Eye1
+  rotate: true
+  xy: 1916, 145
+  size: 84, 88
+  orig: 84, 88
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Eye1_Closed
+  rotate: true
+  xy: 2003, 1313
+  size: 46, 42
+  orig: 46, 42
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Eye2
+  rotate: false
+  xy: 1135, 700
+  size: 100, 95
+  orig: 100, 95
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Eye2_Closed
+  rotate: false
+  xy: 1833, 643
+  size: 71, 71
+  orig: 71, 71
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_1
+  rotate: true
+  xy: 1781, 429
+  size: 56, 50
+  orig: 56, 50
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_1_Green
+  rotate: true
+  xy: 1781, 371
+  size: 56, 50
+  orig: 56, 50
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_2
+  rotate: false
+  xy: 1224, 97
+  size: 95, 95
+  orig: 95, 95
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_2 _2
+  rotate: true
+  xy: 998, 364
+  size: 110, 112
+  orig: 110, 112
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_2_2_Green
+  rotate: true
+  xy: 996, 252
+  size: 110, 112
+  orig: 110, 112
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_2_Green
+  rotate: false
+  xy: 1625, 169
+  size: 95, 95
+  orig: 95, 95
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_3
+  rotate: false
+  xy: 1576, 82
+  size: 87, 85
+  orig: 87, 85
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_3_2
+  rotate: false
+  xy: 344, 247
+  size: 97, 104
+  orig: 97, 104
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_3_2_Green
+  rotate: false
+  xy: 344, 141
+  size: 97, 104
+  orig: 97, 104
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_3_Green
+  rotate: false
+  xy: 1418, 2
+  size: 87, 85
+  orig: 87, 85
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_4
+  rotate: true
+  xy: 1479, 89
+  size: 82, 95
+  orig: 82, 95
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_4_2
+  rotate: false
+  xy: 548, 844
+  size: 174, 107
+  orig: 174, 107
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_4_2_Green
+  rotate: false
+  xy: 548, 735
+  size: 174, 107
+  orig: 174, 107
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_4_Green
+  rotate: true
+  xy: 1321, 58
+  size: 82, 95
+  orig: 82, 95
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_5
+  rotate: true
+  xy: 1993, 1200
+  size: 68, 53
+  orig: 68, 53
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_5_2
+  rotate: true
+  xy: 1255, 194
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_5_2_Green
+  rotate: true
+  xy: 1110, 193
+  size: 109, 112
+  orig: 109, 112
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_5_Green
+  rotate: true
+  xy: 1993, 1130
+  size: 68, 53
+  orig: 68, 53
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_6
+  rotate: false
+  xy: 1515, 173
+  size: 108, 91
+  orig: 108, 91
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_6_2
+  rotate: false
+  xy: 201, 102
+  size: 141, 89
+  orig: 141, 89
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_6_2_Green
+  rotate: false
+  xy: 1112, 304
+  size: 141, 89
+  orig: 141, 89
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_6_Green
+  rotate: false
+  xy: 1369, 142
+  size: 108, 91
+  orig: 108, 91
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_7_2
+  rotate: false
+  xy: 1918, 231
+  size: 126, 106
+  orig: 126, 106
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Fleshball_7_2_Green
+  rotate: false
+  xy: 1387, 235
+  size: 126, 106
+  orig: 126, 106
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Head
+  rotate: false
+  xy: 2, 671
+  size: 446, 327
+  orig: 446, 327
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Head2
+  rotate: false
+  xy: 2, 1000
+  size: 544, 429
+  orig: 544, 429
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_InsideMouth
+  rotate: false
+  xy: 1586, 266
+  size: 185, 109
+  orig: 185, 109
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Mound_Btm
+  rotate: false
+  xy: 724, 707
+  size: 409, 88
+  orig: 409, 88
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_MouthFront
+  rotate: true
+  xy: 450, 732
+  size: 266, 96
+  orig: 266, 96
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Tooth1_2
+  rotate: true
+  xy: 710, 598
+  size: 107, 402
+  orig: 107, 402
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Tooth2
+  rotate: true
+  xy: 548, 1088
+  size: 60, 176
+  orig: 60, 176
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Tooth2_2
+  rotate: true
+  xy: 2, 584
+  size: 85, 392
+  orig: 86, 392
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Tooth3
+  rotate: true
+  xy: 1833, 339
+  size: 64, 185
+  orig: 64, 185
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Tooth3_2
+  rotate: true
+  xy: 2, 496
+  size: 86, 380
+  orig: 86, 380
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Tooth4
+  rotate: true
+  xy: 2, 101
+  size: 90, 197
+  orig: 90, 197
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Tooth4_2
+  rotate: true
+  xy: 2, 388
+  size: 106, 356
+  orig: 106, 356
+  offset: 0, 0
+  index: -1
+images/TunnelBoss_Tooth5_2
+  rotate: true
+  xy: 702, 515
+  size: 81, 333
+  orig: 81, 333
+  offset: 0, 0
+  index: -1
+images/TunnelBoss__Tooth1
+  rotate: true
+  xy: 1833, 547
+  size: 94, 208
+  orig: 94, 208
+  offset: 0, 0
+  index: -1
+images/TunnelBoss__Tooth5
+  rotate: true
+  xy: 548, 953
+  size: 71, 175
+  orig: 71, 175
+  offset: 0, 0
+  index: -1
+images/TunnelSpiker_Antlers_Btm
+  rotate: true
+  xy: 1993, 785
+  size: 343, 50
+  orig: 343, 50
+  offset: 0, 0
+  index: -1
+images/TunnelSpiker_Antlers_Front
+  rotate: false
+  xy: 445, 333
+  size: 223, 57
+  orig: 223, 57
+  offset: 0, 0
+  index: -1
+images/TunnelSpiker_Antlers_Top
+  rotate: false
+  xy: 675, 273
+  size: 275, 122
+  orig: 275, 122
+  offset: 0, 0
+  index: -1
+images/TunnelSpiker_Body_Btm
+  rotate: false
+  xy: 443, 240
+  size: 217, 91
+  orig: 217, 91
+  offset: 0, 0
+  index: -1
+images/TunnelSpiker_Body_Top
+  rotate: false
+  xy: 1591, 377
+  size: 188, 108
+  orig: 188, 108
+  offset: 0, 0
+  index: -1
+images/TunnelSpiker_Head
+  rotate: true
+  xy: 1855, 716
+  size: 191, 131
+  orig: 191, 131
+  offset: 0, 0
+  index: -1
+images/TunnelSpiker_InsideMouth
+  rotate: false
+  xy: 1855, 961
+  size: 133, 86
+  orig: 133, 86
+  offset: 0, 0
+  index: -1
+images/TunnelSpiker_Spike1
+  rotate: true
+  xy: 1396, 437
+  size: 48, 193
+  orig: 48, 194
+  offset: 0, 0
+  index: -1
+images/TunnelSpiker_Spike2
+  rotate: true
+  xy: 1240, 818
+  size: 46, 163
+  orig: 46, 163
+  offset: 0, 0
+  index: -1
+images/TunnelSpiker_Spike3
+  rotate: true
+  xy: 548, 1026
+  size: 60, 176
+  orig: 60, 176
+  offset: 0, 0
+  index: -1
+images/TunnelSpiker_Tooth1
+  rotate: false
+  xy: 384, 383
+  size: 59, 138
+  orig: 59, 138
+  offset: 0, 0
+  index: -1
+images/TunnelSpiker_Tooth2
+  rotate: false
+  xy: 2003, 1361
+  size: 42, 125
+  orig: 42, 125
+  offset: 0, 0
+  index: -1
+images/TunnelSpiker_Tooth3
+  rotate: false
+  xy: 2003, 1488
+  size: 43, 128
+  orig: 43, 128
+  offset: 0, 0
+  index: -1
+images/TunnelSpiker_Tooth4
+  rotate: false
+  xy: 1988, 643
+  size: 58, 140
+  orig: 58, 140
+  offset: 0, 0
+  index: -1
+images/TunnelSpiker_Tooth5
+  rotate: true
+  xy: 1855, 909
+  size: 50, 133
+  orig: 50, 133
+  offset: 0, 0
+  index: -1
+images/TunnelerHead
+  rotate: false
+  xy: 548, 1150
+  size: 176, 162
+  orig: 176, 162
+  offset: 0, 0
+  index: -1
+images/Tunneler_Mouth
+  rotate: false
+  xy: 1255, 305
+  size: 130, 88
+  orig: 130, 88
+  offset: 0, 0
+  index: -1
+images/Tunneler_Mouth_Closed
+  rotate: false
+  xy: 1114, 621
+  size: 119, 77
+  orig: 119, 77
+  offset: 0, 0
+  index: -1
+images/Tunneler_Mouth_Wide
+  rotate: false
+  xy: 1773, 246
+  size: 143, 91
+  orig: 143, 91
+  offset: 0, 0
+  index: -1

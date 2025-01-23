@@ -1,13 +1,13 @@
-import type { BishopSources } from "./Bishop";
+import type { Sources } from "./Globals";
 import towwData from "../toww-data.json";
 
 export type TOWW_DataJSON = Record<TOWW_Id, TOWW_Data>;
 export interface TOWW_Data {
     name: string;
-    src: BishopSources;
-
-    animation: string;
     attributes: Partial<TOWW_Attributes>;
+
+    src: Sources;
+    animation: string;
 }
 
 export interface TOWW_Attributes {

@@ -1,0 +1,184 @@
+{
+    "Mama Worm": {
+        "name": "Amdusias",
+        "src": {
+            "textures": ["patroller.png"],
+            "atlas": "patroller.atlas",
+            "skeleton": "patroller.skel"
+        },
+
+        "skins": ["CHASERBOSS_BODY_4", "CHASERBOSS_BODY_3", "CHASERBOSS_BODY_2", "CHASERBOSS_BODY_1", "CHASERBOSS_BODY_0"],
+        "backSkins": ["CHASERBOSS_BODY_4", "CHASERBOSS_BODY_3", "CHASERBOSS_BODY_2", "CHASERBOSS_BODY_1", "CHASERBOSS_BODY_0_BACK"],
+
+        "upgradedSkins": ["CHASERBOSS2_BODY_4", "CHASERBOSS2_BODY_3", "CHASERBOSS2_BODY_2", "CHASERBOSS2_BODY_1", "CHASERBOSS2_BODY_0"],
+        "backUpgradedSkins": ["CHASERBOSS2_BODY_4", "CHASERBOSS2_BODY_3", "CHASERBOSS2_BODY_2", "CHASERBOSS2_BODY_1", "CHASERBOSS2_BODY_0_BACK"],
+
+        "animation": "animation"
+    },
+
+    "Mama Maggot": {
+        "name": "Valefar",
+        "src": {
+            "textures": ["patroller.png"],
+            "atlas": "patroller.atlas",
+            "skeleton": "patroller.skel"
+        },
+
+        "skins": ["POUNCERBOSS_BODY_4", "POUNCERBOSS_BODY_3", "POUNCERBOSS_BODY_2", "POUNCERBOSS_BODY_1", "POUNCERBOSS_BODY_0"],
+        "backSkins": ["POUNCERBOSS_BODY_4", "POUNCERBOSS_BODY_3", "POUNCERBOSS_BODY_2", "POUNCERBOSS_BODY_1", "POUNCERBOSS_BODY_0_BACK"],
+
+        "upgradedSkins": ["POUNCERBOSS2_BODY_4", "POUNCERBOSS2_BODY_3", "POUNCERBOSS2_BODY_2", "POUNCERBOSS2_BODY_1", "POUNCERBOSS2_BODY_0"],
+        "backUpgradedSkins": ["POUNCERBOSS2_BODY_4", "POUNCERBOSS2_BODY_3", "POUNCERBOSS2_BODY_2", "POUNCERBOSS2_BODY_1", "POUNCERBOSS2_BODY_0_BACK"],
+
+        "animation": "animation"
+    },
+
+    "Burrow Worm": {
+        "name": "Barbatos",
+        "src": {
+            "textures": ["TunnelTurret.png"],
+            "atlas": "TunnelTurret.atlas",
+            "skeleton": "TunnelTurret.skel"
+        },
+
+        "skins": ["Miniboss"],
+        "upgradedSkins": ["Miniboss2"],
+
+        "animation": "idle"
+    },
+
+    "Egg Hopper": {
+        "name": "Gusion",
+        "src": {
+            "textures": ["FrogMiniBossForest.png"],
+            "atlas": "FrogMiniBossForest.atlas",
+            "skeleton": "FrogMiniBossForest.skel"
+        },
+
+        "skins": ["HopperMiniboss"],
+        "upgradedSkins": ["HopperMiniboss2"],
+
+        "animation": "idle"
+    },
+
+    "Flying Burp Frog": {
+        "name": "Eligos",
+        "src": {
+            "textures": ["ForestFlyingFrogMiniboss.png"],
+            "atlas": "ForestFlyingFrogMiniboss.atlas",
+            "skeleton": "ForestFlyingFrogMiniboss.skel"
+        },
+
+        "skins": ["FlyingFrog"],
+        "upgradedSkins": ["FlyingFrog2"],
+
+        "animation": "Fly"
+    },
+
+    "Mortar Hopper": {
+        "name": "Zepar",
+        "src": {
+            "textures": ["FrogMiniBossForest.png"],
+            "atlas": "FrogMiniBossForest.atlas",
+            "skeleton": "FrogMiniBossForest.skel"
+        },
+
+        "skins": ["MortarMiniboss"],
+        "upgradedSkins": ["MortarMiniboss2"],
+
+        "animation": "idle"
+    },
+
+    "Spiker": {
+        "name": "Saleos",
+        "src": {
+            "textures": ["JellyfishMiniboss.png"],
+            "atlas": "JellyfishMiniboss.atlas",
+            "skeleton": "JellyfishMiniboss.skel"
+        },
+
+        "skins": ["Spiker"],
+        "upgradedSkins": ["Spiker2"],
+
+        "animation": "animation"
+    },
+
+    "Charger": {
+        "name": "Haborym",
+        "src": {
+            "textures": ["JellyfishMiniboss.png"],
+            "atlas": "JellyfishMiniboss.atlas",
+            "skeleton": "JellyfishMiniboss.skel"
+        },
+
+        "skins": ["Chaser"],
+        "upgradedSkins": ["Chaser2"],
+
+        "animation": "animation"
+    },
+
+    "Scuttle Turret": {
+        "name": "Baalzebub",
+        "src": {
+            "textures": ["JellyfishMiniboss.png"],
+            "atlas": "JellyfishMiniboss.atlas",
+            "skeleton": "JellyfishMiniboss.skel"
+        },
+
+        "skins": ["Scuttle"],
+        "upgradedSkins": ["Scuttle2"],
+
+        "animation": "animation"
+    },
+
+    "Spider Jump": {
+        "name": "Focalor",
+        "src": {
+            "textures": ["Spiders.png"],
+            "atlas": "Spiders.atlas",
+            "skeleton": "Spiders.skel"
+        },
+
+        "skins": ["Miniboss_Spider", "Miniboss_Spider_Body", "Miniboss_Spider_Head"],
+        "backSkins": ["Miniboss_Spider_Back", "Miniboss_Spider_Body_Back", "Miniboss_Spider_Head_Back"],
+
+        "upgradedSkins": ["Miniboss_Spider2", "Miniboss_Spider_Body", "Miniboss_Spider_Head"],
+        "backUpgradedSkins": ["Miniboss_Spider_Back2", "Miniboss_Spider_Body_Back", "Miniboss_Spider_Head_Back"],
+
+        "animation": "idle"
+    },
+
+    "Millipede Poisoner": {
+        "name": "Vephar",
+        "src": {
+            "textures": ["Millipede.png"],
+            "atlas": "Millipede.atlas",
+            "skeleton": "Millipede.skel"
+        },
+
+        "skins": ["MILLIPEDE_BOSS_BODY_4", "MILLIPEDE_BOSS_BODY_3", "MILLIPEDE_BOSS_BODY_2", "MILLIPEDE_BOSS_BODY_1", "MILLIPEDE_BOSS_BODY_0", "MILLIPEDE_BOSS_HEAD"],
+        "backSkins": ["MILLIPEDE_BOSS_BODY_4_2", "MILLIPEDE_BOSS_BODY_3_2", "MILLIPEDE_BOSS_BODY_2_2", "MILLIPEDE_BOSS_BODY_1_2", "MILLIPEDE_BOSS_BODY_0", "MILLIPEDE_BOSS_HEAD_BACK"],
+
+        "upgradedSkins": ["MILLIPEDE_BOSS2_BODY_4", "MILLIPEDE_BOSS2_BODY_3", "MILLIPEDE_BOSS2_BODY_2", "MILLIPEDE_BOSS2_BODY_1", "MILLIPEDE_BOSS2_BODY_0", "MILLIPEDE_BOSS2_HEAD"],
+        "backUpgradedSkins": ["MILLIPEDE_BOSS2_BODY_4_2", "MILLIPEDE_BOSS2_BODY_3_2", "MILLIPEDE_BOSS2_BODY_2_2", "MILLIPEDE_BOSS2_BODY_1_2", "MILLIPEDE_BOSS2_BODY_0", "MILLIPEDE_BOSS2_HEAD_BACK"],
+
+        "animation": "idle"
+    },
+
+    "Scorpion": {
+        "name": "Hauras",
+        "src": {
+            "textures": ["Scorpions.png"],
+            "atlas": "Scorpions.atlas",
+            "skeleton": "Scorpions.skel"
+        },
+
+        "skins": ["ScorpionMiniboss"],
+        "backSkins": ["ScorpionMiniboss_Back"],
+
+        "upgradedSkins": ["ScorpionMiniboss2"],
+        "backUpgradedSkins": ["ScorpionMiniboss_Back2"],
+
+        "animation": "idle"
+    }
+}
