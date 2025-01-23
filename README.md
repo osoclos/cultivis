@@ -107,17 +107,20 @@ If you have a bug to report, you can either [create an issue](issues/new) on Git
 
 ### Game Assets and Inspiration
 
-[![Massive Monster Games](markdown/assets/massive-monster.png)](https://massivemonster.co/)
+[![Massive Monster Games](markdown/assets/massive-monster-light.png#gh-light-mode-only)](https://massivemonster.co/)
+[![Massive Monster Games](markdown/assets/massive-monster-dark.png#gh-dark-mode-only)](https://massivemonster.co/)
 
 *© 2024 Massive Monster Games*
 
-[![Devolver Digital Inc.](markdown/assets/devolver-digital.png)](https://devolverdigital.com/)
+[![Devolver Digital Inc.](markdown/assets/devolver-digital-light.png#gh-light-mode-only)](https://devolverdigital.com/)
+[![Devolver Digital Inc.](markdown/assets/devolver-digital-dark.png#gh-dark-mode-only)](https://devolverdigital.com/)
 
 *© 2024 Devolver Digital Inc.*
 
 ### Rendering
 
-[![Esoteric Software](markdown/assets/esoteric-software.png)](https://esotericsoftware.com)
+[![Esoteric Software](markdown/assets/esoteric-software-light.png#gh-light-mode-only)](https://esotericsoftware.com)
+[![Esoteric Software](markdown/assets/esoteric-software-dark.png#gh-dark-mode-only)](https://esotericsoftware.com)
 
 *© 2020 Esoteric Software*
 
