@@ -6,8 +6,8 @@ import ViteExpress from "vite-express";
 import multer from "multer";
 import sharp from "sharp";
 
-import { followerData } from "../src/data";
-import { CLOTHING_CATEGORY_LENGTH, CLOTHING_IDS, type ClothingId, FOLLOWER_CATEGORY_LENGTH, FOLLOWER_IDS, type FollowerId, NECKLACE_CATEGORY_LENGTH, type NecklaceId } from "../src/data/types";
+import { followerData, miniBossData } from "../src/data";
+import { CLOTHING_CATEGORY_LENGTH, CLOTHING_IDS, type ClothingId, FOLLOWER_CATEGORY_LENGTH, FOLLOWER_IDS, type FollowerId, MINI_BOSS_CATEGORY_LENGTH, MiniBossId, NECKLACE_CATEGORY_LENGTH, type NecklaceId } from "../src/data/types";
 
 const PORT: number = 3000;
 const OUTPUT_DIR: string = path.join(__dirname, "../public/static/assets");
@@ -104,6 +104,27 @@ app.post("/toww", data.array("files"), (req) => {
 
     const buffers: Buffer[] = (req.files as Express.Multer.File[]).map(({ buffer }) => buffer);
     createSpritesheets([buffers], "toww");
+});
+
+app.post("/mini-bosses", data.array("files"), (req) => {
+    if (!req.files) return;
+
+    const buffers: Buffer[][] = Array(MINI_BOSS_CATEGORY_LENGTH).fill(null).map(() => []);
+    for (const { buffer, originalname } of req.files as Express.Multer.File[]) {
+        const id = originalname.replace(".dat", "") as MiniBossId;
+        const { category } = miniBossData[id];
+
+        buffers[category].push(buffer);
+    }
+
+    createSpritesheets(buffers, "mini-bosses");
+});
+
+app.post("/witnesses", data.array("files"), (req) => {
+    if (!req.files) return;
+
+    const buffers: Buffer[] = (req.files as Express.Multer.File[]).map(({ buffer }) => buffer);
+    createSpritesheets([buffers], "witnesses");
 });
 
 async function createSpritesheets(buffers: Buffer[][], name: string = "spritesheet") {

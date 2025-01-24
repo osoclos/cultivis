@@ -48,8 +48,13 @@ export class Player extends Actor implements PlayerObject {
 
     clone(id?: string, label?: string, creature: PlayerCreatureId = this.creature, fleece: PlayerFleeceId = this.fleece) {
         const { skeleton, animationState } = this;
-        const player = new Player(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, creature, fleece);
         
+        const player = new Player(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, creature, fleece);
+        player.copyFromObj(this.toObj());
+
+        player.creature = creature;
+        player.fleece = fleece;
+
         return player;
     }
 

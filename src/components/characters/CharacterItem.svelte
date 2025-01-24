@@ -5,7 +5,7 @@
     import { SpritesheetImage } from "../utils";
 
     import { Actor } from "../../scripts";
-    import { Bishop, Follower, Player, TOWW } from "../../scripts/characters";
+    import { Bishop, Follower, MiniBoss, Player, TOWW, Witness } from "../../scripts/characters";
 
     interface Props {
         actor: typeof Actor;
@@ -30,6 +30,9 @@
 
             case Bishop:
             case TOWW: return "/static/assets/crowns.png";
+
+            case MiniBoss: return "/static/assets/mini-bosses.png";
+            case Witness: return "/static/assets/witnesses.png";
             
             default: return "/static/ui/cancel.png";
         }
@@ -44,6 +47,9 @@
 
             case Bishop: return "Bishop";
             case TOWW: return "T.O.W.W.";
+
+            case MiniBoss: return "Mini Boss";
+            case Witness: return "Witness";
             
             default: return "Actor";
         }

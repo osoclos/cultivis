@@ -1,6 +1,7 @@
 import { witnessData } from "../../../data";
+import { WITNESS_IDS, type WitnessId } from "../../../data/types";
+
 import { Actor, type ActorObject } from "../../Actor";
-import { WITNESS_IDS, type WitnessId } from "/src/data/types";
 
 export class Witness extends Actor implements WitnessObject {
     static readonly TEXTURE_FILENAME: string = "Beholder.png";
@@ -61,6 +62,9 @@ export class Witness extends Actor implements WitnessObject {
         const witness = new Witness(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, witnessId, isUpgraded);
         witness.copyFromObj(this.toObj());
 
+        witness.witness = witnessId;
+        witness.isUpgraded = isUpgraded;
+
         return witness;
     }
 
@@ -94,6 +98,6 @@ export interface WitnessObject extends ActorObject {
     isPurged: boolean;
 }
 
-export function isMiniBossObj(obj: ActorObject): obj is WitnessObject {
+export function isWitnessObj(obj: ActorObject): obj is WitnessObject {
     return obj instanceof Witness || obj.type === "witness";
 }

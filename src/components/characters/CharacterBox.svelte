@@ -6,10 +6,10 @@
     import { SpritesheetImage } from "../utils";
 
     import type { ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, isMiniBossObj, isWitnessObj } from "../../scripts/characters";
 
-    import { bishopData, followerData, towwData, playerData } from "../../data";
-    import { BISHOP_IDS, FOLLOWER_CATEGORIES, followerIdsByCategory, PLAYER_CREATURE_IDS } from "../../data/types";
+    import { bishopData, followerData, towwData, playerData, miniBossData, witnessData } from "../../data";
+    import { BISHOP_IDS, MINI_BOSS_CATEGORIES, followerIdsByCategory, PLAYER_CREATURE_IDS, WITNESS_IDS, miniBossIdsByCategory, FOLLOWER_CATEGORIES } from "../../data/types";
 
     interface Props {
         actor: ActorObject;
@@ -29,7 +29,7 @@
         actor = $bindable(),
 
         hasTickbox = $bindable(false),
-        ticked = $bindable(false),
+        ticked = $bindable(),
 
         class: className,
         onclick: click = () => {},
@@ -44,8 +44,12 @@
         switch (true) {
             case isFollowerObj(actor): return "Follower";
             case isPlayerObj(actor): return "Player";
+
             case isBishopObj(actor): return "Bishop";
             case isTOWW_Obj(actor): return "T.O.W.W.";
+
+            case isMiniBossObj(actor): return "Mini Boss";
+            case isWitnessObj(actor): return "Witness";
             
             default: return "Actor";
         }
@@ -55,8 +59,12 @@
         switch (true) {
             case isFollowerObj(actor): return `Form: ${followerData.forms[actor.form].name}`;
             case isPlayerObj(actor): return `Creature: ${playerData.creature[actor.creature].name}`;
+
             case isBishopObj(actor): return `Bishop: ${bishopData[actor.bishop].name}`;
             case isTOWW_Obj(actor): return `Form: ${towwData[actor.form].name}`;
+
+            case isMiniBossObj(actor): return `Boss: ${miniBossData[actor.miniBoss].name}`;
+            case isWitnessObj(actor): return `Witness: ${witnessData[actor.witness].name}`;
             
             default: return "";
         }
@@ -69,6 +77,9 @@
 
             case isBishopObj(actor):
             case isTOWW_Obj(actor): return "/static/assets/crowns.png";
+
+            case isMiniBossObj(actor): return "/static/assets/mini-bosses.png";
+            case isWitnessObj(actor): return "/static/assets/witnesses.png";
             
             default: return "/static/ui/cancel.png";
         }
@@ -82,6 +93,9 @@
             case isBishopObj(actor): return BISHOP_IDS.indexOf(actor.bishop);
             case isTOWW_Obj(actor): return BISHOP_IDS.length;
 
+            case isMiniBossObj(actor): return miniBossIdsByCategory[MINI_BOSS_CATEGORIES[y]].indexOf(actor.miniBoss);
+            case isWitnessObj(actor): return WITNESS_IDS.indexOf(actor.witness);
+
             default: return 0;
         }
     });
@@ -89,11 +103,14 @@
     const y: number = $derived.by(() => {
         switch (true) {
             case isFollowerObj(actor): return followerData.forms[actor.form].category;
+            case isMiniBossObj(actor): return miniBossData[actor.miniBoss].category;
 
             case isPlayerObj(actor):
 
             case isBishopObj(actor):
             case isTOWW_Obj(actor):
+                
+            case isWitnessObj(actor):
             
             default: return 0;
         }

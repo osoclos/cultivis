@@ -15,6 +15,14 @@
                 "description": "The display name of this mini boss."
             },
 
+            "category": {
+                "type": "integer",
+                "description": "The category index where this mini boss belongs in.",
+
+                "minimum": 0,
+                "maximum": 3
+            },
+
             "src": {
                 "$ref": "globals.schema.json#/definitions/Sources",
                 "description": "The source paths to the files needed to load the mini boss."
@@ -46,7 +54,7 @@
             }
         },
 
-        "required": ["name", "src", "skins", "upgradedSkins", "animation"]
+        "required": ["name", "category", "src", "skins", "upgradedSkins", "animation"]
     },
 
     "definitions": {

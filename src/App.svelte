@@ -14,11 +14,11 @@
     import { CreationDetails, SpecialThanks } from "./components/credits";
 
     import { Actor, Exporter, Factory, Scene, type ActorObject } from "./scripts";
-    import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj } from "./scripts/characters";
+    import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness } from "./scripts/characters";
     import { GitManager } from "./scripts/managers";
 
-    import { bishopData, towwData } from "./data";
-    import { BISHOP_IDS } from "./data/types";
+    import { bishopData, miniBossData, towwData, witnessData } from "./data";
+    import { BISHOP_IDS, MINI_BOSS_IDS, WITNESS_IDS } from "./data/types";
 
     import { MoreMath, Random, unixToDate, Vector } from "./utils";
 
@@ -169,6 +169,7 @@
 
         switch (actor) {
             case Follower: {
+                !factory.hasLoadedFollower && await factory.load(Follower);
                 const [form, formVariantIdx, formColorSetIdx] = getRandomFollowerAppearance();
 
                 const follower = factory.follower(form, "Default_Clothing", undefined, getSpecialFollowerName(form, formVariantIdx));
@@ -182,6 +183,8 @@
             }
 
             case Player: {
+                !factory.hasLoadedPlayer && await factory.load(Player);
+
                 const player = factory.player("Lamb", "Lamb");
                 player.setAnimation("idle");
 
@@ -193,9 +196,9 @@
                 const id = Random.item(BISHOP_IDS);
                 !factory.hasLoadedBishop(id, false) && await factory.loadBishop(id, false);
 
-                const bishop = factory.bishop(id, false, undefined, bishopData[id].name);
-                
-                const { animation } = bishopData[id];
+                const { name, animation } = bishopData[id];
+
+                const bishop = factory.bishop(id, false, undefined, name);
                 bishop.setAnimation(animation);
 
                 addedActor = bishop;
@@ -218,6 +221,30 @@
                 toww.setAnimation(animation);
 
                 addedActor = toww;
+                break;
+            }
+
+            case MiniBoss: {
+                const id = Random.item(MINI_BOSS_IDS);
+                !factory.hasLoadedMiniBoss(id) && await factory.loadMiniBoss(id);
+
+                const { name, animation } = miniBossData[id];
+
+                const boss = factory.miniBoss(id, false, undefined, name);
+                boss.setAnimation(animation);
+
+                addedActor = boss;
+                break;
+            }
+
+            case Witness: {
+                !factory.hasLoadedWitness && await factory.load(Witness);
+                const id = Random.item(WITNESS_IDS);
+
+                const witness = factory.witness(id, false, undefined, witnessData[id].name);
+                witness.setAnimation("animation");
+
+                addedActor = witness;
                 break;
             }
 
@@ -363,7 +390,7 @@
 
     <div class={["lg:h-dvh bg-secondary", { "hidden": !hasFinishedLoading }]}>
         <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:selectedIdx={categoryIdx} {gitManager} enableKeyInput={(actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
-        <div class="no-scrollbar lg:overflow-y-auto flex flex-col {categoryIdx === 1 ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
+        <div class="no-scrollbar lg:overflow-y-auto flex flex-col {[1, 3].includes(categoryIdx) ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
             {#if categoryIdx === 0}
                 <CharacterList bind:actors bind:loadingActor enableKeyInput={actorIdx < 0} onadd={addActor} onremove={(indexes) => [...indexes].sort((a, b) => b - a).forEach((i) => removeActor(scene.actors[i], i))} onclone={(indexes) => indexes.forEach((i) => cloneActor(scene.actors[i]))} onactorclick={selectActor} />
 

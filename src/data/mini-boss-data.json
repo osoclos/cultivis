@@ -1,6 +1,8 @@
 {
     "Mama Worm": {
         "name": "Amdusias",
+        "category": 0,
+        
         "src": {
             "textures": ["patroller.png"],
             "atlas": "patroller.atlas",
@@ -18,6 +20,8 @@
 
     "Mama Maggot": {
         "name": "Valefar",
+        "category": 0,
+        
         "src": {
             "textures": ["patroller.png"],
             "atlas": "patroller.atlas",
@@ -35,6 +39,8 @@
 
     "Burrow Worm": {
         "name": "Barbatos",
+        "category": 0,
+        
         "src": {
             "textures": ["TunnelTurret.png"],
             "atlas": "TunnelTurret.atlas",
@@ -49,6 +55,8 @@
 
     "Egg Hopper": {
         "name": "Gusion",
+        "category": 1,
+        
         "src": {
             "textures": ["FrogMiniBossForest.png"],
             "atlas": "FrogMiniBossForest.atlas",
@@ -63,6 +71,8 @@
 
     "Flying Burp Frog": {
         "name": "Eligos",
+        "category": 1,
+        
         "src": {
             "textures": ["ForestFlyingFrogMiniboss.png"],
             "atlas": "ForestFlyingFrogMiniboss.atlas",
@@ -77,6 +87,8 @@
 
     "Mortar Hopper": {
         "name": "Zepar",
+        "category": 1,
+        
         "src": {
             "textures": ["FrogMiniBossForest.png"],
             "atlas": "FrogMiniBossForest.atlas",
@@ -91,6 +103,8 @@
 
     "Spiker": {
         "name": "Saleos",
+        "category": 2,
+        
         "src": {
             "textures": ["JellyfishMiniboss.png"],
             "atlas": "JellyfishMiniboss.atlas",
@@ -105,6 +119,8 @@
 
     "Charger": {
         "name": "Haborym",
+        "category": 2,
+        
         "src": {
             "textures": ["JellyfishMiniboss.png"],
             "atlas": "JellyfishMiniboss.atlas",
@@ -119,6 +135,8 @@
 
     "Scuttle Turret": {
         "name": "Baalzebub",
+        "category": 2,
+        
         "src": {
             "textures": ["JellyfishMiniboss.png"],
             "atlas": "JellyfishMiniboss.atlas",
@@ -133,6 +151,8 @@
 
     "Spider Jump": {
         "name": "Focalor",
+        "category": 3,
+        
         "src": {
             "textures": ["Spiders.png"],
             "atlas": "Spiders.atlas",
@@ -150,6 +170,8 @@
 
     "Millipede Poisoner": {
         "name": "Vephar",
+        "category": 3,
+        
         "src": {
             "textures": ["Millipede.png"],
             "atlas": "Millipede.atlas",
@@ -167,6 +189,8 @@
 
     "Scorpion": {
         "name": "Hauras",
+        "category": 3,
+        
         "src": {
             "textures": ["Scorpions.png"],
             "atlas": "Scorpions.atlas",

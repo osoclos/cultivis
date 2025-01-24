@@ -151,7 +151,7 @@ export class Factory {
     }
 
     async loadAll() {
-        await this.load(Follower, Player, Bishop, TOWW);
+        await this.load(Follower, Player, Bishop, TOWW, MiniBoss, Witness);
     }
 
     async custom(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string, id?: string, label: string = "Custom Actor") {

@@ -1,7 +1,7 @@
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
 import { Vector } from "../utils";
 
-import { Follower, isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, Player } from "./characters";
+import { Follower, isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, Player, isWitnessObj, isMiniBossObj, Witness } from "./characters";
 import { GIFManager } from "./managers";
 
 export class Exporter {
@@ -89,29 +89,27 @@ export class Exporter {
     }
 
     private async createActor(obj: ActorObject) {
-        const { id, label, animation } = obj;
+        const { id, label } = obj;
         let actor: Actor;
 
         switch (true) {
             case isFollowerObj(obj): {
-                if (!this.factory.hasLoadedFollower) await this.factory.load(Follower);
                 const { form, clothing } = obj;
+                if (!this.factory.hasLoadedFollower) await this.factory.load(Follower);
                 
                 const follower = this.factory.follower(form, clothing, id, label);
-                follower.copyFromObj(obj);
-
                 actor = follower;
+
                 break;
             }
 
             case isPlayerObj(obj): {
-                if (!this.factory.hasLoadedPlayer) await this.factory.load(Player);
                 const { creature, fleece } = obj;
+                if (!this.factory.hasLoadedPlayer) await this.factory.load(Player);
                 
                 const player = this.factory.player(creature, fleece, id, label);
-                player.copyFromObj(obj);
-
                 actor = player;
+
                 break;
             }
 
@@ -120,9 +118,8 @@ export class Exporter {
                 if (!this.factory.hasLoadedBishop(id, isBoss)) await this.factory.loadBishop(id, isBoss);
 
                 const bishop = this.factory.bishop(id, isBoss, id, label);
-                bishop.copyFromObj(obj);
-
                 actor = bishop;
+
                 break;
             }
 
@@ -131,16 +128,35 @@ export class Exporter {
                 if (!this.factory.hasLoadedTOWW(form)) await this.factory.loadTOWW(form);
 
                 const toww = this.factory.TOWW(form, id, label);
-                toww.copyFromObj(obj);
-
                 actor = toww;
+
+                break;
+            }
+
+            case isMiniBossObj(obj): {
+                const { miniBoss, isUpgraded } = obj;
+                if (!this.factory.hasLoadedMiniBoss(miniBoss)) await this.factory.loadMiniBoss(miniBoss);
+
+                const boss = this.factory.miniBoss(miniBoss, isUpgraded, id, label);
+                actor = boss;
+
+                break;
+            }
+
+            case isWitnessObj(obj): {
+                const { witness: witnessId, isUpgraded } = obj;
+                if (!this.factory.hasLoadedWitness) await this.factory.load(Witness);
+                
+                const witness = this.factory.witness(witnessId, isUpgraded, id, label);
+                actor = witness;
+
                 break;
             }
 
             default: throw new Error("Invalid or unknown actor object used to create actor");
         }
         
-        actor.setAnimation(animation);
+        actor.copyFromObj(obj);
         return actor;
     }
 

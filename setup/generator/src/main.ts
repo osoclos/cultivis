@@ -2,8 +2,8 @@ import "./style.css";
 
 import { Scene, Factory, Exporter, Actor } from "@/scripts";
 
-import { followerData, towwData } from "@/data";
-import { CLOTHING_IDS, FOLLOWER_IDS, HATS_ID, NECKLACE_IDS, PLAYER_CREATURE_IDS, PLAYER_FLEECE_IDS, TOWW_IDS } from "@/data/types";
+import { followerData, miniBossData, towwData } from "@/data";
+import { CLOTHING_IDS, FOLLOWER_IDS, HATS_ID, MINI_BOSS_IDS, NECKLACE_IDS, PLAYER_CREATURE_IDS, PLAYER_FLEECE_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
 
 const WIDTH: number = 64;
 const HEIGHT: number = 64;
@@ -228,6 +228,38 @@ towwExporter.addEventListener("click", () => {
 
     sendForm(form, "/toww");
 });
+
+const miniBossExporter = document.querySelector<HTMLButtonElement>("button#export-mini-bosses")!;
+miniBossExporter.addEventListener("click", () => {
+    const form = new FormData();
+
+    for (const id of MINI_BOSS_IDS) {
+        const boss = factory.miniBoss(id);
+
+        const { animation } = miniBossData[id];
+        boss.setAnimation(animation);
+
+        setupScene(boss);
+        appendPixelsToForm(form, id);
+    }
+
+    sendForm(form, "/mini-bosses");
+});
+
+const witnessExporter = document.querySelector<HTMLButtonElement>("button#export-witnesses")!;
+witnessExporter.addEventListener("click", () => {
+    const form = new FormData();
+
+    for (const id of WITNESS_IDS) {
+        const witness = factory.witness(id);
+        witness.setAnimation("animation");
+
+        setupScene(witness);
+        appendPixelsToForm(form, id);
+    }
+
+    sendForm(form, "/witnesses");
+})
 
 function setupScene(actor: Actor) {
     scene.removeActors(...scene.actors);
