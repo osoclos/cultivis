@@ -3,7 +3,7 @@ import { Actor, type ActorObject } from "..";
 import { followerData } from "../../data";
 import type { ColorSet, FollowerId, ClothingId, ClothingData, FormData, NecklaceId, HatId, NecklaceData, HatData } from "../../data/types";
 
-import { Color, MoreMath, Random } from "../../utils";
+import { Color, MoreMath } from "../../utils";
 
 // to add halo, you need to set attachment "halo" to skin "Other/Halo"
 export class Follower extends Actor implements FollowerObject {
@@ -19,7 +19,7 @@ export class Follower extends Actor implements FollowerObject {
     #hat: HatId | null;
 
     private indexes: FollowerIndexes
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id: string = Random.id(), label: string = followerData.forms.Deer.name, form: FollowerId = "Deer", clothing: ClothingId = "Default_Clothing") {
+    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = followerData.forms.Deer.name, form: FollowerId = "Deer", clothing: ClothingId = "Default_Clothing") {
         super(skeleton, animationState, id, label);
 
         this._form = form;
@@ -138,7 +138,7 @@ export class Follower extends Actor implements FollowerObject {
         this.update();
     }
 
-    clone(id: string = Random.id(), label: string = `${this.label} (Copy)`, form: FollowerId = this.form, clothing: ClothingId = this.clothing) {
+    clone(id?: string, label?: string, form: FollowerId = this.form, clothing: ClothingId = this.clothing) {
         const { skeleton, animationState } = this;
 
         const follower = new Follower(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, form, clothing);

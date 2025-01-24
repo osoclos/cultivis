@@ -1,6 +1,4 @@
 import type { TOWW_Id } from "../../../data/types";
-import { Random } from "../../../utils";
-
 import { Actor, type ActorObject } from "../../Actor";
 
 export class TOWW extends Actor implements TOWW_Object {
@@ -22,7 +20,7 @@ export class TOWW extends Actor implements TOWW_Object {
     #eyeState: number | null;
     #isInjured: boolean | null;
 
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id: string = Random.id(), label: string = "The One Who Waits", readonly form: TOWW_Id = "Bishop") {
+    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = "The One Who Waits", readonly form: TOWW_Id = "Bishop") {
         super(skeleton, animationState, id, label);
 
         this.#hasCrown = Array<TOWW_Id>("Bishop", "Boss").includes(form) ? true : null;
@@ -78,7 +76,7 @@ export class TOWW extends Actor implements TOWW_Object {
         this.update();
     }
 
-    clone(id: string = Random.id(), label: string = `${this.label} (Copy)`) {
+    clone(id?: string, label?: string) {
         const { skeleton, animationState, form } = this;
 
         const toww = new TOWW(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, form);

@@ -3,8 +3,6 @@ import { Actor, type ActorObject } from "..";
 import { playerData } from "../../data";
 import type { PlayerCreatureData, PlayerCreatureId, PlayerFleeceData, PlayerFleeceId } from "../../data/types";
 
-import { Random } from "../../utils";
-
 export class Player extends Actor implements PlayerObject {
     static readonly TEXTURE_FILENAME: string = "player-main.png";
     static readonly ATLAS_FILENAME: string = "player-main.atlas";
@@ -13,7 +11,7 @@ export class Player extends Actor implements PlayerObject {
     #creature: PlayerCreatureId;
     #fleece: PlayerFleeceId;
 
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id: string = Random.id(), label: string = playerData.creature.Lamb.name, creature: PlayerCreatureId = "Lamb", fleece: PlayerFleeceId = "Lamb") {
+    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = playerData.creature.Lamb.name, creature: PlayerCreatureId = "Lamb", fleece: PlayerFleeceId = "Lamb") {
         super(skeleton, animationState, id, label);
 
         this.#creature = creature;
@@ -48,7 +46,7 @@ export class Player extends Actor implements PlayerObject {
         return playerData.fleece[this.fleece];
     }
 
-    clone(id: string = Random.id(), label: string = `${this.label} (Copy)`, creature: PlayerCreatureId = this.creature, fleece: PlayerFleeceId = this.fleece) {
+    clone(id?: string, label?: string, creature: PlayerCreatureId = this.creature, fleece: PlayerFleeceId = this.fleece) {
         const { skeleton, animationState } = this;
         const player = new Player(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, creature, fleece);
         

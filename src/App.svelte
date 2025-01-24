@@ -171,7 +171,7 @@
             case Follower: {
                 const [form, formVariantIdx, formColorSetIdx] = getRandomFollowerAppearance();
 
-                const follower = factory.follower(form, "Default_Clothing", Random.id(), getSpecialFollowerName(form, formVariantIdx));
+                const follower = factory.follower(form, "Default_Clothing", undefined, getSpecialFollowerName(form, formVariantIdx));
                 follower.setAnimation("idle");
 
                 follower.formVariantIdx = formVariantIdx;
@@ -182,7 +182,7 @@
             }
 
             case Player: {
-                const player = factory.player("Lamb", "Lamb", Random.id(), "Lamb");
+                const player = factory.player("Lamb", "Lamb");
                 player.setAnimation("idle");
 
                 addedActor = player;
@@ -193,7 +193,7 @@
                 const id = Random.item(BISHOP_IDS);
                 !factory.hasLoadedBishop(id, false) && await factory.loadBishop(id, false);
 
-                const bishop = factory.bishop(id, false, Random.id(), bishopData[id].name);
+                const bishop = factory.bishop(id, false, undefined, bishopData[id].name);
                 
                 const { animation } = bishopData[id];
                 bishop.setAnimation(animation);
@@ -204,7 +204,7 @@
 
             case TOWW: {
                 !factory.hasLoadedTOWW("Bishop") && await factory.loadTOWW("Bishop");
-                const toww = factory.toww("Bishop", Random.id(), "The One Who Waits");
+                const toww = factory.TOWW("Bishop");
                 
                 const { attributes, animation } = towwData.Bishop;
                 const {
@@ -224,11 +224,15 @@
             default: return;
         }
         
-        scene.addActors(addedActor);
+        addRawActor(addedActor, updateActorIdx);
+        loadingActor = null;
+    }
+
+    function addRawActor(actor: Actor, updateActorIdx: boolean = true) {
+        scene.addActors(actor);
         actors = scene.actors.map((actor) => actor.toObj());
 
         updateActorIdx && selectActor((actors?.length ?? 0) - 1);
-        loadingActor = null;
     }
 
     function removeActor(actor: Actor, i: number) {
@@ -237,6 +241,11 @@
 
         unselectActor();
         updateSceneFromChanges();
+    }
+
+    function cloneActor(actor: Actor) {
+        const clonedActor = actor.clone();
+        addRawActor(clonedActor);
     }
     
     function selectActor(i: number) {
@@ -356,15 +365,15 @@
         <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:selectedIdx={categoryIdx} {gitManager} enableKeyInput={(actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
         <div class="no-scrollbar lg:overflow-y-auto flex flex-col {categoryIdx === 1 ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
             {#if categoryIdx === 0}
-                <CharacterList bind:actors bind:loadingActor enableKeyInput={actorIdx < 0} onadd={addActor} onremove={(indexes) => [...indexes].sort((a, b) => b - a).forEach((i) => removeActor(scene.actors[i], i))} onactorclick={selectActor} />
+                <CharacterList bind:actors bind:loadingActor enableKeyInput={actorIdx < 0} onadd={addActor} onremove={(indexes) => [...indexes].sort((a, b) => b - a).forEach((i) => removeActor(scene.actors[i], i))} onclone={(indexes) => indexes.forEach((i) => cloneActor(scene.actors[i]))} onactorclick={selectActor} />
 
-                <div class={["lg:absolute z-100 lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
+                <div class={["lg:absolute z-90 lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                     {#if actor && actorObj}
                         <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectMenu} onexit={(doRemoval) => doRemoval ? removeActor(actor!, actorIdx) : unselectActor()} onchange={swapActor} />
                     {/if}
                 </div>
 
-                <div class={["lg:absolute z-100 lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", !showActorMenu ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
+                <div class={["lg:absolute z-90 lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", !showActorMenu ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
                     {#if actor && actorObj && actorMenu}
                         {#if isFollowerObj(actorObj) && isStrFollowerMenuName(actorMenu)}
                             <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={actorMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />

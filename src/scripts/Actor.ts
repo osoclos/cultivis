@@ -59,8 +59,8 @@ export class Actor implements ActorObject {
         return this.animationState.tracks[0] ?? null;
     }
 
-    get skin(): string {
-        return this.skeleton.skin.name;
+    get skin(): spine.Skin {
+        return this.skeleton.skin;
     }
 
     get animation(): string {
@@ -88,7 +88,7 @@ export class Actor implements ActorObject {
         return this.animationState.tracks[0]?.animationEnd ?? 0;
     }
 
-    clone(id: string = Random.id(), label: string = `${this.label} (Copy)`) {
+    clone(id?: string, label: string = `${this.label} (Copy)`) {
         const { skeleton, animationState, pos, scale, hidden, flipX, animation } = this;
         
         const actor = new Actor(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label);
@@ -104,12 +104,17 @@ export class Actor implements ActorObject {
         return actor;
     }
 
-    copyFromObj({ pos, scale, hidden, flipX }: ActorObject) {
+    copyFromObj(obj: ActorObject) {
+        const { pos, scale, hidden, flipX, skin, animation } = obj;
+        
         this.pos.copyObj(pos);
         this.scale.copyObj(scale);
 
         this.hidden = hidden;
         this.flipX = flipX;
+
+        this.setCustomSkin(skin);
+        this.setAnimation(animation);
     }
 
     toObj(): ActorObject {
@@ -277,7 +282,7 @@ export interface ActorObject {
     hidden: boolean;
     flipX: boolean;
 
-    skin: string;
+    skin: spine.Skin;
     animation: string;
 
     time: number;

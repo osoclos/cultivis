@@ -198,7 +198,7 @@ towwExporter.addEventListener("click", () => {
     const form = new FormData();
 
     for (const id of TOWW_IDS) {
-        const toww = factory.toww(id);
+        const toww = factory.TOWW(id);
         
         const { attributes, animation } = towwData[id];
         toww.setAnimation(animation);

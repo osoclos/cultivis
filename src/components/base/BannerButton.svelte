@@ -73,7 +73,8 @@
                 ? inputElement
                 : button
         ).focus();
-        
+
+        href && link.click();
         click();
     }
 </script>

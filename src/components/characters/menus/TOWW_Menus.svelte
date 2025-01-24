@@ -43,7 +43,7 @@
         const { label } = obj;
 
         if (!factory.hasLoadedTOWW(form)) await factory.loadTOWW(form);
-        const toww = factory.toww(form);
+        const toww = factory.TOWW(form);
 
         obj.form = form;
 

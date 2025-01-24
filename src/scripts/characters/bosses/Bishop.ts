@@ -1,8 +1,6 @@
 import { bishopData } from "../../../data";
 import type { BishopId } from "../../../data/types";
 
-import { Random } from "../../../utils";
-
 import { Actor, type ActorObject } from "../../Actor";
 
 export class Bishop extends Actor implements BishopObject {
@@ -15,7 +13,7 @@ export class Bishop extends Actor implements BishopObject {
     #isPurged: boolean;
     #isBandaged: boolean | null;
 
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id: string = Random.id(), label: string = bishopData.Worm.name, readonly bishop: BishopId = "Worm", readonly isBoss: boolean = false) {
+    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = bishopData.Worm.name, readonly bishop: BishopId = "Worm", readonly isBoss: boolean = false) {
         super(skeleton, animationState, id, label);
 
         this.#isPurged = false;
@@ -44,7 +42,7 @@ export class Bishop extends Actor implements BishopObject {
         this.update();
     }
 
-    clone(id: string = Random.id(), label: string = `${this.label} (Copy)`) {
+    clone(id?: string, label?: string) {
         const { skeleton, animationState, bishop: bishopId, isBoss } = this;
 
         const bishop = new Bishop(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, bishopId, isBoss);

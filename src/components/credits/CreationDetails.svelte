@@ -1,5 +1,6 @@
 <script lang="ts">
     import { BannerButton, Header, LabelTitle } from "../base";
+    import { List } from "../utils";
 
     import { GitManager } from "../../scripts/managers";
     import { unixToDate } from "../../utils";
@@ -21,5 +22,8 @@
         {/await}
     </div>
     
-    <BannerButton label="View Repository" href="https://github.com/osoclos/cultivis" />
+    <List class="flex flex-col justify-center items-center" enableKeyInput>
+        <BannerButton label="View Repository" href="https://github.com/osoclos/cultivis" />
+        <BannerButton label="User Guide" href="https://github.com/osoclos/cultivis/blob/main/README.md#usage" />
+    </List>
 </div>

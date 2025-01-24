@@ -166,7 +166,7 @@ export class Scene implements SceneObject {
 
     private updateBounds() {
         if (!this.actors.length) {
-            this.#sceneOffset.copy(Vector.divVal(this.size, -2));
+            this.#sceneOffset.copy(Vector.Zero);
             this.#sceneSize.copy(this.size);
 
             return;

@@ -1,11 +1,10 @@
-import { BISHOP_IDS, TOWW_IDS, type BishopId, type ClothingId, type FollowerId, type TOWW_Id, type PlayerCreatureId, type PlayerFleeceId } from "../data/types";
-import { Random } from "../utils";
+import { BISHOP_IDS, TOWW_IDS, type BishopId, type ClothingId, type FollowerId, type TOWW_Id, type PlayerCreatureId, type PlayerFleeceId, MINI_BOSS_IDS, type MiniBossId, type WitnessId } from "../data/types";
 
-import { Bishop, Follower, TOWW, Player } from "./characters";
+import { Bishop, Follower, TOWW, Player, MiniBoss, Witness } from "./characters";
 import { AssetManager } from "./managers";
 
 import { Actor } from "./Actor";
-import { bishopData, followerData, towwData, playerData } from "../data";
+import { bishopData, followerData, towwData, playerData, miniBossData, witnessData } from "../data";
 
 export class Factory {
     private _follower!: Follower;
@@ -14,13 +13,18 @@ export class Factory {
     private _bishops: Map<BishopId, Bishop>;
     private _bishopBosses: Map<BishopId, Bishop>;
 
-    private _towws: Map<TOWW_Id, TOWW>;
+    private _TOWWs: Map<TOWW_Id, TOWW>;
+
+    private _miniBosses: Map<MiniBossId, MiniBoss>;
+    private _witness!: Witness;
 
     private constructor(private assetManager: AssetManager) {
         this._bishops = new Map();
         this._bishopBosses = new Map();
 
-        this._towws = new Map();
+        this._TOWWs = new Map();
+
+        this._miniBosses = new Map();
     }
 
     static async create(gl: WebGLRenderingContext, root: string = "/", actorsToPreload: (typeof Actor)[] = []) {
@@ -45,7 +49,15 @@ export class Factory {
     }
 
     hasLoadedTOWW(form: TOWW_Id): boolean {
-        return this._towws.has(form);
+        return this._TOWWs.has(form);
+    }
+
+    hasLoadedMiniBoss(miniBoss: MiniBossId): boolean {
+        return this._miniBosses.has(miniBoss);
+    }
+
+    get hasLoadedWitness(): boolean {
+        return !!this._witness;
     }
 
     async fetchData(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string): Promise<[spine.Skeleton, spine.AnimationState]> {
@@ -70,7 +82,7 @@ export class Factory {
                     if (this.hasLoadedFollower) break;
                     
                     const [skeleton, animationState] = await this.fetchData([Follower.TEXTURE_FILENAME], Follower.ATLAS_FILENAME, Follower.SKELETON_FILENAME);
-                    this._follower = new Follower(skeleton, animationState, Random.id(), followerData.forms.Deer.name, "Deer", "Default_Clothing");
+                    this._follower = new Follower(skeleton, animationState, undefined, followerData.forms.Deer.name, "Deer", "Default_Clothing");
 
                     break;
                 }
@@ -79,7 +91,7 @@ export class Factory {
                     if (this.hasLoadedPlayer) break;
 
                     const [skeleton, animationState] = await this.fetchData([Player.TEXTURE_FILENAME], Player.ATLAS_FILENAME, Player.SKELETON_FILENAME);
-                    this._player = new Player(skeleton, animationState, Random.id(), playerData.creature.Lamb.name, "Lamb", "Lamb");
+                    this._player = new Player(skeleton, animationState, undefined, playerData.creature.Lamb.name, "Lamb", "Lamb");
 
                     break;
                 }
@@ -93,6 +105,20 @@ export class Factory {
                     await Promise.all(TOWW_IDS.filter((id) => !this.hasLoadedTOWW(id)).map(this.loadTOWW.bind(this)));
                     break;
                 }
+
+                case MiniBoss: {
+                    await Promise.all(MINI_BOSS_IDS.filter((id) => !this.hasLoadedMiniBoss(id)).map(this.loadMiniBoss.bind(this)));
+                    break;
+                }
+
+                case Witness: {
+                    if (this.hasLoadedWitness) return;
+
+                    const [skeleton, animationState] = await this.fetchData([Witness.TEXTURE_FILENAME], Witness.ATLAS_FILENAME, Witness.SKELETON_FILENAME);
+                    this._witness = new Witness(skeleton, animationState, undefined, witnessData.Darkwood.name, "Darkwood", false);
+
+                    break;
+                }
             }
         }
     }
@@ -104,7 +130,7 @@ export class Factory {
         const { textures, atlas, skeleton: skeletonPath } = data[loadBoss ? "bossSrc" : "src"]!;
         const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
 
-        const bishop = new Bishop(skeleton, animationState, Random.id(), bishopData.Worm.name, id, isBoss);
+        const bishop = new Bishop(skeleton, animationState, undefined, bishopData[id].name, id, isBoss);
         (loadBoss ? this._bishopBosses : this._bishops).set(id, bishop);
     }
     
@@ -112,32 +138,48 @@ export class Factory {
         const { textures, atlas, skeleton: skeletonPath } = towwData[form].src;
         const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
 
-        const toww = new TOWW(skeleton, animationState, Random.id(), towwData.Bishop.name, form);
-        this._towws.set(form, toww);
+        const toww = new TOWW(skeleton, animationState, undefined, towwData[form].name, form);
+        this._TOWWs.set(form, toww);
+    }
+
+    async loadMiniBoss(miniBoss: MiniBossId) {
+        const { textures, atlas, skeleton: skeletonPath } = miniBossData[miniBoss].src;
+        const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
+
+        const boss = new MiniBoss(skeleton, animationState, undefined, miniBossData[miniBoss].name, miniBoss, false);
+        this._miniBosses.set(miniBoss, boss);
     }
 
     async loadAll() {
         await this.load(Follower, Player, Bishop, TOWW);
     }
 
-    async custom(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string, id: string = Random.id(), label: string = "Custom Actor") {
+    async custom(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string, id?: string, label: string = "Custom Actor") {
         const [skeleton, animationState] = await this.fetchData(texturePaths, atlasPath, skeletonPath);
         return new Actor(skeleton, animationState, id, label);
     }
 
-    follower(form: FollowerId, clothing: ClothingId, id: string = Random.id(), label: string = "Copied Follower") {
+    follower(form: FollowerId, clothing: ClothingId, id?: string, label?: string) {
         return this._follower.clone(id, label, form, clothing);
     }
 
-    player(creature: PlayerCreatureId, fleece: PlayerFleeceId, id: string = Random.id(), label: string = "Copied Player") {
+    player(creature: PlayerCreatureId, fleece: PlayerFleeceId, id?: string, label?: string) {
         return this._player.clone(id, label, creature, fleece);
     }
 
-    bishop(bishopId: BishopId, isBoss: boolean, id: string = Random.id(), label: string = "Copied Bishop") {
+    bishop(bishopId: BishopId, isBoss: boolean, id?: string, label?: string) {
         return (isBoss && "bossSrc" in bishopData[bishopId] ? this._bishopBosses : this._bishops).get(bishopId)!.clone(id, label);
     }
 
-    toww(form: TOWW_Id, id: string = Random.id(), label: string = "Copied The One Who Waits") {
-        return this._towws.get(form)!.clone(id, label);
+    TOWW(form: TOWW_Id, id?: string, label?: string) {
+        return this._TOWWs.get(form)!.clone(id, label);
+    }
+
+    miniBoss(miniBoss: MiniBossId, isUpgraded?: boolean, id?: string, label?: string) {
+        return this._miniBosses.get(miniBoss)!.clone(id, label, isUpgraded);
+    }
+
+    witness(witness: WitnessId, isUpgraded?: boolean, id?: string, label?: string) {
+        return this._witness.clone(id, label, witness, isUpgraded);
     }
 }

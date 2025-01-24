@@ -130,7 +130,7 @@ export class Exporter {
                 const { form } = obj;
                 if (!this.factory.hasLoadedTOWW(form)) await this.factory.loadTOWW(form);
 
-                const toww = this.factory.toww(form, id, label);
+                const toww = this.factory.TOWW(form, id, label);
                 toww.copyFromObj(obj);
 
                 actor = toww;
