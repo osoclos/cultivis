@@ -58,7 +58,7 @@ export class GitManager {
                     continue;
                 }
 
-                const { content } = await this.fetch(path, GitManager.NEWS_REPO_ROOT, GitManager.PROXY_CONTENT_ROUTE, false) as FileData;
+                const { content } = await this.fetch(path, GitManager.NEWS_REPO_ROOT, GitManager.PROXY_CONTENT_ROUTE, false, !areNewsUpdated) as FileData;
                 const text = this.decodeContent(content);
 
                 const date = this.filenameToUnix(name);
