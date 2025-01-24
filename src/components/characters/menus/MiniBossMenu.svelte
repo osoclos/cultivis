@@ -1,0 +1,77 @@
+<script lang="ts" module>
+    export const MINI_BOSS_MENU_NAME: string = "mini-boss";
+</script>
+
+<script lang="ts">
+    import { twMerge } from "tailwind-merge";
+
+    import { BoxOption } from "..";
+    import { Header } from "../../base";
+    import { MultiGrid, SpritesheetImage } from "../../utils";
+
+    import { miniBossData } from "../../../data";
+    import { miniBossIdsByCategory, type MiniBossCategoryName, type MiniBossData, type MiniBossId } from "../../../data/types";
+
+    import { Factory } from "../../../scripts";
+    import type { MiniBoss, MiniBossObject } from "../../../scripts/characters";
+
+    import { Random } from "../../../utils";
+    
+    interface Props {
+        obj: MiniBossObject;
+        factory: Factory;
+
+        class?: string;
+        enableKeyInput?: boolean;
+
+        onupdate?: VoidFunction;
+        onchange?: (miniboss: MiniBoss) => void;
+    }
+
+    let {
+        obj = $bindable(),
+        factory,
+
+        class: className,
+        enableKeyInput = false,
+
+        onupdate: update = () => {},
+        onchange: change = () => {}
+    }: Props = $props();
+
+    async function updateMiniBoss(miniBoss: MiniBossId) {
+        const { id, label, isUpgraded } = obj;
+
+        if (!factory.hasLoadedMiniBoss(miniBoss)) await factory.loadMiniBoss(miniBoss);
+        const boss = factory.miniBoss(miniBoss, isUpgraded, id, label);
+
+        obj.miniBoss = miniBoss;
+        boss.copyFromObj(obj);
+
+        const { animation } = miniBossData[miniBoss];
+
+        obj.animation = animation;
+        boss.setAnimation(animation);
+
+        update();
+        change(boss);
+    }
+</script>
+
+<div class={twMerge("flex flex-col gap-2 items-center w-full", className)}>
+    <Header title="Choose Mini Boss" />
+
+    <MultiGrid titles={Object.keys(miniBossIdsByCategory)} minColumns={4} maxColumns={6} tileWidth={64} tileHeight={64} gapWidth={20} gapHeight={12} {enableKeyInput} focusFirst>
+        {#snippet children(category, y)}
+            <BoxOption label="Select Random Mini Boss" hideBackground onclick={() => updateMiniBoss(Random.item(miniBossIdsByCategory[category as MiniBossCategoryName]))}>
+                <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />
+            </BoxOption>
+
+            {#each Object.values(miniBossIdsByCategory)[y].map<[MiniBossId, MiniBossData]>((id) => [id, miniBossData[id]]) as [id, { name }], x (id) }
+                <BoxOption label={name} selected={id === obj.miniBoss} onclick={() => updateMiniBoss(id as MiniBossId)}>
+                    <SpritesheetImage src="/static/assets/mini-bosses.png" label={name} class="m-1" {x} {y} tileWidth={64} tileHeight={64} width={56} height={56} />
+                </BoxOption>
+            {/each}
+        {/snippet}
+    </MultiGrid>
+</div>

@@ -40,15 +40,13 @@
     }: Props = $props();
 
     async function updateTOWW(form: TOWW_Id) {
-        const { label } = obj;
+        const { id, label } = obj;
 
         if (!factory.hasLoadedTOWW(form)) await factory.loadTOWW(form);
-        const toww = factory.TOWW(form);
+        const toww = factory.TOWW(form, id, label);
 
         obj.form = form;
-
         toww.copyFromObj(obj);
-        toww.label = label;
 
         const { attributes, animation } = towwData[form];
 

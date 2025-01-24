@@ -105,15 +105,13 @@ export class Actor implements ActorObject {
     }
 
     copyFromObj(obj: ActorObject) {
-        const { pos, scale, hidden, flipX, animation } = obj;
+        const { pos, scale, hidden, flipX } = obj;
         
         this.pos.copyObj(pos);
         this.scale.copyObj(scale);
 
         this.hidden = hidden;
         this.flipX = flipX;
-
-        this.setAnimation(animation);
     }
 
     toObj(): ActorObject {

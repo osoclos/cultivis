@@ -1,6 +1,6 @@
 <script lang="ts" module>
     import { FOLLOWER_IDS, type FollowerId, PLAYER_CREATURE_IDS, PLAYER_FLEECE_IDS, type PlayerCreatureId, type PlayerFleeceId } from "../../data/types";
-    import { bishopData, followerData } from "../../data";
+    import { bishopData, followerData, miniBossData } from "../../data";
 
     const FOLLOWER_STARTING_NAMES: string[] = ["Ja", "Jul", "Na", "No", "Gre", "Bre", "Tre", "Mer", "Ty", "Ar", "An", "Yar", "Fe", "Fi", "The", "Thor", "Al", "Ha", "He", "Joo", "Ma", "Me", "Pa", "Pu"];
     const FOLLOWER_MIDDLE_NAMES: string[] = ["na"].concat(...FOLLOWER_STARTING_NAMES.slice(1, 11).map((name) => name.toLowerCase()));
@@ -73,10 +73,11 @@
     import { twMerge } from "tailwind-merge";
 
     import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, Slider, Toggle } from "../base";
+    import { BISHOP_MENU_NAME, MINI_BOSS_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
     import { MultiList } from "../utils";
 
     import { Actor, Factory, type ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isPlayerObj, isTOWW_Obj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isMiniBossObj, isPlayerObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
 
     import { forbiddenAnimations } from "../../data";
     import { Random, Vector, type VectorObject } from "../../utils";
@@ -255,9 +256,13 @@
                     
                     <BannerButton label="Randomize" src="/static/ui/dice-6.png" onclick={randomizeAppearance} />
                 {:else if isBishopObj(obj)}
-                    <BannerButton label="Choose Bishop" onclick={() => proceed("bishop")} />
+                    <BannerButton label="Choose Bishop" onclick={() => proceed(BISHOP_MENU_NAME)} />
                 {:else if isTOWW_Obj(obj)}
-                    <BannerButton label="Choose Form" onclick={() => proceed("toww")} />
+                    <BannerButton label="Choose Form" onclick={() => proceed(TOWW_MENU_NAME)} />
+                {:else if isMiniBossObj(obj)}
+                    <BannerButton label="Choose Boss" onclick={() => proceed(MINI_BOSS_MENU_NAME)} />
+                {:else if isWitnessObj(obj)}
+                    <BannerButton label="Choose Witness" onclick={() => proceed(WITNESS_MENU_NAME)} />
                 {/if}
             {:else if i === 2}
                 <div class="flex flex-col gap-6 pt-6 pb-8" tabindex="-1">
@@ -311,6 +316,38 @@
                                         <Toggle label="Is Injured?" bind:enabled={obj.isInjured!} oninput={(isInjured) => actor.isInjured = isInjured} />
                                     </Label>
                                 {/if}
+                            </div>
+                        </div>
+                    {:else if isMiniBossObj(obj) && isMiniBossObj(actor)}
+                        <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+                        <div class="flex flex-col items-center gap-6" tabindex="0">
+                            <LabelTitle title="Attributes" />
+                        
+                            <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
+                                <Label label="Is Upgraded?">
+                                    <Toggle label="Is Upgraded?" bind:enabled={obj.isUpgraded} oninput={(isUpgraded) => actor.isUpgraded = isUpgraded} />
+                                </Label>
+
+                                {#if ["backSkins", "backUpgradedSkins"].every((key) => key in miniBossData[obj.miniBoss])}
+                                    <Label label="Is Facing the Back?">
+                                        <Toggle label="Is Facing the Back?" bind:enabled={obj.isBackFacing!} oninput={(isBackFacing) => actor.isBackFacing = isBackFacing} />
+                                    </Label>
+                                {/if}
+                            </div>
+                        </div>
+                    {:else if isWitnessObj(obj) && isWitnessObj(actor)}
+                        <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+                        <div class="flex flex-col items-center gap-6" tabindex="0">
+                            <LabelTitle title="Attributes" />
+                        
+                            <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
+                                <Label label="Is Upgraded?">
+                                    <Toggle label="Is Upgraded?" bind:enabled={obj.isUpgraded} oninput={(isUpgraded) => actor.isUpgraded = isUpgraded} />
+                                </Label>
+
+                                <Label label="Is Purged?">
+                                    <Toggle label="Is Purged?" bind:enabled={obj.isPurged} oninput={(isPurged) => actor.isPurged = isPurged} />
+                                </Label>
                             </div>
                         </div>
                     {/if}

@@ -89,7 +89,7 @@ export class Exporter {
     }
 
     private async createActor(obj: ActorObject) {
-        const { id, label } = obj;
+        const { id, label, animation } = obj;
         let actor: Actor;
 
         switch (true) {
@@ -157,6 +157,8 @@ export class Exporter {
         }
         
         actor.copyFromObj(obj);
+        actor.setAnimation(animation);
+        
         return actor;
     }
 

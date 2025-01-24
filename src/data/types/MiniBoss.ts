@@ -17,7 +17,7 @@ export interface MiniBossData {
     animation: string;
 }
 
-export const MINI_BOSS_IDS: (keyof typeof miniBossData)[] = ["Mama Worm", "Mama Maggot", "Burrow Worm", "Flying Burp Frog", "Egg Hopper", "Mortar Hopper", "Spiker", "Charger", "Scuttle Turret", "Spider Jump", "Millipede Poisoner", "Scorpion"] as const;
+export const MINI_BOSS_IDS: (keyof typeof miniBossData)[] = ["Mama Worm", "Mama Maggot", "Burrow Worm", "Egg Hopper", "Flying Burp Frog", "Mortar Hopper", "Spiker", "Charger", "Scuttle Turret", "Spider Jump", "Millipede Poisoner", "Scorpion"] as const;
 export type MiniBossId = typeof MINI_BOSS_IDS[number];
 
 export enum MiniBossCategory {

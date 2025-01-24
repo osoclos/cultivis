@@ -141,7 +141,7 @@
 <div class={twMerge("flex flex-col gap-2 items-center w-full", className)}>
     <Header {title} />
 
-    <MultiGrid titles={dividerTitles} minColumns={4} maxColumns={6} tileWidth={64} tileHeight={64} gapWidth={20} gapHeight={12} {enableKeyInput}>
+    <MultiGrid titles={dividerTitles} minColumns={4} maxColumns={6} tileWidth={64} tileHeight={64} gapWidth={20} gapHeight={12} {enableKeyInput} focusFirst>
         {#snippet children(category, y)}
             {#if menu === "form"}
                 <BoxOption label="Select Random {category} Form" hideBackground onclick={() => updateForm(Random.item(followerIdsByCategory[category as FollowerCategoryName]))}>

@@ -240,6 +240,13 @@ miniBossExporter.addEventListener("click", () => {
         boss.setAnimation(animation);
 
         setupScene(boss);
+        if (["Flying Burp Frog", "Spiker", "Charger", "Scuttle Turret"].includes(id)) {
+            const isEligos = id === "Flying Burp Frog";
+
+            scene.scale *= 0.8 - 0.2 * +isEligos;
+            !isEligos && boss.pos.set(0, -60);
+        }
+
         appendPixelsToForm(form, id);
     }
 
@@ -255,6 +262,10 @@ witnessExporter.addEventListener("click", () => {
         witness.setAnimation("animation");
 
         setupScene(witness);
+        
+        scene.scale *= 0.9;
+        witness.pos.set(0, -40);
+
         appendPixelsToForm(form, id);
     }
 

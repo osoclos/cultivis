@@ -7,14 +7,14 @@
     import { SceneCanvas, Categories, LoadingThrobber, LoadingSymbol } from "./components/misc";
     import { List } from "./components/utils";
     
-    import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, TOWW_MENU_NAME, TOWW_Menus } from "./components/characters";
+    import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, TOWW_MENU_NAME, TOWW_Menus, MINI_BOSS_MENU_NAME, MiniBossMenu, WITNESS_MENU_NAME, WitnessMenu } from "./components/characters";
     import { Size, Timing } from "./components/exporting";
 
     import { News } from "./components/news";
     import { CreationDetails, SpecialThanks } from "./components/credits";
 
     import { Actor, Exporter, Factory, Scene, type ActorObject } from "./scripts";
-    import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness } from "./scripts/characters";
+    import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness, isMiniBossObj, isWitnessObj } from "./scripts/characters";
     import { GitManager } from "./scripts/managers";
 
     import { bishopData, miniBossData, towwData, witnessData } from "./data";
@@ -272,6 +272,10 @@
 
     function cloneActor(actor: Actor) {
         const clonedActor = actor.clone();
+
+        const { animation } = actor;
+        clonedActor.setAnimation(animation);
+
         addRawActor(clonedActor);
     }
     
@@ -410,6 +414,10 @@
                             <BishopMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
                         {:else if isTOWW_Obj(actorObj) && actorMenu === TOWW_MENU_NAME}
                             <TOWW_Menus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
+                        {:else if isMiniBossObj(actorObj) && actorMenu === MINI_BOSS_MENU_NAME}
+                            <MiniBossMenu class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
+                        {:else if isWitnessObj(actorObj) && actorMenu === WITNESS_MENU_NAME}
+                            <WitnessMenu class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" witness={actor as Witness} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                         {/if}
                     {/if}
                 </div>

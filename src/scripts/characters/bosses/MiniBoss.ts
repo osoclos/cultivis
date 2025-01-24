@@ -57,9 +57,9 @@ export class MiniBoss extends Actor implements MiniBossObject {
 
         const [firstSkin, ...additionalSkins] = 
             isBackFacing
-                ? isUpgraded
+                ? [...(isUpgraded
                     ? backUpgradedSkins
-                    : backSkins
+                    : backSkins)].reverse()
                 : isUpgraded
                     ? upgradedSkins
                     : skins;

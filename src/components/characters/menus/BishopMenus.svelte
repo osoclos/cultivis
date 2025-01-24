@@ -39,18 +39,16 @@
         onchange: change = () => {}
     }: Props = $props();
 
-    async function updateBishop(id: BishopId) {
-        const { isBoss, label } = obj;
+    async function updateBishop(bishopId: BishopId) {
+        const { id, label, isBoss } = obj;
 
-        if (!factory.hasLoadedBishop(id, isBoss)) await factory.loadBishop(id, isBoss);
-        const bishop = factory.bishop(id, isBoss);
+        if (!factory.hasLoadedBishop(bishopId, isBoss)) await factory.loadBishop(bishopId, isBoss);
+        const bishop = factory.bishop(bishopId, isBoss, id, label);
 
-        obj.bishop = id;
-
+        obj.bishop = bishopId;
         bishop.copyFromObj(obj);
-        bishop.label = label;
 
-        const { animation, bossAnimation = animation } = bishopData[id];
+        const { animation, bossAnimation = animation } = bishopData[bishopId];
 
         obj.animation = isBoss ? bossAnimation : animation;
         bishop.setAnimation(isBoss ? bossAnimation : animation);
