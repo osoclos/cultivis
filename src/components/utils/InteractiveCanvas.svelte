@@ -114,10 +114,10 @@
         }
 
         function onWheel(evt: WheelEvent) {
-            const { deltaX, deltaY, offsetX, offsetY, shiftKey, ctrlKey } = evt;
+            const { deltaX, deltaY, offsetX, offsetY, shiftKey, ctrlKey, altKey } = evt;
             evt.preventDefault();
 
-            if (!ctrlKey) {
+            if (!ctrlKey && !altKey) {
                 const delta = new Vector(deltaX, deltaY);
                 shiftKey && delta.swap();
 
