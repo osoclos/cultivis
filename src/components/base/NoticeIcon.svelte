@@ -5,7 +5,7 @@
     const { class: className }: Props = $props();
 </script>
 
-<img src="/static/ui/attention.png" alt="" class={twMerge("oscillate w-7 h-7", className)} width="28" height="28" draggable="false" role="presentation" aria-hidden="true" />
+<img src="/static/ui/attention.png" srcset="/static/ui/attention.webp, /static/ui/attention.png" alt="" class={twMerge("oscillate w-7 h-7", className)} width="28" height="28" draggable="false" role="presentation" aria-hidden="true" />
 
 <style>
     @media not (prefers-reduced-motion) {

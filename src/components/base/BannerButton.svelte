@@ -23,9 +23,7 @@
     }
     
     let button: HTMLButtonElement;
-    
     let inputElement: HTMLInputElement = $state(document.createElement("input"));
-    let link: HTMLAnchorElement = $state(document.createElement("a"));
 
     let {
         label,
@@ -67,28 +65,28 @@
 
     function onclick() {
         // if people complain that they need to double click on mobile, tell them its a feature ;)
-        (href
-            ? link
-            : editable
-                ? inputElement
-                : button
-        ).focus();
 
-        href && link.click();
+        if (href) {
+            const link = document.createElement("a");
+            link.href = href;
+            link.target = "_blank";
+
+            link.click();
+        }
+
+        (editable ? inputElement : button).focus();
         click();
     }
 </script>
 
 <button bind:this={button} class={twMerge("group aspect-[410_/_100] relative w-[205px] h-12.5 text-xl tracking-wide text-inactive disabled:text-disabled text-nowrap outline-none", editable ? "focus-within:text-active" : "focus:text-active", className)} {disabled} aria-label={label} {onclick} onpointerenter={() => document.hasFocus() && button.focus()} onfocus={() => Vector.One.cloneObj(scale)} onblur={resetScale}>
-    <img src="/static/ui/banner.png" alt="" class="opacity-0 {editable ? "group-focus-within:opacity-100" : "group-focus:opacity-100"} transition-transform duration-75 ease-linear" style:transform={Vector.objToStr(scale, `scale(${Vector.DEFAULT_STR_FORMAT})`)} width="205" height="50" draggable="false" role="presentation" aria-hidden="true" />
+    <img src="/static/ui/banner.png" srcset="/static/ui/banner.webp, /static/ui/banner.png" alt="" class="opacity-0 {editable ? "group-focus-within:opacity-100" : "group-focus:opacity-100"} transition-transform duration-75 ease-linear" style:transform={Vector.objToStr(scale, `scale(${Vector.DEFAULT_STR_FORMAT})`)} width="205" height="50" draggable="false" role="presentation" aria-hidden="true" />
     
     <div class={["absolute top-1/2 left-1/2 text-center -translate-1/2", { "flex flex-row gap-2 justify-center items-center text-sm": src }]}>
         {#if editable}
             <input bind:this={inputElement} type="text" bind:value class="{src ? "w-24" : "w-36"} text-center placeholder-inactive group-focus:placeholder-active focus:placeholder-active disabled:placeholder-disabled text-ellipsis outline-none" name={label} placeholder={placeholder} {disabled} autocomplete="off" oninput={() => input(value)} onfocus={() => Vector.One.cloneObj(scale)} onblur={resetScale} />
-        {:else if href}
-            <a bind:this={link} {href} class="pointer-events-none" target="_blank">{label}</a>
         {:else}
-            <p>{label}</p>
+            <p role={href ? "link" : "text"} aria-label={href}>{label}</p>
         {/if}
 
         {#if src}

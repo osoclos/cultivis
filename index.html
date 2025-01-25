@@ -4,12 +4,33 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="A Cult of the Lamb visualizer">
+        <meta name="referer" content="origin-when-cross-origin">
+        <meta name="color-scheme" content="dark light">
+
+        <meta name="application-name" content="CultiVis">
+        <meta name="description" content="Cultivis is a fan-made project aimed to provide a simple yet intuitive visualizer for Cult of the Lamb. Currently, you can only view and export animations, but more exciting features will emerge as this project is being developed.">
+
+        <meta name="author" content="osoclos">
+        <meta name="creator" content="osoclos">
+        <meta name="publisher" content="Netlify">
+
+        <meta name="keywords" content="cultivis, cotl, cult of the lamb, visualizer, assets, decompilation">
 
         <link rel="icon" type="image/x-icon" href="favicon.ico">
-        <link rel="apple-touch-icon" type="image/x-icon" href="favicon.ico">
+        <link rel="apple-touch-icon" href="favicon.png">
 
-        <title>CultiVis: A Cult of the Lamb visualizer</title>
+        <meta property="og:title" content="CultiVis">
+        <meta property="og:description" content="A Cult of the Lamb Asset Visualizer">
+        <meta property="og:url" content="https://cultivis.netlify.app">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="https://cultivis.netlify.app/favicon.ico">
+
+        <meta name="twitter:title" content="CultiVis">
+        <meta name="twitter:description" content="A Cult of the Lamb Asset Visualizer">
+        <meta name="twitter:image" content="https://cultivis.netlify.app/preview.png">
+        <meta name="twitter:card" content="summary_large_image">
+
+        <title>CultiVis: A Cult of the Lamb Asset Visualizer</title>
     </head>
     <body>
         <div id="app" class="flex flex-col lg:flex-row bg-white dark:bg-night"></div>
@@ -139,11 +160,11 @@
             </style>
 
             <div class="container">
-                <img src="/static/ui/cross.png" alt="" class="cross" width="100" height="50" draggable="false" role="presentation" aria-hidden="true">
+                <img src="/static/ui/cross.png" srcset="/static/ui/cross.webp, /static/ui/cross.png" alt="" class="cross" width="100" height="50" draggable="false" role="presentation" aria-hidden="true">
                 <div class="content">
                     <div class="text">
                         <div class="title">
-                            <img src="/static/ui/open-eye.png" alt="" width="52" height="26" draggable="false" role="presentation" aria-hidden="true" />
+                            <img src="/static/ui/open-eye.png" srcset="/static/ui/open-eye.webp, /static/ui/open-eye.png" alt="" width="52" height="26" draggable="false" role="presentation" aria-hidden="true" />
                             <h1>ERROR</h1>
                         </div>
         
@@ -158,7 +179,8 @@
                         <a href="https://support.apple.com/en-sg/guide/safari/ibrw1074/mac" target="_blank"><button class="banner">Safari</button></a>
                     </div>
                 </div>
-                <img src="/static/ui/cross.png" alt="" class="cross flipped" width="100" height="50" draggable="false" role="presentation" aria-hidden="true">
+
+                <img src="/static/ui/cross.png" srcset="/static/ui/cross.webp, /static/ui/cross.png" alt="" class="cross flipped" width="100" height="50" draggable="false" role="presentation" aria-hidden="true">
             </div>
         </noscript>
     </body>
