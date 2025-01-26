@@ -1,4 +1,3 @@
-
 <script lang="ts">
     import { onDestroy, onMount } from "svelte";
     import { twMerge } from "tailwind-merge";
@@ -11,7 +10,7 @@
     import { Size, Timing } from "./components/exporting";
 
     import { News } from "./components/news";
-    import { CreationDetails, SpecialThanks } from "./components/credits";
+    import { CreationDetails, SpecialThanks, HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME } from "./components/credits";
 
     import { Actor, Exporter, Factory, Scene, type ActorObject } from "./scripts";
     import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness, isMiniBossObj, isWitnessObj } from "./scripts/characters";
@@ -41,6 +40,8 @@
 
     let hasUserCompliedToTOS: boolean = $state(false);
     const hasFinishedLoading: boolean = $derived(loadingState === LOADING_STATES.length);
+
+    let hasNoticedTutorial: boolean = $state(!!localStorage.getItem(HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME));
 
     let actors: ActorObject[] | null = $state(null);
     let actorIdx: number = $state(-1);
@@ -393,7 +394,7 @@
     </div>
 
     <div class={["lg:h-dvh bg-secondary", { "hidden": !hasFinishedLoading }]}>
-        <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:selectedIdx={categoryIdx} {gitManager} enableKeyInput={(actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
+        <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:selectedIdx={categoryIdx} {gitManager} bind:hasNoticedTutorial enableKeyInput={(actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
         <div class="no-scrollbar lg:overflow-y-auto flex flex-col {[1, 3].includes(categoryIdx) ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
             {#if categoryIdx === 0}
                 <CharacterList bind:actors bind:loadingActor enableKeyInput={actorIdx < 0} onadd={addActor} onremove={(indexes) => [...indexes].sort((a, b) => b - a).forEach((i) => removeActor(scene.actors[i], i))} onclone={(indexes) => indexes.forEach((i) => cloneActor(scene.actors[i]))} onactorclick={selectActor} />
@@ -439,7 +440,7 @@
             {:else if categoryIdx === 2}
                 <News {gitManager} />
             {:else if categoryIdx === 3}
-                <CreationDetails {gitManager} />
+                <CreationDetails {gitManager} bind:hasNoticedTutorial />
                 <SpecialThanks />
             {/if}
         </div>

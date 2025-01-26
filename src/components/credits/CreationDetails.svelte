@@ -1,3 +1,7 @@
+<script lang="ts" module>
+    export const HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME: string = "has-noticed-tutorial";
+</script>
+
 <script lang="ts">
     import { BannerButton, Header, LabelTitle } from "../base";
     import { List } from "../utils";
@@ -5,8 +9,18 @@
     import { GitManager } from "../../scripts/managers";
     import { unixToDate } from "../../utils";
 
-    interface Props { gitManager: GitManager; }
-    const { gitManager }: Props = $props();
+    interface Props {
+        gitManager: GitManager;
+        hasNoticedTutorial?: boolean;
+    }
+
+    let { gitManager, hasNoticedTutorial = $bindable(false) }: Props = $props();
+    function onnotice() {
+        if (hasNoticedTutorial) return;
+        hasNoticedTutorial = true;
+
+        localStorage.setItem(HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME, "CHECKED");
+    }
 </script>
 
 <div class="flex flex-col gap-4 items-center">
@@ -24,6 +38,6 @@
     
     <List class="flex flex-col justify-center items-center" enableKeyInput>
         <BannerButton label="View Repository" href="https://github.com/osoclos/cultivis" />
-        <BannerButton label="User Guide" href="https://github.com/osoclos/cultivis/blob/main/README.md#usage" />
+        <BannerButton label="How to Use" href="https://github.com/osoclos/cultivis/blob/main/README.md#usage" hasNotice={!hasNoticedTutorial} {onnotice} />
     </List>
 </div>

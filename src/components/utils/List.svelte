@@ -42,7 +42,7 @@
         focusFirst && document.hasFocus() && ([...container.children] as HTMLElement[]).find(({ tabIndex }) => tabIndex >= 0)?.focus();
 
         function onFocusIn({ target }: FocusEvent) {
-            const i = ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0).indexOf(target as HTMLElement);
+            const i = ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0).findIndex((child) => child === target as HTMLElement || [...child.children].includes(target as HTMLElement));
             if (i < 0) return;
             
             focusIdx = i;

@@ -28,10 +28,9 @@
 
     const clickEvent: Action<HTMLDivElement> = (container) => {
         if (!children) return;
-        const elements = [...container.children] as HTMLElement[];
 
         function onClick({ target }: MouseEvent) {
-            const i = elements.findIndex((element) => element === target as HTMLElement || [...element.children].includes(target as HTMLElement));
+            const i = ([...container.children] as HTMLElement[]).findIndex((element) => element === target as HTMLElement || [...element.children].includes(target as HTMLElement));
             if (i < 0) return;
             
             selectedIdx = i;

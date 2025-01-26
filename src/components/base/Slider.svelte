@@ -12,6 +12,8 @@
         step?: number;
 
         showVal?: boolean;
+
+        displayValues?: string[];
         format?: string;
 
         class?: string;
@@ -31,6 +33,8 @@
         step = 1,
 
         showVal = true,
+
+        displayValues = [],
         format = "<val>",
         
         class: className,
@@ -74,6 +78,6 @@
     </div>
 
     {#if showVal}
-        <p class="w-24 font-subtitle tracking-widest text-end text-inactive">{format.replace("<val>", `${value}`)}</p>
+        <p class="w-24 font-subtitle tracking-widest text-end text-inactive">{displayValues.length ? displayValues[value] : format.replace("<val>", `${value}`)}</p>
     {/if}
 </div>

@@ -50,6 +50,4 @@
     --font-subtitle: "Copyright Symbol", "Fira Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-@layer theme {
-    * { @apply cursor-[url("/static/ui/cursor.png"),_auto]; }
-}
+:root { cursor: url("/static/ui/cursor.png"), auto; }

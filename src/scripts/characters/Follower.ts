@@ -5,18 +5,27 @@ import type { ColorSet, FollowerId, ClothingId, ClothingData, FormData, Necklace
 
 import { Color, MoreMath } from "../../utils";
 
-// to add halo, you need to set attachment "halo" to skin "Other/Halo"
 export class Follower extends Actor implements FollowerObject {
     static readonly TEXTURE_FILENAME: string = "Follower.png";
     static readonly ATLAS_FILENAME: string = "Follower.atlas";
     static readonly SKELETON_FILENAME: string = "Follower.skel";
 
+    static readonly HALO_SLOT_NAME: string = "halo";
+    static readonly HALO_ATTACHMENT_NAME: string = "Other/Halo";
+
+    static readonly BABY_SKIN_NAME: string = "Other/Baby";
+    static readonly OLD_SKIN_NAME: string = "Other/Old";
+
     static readonly BODY_EXTRA_SLOT_NAME: string = "BODY_EXTRA";
 
     private _form: FollowerId;
     #clothing: ClothingId;
+
     #necklace: NecklaceId | null;
     #hat: HatId | null;
+
+    #isDisciple: boolean;
+    #ageState: FollowerAgeState;
 
     private indexes: FollowerIndexes
     constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = followerData.forms.Deer.name, form: FollowerId = "Deer", clothing: ClothingId = "Default_Clothing") {
@@ -24,8 +33,12 @@ export class Follower extends Actor implements FollowerObject {
 
         this._form = form;
         this.#clothing = clothing;
+
         this.#necklace = null;
         this.#hat = null;
+
+        this.#isDisciple = false;
+        this.#ageState = FollowerAgeState.Adult;
 
         this.indexes = {
             form: {
@@ -79,6 +92,24 @@ export class Follower extends Actor implements FollowerObject {
 
     set hat(hat: HatId | null) {
         this.#hat = hat;
+        this.update();
+    }
+
+    get isDisciple(): boolean {
+        return this.#isDisciple;
+    }
+
+    set isDisciple(isDisciple: boolean) {
+        this.#isDisciple = isDisciple;
+        this.update();
+    }
+
+    get ageState(): FollowerAgeState {
+        return this.#ageState;
+    }
+
+    set ageState(ageState: FollowerAgeState) {
+        this.#ageState = ageState;
         this.update();
     }
 
@@ -151,27 +182,30 @@ export class Follower extends Actor implements FollowerObject {
     }
 
     update() {
-        const { formData, clothingData, necklaceData, hatData, colorSetData, formVariantIdx, formColorSetIdx, clothingVariantIdx, clothingColorSetIdx } = this;
+        const { formData, clothingData, necklaceData, hatData, colorSetData, formVariantIdx, formColorSetIdx, clothingVariantIdx, clothingColorSetIdx, isDisciple, ageState } = this;
 
         this.setSkin(formData.variants[formVariantIdx]);
         this.addSkins(clothingData.variants[clothingVariantIdx]);
 
-        clothingData.sets && this.applyColors(clothingData.sets[clothingColorSetIdx]);
+        ageState !== FollowerAgeState.Adult && this.addSkins(Follower[ageState === FollowerAgeState.Baby ? "BABY_SKIN_NAME" : "OLD_SKIN_NAME"]);
+
+        ageState !== FollowerAgeState.Baby && clothingData.sets && this.applyColors(clothingData.sets[clothingColorSetIdx]);
         this.applyColors(colorSetData[formColorSetIdx]);
 
         necklaceData && this.addSkins(necklaceData.variant);
         hatData && this.addSkins(hatData.variant);
 
+        isDisciple && this.skeleton.setAttachment(Follower.HALO_SLOT_NAME, Follower.HALO_ATTACHMENT_NAME);
         this.tick();
     }
 
     resetSkin() {
         super.resetSkin();
-        if (this.form === "Deer") this.skeleton.slots[this.skeleton.findSlotIndex(Follower.BODY_EXTRA_SLOT_NAME)].attachment = null as unknown as spine.Attachment;
+        this.form === "Deer" && this.skeleton.slots[this.skeleton.findSlotIndex(Follower.BODY_EXTRA_SLOT_NAME)].setAttachment(null as unknown as spine.Attachment);
     }
 
     copyFromObj(obj: FollowerObject) {
-        const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat } = obj;
+        const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, isDisciple, ageState } = obj;
         
         this.form = form;
         this.formVariantIdx = formVariantIdx;
@@ -184,12 +218,15 @@ export class Follower extends Actor implements FollowerObject {
         this.necklace = necklace;
         this.hat = hat;
 
+        this.isDisciple = isDisciple;
+        this.ageState = ageState;
+
         super.copyFromObj(obj);
     }
 
     toObj(): FollowerObject {
-        const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat } = this;
-        return { ...super.toObj(), type: "follower", form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat };
+        const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, isDisciple, ageState } = this;
+        return { ...super.toObj(), type: "follower", form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, isDisciple, ageState };
     }
 
     applyColors(set: ColorSet) {
@@ -230,6 +267,9 @@ export interface FollowerObject extends ActorObject {
 
     necklace: NecklaceId | null;
     hat: HatId | null;
+
+    isDisciple: boolean;
+    ageState: FollowerAgeState;
 }
 
 export interface FollowerIndexes {
@@ -240,6 +280,12 @@ export interface FollowerIndexes {
 export interface FollowerIndex {
     variant: number;
     colorSet: number;
+}
+
+export enum FollowerAgeState {
+    Baby,
+    Adult,
+    Elder
 }
 
 export function isFollowerObj(obj: ActorObject): obj is FollowerObject {

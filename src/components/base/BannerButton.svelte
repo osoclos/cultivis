@@ -3,6 +3,7 @@
     import { twMerge } from "tailwind-merge";
 
     import { Random, Vector } from "../../utils";
+  import NoticeIcon from "./NoticeIcon.svelte";
 
     interface Props {
         label: string;
@@ -12,14 +13,16 @@
         placeholder?: string;
 
         disabled?: boolean;
-
-        oninput?: (val: string) => void;
+        hasNotice?: boolean;
 
         href?: string;
         src?: string;
 
         class?: string;
+
         onclick?: VoidFunction;
+        oninput?: (val: string) => void;
+        onnotice?: VoidFunction;
     }
     
     let button: HTMLButtonElement;
@@ -33,14 +36,16 @@
         placeholder = label,
 
         disabled = false,
-
-        oninput: input = () => {},
+        hasNotice = false,
 
         href,
         src,
 
         class: className,
-        onclick: click = () => {}
+
+        onclick: click = () => {},
+        oninput: input = () => {},
+        onnotice: notice = () => {}
     }: Props = $props();
 
     const scale = $state(Vector.One.toObj());
@@ -77,9 +82,18 @@
         (editable ? inputElement : button).focus();
         click();
     }
+
+    function onfocus() {
+        Vector.One.cloneObj(scale);
+        
+        if (!hasNotice) return;
+        hasNotice = false;
+
+        notice();
+    }
 </script>
 
-<button bind:this={button} class={twMerge("group aspect-[410_/_100] relative w-[205px] h-12.5 text-xl tracking-wide text-inactive disabled:text-disabled text-nowrap outline-none", editable ? "focus-within:text-active" : "focus:text-active", className)} {disabled} aria-label={label} {onclick} onpointerenter={() => document.hasFocus() && button.focus()} onfocus={() => Vector.One.cloneObj(scale)} onblur={resetScale}>
+<button bind:this={button} class={twMerge("group aspect-[410_/_100] relative w-[205px] h-12.5 text-xl tracking-wide text-inactive disabled:text-disabled text-nowrap outline-none", editable ? "focus-within:text-active" : "focus:text-active", className)} {disabled} aria-label={label} {onclick} onpointerenter={() => document.hasFocus() && button.focus()} {onfocus} onblur={resetScale}>
     <img src="/static/ui/banner.png" srcset="/static/ui/banner.webp, /static/ui/banner.png" alt="" class="opacity-0 {editable ? "group-focus-within:opacity-100" : "group-focus:opacity-100"} transition-transform duration-75 ease-linear" style:transform={Vector.objToStr(scale, `scale(${Vector.DEFAULT_STR_FORMAT})`)} width="205" height="50" draggable="false" role="presentation" aria-hidden="true" />
     
     <div class={["absolute top-1/2 left-1/2 text-center -translate-1/2", { "flex flex-row gap-2 justify-center items-center text-sm": src }]}>
@@ -93,4 +107,8 @@
             <img {src} alt="" width="24" height="24" draggable="false" role="presentation" aria-hidden="true" />
         {/if}
     </div>
+
+    {#if hasNotice}
+        <NoticeIcon class="absolute top-0 right-0 z-10 w-6 h-6 translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+    {/if}
 </button>

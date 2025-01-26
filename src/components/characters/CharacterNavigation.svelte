@@ -178,16 +178,6 @@
         change(bishop);
     }
 
-    function updateTOWW_HasChains(hasChains: boolean) {
-        if (!isTOWW_Obj(obj) || !isTOWW_Obj(actor)) return;
-        actor.hasChains = hasChains;
-
-        const animation: string = hasChains ? "idle-standing" : "idle-standing-nochain";
-
-        obj.animation = animation;
-        actor.setAnimation(animation);
-    }
-
     function updateName(name: string) {
         actor.label = name;
         obj.label = name;
@@ -266,42 +256,47 @@
                 {/if}
             {:else if i === 2}
                 <div class="flex flex-col gap-6 pt-6 pb-8" tabindex="-1">
-                    {#if isBishopObj(obj) && isBishopObj(actor)}
-                        <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-                        <div class="flex flex-col items-center gap-6" tabindex="0">
-                            <LabelTitle title="Attributes" />
-                        
-                            <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
+                    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
+                    <div class="flex flex-col items-center gap-6" tabindex="0">
+                        <LabelTitle title="Attributes" />
+                    
+                        <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
+                            {#if isFollowerObj(obj) && isFollowerObj(actor)}
+                                <Label label="Is a Disciple?">
+                                    <Toggle label="Is a Disciple?" bind:enabled={obj.isDisciple} oninput={(isDisciple) => actor.isDisciple = isDisciple} />
+                                </Label>
+
+                                <Label label="Age State">
+                                    <Slider class="ml-4" label="Age State" bind:value={obj.ageState} min={0} max={2} step={1} displayValues={["Baby", "Adult", "Elder"]} oninput={(ageState) => actor.ageState = ageState} />
+                                </Label>
+                            {:else if isPlayerObj(obj) && isPlayerObj(actor)}
+                                <Label label="Hurt State">
+                                    <Slider class="ml-4" label="Hurt State" bind:value={obj.hurtState} min={0} max={2} step={1} displayValues={["Normal", "Bruised", "Injured"]} oninput={(hurtState) => actor.hurtState = hurtState} />
+                                </Label>
+                            {:else if isBishopObj(obj) && isBishopObj(actor)}
                                 {#if "bossSrc" in bishopData[obj.bishop]}
                                     <Label label="Is in Boss Form?">
                                         <Toggle label="Is in Boss Form?" bind:enabled={obj.isBoss} oninput={updateBishopIsBoss} />
                                     </Label>
                                 {/if}
-
+        
                                 <Label label="Is Purged?">
                                     <Toggle label="Is Purged?" bind:enabled={obj.isPurged} oninput={(isPurged) => actor.isPurged = isPurged} />
                                 </Label>
-
+        
                                 {#if obj.bishop === "Spider"}
                                     <Label label="Is Bandaged?">
                                         <Toggle label="Is Bandaged?" bind:enabled={obj.isBandaged!} oninput={(isBandaged) => actor.isBandaged = isBandaged} />
                                     </Label>
                                 {/if}
-                            </div>
-                        </div>
-                    {:else if isTOWW_Obj(obj) && isTOWW_Obj(actor)}
-                        <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-                        <div class="flex flex-col items-center gap-6" tabindex="0">
-                            <LabelTitle title="Attributes" />
-                        
-                            <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
+                            {:else if isTOWW_Obj(obj) && isTOWW_Obj(actor)}
                                 {#if obj.form === "Bishop"}
                                     <Label label="Has Crown?">
                                         <Toggle label="Has Crown?" bind:enabled={obj.hasCrown!} oninput={(hasCrown) => actor.hasCrown = hasCrown} />
                                     </Label>
-
+        
                                     <Label label="Has Chains?">
-                                        <Toggle label="Has Chains?" bind:enabled={obj.hasChains!} oninput={updateTOWW_HasChains} />
+                                        <Toggle label="Has Chains?" bind:enabled={obj.hasChains!} oninput={(hasChains) => actor.hasChains = hasChains} />
                                     </Label>
                                 {:else if obj.form === "Boss"}
                                     <Label label="Has Crown?">
@@ -316,41 +311,27 @@
                                         <Toggle label="Is Injured?" bind:enabled={obj.isInjured!} oninput={(isInjured) => actor.isInjured = isInjured} />
                                     </Label>
                                 {/if}
-                            </div>
-                        </div>
-                    {:else if isMiniBossObj(obj) && isMiniBossObj(actor)}
-                        <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-                        <div class="flex flex-col items-center gap-6" tabindex="0">
-                            <LabelTitle title="Attributes" />
-                        
-                            <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
+                            {:else if isMiniBossObj(obj) && isMiniBossObj(actor)}
                                 <Label label="Is Upgraded?">
                                     <Toggle label="Is Upgraded?" bind:enabled={obj.isUpgraded} oninput={(isUpgraded) => actor.isUpgraded = isUpgraded} />
                                 </Label>
-
+        
                                 {#if ["backSkins", "backUpgradedSkins"].every((key) => key in miniBossData[obj.miniBoss])}
                                     <Label label="Is Facing the Back?">
                                         <Toggle label="Is Facing the Back?" bind:enabled={obj.isBackFacing!} oninput={(isBackFacing) => actor.isBackFacing = isBackFacing} />
                                     </Label>
                                 {/if}
-                            </div>
-                        </div>
-                    {:else if isWitnessObj(obj) && isWitnessObj(actor)}
-                        <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-                        <div class="flex flex-col items-center gap-6" tabindex="0">
-                            <LabelTitle title="Attributes" />
-                        
-                            <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
+                            {:else if isWitnessObj(obj) && isWitnessObj(actor)}
                                 <Label label="Is Upgraded?">
                                     <Toggle label="Is Upgraded?" bind:enabled={obj.isUpgraded} oninput={(isUpgraded) => actor.isUpgraded = isUpgraded} />
                                 </Label>
-
+        
                                 <Label label="Is Purged?">
                                     <Toggle label="Is Purged?" bind:enabled={obj.isPurged} oninput={(isPurged) => actor.isPurged = isPurged} />
                                 </Label>
-                            </div>
+                            {/if}
                         </div>
-                    {/if}
+                    </div>
 
                     <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
                     <div class="flex flex-col items-center gap-6 mx-8" tabindex="0">
