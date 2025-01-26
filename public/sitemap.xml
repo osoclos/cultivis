@@ -7,4 +7,24 @@
         
         <changefreq>weekly</changefreq>
     </url>
+
+    <url>
+        <loc>https://cultivis.netlify.app/favicon.ico</loc>
+        <priority>0.9</priority>
+
+        <lastmod>2025-01-22</lastmod>
+    </url>
+    <url>
+        <loc>https://cultivis.netlify.app/favicon.png</loc>
+        <priority>0.9</priority>
+
+        <lastmod>2025-01-22</lastmod>
+    </url>
+
+    <url>
+        <loc>https://cultivis.netlify.app/preview.png</loc>
+        <priority>0.8</priority>
+
+        <lastmod>2025-01-23</lastmod>
+    </url>
 </urlset>
