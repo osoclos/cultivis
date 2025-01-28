@@ -5,10 +5,7 @@
     import { changelogPlugin } from "./changelog";
     import { blogPreviewPlugin } from "./blog";
 
-    import { GitManager } from "../../scripts/managers";
-
-    interface Props { gitManager: GitManager; }
-    const { gitManager }: Props = $props();
+    import { GitManager, gitManager } from "../../scripts/managers";
 
     const folderData: Record<string, [string, Plugin]> = {
         "Changelog": [GitManager.CHANGELOG_FOLDER_NAME, changelogPlugin],

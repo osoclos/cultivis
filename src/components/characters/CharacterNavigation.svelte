@@ -1,6 +1,6 @@
 <script lang="ts" module>
     import { FOLLOWER_IDS, type FollowerId, PLAYER_CREATURE_IDS, PLAYER_FLEECE_IDS, type PlayerCreatureId, type PlayerFleeceId } from "../../data/types";
-    import { bishopData, followerData, miniBossData } from "../../data";
+    import { bishopData, followerData, miniBossData } from "../../data/files";
 
     const FOLLOWER_STARTING_NAMES: string[] = ["Ja", "Jul", "Na", "No", "Gre", "Bre", "Tre", "Mer", "Ty", "Ar", "An", "Yar", "Fe", "Fi", "The", "Thor", "Al", "Ha", "He", "Joo", "Ma", "Me", "Pa", "Pu"];
     const FOLLOWER_MIDDLE_NAMES: string[] = ["na"].concat(...FOLLOWER_STARTING_NAMES.slice(1, 11).map((name) => name.toLowerCase()));
@@ -79,7 +79,7 @@
     import { Actor, Factory, type ActorObject } from "../../scripts";
     import { isBishopObj, isFollowerObj, isMiniBossObj, isPlayerObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
 
-    import { forbiddenAnimations } from "../../data";
+    import { forbiddenAnimations } from "../../data/files";
     import { Random, Vector, type VectorObject } from "../../utils";
 
     interface Props {
@@ -233,26 +233,26 @@
                 {/if}
             {:else if i === 1}
                 {#if isFollowerObj(obj)}
-                    <BannerButton label="Choose Form" onclick={() => proceed("form")} />
-                    <BannerButton label="Choose Robes" onclick={() => proceed("clothing")} />
-                    <BannerButton label="Choose Accessory" onclick={() => proceed("accessory")} />
-                    <BannerButton label="Choose Color" onclick={() => proceed("color")} />
-                    <BannerButton label="Choose Variant" onclick={() => proceed("variant")} />
+                    <BannerButton label="Choose Form" playClickSound={false} onclick={() => proceed("form")} />
+                    <BannerButton label="Choose Robes" playClickSound={false} onclick={() => proceed("clothing")} />
+                    <BannerButton label="Choose Accessory" playClickSound={false} onclick={() => proceed("accessory")} />
+                    <BannerButton label="Choose Color" playClickSound={false} onclick={() => proceed("color")} />
+                    <BannerButton label="Choose Variant" playClickSound={false} onclick={() => proceed("variant")} />
 
                     <BannerButton label="Randomize" src="/static/ui/dice-6.png" onclick={randomizeAppearance} />
                 {:else if isPlayerObj(obj)}
-                    <BannerButton label="Choose Creature" onclick={() => proceed("creature")} />
-                    <BannerButton label="Choose Fleece" onclick={() => proceed("fleece")} />
+                    <BannerButton label="Choose Creature" playClickSound={false} onclick={() => proceed("creature")} />
+                    <BannerButton label="Choose Fleece" playClickSound={false} onclick={() => proceed("fleece")} />
                     
                     <BannerButton label="Randomize" src="/static/ui/dice-6.png" onclick={randomizeAppearance} />
                 {:else if isBishopObj(obj)}
-                    <BannerButton label="Choose Bishop" onclick={() => proceed(BISHOP_MENU_NAME)} />
+                    <BannerButton label="Choose Bishop" playClickSound={false} onclick={() => proceed(BISHOP_MENU_NAME)} />
                 {:else if isTOWW_Obj(obj)}
-                    <BannerButton label="Choose Form" onclick={() => proceed(TOWW_MENU_NAME)} />
+                    <BannerButton label="Choose Form" playClickSound={false} onclick={() => proceed(TOWW_MENU_NAME)} />
                 {:else if isMiniBossObj(obj)}
-                    <BannerButton label="Choose Boss" onclick={() => proceed(MINI_BOSS_MENU_NAME)} />
+                    <BannerButton label="Choose Boss" playClickSound={false} onclick={() => proceed(MINI_BOSS_MENU_NAME)} />
                 {:else if isWitnessObj(obj)}
-                    <BannerButton label="Choose Witness" onclick={() => proceed(WITNESS_MENU_NAME)} />
+                    <BannerButton label="Choose Witness" playClickSound={false} onclick={() => proceed(WITNESS_MENU_NAME)} />
                 {/if}
             {:else if i === 2}
                 <div class="flex flex-col gap-6 pt-6 pb-8" tabindex="-1">
@@ -382,8 +382,8 @@
                     </div>
                 </div>
 
-                <BannerButton label="Accept" onclick={() => exit(false)} />
-                <BannerButton label="Remove" onclick={() => exit(true)} />
+                <BannerButton label="Accept" playClickSound={false} onclick={() => exit(false)} />
+                <BannerButton label="Remove" playClickSound={false} onclick={() => exit(true)} />
             {/if}
         {/snippet}
     </MultiList>

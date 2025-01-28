@@ -7,8 +7,9 @@
 
     import type { ActorObject } from "../../scripts";
     import { isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, isMiniBossObj, isWitnessObj } from "../../scripts/characters";
+    import { soundManager } from "../../scripts/managers";
 
-    import { bishopData, followerData, towwData, playerData, miniBossData, witnessData } from "../../data";
+    import { bishopData, followerData, towwData, playerData, miniBossData, witnessData } from "../../data/files";
     import { BISHOP_IDS, MINI_BOSS_CATEGORIES, followerIdsByCategory, PLAYER_CREATURE_IDS, WITNESS_IDS, miniBossIdsByCategory, FOLLOWER_CATEGORIES } from "../../data/types";
 
     interface Props {
@@ -145,7 +146,7 @@
     };
 </script>
 
-<button bind:this={button} use:focusEvent class={twMerge("flex flex-row justify-between items-center py-4 w-90 bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", hasTickbox ? "px-4 sm:w-100" : "px-6", className)} aria-label={label} {onclick}>
+<button bind:this={button} use:focusEvent class={twMerge("flex flex-row justify-between items-center py-4 w-90 bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", hasTickbox ? "px-4 sm:w-100" : "px-6", className)} aria-label={label} {onclick} onfocus={() => soundManager.play("Flicker")}>
     <div class="w-20 h-20">
         <SpritesheetImage {src} {label} {x} {y} width={80} height={80} tileWidth={src === "/static/ui/cancel.png" ? 100 : 64} tileHeight={src === "/static/ui/cancel.png" ? 100 : 64} />
     </div>

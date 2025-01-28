@@ -6,6 +6,7 @@
 
     import { Actor } from "../../scripts";
     import { Bishop, Follower, MiniBoss, Player, TOWW, Witness } from "../../scripts/characters";
+    import { soundManager } from "../../scripts/managers";
 
     interface Props {
         actor: typeof Actor;
@@ -55,6 +56,13 @@
         }
     });
 
+    function onclick() {
+        if (isLoading) return;
+        
+        click();
+        soundManager.play("Click");
+    }
+
     const focusEvent: Action<HTMLButtonElement> = (button) => {
         function focus() {
             button.focus();
@@ -72,7 +80,7 @@
     };
 </script>
 
-<button use:focusEvent class={twMerge("flex flex-col items-center px-4 py-2 gap-2 bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", isLoading && "brightness-75", className)} aria-label={label} onclick={() => !isLoading && click()}>
+<button use:focusEvent class={twMerge("flex flex-col items-center px-4 py-2 gap-2 bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", isLoading && "brightness-75", className)} aria-label={label} {onclick} onfocus={() => soundManager.play("Flicker")}>
     <div class="w-20 h-20">
         <SpritesheetImage {src} {label} x={+(actor === TOWW) * 4} y={0} width={80} height={80} tileWidth={src === "/static/ui/cancel.png" ? 100 : 64} tileHeight={src === "/static/ui/cancel.png" ? 100 : 64} />
     </div>

@@ -1,5 +1,5 @@
-import type { Sources } from "./Globals";
-import bishopData from "../bishop-data.json";
+import type { Sources } from "../../Globals";
+import bishopData from "../../../files/characters/bosses/bishop-data.json";
 
 export type BishopDataJSON = Record<BishopId, BishopData>;
 export interface BishopData {

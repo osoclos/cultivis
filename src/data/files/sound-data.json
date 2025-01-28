@@ -1,0 +1,53 @@
+{
+    "Click": {
+        "src": "click.wav"
+    },
+    "Flicker": {
+        "src": "flicker.wav",
+        "timeRanges": {
+            "flicker0": {
+                "start": 0,
+                "duration": 70
+            },
+            "flicker1": {
+                "start": 70,
+                "duration": 66
+            },
+            "flicker2": {
+                "start": 136,
+                "duration": 94
+            },
+            "flicker3": {
+                "start": 230,
+                "duration": 95
+            },
+            "flicker4": {
+                "start": 325,
+                "duration": 104
+            }
+        }
+    },
+    "Option_Change": {
+        "src": "option-change.wav",
+        "timeRanges": {
+            "option-change0": {
+                "start": 0,
+                "duration": 250
+            },
+            "option-change1": {
+                "start": 250,
+                "duration": 250
+            },
+            "option-change2": {
+                "start": 500,
+                "duration": 250
+            }
+        }
+    },
+    "Menu_Open": {
+        "src": "menu-open.wav"
+    },
+    "Menu_Close": {
+        "src": "menu-close.wav"
+    }
+}

@@ -6,15 +6,12 @@
     import { BannerButton, Header, LabelTitle } from "../base";
     import { List } from "../utils";
 
-    import { GitManager } from "../../scripts/managers";
+    import { gitManager } from "../../scripts/managers";
     import { unixToDate } from "../../utils";
 
-    interface Props {
-        gitManager: GitManager;
-        hasNoticedTutorial?: boolean;
-    }
-
-    let { gitManager, hasNoticedTutorial = $bindable(false) }: Props = $props();
+    interface Props { hasNoticedTutorial?: boolean; }
+    let { hasNoticedTutorial = $bindable(false) }: Props = $props();
+    
     function onnotice() {
         if (hasNoticedTutorial) return;
         hasNoticedTutorial = true;

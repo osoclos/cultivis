@@ -5,11 +5,10 @@
     import { NavTip, Tab } from "../base";
     import { Pagination } from "../utils";
 
-    import { GitManager } from "../../scripts/managers";
+    import { GitManager, gitManager } from "../../scripts/managers";
 
     interface Props {
         selectedIdx?: number;
-        gitManager: GitManager;
 
         hasNoticedTutorial?: boolean;
         enableKeyInput?: boolean;
@@ -20,7 +19,6 @@
 
     let {
         selectedIdx = $bindable(0),
-        gitManager,
 
         hasNoticedTutorial = $bindable(false),
         enableKeyInput = false,

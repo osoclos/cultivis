@@ -14,7 +14,7 @@
     import { Header } from "../../base";
     import { Grid, SpritesheetImage } from "../../utils";
 
-    import { playerData } from "../../../data";
+    import { playerData } from "../../../data/files";
     import { PLAYER_CREATURE_IDS, PLAYER_FLEECE_IDS, type PlayerCreatureId, type PlayerFleeceId } from "../../../data/types";
 
     import type { Player, PlayerObject } from "../../../scripts/characters";

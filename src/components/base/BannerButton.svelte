@@ -1,9 +1,11 @@
 <script lang="ts">
     import { prefersReducedMotion } from "svelte/motion";
     import { twMerge } from "tailwind-merge";
+    
+    import NoticeIcon from "./NoticeIcon.svelte";
 
+    import { soundManager } from "../../scripts/managers";
     import { Random, Vector } from "../../utils";
-  import NoticeIcon from "./NoticeIcon.svelte";
 
     interface Props {
         label: string;
@@ -14,6 +16,8 @@
 
         disabled?: boolean;
         hasNotice?: boolean;
+
+        playClickSound?: boolean;
 
         href?: string;
         src?: string;
@@ -37,6 +41,8 @@
 
         disabled = false,
         hasNotice = false,
+
+        playClickSound = true,
 
         href,
         src,
@@ -79,17 +85,25 @@
             link.click();
         }
 
+        playClickSound && !editable && soundManager.play("Click");
+
         (editable ? inputElement : button).focus();
         click();
     }
 
     function onfocus() {
         Vector.One.cloneObj(scale);
+        soundManager.play("Flicker");
         
         if (!hasNotice) return;
         hasNotice = false;
 
         notice();
+    }
+
+    function onInputFocus() {
+        Vector.One.cloneObj(scale);
+        playClickSound && soundManager.play("Click");
     }
 </script>
 
@@ -98,7 +112,7 @@
     
     <div class={["absolute top-1/2 left-1/2 text-center -translate-1/2", { "flex flex-row gap-2 justify-center items-center text-sm": src }]}>
         {#if editable}
-            <input bind:this={inputElement} type="text" bind:value class="{src ? "w-24" : "w-36"} text-center placeholder-inactive group-focus:placeholder-active focus:placeholder-active disabled:placeholder-disabled text-ellipsis outline-none" name={label} placeholder={placeholder} {disabled} autocomplete="off" oninput={() => input(value)} onfocus={() => Vector.One.cloneObj(scale)} onblur={resetScale} />
+            <input bind:this={inputElement} type="text" bind:value class="{src ? "w-24" : "w-36"} text-center placeholder-inactive group-focus:placeholder-active focus:placeholder-active disabled:placeholder-disabled text-ellipsis outline-none" name={label} placeholder={placeholder} {disabled} autocomplete="off" oninput={() => input(value)} onfocus={onInputFocus} onblur={resetScale} />
         {:else}
             <p role={href ? "link" : "text"} aria-label={href}>{label}</p>
         {/if}

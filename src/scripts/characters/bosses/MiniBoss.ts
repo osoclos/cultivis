@@ -1,4 +1,4 @@
-import { miniBossData } from "../../../data";
+import { miniBossData } from "../../../data/files";
 import type { MiniBossId } from "../../../data/types";
 
 import { Actor, type ActorObject } from "../../Actor";

@@ -9,7 +9,7 @@
     import { Header } from "../../base";
     import { Grid, SpritesheetImage } from "../../utils";
 
-    import { witnessData } from "../../../data";
+    import { witnessData } from "../../../data/files";
     import { WITNESS_IDS, type WitnessId } from "../../../data/types";
 
     import type { Witness, WitnessObject } from "../../../scripts/characters";

@@ -4,6 +4,8 @@
 
     import { twMerge } from "tailwind-merge";
 
+    import { soundManager } from "../../scripts/managers";
+
     interface Props {
         children?: Snippet;
         label: string;
@@ -14,11 +16,11 @@
     const { children, label, class: className }: Props = $props();
 
     const pointerEvents: Action<HTMLDivElement> = (container) => {
-        function onClick() {
+        function onClick({ target }: MouseEvent) {
             const lastChild = container.lastElementChild as HTMLElement;
             const inputGrandchild = [...lastChild.children].find((child) => child instanceof HTMLInputElement || child instanceof HTMLSelectElement);
 
-            (inputGrandchild ?? lastChild).focus();
+            (inputGrandchild ?? lastChild)[target === lastChild ? "focus" : "click"]();
         }
 
         function onPointerEnter() {
@@ -26,6 +28,7 @@
             if (lastChild instanceof HTMLSelectElement) return;
             
             lastChild.focus();
+            soundManager.play("Flicker");
         }
 
         $effect(() => {

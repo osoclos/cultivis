@@ -1,4 +1,4 @@
-import { bishopData } from "../../../data";
+import { bishopData } from "../../../data/files";
 import type { BishopId } from "../../../data/types";
 
 import { Actor, type ActorObject } from "../../Actor";

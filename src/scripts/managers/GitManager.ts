@@ -149,6 +149,8 @@ export class GitManager {
     }
 }
 
+export const gitManager = await GitManager.create();
+
 interface DataMap<D extends boolean> {
     [Routes.Content]: D extends true ? (FileData | FolderData)[] : (FileData | FolderData);
     [Routes.Commit]: CommitData[];

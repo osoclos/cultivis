@@ -9,7 +9,7 @@
     import { Header } from "../../base";
     import { MultiGrid, SpritesheetImage } from "../../utils";
 
-    import { miniBossData } from "../../../data";
+    import { miniBossData } from "../../../data/files";
     import { miniBossIdsByCategory, type MiniBossCategoryName, type MiniBossData, type MiniBossId } from "../../../data/types";
 
     import { Factory } from "../../../scripts";

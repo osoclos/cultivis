@@ -55,7 +55,7 @@ for (const id of CLOTHING_IDS) {
     clothingData[id] = { name, category, variants, sets };
 }
 
-const FOLLOWER_DATA_PATH = path.join(__dirname, "../src/data/follower-data.json");
+const FOLLOWER_DATA_PATH = path.join(__dirname, "../src/data/characters/follower-data.json");
 const followerData: FollowerDataJSON = {
     forms: formData,
     clothing: clothingData,

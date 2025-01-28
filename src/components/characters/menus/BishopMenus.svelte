@@ -9,7 +9,7 @@
     import { Header } from "../../base";
     import { Grid, SpritesheetImage } from "../../utils";
 
-    import { bishopData } from "../../../data";
+    import { bishopData } from "../../../data/files";
     import { BISHOP_IDS, type BishopId } from "../../../data/types";
 
     import { Factory } from "../../../scripts";

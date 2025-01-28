@@ -1,5 +1,5 @@
-import type { Sources } from "./Globals";
-import towwData from "../toww-data.json";
+import type { Sources } from "../../Globals";
+import towwData from "../../../files/characters/bosses/toww-data.json";
 
 export type TOWW_DataJSON = Record<TOWW_Id, TOWW_Data>;
 export interface TOWW_Data {

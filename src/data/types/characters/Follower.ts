@@ -1,5 +1,5 @@
-import type { ColorObject } from "../../utils";
-import followerData from "../follower-data.json";
+import type { ColorObject } from "../../../utils";
+import followerData from "../../files/characters/follower-data.json";
 
 export interface FollowerDataJSON {
     forms: FormDataJSON

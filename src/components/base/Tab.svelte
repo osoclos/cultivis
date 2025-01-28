@@ -2,6 +2,8 @@
     import { twMerge } from "tailwind-merge";
     import NoticeIcon from "./NoticeIcon.svelte";
 
+    import { soundManager } from "../../scripts/managers";
+
     interface Props {
         selected?: boolean;
         hasNotice?: boolean;
@@ -48,7 +50,9 @@
     }
 </script>
 
-<div class={twMerge("group relative", className)} {style}>
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<div class={twMerge("group relative", className)} {style} onclick={() => soundManager.play("Option_Change")}>
     <button bind:this={button} class={["aspect-[370_/_148] flex relative flex-col justify-end min-w-30 h-10.5 outline-none not-motion-reduce:transition-[filter] not-motion-reduce:duration-225 [&_*]:pointer-events-none", selected ? "saturate-100" : "saturate-0 hover:saturate-100", buttonClass]} aria-label={label} {onclick} {onpointerleave}>
         <div class="w-full {selected ? "h-7.25" : "h-7"} group-hover:h-7.25 bg-cover bg-[url('/static/ui/tab.png')] not-motion-reduce:transition-[height] not-motion-reduce:duration-150"></div>
         <div class="w-full {selected ? "h-3.25" : "h-1.5"} group-hover:h-3.25 bg-bottom bg-cover bg-[url('/static/ui/tab.png')] not-motion-reduce:transition-[height] not-motion-reduce:duration-150"></div>

@@ -1,4 +1,4 @@
-import { witnessData } from "../../../data";
+import { witnessData } from "../../../data/files";
 import { WITNESS_IDS, type WitnessId } from "../../../data/types";
 
 import { Actor, type ActorObject } from "../../Actor";

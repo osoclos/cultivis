@@ -1,0 +1,35 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "sound-extras.schema.json",
+
+    "title": "Sounds",
+    "description": "Additional information and metadata on how sounds are played in the visualizer.",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/Id" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "src": {
+                "type": "array",
+                "description": "The source paths to the sound files.",
+
+                "items": { "type": "string" }
+            },
+
+            "dest": {
+                "type": "string",
+                "description": "The output path of the combined sound sprite."
+            }
+        },
+
+        "required": ["dest"]
+    },
+
+    "definitions": {
+        "Id": {
+            "type": "string",
+            "enum": ["Click", "Flicker", "Option_Change", "Menu_Open", "Menu_Close"]
+        }
+    }
+}

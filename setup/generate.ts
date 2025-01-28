@@ -6,7 +6,7 @@ import ViteExpress from "vite-express";
 import multer from "multer";
 import sharp from "sharp";
 
-import { followerData, miniBossData } from "../src/data";
+import { followerData, miniBossData } from "../src/data/files";
 import { CLOTHING_CATEGORY_LENGTH, CLOTHING_IDS, type ClothingId, FOLLOWER_CATEGORY_LENGTH, FOLLOWER_IDS, type FollowerId, MINI_BOSS_CATEGORY_LENGTH, MiniBossId, NECKLACE_CATEGORY_LENGTH, type NecklaceId } from "../src/data/types";
 
 const PORT: number = 3000;

@@ -14,9 +14,9 @@
 
     import { Actor, Exporter, Factory, Scene, type ActorObject } from "./scripts";
     import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness, isMiniBossObj, isWitnessObj } from "./scripts/characters";
-    import { GitManager } from "./scripts/managers";
+    import { GitManager, gitManager, soundManager } from "./scripts/managers";
 
-    import { bishopData, miniBossData, towwData, witnessData } from "./data";
+    import { bishopData, miniBossData, towwData, witnessData } from "./data/files";
     import { BISHOP_IDS, MINI_BOSS_IDS, WITNESS_IDS } from "./data/types";
 
     import { MoreMath, Random, unixToDate, Vector } from "./utils";
@@ -28,7 +28,6 @@
     let factory: Factory = $state(Factory.prototype);
 
     let exporter: Exporter;
-    let gitManager: GitManager = $state(GitManager.prototype);
     
     let categoryIdx: number = $state(0);
 
@@ -83,11 +82,15 @@
         
         if (showActorMenu) {
             showActorMenu = false;
+            soundManager.play("Menu_Close");
+
             return;
         }
         
         if (actorIdx >= 0) {
             actorIdx = -1;
+            soundManager.play("Menu_Close");
+
             return;
         }
     }
@@ -100,8 +103,6 @@
     onMount(async () => {
         window.addEventListener("keydown", onKeyDown);
         resizer.observe(document.documentElement);
-
-        gitManager = await GitManager.create();
 
         loadingState = LOADING_STATES.indexOf("ToSAcknowledgement");
         if (await gitManager.areTermsAcknowledged()) hasUserCompliedToTOS = true;
@@ -285,6 +286,8 @@
 
         actor = scene.actors[actorIdx] ?? null;
         actorObj = actors?.[i] ?? null;
+
+        soundManager.play("Menu_Open");
     }
 
     function unselectActor() {
@@ -307,6 +310,13 @@
     function selectMenu(menu: string) {
         actorMenu = menu;
         showActorMenu = true;
+
+        soundManager.play("Menu_Open");
+    }
+
+    function exitMenu(doRemoval: boolean) {
+        doRemoval ? removeActor(actor!, actorIdx) : unselectActor();
+        soundManager.play("Menu_Close");
     }
 
     function hideCharacterMenus() {
@@ -394,14 +404,14 @@
     </div>
 
     <div class={["lg:h-dvh bg-secondary", { "hidden": !hasFinishedLoading }]}>
-        <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:selectedIdx={categoryIdx} {gitManager} bind:hasNoticedTutorial enableKeyInput={(actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
+        <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:selectedIdx={categoryIdx} bind:hasNoticedTutorial enableKeyInput={(actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
         <div class="no-scrollbar lg:overflow-y-auto flex flex-col {[1, 3].includes(categoryIdx) ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
             {#if categoryIdx === 0}
                 <CharacterList bind:actors bind:loadingActor enableKeyInput={actorIdx < 0} onadd={addActor} onremove={(indexes) => [...indexes].sort((a, b) => b - a).forEach((i) => removeActor(scene.actors[i], i))} onclone={(indexes) => indexes.forEach((i) => cloneActor(scene.actors[i]))} onactorclick={selectActor} />
 
                 <div class={["lg:absolute z-90 lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                     {#if actor && actorObj}
-                        <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectMenu} onexit={(doRemoval) => doRemoval ? removeActor(actor!, actorIdx) : unselectActor()} onchange={swapActor} />
+                        <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectMenu} onexit={exitMenu} onchange={swapActor} />
                     {/if}
                 </div>
 
@@ -438,9 +448,9 @@
                     </Label>
                 {/if}
             {:else if categoryIdx === 2}
-                <News {gitManager} />
+                <News />
             {:else if categoryIdx === 3}
-                <CreationDetails {gitManager} bind:hasNoticedTutorial />
+                <CreationDetails bind:hasNoticedTutorial />
                 <SpecialThanks />
             {/if}
         </div>

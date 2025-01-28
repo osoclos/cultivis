@@ -56,6 +56,8 @@
             const idxOffset = +toNextElement || -1;
 
             selectedIdx = MoreMath.clamp(selectedIdx + idxOffset, 0, container.childElementCount - 1);
+
+            (container.children.item(selectedIdx) as HTMLElement).click();
             click(selectedIdx);
         }
 

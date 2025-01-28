@@ -14,7 +14,7 @@
     import { Header } from "../../base";
     import { MultiGrid, SpritesheetImage } from "../../utils";
 
-    import { followerData } from "../../../data";
+    import { followerData } from "../../../data/files";
     import { CLOTHING_IDS, clothingIdsByCategory, FOLLOWER_IDS, followerIdsByCategory, HATS_ID, necklaceIdsByCategory, type ClothingCategoryName, type ClothingData, type ClothingId, type ColorSet, type FollowerCategoryName, type FollowerId, type FormData, type HatId, type NecklaceCategoryName, type NecklaceData, type NecklaceId } from "../../../data/types";
 
     import type { Follower, FollowerObject } from "../../../scripts/characters";

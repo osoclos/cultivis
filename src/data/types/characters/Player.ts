@@ -1,4 +1,4 @@
-import playerData from "../player-data.json";
+import playerData from "../../files/characters/player-data.json";
 
 export interface PlayerDataJSON {
     creature: Record<PlayerCreatureId, PlayerCreatureData>;

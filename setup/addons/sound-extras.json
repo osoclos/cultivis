@@ -1,0 +1,15 @@
+{
+    "Click": { "dest": "click.wav" },
+    "Flicker": {
+        "src": ["flicker0.wav", "flicker1.wav", "flicker2.wav", "flicker3.wav", "flicker4.wav"],
+        "dest": "flicker.wav"
+    },
+
+    "Option_Change": {
+        "src": ["option-change0.wav", "option-change1.wav", "option-change2.wav"],
+        "dest": "option-change.wav"
+    },
+
+    "Menu_Open": { "dest": "menu-open.wav" },
+    "Menu_Close": { "dest": "menu-close.wav" }
+}

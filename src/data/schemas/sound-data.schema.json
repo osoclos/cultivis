@@ -1,0 +1,52 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "sound-data.schema.json",
+
+    "title": "Sounds",
+    "description": "Information and metadata on how sounds are played in the visualizer.",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/Id" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "src": {
+                "type": "string",
+                "description": "The source path to this sound sprite."
+            },
+
+            "timeRanges": {
+                "propertyNames": { "type": "string" },
+                "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                        "start": {
+                            "type": "integer",
+                            "description": "The starting position where this sound starts playing (in milliseconds).",
+
+                            "minimum": 0
+                        },
+
+                        "duration": {
+                            "type": "integer",
+                            "description": "How long this sound will play (in milliseconds).",
+                            
+                            "minimum": 0
+                        }
+                    },
+
+                    "required": ["start", "duration"]
+                }
+            }
+        },
+
+        "required": ["src"]
+    },
+
+    "definitions": {
+        "Id": {
+            "type": "string",
+            "enum": ["Click", "Flicker", "Option_Change", "Menu_Open", "Menu_Close"]
+        }
+    }
+}

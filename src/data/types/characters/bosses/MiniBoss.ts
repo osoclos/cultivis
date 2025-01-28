@@ -1,5 +1,5 @@
-import type { Sources } from "./Globals";
-import miniBossData from "../mini-boss-data.json";
+import type { Sources } from "../../Globals";
+import miniBossData from "../../../files/characters/bosses/mini-boss-data.json";
 
 export type MiniBossDataJSON = Record<MiniBossId, MiniBossData>;
 export interface MiniBossData {

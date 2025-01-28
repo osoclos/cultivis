@@ -1,6 +1,6 @@
 import { Actor, type ActorObject } from "..";
 
-import { playerData } from "../../data";
+import { playerData } from "../../data/files";
 import type { PlayerCreatureData, PlayerCreatureId, PlayerFleeceData, PlayerFleeceId } from "../../data/types";
 
 export class Player extends Actor implements PlayerObject {

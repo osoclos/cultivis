@@ -1,6 +1,6 @@
 import { Actor, type ActorObject } from "..";
 
-import { followerData } from "../../data";
+import { followerData } from "../../data/files";
 import type { ColorSet, FollowerId, ClothingId, ClothingData, FormData, NecklaceId, HatId, NecklaceData, HatData } from "../../data/types";
 
 import { Color, MoreMath } from "../../utils";

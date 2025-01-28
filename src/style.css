@@ -50,4 +50,4 @@
     --font-subtitle: "Copyright Symbol", "Fira Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-:root { cursor: url("/static/ui/cursor.png"), auto; }
+* { cursor: url("/static/ui/cursor.png"), auto; }

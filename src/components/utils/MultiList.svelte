@@ -52,7 +52,8 @@
         let nextIdx = isValid ? i : (elements.length - 1) * +(offset <= 0);
         if (!isValid && listFocusIdx - offset <= 0) nextIdx = 0;
         
-        elements[MoreMath.clamp(nextIdx, 0, elements.length - 1)].focus();
+        const element = elements[MoreMath.clamp(nextIdx, 0, elements.length - 1)];
+        if (isValid || offset) element.focus();
     }
 </script>
 

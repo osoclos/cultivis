@@ -9,7 +9,7 @@
     import { Header } from "../../base";
     import { Grid, SpritesheetImage } from "../../utils";
 
-    import { towwData } from "../../../data";
+    import { towwData } from "../../../data/files";
     import { TOWW_IDS, type TOWW_Id } from "../../../data/types";
 
     import { Factory } from "../../../scripts";

@@ -4,11 +4,11 @@ import { Bishop, Follower, TOWW, Player, MiniBoss, Witness } from "./characters"
 import { AssetManager } from "./managers";
 
 import { Actor } from "./Actor";
-import { bishopData, followerData, towwData, playerData, miniBossData, witnessData } from "../data";
+import { bishopData, followerData, towwData, playerData, miniBossData, witnessData } from "../data/files";
 
 export class Factory {
-    private _follower!: Follower;
-    private _player!: Player;
+    private _follower?: Follower;
+    private _player?: Player;
 
     private _bishops: Map<BishopId, Bishop>;
     private _bishopBosses: Map<BishopId, Bishop>;
@@ -16,7 +16,7 @@ export class Factory {
     private _TOWWs: Map<TOWW_Id, TOWW>;
 
     private _miniBosses: Map<MiniBossId, MiniBoss>;
-    private _witness!: Witness;
+    private _witness?: Witness;
 
     private constructor(private assetManager: AssetManager) {
         this._bishops = new Map();
@@ -160,26 +160,32 @@ export class Factory {
     }
 
     follower(form: FollowerId, clothing: ClothingId, id?: string, label?: string) {
-        return this._follower.clone(id, label, form, clothing);
+        if (!this.hasLoadedFollower) throw new Error("Follower has not been loaded.");
+        return this._follower!.clone(id, label, form, clothing);
     }
 
     player(creature: PlayerCreatureId, fleece: PlayerFleeceId, id?: string, label?: string) {
-        return this._player.clone(id, label, creature, fleece);
+        if (!this.hasLoadedPlayer) throw new Error("Player has not been loaded.");
+        return this._player!.clone(id, label, creature, fleece);
     }
 
     bishop(bishopId: BishopId, isBoss: boolean, id?: string, label?: string) {
+        if (!this.hasLoadedBishop(bishopId, isBoss)) throw new Error(`Bishop${isBoss ? "Boss" : ""} ${bishopId} has not been loaded.`);
         return (isBoss && "bossSrc" in bishopData[bishopId] ? this._bishopBosses : this._bishops).get(bishopId)!.clone(id, label);
     }
 
     TOWW(form: TOWW_Id, id?: string, label?: string) {
+        if (!this.hasLoadedTOWW(form)) throw new Error(`TOWW ${form} has not been loaded.`);
         return this._TOWWs.get(form)!.clone(id, label);
     }
 
     miniBoss(miniBoss: MiniBossId, isUpgraded?: boolean, id?: string, label?: string) {
+        if (!this.hasLoadedMiniBoss(miniBoss)) throw new Error(`Mini Boss ${miniBoss} has not been loaded.`);
         return this._miniBosses.get(miniBoss)!.clone(id, label, isUpgraded);
     }
 
     witness(witness: WitnessId, isUpgraded?: boolean, id?: string, label?: string) {
-        return this._witness.clone(id, label, witness, isUpgraded);
+        if (!this.hasLoadedWitness) throw new Error(`Witness has not been loaded.`);
+        return this._witness!.clone(id, label, witness, isUpgraded);
     }
 }
