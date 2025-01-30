@@ -121,15 +121,15 @@ If you have a bug to report, you can either [create an issue](issues/new) on Git
 
 *© 2020 Esoteric Software*
 
-### Audios
-
-[![FMOD Bank Tools](markdown/assets/fmod-bank-tools.png)](https://www.nexusmods.com/rugbyleaguelive3/mods/2?tab=files)
-
-*© 2023 FMOD Bank Tools*
+### Audio Extraction
 
 [![foobar2000](markdown/assets/foobar2000.png)](https://www.foobar2000.org)
 
 *© 2024 foobar2000*
+
+[![FMOD Bank Tools](markdown/assets/fmod-bank-tools.png)](https://www.nexusmods.com/rugbyleaguelive3/mods/2?tab=files)
+
+*© 2023 FMOD Bank Tools*
 
 ## Development and Cloning
 

@@ -25,14 +25,14 @@
             href: "https://esotericsoftware.com/"
         }],
 
-        "Audios": [
-            {
-                label: "FMOD Bank Tools",
-                href: "https://www.nexusmods.com/rugbyleaguelive3/mods/2?tab=files"
-            },
+        "Audio Extraction": [
             {
                 label: "foobar2000",
                 href: "https://www.foobar2000.org"
+            },
+            {
+                label: "FMOD Bank Tools",
+                href: "https://www.nexusmods.com/rugbyleaguelive3/mods/2?tab=files"
             }
         ]
     };
