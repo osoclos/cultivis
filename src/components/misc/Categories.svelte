@@ -5,7 +5,7 @@
     import { NavTip, Tab } from "../base";
     import { Pagination } from "../utils";
 
-    import { GitManager, gitManager } from "../../scripts/managers";
+    import { NewsManager, newsManager } from "../../scripts/managers";
 
     interface Props {
         selectedIdx?: number;
@@ -30,12 +30,12 @@
     const LABELS = ["Characters", "Exporting", "News", "Credits"] as const;
 
     let hasCheckedNews: boolean = $state(false);
-    onMount(async () => hasCheckedNews = await gitManager.areNewsUpdated());
+    onMount(async () => hasCheckedNews = await newsManager.areNewsUpdated());
 
     async function onclick(i: number) {
         if (!hasCheckedNews && LABELS[i] === "News") {
             hasCheckedNews = true;
-            localStorage.setItem(GitManager.NEWS_LOCAL_STORAGE_NAME, await gitManager.getNewsSha());
+            localStorage.setItem(NewsManager.NEWS_LOCAL_STORAGE_NAME, `${await newsManager.getNewsUnix()}`);
         }
 
         click(i);

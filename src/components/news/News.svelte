@@ -5,16 +5,16 @@
     import { changelogPlugin } from "./changelog";
     import { blogPreviewPlugin } from "./blog";
 
-    import { GitManager, gitManager } from "../../scripts/managers";
+    import { NewsManager, newsManager } from "../../scripts/managers";
 
     const folderData: Record<string, [string, Plugin]> = {
-        "Changelog": [GitManager.CHANGELOG_FOLDER_NAME, changelogPlugin],
-        "Blog": [GitManager.BLOG_FOLDER_NAME, blogPreviewPlugin]
+        "Changelog": [NewsManager.CHANGELOG_FOLDER_NAME, changelogPlugin],
+        "Blog": [NewsManager.BLOG_FOLDER_NAME, blogPreviewPlugin]
     };
 </script>
 
 <div class="flex flex-col gap-12 w-84 sm:w-96">
-    {#await gitManager.getNews()}
+    {#await newsManager.getNews()}
         <LabelTitle title="Loading..." />
     {:then news} 
         {#each Object.entries(folderData) as [title, [name, plugin]], i (i)}

@@ -14,7 +14,7 @@
 
     import { Actor, Exporter, Factory, Scene, type ActorObject } from "./scripts";
     import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness, isMiniBossObj, isWitnessObj } from "./scripts/characters";
-    import { GitManager, gitManager, soundManager } from "./scripts/managers";
+    import { soundManager, newsManager, NewsManager } from "./scripts/managers";
 
     import { bishopData, miniBossData, towwData, witnessData } from "./data/files";
     import { BISHOP_IDS, MINI_BOSS_IDS, WITNESS_IDS } from "./data/types";
@@ -105,7 +105,7 @@
         resizer.observe(document.documentElement);
 
         loadingState = LOADING_STATES.indexOf("ToSAcknowledgement");
-        if (await gitManager.areTermsAcknowledged()) hasUserCompliedToTOS = true;
+        if (await newsManager.areTermsAcknowledged()) hasUserCompliedToTOS = true;
     });
 
     onDestroy(() => {
@@ -116,7 +116,7 @@
     });
 
     async function acknowledgeTerms() {
-        localStorage.setItem(GitManager.TERMS_LOCAL_STORAGE_NAME, `${await gitManager.getTermsUnix()}`);
+        localStorage.setItem(NewsManager.OLD_TERMS_LOCAL_STORAGE_NAME, `${await newsManager.getTermsUnix()}`);
         hasUserCompliedToTOS = true;
 
         if (scene instanceof Scene) await init();
@@ -157,10 +157,10 @@
         scene.resetCamera();
         scene.scale *= 1.5;
 
-        await gitManager.getLastUpdatedUnix();
+        await newsManager.getLastUpdatedUnix();
         
         loadingState = LOADING_STATES.indexOf("FetchingNews");
-        await gitManager.getNews();
+        await newsManager.getNews();
 
         setTimeout(() => loadingState = LOADING_STATES.length, 400);
     }
@@ -384,10 +384,10 @@
     </div>
 </div>
 
-{#if gitManager instanceof GitManager}
-    {#await Promise.all([gitManager.areTermsAcknowledged(), gitManager.getTermsSummary(), gitManager.getTermsUnix()]) then [areTermsAcknowledged, changesSummary, termsUnix]}
+{#if newsManager instanceof NewsManager}
+    {#await Promise.all([newsManager.areTermsAcknowledged(), newsManager.getTermsSummary(), newsManager.getTermsUnix()]) then [areTermsAcknowledged, changesSummary, termsUnix]}
         <div class="{areTermsAcknowledged ? "hidden" : "grid"} fixed top-0 left-0 z-100 place-items-center w-full h-full bg-[#00000060] {hasUserCompliedToTOS ? "opacity-0" : "opacity-100"} transition-opacity duration-450 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
-            <Dialog childClass={twMerge("mt-2 sm:mt-4")} title="Disclaimer" description={localStorage.getItem(GitManager.TERMS_LOCAL_STORAGE_NAME) ? `CultiVis has updated its terms of service${termsUnix ? ` on ${unixToDate(termsUnix)}` : ""}. ${changesSummary ? `${changesSummary.slice(0, -changesSummary.endsWith("."))}. ` : ""}You may view the new terms below or close this popup.` : "CultiVis requires you to agree and acknowledge the CultiVis Terms of Service. You may view the terms below or close this popup."}>
+            <Dialog childClass={twMerge("mt-2 sm:mt-4")} title="Disclaimer" description={localStorage.getItem(NewsManager.OLD_TERMS_LOCAL_STORAGE_NAME) ? `CultiVis has updated its terms of service${termsUnix ? ` on ${unixToDate(termsUnix)}` : ""}. ${changesSummary ? `${changesSummary.slice(0, -changesSummary.endsWith("."))}. ` : ""}You may view the new terms below or close this popup.` : "CultiVis requires you to agree and acknowledge the CultiVis Terms of Service. You may view the terms below or close this popup."} useSmallerFont={changesSummary.length > 140 - 80 * +isOnPhone}>
                 <Notice class="px-8 pb-4 text-sm" label="Closing this popup will mean you agree with the Terms of Service." />
                 <List class="flex flex-col justify-center items-center" enableKeyInput focusFirst>
                     <BannerButton label="View Terms" href="https://github.com/osoclos/cultivis/blob/main/ToS.md" />

@@ -1,181 +1,149 @@
-import { fetchAndCache, MONTH_NAMES, resolvePath } from "../../utils";
-
-enum Routes {
-    Content = "content",
-    Commit = "commit"
-}
+import { fetchAndCache, resolvePath } from "../../utils";
 
 export class GitManager {
     static readonly USE_LOCAL_PROXY_PARAM_NAME: string = "use-local-proxy";
-
     static readonly PROXY_SERVER_URL: string = import.meta.env.PROD || !new URLSearchParams(window.location.search).has(this.USE_LOCAL_PROXY_PARAM_NAME) ? "https://cultivis.onrender.com/" : "http://localhost:3000/";
-    static readonly PROXY_CONTENT_ROUTE = Routes.Content;
-    static readonly PROXY_COMMIT_ROUTE = Routes.Commit;
 
-    static readonly MAIN_REPO_ROOT: string = "cultivis";
-    static readonly NEWS_REPO_ROOT: string = "cultivis-news";
+    static readonly MAIN_ROUTE_ROOT: string = "main";
+    static readonly NEWS_ROUTE_ROOT: string = "news";
+    static readonly TOKEN_ROUTE_ROOT: string = "token";
 
-    static readonly NEWS_CACHE_NAME: string = "git-news";
+    static readonly CONTENT_ROUTE: keyof ResponseDataMap = "content";
+    static readonly COMMIT_ROUTE: keyof ResponseDataMap = "commit";
+    static readonly COMMIT_DATA_ROUTE: keyof ResponseDataMap = "commit-data";
 
-    static readonly NEWS_LOCAL_STORAGE_NAME: string = "git_news-sha";
-    static readonly TERMS_LOCAL_STORAGE_NAME: string = "git_latest-terms-unix";
+    static readonly NEW_TOKEN_ROUTE: string = "new";
+    static readonly REVOKE_TOKEN_ROUTE: string = "revoke";
 
-    static readonly CHANGELOG_FOLDER_NAME: string = "changelog";
-    static readonly BLOG_FOLDER_NAME: string = "blog";
+    static readonly CONTENT_CACHE_NAME: string = "content";
+    static readonly COMMIT_DATA_CACHE_NAME: string = "commit-data";
 
     private cache: Map<string, any>;
-    private textDecoder: TextDecoder;
-
-    private constructor(private newsCache: Cache) {
+    private constructor(private token: string, private contentCache: Cache, private commitDataCache: Cache) {
         this.cache = new Map();
-        this.textDecoder = new TextDecoder();
     }
 
     static async create() {
-        const newsCache = await caches.open(this.NEWS_CACHE_NAME);
-        return new GitManager(newsCache);
+        const token = await this.fetchToken();
+        window.addEventListener("beforeunload", async () => await this.revokeToken(token));
+
+        const contentCache = await caches.open(this.CONTENT_CACHE_NAME);
+        const commitDataCache = await caches.open(this.COMMIT_DATA_CACHE_NAME);
+
+        return new GitManager(token, contentCache, commitDataCache);
     }
 
-    async getNews(): Promise<Record<string, string[]>> {
-        interface FileInfo {
-            date: number;
+    private static async fetchToken(): Promise<string> {
+        return fetch(resolvePath(GitManager.NEW_TOKEN_ROUTE, GitManager.TOKEN_ROUTE_ROOT, GitManager.PROXY_SERVER_URL)).then((res) => res.text()); 
+    }
 
-            text: string;
-            folderName: string;
-        }
+    private static async revokeToken(token: string) {
+        await fetch(resolvePath(GitManager.REVOKE_TOKEN_ROUTE, GitManager.TOKEN_ROUTE_ROOT, GitManager.PROXY_SERVER_URL), {
+            method: "POST",
+            body: token
+        });
+    }
+    
+    async getContent(path: string, root: string, forceFetch: boolean = false) {
+        return this.fetch({ path }, GitManager.CONTENT_ROUTE, root, forceFetch) as Promise<ContentReplyBody>;
+    }
 
-        const info: FileInfo[] = [];
-        const areNewsUpdated = await this.areNewsUpdated();
+    async getCommit(path: string, root: string, body: Omit<CommitRequestBody, "token" | "path"> = {}) {
+        return this.fetch({ path, ...body }, GitManager.COMMIT_ROUTE, root) as Promise<CommitReplyBody>;
+    }
 
-        const folders = await this.fetch("", GitManager.NEWS_REPO_ROOT, GitManager.PROXY_CONTENT_ROUTE, true, !areNewsUpdated);
-        for (const { name: folderName, path } of folders.filter(({ type }) => type === "dir")) {
-            const files = await this.fetch(path, GitManager.NEWS_REPO_ROOT, GitManager.PROXY_CONTENT_ROUTE, true, !areNewsUpdated);
-            for (const { type, name, path } of files) {
-                if (type === "dir") {
-                    const subFiles = await this.fetch(path, GitManager.NEWS_REPO_ROOT, GitManager.PROXY_CONTENT_ROUTE, true, !areNewsUpdated);
-                    files.push(...subFiles);
+    async getCommitData(sha: string, root: string, forceFetch: boolean = false) {
+        return this.fetch({ sha }, GitManager.COMMIT_DATA_ROUTE, root, forceFetch) as Promise<CommitDataReplyBody>;
+    }
 
-                    continue;
-                }
-
-                const { content } = await this.fetch(path, GitManager.NEWS_REPO_ROOT, GitManager.PROXY_CONTENT_ROUTE, false, !areNewsUpdated) as FileData;
-                const text = this.decodeContent(content);
-
-                const date = this.filenameToUnix(name);
+    async fetch<B extends NonTokenBody, R extends keyof ResponseDataMap>(body: B, route: R, root: string, forceFetch: boolean = false): Promise<ResponseDataMap[R]> {
+        const key: string = (() => {
+            switch (true) {
+                case isContentBody(body):
+                case isCommitBody(body): return `${route} - ${body.path}`;
                 
-                info.push({ date, text, folderName });
+                case isCommitDataBody(body): return `${route} - ${body.sha}`;
+    
+                default: return route; 
             }
-        }
+        })();
 
-        const news: Record<string, string[]> = {};
-        for (const { text, folderName } of info.sort(({ date: a }, { date: b }) => a - b)) folderName in news ? news[folderName].push(text) : news[folderName] = [text];
-        
-        return news;
-    }
-
-    async areNewsUpdated(): Promise<boolean> {
-        const lastSha = localStorage.getItem(GitManager.NEWS_LOCAL_STORAGE_NAME);
-        const sha = await this.getNewsSha();
-        
-        return sha === lastSha;
-    }
-
-    async getNewsSha(): Promise<string> {
-        const [{ sha }] = await this.fetch("", GitManager.NEWS_REPO_ROOT, GitManager.PROXY_COMMIT_ROUTE);
-        return sha;
-    }
-
-    async getTermsSummary(): Promise<string> {
-        const { content } = await this.fetch("ToS.md", GitManager.MAIN_REPO_ROOT, GitManager.PROXY_CONTENT_ROUTE, false) as FileData;
-        const text = this.decodeContent(content);
-
-        return text.match(/<!-- CHANGES_SUMMARY="(.+)" -->/)?.[1] ?? "";
-    }
-
-    async areTermsAcknowledged(): Promise<boolean> {        
-        const lastDate = +(localStorage.getItem(GitManager.TERMS_LOCAL_STORAGE_NAME) ?? 0);
-        const date = await this.getTermsUnix();
-        
-        return date <= lastDate;
-    }
-
-    async getTermsUnix(): Promise<number> {
-        const [{ commit }] = await this.fetch("ToS.md", GitManager.MAIN_REPO_ROOT, GitManager.PROXY_COMMIT_ROUTE);
-        const { date } = commit.author;
-
-        return new Date(date).getTime();
-    }
-
-    async getLastUpdatedUnix(): Promise<number> {
-        const [{ commit }] = await this.fetch("", GitManager.MAIN_REPO_ROOT, GitManager.PROXY_COMMIT_ROUTE);
-        const { date } = commit.author;
-
-        return new Date(date).getTime();
-    }
-
-    async fetch<R extends Routes, D extends boolean>(path: string, root: string, route: R,  _isDir?: D, forceFetch: boolean = false): Promise<R extends keyof DataMap<D> ? DataMap<D>[R] : any> {
-        const key = `${route} - ${resolvePath(path, root)}`;
         if (this.cache.has(key)) return this.cache.get(key);
+        const { token } = this;
 
-        const url = resolvePath("/", route, GitManager.PROXY_SERVER_URL);
+        const url = resolvePath(route, root, GitManager.PROXY_SERVER_URL);
         const init: RequestInit = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
 
-            body: JSON.stringify({ path, root })
+            body: JSON.stringify({ ...body, token })
         };
 
-        const data = await (root === GitManager.NEWS_REPO_ROOT && route === GitManager.PROXY_CONTENT_ROUTE ? fetchAndCache(`${url}?${new URLSearchParams({ path, root }).toString()}`, this.newsCache, forceFetch, init) : fetch(url, init)).then((res) => res.json());
+        const data: ResponseDataMap[typeof route] = await (async () => {
+            switch (true) {
+                case route === "content" && isContentBody(body): return fetchAndCache(`${url}?${new URLSearchParams({ path: body.path }).toString()}`, this.contentCache, forceFetch, init);
+                case isCommitDataBody(body): return fetchAndCache(`${url}?${new URLSearchParams({ path: body.sha }).toString()}`, this.commitDataCache, forceFetch, init);
+
+                case route === "commit" && isCommitBody(body): return fetch(url, init);
+            }
+        })().then((res) => res?.json());
 
         this.cache.set(key, data);
         return data;
     }
-
-    private filenameToUnix(name: string): number {
-        const code = name.match(/(\d{2}-){2}\d{2}/)?.[0];
-        if (!code) return 0;
-
-        const [day, month, year]: number[] = code.split("-").map((val) => +val);
-        const date: string = `${day} ${MONTH_NAMES[month]} ${year}`;
-
-        return new Date(date).getTime();
-    }
-
-    private decodeContent(b64: string) {
-        const binary = atob(b64);
-        const buffer = Uint8Array.from(binary, (char) => char.codePointAt(0)!);
-
-        return this.textDecoder.decode(buffer);
-    }
 }
 
-export const gitManager = await GitManager.create();
+type Body = ContentRequestBody | CommitRequestBody | CommitDataRequestBody;
+type NonTokenBody = Omit<Body, "token">;
 
-interface DataMap<D extends boolean> {
-    [Routes.Content]: D extends true ? (FileData | FolderData)[] : (FileData | FolderData);
-    [Routes.Commit]: CommitData[];
+interface ResponseDataMap {
+    "content": ContentReplyBody;
+
+    "commit": CommitReplyBody;
+    "commit-data": CommitDataReplyBody;
 }
 
-type ContentType = "file" | "dir";
-interface FileData extends FolderData {
-    type: "file";
+interface RequestBody { token: string; }
+
+interface ContentRequestBody extends RequestBody { path: string; }
+interface CommitRequestBody extends RequestBody {
+    path: string;
+
+    page?: number;
+    perPage?: number;
+
+    since?: number;
+}
+
+interface CommitDataRequestBody extends RequestBody { sha: string; }
+
+type ContentReplyBody = ContentReplyData[];
+interface ContentReplyData {
+    type: "file" | "dir";
     content: string;
-}
-
-interface FolderData {
-    type: ContentType;
-    sha: string;
     
     name: string;
     path: string;
 }
 
-interface CommitData {
+type CommitReplyBody = CommitReplyData[];
+interface CommitReplyData {
     sha: string;
-    commit: Commit;
-
     unix: number;
+
+    files: string[];
 }
 
-interface Commit { author: Author; }
-interface Author { date: string; }
+interface CommitDataReplyBody { files: string[]; }
+
+function isContentBody(body: NonTokenBody): body is ContentRequestBody {
+    return "path" in body;
+}
+
+function isCommitBody(body: NonTokenBody): body is CommitRequestBody {
+    return "path" in body;
+}
+
+function isCommitDataBody(body: NonTokenBody): body is CommitDataRequestBody {
+    return "sha" in body;
+}

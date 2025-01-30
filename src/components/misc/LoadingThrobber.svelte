@@ -29,7 +29,7 @@
         isMobile
             ? "w-28"
             : "w-36"
-    } not-motion-reduce:animate-spin" label="Loading Bar" {progress} radius={72 - 16 * +isMobile - 8 * +isOnPhone} width={10 - 3 * +isMobile - +isOnPhone} showGradient />
+    } not-motion-reduce:animate-spin" style="animation-duration: 1500ms" label="Loading Bar" {progress} radius={72 - 16 * +isMobile - 8 * +isOnPhone} width={10 - 3 * +isMobile - +isOnPhone} showGradient />
 
     <div class="aspect-square absolute top-1/2 left-1/2 {
         isOnPhone

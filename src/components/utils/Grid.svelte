@@ -24,6 +24,7 @@
         gapHeight?: number;
 
         enableKeyInput?: boolean;
+        isTabbable?: boolean;
 
         focusFirst?: boolean;
         autoFocus?: boolean
@@ -54,6 +55,7 @@
         gapHeight = 10,
 
         enableKeyInput = false,
+        isTabbable = true,
 
         focusFirst = false,
         autoFocus = true,
@@ -116,7 +118,7 @@
             const elements = ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0);
 
             const { code, shiftKey } = evt;
-            if (!["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Tab"].includes(code) || document.activeElement instanceof HTMLInputElement || !enableKeyInput) return;
+            if (!["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].concat(isTabbable ? ["Tab"] : []).includes(code) || document.activeElement instanceof HTMLInputElement || !enableKeyInput) return;
 
             evt.preventDefault();
             if (code === "Tab") {

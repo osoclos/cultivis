@@ -15,6 +15,8 @@
         focusFirst?: boolean;
         autoFocus?: boolean;
 
+        isTabbable?: boolean;
+
         class?: string;
 
         onfocus?: (i: number, fromKeys: boolean) => void;
@@ -29,6 +31,8 @@
 
         focusFirst = false,
         autoFocus = true,
+
+        isTabbable = true,
 
         class: className,
 
@@ -71,7 +75,7 @@
             const elements = ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0);
 
             const { code, shiftKey } = evt;
-            if (!["Tab"].concat(isHorizontal ? ["KeyA", "KeyD", "ArrowLeft", "ArrowRight"] : ["KeyW", "KeyS", "ArrowUp", "ArrowDown"]).includes(code) || document.activeElement instanceof HTMLInputElement || !enableKeyInput) return;
+            if (!(isTabbable ? ["Tab"] : []).concat(isHorizontal ? ["KeyA", "KeyD", "ArrowLeft", "ArrowRight"] : ["KeyW", "KeyS", "ArrowUp", "ArrowDown"]).includes(code) || document.activeElement instanceof HTMLInputElement || !enableKeyInput) return;
 
             evt.preventDefault();
 

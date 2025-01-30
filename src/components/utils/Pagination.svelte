@@ -55,7 +55,10 @@
             const toNextElement = code === "KeyR";
             const idxOffset = +toNextElement || -1;
 
-            selectedIdx = MoreMath.clamp(selectedIdx + idxOffset, 0, container.childElementCount - 1);
+            const i = MoreMath.clamp(selectedIdx + idxOffset, 0, container.childElementCount - 1);
+            if (i !== selectedIdx + idxOffset) return;
+
+            selectedIdx = i;
 
             (container.children.item(selectedIdx) as HTMLElement).click();
             click(selectedIdx);

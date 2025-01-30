@@ -23,7 +23,18 @@
         "Rendering": [{
             label: "Esoteric Software",
             href: "https://esotericsoftware.com/"
-        }]
+        }],
+
+        "Audios": [
+            {
+                label: "FMOD Bank Tools",
+                href: "https://www.nexusmods.com/rugbyleaguelive3/mods/2?tab=files"
+            },
+            {
+                label: "foobar2000",
+                href: "https://www.foobar2000.org"
+            }
+        ]
     };
 </script>
 

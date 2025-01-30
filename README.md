@@ -121,6 +121,16 @@ If you have a bug to report, you can either [create an issue](issues/new) on Git
 
 *© 2020 Esoteric Software*
 
+### Audios
+
+[![FMOD Bank Tools](markdown/assets/fmod-bank-tools.png)](https://www.nexusmods.com/rugbyleaguelive3/mods/2?tab=files)
+
+*© 2023 FMOD Bank Tools*
+
+[![foobar2000](markdown/assets/foobar2000.png)](https://www.foobar2000.org)
+
+*© 2024 foobar2000*
+
 ## Development and Cloning
 
 If you wish to contribute to this project, you must follow the guidelines highlighted in the [Code of Conduct](https://github.com/osoclos/cultivis?tab=coc-ov-file). To develop and add onto this project, you can create a pull request and give a short summary of what you have added to the project before submitting.

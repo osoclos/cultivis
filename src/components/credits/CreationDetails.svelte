@@ -6,7 +6,7 @@
     import { BannerButton, Header, LabelTitle } from "../base";
     import { List } from "../utils";
 
-    import { gitManager } from "../../scripts/managers";
+    import { newsManager } from "../../scripts/managers";
     import { unixToDate } from "../../utils";
 
     interface Props { hasNoticedTutorial?: boolean; }
@@ -24,7 +24,7 @@
     <div class="flex flex-col gap-1">
         <Header title="Creation Details" />
 
-        {#await gitManager.getLastUpdatedUnix()}
+        {#await newsManager.getLastUpdatedUnix()}
             <LabelTitle title="Created by © osoclos" />
             <LabelTitle title="Last Updated: Just Now" />
         {:then lastUpdatedUnix}
