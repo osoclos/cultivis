@@ -36,6 +36,7 @@ export default defineConfig({
     build: {
         assetsDir: ".",
         sourcemap: true,
+        target: "ES2022",
 
         rollupOptions: {
             output: {
