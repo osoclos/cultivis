@@ -65,14 +65,14 @@ export class GitManager {
         const key: string = (() => {
             switch (true) {
                 case isContentBody(body):
-                case isCommitBody(body): return `${route} - ${body.path}`;
+                case isCommitBody(body): return `${route} - ${resolvePath(body.path, root)}`;
                 
-                case isCommitDataBody(body): return `${route} - ${body.sha}`;
+                case isCommitDataBody(body): return `${route} - ${resolvePath(body.sha, root)}`;
     
                 default: return route;
             }
         })();
-
+        
         if (this.cache.has(key)) return this.cache.get(key);
         const { token } = this;
 
@@ -84,14 +84,15 @@ export class GitManager {
             body: JSON.stringify({ ...body, token })
         };
 
-        const data: ResponseDataMap[typeof route] = await (async () => {
+        const data: ResponseDataMap[R] = await (() => {
             switch (true) {
-                case route === "content" && isContentBody(body): return fetchAndCache(`${url}?${new URLSearchParams({ path: body.path }).toString()}`, this.contentCache, forceFetch, init);
-                case isCommitDataBody(body): return fetchAndCache(`${url}?${new URLSearchParams({ path: body.sha }).toString()}`, this.commitDataCache, forceFetch, init);
+                case route === GitManager.CONTENT_ROUTE && isContentBody(body): return fetchAndCache(`${url}?${new URLSearchParams({ path: body.path }).toString()}`, this.contentCache, forceFetch, init);
+                case isCommitDataBody(body): return fetchAndCache(`${url}?${new URLSearchParams({ sha: body.sha }).toString()}`, this.commitDataCache, forceFetch, init);
 
-                case route === "commit" && isCommitBody(body): return fetch(url, init);
+                case route === GitManager.COMMIT_ROUTE && isCommitBody(body):
+                default: return fetch(url, init);
             }
-        })().then((res) => res?.json());
+        })().then((res) => res.json());
 
         this.cache.set(key, data);
         return data;

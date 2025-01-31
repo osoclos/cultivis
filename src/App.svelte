@@ -144,8 +144,6 @@
         deer.pos.setX(-180);
         deer.flipX = true;
 
-        console.log(deer.animationNames);
-
         const player = factory.player("Lamb", "Lamb");
         player.label = "Lamb";
         player.setAnimation("idle");

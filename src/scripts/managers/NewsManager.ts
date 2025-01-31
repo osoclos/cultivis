@@ -81,13 +81,13 @@ export class NewsManager {
 
     async getTermsUnix(): Promise<number> {
         const lastUpdate = +(localStorage.getItem(NewsManager.OLD_TERMS_LOCAL_STORAGE_NAME) ?? 0);
-        const unix = this.getUnix("ToS.md", GitManager.MAIN_ROUTE_ROOT, lastUpdate);
+        const unix = await this.getUnix("ToS.md", GitManager.MAIN_ROUTE_ROOT, lastUpdate);
 
         return unix;
     }
 
     async getLastUpdatedUnix(): Promise<number> {
-        return newsManager.getUnix("", GitManager.MAIN_ROUTE_ROOT);
+        return this.getUnix("", GitManager.MAIN_ROUTE_ROOT);
     }
 
     async getUnix(path: string, root: string, since: number = 0) {
