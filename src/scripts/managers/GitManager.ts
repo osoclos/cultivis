@@ -34,7 +34,12 @@ export class GitManager {
     }
 
     private static async fetchToken(): Promise<string> {
-        return fetch(resolvePath(GitManager.NEW_TOKEN_ROUTE, GitManager.TOKEN_ROUTE_ROOT, GitManager.PROXY_SERVER_URL)).then((res) => res.text()); 
+        return fetch(resolvePath(GitManager.NEW_TOKEN_ROUTE, GitManager.TOKEN_ROUTE_ROOT, GitManager.PROXY_SERVER_URL), {
+            headers: {
+                "Content-Type": "text/plain",
+                "Authorization": `Bearer ${import.meta.env.VITE_SECRET_BYPASS_TOKEN}`
+            }
+        }).then((res) => res.text()); 
     }
 
     private static async revokeToken(token: string) {
@@ -64,7 +69,7 @@ export class GitManager {
                 
                 case isCommitDataBody(body): return `${route} - ${body.sha}`;
     
-                default: return route; 
+                default: return route;
             }
         })();
 

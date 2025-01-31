@@ -10,8 +10,6 @@
         title?: string;
         description?: string;
 
-        useSmallerFont?: boolean;
-
         class?: string;
         childClass?: string;
     }
@@ -21,8 +19,6 @@
 
         title = "",
         description = "",
-
-        useSmallerFont = false,
 
         class: className,
         childClass
@@ -41,7 +37,7 @@
     <div class="aspect-[3_/_2] flex absolute top-8 left-1/2 flex-col px-10 w-full -translate-x-1/2">
         <div class="flex flex-col gap-1 sm:gap-2 items-center">
             <Header class="-mt-2 scale-85" {title} />
-            <p class="font-subtitle {useSmallerFont ? "text-[10px] sm:text-xs" : "text-xs sm:text-sm"} text-active text-center">{description}</p>
+            <p class="font-subtitle text-xs sm:text-sm text-active text-center">{description}</p>
 
             <img src="/static/ui/dialog-divider.png" srcset="/static/ui/dialog-divider.webp, /static/ui/dialog-divider.png" alt="" class="mt-2 sm:mt-4" width="175" height="20" draggable="false" role="presentation" aria-hidden="true" />
         </div>

@@ -4,7 +4,7 @@ import { MONTH_NAMES } from "/src/utils";
 export class NewsManager {
     static readonly NEWS_LOCAL_STORAGE_NAME: string = "news-last-updated";
 
-    static readonly OLD_TERMS_LOCAL_STORAGE_NAME: string = "git_latest-terms-unix"; // remove this when updating tos
+    static readonly OLD_TERMS_LOCAL_STORAGE_NAME: string = "git_latest-terms-unix"; // TODO: remove this when updating tos
     static readonly TERMS_LOCAL_STORAGE_NAME: string = "terms-last-updated";
 
     static readonly CHANGELOG_FOLDER_NAME: string = "changelog";
