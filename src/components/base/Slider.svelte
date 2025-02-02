@@ -71,7 +71,7 @@
     }
 </script>
 
-<div class={twMerge("flex flex-row w-80 h-3 items-center", className)}>
+<div class={twMerge("flex flex-row items-center w-80 h-3", className)}>
     <div class="relative w-full" role="slider" aria-label={label} aria-valuenow={value} aria-valuemin={min} aria-valuemax={max} {onpointerdown} {onpointermove} {onpointerup}>
         <div bind:this={bar} class="w-full max-w-56 h-3" style:background-image="linear-gradient(to right, #01d5a2, #01d5a2 {percent * 100}%, #0a0a0a {percent * 100}%, #0a0a0a)"></div>
         <div class="aspect-square absolute top-1/2 w-6 bg-primary rounded-xs border-3 border-secondary -translate-1/2 pointer-events-none" style:left="{percent * barWidth}px"></div>

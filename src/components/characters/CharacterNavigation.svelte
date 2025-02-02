@@ -72,7 +72,7 @@
 <script  lang="ts">
     import { twMerge } from "tailwind-merge";
 
-    import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, Slider, Toggle } from "../base";
+    import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, ScrollList, Slider, Toggle } from "../base";
     import { BISHOP_MENU_NAME, MINI_BOSS_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
     import { MultiList } from "../utils";
 
@@ -255,9 +255,8 @@
                     <BannerButton label="Choose Witness" playClickSound={false} onclick={() => proceed(WITNESS_MENU_NAME)} />
                 {/if}
             {:else if i === 2}
-                <div class="flex flex-col gap-6 pt-6 pb-8" tabindex="-1">
-                    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-                    <div class="flex flex-col items-center gap-6" tabindex="0">
+                <div class="flex flex-col gap-6 pt-6 pb-8">
+                    <div class="flex flex-col items-center gap-6">
                         <LabelTitle title="Attributes" />
                     
                         <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
@@ -267,11 +266,11 @@
                                 </Label>
 
                                 <Label label="Age State">
-                                    <Slider class="ml-4" label="Age State" bind:value={obj.ageState} min={0} max={2} step={1} displayValues={["Baby", "Adult", "Elder"]} oninput={(ageState) => actor.ageState = ageState} />
+                                    <ScrollList class="ml-4" label="Age State" options={["Baby", "Adult", "Elder"]} bind:i={obj.ageState} oninput={(_, i) => actor.ageState = i} />
                                 </Label>
                             {:else if isPlayerObj(obj) && isPlayerObj(actor)}
                                 <Label label="Hurt State">
-                                    <Slider class="ml-4" label="Hurt State" bind:value={obj.hurtState} min={0} max={2} step={1} displayValues={["Normal", "Bruised", "Injured"]} oninput={(hurtState) => actor.hurtState = hurtState} />
+                                    <ScrollList class="ml-4" label="Hurt State" options={["Normal", "Bruised", "Injured"]} bind:i={obj.hurtState} oninput={(_, i) => actor.hurtState = i} />
                                 </Label>
                             {:else if isBishopObj(obj) && isBishopObj(actor)}
                                 {#if "bossSrc" in bishopData[obj.bishop]}
@@ -333,8 +332,7 @@
                         </div>
                     </div>
 
-                    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-                    <div class="flex flex-col items-center gap-6 mx-8" tabindex="0">
+                    <div class="flex flex-col items-center gap-6 mx-8">
                         <LabelTitle title="Positioning" />
                     
                         <div class="flex flex-col gap-2 w-80 sm:w-90">
@@ -350,8 +348,7 @@
                         <BannerButton label="Reset Position" onclick={() => updatePosition(Vector.Zero.toObj())} />
                     </div>
 
-                    <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
-                    <div class="flex flex-col items-center gap-6 mx-8" tabindex="0">
+                    <div class="flex flex-col items-center gap-6 mx-8">
                         <LabelTitle title="Scaling" />
                     
                         <div class="flex flex-col gap-2 w-80 sm:w-90">
