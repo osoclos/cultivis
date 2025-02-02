@@ -24,8 +24,28 @@ export class Follower extends Actor implements FollowerObject {
     #necklace: NecklaceId | null;
     #hat: HatId | null;
 
+    // TODO: attributes other than isDisciple and ageState are animation-based, so will require animation sequencing. add this when scenarios are added
     #isDisciple: boolean;
+    #isEnlightened: boolean;
+    #isSinned: boolean;
+
+    #isTired: boolean;
+    #isHungry: boolean;
+
+    #isSick: boolean;
+    #isTraumatized: boolean;
+
+    #isZombie: boolean;
+    #isPossessed: boolean;
+
+    #isBrainwashed: boolean;
+    #isDissenting: boolean;
+
+    #isDrunk: boolean;
+    #isSweating: boolean;
+
     #ageState: FollowerAgeState;
+    #emotionState: FollowerEmotionState;
 
     private indexes: FollowerIndexes
     constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = followerData.forms.Deer.name, form: FollowerId = "Deer", clothing: ClothingId = "Default_Clothing") {
@@ -38,7 +58,26 @@ export class Follower extends Actor implements FollowerObject {
         this.#hat = null;
 
         this.#isDisciple = false;
+        this.#isEnlightened = false;
+        this.#isSinned = false;
+
+        this.#isTired = false;
+        this.#isHungry = false;
+
+        this.#isSick = false;
+        this.#isTraumatized = false;
+
+        this.#isZombie = false;
+        this.#isPossessed = false;
+
+        this.#isBrainwashed = false;
+        this.#isDissenting = false;
+
+        this.#isDrunk = false;
+        this.#isSweating = false;
+
         this.#ageState = FollowerAgeState.Adult;
+        this.#emotionState = FollowerEmotionState.Normal;
 
         this.indexes = {
             form: {
@@ -104,12 +143,129 @@ export class Follower extends Actor implements FollowerObject {
         this.update();
     }
 
+    get isEnlightened(): boolean {
+        return this.#isEnlightened;
+    }
+
+    set isEnlightened(isEnlightened: boolean) {
+        this.#isEnlightened = isEnlightened;
+        this.update();
+    }
+
+    get isSinned(): boolean {
+        return this.#isSinned;
+    }
+
+    set isSinned(isSinned: boolean) {
+        this.#isSinned = isSinned;
+        this.update();
+    }
+
+    get isTired(): boolean {
+        return this.#isTired;
+    }
+
+    set isTired(isTired: boolean) {
+        this.#isTired = isTired;
+        this.update();
+    }
+
+    get isHungry(): boolean {
+        return this.#isHungry;
+    }
+
+    set isHungry(isHungry: boolean) {
+        this.#isHungry = isHungry;
+        this.update();
+    }
+
+    get isSick(): boolean {
+        return this.#isSick;
+    }
+
+    set isSick(isSick: boolean) {
+        this.#isSick = isSick;
+        this.update();
+    }
+
+    get isTraumatized(): boolean {
+        return this.#isTraumatized;
+    }
+
+    set isTraumatized(isTraumatized: boolean) {
+        this.#isTraumatized = isTraumatized;
+        this.update();
+    }
+
+    get isZombie(): boolean {
+        return this.#isZombie;
+    }
+
+    set isZombie(isZombie: boolean) {
+        this.#isZombie = isZombie;
+        this.update();
+    }
+
+    get isPossessed(): boolean {
+        return this.#isPossessed;
+    }
+
+    set isPossessed(isPossessed: boolean) {
+        this.#isPossessed = isPossessed;
+        this.update();
+    }
+
+    get isBrainwashed(): boolean {
+        return this.#isBrainwashed;
+    }
+
+    set isBrainwashed(isBrainwashed: boolean) {
+        this.#isBrainwashed = isBrainwashed;
+        this.update();
+    }
+
+    get isDissenting(): boolean {
+        return this.#isDissenting;
+    }
+
+    set isDissenting(isDissenting: boolean) {
+        this.#isDissenting = isDissenting;
+        this.update();
+    }
+
+    get isDrunk(): boolean {
+        return this.#isDrunk;
+    }
+
+    set isDrunk(isDrunk: boolean) {
+        this.#isDrunk = isDrunk;
+        this.update();
+    }
+
+    get isSweating(): boolean {
+        return this.#isSweating;
+    }
+
+    set isSweating(isSweating: boolean) {
+        this.#isSweating = isSweating;
+        this.update();
+    }
+
     get ageState(): FollowerAgeState {
         return this.#ageState;
     }
 
     set ageState(ageState: FollowerAgeState) {
         this.#ageState = ageState;
+        this.update();
+    }
+
+    get emotionState(): FollowerEmotionState {
+        return this.#emotionState;
+    }
+
+    set emotionState(emotionState: FollowerEmotionState) {
+        this.#emotionState = emotionState;
         this.update();
     }
 
@@ -185,11 +341,11 @@ export class Follower extends Actor implements FollowerObject {
         const { formData, clothingData, necklaceData, hatData, colorSetData, formVariantIdx, formColorSetIdx, clothingVariantIdx, clothingColorSetIdx, isDisciple, ageState } = this;
 
         this.setSkin(formData.variants[formVariantIdx]);
-        this.addSkins(clothingData.variants[clothingVariantIdx]);
-
         ageState !== FollowerAgeState.Adult && this.addSkins(Follower[ageState === FollowerAgeState.Baby ? "BABY_SKIN_NAME" : "OLD_SKIN_NAME"]);
 
-        ageState !== FollowerAgeState.Baby && clothingData.sets && this.applyColors(clothingData.sets[clothingColorSetIdx]);
+        this.addSkins(clothingData.variants[clothingVariantIdx]);
+
+        clothingData.sets && this.applyColors(clothingData.sets[clothingColorSetIdx]);
         this.applyColors(colorSetData[formColorSetIdx]);
 
         necklaceData && this.addSkins(necklaceData.variant);
@@ -225,8 +381,8 @@ export class Follower extends Actor implements FollowerObject {
     }
 
     toObj(): FollowerObject {
-        const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, isDisciple, ageState } = this;
-        return { ...super.toObj(), type: "follower", form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, isDisciple, ageState };
+        const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, isDisciple, isEnlightened, isSinned, isTired, isHungry, isSick, isTraumatized, isZombie, isPossessed, isBrainwashed, isDissenting, isDrunk, isSweating, ageState, emotionState } = this;
+        return { ...super.toObj(), type: "follower", form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, isDisciple, isEnlightened, isSinned, isTired, isHungry, isSick, isTraumatized, isZombie, isPossessed, isBrainwashed, isDissenting, isDrunk, isSweating, ageState, emotionState };
     }
 
     applyColors(set: ColorSet) {
@@ -269,7 +425,26 @@ export interface FollowerObject extends ActorObject {
     hat: HatId | null;
 
     isDisciple: boolean;
+    isEnlightened: boolean;
+    isSinned: boolean;
+
+    isTired: boolean;
+    isHungry: boolean;
+
+    isSick: boolean;
+    isTraumatized: boolean;
+
+    isZombie: boolean;
+    isPossessed: boolean;
+
+    isBrainwashed: boolean;
+    isDissenting: boolean;
+
+    isDrunk: boolean;
+    isSweating: boolean;
+
     ageState: FollowerAgeState;
+    emotionState: FollowerEmotionState;
 }
 
 export interface FollowerIndexes {
@@ -286,6 +461,14 @@ export enum FollowerAgeState {
     Baby,
     Adult,
     Elder
+}
+
+export enum FollowerEmotionState {
+    Normal,
+    Happy,
+    Sad,
+    Angry,
+    Scared
 }
 
 export function isFollowerObj(obj: ActorObject): obj is FollowerObject {

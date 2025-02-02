@@ -36,9 +36,7 @@ export class Bishop extends Actor implements BishopObject {
     }
 
     set isBandaged(isBandaged: boolean | null) {
-        if (this.bishop !== "Spider") return;
-
-        this.#isBandaged = isBandaged;
+        this.#isBandaged = this.bishop === "Spider" ? isBandaged ?? true : null;
         this.update();
     }
 

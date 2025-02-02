@@ -30,9 +30,7 @@ export class MiniBoss extends Actor implements MiniBossObject {
     }
 
     set isBackFacing(isBackFacing: boolean | null) {
-        if (!["backSkins", "backUpgradedSkins"].every((key) => key in miniBossData[this.miniBoss])) return;
-
-        this.#isBackFacing = isBackFacing;
+        this.#isBackFacing = ["backSkins", "backUpgradedSkins"].every((key) => key in miniBossData[this.miniBoss]) ? isBackFacing ?? false : null;
         this.update();
     }
 

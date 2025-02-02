@@ -37,9 +37,7 @@ export class TOWW extends Actor implements TOWW_Object {
     }
 
     set hasCrown(hasCrown: boolean | null) {
-        if (!Array<TOWW_Id>("Bishop", "Boss").includes(this.form)) return;
-
-        this.#hasCrown = hasCrown;
+        this.#hasCrown = Array<TOWW_Id>("Bishop", "Boss").includes(this.form) ? hasCrown ?? true : null;
         this.update();
     }
 
@@ -48,9 +46,7 @@ export class TOWW extends Actor implements TOWW_Object {
     }
 
     set hasChains(hasChains: boolean | null) {
-        if (this.form !== "Bishop") return;
-
-        this.#hasChains = hasChains;
+        this.#hasChains = this.form === "Bishop" ? hasChains ?? true : null;
         this.update();
     }
 
@@ -59,9 +55,7 @@ export class TOWW extends Actor implements TOWW_Object {
     }
 
     set eyeState(state: number | null) {
-        if (this.form !== "Mega_Boss") return;
-
-        this.#eyeState = state;
+        this.#eyeState = this.form === "Mega_Boss" ? state ?? 0 : null;
         this.update();
     }
 
@@ -70,9 +64,7 @@ export class TOWW extends Actor implements TOWW_Object {
     }
 
     set isInjured(isInjured: boolean | null) {
-        if (this.form !== "Eyeball") return;
-
-        this.#isInjured = isInjured;
+        this.#isInjured = this.form === "Eyeball" ? isInjured ?? false : null;
         this.update();
     }
 
