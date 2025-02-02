@@ -3,5 +3,5 @@ export * from "./GIFManager";
 
 export * from "./SoundManager";
 
-export * from "./GitManager";
+export * from "./ServerManager";
 export * from "./NewsManager";

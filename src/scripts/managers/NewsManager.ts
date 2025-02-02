@@ -1,4 +1,4 @@
-import { GitManager } from "./GitManager";
+import { ServerManager } from "./ServerManager";
 import { MONTH_NAMES } from "/src/utils";
 
 export class NewsManager {
@@ -10,10 +10,10 @@ export class NewsManager {
     static readonly CHANGELOG_FOLDER_NAME: string = "changelog";
     static readonly BLOG_FOLDER_NAME: string = "blog";
 
-    private constructor(private gitManager: GitManager) {}
+    private constructor(private serverManager: ServerManager) {}
     static async create() {
-        const gitManager = await GitManager.create();
-        return new NewsManager(gitManager);
+        const serverManager = await ServerManager.create();
+        return new NewsManager(serverManager);
     }
 
     async getNews(): Promise<Record<string, string[]>> {
@@ -27,20 +27,20 @@ export class NewsManager {
         const info: FileInfo[] = [];
 
         const lastUpdate = +(localStorage.getItem(NewsManager.NEWS_LOCAL_STORAGE_NAME) ?? 0);
-        const filesToFetch: string[] = await this.areNewsUpdated() ? [] : await Promise.all(await this.gitManager.getCommit("", GitManager.NEWS_ROUTE_ROOT, { page: -1, perPage: 100, since: lastUpdate + 1 }).then((commits) => commits.flatMap(({ sha }) => this.gitManager.getCommitData(sha, GitManager.NEWS_ROUTE_ROOT, true).then(({ files }) => files)))).then((arr) => arr.flat());
+        const filesToFetch: string[] = await this.areNewsUpdated() ? [] : await Promise.all(await this.serverManager.getCommit("", ServerManager.NEWS_ROUTE_ROOT, { page: -1, perPage: 100, since: lastUpdate + 1 }).then((commits) => commits.flatMap(({ sha }) => this.serverManager.getCommitData(sha, ServerManager.NEWS_ROUTE_ROOT, true).then(({ files }) => files)))).then((arr) => arr.flat());
 
-        const folders = await this.gitManager.getContent("", GitManager.NEWS_ROUTE_ROOT, !!filesToFetch.length);
+        const folders = await this.serverManager.getContent("", ServerManager.NEWS_ROUTE_ROOT, !!filesToFetch.length);
         for (const { name: folderName, path } of folders.filter(({ type }) => type === "dir")) {
-            const files = await this.gitManager.getContent(path, GitManager.NEWS_ROUTE_ROOT, !!filesToFetch.length);
+            const files = await this.serverManager.getContent(path, ServerManager.NEWS_ROUTE_ROOT, !!filesToFetch.length);
             for (const { type, name, path } of files) {
                 if (type === "dir") {
-                    const subFiles = await this.gitManager.getContent(path, GitManager.NEWS_ROUTE_ROOT, !!filesToFetch.length);
+                    const subFiles = await this.serverManager.getContent(path, ServerManager.NEWS_ROUTE_ROOT, !!filesToFetch.length);
                     files.push(...subFiles);
 
                     continue;
                 }
 
-                const [{ content }] = await this.gitManager.getContent(path, GitManager.NEWS_ROUTE_ROOT, filesToFetch.includes(path));
+                const [{ content }] = await this.serverManager.getContent(path, ServerManager.NEWS_ROUTE_ROOT, filesToFetch.includes(path));
                 const date = this.dashedNameToUnix(name);
                 
                 info.push({ date, content, folderName });
@@ -54,7 +54,7 @@ export class NewsManager {
     }
 
     async getTermsSummary(): Promise<string> {
-        const [{ content }] = await this.gitManager.getContent("ToS.md", GitManager.MAIN_ROUTE_ROOT, true);
+        const [{ content }] = await this.serverManager.getContent("ToS.md", ServerManager.MAIN_ROUTE_ROOT, true);
         return content.match(/<!-- CHANGES_SUMMARY="(.+)" -->/)?.[1] ?? "";
     }
 
@@ -74,24 +74,24 @@ export class NewsManager {
 
     async getNewsUnix(): Promise<number> {
         const lastUpdate = +(localStorage.getItem(NewsManager.NEWS_LOCAL_STORAGE_NAME) ?? 0);
-        const unix = await this.getUnix("", GitManager.NEWS_ROUTE_ROOT, lastUpdate);
+        const unix = await this.getUnix("", ServerManager.NEWS_ROUTE_ROOT, lastUpdate);
 
         return unix;
     }
 
     async getTermsUnix(): Promise<number> {
         const lastUpdate = +(localStorage.getItem(NewsManager.OLD_TERMS_LOCAL_STORAGE_NAME) ?? 0);
-        const unix = await this.getUnix("ToS.md", GitManager.MAIN_ROUTE_ROOT, lastUpdate);
+        const unix = await this.getUnix("ToS.md", ServerManager.MAIN_ROUTE_ROOT, lastUpdate);
 
         return unix;
     }
 
     async getLastUpdatedUnix(): Promise<number> {
-        return this.getUnix("", GitManager.MAIN_ROUTE_ROOT);
+        return this.getUnix("", ServerManager.MAIN_ROUTE_ROOT);
     }
 
     async getUnix(path: string, root: string, since: number = 0) {
-        const [{ unix }] = await this.gitManager.getCommit(path, root, { since });
+        const [{ unix }] = await this.serverManager.getCommit(path, root, { since });
         return unix;
     }
 

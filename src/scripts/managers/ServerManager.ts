@@ -1,6 +1,6 @@
 import { fetchAndCache, resolvePath } from "../../utils";
 
-export class GitManager {
+export class ServerManager {
     static readonly USE_LOCAL_PROXY_PARAM_NAME: string = "use-local-proxy";
     static readonly PROXY_SERVER_URL: string = import.meta.env.PROD || !new URLSearchParams(window.location.search).has(this.USE_LOCAL_PROXY_PARAM_NAME) ? "https://cultivis.onrender.com/" : "http://localhost:3000/";
 
@@ -25,16 +25,22 @@ export class GitManager {
 
     static async create() {
         const token = await this.fetchToken();
-        window.addEventListener("beforeunload", async () => await this.revokeToken(token));
+
+        const revokeToken = async () => {
+            await this.revokeToken(token);
+            window.removeEventListener("beforeunload", revokeToken);
+        };
+
+        window.addEventListener("beforeunload", revokeToken);
 
         const contentCache = await caches.open(this.CONTENT_CACHE_NAME);
         const commitDataCache = await caches.open(this.COMMIT_DATA_CACHE_NAME);
 
-        return new GitManager(token, contentCache, commitDataCache);
+        return new ServerManager(token, contentCache, commitDataCache);
     }
 
     private static async fetchToken(): Promise<string> {
-        return fetch(resolvePath(GitManager.NEW_TOKEN_ROUTE, GitManager.TOKEN_ROUTE_ROOT, GitManager.PROXY_SERVER_URL), {
+        return fetch(resolvePath(ServerManager.NEW_TOKEN_ROUTE, ServerManager.TOKEN_ROUTE_ROOT, ServerManager.PROXY_SERVER_URL), {
             headers: {
                 "Content-Type": "text/plain",
                 "Authorization": `Bearer ${import.meta.env.VITE_SECRET_BYPASS_TOKEN}`
@@ -43,22 +49,22 @@ export class GitManager {
     }
 
     private static async revokeToken(token: string) {
-        await fetch(resolvePath(GitManager.REVOKE_TOKEN_ROUTE, GitManager.TOKEN_ROUTE_ROOT, GitManager.PROXY_SERVER_URL), {
+        await fetch(resolvePath(ServerManager.REVOKE_TOKEN_ROUTE, ServerManager.TOKEN_ROUTE_ROOT, ServerManager.PROXY_SERVER_URL), {
             method: "POST",
             body: token
         });
     }
     
     async getContent(path: string, root: string, forceFetch: boolean = false) {
-        return this.fetch({ path }, GitManager.CONTENT_ROUTE, root, forceFetch) as Promise<ContentReplyBody>;
+        return this.fetch({ path }, ServerManager.CONTENT_ROUTE, root, forceFetch) as Promise<ContentReplyBody>;
     }
 
     async getCommit(path: string, root: string, body: Omit<CommitRequestBody, "token" | "path"> = {}) {
-        return this.fetch({ path, ...body }, GitManager.COMMIT_ROUTE, root) as Promise<CommitReplyBody>;
+        return this.fetch({ path, ...body }, ServerManager.COMMIT_ROUTE, root) as Promise<CommitReplyBody>;
     }
 
     async getCommitData(sha: string, root: string, forceFetch: boolean = false) {
-        return this.fetch({ sha }, GitManager.COMMIT_DATA_ROUTE, root, forceFetch) as Promise<CommitDataReplyBody>;
+        return this.fetch({ sha }, ServerManager.COMMIT_DATA_ROUTE, root, forceFetch) as Promise<CommitDataReplyBody>;
     }
 
     async fetch<B extends NonTokenBody, R extends keyof ResponseDataMap>(body: B, route: R, root: string, forceFetch: boolean = false): Promise<ResponseDataMap[R]> {
@@ -76,7 +82,7 @@ export class GitManager {
         if (this.cache.has(key)) return this.cache.get(key);
         const { token } = this;
 
-        const url = resolvePath(route, root, GitManager.PROXY_SERVER_URL);
+        const url = resolvePath(route, root, ServerManager.PROXY_SERVER_URL);
         const init: RequestInit = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -86,10 +92,10 @@ export class GitManager {
 
         const data: ResponseDataMap[R] = await (() => {
             switch (true) {
-                case route === GitManager.CONTENT_ROUTE && isContentBody(body): return fetchAndCache(`${url}?${new URLSearchParams({ path: body.path }).toString()}`, this.contentCache, forceFetch, init);
+                case route === ServerManager.CONTENT_ROUTE && isContentBody(body): return fetchAndCache(`${url}?${new URLSearchParams({ path: body.path }).toString()}`, this.contentCache, forceFetch, init);
                 case isCommitDataBody(body): return fetchAndCache(`${url}?${new URLSearchParams({ sha: body.sha }).toString()}`, this.commitDataCache, forceFetch, init);
 
-                case route === GitManager.COMMIT_ROUTE && isCommitBody(body):
+                case route === ServerManager.COMMIT_ROUTE && isCommitBody(body):
                 default: return fetch(url, init);
             }
         })().then((res) => res.json());
