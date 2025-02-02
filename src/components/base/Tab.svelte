@@ -57,7 +57,7 @@
         <div class="w-full {selected ? "h-7.25" : "h-7"} group-hover:h-7.25 bg-cover bg-[url('/static/ui/tab.png')] not-motion-reduce:transition-[height] not-motion-reduce:duration-150"></div>
         <div class="w-full {selected ? "h-3.25" : "h-1.5"} group-hover:h-3.25 bg-bottom bg-cover bg-[url('/static/ui/tab.png')] not-motion-reduce:transition-[height] not-motion-reduce:duration-150"></div>
 
-        <p class="absolute {selected ? "top-1/2 text-white" : "top-2/3 group-hover:top-1/2 text-black motion-reduce:group-hover:text-white"} left-1/2 text-xl not-motion-reduce:transition-[top,_color] not-motion-reduce:duration-150 -translate-1/2" {ontransitionend}>{label}</p>
+        <p class="absolute {selected ? "top-1/2 text-white" : "top-2/3 group-hover:top-1/2 text-black group-hover:text-white"} left-1/2 text-xl not-motion-reduce:transition-[top,_color] not-motion-reduce:duration-150 -translate-1/2" {ontransitionend}>{label}</p>
     </button>
 
     {#if hasNotice}

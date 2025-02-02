@@ -30,6 +30,7 @@
     let exporter: Exporter;
     
     let categoryIdx: number = $state(0);
+    let categoryMenu: HTMLDivElement = $state(document.createElement("div"));
 
     let isOnPhone: boolean = $state(false);
     let isMobile: boolean = $state(false);
@@ -321,9 +322,16 @@
         soundManager.play("Menu_Close");
     }
 
-    function hideCharacterMenus() {
-        actorIdx = -1;
-        showActorMenu = false;
+    function selectCategoryMenu(i: number) {
+        if (i) {
+            actorIdx = -1;
+            showActorMenu = false;
+        }
+
+        categoryMenu.classList.remove("fade");
+        requestAnimationFrame(() => categoryMenu.classList.add("fade"));
+
+        setTimeout(() => categoryIdx = i, 75);
     }
 
     async function exportScene() {
@@ -405,9 +413,9 @@
         <SceneCanvas class="inline-block max-h-[calc(100dvh_-_106px)]" disableManipulation={fitScene} manipulationIdx={actorIdx} onshift={manipulateActor} onscroll={manipulateActor} onzoom={manipulateActor} onpinch={manipulateActor} style="aspect-ratio: {size.x} / {size.y}; max-width: calc((100dvh - 106px) * {size.x} / {size.y})" onload={onCanvasLoad} />
     </div>
 
-    <div class={["lg:h-dvh bg-secondary", { "hidden": !hasFinishedLoading }]}>
-        <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:selectedIdx={categoryIdx} bind:hasNoticedTutorial enableKeyInput={(actorIdx < 0 || isMobile)} onclick={hideCharacterMenus} />
-        <div class="no-scrollbar lg:overflow-y-auto flex flex-col {[1, 3].includes(categoryIdx) ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] bg-secondary select-none">
+    <div class={["overflow-hidden lg:h-dvh bg-secondary", { "hidden": !hasFinishedLoading }]}>
+        <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:hasNoticedTutorial enableKeyInput={(actorIdx < 0 || isMobile)} onclick={selectCategoryMenu} />
+        <div bind:this={categoryMenu} class="no-scrollbar lg:overflow-y-auto flex flex-col {[1, 3].includes(categoryIdx) ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] select-none">
             {#if categoryIdx === 0}
                 <CharacterList bind:actors bind:loadingActor enableKeyInput={actorIdx < 0} onadd={addActor} onremove={(indexes) => [...indexes].sort((a, b) => b - a).forEach((i) => removeActor(scene.actors[i], i))} onclone={(indexes) => indexes.forEach((i) => cloneActor(scene.actors[i]))} onactorclick={selectActor} />
 
@@ -470,4 +478,19 @@
 <style>
     :global(.no-scrollbar) { scrollbar-width: none; }
     :global(.no-scrollbar::-webkit-scrollbar) { display: none; }
+
+    @media not (prefers-reduced-motion) {
+        :global(.fade) {
+            animation: fade;
+            animation-duration: 75ms;
+            animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+            animation-iteration-count: 2;
+            animation-direction: alternate;
+        }
+    }
+
+    @keyframes fade {
+        from { filter: opacity(100%); }
+        to { filter: opacity(50%); }
+    }
 </style>

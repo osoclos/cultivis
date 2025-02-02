@@ -59,9 +59,7 @@
             if (i !== selectedIdx + idxOffset) return;
 
             selectedIdx = i;
-
             (container.children.item(selectedIdx) as HTMLElement).click();
-            click(selectedIdx);
         }
 
         $effect(() => {
