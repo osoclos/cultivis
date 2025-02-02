@@ -117,6 +117,24 @@
         }
     });
 
+    const tileWidth: number = $derived.by(() => {
+        switch (src) {
+            case "/static/ui/cancel.png": return 100;
+            case "/static/assets/crowns.png": return 200;
+
+            default: return 64;
+        }
+    });
+
+    const tileHeight: number = $derived.by(() => {
+        switch (src) {
+            case "/static/ui/cancel.png": return 100;
+            case "/static/assets/crowns.png": return 200;
+
+            default: return 64;
+        }
+    });
+
     function onclick() {
         if (!hasTickbox) {
             click();
@@ -148,7 +166,7 @@
 
 <button bind:this={button} use:focusEvent class={twMerge("flex flex-row justify-between items-center py-4 w-90 bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", hasTickbox ? "px-4 sm:w-100" : "px-6", className)} aria-label={label} {onclick} onfocus={() => soundManager.play("Flicker")}>
     <div class="w-20 h-20">
-        <SpritesheetImage {src} {label} {x} {y} width={80} height={80} tileWidth={src === "/static/ui/cancel.png" ? 100 : 64} tileHeight={src === "/static/ui/cancel.png" ? 100 : 64} />
+        <SpritesheetImage {src} {label} {x} {y} width={80} height={80} {tileWidth} {tileHeight} />
     </div>
     
     <div class="flex flex-col {hasTickbox ? "gap-1 sm:gap-2" : "gap-2"} text-center text-active text-nowrap">

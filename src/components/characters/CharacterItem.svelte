@@ -56,6 +56,24 @@
         }
     });
 
+    const tileWidth: number = $derived.by(() => {
+        switch (src) {
+            case "/static/ui/cancel.png": return 100;
+            case "/static/assets/crowns.png": return 200;
+
+            default: return 64;
+        }
+    });
+
+    const tileHeight: number = $derived.by(() => {
+        switch (src) {
+            case "/static/ui/cancel.png": return 100;
+            case "/static/assets/crowns.png": return 200;
+
+            default: return 64;
+        }
+    });
+
     function onclick() {
         if (isLoading) return;
         
@@ -82,7 +100,7 @@
 
 <button use:focusEvent class={twMerge("flex flex-col items-center px-4 py-2 gap-2 bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", isLoading && "brightness-75", className)} aria-label={label} {onclick} onfocus={() => soundManager.play("Flicker")}>
     <div class="w-20 h-20">
-        <SpritesheetImage {src} {label} x={+(actor === TOWW) * 4} y={0} width={80} height={80} tileWidth={src === "/static/ui/cancel.png" ? 100 : 64} tileHeight={src === "/static/ui/cancel.png" ? 100 : 64} />
+        <SpritesheetImage {src} {label} x={+(actor === TOWW) * 4} y={0} width={80} height={80} {tileWidth} {tileHeight} />
     </div>
     
     <p class="text-xl text-center text-active text-nowrap">{label}</p>
