@@ -100,7 +100,7 @@ export class NewsManager {
         if (!code) return 0;
 
         const [day, month, year]: number[] = code.split("-").map((val) => +val);
-        const date: string = `${day} ${MONTH_NAMES[month]} ${year}`;
+        const date: string = `${day} ${MONTH_NAMES[month - 1]} ${year}`;
 
         return new Date(date).getTime();
     }
