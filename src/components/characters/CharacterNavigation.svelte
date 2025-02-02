@@ -72,7 +72,7 @@
 <script  lang="ts">
     import { twMerge } from "tailwind-merge";
 
-    import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, ScrollList, Slider, Toggle } from "../base";
+    import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, ArrowSelection, Slider, Toggle } from "../base";
     import { BISHOP_MENU_NAME, MINI_BOSS_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
     import { MultiList } from "../utils";
 
@@ -266,11 +266,11 @@
                                 </Label>
 
                                 <Label label="Age State">
-                                    <ScrollList class="ml-4" label="Age State" options={["Baby", "Adult", "Elder"]} bind:i={obj.ageState} oninput={(_, i) => actor.ageState = i} />
+                                    <ArrowSelection class="ml-4" label="Age State" options={["Baby", "Adult", "Elder"]} bind:i={obj.ageState} oninput={(_, i) => actor.ageState = i} />
                                 </Label>
                             {:else if isPlayerObj(obj) && isPlayerObj(actor)}
                                 <Label label="Hurt State">
-                                    <ScrollList class="ml-4" label="Hurt State" options={["Normal", "Bruised", "Injured"]} bind:i={obj.hurtState} oninput={(_, i) => actor.hurtState = i} />
+                                    <ArrowSelection class="ml-4" label="Hurt State" options={["Normal", "Bruised", "Injured"]} bind:i={obj.hurtState} oninput={(_, i) => actor.hurtState = i} />
                                 </Label>
                             {:else if isBishopObj(obj) && isBishopObj(actor)}
                                 {#if "bossSrc" in bishopData[obj.bishop]}

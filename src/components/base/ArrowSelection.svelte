@@ -54,7 +54,7 @@
 <div class={twMerge("flex flex-row justify-between items-center w-80 outline-none", className)} tabindex="0" aria-label={label} {onkeydown}>
     {#if i}
         <button class="outline-none" name="Previous" onclick={() => changeIdx(-1)} onpointerenter={({ target }) => document.hasFocus() && (target as HTMLButtonElement).focus()}>
-            <img src="/static/ui/scroll-list-arrow.png" alt="" class="aspect-square w-6 h-6 brightness-360 hue-rotate-45 saturate-120 hover:brightness-185 hover:hue-rotate-168 hover:saturate-200 active:brightness-185 active:hue-rotate-168 active:saturate-200 not-motion-reduce:transition-[filter,_scale] not-motion-reduce:duration-150 origin-left hover:scale-125" width="24" height="24" draggable="false" role="presentation" aria-hidden="true" />
+            <img src="/static/ui/selection-arrow.png" alt="" class="aspect-square w-6 h-6 brightness-360 hue-rotate-45 saturate-120 hover:brightness-185 hover:hue-rotate-168 hover:saturate-200 active:brightness-185 active:hue-rotate-168 active:saturate-200 not-motion-reduce:transition-[filter,_scale] not-motion-reduce:duration-150 origin-left hover:scale-125" width="24" height="24" draggable="false" role="presentation" aria-hidden="true" />
         </button>
     {:else}
         <div class="w-6 h-6"></div>
@@ -65,7 +65,7 @@
 
     {#if i < options.length - 1}
         <button class="outline-none" name="Next" onclick={() => changeIdx(1)} onpointerenter={({ target }) => document.hasFocus() && (target as HTMLButtonElement).focus()}>
-            <img src="/static/ui/scroll-list-arrow.png" alt="" class="aspect-square w-6 h-6 brightness-360 hue-rotate-45 saturate-120 hover:brightness-185 hover:hue-rotate-168 hover:saturate-200 active:brightness-185 active:hue-rotate-168 active:saturate-200 not-motion-reduce:transition-[filter,_scale] not-motion-reduce:duration-150 origin-left -scale-x-100 hover:-scale-x-125 hover:scale-y-125 translate-x-full" width="24" height="24" draggable="false" role="presentation" aria-hidden="true" />
+            <img src="/static/ui/selection-arrow.png" alt="" class="aspect-square w-6 h-6 brightness-360 hue-rotate-45 saturate-120 hover:brightness-185 hover:hue-rotate-168 hover:saturate-200 active:brightness-185 active:hue-rotate-168 active:saturate-200 not-motion-reduce:transition-[filter,_scale] not-motion-reduce:duration-150 origin-left -scale-x-100 hover:-scale-x-125 hover:scale-y-125 translate-x-full" width="24" height="24" draggable="false" role="presentation" aria-hidden="true" />
         </button>
     {:else}
         <div class="w-6 h-6"></div>
