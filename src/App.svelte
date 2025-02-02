@@ -303,7 +303,10 @@
 
     function swapActor(newActor: Actor) {
         scene.replaceActor(actor!, newActor);
+        actors = scene.actors.map((actor) => actor.toObj());
+
         actor = newActor;
+        actorObj = actors?.[scene.actors.indexOf(newActor)] ?? null;
     }
 
     function selectMenu(menu: string) {

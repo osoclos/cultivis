@@ -81,7 +81,7 @@
         
         const { x, y } = pos;
         
-        let j = x + (isValid ? y * columns : +(offset < 0) * (rows - 1) * columns);
+        let j = x + (isValid ? y * columns : +(offset <= 0) * (rows - 1) * columns);
         if (j >= elements.length && rows > 1) j -= columns;
         
         elements[MoreMath.clamp(j, 0, elements.length - 1)].focus();
