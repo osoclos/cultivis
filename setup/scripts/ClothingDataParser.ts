@@ -12,12 +12,12 @@ export class ClothingDataParser extends DataReader {
 
     parse(): ClothingMetadata {
         // Unity MonoBehaviour metadata (redundant)
-        for (const _ of Array(ClothingDataParser.MONO_BEHAVIOUR_METADATA_LENGTH[0]).keys()) this.readUint32();
+        for (const _ of Array(ClothingDataParser.MONO_BEHAVIOUR_METADATA_LENGTH[0])) this.readUint32();
 
         const id: string = this.readString();
 
         // Unity MonoBehaviour metadata (redundant)
-        for (const _ of Array(ClothingDataParser.MONO_BEHAVIOUR_METADATA_LENGTH[1]).keys()) this.readUint32();
+        for (const _ of Array(ClothingDataParser.MONO_BEHAVIOUR_METADATA_LENGTH[1])) this.readUint32();
 
         // numerical id (redundant)
         this.readUint32();
@@ -43,7 +43,7 @@ export class ClothingDataParser extends DataReader {
 
     private readSet() {
         const sets: ColorSet = [];
-        for (const _ of Array(this.readUint32()).keys()) {
+        for (const _ of Array(this.readUint32())) {
             const slot = this.readString();
 
             // multiply by 255 (0xff) to get unnormalized color values and to save space and network usage
@@ -55,7 +55,7 @@ export class ClothingDataParser extends DataReader {
         }
 
         // hidden base color of follower (redundant)
-        for (const _ of Array(4).keys()) this.readFloat();
+        for (const _ of Array(4)) this.readFloat();
 
         return sets;
     }

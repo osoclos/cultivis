@@ -153,7 +153,7 @@ async function createSpritesheets(buffers: Buffer[][], name: string = "spriteshe
         left: x * MAX_TILE_WIDTH
     })))).png().toBuffer()).flip();
     
-    for (const i of Array(Math.ceil(Math.max(Math.log2(MAX_TILE_WIDTH / MIN_TILE_WIDTH), Math.log2(MAX_TILE_HEIGHT / MIN_TILE_HEIGHT))) + 1).keys()) {
+    for (const i of Array(Math.ceil(Math.max(Math.log2(MAX_TILE_WIDTH / MIN_TILE_WIDTH), Math.log2(MAX_TILE_HEIGHT / MIN_TILE_HEIGHT))) + 1)) {
         const divisor = 2 ** i;
         spritesheet.resize(width / divisor, height / divisor).toFile(path.join(OUTPUT_DIR, MIN_TILE_WIDTH === MAX_TILE_WIDTH && MIN_TILE_HEIGHT === MAX_TILE_HEIGHT ? `${name}.png` :  `${name}-${MAX_TILE_WIDTH / divisor}x${MAX_TILE_HEIGHT / divisor}.png`));
     }

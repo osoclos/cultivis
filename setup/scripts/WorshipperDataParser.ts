@@ -12,7 +12,7 @@ export class WorshipperDataParser extends DataReader {
 
     parse(): [ColorSet[], WorshipperData[]] {
         // Unity MonoBehaviour component metadata (redundant)
-        for (const _ of Array(WorshipperDataParser.MONO_BEHAVIOUR_METADATA_LENGTH).keys()) this.readUint32();
+        for (const _ of Array(WorshipperDataParser.MONO_BEHAVIOUR_METADATA_LENGTH)) this.readUint32();
 
         const generalColorSets: ColorSet[] = Array(this.readUint32()).fill(null).map(this.readSet.bind(this));
         const worshipperData: WorshipperData[] = Array(this.readUint32()).fill(null).map(this.readData.bind(this));
@@ -38,7 +38,7 @@ export class WorshipperDataParser extends DataReader {
 
     private readSet() {
         const sets: ColorSet = [];
-        for (const _ of Array(this.readUint32()).keys()) {
+        for (const _ of Array(this.readUint32())) {
             const slot = this.readString();
 
             // multiply by 255 (0xff) to get unnormalized color values and to save space and network usage
@@ -50,7 +50,7 @@ export class WorshipperDataParser extends DataReader {
         }
 
         // hidden base color of follower (redundant)
-        for (const _ of Array(4).keys()) this.readFloat();
+        for (const _ of Array(4)) this.readFloat();
 
         return sets;
     }

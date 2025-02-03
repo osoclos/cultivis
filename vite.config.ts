@@ -32,7 +32,13 @@ const spineBundlePlugin = (): Plugin => ({
 
 // https://vite.dev/config/
 export default defineConfig({
-    server: { fs: { allow: ["index.html", "src", "public", "lib"] } },
+    server: {
+        fs: {
+            strict: true,
+            deny: ["extraction", "setup"]
+        }
+    },
+
     build: {
         assetsDir: ".",
         sourcemap: true,

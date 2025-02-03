@@ -64,7 +64,7 @@
         }
 
         const values: number[] = [];
-        for (const _ of Array(2).keys()) {
+        for (const _ of Array(2)) {
             const expandBanner = Random.percent(75);
             const factor = expandBanner ? 1 / Random.float(0.72, 0.92) : Math.log(Random.float(2.1, 2.6));
             

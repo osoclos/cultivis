@@ -2,7 +2,7 @@ import "./style.css";
 
 import { Scene, Factory, Exporter, Actor } from "@/scripts";
 
-import { followerData, miniBossData, towwData } from "@/data";
+import { followerData, miniBossData, towwData } from "@/data/files";
 import { CLOTHING_IDS, FOLLOWER_IDS, HATS_ID, MINI_BOSS_IDS, NECKLACE_IDS, PLAYER_CREATURE_IDS, PLAYER_FLEECE_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
 
 const WIDTH: number = 64;
@@ -87,7 +87,7 @@ variantExporter.addEventListener("click", () => {
     const form = new FormData();
     for (const id of FOLLOWER_IDS) {
         follower.form = id;
-        for (const i of Array(followerData.forms[id].variants.length).keys()) {
+        for (const i of Array(followerData.forms[id].variants.length)) {
             follower.formVariantIdx = i;
             follower.reset();
 
