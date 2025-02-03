@@ -49,3 +49,7 @@ If all is done well, you should see our created .FSB files all set and ready in 
 7. After it has completed its extraction, you should see all the extracted sound files in your desired folder.
 
 And just like that, you should have all your sound files ready to use, enjoy!
+
+## Credits
+
+Thanks to dippy (@dubstellon) in the C.O.T.L Modding Discord Server for teaching me how to extract the sound files.
