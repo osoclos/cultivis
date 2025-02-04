@@ -13,8 +13,11 @@ const LIB_DIST_FOLDER_NAME: string = "scripts/lib";
 
 const LIB_PATHS: Record<string, string> = {
     "spine-ts/build/spine-webgl.js": "spine-webgl.min.js",
+
     "pako/pako.js": "pako.min.js",
-    "upng-js/UPNG.js": "UPNG.min.js"
+    "upng-js/UPNG.js": "UPNG.min.js",
+
+    "eruda/eruda.js": ""
 };
 
 const spineBundlePlugin = (): Plugin => ({
@@ -25,6 +28,8 @@ const spineBundlePlugin = (): Plugin => ({
         await fs.mkdir(path.join(__dirname, "dist", LIB_DIST_FOLDER_NAME), { recursive: true });
 
         for (const [src, dist] of Object.entries(LIB_PATHS)) {
+            if (!dist) return;
+            
             const input = await fs.readFile(path.join(__dirname, LIB_SRC_FOLDER_NAME, src), "utf-8");
             const { code: output = "" } = await minify(input);
 
@@ -32,7 +37,7 @@ const spineBundlePlugin = (): Plugin => ({
         }
     },
 
-    transformIndexHtml: (html: string): string => Object.entries(LIB_PATHS).reverse().reduce((html, [src, dist]) => html.replace(`<script src="${path.join(LIB_SRC_FOLDER_NAME, src).replaceAll("\\", "/")}"></script>`, "").replace("</title>", `</title>\n      <script src="${path.join(LIB_DIST_FOLDER_NAME, dist).replaceAll("\\", "/")}" defer></script>`), html)
+    transformIndexHtml: (html: string): string => Object.entries(LIB_PATHS).reverse().reduce((html, [src, dist]) => html.replace(`<script src="${path.join(LIB_SRC_FOLDER_NAME, src).replaceAll("\\", "/")}"></script>`, "").replace("</title>", dist ? `</title>\n      <script src="${path.join(LIB_DIST_FOLDER_NAME, dist).replaceAll("\\", "/")}" defer></script>` : "</title>"), html)
 });
 
 // https://vite.dev/config/

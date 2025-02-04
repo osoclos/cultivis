@@ -16,7 +16,7 @@
         "noUncheckedSideEffectImports": true,
         "paths": { "/*": ["./*", "./public/*"] },
         "resolveJsonModule": true,
-        "types": ["./lib/spine-ts/build/spine-webgl.d.ts", "./lib/upng-js/UPNG.d.ts"],
+        "types": ["./lib/spine-ts/build/spine-webgl.d.ts", "./lib/upng-js/UPNG.d.ts", "./lib/eruda/eruda.d.ts"],
 
         // Emit
         "noEmit": true,

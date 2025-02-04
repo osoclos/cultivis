@@ -4,8 +4,9 @@
 
     import { twMerge } from "tailwind-merge";
 
+    import { soundManager } from "../../scripts/managers";
     import { MoreMath } from "../../utils";
-    
+
     interface Props {
         children?: Snippet<[number]>;
 
@@ -31,7 +32,7 @@
 
         function onClick({ target }: MouseEvent) {
             const i = ([...container.children] as HTMLElement[]).findIndex((element) => element === target as HTMLElement || [...element.children].includes(target as HTMLElement));
-            if (i < 0) return;
+            if (i < 0 || i === selectedIdx) return;
             
             selectedIdx = i;
             click(selectedIdx);
@@ -59,7 +60,9 @@
             if (i !== selectedIdx + idxOffset) return;
 
             selectedIdx = i;
-            (container.children.item(selectedIdx) as HTMLElement).click();
+
+            soundManager.play("Option_Change");
+            click(selectedIdx);
         }
 
         $effect(() => {
