@@ -66,10 +66,11 @@
         onkeyfocus: keyFocus = () => {}
     }: Props = $props();
 
+    let numOfChildren: number = $state(0);
+
     const focusPos = $state(Vector[focusFirst ? "Zero" : "NegOne"].toObj());
     const focusIdx = $derived(Vector.NegOne.equalsObj(focusPos) ? -1 : focusPos.x + focusPos.y * columns);
 
-    const paddingElements = $derived(Math.max(maxColumns - ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0).length, 0));
     const resizer = new ResizeObserver(([entry]) => {
         const { inlineSize: width } = entry.contentBoxSize[0];
 
@@ -77,8 +78,22 @@
         rows = Math.ceil((container?.childElementCount ?? 0) / columns);
     });
 
-    onMount(() => resizer.observe(container));
-    onDestroy(() => resizer.disconnect());
+    const mutator = new MutationObserver(([entry]) => {
+        const { target, type } = entry;
+        if (type !== "childList") return;
+
+        numOfChildren = (target as HTMLDivElement).children.length;
+    });
+
+    onMount(() => {
+        resizer.observe(container);
+        mutator.observe(container, { childList: true });
+    });
+
+    onDestroy(() => {
+        resizer.disconnect();
+        mutator.disconnect();
+    });
 
     function updateVecFromIdx(i: number) {
         Vector.valToObj(focusPos, i % columns, Math.floor(i / columns));
@@ -179,9 +194,9 @@
     };
 </script>
 
-<div bind:this={container} use:focusEvents use:keyEvents class={twMerge("grid place-content-center w-full", className)} style:grid-template-columns="repeat(auto-fit, {tileWidth}px)" style:grid-template-rows="repeat(auto-fit, {tileHeight}px)" style:column-gap="{gapWidth}px" style:row-gap="{gapHeight}px" style:min-width="{(tileWidth + gapWidth) * minColumns - gapWidth}px" style:max-width="{(tileWidth + gapWidth) * maxColumns - gapWidth}px">
+<div bind:this={container} use:focusEvents use:keyEvents class={twMerge("grid w-full", numOfChildren < maxColumns ? "place-content-start" : "place-content-center", className)} style:grid-template-columns="repeat(auto-fit, {tileWidth}px)" style:grid-template-rows="repeat(auto-fit, {tileHeight}px)" style:column-gap="{gapWidth}px" style:row-gap="{gapHeight}px" style:min-width="{(tileWidth + gapWidth) * minColumns - gapWidth}px" style:max-width="{(tileWidth + gapWidth) * maxColumns - gapWidth}px">
     {@render children?.()}
-    {#each Array(paddingElements).keys() as i (i)}
+    <!-- {#each Array(Math.max(maxColumns - numOfChildren, 0)).keys() as i (i)}
         <div tabindex="-1"></div>
-    {/each}
+    {/each} -->
 </div>
