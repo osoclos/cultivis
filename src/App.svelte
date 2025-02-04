@@ -43,6 +43,9 @@
     let hasUserCompliedToTOS: boolean = $state(false);
     const hasFinishedLoading: boolean = $derived(loadingState === LOADING_STATES.length);
 
+    let news: Record<string, string[]> = $state.raw({});
+
+    let lastUpdatedUnix: number = $state(-1);
     let hasNoticedTutorial: boolean = $state(!!localStorage.getItem(HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME));
 
     let actors: ActorObject[] | null = $state(null);
@@ -179,10 +182,10 @@
         scene.resetCamera();
         scene.scale *= 1.5;
 
-        await newsManager.getLastUpdatedUnix();
+        lastUpdatedUnix = await newsManager.getLastUpdatedUnix();
         
         loadingState = LOADING_STATES.indexOf("FetchingNews");
-        await newsManager.getNews();
+        news = await newsManager.getNews();
 
         setTimeout(() => loadingState = LOADING_STATES.length, 400);
     }
@@ -424,17 +427,22 @@
 </div>
 
 {#if newsManager instanceof NewsManager}
-    {#await Promise.all([newsManager.areTermsAcknowledged(), newsManager.getTermsSummary(), newsManager.getTermsUnix()]) then [areTermsAcknowledged, changesSummary, termsUnix]}
-        <div class="{areTermsAcknowledged ? "hidden" : "grid"} fixed top-0 left-0 z-100 place-items-center w-full h-full bg-[#00000060] {hasUserCompliedToTOS ? "opacity-0" : "opacity-100"} transition-opacity duration-450 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
-            <Dialog childClass={twMerge("mt-2 sm:mt-4")} title="Disclaimer" description={localStorage.getItem(NewsManager.OLD_TERMS_LOCAL_STORAGE_NAME) ? `CultiVis has updated its terms of service${termsUnix ? ` on ${unixToDate(termsUnix)}` : ""}. ${changesSummary ? `${changesSummary.slice(0, -changesSummary.endsWith("."))}. ` : ""}You may view the new terms below or close this popup.` : "CultiVis requires you to agree and acknowledge the CultiVis Terms of Service. You may view the terms below or close this popup."}>
-                <Notice class="px-8 pb-4 text-sm" label="Closing this popup will mean you agree with the Terms of Service." />
-                <List class="flex flex-col justify-center items-center" enableKeyInput focusFirst>
-                    <BannerButton label="View Terms" href="https://github.com/osoclos/cultivis/blob/main/ToS.md" />
-                    <BannerButton label="Close and Accept" onclick={acknowledgeTerms} />
-                </List>
-            </Dialog>
-        </div>
+    {#await newsManager.areTermsAcknowledged() then areTermsAcknowledged}
+        {#if areTermsAcknowledged}
+            {#await Promise.all([newsManager.getTermsSummary(), newsManager.getTermsUnix()]) then [changesSummary, termsUnix]}
+                <div class="{areTermsAcknowledged ? "hidden" : "grid"} fixed top-0 left-0 z-100 place-items-center w-full h-full bg-[#00000060] {hasUserCompliedToTOS ? "opacity-0" : "opacity-100"} transition-opacity duration-450 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
+                    <Dialog childClass={twMerge("mt-2 sm:mt-4")} title="Disclaimer" description={localStorage.getItem(NewsManager.OLD_TERMS_LOCAL_STORAGE_NAME) ? `CultiVis has updated its terms of service${termsUnix ? ` on ${unixToDate(termsUnix)}` : ""}. ${changesSummary ? `${changesSummary.slice(0, -changesSummary.endsWith("."))}. ` : ""}You may view the new terms below or close this popup.` : "CultiVis requires you to agree and acknowledge the CultiVis Terms of Service. You may view the terms below or close this popup."}>
+                        <Notice class="px-8 pb-4 text-sm" label="Closing this popup will mean you agree with the Terms of Service." />
+                        <List class="flex flex-col justify-center items-center" enableKeyInput focusFirst>
+                            <BannerButton label="View Terms" href="https://github.com/osoclos/cultivis/blob/main/ToS.md" />
+                            <BannerButton label="Close and Accept" onclick={acknowledgeTerms} />
+                        </List>
+                    </Dialog>
+                </div>
+            {/await}
+        {/if}
     {/await}
+    
 {/if}
 
 {#if hasUserCompliedToTOS}
@@ -504,9 +512,9 @@
                     </Label>
                 {/if}
             {:else if categoryIdx === 2}
-                <News />
+                <News {news} />
             {:else if categoryIdx === 3}
-                <CreationDetails bind:hasNoticedTutorial />
+                <CreationDetails {lastUpdatedUnix} bind:hasNoticedTutorial />
                 <SpecialThanks />
             {/if}
         </div>

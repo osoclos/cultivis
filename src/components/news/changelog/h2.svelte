@@ -11,4 +11,4 @@
     const { children } = $derived($ctx);
 </script>
 
-<LabelTitle class="mt-4" title={children?.filter(({ type }) => type === "text").map(({ value }) => value).join(" ") ?? ""} />
+<LabelTitle class="mt-4 -mb-2" title={children?.filter(({ type }) => type === "text").map(({ value }) => value).join(" ") ?? ""} />

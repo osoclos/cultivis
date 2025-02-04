@@ -11,4 +11,4 @@
     const { children } = $derived($ctx);
 </script>
 
-<DividerTitle class="mt-2 mb-1" title={children?.filter(({ type }) => type === "text").map(({ value }) => value).join(" ") ?? ""} />
+<DividerTitle class="mt-4 mb-1" title={children?.filter(({ type }) => type === "text").map(({ value }) => value).join(" ") ?? ""} />

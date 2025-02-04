@@ -27,7 +27,7 @@ export class NewsManager {
         const info: FileInfo[] = [];
 
         const lastUpdate = +(localStorage.getItem(NewsManager.NEWS_LOCAL_STORAGE_NAME) ?? 0);
-        const filesToFetch: string[] = await this.areNewsUpdated() ? [] : await Promise.all(await this.serverManager.getCommit("", ServerManager.NEWS_ROUTE_ROOT, { page: -1, perPage: 100, since: lastUpdate + 1 }).then((commits) => commits.flatMap(({ sha }) => this.serverManager.getCommitData(sha, ServerManager.NEWS_ROUTE_ROOT, true).then(({ files }) => files)))).then((arr) => arr.flat());
+        const filesToFetch: string[] = await this.areNewsUpdated() ? [] : await Promise.all(await this.serverManager.getCommit("", ServerManager.NEWS_ROUTE_ROOT, { page: -1, perPage: 100, since: lastUpdate + 1 }).then((commits) => commits.flatMap(({ sha }) => this.serverManager.getCommitData(sha, ServerManager.NEWS_ROUTE_ROOT, true).then(({ files }) => files.map((url) => url.replace("%2F", "/")))))).then((arr) => arr.flat());
 
         const folders = await this.serverManager.getContent("", ServerManager.NEWS_ROUTE_ROOT, !!filesToFetch.length);
         for (const { name: folderName, path } of folders.filter(({ type }) => type === "dir")) {
@@ -40,7 +40,7 @@ export class NewsManager {
                     continue;
                 }
 
-                const [{ content }] = await this.serverManager.getContent(path, ServerManager.NEWS_ROUTE_ROOT, filesToFetch.includes(path));
+                const [{ content }] = await this.serverManager.getContent(path, ServerManager.NEWS_ROUTE_ROOT, filesToFetch.some((file) => file.includes(path)));
                 const date = this.dashedNameToUnix(name);
                 
                 info.push({ date, content, folderName });

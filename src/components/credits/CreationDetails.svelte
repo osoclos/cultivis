@@ -6,11 +6,14 @@
     import { BannerButton, Header, LabelTitle } from "../base";
     import { List } from "../utils";
 
-    import { newsManager } from "../../scripts/managers";
     import { unixToDate } from "../../utils";
 
-    interface Props { hasNoticedTutorial?: boolean; }
-    let { hasNoticedTutorial = $bindable(false) }: Props = $props();
+    interface Props {
+        lastUpdatedUnix?: number;
+        hasNoticedTutorial?: boolean;
+    }
+
+    let { lastUpdatedUnix = -1, hasNoticedTutorial = $bindable(false) }: Props = $props();
     
     function onnotice() {
         if (hasNoticedTutorial) return;
@@ -24,13 +27,13 @@
     <div class="flex flex-col gap-1">
         <Header title="Creation Details" />
 
-        {#await newsManager.getLastUpdatedUnix()}
+        {#if lastUpdatedUnix < 0}
             <LabelTitle title="Created by © osoclos" />
             <LabelTitle title="Last Updated: Just Now" />
-        {:then lastUpdatedUnix}
+        {:else}
             <LabelTitle title="Created by © {new Date(lastUpdatedUnix).getFullYear()} osoclos" />
             <LabelTitle title="Last Updated: {unixToDate(lastUpdatedUnix)}" />
-        {/await}
+        {/if}
     </div>
     
     <List class="flex flex-col justify-center items-center" enableKeyInput>
