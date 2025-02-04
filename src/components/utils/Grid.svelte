@@ -74,13 +74,16 @@
     const resizer = new ResizeObserver(([entry]) => {
         const { inlineSize: width } = entry.contentBoxSize[0];
 
-        if (autoColumns) columns = MoreMath.clamp(Math.floor((width + gapWidth) / (tileWidth + gapWidth)), minColumns, maxColumns);
+        if (autoColumns) columns = MoreMath.clamp(Math.floor((Math.round(width) + gapWidth) / (tileWidth + gapWidth)), minColumns, maxColumns);
         rows = Math.ceil((container?.childElementCount ?? 0) / columns);
     });
 
     const mutator = new MutationObserver(([entry]) => {
         const { target, type } = entry;
         if (type !== "childList") return;
+
+        if (autoColumns) columns = MoreMath.clamp(Math.floor((container.clientWidth + gapWidth) / (tileWidth + gapWidth)), minColumns, maxColumns);
+        rows = Math.ceil((container?.childElementCount ?? 0) / columns);
 
         numOfChildren = (target as HTMLDivElement).children.length;
     });
