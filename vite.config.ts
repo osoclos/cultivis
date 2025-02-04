@@ -9,7 +9,7 @@ import tailwindcss from "@tailwindcss/vite";
 import mkcert from "vite-plugin-mkcert";
 
 const LIB_SRC_FOLDER_NAME: string = "lib";
-const LIB_DIST_FOLDER_NAME: string = "dist/scripts/lib";
+const LIB_DIST_FOLDER_NAME: string = "scripts/lib";
 
 const LIB_PATHS: Record<string, string> = {
     "spine-ts/build/spine-webgl.js": "spine-webgl.min.js",
@@ -22,13 +22,13 @@ const spineBundlePlugin = (): Plugin => ({
     apply: "build",
 
     async generateBundle() {
-        await fs.mkdir(path.join(__dirname, LIB_DIST_FOLDER_NAME), { recursive: true });
+        await fs.mkdir(path.join(__dirname, "dist", LIB_DIST_FOLDER_NAME), { recursive: true });
 
         for (const [src, dist] of Object.entries(LIB_PATHS)) {
             const input = await fs.readFile(path.join(__dirname, LIB_SRC_FOLDER_NAME, src), "utf-8");
             const { code: output = "" } = await minify(input);
 
-            await fs.writeFile(path.join(__dirname, LIB_DIST_FOLDER_NAME, dist), output, "utf-8");
+            await fs.writeFile(path.join(__dirname, "dist", LIB_DIST_FOLDER_NAME, dist), output, "utf-8");
         }
     },
 
