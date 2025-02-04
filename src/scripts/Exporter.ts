@@ -1,13 +1,15 @@
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
-import { Vector } from "../utils";
 
 import { Follower, isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, Player, isWitnessObj, isMiniBossObj, Witness } from "./characters";
-import { GIFManager } from "./managers";
+import { APNG_Manager, GIF_Manager } from "./managers";
+
+import { isDataGIF_Data, type FormatData, type FormatId } from "../components/exporting";
+import { Vector } from "../utils";
 
 export class Exporter {
     static readonly ASSETS_ROOT: string = "assets";
 
-    private constructor(public canvas: HTMLCanvasElement | OffscreenCanvas, public gl: WebGLRenderingContext, public scene: Scene, public factory: Factory, private gifManager: GIFManager) {}
+    private constructor(public canvas: HTMLCanvasElement | OffscreenCanvas, public gl: WebGLRenderingContext, public scene: Scene, public factory: Factory, private gifManager: GIF_Manager, private apngManager: APNG_Manager) {}
     static async create(scene?: Scene, initFactory?: Factory) {
         if (!scene) {
             const canvas = new OffscreenCanvas(300, 150);
@@ -19,15 +21,17 @@ export class Exporter {
         }
 
         const { canvas, gl } = scene;
-
         const factory = initFactory ?? await Factory.create(gl, this.ASSETS_ROOT);
-        const gifManager = new GIFManager();
 
-        return new Exporter(canvas, gl, scene, factory, gifManager);
+        const gifManager = new GIF_Manager();
+        const apngManager = new APNG_Manager();
+
+        return new Exporter(canvas, gl, scene, factory, gifManager, apngManager);
     }
 
-    async exportScene(obj: SceneObject, duration: number, size: Vector, onProgress: (progress: number) => void = () => {}) {
+    async exportScene(obj: SceneObject, duration: number, size: Vector, format: FormatId, data: FormatData, onProgress: (progress: number, state: number) => void = () => {}) {
         const [width, height] = size;
+        const { delay } = data;
 
         this.resetScene();
         await this.setupScene(obj, size);
@@ -35,28 +39,56 @@ export class Exporter {
         return new Promise<Uint8Array>((resolve) => {
             this.gifManager.reset();
 
+            const frames: Uint8Array[] = [];
             let time: number = 0;
-            const draw = (delta: number) => {
-                this.scene.render(delta);
 
-                const pixels = this.getPixels();
-                this.gifManager.addFrame(pixels, width, height, delta * 1000);
-
+            const draw = async () => {
                 if (time > duration) {
-                    const buffer = this.gifManager.end();
-                    resolve(buffer);
-
-                    onProgress(1.0);
+                    encode();
                     return;
                 }
 
-                onProgress(time / duration);
-                time += delta;
+                this.scene.render(delay / 1000);
+
+                const pixels = this.getPixels();
+                frames.push(pixels);
+
+                onProgress(time / duration / 2, EXPORTING_STATES.indexOf("ReadingPixels"));
+                time += delay / 1000;
                 
-                setTimeout(() => draw(delta));
+                setTimeout(() => draw());
             };
 
-            draw(1 / 50);
+            let i: number = 0;
+            const encode = () => {
+                if (i >= frames.length) {
+                    const buffer = format === "gif" ? this.gifManager.end() : this.apngManager.encode(frames, width, height, delay);
+                    resolve(buffer);
+
+                    onProgress(1.0, EXPORTING_STATES.indexOf("DownloadScene"));
+                    return;
+                }
+
+                switch (true) {
+                    case format === "gif" && isDataGIF_Data(data): {
+                        const pixels = frames[i];
+                        const { hasAccurateColors } = data;
+
+                        const palette = this.gifManager.quantizeFrame(pixels, hasAccurateColors);
+                        const indices = this.gifManager.mapFrameToPalette(pixels, palette, hasAccurateColors);
+
+                        this.gifManager.addFrame(indices, palette, width, height, delay, +hasAccurateColors - 1);
+                        break;
+                    }
+                }
+
+                onProgress(i / frames.length / 2 + 0.5, EXPORTING_STATES.indexOf("EncodeFrames"));
+                i++;
+
+                setTimeout(() => encode());
+            };
+
+            draw();
         });
     }
 
@@ -175,4 +207,18 @@ export class Exporter {
 
         return flippedPixels;
     }
+
+    async getBlob(x: number = 0, y: number = 0, width: number = this.gl.drawingBufferWidth, height: number = this.gl.drawingBufferHeight) {
+        const canvas = new OffscreenCanvas(width, height);
+        const ctx = canvas.getContext("2d")!;
+
+        const exporterCtx = this.canvas.getContext("2d")! as CanvasRenderingContext2D;
+        const imageData = exporterCtx.getImageData(x, y, width, height);
+
+        ctx.putImageData(imageData, 0, 0);
+        return canvas.convertToBlob({ type: "image/png" });
+    }
 }
+
+export const EXPORTING_STATES = ["ReadingPixels", "EncodeFrames", "DownloadScene"] as const;
+export type ExportingState = typeof EXPORTING_STATES[number];

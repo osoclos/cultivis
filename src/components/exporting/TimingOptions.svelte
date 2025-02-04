@@ -20,10 +20,10 @@
     }
 </script>
 
-<div class="flex flex-col items-center gap-6 mx-8">
+<div class="flex flex-col gap-6 items-center mx-8">
     <LabelTitle title="Timing" />
 
-    <div class="flex flex-col gap-2 w-80 sm:w-90">
+    <div class="flex flex-col gap-8 w-80 sm:w-90">
         {#if !trimLongest}
             <Label label="Duration">
                 <NumberInput label="Duration" bind:value={duration} unit="s" step={0.01} max={Infinity} {oninput} />

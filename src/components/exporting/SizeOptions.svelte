@@ -27,29 +27,29 @@
     }
 </script>
 
-<div class="flex flex-col items-center gap-6 mx-8">
+<div class="flex flex-col gap-6 items-center mx-8">
     <LabelTitle title="Size" />
 
-    <div class="flex flex-col gap-2 w-80 sm:w-90">
+    <div class="flex flex-col gap-8 w-80 sm:w-90">
         {#if !cropScene}
             <Label label="Width">
                 <NumberInput label="Width" bind:value={size.x} unit="px" max={Infinity} {oninput} />
             </Label>
             
-            <Label label="Height">
+            <Label class="-mt-6" label="Height">
                 <NumberInput label="Height" bind:value={size.y} unit="px" max={Infinity} {oninput} />
             </Label>
 
-            <Label class="my-3" label="Lock Aspect Ratio">
+            <Label label="Lock Aspect Ratio">
                 <Toggle label="Lock Aspect Ratio" bind:enabled={lockAspectRatio} {oninput} />
             </Label>
         {/if}
 
-        <Label class="my-3" label="Fit Scene">
+        <Label label="Fit Scene">
             <Toggle label="Fit Scene" bind:enabled={fitScene} {oninput} />
         </Label>
 
-        <Label class="my-3" label="Crop Scene">
+        <Label label="Crop Scene">
             <Toggle label="Crop Scene" bind:enabled={cropScene} {oninput} />
         </Label>
     </div>

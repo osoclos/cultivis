@@ -2,12 +2,12 @@
     import { onDestroy, onMount } from "svelte";
     import { twMerge } from "tailwind-merge";
 
-    import { BannerButton, Dialog, Header, Label, NavTip, Notice, ProgressRing } from "./components/base";
+    import { ArrowSelection, BannerButton, Dialog, Header, Label, LabelTitle, NavTip, Notice, ProgressRing } from "./components/base";
     import { SceneCanvas, Categories, LoadingThrobber, LoadingSymbol } from "./components/misc";
     import { List } from "./components/utils";
     
     import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, TOWW_MENU_NAME, TOWW_Menus, MINI_BOSS_MENU_NAME, MiniBossMenu, WITNESS_MENU_NAME, WitnessMenu } from "./components/characters";
-    import { Size, Timing } from "./components/exporting";
+    import { FORMAT_IDS, FormatOptions, SizeOptions, TimingOptions, type FormatData, type FormatId } from "./components/exporting";
 
     import { News } from "./components/news";
     import { CreationDetails, SpecialThanks, HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME } from "./components/credits";
@@ -21,9 +21,11 @@
 
     import { MoreMath, Random, unixToDate, Vector } from "./utils";
 
-    const LOADING_STATES = ["ToSAcknowledgement", "LoadingAssets", "SceneSetup", "FetchingNews"] as const
-    const LOADING_TEXTS = ["Checking ToS Acknowledgement", "Loading Assets", "Setting Up Scene", "Fetching News"];
+    const LOADING_STATES = ["ToSAcknowledgement", "LoadingAssets", "SceneSetup", "FetchingNews"] as const;
+    const LOADING_TEXTS: string[] = ["Checking ToS Acknowledgement", "Loading Assets", "Setting Up Scene", "Fetching News"];
     
+    const EXPORTING_TEXTS: string[] = ["Rendering Scene", "Encoding Frames", "Downloading Scene"];
+
     let scene: Scene = $state(Scene.prototype);
     let factory: Factory = $state(Factory.prototype);
 
@@ -36,7 +38,7 @@
     let isMobile: boolean = $state(false);
 
     let loadingState: number = $state(-1);
-    const loadingText: string = $derived(LOADING_TEXTS[MoreMath.clamp(loadingState, 0, LOADING_STATES.length - 1)]);
+    const loadingText: string = $derived(LOADING_TEXTS[MoreMath.clamp(loadingState, 0, LOADING_TEXTS.length - 1)]);
 
     let hasUserCompliedToTOS: boolean = $state(false);
     const hasFinishedLoading: boolean = $derived(loadingState === LOADING_STATES.length);
@@ -62,7 +64,27 @@
     let duration: number = $state(5);
     let trimLongest: boolean = $state(false);
 
+    let exportFormat: FormatId = $state("gif");
+    let exportName: string = $state("cultivis-export");
+
+    const exportData: Record<FormatId, FormatData> = $state({
+        "gif": {
+            type: "gif",
+
+            delay: 20,
+            hasAccurateColors: true
+        },
+
+        "apng": {
+            type: "apng",
+            delay: 1000 / 60
+        }
+    });
+    
     let exportProgress: number = $state(-1);
+
+    let exportState: number = $state(-1);
+    const exportText: string = $derived(EXPORTING_TEXTS[MoreMath.clamp(exportState, 0, EXPORTING_TEXTS.length - 1)]);
 
     // svelte-ignore state_referenced_locally
     matchMedia("(max-width: 64rem)").matches && Vector.fromObj(size).swap().cloneObj(size);
@@ -335,18 +357,25 @@
     }
 
     async function exportScene() {
-        const sceneObj = scene.toObj();
-        const buffer = await exporter.exportScene(sceneObj, duration, Vector.fromObj(size), (progress) => exportProgress = progress);
+        const format = exportFormat;
 
-        const blob = new Blob([buffer], { type: "image/gif" });
+        const sceneObj = scene.toObj();
+        const buffer = await exporter.exportScene(sceneObj, duration, Vector.fromObj(size), format, exportData[format], (progress, state) => {
+            exportProgress = progress;
+            exportState = state;
+        });
+
+        const blob = new Blob([buffer], { type: `image/${format}` });
         const url = URL.createObjectURL(blob);
 
         const link = document.createElement("a");
         link.href = url;
-        link.download = "cultivis-export.gif";
+        link.download = `${exportName}.${format}`;
 
         link.click();
+
         exportProgress = -1;
+        exportState = -1;
     }
 
     function updateSceneFromChanges() {
@@ -446,15 +475,32 @@
                 <Header title="Export Options" />
 
                 <div class="flex flex-col gap-12">
-                    <Size bind:size bind:lockAspectRatio bind:fitScene bind:cropScene oninput={({ fitScene, cropScene }) => fitScene || cropScene ? setCroppedScene() : setSceneSize()} />
-                    <Timing bind:duration bind:trimLongest oninput={({ trimLongest }) => trimLongest && (duration = MoreMath.round(Math.max(...scene.actors.map(({ duration }) => duration), 0), 2))} />
+                    <SizeOptions bind:size bind:lockAspectRatio bind:fitScene bind:cropScene oninput={({ fitScene, cropScene }) => fitScene || cropScene ? setCroppedScene() : setSceneSize()} />
+                    <TimingOptions bind:duration bind:trimLongest oninput={({ trimLongest }) => trimLongest && (duration = MoreMath.round(Math.max(...scene.actors.map(({ duration }) => duration), 0), 2))} />
+                </div>
+
+                <div class="flex flex-col gap-6 items-center mx-8">
+                    <LabelTitle title="Format" />
+
+                    <div class="flex flex-col gap-8 w-80 sm:w-90">
+                        <Label label="Format">
+                            <ArrowSelection class="ml-6" options={[...FORMAT_IDS].map((format) => format.toUpperCase())} label="Format" oninput={(_, i) => exportFormat = FORMAT_IDS[i]} />
+                        </Label>
+                        
+                        <FormatOptions bind:format={exportFormat} data={exportData[exportFormat]}  />
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-4 items-center mx-8">
+                    <LabelTitle title="Name" />
+                    <BannerButton label="Export Name" bind:value={exportName} editable />
                 </div>
                 
-                <BannerButton label={exportProgress < 0 ? "Export Scene" : "Exporting..."} disabled={exportProgress >= 0} onclick={exportScene} />
+                <BannerButton class="mt-2" label={exportProgress < 0 ? "Export Scene" : "Exporting..."} disabled={exportProgress >= 0} onclick={exportScene} />
                 
                 {#if exportProgress >= 0}
-                    <Label class="w-80 sm:w-90" label="Export Progress">
-                        <ProgressRing progress={exportProgress} label="Export Progress" />
+                    <Label class="w-80 sm:w-90" label={exportText}>
+                        <ProgressRing progress={exportProgress} label={exportText} />
                     </Label>
                 {/if}
             {:else if categoryIdx === 2}

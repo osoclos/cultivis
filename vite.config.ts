@@ -8,26 +8,31 @@ import { svelte } from "@sveltejs/vite-plugin-svelte";
 import tailwindcss from "@tailwindcss/vite";
 import mkcert from "vite-plugin-mkcert";
 
+const LIB_SRC_FOLDER_NAME: string = "lib";
+const LIB_DIST_FOLDER_NAME: string = "dist/scripts/lib";
+
+const LIB_PATHS: Record<string, string> = {
+    "spine-ts/build/spine-webgl.js": "spine-webgl.min.js",
+    "pako/pako.js": "pako.min.js",
+    "upng-js/UPNG.js": "UPNG.min.js"
+};
+
 const spineBundlePlugin = (): Plugin => ({
     name: "spine-bundler",
     apply: "build",
 
     async generateBundle() {
-        const input = await fs.readFile(path.join(__dirname, "lib/spine-ts/build/spine-webgl.js"), "utf-8");
-        const { code: output = "" } = await minify(input);
+        await fs.mkdir(path.join(__dirname, LIB_DIST_FOLDER_NAME), { recursive: true });
 
-        const filepath = path.join(__dirname, "dist/scripts/lib/spine-webgl.min.js");
+        for (const [src, dist] of Object.entries(LIB_PATHS)) {
+            const input = await fs.readFile(path.join(__dirname, LIB_SRC_FOLDER_NAME, src), "utf-8");
+            const { code: output = "" } = await minify(input);
 
-        await fs.mkdir(path.dirname(filepath), { recursive: true });
-        await fs.writeFile(filepath, output, "utf-8");
+            await fs.writeFile(path.join(__dirname, LIB_DIST_FOLDER_NAME, dist), output, "utf-8");
+        }
     },
 
-    transformIndexHtml(html: string): string {
-        html = html.replace("\n\n        <script src=\"lib/spine-ts/build/spine-webgl.js\"></script>", "");
-        html = html.replace("</title>", "</title>\n      <script src=\"scripts/lib/spine-webgl.min.js\" defer></script>");
-
-        return html;
-    }
+    transformIndexHtml: (html: string): string => Object.entries(LIB_PATHS).reverse().reduce((html, [src, dist]) => html.replace(`<script src="${path.join(LIB_SRC_FOLDER_NAME, src).replaceAll("\\", "/")}"></script>`, "").replace("</title>", `</title>\n      <script src="${path.join(LIB_DIST_FOLDER_NAME, dist).replaceAll("\\", "/")}" defer></script>`), html)
 });
 
 // https://vite.dev/config/
@@ -53,7 +58,7 @@ export default defineConfig({
                 manualChunks: (path: string) => path.includes("node_modules") ? "vendor" : ""
             },
 
-            external: (path: string) => path.includes("spine-ts")
+            external: (path: string) => path.includes("lib/")
         }
     },
 

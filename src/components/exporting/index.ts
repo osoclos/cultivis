@@ -1,4 +1,7 @@
-import Size from "./Size.svelte";
-import Timing from "./Timing.svelte";
+import SizeOptions from "./SizeOptions.svelte";
+import TimingOptions from "./TimingOptions.svelte";
 
-export { Size, Timing };
+import FormatOptions from "./FormatOptions.svelte";
+
+export { SizeOptions, TimingOptions, FormatOptions };
+export * from "./FormatOptions.svelte";

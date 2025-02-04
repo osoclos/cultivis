@@ -255,8 +255,8 @@
                     <BannerButton label="Choose Witness" playClickSound={false} onclick={() => proceed(WITNESS_MENU_NAME)} />
                 {/if}
             {:else if i === 2}
-                <div class="flex flex-col gap-6 pt-6 pb-8">
-                    <div class="flex flex-col items-center gap-6">
+                <div class="flex flex-col gap-12 pt-6 pb-8">
+                    <div class="flex flex-col gap-6 items-center">
                         <LabelTitle title="Attributes" />
                     
                         <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
@@ -266,11 +266,11 @@
                                 </Label>
 
                                 <Label label="Age State">
-                                    <ArrowSelection class="ml-4" label="Age State" options={["Baby", "Adult", "Elder"]} bind:i={obj.ageState} oninput={(_, i) => actor.ageState = i} />
+                                    <ArrowSelection class="ml-6" label="Age State" options={["Baby", "Adult", "Elder"]} bind:i={obj.ageState} oninput={(_, i) => actor.ageState = i} />
                                 </Label>
                             {:else if isPlayerObj(obj) && isPlayerObj(actor)}
                                 <Label label="Hurt State">
-                                    <ArrowSelection class="ml-4" label="Hurt State" options={["Normal", "Bruised", "Injured"]} bind:i={obj.hurtState} oninput={(_, i) => actor.hurtState = i} />
+                                    <ArrowSelection class="ml-6" label="Hurt State" options={["Normal", "Bruised", "Injured"]} bind:i={obj.hurtState} oninput={(_, i) => actor.hurtState = i} />
                                 </Label>
                             {:else if isBishopObj(obj) && isBishopObj(actor)}
                                 {#if "bossSrc" in bishopData[obj.bishop]}
@@ -332,7 +332,7 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col items-center gap-6 mx-8">
+                    <div class="flex flex-col gap-6 items-center mx-8">
                         <LabelTitle title="Positioning" />
                     
                         <div class="flex flex-col gap-2 w-80 sm:w-90">
@@ -344,11 +344,9 @@
                                 <NumberInput label="Y Position" bind:value={obj.pos.y} unit="px" min={-Infinity} max={Infinity} oninput={() => updatePosition()} />
                             </Label>
                         </div>
-
-                        <BannerButton label="Reset Position" onclick={() => updatePosition(Vector.Zero.toObj())} />
                     </div>
 
-                    <div class="flex flex-col items-center gap-6 mx-8">
+                    <div class="flex flex-col gap-6 items-center mx-8">
                         <LabelTitle title="Scaling" />
                     
                         <div class="flex flex-col gap-2 w-80 sm:w-90">
@@ -360,8 +358,6 @@
                                 <NumberInput label="Scale Y" value={obj.scale.y * 100} unit="%" step={0.01} max={Infinity} oninput={updateScaleY} />
                             </Label>
                         </div>
-
-                        <BannerButton label="Reset Scale" onclick={resetScale} />
                     </div>
 
                     <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
@@ -378,6 +374,9 @@
                         </Label>
                     </div>
                 </div>
+
+                <BannerButton label="Reset Position" onclick={() => updatePosition(Vector.Zero.toObj())} />
+                <BannerButton class="mb-6" label="Reset Scale" onclick={resetScale} />
 
                 <BannerButton label="Accept" playClickSound={false} onclick={() => exit(false)} />
                 <BannerButton label="Remove" playClickSound={false} onclick={() => exit(true)} />
