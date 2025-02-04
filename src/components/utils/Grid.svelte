@@ -74,7 +74,7 @@
     const resizer = new ResizeObserver(([entry]) => {
         const { inlineSize: width } = entry.contentBoxSize[0];
 
-        if (autoColumns) columns = MoreMath.clamp(Math.floor((Math.round(width) + gapWidth) / (tileWidth + gapWidth)), minColumns, maxColumns);
+        if (autoColumns) columns = MoreMath.clamp(Math.floor((width + gapWidth) / (tileWidth + gapWidth)), minColumns, maxColumns);
         rows = Math.ceil((container?.childElementCount ?? 0) / columns);
     });
 
@@ -197,9 +197,6 @@
     };
 </script>
 
-<div bind:this={container} use:focusEvents use:keyEvents class={twMerge("grid w-full", numOfChildren < maxColumns ? "place-content-start" : "place-content-center", className)} style:grid-template-columns="repeat(auto-fit, {tileWidth}px)" style:grid-template-rows="repeat(auto-fit, {tileHeight}px)" style:column-gap="{gapWidth}px" style:row-gap="{gapHeight}px" style:min-width="{(tileWidth + gapWidth) * minColumns - gapWidth}px" style:max-width="{(tileWidth + gapWidth) * maxColumns - gapWidth}px">
+<div bind:this={container} use:focusEvents use:keyEvents class={twMerge("grid w-full", numOfChildren < maxColumns ? "place-content-start" : "place-content-center", className)} style:grid-template-columns="repeat(auto-fit, {tileWidth}px)" style:grid-template-rows="repeat(auto-fit, {tileHeight}px)" style:column-gap="{gapWidth}px" style:row-gap="{gapHeight}px" style:min-width="{(tileWidth + gapWidth) * minColumns - gapWidth}px" style:max-width="{(tileWidth + gapWidth) * maxColumns - gapWidth + 1}px">
     {@render children?.()}
-    <!-- {#each Array(Math.max(maxColumns - numOfChildren, 0)).keys() as i (i)}
-        <div tabindex="-1"></div>
-    {/each} -->
 </div>

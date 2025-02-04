@@ -69,7 +69,7 @@
 <div class={twMerge("flex flex-col gap-2 items-center w-full", className)}>
     <Header {title} />
 
-    <Grid minColumns={4} maxColumns={6} tileWidth={64} tileHeight={64} gapWidth={20} gapHeight={12} {enableKeyInput} focusFirst>
+    <Grid class="lg:w-122" minColumns={4} maxColumns={6} tileWidth={64} tileHeight={64} gapWidth={20} gapHeight={12} {enableKeyInput} focusFirst>
         {#if menu === "creature"}
             <BoxOption label="Select Random Creature" hideBackground onclick={() => updateCreature(Random.item(PLAYER_CREATURE_IDS))}>
                 <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />

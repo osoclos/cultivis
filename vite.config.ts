@@ -43,6 +43,11 @@ const spineBundlePlugin = (): Plugin => ({
 // https://vite.dev/config/
 export default defineConfig({
     server: {
+        https: {
+            cert: ".certs/cert.pem",
+            key: ".certs/dev.pem"
+        },
+
         fs: {
             strict: true,
             deny: ["extraction", "setup"]
@@ -67,5 +72,10 @@ export default defineConfig({
         }
     },
 
-    plugins: [svelte({ compilerOptions: { runes: true } }), tailwindcss(), mkcert(), spineBundlePlugin()]
+    plugins: [svelte({ compilerOptions: { runes: true } }), tailwindcss(), mkcert({
+        autoUpgrade: true,
+        force: true,
+
+        savePath: ".certs"
+    }), spineBundlePlugin()]
 });
