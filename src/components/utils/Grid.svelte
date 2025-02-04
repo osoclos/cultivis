@@ -198,7 +198,7 @@
         });
     };
 </script>
-<div bind:this={container} use:focusEvents use:keyEvents class={twMerge("grid place-content-center w-full", className)} style:grid-template-columns="repeat(auto-fit, {tileWidth}px)" style:grid-template-rows="repeat(auto-fit, {tileHeight}px)" style:column-gap="{gapWidth}px" style:row-gap="{gapHeight}px" style:min-width="{(tileWidth + gapWidth) * minColumns - gapWidth}px" style:max-width="{(tileWidth + gapWidth) * maxColumns - gapWidth + 1}px">
+<div bind:this={container} use:focusEvents use:keyEvents class={twMerge("grid place-content-center w-full", className)} style:grid-template-columns="repeat(auto-fit, {tileWidth}px)" style:grid-template-rows="repeat(auto-fit, {tileHeight}px)" style:column-gap="{gapWidth}px" style:row-gap="{gapHeight}px" style:min-width="{(tileWidth + gapWidth) * minColumns - gapWidth}px" style:max-width="{(tileWidth + gapWidth) * maxColumns - gapWidth + 0.1}px">
     {@render children?.()}
     {#each Array(Math.max(maxColumns - numOfChildren, 0)).keys() as i (i)}
         <div tabindex="-1"></div>

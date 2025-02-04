@@ -47,7 +47,7 @@
 <div class={twMerge("flex flex-col gap-2 items-center w-full", className)}>
     <Header title="Choose Witness" />
 
-    <Grid class="lg:w-122" minColumns={4} maxColumns={6} tileWidth={64} tileHeight={64} gapWidth={20} gapHeight={12} {enableKeyInput} focusFirst>
+    <Grid class="mx-1" minColumns={4} maxColumns={6} tileWidth={64} tileHeight={64} gapWidth={20} gapHeight={12} {enableKeyInput} focusFirst>
         <BoxOption label="Select Random Witness" hideBackground onclick={() => updateWitness(Random.item(WITNESS_IDS))}>
             <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />
         </BoxOption>

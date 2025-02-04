@@ -61,7 +61,7 @@
 <div class={twMerge("flex flex-col gap-2 items-center w-full", className)}>
     <Header title="Choose Mini Boss" />
 
-    <MultiGrid gridClass="lg:w-122" titles={Object.keys(miniBossIdsByCategory)} minColumns={4} maxColumns={6} tileWidth={64} tileHeight={64} gapWidth={20} gapHeight={12} {enableKeyInput} focusFirst>
+    <MultiGrid gridClass="mx-1" titles={Object.keys(miniBossIdsByCategory)} minColumns={4} maxColumns={6} tileWidth={64} tileHeight={64} gapWidth={20} gapHeight={12} {enableKeyInput} focusFirst>
         {#snippet children(category, y)}
             <BoxOption label="Select Random Mini Boss" hideBackground onclick={() => updateMiniBoss(Random.item(miniBossIdsByCategory[category as MiniBossCategoryName]))}>
                 <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />
