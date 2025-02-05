@@ -36,7 +36,7 @@ export class GIF_Manager {
             delay,
             
             transparent: true,
-            transparentIndex: clearColorIdx
+            transparentIndex: clearColorIdx < 0 ? undefined : clearColorIdx
         });
     }
 
