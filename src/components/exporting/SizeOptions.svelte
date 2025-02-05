@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Label, LabelTitle, NumberInput, Toggle } from "../base";
+    import { Label, LabelTitle, Notice, NumberInput, Toggle } from "../base";
     import type { VectorObject } from "../../utils";
 
     interface Options {
@@ -40,6 +40,10 @@
                 <NumberInput label="Height" bind:value={size.y} unit="px" max={Infinity} {oninput} />
             </Label>
 
+            {#if size.x * size.y > 600_000}
+                <Notice label="Your device may not be able to handle exports with such a large size. Note that you may crash your browser and lose your scene if you attempt to do so." />
+            {/if}
+
             <Label label="Lock Aspect Ratio">
                 <Toggle label="Lock Aspect Ratio" bind:enabled={lockAspectRatio} {oninput} />
             </Label>
@@ -52,5 +56,9 @@
         <Label label="Crop Scene">
             <Toggle label="Crop Scene" bind:enabled={cropScene} {oninput} />
         </Label>
+
+        {#if size.x * size.y > 600_000 && cropScene}
+            <Notice label="Your device may not be able to handle exports with such a large size. Note that you may crash your browser and lose your scene if you attempt to do so." />
+        {/if}
     </div>
 </div>

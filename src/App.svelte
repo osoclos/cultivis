@@ -75,7 +75,7 @@
             type: "gif",
 
             delay: 20,
-            hasAccurateColors: true
+            hasAccurateColors: false
         },
 
         "apng": {
@@ -298,9 +298,10 @@
     }
 
     function cloneActor(actor: Actor) {
-        const clonedActor = actor.clone();
+        const { label, animation } = actor;
 
-        const { animation } = actor;
+        const clonedActor = actor.clone();
+        clonedActor.label = label;
         clonedActor.setAnimation(animation);
 
         addRawActor(clonedActor);

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Label, LabelTitle, NumberInput, Toggle } from "../base";
+    import { Label, LabelTitle, Notice, NumberInput, Toggle } from "../base";
 
     interface Options {
         duration: number;
@@ -28,10 +28,18 @@
             <Label label="Duration">
                 <NumberInput label="Duration" bind:value={duration} unit="s" step={0.01} max={Infinity} {oninput} />
             </Label>
+
+            {#if duration > 60}
+                <Notice label="Your device may not be able to handle exports that are longer than a minute. Note that you may crash your browser and lose your scene if you attempt to do so." />
+            {/if}
         {/if}
 
         <Label class="my-2" label="Trim to Longest">
             <Toggle label="Trim to Longest" bind:enabled={trimLongest} {oninput} />
         </Label>
+
+        {#if duration > 60 && trimLongest}
+            <Notice label="Your device may not be able to handle exports that are longer than a minute. Note that you may crash your browser and lose your scene if you attempt to do so." />
+        {/if}
     </div>
 </div>

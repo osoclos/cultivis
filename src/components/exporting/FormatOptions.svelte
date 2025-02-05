@@ -47,9 +47,15 @@
             <Toggle label="Has Accurate Colors" bind:enabled={data.hasAccurateColors} />
         </Label>
 
-        {#if data.delay < 15}
-            <Notice label="Some viewers will not display the scene at such a low refresh delay. Make sure that your viewer is compatible with high-framerate animations." />
-        {/if}
+        <div class="flex flex-col gap-2 text-sm">
+            {#if data.delay < 15}
+                <Notice label="Some viewers will not display the scene at such a low refresh delay. Make sure that your viewer is compatible with high-framerate animations." />
+            {/if}
+            {#if data.hasAccurateColors}
+                <Notice label="Some mobile devices/low-end computers may not be able to handle exporting .GIF files with accurate colors. Consider switching to a more powerful device or exporting in the .APNG format." />
+            {/if}
+        </div>
+        
     {:else if format === "apng" && isDataAPNG_Data(data)}
         <Label label="Delay Per Frame">
             <NumberInput label="Delay Per Frame" bind:value={data.delay} unit="ms" max={Infinity} />
