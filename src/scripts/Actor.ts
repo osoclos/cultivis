@@ -205,7 +205,7 @@ export class Actor implements ActorObject {
 
     updateBounds() {
         const track = this.animationState.tracks[0];
-        if (!track || !track.animationEnd) {
+        if (!track) {
             this.reset();
 
             const { x, y } = this.pos;
