@@ -25,6 +25,7 @@
     const LOADING_TEXTS: string[] = ["Checking ToS Acknowledgement", "Loading Assets", "Setting Up Scene", "Fetching News"];
     
     const EXPORTING_TEXTS: string[] = ["Rendering Scene", "Encoding Frames", "Downloading Scene"];
+    const FIRST_LOAD_NEWS_NUM_OF_FILES: number = 3;
 
     let scene: Scene = $state(Scene.prototype);
     let factory: Factory = $state(Factory.prototype);
@@ -188,7 +189,7 @@
         loadingState = LOADING_STATES.indexOf("FetchingNews");
 
         loadNews = await newsManager.getNews();
-        news = await loadNews(NewsManager.DEFAULT_LOAD_NUM_OF_FILES, [NewsManager.CHANGELOG_FOLDER_NAME, NewsManager.BLOG_FOLDER_NAME]);
+        news = await loadNews(FIRST_LOAD_NEWS_NUM_OF_FILES, [NewsManager.CHANGELOG_FOLDER_NAME, NewsManager.BLOG_FOLDER_NAME]);
 
         setTimeout(() => loadingState = LOADING_STATES.length, 400);
     }
