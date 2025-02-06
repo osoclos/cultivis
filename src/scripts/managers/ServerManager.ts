@@ -129,7 +129,7 @@ interface CommitRequestBody extends RequestBody {
 
 interface CommitDataRequestBody extends RequestBody { sha: string; }
 
-type ContentReplyBody = ContentReplyData[];
+export type ContentReplyBody = ContentReplyData[];
 interface ContentReplyData {
     type: "file" | "dir";
     content: string;
@@ -138,7 +138,7 @@ interface ContentReplyData {
     path: string;
 }
 
-type CommitReplyBody = CommitReplyData[];
+export type CommitReplyBody = CommitReplyData[];
 interface CommitReplyData {
     sha: string;
     unix: number;
@@ -146,7 +146,7 @@ interface CommitReplyData {
     files: string[];
 }
 
-interface CommitDataReplyBody { files: string[]; }
+export interface CommitDataReplyBody { files: string[]; }
 
 function isContentBody(body: NonTokenBody): body is ContentRequestBody {
     return "path" in body;

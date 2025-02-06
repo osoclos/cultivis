@@ -51,6 +51,7 @@
         "onclickcapture",
         "onclone",
         "onkeyfocus",
+        "onloadmore",
         "onnotice",
         "onpinch",
         "onproceed",

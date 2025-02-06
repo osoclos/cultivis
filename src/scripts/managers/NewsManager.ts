@@ -1,5 +1,5 @@
-import { ServerManager } from "./ServerManager";
-import { MONTH_NAMES } from "/src/utils";
+import { MONTH_NAMES } from "../../utils";
+import { ServerManager, type ContentReplyBody } from "./ServerManager";
 
 export class NewsManager {
     static readonly NEWS_LOCAL_STORAGE_NAME: string = "news-last-updated";
@@ -10,47 +10,52 @@ export class NewsManager {
     static readonly CHANGELOG_FOLDER_NAME: string = "changelog";
     static readonly BLOG_FOLDER_NAME: string = "blog";
 
+    static readonly DEFAULT_LOAD_NUM_OF_FILES: number = 5;
+
     private constructor(private serverManager: ServerManager) {}
     static async create() {
         const serverManager = await ServerManager.create();
         return new NewsManager(serverManager);
     }
 
-    async getNews(): Promise<Record<string, string[]>> {
-        interface FileInfo {
-            date: number;
+    async getNews(): Promise<NewsLoader> {
+        const filesToFetch = await this.getOutdatedNewsFiles();
 
-            content: string;
-            folderName: string;
-        }
-
-        const info: FileInfo[] = [];
-
-        const lastUpdate = +(localStorage.getItem(NewsManager.NEWS_LOCAL_STORAGE_NAME) ?? 0);
-        const filesToFetch: string[] = await this.areNewsUpdated() ? [] : await Promise.all(await this.serverManager.getCommit("", ServerManager.NEWS_ROUTE_ROOT, { page: -1, perPage: 100, since: lastUpdate + 1 }).then((commits) => commits.flatMap(({ sha }) => this.serverManager.getCommitData(sha, ServerManager.NEWS_ROUTE_ROOT, true).then(({ files }) => files.map((url) => url.replace("%2F", "/")))))).then((arr) => arr.flat());
-
-        const folders = await this.serverManager.getContent("", ServerManager.NEWS_ROUTE_ROOT, !!filesToFetch.length);
-        for (const { name: folderName, path } of folders.filter(({ type }) => type === "dir")) {
-            const files = await this.serverManager.getContent(path, ServerManager.NEWS_ROUTE_ROOT, !!filesToFetch.length);
-            for (const { type, name, path } of files) {
-                if (type === "dir") {
-                    const subFiles = await this.serverManager.getContent(path, ServerManager.NEWS_ROUTE_ROOT, !!filesToFetch.length);
-                    files.push(...subFiles);
-
-                    continue;
-                }
-
-                const [{ content }] = await this.serverManager.getContent(path, ServerManager.NEWS_ROUTE_ROOT, filesToFetch.some((file) => file.includes(path)));
-                const date = this.dashedNameToUnix(name);
-                
-                info.push({ date, content, folderName });
-            }
-        }
-
-        const news: Record<string, string[]> = {};
-        for (const { content, folderName } of info.sort(({ date: a }, { date: b }) => a - b)) folderName in news ? news[folderName].push(content) : news[folderName] = [content];
+        const folders = new Map((await this.serverManager.getContent("", ServerManager.NEWS_ROUTE_ROOT, !!filesToFetch.length)).filter(({ type }) => type === "dir").map(({ name, path }) => [name, path]));
         
-        return news;
+        const files = new Map<string, ContentReplyBody>();
+        for (const [name, path] of folders) files.set(name, (await this.serverManager.getContent(path, ServerManager.NEWS_ROUTE_ROOT, !!filesToFetch.length)).sort(({ name: a }, { name: b }) => this.dashedNameToUnix(b) - this.dashedNameToUnix(a)));
+        
+        const news: Record<string, string[]> = {};
+        return async (numOfFiles: number = NewsManager.DEFAULT_LOAD_NUM_OF_FILES, folderNames: string[] = [...folders.keys()], skipFetchedFiles: boolean = true): Promise<Record<string, string[]>> => {
+            for (const name of folderNames) {
+                news[name] ??= [];
+                const lastLength = news[name].length * +skipFetchedFiles;
+
+                const folderFiles = files.get(name) ?? [];
+                for (const { type, path } of folderFiles.slice(lastLength, lastLength + numOfFiles)) {
+                    if (type === "dir") {
+                        const subFiles = await this.serverManager.getContent(path, ServerManager.NEWS_ROUTE_ROOT, !!filesToFetch.length);
+                        folderFiles.push(...subFiles);
+
+                        files.set(name, folderFiles);
+                        continue;
+                    }
+
+                    const [{ content }] = await this.serverManager.getContent(path, ServerManager.NEWS_ROUTE_ROOT, filesToFetch.some((file) => file.includes(path)));
+                    news[name].push(content);
+                }
+            }
+
+            return news;
+        };
+    }
+
+    async getOutdatedNewsFiles(): Promise<string[]> {
+        const lastUpdate = +(localStorage.getItem(NewsManager.NEWS_LOCAL_STORAGE_NAME) ?? 0);
+        const files: string[] = await this.areNewsUpdated() ? [] : await Promise.all(await this.serverManager.getCommit("", ServerManager.NEWS_ROUTE_ROOT, { page: -1, perPage: 100, since: lastUpdate + 1 }).then((commits) => commits.flatMap(({ sha }) => this.serverManager.getCommitData(sha, ServerManager.NEWS_ROUTE_ROOT, true).then(({ files }) => files.map((url) => url.replace("%2F", "/")))))).then((arr) => arr.flat());
+
+        return files;
     }
 
     async getTermsSummary(): Promise<string> {
@@ -107,3 +112,4 @@ export class NewsManager {
 }
 
 export const newsManager = await NewsManager.create();
+export type NewsLoader = (numOfFiles?: number, folderNames?: string[], skipFetchedFiles?: boolean) => Promise<Record<string, string[]>>;

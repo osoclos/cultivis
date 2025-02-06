@@ -14,7 +14,7 @@
 
     import { Actor, Exporter, Factory, Scene, type ActorObject } from "./scripts";
     import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness, isMiniBossObj, isWitnessObj } from "./scripts/characters";
-    import { soundManager, newsManager, NewsManager } from "./scripts/managers";
+    import { soundManager, newsManager, NewsManager, type NewsLoader } from "./scripts/managers";
 
     import { bishopData, miniBossData, towwData, witnessData } from "./data/files";
     import { BISHOP_IDS, MINI_BOSS_IDS, WITNESS_IDS } from "./data/types";
@@ -43,7 +43,8 @@
     let hasUserCompliedToTOS: boolean = $state(false);
     const hasFinishedLoading: boolean = $derived(loadingState === LOADING_STATES.length);
 
-    let news: Record<string, string[]> = $state.raw({});
+    let news: Record<string, string[]> = $state({});
+    let loadNews: NewsLoader | null = $state(null);
 
     let lastUpdatedUnix: number = $state(-1);
     let hasNoticedTutorial: boolean = $state(!!localStorage.getItem(HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME));
@@ -185,7 +186,9 @@
         lastUpdatedUnix = await newsManager.getLastUpdatedUnix();
         
         loadingState = LOADING_STATES.indexOf("FetchingNews");
-        news = await newsManager.getNews();
+
+        loadNews = await newsManager.getNews();
+        news = await loadNews(NewsManager.DEFAULT_LOAD_NUM_OF_FILES, [NewsManager.CHANGELOG_FOLDER_NAME, NewsManager.BLOG_FOLDER_NAME]);
 
         setTimeout(() => loadingState = LOADING_STATES.length, 400);
     }
@@ -513,7 +516,7 @@
                     </Label>
                 {/if}
             {:else if categoryIdx === 2}
-                <News {news} />
+                <News {news} onloadmore={async (name) => news = await loadNews!(NewsManager.DEFAULT_LOAD_NUM_OF_FILES, [name])}/>
             {:else if categoryIdx === 3}
                 <CreationDetails {lastUpdatedUnix} bind:hasNoticedTutorial />
                 <SpecialThanks />
