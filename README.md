@@ -66,7 +66,7 @@ Each character has its own customizable attributes, forms and features it can ta
 
 ![Exporting Tab](markdown/assets/exporting-tab.png)
 
-To export the scene into a .GIF animation, you can click the Exporting tab on the top -left hand corner and see the options below.
+To export the scene into a viewable format, you can click the Exporting tab on the top -left hand corner and see the options below.
 
 There are a few options you can modify to change how you want your exported animation to look like. The following options are listed below:
 
@@ -86,6 +86,21 @@ There are a few options you can modify to change how you want your exported anim
 | ------- | ----------- | ---- |
 | Duration | How long will the animation lasts | number |
 | Trim to Longest | Set the duration of the animation to the character with the longest animation's duration | on/off |
+
+There are also different formats that the exported animation can come in, the two formats and their respective changeable settings are listed below:
+
+#### Format Options (.GIF)
+
+| Options | Description | Type |
+| ------- | ----------- | ---- |
+| Delay Per Frame | How long should each frame last before it moves on to the next one/loops | number |
+| Has Accurate Colors | Should the animation show more accurate colors (takes a longer time to export if enabled) | on/off |
+
+#### Format Options (.APNG)
+
+| Options | Description | Type |
+| ------- | ----------- | ---- |
+| Delay Per Frame | How long should each frame last before it moves on to the next one/loops | number |
 
 Once you have selected all of your desired settings, you can then click the Export Scene button and wait for the animation to generate.
 
