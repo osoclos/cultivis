@@ -9,10 +9,12 @@
 
     interface Props {
         news: Record<string, string[]>;
+        fullyLoadedFolders: string[];
+
         onloadmore?: (name: string) => Promise<any>;
     }
 
-    const { news, onloadmore: loadMore = async () => {} }: Props = $props();
+    const { news, fullyLoadedFolders, onloadmore: loadMore = async () => {} }: Props = $props();
     let isLoading: boolean = $state(false);
 
     const folderData: Record<string, [string, Plugin]> = {
@@ -28,9 +30,9 @@
     }
 </script>
 
-<div class="flex flex-col gap-12 w-84 sm:w-96">
+<div class="flex flex-col gap-12 items-center w-84 sm:w-96">
     {#each Object.entries(folderData) as [title, [name, plugin]], i (i)}
-        <div class="flex flex-col gap-2 items-center">
+        <div class="flex flex-col gap-2">
             <Header {title} />
             
             {#if news[name]?.length}
@@ -42,10 +44,14 @@
                     {/each}
                 </div>
 
-                <BannerButton class="mt-4" label={isLoading ? "Loading" : "Load More"} disabled={isLoading} onclick={() => loadNews(name)} />
+                
             {:else}
                 <LabelTitle title="No content available" />
             {/if}
         </div>
+
+        {#if !fullyLoadedFolders.includes(name)}
+            <BannerButton class="mt-4" label={isLoading ? "Loading" : "Load More"} disabled={isLoading} onclick={() => loadNews(name)} />
+        {/if}
     {/each}
 </div>

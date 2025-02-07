@@ -12,10 +12,18 @@ export class NewsManager {
 
     static readonly DEFAULT_LOAD_NUM_OF_FILES: number = 5;
 
-    private constructor(private serverManager: ServerManager) {}
+    #fullyLoadedNewsFolders: Set<string>
+    private constructor(private serverManager: ServerManager) {
+        this.#fullyLoadedNewsFolders = new Set();
+    }
+
     static async create() {
         const serverManager = await ServerManager.create();
         return new NewsManager(serverManager);
+    }
+
+    get fullyLoadedNewsFolders(): string[] {
+        return [...this.#fullyLoadedNewsFolders];
     }
 
     async getNews(): Promise<NewsLoader> {
@@ -45,6 +53,8 @@ export class NewsManager {
                     const [{ content }] = await this.serverManager.getContent(path, ServerManager.NEWS_ROUTE_ROOT, filesToFetch.some((file) => file.includes(path)));
                     news[name].push(content);
                 }
+
+                news[name].length >= folderFiles.length && this.#fullyLoadedNewsFolders.add(name);
             }
 
             return news;

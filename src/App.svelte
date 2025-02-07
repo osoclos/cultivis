@@ -45,6 +45,8 @@
     const hasFinishedLoading: boolean = $derived(loadingState === LOADING_STATES.length);
 
     let news: Record<string, string[]> = $state({});
+    let fullyLoadedFolders: string[] = $state([]);
+
     let loadNews: NewsLoader | null = $state(null);
 
     let lastUpdatedUnix: number = $state(-1);
@@ -191,7 +193,9 @@
         loadingState = LOADING_STATES.indexOf("FetchingNews");
 
         loadNews = await newsManager.getNews();
+
         news = await loadNews(FIRST_LOAD_NEWS_NUM_OF_FILES, [NewsManager.CHANGELOG_FOLDER_NAME, NewsManager.BLOG_FOLDER_NAME]);
+        fullyLoadedFolders = newsManager.fullyLoadedNewsFolders;
 
         setTimeout(() => loadingState = LOADING_STATES.length, 400);
     }
@@ -423,6 +427,11 @@
         fitScene = true;
         scene.resetCamera();
     }
+
+    async function loadMoreNews(name: string) {
+        news = await loadNews!(NewsManager.DEFAULT_LOAD_NUM_OF_FILES, [name]);
+        fullyLoadedFolders = newsManager.fullyLoadedNewsFolders;
+    }
 </script>
 
 <div class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-secondary {hasFinishedLoading ? "opacity-0" : "opacity-100"} not-motion-reduce:transition-opacity not-motion-reduce:duration-900 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
@@ -519,7 +528,7 @@
                     </Label>
                 {/if}
             {:else if categoryIdx === 2}
-                <News {news} onloadmore={async (name) => news = await loadNews!(NewsManager.DEFAULT_LOAD_NUM_OF_FILES, [name])}/>
+                <News {news} {fullyLoadedFolders} onloadmore={loadMoreNews} />
             {:else if categoryIdx === 3}
                 <CreationDetails {lastUpdatedUnix} bind:hasNoticedTutorial />
                 <SpecialThanks />
