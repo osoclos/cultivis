@@ -46,14 +46,10 @@ export default defineConfig({
         https: {
             cert: ".certs/cert.pem",
             key: ".certs/dev.pem"
-        },
-
-        fs: {
-            strict: true,
-            deny: ["extraction", "setup"]
         }
     },
 
+    resolve: { external: ["extraction", "setup", "markdown"] },
     build: {
         assetsDir: ".",
         sourcemap: true,

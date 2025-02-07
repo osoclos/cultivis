@@ -62,4 +62,3 @@ export class SoundManager {
 }
 
 export const soundManager = await SoundManager.create();
-await soundManager.loadAll();

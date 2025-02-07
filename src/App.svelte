@@ -7,12 +7,12 @@
     import { List } from "./components/utils";
     
     import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, TOWW_MENU_NAME, TOWW_Menus, MINI_BOSS_MENU_NAME, MiniBossMenu, WITNESS_MENU_NAME, WitnessMenu } from "./components/characters";
-    import { FORMAT_IDS, FormatOptions, SizeOptions, TimingOptions, type FormatData, type FormatId } from "./components/exporting";
+    import { FormatOptions, SizeOptions, TimingOptions } from "./components/exporting";
 
     import { News } from "./components/news";
     import { CreationDetails, SpecialThanks, HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME } from "./components/credits";
 
-    import { Actor, Exporter, Factory, Scene, type ActorObject } from "./scripts";
+    import { Actor, Exporter, Factory, FORMAT_IDS, Scene, type ActorObject, type FormatData, type FormatId } from "./scripts";
     import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness, isMiniBossObj, isWitnessObj } from "./scripts/characters";
     import { soundManager, newsManager, NewsManager, type NewsLoader } from "./scripts/managers";
 
@@ -131,11 +131,13 @@
         window.addEventListener("keydown", onKeyDown);
         resizer.observe(document.documentElement);
 
+        await soundManager.loadAll();
+
         loadingState = LOADING_STATES.indexOf("ToSAcknowledgement");
         if (await newsManager.areTermsAcknowledged()) hasUserCompliedToTOS = true;
     });
 
-    onDestroy(() => {
+    onDestroy(async () => {
         window.removeEventListener("keydown", onKeyDown);
         resizer.disconnect();
 

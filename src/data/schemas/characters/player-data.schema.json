@@ -7,7 +7,7 @@
 
     "type": "object",
     "properties": {
-        "creature": {
+        "creatures": {
             "type": "object",
             "propertyNames": { "$ref": "#/definitions/CreatureId" },
             "additionalProperties": {
@@ -28,7 +28,28 @@
             }
         },
 
-        "fleece": {
+        "crowns": {
+            "type": "object",
+            "propertyNames": { "$ref": "#/definitions/CrownId" },
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The display name of this crown."
+                    },
+
+                    "variant": {
+                        "type": "string",
+                        "description": "The variant name of this crown."
+                    }
+                },
+
+                "required": ["name", "variant"]
+            }
+        },
+
+        "fleeces": {
             "type": "object",
             "propertyNames": { "$ref": "#/definitions/FleeceId" },
             "additionalProperties": {
@@ -55,19 +76,58 @@
 
                 "required": ["name", "category", "variant"]
             }
+        },
+
+        "bells": {
+            "type": "object",
+            "propertyNames": { "$ref": "#/definitions/BellId" },
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The display name of this bell."
+                    },
+
+                    "category": {
+                        "type": "integer",
+                        "description": "The category index in the crown menu which this bell belongs to.",
+
+                        "minimum": 0,
+                        "maximum": 2
+                    },
+
+                    "variant": {
+                        "type": "string",
+                        "description": "The variant name of this bell."
+                    }
+                },
+
+                "required": ["name", "category", "variant"]
+            }
         }
     },
 
-    "required": ["creature", "fleece"],
+    "required": ["creatures", "crowns", "fleeces", "bells"],
     "definitions": {
         "CreatureId": {
             "type": "string",
             "enum": ["Lamb", "Goat"]
         },
 
+        "CrownId": {
+            "type": "string",
+            "enum": ["Red", "Purple"]
+        },
+
         "FleeceId": {
             "type": "string",
             "enum": ["Lamb", "Goat", "Golden", "Glass", "Diseased", "Fates", "Fragile", "Cursed", "Berserker", "Fervor", "Hobbled", "Heretic", "Natural", "Silk", "God", "Cowboy", "Rags"]
+        },
+
+        "BellId": {
+            "type": "string",
+            "enum": ["Lamb", "Goat", "Golden", "Glass", "Diseased", "Fates", "Fragile", "Cursed", "Berserker", "Fervor", "Hobbled", "God", "Cowboy"]
         }
     }
 }

@@ -4,7 +4,7 @@ import { Bishop, Follower, TOWW, Player, MiniBoss, Witness } from "./characters"
 import { AssetManager } from "./managers";
 
 import { Actor } from "./Actor";
-import { bishopData, followerData, towwData, playerData, miniBossData, witnessData } from "../data/files";
+import { bishopData, towwData, miniBossData } from "../data/files";
 
 export class Factory {
     private _follower?: Follower;
@@ -82,7 +82,7 @@ export class Factory {
                     if (this.hasLoadedFollower) break;
                     
                     const [skeleton, animationState] = await this.fetchData([Follower.TEXTURE_FILENAME], Follower.ATLAS_FILENAME, Follower.SKELETON_FILENAME);
-                    this._follower = new Follower(skeleton, animationState, undefined, followerData.forms.Deer.name, "Deer", "Default_Clothing");
+                    this._follower = new Follower(skeleton, animationState, undefined, undefined, "Deer", "Default_Clothing");
 
                     break;
                 }
@@ -91,7 +91,7 @@ export class Factory {
                     if (this.hasLoadedPlayer) break;
 
                     const [skeleton, animationState] = await this.fetchData([Player.TEXTURE_FILENAME], Player.ATLAS_FILENAME, Player.SKELETON_FILENAME);
-                    this._player = new Player(skeleton, animationState, undefined, playerData.creature.Lamb.name, "Lamb", "Lamb");
+                    this._player = new Player(skeleton, animationState, undefined, undefined, "Lamb", "Lamb");
 
                     break;
                 }
@@ -115,7 +115,7 @@ export class Factory {
                     if (this.hasLoadedWitness) return;
 
                     const [skeleton, animationState] = await this.fetchData([Witness.TEXTURE_FILENAME], Witness.ATLAS_FILENAME, Witness.SKELETON_FILENAME);
-                    this._witness = new Witness(skeleton, animationState, undefined, witnessData.Darkwood.name, "Darkwood", false);
+                    this._witness = new Witness(skeleton, animationState, undefined, undefined, "Darkwood", false);
 
                     break;
                 }

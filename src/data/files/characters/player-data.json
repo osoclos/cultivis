@@ -1,5 +1,5 @@
 {
-    "creature": {
+    "creatures": {
         "Lamb": {
             "name": "Lamb",
             "variant": "Lamb"
@@ -11,7 +11,19 @@
         }
     },
 
-    "fleece": {
+    "crowns": {
+        "Red": {
+            "name": "Red Crown",
+            "variant": "Lamb"
+        },
+
+        "Purple": {
+            "name": "Purple Crown",
+            "variant": "Goat"
+        }
+    },
+
+    "fleeces": {
         "Lamb": {
             "name": "Fleece of the Lamb",
             "category": 0,
@@ -129,6 +141,99 @@
             "category": 0,
 
             "variant": "Lamb_Intro"
+        }
+    },
+
+    "bells": {
+        "Lamb": {
+            "name": "Bell of the Lamb",
+            "category": 0,
+
+            "variant": "Lamb_0"
+        },
+
+        "Goat": {
+            "name": "Bell of the Goat",
+            "category": 0,
+
+            "variant": "Goat"
+        },
+
+        "Golden": {
+            "name": "Golden Bell",
+            "category": 0,
+
+            "variant": "Lamb_1"
+        },
+
+        "Glass": {
+            "name": "Glass Bell",
+            "category": 0,
+
+            "variant": "Lamb_2"
+        },
+
+        "Diseased": {
+            "name": "Diseased Bell",
+            "category": 0,
+
+            "variant": "Lamb_3"
+        },
+
+        "Fates": {
+            "name": "Fateful Bell",
+            "category": 0,
+
+            "variant": "Lamb_4"
+        },
+
+        "Fragile": {
+            "name": "Fragile Bell",
+            "category": 0,
+
+            "variant": "Lamb_5"
+        },
+
+        "Cursed": {
+            "name": "Cursed Bell",
+            "category": 1,
+
+            "variant": "Lamb_6"
+        },
+
+        "Berserker": {
+            "name": "Bell of the Berserker",
+            "category": 1,
+
+            "variant": "Lamb_7"
+        },
+
+        "Fervor": {
+            "name": "Bell of Fervor's Favor",
+            "category": 1,
+
+            "variant": "Lamb_8"
+        },
+
+        "Hobbled": {
+            "name": "Bell of the Hobbled Heels",
+            "category": 1,
+
+            "variant": "Lamb_9"
+        },
+
+        "God": {
+            "name": "God of Death Necklace",
+            "category": 2,
+
+            "variant": "Lamb_1000"
+        },
+
+        "Cowboy": {
+            "name": "Sheriff Badge",
+            "category": 2,
+
+            "variant": "Lamb_676"
         }
     }
 }

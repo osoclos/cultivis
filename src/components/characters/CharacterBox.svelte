@@ -59,7 +59,7 @@
     const info: string = $derived.by(() => {
         switch (true) {
             case isFollowerObj(actor): return `Form: ${followerData.forms[actor.form].name}`;
-            case isPlayerObj(actor): return `Creature: ${playerData.creature[actor.creature].name}`;
+            case isPlayerObj(actor): return `Creature: ${playerData.creatures[actor.creature].name}`;
 
             case isBishopObj(actor): return `Bishop: ${bishopData[actor.bishop].name}`;
             case isTOWW_Obj(actor): return `Form: ${towwData[actor.form].name}`;

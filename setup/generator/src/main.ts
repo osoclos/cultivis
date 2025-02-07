@@ -3,7 +3,8 @@ import "./style.css";
 import { Scene, Factory, Exporter, Actor } from "@/scripts";
 
 import { followerData, miniBossData, towwData } from "@/data/files";
-import { CLOTHING_IDS, FOLLOWER_IDS, HATS_ID, MINI_BOSS_IDS, NECKLACE_IDS, PLAYER_CREATURE_IDS, PLAYER_FLEECE_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
+import { CLOTHING_IDS, FOLLOWER_IDS, HATS_ID, MINI_BOSS_IDS, NECKLACE_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
+import { Player } from "@/scripts/characters";
 
 const WIDTH: number = 64;
 const HEIGHT: number = 64;
@@ -22,10 +23,8 @@ await factory.loadAll();
 
 const exporter = await Exporter.create(scene, factory);
 
-const readyTitle = document.createElement("h1");
-readyTitle.textContent = "Ready!";
-
-document.body.appendChild(readyTitle);
+const message = document.querySelector<HTMLHeadingElement>("h1#message")!;
+message.textContent = "Ready!";
 
 const followerExporter = document.querySelector<HTMLButtonElement>("button#export-followers")!;
 followerExporter.addEventListener("click", () => {
@@ -164,33 +163,93 @@ playerExporter.addEventListener("click", () => {
     let player = factory.player("Lamb", "Lamb");
     player.setAnimation("testing");
 
+    player.crown = null;
+    player.bell = null;
+
     setupScene(player);
-    scene.scale *= 0.8;
+    scene.scale *= 0.9;
     
-    player.pos.setY(36);
+    player.pos.set(4, 32);
     
     const form = new FormData();
     for (const id of PLAYER_CREATURE_IDS) {
-        player.setSkin(id === "Lamb" ? "JustHead" : "Goat_JustHead");
+        const skin = new spine.Skin(Player.CREATURE_SKIN_NAME);
+        skin.copySkin(player.skeleton.data.findSkin(id === "Lamb" ? "JustHead" : "Goat_JustHead"));
+
+        skin.getAttachments().filter(({ name }) => name.includes(Player.CROWN_ATTACHMENT_NAME)).forEach(({ name, slotIndex }) => skin.removeAttachment(slotIndex, name));
+        
+        player.setCustomSkin(skin);
         appendPixelsToForm(form, `0-${id}`);
     }
 
     player = factory.player("Lamb", "Lamb");
     player.setAnimation("testing");
 
+    player.crown = null;
+    player.bell = null;
+
     setupScene(player);
-    scene.scale *= 0.6;
+    scene.scale *= 0.5;
 
-    player.pos.setY(64);
+    player.pos.set(8, -120);
 
-    for (const id of PLAYER_FLEECE_IDS) {
-        player.fleece = id;
-        player.removeSkins("Creature Lamb");
+    for (const id of PLAYER_CROWN_IDS) {
+        const skin = new spine.Skin(Player.CROWN_SKIN_NAME);
+        player.skeleton.data.findSkin(id === "Red" ? "JustHead" : "Goat_JustHead").getAttachments().filter(({ name }) => name.includes(Player.CROWN_ATTACHMENT_NAME)).forEach(({ name, attachment, slotIndex }) => skin.setAttachment(slotIndex, name, attachment));
 
+        player.setCustomSkin(skin);
         appendPixelsToForm(form, `1-${id}`);
     }
 
     sendForm(form, "/player");
+});
+
+const fleeceExporter = document.querySelector<HTMLButtonElement>("button#export-fleeces")!;
+fleeceExporter.addEventListener("click", () => {
+    const player = factory.player("Lamb", "Lamb");
+    player.setAnimation("testing");
+
+    player.crown = null;
+    player.bell = null;
+
+    setupScene(player);
+    scene.scale *= 0.64;
+
+    player.pos.set(4, 48);
+    
+    const form = new FormData();
+    for (const id of PLAYER_FLEECE_IDS) {
+        player.fleece = id;
+        player.removeSkins(Player.CREATURE_SKIN_NAME);
+
+        appendPixelsToForm(form, id);
+    }
+
+    sendForm(form, "/fleeces");
+});
+
+const bellExporter = document.querySelector<HTMLButtonElement>("button#export-bells")!;
+bellExporter.addEventListener("click", () => {
+    const player = factory.player("Lamb", "Lamb");
+    player.setAnimation("testing");
+
+    player.crown = null;
+    player.bell = null;
+
+    setupScene(player);
+    scene.scale *= 0.54;
+
+    player.pos.setY(36);
+    
+    const form = new FormData();
+    for (const id of PLAYER_BELL_IDS) {
+        player.bell = id;
+        player.removeSkins(Player.CREATURE_SKIN_NAME, Player.FLEECE_SKIN_NAME);
+
+        appendPixelsToForm(form, id);
+    }
+
+    sendForm(form, "/bells");
 });
 
 const towwExporter = document.querySelector<HTMLButtonElement>("button#export-toww")!;

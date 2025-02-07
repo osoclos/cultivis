@@ -6,8 +6,8 @@ import ViteExpress from "vite-express";
 import multer from "multer";
 import sharp from "sharp";
 
-import { followerData, miniBossData } from "../src/data/files";
-import { CLOTHING_CATEGORY_LENGTH, CLOTHING_IDS, type ClothingId, FOLLOWER_CATEGORY_LENGTH, FOLLOWER_IDS, type FollowerId, MINI_BOSS_CATEGORY_LENGTH, MiniBossId, NECKLACE_CATEGORY_LENGTH, type NecklaceId } from "../src/data/types";
+import { followerData, miniBossData, playerData } from "../src/data/files";
+import { CLOTHING_CATEGORY_LENGTH, CLOTHING_IDS, type ClothingId, FOLLOWER_CATEGORY_LENGTH, FOLLOWER_IDS, type FollowerId, MINI_BOSS_CATEGORY_LENGTH, MiniBossId, NECKLACE_CATEGORY_LENGTH, type NecklaceId, PLAYER_BELL_CATEGORY_LENGTH, PLAYER_FLEECE_CATEGORY_LENGTH, PlayerBellId, PlayerFleeceId } from "../src/data/types";
 
 const PORT: number = 3000;
 const OUTPUT_DIR: string = path.join(__dirname, "../public/static/assets");
@@ -99,6 +99,34 @@ app.post("/player", data.array("files"), (req) => {
     createSpritesheets(buffers, "player");
 });
 
+app.post("/fleeces", data.array("files"), (req) => {
+    if (!req.files) return;
+
+    const buffers: Buffer[][] = Array(PLAYER_FLEECE_CATEGORY_LENGTH).fill(null).map(() => []);
+    for (const { buffer, originalname } of req.files as Express.Multer.File[]) {
+        const id = originalname.replace(".dat", "") as PlayerFleeceId;
+        const { category } = playerData.fleeces[id];
+
+        buffers[category].push(buffer);
+    }
+
+    createSpritesheets(buffers, "fleeces");
+});
+
+app.post("/bells", data.array("files"), (req) => {
+    if (!req.files) return;
+
+    const buffers: Buffer[][] = Array(PLAYER_BELL_CATEGORY_LENGTH).fill(null).map(() => []);
+    for (const { buffer, originalname } of req.files as Express.Multer.File[]) {
+        const id = originalname.replace(".dat", "") as PlayerBellId;
+        const { category } = playerData.bells[id];
+
+        buffers[category].push(buffer);
+    }
+
+    createSpritesheets(buffers, "bells");
+});
+
 app.post("/toww", data.array("files"), (req) => {
     if (!req.files) return;
 
@@ -153,7 +181,7 @@ async function createSpritesheets(buffers: Buffer[][], name: string = "spriteshe
         left: x * MAX_TILE_WIDTH
     })))).png().toBuffer()).flip();
     
-    for (const i of Array(Math.ceil(Math.max(Math.log2(MAX_TILE_WIDTH / MIN_TILE_WIDTH), Math.log2(MAX_TILE_HEIGHT / MIN_TILE_HEIGHT))) + 1)) {
+    for (const i of Array(Math.ceil(Math.max(Math.log2(MAX_TILE_WIDTH / MIN_TILE_WIDTH), Math.log2(MAX_TILE_HEIGHT / MIN_TILE_HEIGHT))) + 1).keys()) {
         const divisor = 2 ** i;
         spritesheet.resize(width / divisor, height / divisor).toFile(path.join(OUTPUT_DIR, MIN_TILE_WIDTH === MAX_TILE_WIDTH && MIN_TILE_HEIGHT === MAX_TILE_HEIGHT ? `${name}.png` :  `${name}-${MAX_TILE_WIDTH / divisor}x${MAX_TILE_HEIGHT / divisor}.png`));
     }

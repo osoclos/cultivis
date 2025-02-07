@@ -3,7 +3,6 @@ import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
 import { Follower, isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, Player, isWitnessObj, isMiniBossObj, Witness } from "./characters";
 import { APNG_Manager, GIF_Manager } from "./managers";
 
-import { isDataGIF_Data, type FormatData, type FormatId } from "../components/exporting";
 import { Vector } from "../utils";
 
 export class Exporter {
@@ -222,3 +221,29 @@ export class Exporter {
 
 export const EXPORTING_STATES = ["ReadingPixels", "EncodeFrames", "DownloadScene"] as const;
 export type ExportingState = typeof EXPORTING_STATES[number];
+
+export interface GIF_Data extends FormatData {
+    type: "gif";
+    hasAccurateColors: boolean;
+}
+
+export interface APNG_Data extends FormatData { type: "apng"; }
+export interface FormatData {
+    type: FormatId;
+    delay: number;
+}
+
+export function isDataGIF_Data(data: FormatData): data is GIF_Data {
+    return data.type === "gif";
+}
+
+export function isDataAPNG_Data(data: FormatData): data is APNG_Data {
+    return data.type === "apng";
+}
+
+export const FORMAT_IDS = ["gif", "apng"] as const; // TODO: add webp/true-color gifs when possible
+export type FormatId = typeof FORMAT_IDS[number];
+
+export function isStrFormatId(str: string): str is FormatId {
+    return FORMAT_IDS.includes(str as FormatId);
+}

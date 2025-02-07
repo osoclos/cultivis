@@ -148,7 +148,7 @@
                     <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />
                 </BoxOption>
 
-                {#each Object.values(followerIdsByCategory)[y].map<[FollowerId, FormData]>((id) => [id, followerData.forms[id]]) as [id, { name }], x (x)}
+                {#each Object.values(followerIdsByCategory)[y].map<[FollowerId, FormData]>((id) => [id, followerData.forms[id]]) as [id, { name }], x (id)}
                     <BoxOption label={name} selected={id === obj.form} onclick={() => updateForm(id)}>
                         <SpritesheetImage src="/static/assets/followers.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
                     </BoxOption>
@@ -158,7 +158,7 @@
                     <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />
                 </BoxOption>
 
-                {#each Object.values(clothingIdsByCategory)[y].map<[ClothingId, ClothingData]>((id) => [id, followerData.clothing[id]]) as [id, { name }], x (x) }
+                {#each Object.values(clothingIdsByCategory)[y].map<[ClothingId, ClothingData]>((id) => [id, followerData.clothing[id]]) as [id, { name }], x (id) }
                     <BoxOption label={name} selected={id === obj.clothing} onclick={() => updateClothing(id)}>
                         <SpritesheetImage src="/static/assets/clothing.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
                     </BoxOption>
@@ -175,7 +175,7 @@
                         <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />
                     </BoxOption>
 
-                    {#each Object.values(necklaceIdsByCategory)[y].map<[NecklaceId, NecklaceData]>((id) => [id, followerData.necklaces[id]]) as [id, { name }], x (x) }
+                    {#each Object.values(necklaceIdsByCategory)[y].map<[NecklaceId, NecklaceData]>((id) => [id, followerData.necklaces[id]]) as [id, { name }], x (id) }
                         <BoxOption label={name} selected={id === obj.necklace} onclick={() => updateNecklace(id)}>
                             <SpritesheetImage src="/static/assets/necklaces.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
                         </BoxOption>
@@ -189,7 +189,7 @@
                         <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />
                     </BoxOption>
         
-                    {#each Object.entries(followerData.hats) as [id, { name }], x (x) }
+                    {#each Object.entries(followerData.hats) as [id, { name }], x (id) }
                         <BoxOption label={name} selected={id === obj.hat} onclick={() => updateHat(id as HatId)}>
                             <SpritesheetImage src="/static/assets/hats.png" label={name} {x} y={0} tileWidth={64} tileHeight={64} />
                         </BoxOption>

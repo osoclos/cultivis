@@ -1,5 +1,5 @@
 <script lang="ts" module>
-    import { FOLLOWER_IDS, type FollowerId, PLAYER_CREATURE_IDS, PLAYER_FLEECE_IDS, type PlayerCreatureId, type PlayerFleeceId } from "../../data/types";
+    import { FOLLOWER_IDS, type FollowerId, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, type PlayerBellId, type PlayerCreatureId, type PlayerCrownId, type PlayerFleeceId } from "../../data/types";
     import { bishopData, followerData, miniBossData } from "../../data/files";
 
     const FOLLOWER_STARTING_NAMES: string[] = ["Ja", "Jul", "Na", "No", "Gre", "Bre", "Tre", "Mer", "Ty", "Ar", "An", "Yar", "Fe", "Fi", "The", "Thor", "Al", "Ha", "He", "Joo", "Ma", "Me", "Pa", "Pu"];
@@ -61,11 +61,14 @@
         return [form, formVariantIdx, formColorSetIdx];
     }
 
-    export function getRandomPlayerAppearance(): [PlayerCreatureId, PlayerFleeceId] {
+    export function getRandomPlayerAppearance(): [PlayerCreatureId, PlayerCrownId | null, PlayerFleeceId, PlayerBellId | null] {
         const creature = Random.item(PLAYER_CREATURE_IDS);
-        const fleece = Random.item(PLAYER_FLEECE_IDS);
+        const crown = Random.item([...PLAYER_CROWN_IDS, null]);
 
-        return [creature, fleece];
+        const fleece = Random.item(PLAYER_FLEECE_IDS);
+        const bell = Random.item([...PLAYER_BELL_IDS, null]);
+
+        return [creature, crown, fleece, bell];
     }
 </script>
 
@@ -143,13 +146,19 @@
             }
 
             case isPlayerObj(actor) && isPlayerObj(obj): {
-                const [creature, fleece] = getRandomPlayerAppearance();
+                const [creature, crown, fleece, bell] = getRandomPlayerAppearance();
     
                 actor.creature = creature;
+                actor.crown = crown;
+                
                 actor.fleece = fleece;
+                actor.bell = bell;
                 
                 obj.creature = creature;
+                obj.crown = crown;
+
                 obj.fleece = fleece;
+                obj.bell = bell;
 
                 break;
             }
@@ -242,7 +251,9 @@
                     <BannerButton label="Randomize" src="/static/ui/dice-6.png" onclick={randomizeAppearance} />
                 {:else if isPlayerObj(obj)}
                     <BannerButton label="Choose Creature" playClickSound={false} onclick={() => proceed("creature")} />
+                    <BannerButton label="Choose Crown" playClickSound={false} onclick={() => proceed("crown")} />
                     <BannerButton label="Choose Fleece" playClickSound={false} onclick={() => proceed("fleece")} />
+                    <BannerButton label="Choose Bell" playClickSound={false} onclick={() => proceed("bell")} />
                     
                     <BannerButton label="Randomize" src="/static/ui/dice-6.png" onclick={randomizeAppearance} />
                 {:else if isBishopObj(obj)}

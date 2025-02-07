@@ -1,33 +1,10 @@
 <script lang="ts" module>
-    export interface GIF_Data extends FormatData {
-        type: "gif";
-        hasAccurateColors: boolean;
-    }
-
-    export interface APNG_Data extends FormatData { type: "apng"; }
-    export interface FormatData {
-        type: FormatId;
-        delay: number;
-    }
-
-    export function isDataGIF_Data(data: FormatData): data is GIF_Data {
-        return data.type === "gif";
-    }
-
-    export function isDataAPNG_Data(data: FormatData): data is APNG_Data {
-        return data.type === "apng";
-    }
-
-    export const FORMAT_IDS = ["gif", "apng"] as const; // TODO: add webp/true-color gifs when possible
-    export type FormatId = typeof FORMAT_IDS[number];
-
-    export function isStrFormatId(str: string): str is FormatId {
-        return FORMAT_IDS.includes(str as FormatId);
-    }
+    
 </script>
 
 <script lang="ts">
-  import { Label, Notice, NumberInput, Toggle } from "../base";
+    import { Label, Notice, NumberInput, Toggle } from "../base";
+    import { isDataAPNG_Data, isDataGIF_Data, type FormatData, type FormatId } from "../../scripts";
 
     interface Props {
         format: FormatId;
