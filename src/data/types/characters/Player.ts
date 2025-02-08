@@ -24,7 +24,7 @@ export interface PlayerCrownData {
     variant: string;
 }
 
-export const PLAYER_FLEECE_IDS: (keyof typeof playerData.fleeces)[] = ["Lamb", "Goat", "Golden", "Glass", "Diseased", "Fates", "Fragile", "Cursed", "Berserker", "Fervor", "Hobbled", "Heretic", "Natural", "Silk", "God", "Cowboy", "Rags"] as const;
+export const PLAYER_FLEECE_IDS: (keyof typeof playerData.fleeces)[] = ["Lamb", "Goat", "Golden", "Glass", "Diseased", "Fates", "Fragile", "Cowboy", "Cursed", "Berserker", "Fervor", "Hobbled", "God", "Heretic", "Natural", "Silk", "Rags"] as const;
 export type PlayerFleeceId = typeof PLAYER_FLEECE_IDS[number];
 
 export interface PlayerFleeceData {
@@ -37,16 +37,17 @@ export interface PlayerFleeceData {
 export enum PlayerFleeceCategory {
     General,
     PostGame,
+
     DLC
 }
 
-export const PLAYER_FLEECE_CATEGORIES = ["General", "Post Game", "DLC"] as const;
+export const PLAYER_FLEECE_CATEGORIES = ["General", "Post-Game", "DLC"] as const;
 export const PLAYER_FLEECE_CATEGORY_LENGTH: number = Object.keys(PlayerFleeceCategory).length / 2;
 
 export type PlayerFleeceCategoryName = typeof PLAYER_FLEECE_CATEGORIES[number];
 export const playerFleeceIdsByCategory = Object.fromEntries(PLAYER_FLEECE_CATEGORIES.map<[PlayerFleeceCategoryName, PlayerFleeceId[]]>((name, i) => [name, PLAYER_FLEECE_IDS.map<[PlayerFleeceId, PlayerFleeceCategory]>((id) => [id, playerData.fleeces[id].category]).filter(([_, category]) => category === i).map(([id]) => id)])) as Record<PlayerFleeceCategoryName, PlayerFleeceId[]>;
 
-export const PLAYER_BELL_IDS: (keyof typeof playerData.bells)[] = ["Lamb", "Goat", "Golden", "Glass", "Diseased", "Fates", "Fragile", "Cursed", "Berserker", "Fervor", "Hobbled", "God", "Cowboy"] as const;
+export const PLAYER_BELL_IDS: (keyof typeof playerData.bells)[] = ["Lamb", "Goat", "Golden", "Glass", "Diseased", "Fates", "Fragile", "Cowboy", "Cursed", "Berserker", "Fervor", "Hobbled", "God"] as const;
 export type PlayerBellId = typeof PLAYER_BELL_IDS[number];
 
 export interface PlayerBellData {
@@ -58,11 +59,10 @@ export interface PlayerBellData {
 
 export enum PlayerBellCategory {
     General,
-    PostGame,
-    DLC
+    PostGame
 }
 
-export const PLAYER_BELL_CATEGORIES = ["General", "Post Game", "DLC"] as const;
+export const PLAYER_BELL_CATEGORIES = ["General", "Post-Game"] as const;
 export const PLAYER_BELL_CATEGORY_LENGTH: number = Object.keys(PlayerBellCategory).length / 2;
 
 export type PlayerBellCategoryName = typeof PLAYER_BELL_CATEGORIES[number];

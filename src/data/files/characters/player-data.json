@@ -73,6 +73,13 @@
             "variant": "Lamb_5"
         },
 
+        "Cowboy": {
+            "name": "Cowboy",
+            "category": 0,
+
+            "variant": "Lamb_676"
+        },
+
         "Cursed": {
             "name": "Fleece of a Cursed Crusade",
             "category": 1,
@@ -101,6 +108,13 @@
             "variant": "Lamb_9"
         },
 
+        "God": {
+            "name": "God of Death Fleece",
+            "category": 1,
+
+            "variant": "Lamb_1000"
+        },
+
         "Heretic": {
             "name": "Fleece of the Heretics",
             "category": 2,
@@ -120,20 +134,6 @@
             "category": 2,
 
             "variant": "Lamb_1002"
-        },
-
-        "God": {
-            "name": "God of Death Fleece",
-            "category": 2,
-
-            "variant": "Lamb_1000"
-        },
-
-        "Cowboy": {
-            "name": "Cowboy",
-            "category": 2,
-
-            "variant": "Lamb_676"
         },
 
         "Rags": {
@@ -194,6 +194,13 @@
             "variant": "Lamb_5"
         },
 
+        "Cowboy": {
+            "name": "Sheriff Badge",
+            "category": 0,
+
+            "variant": "Lamb_676"
+        },
+
         "Cursed": {
             "name": "Cursed Bell",
             "category": 1,
@@ -224,16 +231,9 @@
 
         "God": {
             "name": "God of Death Necklace",
-            "category": 2,
+            "category": 1,
 
             "variant": "Lamb_1000"
-        },
-
-        "Cowboy": {
-            "name": "Sheriff Badge",
-            "category": 2,
-
-            "variant": "Lamb_676"
         }
     }
 }
