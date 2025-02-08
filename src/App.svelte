@@ -344,6 +344,8 @@
 
         actor = newActor;
         actorObj = actors?.[scene.actors.indexOf(newActor)] ?? null;
+
+        updateSceneFromChanges();
     }
 
     function selectMenu(menu: string) {

@@ -123,6 +123,6 @@
     </div>
 
     {#if hasNotice}
-        <NoticeIcon class="absolute top-0 right-0 z-10 w-6 h-6 translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+        <NoticeIcon class="absolute top-1/2 right-0 z-10 w-6 h-6 translate-x-1/2 -translate-y-1/2 pointer-events-none" />
     {/if}
 </button>

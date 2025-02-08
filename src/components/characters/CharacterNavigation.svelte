@@ -272,12 +272,20 @@
                     
                         <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
                             {#if isFollowerObj(obj) && isFollowerObj(actor)}
-                                <Label label="Is a Disciple?">
-                                    <Toggle label="Is a Disciple?" bind:enabled={obj.isDisciple} oninput={(isDisciple) => actor.isDisciple = isDisciple} />
+                                <Label label="Level">
+                                    <Slider class="ml-12" label="Level" bind:value={obj.level} min={1} max={10} step={1} displayValues={["O", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]} oninput={(level) => actor.level = level} />
                                 </Label>
 
                                 <Label label="Age State">
                                     <ArrowSelection class="ml-6" label="Age State" options={["Baby", "Adult", "Elder"]} bind:i={obj.ageState} oninput={(_, i) => actor.ageState = i} />
+                                </Label>
+
+                                <Label label="Is a Disciple?">
+                                    <Toggle label="Is a Disciple?" bind:enabled={obj.isDisciple} oninput={(isDisciple) => actor.isDisciple = isDisciple} />
+                                </Label>
+
+                                <Label label="Is Wearing a Hood?">
+                                    <Toggle label="Is Wearing a Hood?" bind:enabled={obj.isHooded} oninput={(isHooded) => actor.isHooded = isHooded} />
                                 </Label>
                             {:else if isPlayerObj(obj) && isPlayerObj(actor)}
                                 <Label label="Hurt State">

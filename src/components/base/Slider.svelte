@@ -45,7 +45,7 @@
     onMount(() => resizer.observe(bar));
     onDestroy(() => resizer.disconnect());
 
-    const percent = $derived(value / (max - min));
+    const percent = $derived((value - min) / (max - min));
     function updateValFromPercentage(percentage: number) {
         value = MoreMath.clamp(MoreMath.roundNearest(min + percentage * (max - min), step), min, max);
     }

@@ -12,9 +12,20 @@ export class Follower extends Actor implements FollowerObject {
 
     static readonly HALO_SLOT_NAME: string = "halo";
     static readonly HALO_ATTACHMENT_NAME: string = "Other/Halo";
+    
+    static readonly HOOD_SKIN_PREFIX: string = "Clothes/Hooded_Lvl";
+    static readonly ELDER_HOOD_SKIN_NAME: string = "Clothes/Hooded_HorseTown";
+    static readonly MAX_HOOD_LEVEL: number = 5;
+
+    static readonly ROBES_SKIN_PREFIX: string = "Clothes/Robes_Lvl";
+    static readonly ELDER_ROBES_SKIN_NAME: string = "Clothes/Robes_Old";
+    static readonly ROBES_STARTING_LEVEL: number = 3;
+    static readonly LEVELS_PER_ROBES_UPGRADE: number = 2;
+    static readonly MAX_ROBES_FOLLOWER_LEVEL: number = (5 - this.ROBES_STARTING_LEVEL + 1) * this.LEVELS_PER_ROBES_UPGRADE; // highest robes level is 5.
+    static readonly ROBES_LEVEL_WHEN_EXCEEDED: number = 3;
 
     static readonly BABY_SKIN_NAME: string = "Other/Baby";
-    static readonly OLD_SKIN_NAME: string = "Other/Old";
+    static readonly ELDER_SKIN_NAME: string = "Other/Old";
 
     static readonly BODY_EXTRA_SLOT_NAME: string = "BODY_EXTRA";
 
@@ -24,8 +35,15 @@ export class Follower extends Actor implements FollowerObject {
     #necklace: NecklaceId | null;
     #hat: HatId | null;
 
-    // TODO: attributes other than isDisciple and ageState are animation-based, so will require animation sequencing. add this when scenarios are added
+    #level: FollowerLevel;
+    #ageState: FollowerAgeState;
+
     #isDisciple: boolean;
+    #isHooded: boolean;
+
+    // TODO: attributes other than isDisciple and ageState are animation-based, so will require animation sequencing. add this when scenarios are added
+    #emotionState: FollowerEmotionState;
+
     #isEnlightened: boolean;
     #isSinned: boolean;
 
@@ -41,11 +59,8 @@ export class Follower extends Actor implements FollowerObject {
     #isBrainwashed: boolean;
     #isDissenting: boolean;
 
-    #isDrunk: boolean;
+    #isBefuddled: boolean;
     #isSweating: boolean;
-
-    #ageState: FollowerAgeState;
-    #emotionState: FollowerEmotionState;
 
     private indexes: FollowerIndexes
     constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = followerData.forms.Deer.name, form: FollowerId = "Deer", clothing: ClothingId = "Default_Clothing") {
@@ -57,7 +72,14 @@ export class Follower extends Actor implements FollowerObject {
         this.#necklace = null;
         this.#hat = null;
 
+        this.#level = FollowerLevel.I;
+
+        this.#ageState = FollowerAgeState.Adult;
+        this.#emotionState = FollowerEmotionState.Normal;
+
         this.#isDisciple = false;
+        this.#isHooded = false;
+
         this.#isEnlightened = false;
         this.#isSinned = false;
 
@@ -73,11 +95,8 @@ export class Follower extends Actor implements FollowerObject {
         this.#isBrainwashed = false;
         this.#isDissenting = false;
 
-        this.#isDrunk = false;
+        this.#isBefuddled = false;
         this.#isSweating = false;
-
-        this.#ageState = FollowerAgeState.Adult;
-        this.#emotionState = FollowerEmotionState.Normal;
 
         this.indexes = {
             form: {
@@ -134,12 +153,48 @@ export class Follower extends Actor implements FollowerObject {
         this.update();
     }
 
+    get level(): FollowerLevel {
+        return this.#level;
+    }
+
+    set level(level: FollowerLevel) {
+        this.#level = level;
+        this.update();
+    }
+
+    get ageState(): FollowerAgeState {
+        return this.#ageState;
+    }
+
+    set ageState(ageState: FollowerAgeState) {
+        this.#ageState = ageState;
+        this.update();
+    }
+
+    get emotionState(): FollowerEmotionState {
+        return this.#emotionState;
+    }
+
+    set emotionState(emotionState: FollowerEmotionState) {
+        this.#emotionState = emotionState;
+        this.update();
+    }
+
     get isDisciple(): boolean {
         return this.#isDisciple;
     }
 
     set isDisciple(isDisciple: boolean) {
         this.#isDisciple = isDisciple;
+        this.update();
+    }
+
+    get isHooded(): boolean {
+        return this.#isHooded;
+    }
+
+    set isHooded(isHooded: boolean) {
+        this.#isHooded = isHooded;
         this.update();
     }
 
@@ -233,12 +288,12 @@ export class Follower extends Actor implements FollowerObject {
         this.update();
     }
 
-    get isDrunk(): boolean {
-        return this.#isDrunk;
+    get isBefuddled(): boolean {
+        return this.#isBefuddled;
     }
 
-    set isDrunk(isDrunk: boolean) {
-        this.#isDrunk = isDrunk;
+    set isBefuddled(isBefuddled: boolean) {
+        this.#isBefuddled = isBefuddled;
         this.update();
     }
 
@@ -248,24 +303,6 @@ export class Follower extends Actor implements FollowerObject {
 
     set isSweating(isSweating: boolean) {
         this.#isSweating = isSweating;
-        this.update();
-    }
-
-    get ageState(): FollowerAgeState {
-        return this.#ageState;
-    }
-
-    set ageState(ageState: FollowerAgeState) {
-        this.#ageState = ageState;
-        this.update();
-    }
-
-    get emotionState(): FollowerEmotionState {
-        return this.#emotionState;
-    }
-
-    set emotionState(emotionState: FollowerEmotionState) {
-        this.#emotionState = emotionState;
         this.update();
     }
 
@@ -338,14 +375,21 @@ export class Follower extends Actor implements FollowerObject {
     }
 
     update() {
-        const { formData, clothingData, necklaceData, hatData, colorSetData, formVariantIdx, formColorSetIdx, clothingVariantIdx, clothingColorSetIdx, isDisciple, ageState } = this;
+        const { formData, clothingData, necklaceData, hatData, colorSetData, formVariantIdx, formColorSetIdx, clothingVariantIdx, clothingColorSetIdx, level, ageState, isDisciple, isHooded } = this;
 
         this.setSkin(formData.variants[formVariantIdx]);
-        ageState !== FollowerAgeState.Adult && this.addSkins(Follower[ageState === FollowerAgeState.Baby ? "BABY_SKIN_NAME" : "OLD_SKIN_NAME"]);
+        ageState !== FollowerAgeState.Adult && this.addSkins(Follower[ageState === FollowerAgeState.Baby ? "BABY_SKIN_NAME" : "ELDER_SKIN_NAME"]);
 
-        this.addSkins(clothingData.variants[clothingVariantIdx]);
-
-        clothingData.sets && this.applyColors(clothingData.sets[clothingColorSetIdx]);
+        isHooded && this.addSkins(ageState === FollowerAgeState.Elder ? Follower.ELDER_HOOD_SKIN_NAME : `${Follower.HOOD_SKIN_PREFIX}${Math.min(level, Follower.MAX_HOOD_LEVEL)}`)
+        this.addSkins(
+            isHooded
+                ? ageState === FollowerAgeState.Elder
+                    ? Follower.ELDER_ROBES_SKIN_NAME
+                    : `${Follower.ROBES_SKIN_PREFIX}${level > Follower.MAX_ROBES_FOLLOWER_LEVEL ? Follower.ROBES_LEVEL_WHEN_EXCEEDED : Math.floor((level - 1) / Follower.LEVELS_PER_ROBES_UPGRADE) + Follower.ROBES_STARTING_LEVEL}`
+                : clothingData.variants[clothingVariantIdx]
+        );
+        
+        isHooded ? ageState !== FollowerAgeState.Elder && this.applyColors(followerData.clothing.Default_Clothing.sets![clothingColorSetIdx]) : clothingData.sets && this.applyColors(clothingData.sets[clothingColorSetIdx]);
         this.applyColors(colorSetData[formColorSetIdx]);
 
         necklaceData && this.addSkins(necklaceData.variant);
@@ -361,7 +405,7 @@ export class Follower extends Actor implements FollowerObject {
     }
 
     copyFromObj(obj: FollowerObject) {
-        const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, isDisciple, ageState } = obj;
+        const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, isDisciple, isHooded, isEnlightened, isSinned, isTired, isHungry, isSick, isTraumatized, isZombie, isPossessed, isBrainwashed, isDissenting, isBefuddled, isSweating } = obj;
         
         this.form = form;
         this.formVariantIdx = formVariantIdx;
@@ -374,15 +418,38 @@ export class Follower extends Actor implements FollowerObject {
         this.necklace = necklace;
         this.hat = hat;
 
-        this.isDisciple = isDisciple;
+        this.level = level;
+        
         this.ageState = ageState;
+        this.emotionState = emotionState;
+
+        this.isDisciple = isDisciple;
+        this.isHooded = isHooded;
+
+        this.isEnlightened = isEnlightened;
+        this.isSinned = isSinned;
+
+        this.isTired = isTired;
+        this.isHungry = isHungry;
+        
+        this.isSick = isSick;
+        this.isTraumatized = isTraumatized;
+        
+        this.isZombie = isZombie;
+        this.isPossessed = isPossessed;
+        
+        this.isBrainwashed = isBrainwashed;
+        this.isDissenting = isDissenting;
+        
+        this.isBefuddled = isBefuddled;
+        this.isSweating = isSweating;
 
         super.copyFromObj(obj);
     }
 
     toObj(): FollowerObject {
-        const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, isDisciple, isEnlightened, isSinned, isTired, isHungry, isSick, isTraumatized, isZombie, isPossessed, isBrainwashed, isDissenting, isDrunk, isSweating, ageState, emotionState } = this;
-        return { ...super.toObj(), type: "follower", form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, isDisciple, isEnlightened, isSinned, isTired, isHungry, isSick, isTraumatized, isZombie, isPossessed, isBrainwashed, isDissenting, isDrunk, isSweating, ageState, emotionState };
+        const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, isDisciple, isHooded, isEnlightened, isSinned, isTired, isHungry, isSick, isTraumatized, isZombie, isPossessed, isBrainwashed, isDissenting, isBefuddled, isSweating } = this;
+        return { ...super.toObj(), type: "follower", form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, isDisciple, isHooded, isEnlightened, isSinned, isTired, isHungry, isSick, isTraumatized, isZombie, isPossessed, isBrainwashed, isDissenting, isBefuddled, isSweating };
     }
 
     applyColors(set: ColorSet) {
@@ -402,13 +469,13 @@ export class Follower extends Actor implements FollowerObject {
     }
 
     private clampIndexes() {
-        const { formVariantIdx, formColorSetIdx, clothingVariantIdx, clothingColorSetIdx } = this;
+        const { formData, formVariantIdx, clothingData, clothingVariantIdx, colorSetData, formColorSetIdx, clothingColorSetIdx, isHooded} = this;
 
-        this.indexes.form.variant = MoreMath.clamp(formVariantIdx, 0, this.formData.variants.length - 1);
-        this.indexes.form.colorSet = MoreMath.clamp(formColorSetIdx, 0, this.colorSetData.length - 1);
+        this.indexes.form.variant = MoreMath.clamp(formVariantIdx, 0, formData.variants.length - 1);
+        this.indexes.form.colorSet = MoreMath.clamp(formColorSetIdx, 0, colorSetData.length - 1);
 
-        this.indexes.clothing.variant = MoreMath.clamp(clothingVariantIdx, 0, this.clothingData.variants.length - 1);
-        this.indexes.clothing.colorSet = MoreMath.clamp(clothingColorSetIdx, 0, (this.clothingData.sets?.length ?? 1) - 1);
+        this.indexes.clothing.variant = MoreMath.clamp(clothingVariantIdx, 0, clothingData.variants.length - 1);
+        this.indexes.clothing.colorSet = MoreMath.clamp(clothingColorSetIdx, 0, ((isHooded ? followerData.clothing.Default_Clothing : clothingData).sets?.length ?? 1) - 1);
     }
 }
 
@@ -424,7 +491,14 @@ export interface FollowerObject extends ActorObject {
     necklace: NecklaceId | null;
     hat: HatId | null;
 
+    level: FollowerLevel;
+
+    ageState: FollowerAgeState;
+    emotionState: FollowerEmotionState;
+
     isDisciple: boolean;
+    isHooded: boolean;
+
     isEnlightened: boolean;
     isSinned: boolean;
 
@@ -440,11 +514,8 @@ export interface FollowerObject extends ActorObject {
     isBrainwashed: boolean;
     isDissenting: boolean;
 
-    isDrunk: boolean;
+    isBefuddled: boolean;
     isSweating: boolean;
-
-    ageState: FollowerAgeState;
-    emotionState: FollowerEmotionState;
 }
 
 export interface FollowerIndexes {
@@ -455,6 +526,19 @@ export interface FollowerIndexes {
 export interface FollowerIndex {
     variant: number;
     colorSet: number;
+}
+
+export enum FollowerLevel {
+    I = 1,
+    II,
+    III,
+    IV,
+    V,
+    VI,
+    VII,
+    VIII,
+    IX,
+    X
 }
 
 export enum FollowerAgeState {

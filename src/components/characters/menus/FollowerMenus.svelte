@@ -69,7 +69,7 @@
     const followerColorSets = $derived(followerData.forms[obj.form].sets);
     const generalColorSets = $derived(followerData.generalColorSets);
 
-    const clothingColorSets = $derived(followerData.clothing[obj.clothing].sets);
+    const clothingColorSets = $derived(followerData.clothing[obj.isHooded ? "Default_Clothing" : obj.clothing].sets);
 
     function findMostPopularColor(set: ColorSet) {
         const slotLengths = set.map(({ slots }) => slots.length);
