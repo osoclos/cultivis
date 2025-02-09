@@ -47,7 +47,7 @@
         onpinch: pinch = () => {}
     }: Props = $props();
 
-    let drawId: number;
+    let frameId: number;
 
     let lastTime: number;
     function draw(time: number) {
@@ -55,7 +55,7 @@
         scene.render(deltaTime / 1000);
 
         lastTime = time;
-        drawId = requestAnimationFrame(draw);
+        frameId = requestAnimationFrame(draw);
     }
 
     onDestroy(() => gl.getExtension("WEBGL_lose_context")?.loseContext());
@@ -71,14 +71,15 @@
         factory = await Factory.create(gl, FACTORY_ASSETS_ROOT);
 
         load(scene, factory, canvas);
-        requestAnimationFrame(draw);
+        frameId = requestAnimationFrame(draw);
     }
 
     function onresize(_size: Vector, renderSize: Vector) {
-        drawId && cancelAnimationFrame(drawId);
-        scene.renderSize.copy(renderSize);
+        frameId && cancelAnimationFrame(frameId);
+        frameId = 0;
 
-        drawId = requestAnimationFrame(draw);
+        scene.renderSize.copy(renderSize);
+        draw(0);
     }
 
     function onshift(delta: Vector) {
