@@ -9,7 +9,7 @@ import.meta.env.DEV && new URLSearchParams(window.location.search).has(ENABLE_MO
 
 // for analytics
 if (import.meta.env.PROD && window.location.origin === "https://cultivis.netlify.app") {
-    const GTAG_DATA: any[] = ["js", Date.now(), "config", "G-WL5CJBQ7FH"];
+    const GTAG_DATA: any[] = [["js", Date.now()], ["config", "G-WL5CJBQ7FH"]];
     "dataLayer" in window && Array.isArray(window.dataLayer) ? window.dataLayer.push(...GTAG_DATA) : Object.assign(window, { dataLayer: GTAG_DATA });
 }
 
