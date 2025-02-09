@@ -48,8 +48,8 @@
         if (!children) return;
 
         function onKeyDown(evt: KeyboardEvent) {
-            const { code } = evt;
-            if (!["KeyQ", "KeyR"].includes(code) || document.activeElement instanceof HTMLInputElement || !enableKeyInput) return;
+            const { code, ctrlKey, altKey } = evt;
+            if (!["KeyQ", "KeyR"].includes(code) || ctrlKey || altKey || document.activeElement instanceof HTMLInputElement || !enableKeyInput) return;
 
             evt.preventDefault();
 

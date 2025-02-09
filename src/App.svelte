@@ -97,8 +97,8 @@
     matchMedia("(max-width: 64rem)").matches && Vector.fromObj(size).swap().cloneObj(size);
 
     function onKeyDown(evt: KeyboardEvent) {
-        const { code } = evt;
-        if (!["KeyE", "KeyF"].includes(code) || document.activeElement instanceof HTMLInputElement) return;
+        const { code, ctrlKey, altKey } = evt;
+        if (!["KeyE", "KeyF"].includes(code) || ctrlKey || altKey || document.activeElement instanceof HTMLInputElement) return;
         
         evt.preventDefault();
         

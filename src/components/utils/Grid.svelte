@@ -137,8 +137,8 @@
         function onKeyDown(evt: KeyboardEvent) {
             const elements = ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0);
 
-            const { code, shiftKey } = evt;
-            if (!["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].concat(isTabbable ? ["Tab"] : []).includes(code) || document.activeElement instanceof HTMLInputElement || !enableKeyInput) return;
+            const { code, shiftKey, ctrlKey, altKey } = evt;
+            if (!["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].concat(isTabbable ? ["Tab"] : []).includes(code) || ctrlKey || altKey || document.activeElement instanceof HTMLInputElement || !enableKeyInput) return;
 
             evt.preventDefault();
             if (code === "Tab") {
