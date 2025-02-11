@@ -35,7 +35,7 @@ Therefore, the creator reserves the right to alter CultiVis to meet new requirem
 
 To further improve CultiVis and its functionality, some non-sensitive data may be collected to further enhance your experience when using the website, as well as to be used as promotional statistics and/or material.
 
-As such, the creator is allowed to share and publish the data sent collected without your knowledge or consent, but will be restricted to solely promote CultiVis/analyze user activity in the website.
+As such, the creator is allowed to share and publish the data collected without your knowledge or consent, but will be restricted to solely promote CultiVis/analyze user activity in the website.
 
 ## Feedback and Bugs
 
