@@ -63,7 +63,7 @@
     let inGridKeyTransition: boolean = $state(false);
 
     function getGridElements(i: number): HTMLElement[] {
-        return ([...(gridContainers[i].lastElementChild as HTMLDivElement).children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0);
+        return ([...(gridContainers[i].lastElementChild as HTMLElement).children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0);
     }
     
     function updateGridIdx(i: number) {
@@ -93,7 +93,7 @@
         <div bind:this={gridContainers[i]} class="flex flex-col gap-0.5">
             <DividerTitle style="padding-inline: calc(mod(max(100%, {(tileWidth + gapWidth) * minColumns - gapWidth}px) + {gapWidth}px, {tileWidth + gapWidth}px) / 2)" {title} />
             
-            <Grid class={twMerge("items-center", gridClass)} bind:columns bind:rows={rows[i]} {minColumns} {maxColumns} {autoColumns} {tileWidth} {tileHeight} {gapWidth} {gapHeight} enableKeyInput={enableKeyInput && i === gridFocusIdx} autoFocus={false} focusFirst={!i && focusFirst} onfocus={(_pos, _i, fromKeys) => !fromKeys && updateGridIdx(i)} onkeyfocus={({ y }, isValid, pos) => inGridKeyTransition ? inGridKeyTransition = false : updateGridFocus(y, isValid, pos)}>
+            <Grid class={twMerge("items-center", gridClass)} label={title} bind:columns bind:rows={rows[i]} {minColumns} {maxColumns} {autoColumns} {tileWidth} {tileHeight} {gapWidth} {gapHeight} enableKeyInput={enableKeyInput && i === gridFocusIdx} autoFocus={false} focusFirst={!i && focusFirst} onfocus={(_pos, _i, fromKeys) => !fromKeys && updateGridIdx(i)} onkeyfocus={({ y }, isValid, pos) => inGridKeyTransition ? inGridKeyTransition = false : updateGridFocus(y, isValid, pos)}>
                 {@render children?.(title, i) }
             </Grid>
         </div>

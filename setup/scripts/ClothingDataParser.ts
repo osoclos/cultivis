@@ -1,6 +1,6 @@
 import { deepEquals } from "bun";
 
-import { CLOTHING_DLCS, type ClothingMetadata, type ClothingDLC } from "../types";
+import { CLOTHING_DLCS, type ClothingMetadata } from "../types";
 import { DataReader } from "../utils";
 
 import type { ColorSet } from "../../src/data/types";
@@ -35,7 +35,7 @@ export class ClothingDataParser extends DataReader {
         const data: ClothingMetadata = { id, variants, sets };
         if (hasAttributes) {
             data.attributes = { isUnlockable, isUnique, isFromRitual };
-            if (isDLC) data.attributes.dlc = CLOTHING_DLCS[dlcAttributes.reverse().indexOf(true)] as ClothingDLC;
+            if (isDLC) data.attributes.dlc = CLOTHING_DLCS[dlcAttributes.reverse().indexOf(true)];
         }
 
         return data;

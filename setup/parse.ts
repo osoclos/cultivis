@@ -25,7 +25,7 @@ const worshipperDataBuffer = fs.readFileSync(WORSHIPPER_DATA_PATH);
 const worshipperDataParser = new WorshipperDataParser(worshipperDataBuffer);
 
 const [generalColorSets, worshipperData] = worshipperDataParser.parse();
-const formData = {} as FormDataJSON;
+const formData = <FormDataJSON>{};
 
 for (const id of FOLLOWER_IDS) {
     const { category: originalCategory, variants, sets } = worshipperData.find(({ id: form }) => form === id)!;
@@ -35,7 +35,7 @@ for (const id of FOLLOWER_IDS) {
     formData[id] = { name, category, variants, sets };
 }
 
-const clothingMetadata = {} as ClothingMetadataJSON;
+const clothingMetadata = <ClothingMetadataJSON>{};
 for (const filename of fs.readdirSync(CLOTHING_DATA_DIR)) {
     const dataFilePath = path.join(CLOTHING_DATA_DIR, filename);
     const buffer = fs.readFileSync(dataFilePath);
@@ -46,7 +46,7 @@ for (const filename of fs.readdirSync(CLOTHING_DATA_DIR)) {
     clothingMetadata[id] = data;
 }
 
-const clothingData = {} as ClothingDataJSON;
+const clothingData = <ClothingDataJSON>{};
 for (const id of CLOTHING_IDS) {
     const { variants = [], sets } = clothingMetadata[id] ?? {};
     const { name = id, category = 0, variants: additionalVariants = [] } = clothingExtras[id] ?? {};

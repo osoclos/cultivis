@@ -25,11 +25,12 @@ app.get("/spine-webgl.js", (_, res) => res.sendFile(path.join(__dirname, "../lib
 app.use("/assets", express.static(path.join(__dirname, "../public/assets")));
 
 app.post("/followers", data.array("files"), (req) => {
-    if (!req.files) return;
+    const { files } = req;
+    if (!files) return;
 
     const buffers: Buffer[][] = Array(FOLLOWER_CATEGORY_LENGTH).fill(null).map(() => []);
-    for (const { buffer, originalname } of req.files as Express.Multer.File[]) {
-        const id = originalname.replace(".dat", "") as FollowerId;
+    for (const { buffer, originalname } of <Express.Multer.File[]>files) {
+        const id = <FollowerId>originalname.replace(".dat", "");
         const { category } = followerData.forms[id];
 
         buffers[category].push(buffer);
@@ -39,11 +40,12 @@ app.post("/followers", data.array("files"), (req) => {
 });
 
 app.post("/clothing", data.array("files"), (req) => {
-    if (!req.files) return;
+    const { files } = req;
+    if (!files) return;
 
     const buffers: Buffer[][] = Array(CLOTHING_CATEGORY_LENGTH).fill(null).map(() => []);
-    for (const { buffer, originalname } of req.files as Express.Multer.File[]) {
-        const id = originalname.replace(".dat", "") as ClothingId;
+    for (const { buffer, originalname } of <Express.Multer.File[]>files) {
+        const id = <ClothingId>originalname.replace(".dat", "");
         const { category } = followerData.clothing[id];
 
         buffers[category].push(buffer);
@@ -53,13 +55,14 @@ app.post("/clothing", data.array("files"), (req) => {
 });
 
 app.post("/variants", data.array("files"), (req) => {
-    if (!req.files) return;
+    const { files } = req;
+    if (!files) return;
 
     const ids = [...FOLLOWER_IDS, ...CLOTHING_IDS];
     const buffers: Buffer[][] = Array(ids.length).fill(null).map(() => []);
 
-    for (const { buffer, originalname } of req.files as Express.Multer.File[]) {
-        const id = originalname.replace(/-\d+\.dat/, "") as FollowerId;
+    for (const { buffer, originalname } of <Express.Multer.File[]>files) {
+        const id = <FollowerId>originalname.replace(/-\d+\.dat/, "");
         buffers[ids.indexOf(id)].push(buffer);
     }
 
@@ -67,11 +70,12 @@ app.post("/variants", data.array("files"), (req) => {
 });
 
 app.post("/necklaces", data.array("files"), (req) => {
-    if (!req.files) return;
+    const { files } = req;
+    if (!files) return;
 
     const buffers: Buffer[][] = Array(NECKLACE_CATEGORY_LENGTH).fill(null).map(() => []);
-    for (const { buffer, originalname } of req.files as Express.Multer.File[]) {
-        const id = originalname.replace(".dat", "") as NecklaceId;
+    for (const { buffer, originalname } of <Express.Multer.File[]>files) {
+        const id = <NecklaceId>originalname.replace(".dat", "");
         const { category } = followerData.necklaces[id];
 
         buffers[category].push(buffer);
@@ -81,17 +85,19 @@ app.post("/necklaces", data.array("files"), (req) => {
 });
 
 app.post("/hats", data.array("files"), (req) => {
-    if (!req.files) return;
+    const { files } = req;
+    if (!files) return;
 
-    const buffers: Buffer[] = (req.files as Express.Multer.File[]).map(({ buffer }) => buffer);
+    const buffers: Buffer[] = (<Express.Multer.File[]>files).map(({ buffer }) => buffer);
     createSpritesheets([buffers], "hats");
 });
 
 app.post("/player", data.array("files"), (req) => {
-    if (!req.files) return;
+    const { files } = req;
+    if (!files) return;
 
     const buffers: Buffer[][] = Array(2).fill(null).map(() => []);
-    for (const { buffer, originalname } of req.files as Express.Multer.File[]) {
+    for (const { buffer, originalname } of <Express.Multer.File[]>files) {
         const i = +originalname.replace(/-[^\W\d_]+\.dat/, "");
         buffers[i].push(buffer);
     }
@@ -100,11 +106,12 @@ app.post("/player", data.array("files"), (req) => {
 });
 
 app.post("/fleeces", data.array("files"), (req) => {
-    if (!req.files) return;
+    const { files } = req;
+    if (!files) return;
 
     const buffers: Buffer[][] = Array(PLAYER_FLEECE_CATEGORY_LENGTH).fill(null).map(() => []);
-    for (const { buffer, originalname } of req.files as Express.Multer.File[]) {
-        const id = originalname.replace(".dat", "") as PlayerFleeceId;
+    for (const { buffer, originalname } of <Express.Multer.File[]>files) {
+        const id = <PlayerFleeceId>originalname.replace(".dat", "");
         const { category } = playerData.fleeces[id];
 
         buffers[category].push(buffer);
@@ -114,11 +121,12 @@ app.post("/fleeces", data.array("files"), (req) => {
 });
 
 app.post("/bells", data.array("files"), (req) => {
-    if (!req.files) return;
+    const { files } = req;
+    if (!files) return;
 
     const buffers: Buffer[][] = Array(PLAYER_BELL_CATEGORY_LENGTH).fill(null).map(() => []);
-    for (const { buffer, originalname } of req.files as Express.Multer.File[]) {
-        const id = originalname.replace(".dat", "") as PlayerBellId;
+    for (const { buffer, originalname } of <Express.Multer.File[]>files) {
+        const id = <PlayerBellId>originalname.replace(".dat", "");
         const { category } = playerData.bells[id];
 
         buffers[category].push(buffer);
@@ -128,18 +136,20 @@ app.post("/bells", data.array("files"), (req) => {
 });
 
 app.post("/toww", data.array("files"), (req) => {
-    if (!req.files) return;
+    const { files } = req;
+    if (!files) return;
 
-    const buffers: Buffer[] = (req.files as Express.Multer.File[]).map(({ buffer }) => buffer);
+    const buffers: Buffer[] = (<Express.Multer.File[]>files).map(({ buffer }) => buffer);
     createSpritesheets([buffers], "toww");
 });
 
 app.post("/mini-bosses", data.array("files"), (req) => {
-    if (!req.files) return;
+    const { files } = req;
+    if (!files) return;
 
     const buffers: Buffer[][] = Array(MINI_BOSS_CATEGORY_LENGTH).fill(null).map(() => []);
-    for (const { buffer, originalname } of req.files as Express.Multer.File[]) {
-        const id = originalname.replace(".dat", "") as MiniBossId;
+    for (const { buffer, originalname } of <Express.Multer.File[]>files) {
+        const id = <MiniBossId>originalname.replace(".dat", "");
         const { category } = miniBossData[id];
 
         buffers[category].push(buffer);
@@ -149,9 +159,10 @@ app.post("/mini-bosses", data.array("files"), (req) => {
 });
 
 app.post("/witnesses", data.array("files"), (req) => {
-    if (!req.files) return;
+    const { files } = req;
+    if (!files) return;
 
-    const buffers: Buffer[] = (req.files as Express.Multer.File[]).map(({ buffer }) => buffer);
+    const buffers: Buffer[] = (<Express.Multer.File[]>files).map(({ buffer }) => buffer);
     createSpritesheets([buffers], "witnesses");
 });
 

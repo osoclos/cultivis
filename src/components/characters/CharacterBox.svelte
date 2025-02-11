@@ -1,5 +1,4 @@
 <script lang="ts">
-    import type { Action } from "svelte/action";
     import { twMerge } from "tailwind-merge";
 
     import { Tickbox } from "../base";
@@ -146,25 +145,9 @@
         ticked = !ticked;
         input(ticked);
     }
-
-    const focusEvent: Action<HTMLButtonElement> = (button) => {
-        function focus() {
-            button.focus();
-        }
-
-        $effect(() => {
-            button.addEventListener("click", focus);
-            button.addEventListener("pointerenter", focus);
-
-            return () => {
-                button.removeEventListener("click", focus);
-                button.removeEventListener("pointerenter", focus);
-            }
-        });
-    };
 </script>
 
-<button bind:this={button} use:focusEvent class={twMerge("flex flex-row justify-between items-center py-4 w-90 bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", hasTickbox ? "px-4 sm:w-100" : "px-6", className)} aria-label={label} {onclick} onfocus={() => soundManager.play("Flicker")}>
+<button bind:this={button} class={twMerge("flex flex-row justify-between items-center py-4 w-90 bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", hasTickbox ? "px-4 sm:w-100" : "px-6", className)} aria-label={label} {onclick} onpointerenter={() => button.focus()} onfocus={() => soundManager.play("Flicker")}>
     <div class="w-20 h-20">
         <SpritesheetImage {src} {label} {x} {y} width={80} height={80} {tileWidth} {tileHeight} />
     </div>

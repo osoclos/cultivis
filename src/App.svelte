@@ -451,7 +451,7 @@
                 <div class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-[#00000060] {hasUserCompliedToTOS ? "opacity-0" : "opacity-100"} transition-opacity duration-450 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
                     <Dialog childClass={twMerge("mt-2 sm:mt-4")} title="Disclaimer" description={localStorage.getItem(NewsManager.OLD_TERMS_LOCAL_STORAGE_NAME) ? `CultiVis has updated its terms of service${termsUnix ? ` on ${unixToDate(termsUnix)}` : ""}. ${changesSummary ? `${changesSummary.slice(0, -changesSummary.endsWith("."))}. ` : ""}You may view the new terms below or close this popup.` : "CultiVis requires you to agree and acknowledge the CultiVis Terms of Service. You may view the terms below or close this popup."}>
                         <Notice class="px-8 pb-4 text-sm" label="Closing this popup will mean you agree with the Terms of Service." />
-                        <List class="flex flex-col justify-center items-center" enableKeyInput focusFirst>
+                        <List class="flex flex-col justify-center items-center" label="Terms of Service Disclaimer Options" enableKeyInput focusFirst>
                             <BannerButton label="View Terms" href="https://github.com/osoclos/cultivis/blob/main/ToS.md" />
                             <BannerButton label="Close and Accept" onclick={acknowledgeTerms} />
                         </List>
@@ -460,7 +460,6 @@
             {/await}
         {/if}
     {/await}
-    
 {/if}
 
 {#if hasUserCompliedToTOS}

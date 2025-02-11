@@ -56,15 +56,15 @@ export class ServerManager {
     }
     
     async getContent(path: string, root: string, forceFetch: boolean = false) {
-        return this.fetch({ path }, ServerManager.CONTENT_ROUTE, root, forceFetch) as Promise<ContentReplyBody>;
+        return <Promise<ContentReplyBody>>this.fetch({ path }, ServerManager.CONTENT_ROUTE, root, forceFetch);
     }
 
     async getCommit(path: string, root: string, body: Omit<CommitRequestBody, "token" | "path"> = {}) {
-        return this.fetch({ path, ...body }, ServerManager.COMMIT_ROUTE, root) as Promise<CommitReplyBody>;
+        return <Promise<CommitReplyBody>>this.fetch({ path, ...body }, ServerManager.COMMIT_ROUTE, root);
     }
 
     async getCommitData(sha: string, root: string, forceFetch: boolean = false) {
-        return this.fetch({ sha }, ServerManager.COMMIT_DATA_ROUTE, root, forceFetch) as Promise<CommitDataReplyBody>;
+        return <Promise<CommitDataReplyBody>>this.fetch({ sha }, ServerManager.COMMIT_DATA_ROUTE, root, forceFetch);
     }
 
     async fetch<B extends NonTokenBody, R extends keyof ResponseDataMap>(body: B, route: R, root: string, forceFetch: boolean = false): Promise<ResponseDataMap[R]> {

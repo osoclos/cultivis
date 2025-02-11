@@ -1,7 +1,5 @@
 <script lang="ts">
-    import type { Snippet } from "svelte";
-    import type { Action } from "svelte/action";
-
+    import { onDestroy, onMount, type Snippet } from "svelte";
     import { twMerge } from "tailwind-merge";
 
     import { MoreMath } from "../../utils";
@@ -18,6 +16,7 @@
         isTabbable?: boolean;
 
         class?: string;
+        label: string;
 
         onfocus?: (i: number, fromKeys: boolean) => void;
         onkeyfocus?: (offset: number, isValid: boolean, i: number) => void;
@@ -35,74 +34,60 @@
         isTabbable = true,
 
         class: className,
+        label,
 
         onfocus: focus = () => {},
         onkeyfocus: keyFocus = () => {}
     }: Props = $props();
 
     let focusIdx: number = $state(+focusFirst - 1);
-    const focusEvents: Action<HTMLDivElement> = (container) => {
-        if (!children) return;
-        focusFirst && document.hasFocus() && ([...container.children] as HTMLElement[]).find(({ tabIndex }) => tabIndex >= 0)?.focus();
+    let container: HTMLDivElement;
 
-        function onFocusIn({ target }: FocusEvent) {
-            const i = ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0).findIndex((child) => child === target as HTMLElement || [...child.children].includes(target as HTMLElement));
-            if (i < 0) return;
-            
-            focusIdx = i;
-            focus(focusIdx, false);
-        }
+    function onKeyDown(evt: KeyboardEvent) {
+        if (!children || !enableKeyInput) return;
 
-        function onFocusOut({ relatedTarget }: FocusEvent) {
-            if (!relatedTarget) focusIdx = -1;
-        }
+        const { code, shiftKey, ctrlKey, altKey } = evt;
+        if (!(isTabbable ? ["Tab"] : []).concat(isHorizontal ? ["KeyA", "KeyD", "ArrowLeft", "ArrowRight"] : ["KeyW", "KeyS", "ArrowUp", "ArrowDown"]).includes(code) || ctrlKey || altKey || document.activeElement instanceof HTMLInputElement || !enableKeyInput) return;
+
+        evt.preventDefault();
+
+        const toNextElement = (isHorizontal ? ["KeyD", "ArrowRight"] : ["KeyS", "ArrowDown"]).includes(code) || code === "Tab" && !shiftKey;
+        const idxOffset = +toNextElement || -1;
+
+        const elements = ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0);
+
+        const i = MoreMath.clamp(focusIdx + idxOffset, 0, elements.length - 1);
+        const isValid = i === focusIdx + idxOffset;
         
-        $effect(() => {
-            container.addEventListener("focusin", onFocusIn);
-            container.addEventListener("focusout", onFocusOut);
+        keyFocus(idxOffset, isValid, i);
 
-            return () => {
-                container.removeEventListener("focusin", onFocusIn);
-                container.removeEventListener("focusout", onFocusOut);
-            };
-        });
-    };
+        if (!isValid) return;
+        focus(i, true);
 
-    const keyEvents: Action<HTMLDivElement> = (container) => {
-        if (!children) return;
+        if (!autoFocus) return;
+
+        focusIdx = i;
+        elements[focusIdx].focus();
+    }
+
+    function onfocusin({ target }: FocusEvent) {
+        const elements = ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0);
+
+        const i = elements.findIndex((element) => element.contains(target as HTMLElement));
+        if (i < 0) return;
         
-        function onKeyDown(evt: KeyboardEvent) {
-            const elements = ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0);
+        focusIdx = i;
+        focus(focusIdx, false);
+    }
 
-            const { code, shiftKey, ctrlKey, altKey } = evt;
-            if (!(isTabbable ? ["Tab"] : []).concat(isHorizontal ? ["KeyA", "KeyD", "ArrowLeft", "ArrowRight"] : ["KeyW", "KeyS", "ArrowUp", "ArrowDown"]).includes(code) || ctrlKey || altKey || document.activeElement instanceof HTMLInputElement || !enableKeyInput) return;
+    onMount<boolean | void>(() => {
+        addEventListener("keydown", onKeyDown);
+        focusFirst && document.hasFocus() && (container.firstElementChild as HTMLElement).focus();
+    });
 
-            evt.preventDefault();
-
-            const toNextElement = (isHorizontal ? ["KeyD", "ArrowRight"] : ["KeyS", "ArrowDown"]).includes(code) || code === "Tab" && !shiftKey;
-            const idxOffset = +toNextElement || -1;
-
-            const i = MoreMath.clamp(focusIdx + idxOffset, 0, elements.length - 1);
-            const isValid = i === focusIdx + idxOffset;
-            
-            keyFocus(idxOffset, isValid, i);
-
-            if (!isValid) return;
-            focus(i, true);
-
-            if (!autoFocus) return;
-
-            focusIdx = i;
-            elements[focusIdx].focus();
-        }
-
-        $effect(() => {
-            addEventListener("keydown", onKeyDown);
-            return () => removeEventListener("keydown", onKeyDown);
-        });
-    };
+    onDestroy(() => removeEventListener("keydown", onKeyDown));
 </script>
 
-<div use:focusEvents use:keyEvents class={twMerge("flex", isHorizontal ? "flex-row" : "flex-col", className)}>
+<div bind:this={container} class={twMerge("flex", isHorizontal ? "flex-row" : "flex-col", className)} role="list" aria-label={label} {onfocusin} onfocusout={({ relatedTarget }) => !relatedTarget && (focusIdx = -1)}>
     {@render children?.()}
 </div>

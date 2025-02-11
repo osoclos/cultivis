@@ -18,7 +18,7 @@ export class Scene implements SceneObject {
     drawDebug: boolean;
     
     constructor(public gl: WebGLRenderingContext) {
-        this.renderer = new spine.webgl.SceneRenderer(this.canvas as HTMLCanvasElement, gl, true);
+        this.renderer = new spine.webgl.SceneRenderer(<HTMLCanvasElement>this.canvas, gl, true);
         this.#actors = new Set();
 
         this.translation = Vector.Zero;

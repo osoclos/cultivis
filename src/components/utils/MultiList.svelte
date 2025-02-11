@@ -35,7 +35,7 @@
     let inListKeyTransition: boolean = $state(false);
 
     function getListElements(i: number): HTMLElement[] {
-        return ([...(listContainers[i].lastElementChild as HTMLDivElement).children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0);
+        return ([...(listContainers[i].lastElementChild as HTMLElement).children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0);
     }
     
     function updateListIdx(i: number) {
@@ -62,7 +62,7 @@
         <div bind:this={listContainers[i]} class="flex flex-col gap-0.5">
             <DividerTitle class="text-lg" {title} />
             
-            <List class={twMerge("items-center", listClass)} enableKeyInput={enableKeyInput && i === listFocusIdx} autoFocus={false} focusFirst={!i && focusFirst} onfocus={(_i, fromKeys) => !fromKeys && updateListIdx(i)} onkeyfocus={(offset, isValid, i) => inListKeyTransition ? inListKeyTransition = false : updateListFocus(offset, isValid, i)}>
+            <List class={twMerge("items-center", listClass)} label={title} enableKeyInput={enableKeyInput && i === listFocusIdx} autoFocus={false} focusFirst={!i && focusFirst} onfocus={(_i, fromKeys) => !fromKeys && updateListIdx(i)} onkeyfocus={(offset, isValid, i) => inListKeyTransition ? inListKeyTransition = false : updateListFocus(offset, isValid, i)}>
                 {@render children?.(title, i) }
             </List>
         </div>

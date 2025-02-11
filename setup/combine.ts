@@ -14,7 +14,7 @@ const TMP_FOLDER_PATH: string = path.join(__dirname, "tmp");
 const SOUND_DATA_PATH: string = path.join(__dirname, "../src/data/files/sound-data.json");
 const SOUND_EXTRAS_PATH: string = path.join(__dirname, "addons/sound-extras.json");
 
-const soundData = {} as SoundDataJSON;
+const soundData = <SoundDataJSON>{};
 const soundExtras: SoundExtrasJSON = JSON.parse(fs.readFileSync(SOUND_EXTRAS_PATH, "utf-8"));
 
 for (const id of SOUND_IDS) {

@@ -38,8 +38,8 @@ export class Player extends Actor implements PlayerObject {
 
         this.#fleece = fleece;
         this.#bell = 
-            PLAYER_BELL_IDS.includes(fleece as PlayerBellId)
-                ? fleece as PlayerBellId :
+            PLAYER_BELL_IDS.includes(<PlayerBellId>fleece)
+                ? <PlayerBellId>fleece :
             creature === "Lamb"
                 ? "Lamb"
                 : "Goat";

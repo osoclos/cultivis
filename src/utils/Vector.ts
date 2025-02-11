@@ -248,7 +248,7 @@ export class Vector implements VectorObject {
         if (replaceExisting || !("x" in dest)) dest.x = x;
         if (replaceExisting || !("y" in dest)) dest.y = y;
 
-        return dest as VectorObject;
+        return <VectorObject>dest;
     }
 
     cloneArr(dest: number[] = Array(2), offset: number = 0) {

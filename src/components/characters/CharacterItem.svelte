@@ -1,5 +1,4 @@
 <script lang="ts">
-    import type { Action } from "svelte/action";
     import { twMerge } from "tailwind-merge";
 
     import { SpritesheetImage } from "../utils";
@@ -23,6 +22,8 @@
         class: className,
         onclick: click = () => {}
     }: Props = $props();
+
+    let button: HTMLButtonElement;
 
     const src: string = $derived.by(() => {
         switch (actor) {
@@ -76,29 +77,14 @@
 
     function onclick() {
         if (isLoading) return;
+        button.focus();
         
         click();
         soundManager.play("Click");
     }
-
-    const focusEvent: Action<HTMLButtonElement> = (button) => {
-        function focus() {
-            button.focus();
-        }
-
-        $effect(() => {
-            button.addEventListener("click", focus);
-            button.addEventListener("pointerenter", focus);
-
-            return () => {
-                button.removeEventListener("click", focus);
-                button.removeEventListener("pointerenter", focus);
-            }
-        });
-    };
 </script>
 
-<button use:focusEvent class={twMerge("flex flex-col items-center px-4 py-2 gap-2 bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", isLoading && "brightness-75", className)} aria-label={label} {onclick} onfocus={() => soundManager.play("Flicker")}>
+<button bind:this={button} class={twMerge("flex flex-col items-center px-4 py-2 gap-2 bg-dark rounded-xs outline-0 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75", isLoading && "brightness-75", className)} aria-label={label} {onclick} onpointerenter={() => button.focus()} onfocus={() => soundManager.play("Flicker")}>
     <div class="w-20 h-20">
         <SpritesheetImage {src} {label} x={+(actor === TOWW) * 4} y={0} width={80} height={80} {tileWidth} {tileHeight} />
     </div>

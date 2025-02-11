@@ -1,7 +1,5 @@
 <script lang="ts">
-    import type { Snippet } from "svelte";
-    import type { Action } from "svelte/action";
-
+    import { onDestroy, onMount, type Snippet } from "svelte";
     import { twMerge } from "tailwind-merge";
 
     import { soundManager } from "../../scripts/managers";
@@ -9,6 +7,8 @@
 
     interface Props {
         children?: Snippet<[number]>;
+
+        label: string;
 
         enableKeyInput?: boolean;
         selectedIdx?: number;
@@ -20,6 +20,8 @@
     let {
         children,
 
+        label,
+
         enableKeyInput = false,
         selectedIdx = $bindable(+!!children - 1),
 
@@ -27,51 +29,46 @@
         onclick: click = () => {}
     }: Props = $props();
 
-    const clickEvent: Action<HTMLDivElement> = (container) => {
+    let container: HTMLDivElement;
+
+    function onclick({ target }: MouseEvent) {
+        const elements = [...container.children] as HTMLElement[];
+        
+        const i = elements.findIndex((element) => element.contains(target as HTMLElement));
+        if (i < 0 || i === selectedIdx) return;
+        
+        selectedIdx = i;
+        click(selectedIdx);
+    }
+
+    function onKeyDown(evt: KeyboardEvent) {
         if (!children) return;
 
-        function onClick({ target }: MouseEvent) {
-            const i = ([...container.children] as HTMLElement[]).findIndex((element) => element === target as HTMLElement || [...element.children].includes(target as HTMLElement));
-            if (i < 0 || i === selectedIdx) return;
-            
-            selectedIdx = i;
-            click(selectedIdx);
-        }
+        const { code, ctrlKey, altKey } = evt;
+        if (!["KeyQ", "KeyR"].includes(code) || ctrlKey || altKey || document.activeElement instanceof HTMLInputElement || !enableKeyInput) return;
 
-        $effect(() => {
-            container.addEventListener("click", onClick);
-            return () => container.removeEventListener("click", onClick);
-        });
-    };
+        evt.preventDefault();
 
-    const keyEvents: Action<HTMLDivElement> = (container) => {
-        if (!children) return;
+        const toNextElement = code === "KeyR";
+        const idxOffset = +toNextElement || -1;
 
-        function onKeyDown(evt: KeyboardEvent) {
-            const { code, ctrlKey, altKey } = evt;
-            if (!["KeyQ", "KeyR"].includes(code) || ctrlKey || altKey || document.activeElement instanceof HTMLInputElement || !enableKeyInput) return;
+        const elements = [...container.children] as HTMLElement[];
 
-            evt.preventDefault();
+        const i = MoreMath.clamp(selectedIdx + idxOffset, 0, elements.length - 1);
+        if (i !== selectedIdx + idxOffset) return;
 
-            const toNextElement = code === "KeyR";
-            const idxOffset = +toNextElement || -1;
+        selectedIdx = i;
 
-            const i = MoreMath.clamp(selectedIdx + idxOffset, 0, container.childElementCount - 1);
-            if (i !== selectedIdx + idxOffset) return;
+        soundManager.play("Option_Change");
+        click(selectedIdx);
+    }
 
-            selectedIdx = i;
-
-            soundManager.play("Option_Change");
-            click(selectedIdx);
-        }
-
-        $effect(() => {
-            addEventListener("keydown", onKeyDown);
-            return () => removeEventListener("keydown", onKeyDown);
-        });
-    };
+    onMount(() => addEventListener("keydown", onKeyDown));
+    onDestroy(() => removeEventListener("keydown", onKeyDown));
 </script>
 
-<div use:clickEvent use:keyEvents class={twMerge("flex flex-row", className)}>
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<div bind:this={container} class={twMerge("flex flex-row", className)} role="navigation" aria-label={label} {onclick}>
     {@render children?.(selectedIdx)}
 </div>

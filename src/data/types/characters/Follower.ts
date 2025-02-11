@@ -37,7 +37,6 @@ export const FOLLOWER_CATEGORIES = ["General", "DLC", "Special", "Darkwood", "An
 export const FOLLOWER_CATEGORY_LENGTH = FOLLOWER_CATEGORIES.length;
 
 export type FollowerCategoryName = typeof FOLLOWER_CATEGORIES[number];
-export const followerIdsByCategory = Object.fromEntries(FOLLOWER_CATEGORIES.map<[FollowerCategoryName, FollowerId[]]>((name, i) => [name, FOLLOWER_IDS.map<[FollowerId, FollowerCategory]>((id) => [id, followerData.forms[id].category]).filter(([_, category]) => category === i).map(([id]) => id)])) as Record<FollowerCategoryName, FollowerId[]>;
 
 export type ClothingDataJSON = Record<ClothingId, ClothingData>;
 export interface ClothingData {
@@ -62,7 +61,6 @@ export const CLOTHING_CATEGORIES = ["General", "Special", "DLC"] as const;
 export const CLOTHING_CATEGORY_LENGTH: number = Object.keys(ClothingCategory).length / 2;
 
 export type ClothingCategoryName = typeof CLOTHING_CATEGORIES[number];
-export const clothingIdsByCategory = Object.fromEntries(CLOTHING_CATEGORIES.map<[ClothingCategoryName, ClothingId[]]>((name, i) => [name, CLOTHING_IDS.map<[ClothingId, ClothingCategory]>((id) => [id, followerData.clothing[id].category]).filter(([_, category]) => category === i).map(([id]) => id)])) as Record<ClothingCategoryName, ClothingId[]>;
 
 export type NecklaceDataJSON = Record<NecklaceId, NecklaceData>;
 export interface NecklaceData {
@@ -85,7 +83,6 @@ export const NECKLACE_CATEGORIES = ["Crusade", "Mythic", "Special"] as const;
 export const NECKLACE_CATEGORY_LENGTH: number = Object.keys(NecklaceCategory).length / 2;
 
 export type NecklaceCategoryName = typeof NECKLACE_CATEGORIES[number];
-export const necklaceIdsByCategory = Object.fromEntries(NECKLACE_CATEGORIES.map<[NecklaceCategoryName, NecklaceId[]]>((name, i) => [name, NECKLACE_IDS.map<[NecklaceId, NecklaceCategory]>((id) => [id, followerData.necklaces[id].category]).filter(([_, category]) => category === i).map(([id]) => id)])) as Record<NecklaceCategoryName, NecklaceId[]>;
 
 export type HatDataJSON = Record<HatId, HatData>;
 export interface HatData {
@@ -101,3 +98,29 @@ export interface ColorSetItem {
     color: ColorObject;
     slots: string[];
 }
+
+const followerIdsByCategory = <Record<FollowerCategoryName, FollowerId[]>>{};
+for (const id of FOLLOWER_IDS) {
+    const { category } = followerData.forms[id];
+    const categoryName = FOLLOWER_CATEGORIES[category];
+
+    categoryName in followerIdsByCategory ? followerIdsByCategory[categoryName].push(id) : followerIdsByCategory[categoryName] = [id];
+}
+
+const clothingIdsByCategory = <Record<ClothingCategoryName, ClothingId[]>>{};
+for (const id of CLOTHING_IDS) {
+    const { category } = followerData.clothing[id];
+    const categoryName = CLOTHING_CATEGORIES[category];
+
+    categoryName in clothingIdsByCategory ? clothingIdsByCategory[categoryName].push(id) : clothingIdsByCategory[categoryName] = [id];
+}
+
+const necklaceIdsByCategory = <Record<NecklaceCategoryName, NecklaceId[]>>{};
+for (const id of NECKLACE_IDS) {
+    const { category } = followerData.necklaces[id];
+    const categoryName = NECKLACE_CATEGORIES[category];
+
+    categoryName in necklaceIdsByCategory ? necklaceIdsByCategory[categoryName].push(id) : necklaceIdsByCategory[categoryName] = [id];
+}
+
+export { followerIdsByCategory, clothingIdsByCategory, necklaceIdsByCategory };

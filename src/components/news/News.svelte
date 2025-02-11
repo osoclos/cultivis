@@ -51,7 +51,7 @@
         </div>
 
         {#if !fullyLoadedFolders.includes(name)}
-            <BannerButton class="mt-4" label={isLoading ? "Loading" : "Load More"} disabled={isLoading} onclick={() => loadNews(name)} />
+            <BannerButton label={isLoading ? "Loading" : "Load More"} disabled={isLoading} onclick={() => loadNews(name)} />
         {/if}
     {/each}
 </div>

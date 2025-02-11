@@ -61,14 +61,14 @@
     <div class="flex flex-col gap-4 items-center">
         <Header title="Add Character" />
 
-        <List class="no-scrollbar overflow-x-auto flex-row gap-4 p-2 w-90 sm:w-100" {enableKeyInput} isHorizontal isTabbable={false}>
+        <List class="no-scrollbar overflow-x-auto flex-row gap-4 p-2 w-90 sm:w-100" label="List of Characters" {enableKeyInput} isHorizontal isTabbable={false}>
             {#each [Follower, Player, Bishop, TOWW, MiniBoss, Witness] as actor, i (i)} 
                 <CharacterItem {actor} isLoading={actor === loadingActor} onclick={() => add(actor)} />
             {/each}
         </List>
     </div>
 
-    <MultiList class="flex flex-col gap-6" titles={["", ""]} enableKeyInput>
+    <MultiList class="flex flex-col gap-6" titles={["", ""]} {enableKeyInput}>
         {#snippet children(_, i)}
             {#if i === 0}
                 <BannerButton label={isRemoving ? "Confirm Selection" : "Remove Characters"} onclick={() => onButtonClick(MANIPULATE_STATES.indexOf("REMOVE"))}/>

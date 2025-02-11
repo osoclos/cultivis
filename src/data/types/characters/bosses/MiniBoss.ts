@@ -31,4 +31,13 @@ export const MINI_BOSS_CATEGORIES = ["Darkwood", "Anura", "Anchordeep", "Silk Cr
 export const MINI_BOSS_CATEGORY_LENGTH = MINI_BOSS_CATEGORIES.length;
 
 export type MiniBossCategoryName = typeof MINI_BOSS_CATEGORIES[number];
-export const miniBossIdsByCategory = Object.fromEntries(MINI_BOSS_CATEGORIES.map<[MiniBossCategoryName, MiniBossId[]]>((name, i) => [name, MINI_BOSS_IDS.map<[MiniBossId, MiniBossCategory]>((id) => [id, miniBossData[id].category]).filter(([_, category]) => category === i).map(([id]) => id)])) as Record<MiniBossCategoryName, MiniBossId[]>;
+
+const miniBossIdsByCategory = <Record<MiniBossCategoryName, MiniBossId[]>>{};
+for (const id of MINI_BOSS_IDS) {
+    const { category } = miniBossData[id];
+    const categoryName = MINI_BOSS_CATEGORIES[category];
+
+    categoryName in miniBossIdsByCategory ? miniBossIdsByCategory[categoryName].push(id) : miniBossIdsByCategory[categoryName] = [id];
+}
+
+export { miniBossIdsByCategory };

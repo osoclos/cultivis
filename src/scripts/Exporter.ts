@@ -13,7 +13,7 @@ export class Exporter {
         if (!scene) {
             const canvas = new OffscreenCanvas(300, 150);
 
-            const gl = canvas.getContext("webgl") as WebGLRenderingContext;
+            const gl = <WebGLRenderingContext>canvas.getContext("webgl");
             if (!gl) throw new Error("Unable to retrieve context from canvas");
 
             scene = new Scene(gl);
@@ -211,7 +211,7 @@ export class Exporter {
         const canvas = new OffscreenCanvas(width, height);
         const ctx = canvas.getContext("2d")!;
 
-        const exporterCtx = this.canvas.getContext("2d")! as CanvasRenderingContext2D;
+        const exporterCtx = <CanvasRenderingContext2D>this.canvas.getContext("2d");
         const imageData = exporterCtx.getImageData(x, y, width, height);
 
         ctx.putImageData(imageData, 0, 0);
@@ -245,5 +245,5 @@ export const FORMAT_IDS = ["gif", "apng"] as const; // TODO: add webp/true-color
 export type FormatId = typeof FORMAT_IDS[number];
 
 export function isStrFormatId(str: string): str is FormatId {
-    return FORMAT_IDS.includes(str as FormatId);
+    return FORMAT_IDS.includes(<FormatId>str);
 }

@@ -45,7 +45,6 @@ export const PLAYER_FLEECE_CATEGORIES = ["General", "Post-Game", "DLC"] as const
 export const PLAYER_FLEECE_CATEGORY_LENGTH: number = Object.keys(PlayerFleeceCategory).length / 2;
 
 export type PlayerFleeceCategoryName = typeof PLAYER_FLEECE_CATEGORIES[number];
-export const playerFleeceIdsByCategory = Object.fromEntries(PLAYER_FLEECE_CATEGORIES.map<[PlayerFleeceCategoryName, PlayerFleeceId[]]>((name, i) => [name, PLAYER_FLEECE_IDS.map<[PlayerFleeceId, PlayerFleeceCategory]>((id) => [id, playerData.fleeces[id].category]).filter(([_, category]) => category === i).map(([id]) => id)])) as Record<PlayerFleeceCategoryName, PlayerFleeceId[]>;
 
 export const PLAYER_BELL_IDS: (keyof typeof playerData.bells)[] = ["Lamb", "Goat", "Golden", "Glass", "Diseased", "Fates", "Fragile", "Cowboy", "Cursed", "Berserker", "Fervor", "Hobbled", "God"] as const;
 export type PlayerBellId = typeof PLAYER_BELL_IDS[number];
@@ -66,4 +65,21 @@ export const PLAYER_BELL_CATEGORIES = ["General", "Post-Game"] as const;
 export const PLAYER_BELL_CATEGORY_LENGTH: number = Object.keys(PlayerBellCategory).length / 2;
 
 export type PlayerBellCategoryName = typeof PLAYER_BELL_CATEGORIES[number];
-export const playerBellIdsByCategory = Object.fromEntries(PLAYER_BELL_CATEGORIES.map<[PlayerBellCategoryName, PlayerBellId[]]>((name, i) => [name, PLAYER_BELL_IDS.map<[PlayerBellId, PlayerBellCategory]>((id) => [id, playerData.bells[id].category]).filter(([_, category]) => category === i).map(([id]) => id)])) as Record<PlayerBellCategoryName, PlayerBellId[]>;
+
+const playerFleeceIdsByCategory = <Record<PlayerFleeceCategoryName, PlayerFleeceId[]>>{};
+for (const id of PLAYER_FLEECE_IDS) {
+    const { category } = playerData.fleeces[id];
+    const categoryName = PLAYER_FLEECE_CATEGORIES[category];
+
+    categoryName in playerFleeceIdsByCategory ? playerFleeceIdsByCategory[categoryName].push(id) : playerFleeceIdsByCategory[categoryName] = [id];
+}
+
+const playerBellIdsByCategory = <Record<PlayerBellCategoryName, PlayerBellId[]>>{};
+for (const id of PLAYER_BELL_IDS) {
+    const { category } = playerData.bells[id];
+    const categoryName = PLAYER_BELL_CATEGORIES[category];
+
+    categoryName in playerBellIdsByCategory ? playerBellIdsByCategory[categoryName].push(id) : playerBellIdsByCategory[categoryName] = [id];
+}
+
+export { playerFleeceIdsByCategory, playerBellIdsByCategory };

@@ -27,7 +27,7 @@ export class SoundManager {
         const blob = await fetchAndCache(resolvePath(src, SoundManager.SOUNDS_FOLDER_NAME), this.cache).then((res) => res.blob());
         const url = URL.createObjectURL(blob);
 
-        const sprite = {} as SoundSpriteDefinitions;
+        const sprite = <SoundSpriteDefinitions>{};
         for (const [key, { start, duration }] of Object.entries(timeRanges)) sprite[key] = [start, duration];
 
         const howler = new Howl({
@@ -55,7 +55,7 @@ export class SoundManager {
         return this.howlers.has(id);
     }
 
-    play<I extends SoundId, K extends keyof typeof soundData[I]["timeRanges"]>(id: SoundId, key: K = Random.item(Object.keys(soundData[id].timeRanges ?? {}) as K[])) {       
+    play<I extends SoundId, K extends keyof typeof soundData[I]["timeRanges"]>(id: SoundId, key: K = Random.item(<K[]>Object.keys(soundData[id].timeRanges ?? {}))) {       
         if (!this.hasLoaded(id)) throw new Error(`Sound ${id} has not been loaded`);
         this.howlers.get(id)!.play(Object.keys(soundData[id].timeRanges ?? {}).length ? key : undefined);
     }
