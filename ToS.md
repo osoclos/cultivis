@@ -1,4 +1,4 @@
-<!-- CHANGES_SUMMARY="The terms adds what you can or cannot do or use CultiVis News for." -->
+<!-- CHANGES_SUMMARY="The terms includes non-sensitive data collection and usage." -->
 # CultiVis Terms of Service Agreement
 
 > [!IMPORTANT]
@@ -7,7 +7,7 @@
 > By agreeing to the Terms of Service, you also acknowledge the [Open Source License](LICENSE) (the "OSL") and the terms and conditions underlined in the OSL.
 
 Copyright (c) 2025 osoclos
-Last updated: 13 January 2025. Replaces all prior versions.
+Last updated: 12 February 2025. Replaces all prior versions.
 
 ## Usage
 
@@ -31,11 +31,17 @@ CultiVis is constantly being worked on to add, improve or replace functionality 
 
 Therefore, the creator reserves the right to alter CultiVis to meet new requirements and update information, and to correct inaccuracies, errors and/or omissions anytime discretely.
 
+## Data Collection and Usage
+
+To further improve CultiVis and its functionality, some non-sensitive data may be collected to further enhance your experience when using the website, as well as to be used as promotional statistics and/or material.
+
+As such, the creator is allowed to share and publish the data sent collected without your knowledge or consent, but will be restricted to solely promote CultiVis/analyze user activity in the website.
+
 ## Feedback and Bugs
 
 CultiVis is open to all feedback regarding the usage of the website and other improvements or additions to the Software. The creator or his subsidiaries oblige to make every effort to understand the specifics of the feedback and adapt it into the website.  
 
-You have permission to contact the owner on any issues you encounter when using the website and report concerning bugs that affect your experience with CultiVis.
+You have full permission to contact the owner on any issues you encounter when using the website and report concerning bugs that affect your experience with CultiVis.
 
 ## Re-distribution and Adaption of Work
 

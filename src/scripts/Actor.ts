@@ -115,7 +115,7 @@ export class Actor implements ActorObject {
     }
 
     toObj(): ActorObject {
-        const { type, id, label, pos, scale, hidden, flipX, skin, animation, time, duration } = this;
+        const { type, id, label, pos, scale, hidden, flipX, animation, time, duration } = this;
         return {
             type,
 
@@ -127,8 +127,7 @@ export class Actor implements ActorObject {
             
             hidden,
             flipX,
-            
-            skin,
+
             animation,
             
             time,
@@ -279,7 +278,6 @@ export interface ActorObject {
     hidden: boolean;
     flipX: boolean;
 
-    skin: spine.Skin;
     animation: string;
 
     time: number;

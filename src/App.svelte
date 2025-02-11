@@ -14,7 +14,7 @@
 
     import { Actor, Exporter, Factory, FORMAT_IDS, Scene, type ActorObject, type FormatData, type FormatId } from "./scripts";
     import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness, isMiniBossObj, isWitnessObj } from "./scripts/characters";
-    import { soundManager, newsManager, NewsManager, type NewsLoader } from "./scripts/managers";
+    import { soundManager, newsManager, NewsManager, type NewsLoader, serverManager } from "./scripts/managers";
 
     import { bishopData, miniBossData, towwData, witnessData } from "./data/files";
     import { BISHOP_IDS, MINI_BOSS_IDS, WITNESS_IDS } from "./data/types";
@@ -147,7 +147,7 @@
     });
 
     async function acknowledgeTerms() {
-        localStorage.setItem(NewsManager.OLD_TERMS_LOCAL_STORAGE_NAME, `${await newsManager.getTermsUnix()}`);
+        localStorage.setItem(NewsManager.TERMS_LOCAL_STORAGE_NAME, `${await newsManager.getTermsUnix()}`);
         hasUserCompliedToTOS = true;
 
         if (scene instanceof Scene) await init();
@@ -189,6 +189,7 @@
         scene.scale *= 1.5;
 
         lastUpdatedUnix = await newsManager.getLastUpdatedUnix();
+        await serverManager.addNewVisitor();
         
         loadingState = LOADING_STATES.indexOf("FetchingNews");
 
@@ -381,12 +382,15 @@
             exportState = state;
         });
 
+        const name = exportName || "cultivis-export";
+        await serverManager.sendExport(sceneObj, name, duration, exportData[format]);
+
         const blob = new Blob([buffer], { type: `image/${format}` });
         const url = URL.createObjectURL(blob);
 
         const link = document.createElement("a");
         link.href = url;
-        link.download = `${exportName}.${format}`;
+        link.download = `${name}.${format}`;
 
         link.click();
 
@@ -449,8 +453,8 @@
         {#if !areTermsAcknowledged}
             {#await Promise.all([newsManager.getTermsSummary(), newsManager.getTermsUnix()]) then [changesSummary, termsUnix]}
                 <div class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-[#00000060] {hasUserCompliedToTOS ? "opacity-0" : "opacity-100"} transition-opacity duration-450 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
-                    <Dialog childClass={twMerge("mt-2 sm:mt-4")} title="Disclaimer" description={localStorage.getItem(NewsManager.OLD_TERMS_LOCAL_STORAGE_NAME) ? `CultiVis has updated its terms of service${termsUnix ? ` on ${unixToDate(termsUnix)}` : ""}. ${changesSummary ? `${changesSummary.slice(0, -changesSummary.endsWith("."))}. ` : ""}You may view the new terms below or close this popup.` : "CultiVis requires you to agree and acknowledge the CultiVis Terms of Service. You may view the terms below or close this popup."}>
-                        <Notice class="px-8 pb-4 text-sm" label="Closing this popup will mean you agree with the Terms of Service." />
+                    <Dialog childClass={twMerge("mt-2 sm:mt-4")} title="Disclaimer" description={localStorage.getItem(NewsManager.TERMS_LOCAL_STORAGE_NAME) ? `CultiVis has updated its terms of service${termsUnix ? ` on ${unixToDate(termsUnix)}` : ""}. ${changesSummary ? `${changesSummary.slice(0, -changesSummary.endsWith("."))}. ` : ""}You may view the new terms below or close this popup.` : "CultiVis requires you to agree and acknowledge the CultiVis Terms of Service. You may view the terms below or close this popup."}>
+                        <Notice class="px-8 pb-4 sm:mt-4 text-sm" label="Closing this popup will mean you agree with the Terms of Service." />
                         <List class="flex flex-col justify-center items-center" label="Terms of Service Disclaimer Options" enableKeyInput focusFirst>
                             <BannerButton label="View Terms" href="https://github.com/osoclos/cultivis/blob/main/ToS.md" />
                             <BannerButton label="Close and Accept" onclick={acknowledgeTerms} />

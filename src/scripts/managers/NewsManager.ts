@@ -1,10 +1,8 @@
 import { MONTH_NAMES } from "../../utils";
-import { ServerManager, type ContentReplyBody } from "./ServerManager";
+import { serverManager, ServerManager, type ContentReplyBody } from "./ServerManager";
 
 export class NewsManager {
     static readonly NEWS_LOCAL_STORAGE_NAME: string = "news-last-updated";
-
-    static readonly OLD_TERMS_LOCAL_STORAGE_NAME: string = "git_latest-terms-unix"; // TODO: remove this when updating tos
     static readonly TERMS_LOCAL_STORAGE_NAME: string = "terms-last-updated";
 
     static readonly CHANGELOG_FOLDER_NAME: string = "changelog";
@@ -17,8 +15,8 @@ export class NewsManager {
         this.#fullyLoadedNewsFolders = new Set();
     }
 
-    static async create() {
-        const serverManager = await ServerManager.create();
+    static async create(serverManager?: ServerManager) {
+        serverManager ??= await ServerManager.create();
         return new NewsManager(serverManager);
     }
 
@@ -81,7 +79,7 @@ export class NewsManager {
     }
 
     async areTermsAcknowledged(): Promise<boolean> {        
-        const lastUpdate = +(localStorage.getItem(NewsManager.OLD_TERMS_LOCAL_STORAGE_NAME) ?? 0);
+        const lastUpdate = +(localStorage.getItem(NewsManager.TERMS_LOCAL_STORAGE_NAME) ?? 0);
         const unix = await this.getTermsUnix();
         
         return unix <= lastUpdate;
@@ -95,7 +93,7 @@ export class NewsManager {
     }
 
     async getTermsUnix(): Promise<number> {
-        const lastUpdate = +(localStorage.getItem(NewsManager.OLD_TERMS_LOCAL_STORAGE_NAME) ?? 0);
+        const lastUpdate = +(localStorage.getItem(NewsManager.TERMS_LOCAL_STORAGE_NAME) ?? 0);
         const unix = await this.getUnix("ToS.md", ServerManager.MAIN_ROUTE_ROOT, lastUpdate);
 
         return unix;
@@ -121,5 +119,5 @@ export class NewsManager {
     }
 }
 
-export const newsManager = await NewsManager.create();
+export const newsManager = await NewsManager.create(serverManager);
 export type NewsLoader = (numOfFiles?: number, folderNames?: string[], skipFetchedFiles?: boolean) => Promise<Record<string, string[]>>;
