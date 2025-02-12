@@ -20,6 +20,18 @@
         "Purple": {
             "name": "Purple Crown",
             "variant": "Goat"
+        },
+
+        "Cowboy": {
+            "name": "Cowboy Hat",
+            "variant": "Lamb_676"
+        },
+
+        "Evil_Cowboy": {
+            "name": "Evil Cowboy Hat",
+
+            "variant": "Lamb_676",
+            "addonVariant": "Goat"
         }
     },
 

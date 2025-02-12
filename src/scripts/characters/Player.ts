@@ -15,6 +15,7 @@ export class Player extends Actor implements PlayerObject {
     static readonly BELL_SKIN_NAME: string = "Bell";
 
     static readonly CROWN_ATTACHMENT_NAME: string = "CROWN";
+    static readonly CROWN_EYE_ATTACHMENT_NAME: string = "CROWN_EYE";
     static readonly BELL_ATTACHMENT_NAMES: string[] = ["Bell", "Rope"];
 
     static readonly FLEECE_ATTACHMENT_NAME: string = "Poncho";
@@ -129,14 +130,16 @@ export class Player extends Actor implements PlayerObject {
         const creatureSkin = new spine.Skin(Player.CREATURE_SKIN_NAME);
 
         creatureSkin.copySkin(this.skeleton.data.findSkin(creatureVariant));
-        creatureSkin.getAttachments().filter(({ name }) => [Player.FLEECE_ATTACHMENT_NAME, Player.CROWN_ATTACHMENT_NAME, ...Player.BELL_ATTACHMENT_NAMES].some((str) => name.includes(str))).forEach(({ name, slotIndex }) => creatureSkin.removeAttachment(slotIndex, name));
+        creatureSkin.getAttachments().filter(({ name }) => [Player.FLEECE_ATTACHMENT_NAME, Player.CROWN_ATTACHMENT_NAME, Player.CROWN_EYE_ATTACHMENT_NAME, ...Player.BELL_ATTACHMENT_NAMES].some((str) => name.includes(str))).forEach(({ name, slotIndex }) => creatureSkin.removeAttachment(slotIndex, name));
 
         this.setCustomSkin(creatureSkin);
 
         if (crown) {
             const crownSkin = new spine.Skin(Player.CROWN_SKIN_NAME);
+
             this.skeleton.data.findSkin(crownData!.variant).getAttachments().filter(({ name }) => name.includes(Player.CROWN_ATTACHMENT_NAME)).forEach(({ name, attachment, slotIndex }) => crownSkin.setAttachment(slotIndex, name, attachment));
-            
+            if ("addonVariant" in crownData!) this.skeleton.data.findSkin(crownData!.addonVariant!).getAttachments().filter(({ name }) => name.includes(Player.CROWN_EYE_ATTACHMENT_NAME)).forEach(({ name, attachment, slotIndex }) => crownSkin.setAttachment(slotIndex, name, attachment));
+
             this.addCustomSkin(crownSkin);
         }
 

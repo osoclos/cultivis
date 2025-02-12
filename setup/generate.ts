@@ -98,7 +98,7 @@ app.post("/player", data.array("files"), (req) => {
 
     const buffers: Buffer[][] = Array(2).fill(null).map(() => []);
     for (const { buffer, originalname } of <Express.Multer.File[]>files) {
-        const i = +originalname.replace(/-[^\W\d_]+\.dat/, "");
+        const i = +originalname.replace(/-(?:[^\W\d]|_)+\.dat/, "");
         buffers[i].push(buffer);
     }
     

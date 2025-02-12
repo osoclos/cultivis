@@ -16,12 +16,14 @@ export interface PlayerCreatureData {
     variant: string;
 }
 
-export const PLAYER_CROWN_IDS: (keyof typeof playerData.crowns)[] = ["Red", "Purple"] as const;
+export const PLAYER_CROWN_IDS: (keyof typeof playerData.crowns)[] = ["Red", "Purple", "Cowboy", "Evil_Cowboy"] as const;
 export type PlayerCrownId = typeof PLAYER_CROWN_IDS[number];
 
 export interface PlayerCrownData {
     name: string;
+
     variant: string;
+    addonVariant?: string;
 }
 
 export const PLAYER_FLEECE_IDS: (keyof typeof playerData.fleeces)[] = ["Lamb", "Goat", "Golden", "Glass", "Diseased", "Fates", "Fragile", "Cowboy", "Cursed", "Berserker", "Fervor", "Hobbled", "God", "Heretic", "Natural", "Silk", "Rags"] as const;

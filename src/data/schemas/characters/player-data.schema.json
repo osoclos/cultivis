@@ -42,6 +42,11 @@
                     "variant": {
                         "type": "string",
                         "description": "The variant name of this crown."
+                    },
+
+                    "addonVariant": {
+                        "type": "string",
+                        "description": "An optional variant to add on the existing variant of this crown."
                     }
                 },
 
@@ -117,7 +122,7 @@
 
         "CrownId": {
             "type": "string",
-            "enum": ["Red", "Purple"]
+            "enum": ["Red", "Purple", "Cowboy", "Evil_Cowboy"]
         },
 
         "FleeceId": {

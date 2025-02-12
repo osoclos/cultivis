@@ -2,7 +2,7 @@ import "./style.css";
 
 import { Scene, Factory, Exporter, Actor } from "@/scripts";
 
-import { followerData, miniBossData, towwData } from "@/data/files";
+import { followerData, miniBossData, playerData, towwData } from "@/data/files";
 import { CLOTHING_IDS, FOLLOWER_IDS, HATS_ID, MINI_BOSS_IDS, NECKLACE_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
 import { Player } from "@/scripts/characters";
 
@@ -189,14 +189,16 @@ playerExporter.addEventListener("click", () => {
     player.bell = null;
 
     setupScene(player);
-    scene.scale *= 0.5;
+    scene.scale *= 0.54;
 
     player.pos.set(8, -120);
 
     for (const id of PLAYER_CROWN_IDS) {
         const skin = new spine.Skin(Player.CROWN_SKIN_NAME);
-        player.skeleton.data.findSkin(id === "Red" ? "JustHead" : "Goat_JustHead").getAttachments().filter(({ name }) => name.includes(Player.CROWN_ATTACHMENT_NAME)).forEach(({ name, attachment, slotIndex }) => skin.setAttachment(slotIndex, name, attachment));
 
+        player.skeleton.data.findSkin(playerData.crowns[id].variant).getAttachments().filter(({ name }) => name.includes(Player.CROWN_ATTACHMENT_NAME)).forEach(({ name, attachment, slotIndex }) => skin.setAttachment(slotIndex, name, attachment));
+        if ("addonVariant" in playerData.crowns[id]) player.skeleton.data.findSkin(playerData.crowns[id].addonVariant!).getAttachments().filter(({ name }) => name.includes(Player.CROWN_EYE_ATTACHMENT_NAME)).forEach(({ name, attachment, slotIndex }) => skin.setAttachment(slotIndex, name, attachment));
+        
         player.setCustomSkin(skin);
         appendPixelsToForm(form, `1-${id}`);
     }
