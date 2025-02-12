@@ -189,7 +189,7 @@
         scene.scale *= 1.5;
 
         lastUpdatedUnix = await newsManager.getLastUpdatedUnix();
-        await serverManager.addNewVisitor();
+        import.meta.env.PROD && await serverManager.addNewVisitor();
         
         loadingState = LOADING_STATES.indexOf("FetchingNews");
 

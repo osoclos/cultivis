@@ -55,7 +55,7 @@ export class ServerManager {
         return fetch(resolvePath(ServerManager.NEW_TOKEN_ROUTE, ServerManager.TOKEN_ROUTE_ROOT, ServerManager.PROXY_SERVER_URL), {
             headers: {
                 "Content-Type": "text/plain",
-                "Authorization": `Bearer ${import.meta.env.VITE_SERVER_BYPASS_DEV_TOKEN}`
+                "Authorization": `Bearer ${import.meta.env.DEV ? import.meta.env.VITE_SERVER_BYPASS_DEV_TOKEN : ""}`
             }
         }).then((res) => res.text()); 
     }
