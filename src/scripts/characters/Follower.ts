@@ -385,7 +385,7 @@ export class Follower extends Actor implements FollowerObject {
             isHooded
                 ? ageState === FollowerAgeState.Elder
                     ? Follower.ELDER_ROBES_SKIN_NAME
-                    : `${Follower.ROBES_SKIN_PREFIX}${level > Follower.MAX_ROBES_FOLLOWER_LEVEL ? Follower.ROBES_LEVEL_WHEN_EXCEEDED : Math.floor((level - 1) / Follower.LEVELS_PER_ROBES_UPGRADE) + Follower.ROBES_STARTING_LEVEL}`
+                    : `${Follower.ROBES_SKIN_PREFIX}${level > Follower.MAX_ROBES_FOLLOWER_LEVEL ? Follower.ROBES_LEVEL_WHEN_EXCEEDED : (((level - 1) / Follower.LEVELS_PER_ROBES_UPGRADE) | 0) + Follower.ROBES_STARTING_LEVEL}`
                 : clothingData.variants[clothingVariantIdx]
         );
         

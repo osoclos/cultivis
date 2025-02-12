@@ -33,7 +33,8 @@ for (const id of SOUND_IDS) {
         const name = path.basename(file, ".wav");
 
         let { duration = 0 } = await new Promise<ffmpeg.FfprobeFormat>((resolve, reject) => ffmpeg.ffprobe(file, (err, { format }) => err ? reject(err) : resolve(format)));
-        duration = Math.floor(duration * 1000);
+        duration *= 1000;
+        duration |= 0;
 
         soundData[id].timeRanges[name] = { start: totalDuration, duration };
         totalDuration += duration;

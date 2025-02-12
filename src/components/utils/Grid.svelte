@@ -84,7 +84,7 @@
     function updateGridSize(width: number = container.clientWidth) {
         const elements = ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0);
 
-        if (autoColumns) columns = MoreMath.clamp(Math.floor((width + gapWidth) / (tileWidth + gapWidth)), minColumns, maxColumns);
+        if (autoColumns) columns = MoreMath.clamp(((width + gapWidth) / (tileWidth + gapWidth)) | 0, minColumns, maxColumns);
         rows = Math.ceil(elements.length / columns);
     }
 
@@ -101,7 +101,7 @@
     });
 
     function updateVecFromIdx(i: number) {
-        Vector.valToObj(focusPos, i % columns, Math.floor(i / columns));
+        Vector.valToObj(focusPos, i % columns, (i / columns) | 0);
     }
 
     function onkeydown(evt: KeyboardEvent) {
