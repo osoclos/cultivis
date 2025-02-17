@@ -1,5 +1,5 @@
-import path from "path";
 import fs from "fs/promises";
+import path from "path";
 
 import { defineConfig, Plugin } from "vite";
 import { minify } from "terser";
@@ -20,8 +20,8 @@ const LIB_PATHS: Record<string, string> = {
     "eruda/eruda.js": ""
 };
 
-const spineBundlePlugin = (): Plugin => ({
-    name: "spine-bundler",
+const nonModuleImporterPlugin = (): Plugin => ({
+    name: "non-module-importer",
     apply: "build",
 
     async generateBundle() {
@@ -59,7 +59,7 @@ export default defineConfig({
             output: {
                 entryFileNames: "scripts/[name]-[hash].js",
                 chunkFileNames: "scripts/[name]-[hash].js",
-                assetFileNames: ({ names }) => names[0].endsWith(".css") ? "styles/[name]-[hash][extname]" : "assets/[name]-[hash][extname]",
+                assetFileNames: ({ names: [name] }) => `${name.endsWith(".css") ? "styles" : "assets"}/[name]-[hash][extname]`,
 
                 manualChunks: (path: string) => path.includes("node_modules") ? "vendor" : ""
             },
@@ -73,5 +73,5 @@ export default defineConfig({
         force: true,
 
         savePath: ".certs"
-    }), spineBundlePlugin()]
+    }), nonModuleImporterPlugin()]
 });

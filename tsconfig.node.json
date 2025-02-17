@@ -23,9 +23,9 @@
         "isolatedModules": true,
 
         // Language and Environment
-        "lib": ["ES2023"],
+        "lib": ["ESNext"],
         "moduleDetection": "force",
-        "target": "ES2022",
+        "target": "ESNext",
 
         // Projects
         "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",

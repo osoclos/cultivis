@@ -57,7 +57,10 @@ export class ServerManager {
                 "Content-Type": "text/plain",
                 "Authorization": `Bearer ${import.meta.env.DEV ? import.meta.env.VITE_SERVER_BYPASS_DEV_TOKEN : ""}`
             }
-        }).then((res) => res.text()); 
+        }).then((res) => res.text()).catch((err) => {
+            console.error(err instanceof Error ? `Unable to fetch token: ${err.message}, caused by: ${err.cause}` : `Unable to fetch token: ${err}, caused by: ${import.meta.url}`);
+            return "";
+        });
     }
 
     private static async revokeToken(token: string) {
@@ -125,9 +128,12 @@ export class ServerManager {
                 case isExportBody(body):
                 default: return fetch(url, init);
             }
-        })().then((res) => res.json());
+        })().then((res) => res.json()).catch((err) => {
+            console.error(err instanceof Error ? `Unable to fetch data: ${err.message}, caused by: ${err.cause}` : `Unable to fetch data: ${err}, caused by: ${import.meta.url}`);
+            return {};
+        });
 
-        this.cache.set(key, data);
+        if (Object.keys(data).length) this.cache.set(key, data);
         return data;
     }
 }

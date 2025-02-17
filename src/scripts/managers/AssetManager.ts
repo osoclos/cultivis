@@ -15,7 +15,9 @@ export class AssetManager {
     }
 
     async fetchTexture(path: string) {
-        const blob = await fetchAndCache(resolvePath(path, this.root), this.textureCache).then((res) => res.blob());
+        const blob = await fetchAndCache(resolvePath(path, this.root), this.textureCache).then((res) => res.blob()).catch((err) => {
+            throw err instanceof Error ? new Error(`Unable to fetch image: ${err.message}, caused by: ${err.cause}`) : new Error(`Unable to fetch image: ${err}, caused by: ${import.meta.url}`);
+        });
 
         const url = URL.createObjectURL(blob);
         const image = await new Promise<HTMLImageElement>((resolve, reject) => {
@@ -31,12 +33,18 @@ export class AssetManager {
     }
 
     async fetchAtlas(path: string, textures: Record<string, spine.webgl.GLTexture>) {
-        const text = await fetchAndCache(resolvePath(path, this.root), this.atlasCache).then((res) => res.text());
+        const text = await fetchAndCache(resolvePath(path, this.root), this.atlasCache).then((res) => res.text()).catch((err) => {
+            throw err instanceof Error ? new Error(`Unable to fetch atlas: ${err.message}, caused by: ${err.cause}`) : new Error(`Unable to fetch atlas: ${err}, caused by: ${import.meta.url}`);
+        });
+
         return new spine.TextureAtlas(text, (path) => textures[path]);
     }
 
     async fetchSkeleton(path: string, atlas: spine.TextureAtlas) {
-        const buffer = await fetchAndCache(resolvePath(path, this.root), this.skeletonCache).then((res) => res.arrayBuffer());
+        const buffer = await fetchAndCache(resolvePath(path, this.root), this.skeletonCache).then((res) => res.arrayBuffer()).catch((err) => {
+            throw err instanceof Error ? new Error(`Unable to fetch skeleton: ${err.message}, caused by: ${err.cause}`) : new Error(`Unable to fetch skeleton: ${err}, caused by: ${import.meta.url}`);
+        });
+
         const arr = new Uint8Array(buffer);
 
         const loader = new spine.AtlasAttachmentLoader(atlas);
@@ -48,7 +56,10 @@ export class AssetManager {
     }
 
     async fetchJSON(path: string, atlas: spine.TextureAtlas) {
-        const buffer = await fetchAndCache(resolvePath(path, this.root), this.skeletonCache).then((res) => res.arrayBuffer());
+        const buffer = await fetchAndCache(resolvePath(path, this.root), this.skeletonCache).then((res) => res.arrayBuffer()).catch((err) => {
+            throw err instanceof Error ? new Error(`Unable to fetch JSON: ${err.message}, caused by: ${err.cause}`) : new Error(`Unable to fetch JSON: ${err}, caused by: ${import.meta.url}`);
+        });
+
         const arr = new Uint8Array(buffer);
 
         const loader = new spine.AtlasAttachmentLoader(atlas);
