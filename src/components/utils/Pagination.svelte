@@ -41,7 +41,9 @@
         click(selectedIdx);
     }
 
-    function onKeyDown(evt: KeyboardEvent) {
+    const abortController = new AbortController();
+
+    onMount(() => addEventListener("keydown", (evt: KeyboardEvent) => {
         if (!children) return;
 
         const { code, ctrlKey, altKey } = evt;
@@ -61,10 +63,9 @@
 
         soundManager.play("Option_Change");
         click(selectedIdx);
-    }
+    }, { signal: abortController.signal }));
 
-    onMount(() => addEventListener("keydown", onKeyDown));
-    onDestroy(() => removeEventListener("keydown", onKeyDown));
+    onDestroy(() => abortController.abort());
 </script>
 
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->

@@ -37,12 +37,11 @@ export class ServerManager {
     static async create() {
         const token = await this.fetchToken();
 
-        const revokeToken = async () => {
+        const abortController = new AbortController();
+        window.addEventListener("beforeunload", async () => {
             await this.revokeToken(token);
-            window.removeEventListener("beforeunload", revokeToken);
-        };
-
-        window.addEventListener("beforeunload", revokeToken);
+            abortController.abort();
+        }, { signal: abortController.signal });
 
         const contentCache = await caches.open(this.CONTENT_CACHE_NAME);
         const commitDataCache = await caches.open(this.COMMIT_DATA_CACHE_NAME);

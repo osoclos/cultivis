@@ -100,6 +100,8 @@
         mutator.disconnect();
     });
 
+    // TODO: redo keyboard focus to comply with aria grid role key combinations
+
     function updateVecFromIdx(i: number) {
         Vector.valToObj(focusPos, i % columns, (i / columns) | 0);
     }

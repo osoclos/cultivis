@@ -96,41 +96,41 @@
     // svelte-ignore state_referenced_locally
     matchMedia("(max-width: 64rem)").matches && Vector.fromObj(size).swap().cloneObj(size);
 
-    function onKeyDown(evt: KeyboardEvent) {
-        const { code, ctrlKey, altKey } = evt;
-        if (!["KeyE", "KeyF"].includes(code) || ctrlKey || altKey || document.activeElement instanceof HTMLInputElement) return;
-        
-        evt.preventDefault();
-        
-        if (code === "KeyE") {
-            const element = document.activeElement as HTMLElement;
-            element.click();
-
-            return;
-        }
-        
-        if (showActorMenu) {
-            showActorMenu = false;
-            soundManager.play("Menu_Close");
-
-            return;
-        }
-        
-        if (actorIdx >= 0) {
-            actorIdx = -1;
-            soundManager.play("Menu_Close");
-
-            return;
-        }
-    }
-
+    const abortController = new AbortController();
     const resizer = new ResizeObserver(() => {
         isOnPhone = matchMedia("(max-width: 40rem)").matches;
         isMobile = matchMedia("(max-width: 64rem)").matches;
     });
 
     onMount(async () => {
-        window.addEventListener("keydown", onKeyDown);
+        window.addEventListener("keydown", (evt: KeyboardEvent) => {
+            const { code, ctrlKey, altKey } = evt;
+            if (!["KeyE", "KeyF"].includes(code) || ctrlKey || altKey || document.activeElement instanceof HTMLInputElement) return;
+            
+            evt.preventDefault();
+            
+            if (code === "KeyE") {
+                const element = document.activeElement as HTMLElement;
+                element.click();
+
+                return;
+            }
+            
+            if (showActorMenu) {
+                showActorMenu = false;
+                soundManager.play("Menu_Close");
+
+                return;
+            }
+            
+            if (actorIdx >= 0) {
+                actorIdx = -1;
+                soundManager.play("Menu_Close");
+
+                return;
+            }
+        }, { signal: abortController.signal });
+
         resizer.observe(document.documentElement);
 
         await soundManager.loadAll();
@@ -140,9 +140,9 @@
     });
 
     onDestroy(async () => {
-        window.removeEventListener("keydown", onKeyDown);
+        abortController.abort();
+        
         resizer.disconnect();
-
         exporter?.dispose();
     });
 

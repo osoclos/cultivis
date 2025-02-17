@@ -70,6 +70,7 @@
         gridFocusIdx = MoreMath.clamp(i, 0, gridContainers.length - 1);
     }
     
+    // TODO: redo keyboard focus to comply with aria grid role key combinations
     function updateGridFocus(offset: number, isValid: boolean, pos: Vector) {
         if (!MoreMath.isInRange(gridFocusIdx + offset, 0, gridContainers.length - 1)) offset = 0;
         updateGridIdx(gridFocusIdx + offset * +!isValid);

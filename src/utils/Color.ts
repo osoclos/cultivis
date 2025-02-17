@@ -19,7 +19,7 @@ export class Color implements ColorObject {
     constructor(r: number, g: number, b: number);
     constructor(r: number, g: number, b: number, a: number);
     constructor(r: number, g: number, b: number, a: number, forceVal: boolean);
-    constructor(r: number = 0x00, g: number = r, b: number = r * +(r !== g), a: number = 0xff, forceVal: boolean = false) {
+    constructor(r: number = 0x00, g: number = r, b: number = r * +(r === g), a: number = 0xff, forceVal: boolean = false) {
         const values: number[] = [r, g, b, a];
         if (!forceVal && values.every((val) => MoreMath.isInRange(val, 0.0, 1.0))) [r, g, b, a] = values.map((val) => val * 0xff);
         
