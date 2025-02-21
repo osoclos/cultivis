@@ -10724,15 +10724,6 @@
             ],
             "canBeTinted": true
         },
-        "Skeleton": {
-            "name": "Skeleton",
-            "category": 2,
-            "variants": [
-                "Skeleton"
-            ],
-            "sets": [],
-            "canBeTinted": false
-        },
         "DeerRitual": {
             "name": "Stag",
             "category": 3,
