@@ -124,7 +124,7 @@ export class Player extends Actor implements PlayerObject {
     }
 
     update() {
-        const { creature, creatureData, crown, crownData, fleece, fleeceData, bell, bellData, hurtState } = this;
+        const { creature, creatureData, crown, crownData, fleeceData, bell, bellData, hurtState } = this;
         
         const creatureVariant = creatureData.variant;
         const creatureSkin = new spine.Skin(Player.CREATURE_SKIN_NAME);
