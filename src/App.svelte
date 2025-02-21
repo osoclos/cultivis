@@ -525,7 +525,7 @@
 
                     <div class="flex flex-col gap-8 w-80 sm:w-90">
                         <Label label="Format">
-                            <ArrowSelection class="ml-6" options={[...FORMAT_IDS].map((format) => format.toUpperCase())} label="Format" oninput={(_, i) => exportFormat = FORMAT_IDS[i]} />
+                            <ArrowSelection class="ml-6" options={[...FORMAT_IDS].map((format) => format.toUpperCase())} i={FORMAT_IDS.indexOf(exportFormat)} label="Format" oninput={(_, i) => exportFormat = FORMAT_IDS[i]} />
                         </Label>
                         
                         <FormatOptions bind:format={exportFormat} data={exportData[exportFormat]}  />
