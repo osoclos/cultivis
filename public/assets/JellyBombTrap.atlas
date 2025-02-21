@@ -1,0 +1,34 @@
+
+JellyBombTrap.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ExploderEye
+  rotate: true
+  xy: 426, 75
+  size: 71, 61
+  orig: 71, 61
+  offset: 0, 0
+  index: -1
+ExploderEyeClosed
+  rotate: true
+  xy: 426, 2
+  size: 71, 52
+  orig: 71, 52
+  offset: 0, 0
+  index: -1
+JellyBombTrapBody
+  rotate: false
+  xy: 2, 10
+  size: 210, 136
+  orig: 210, 136
+  offset: 0, 0
+  index: -1
+JellyBombTrapBody_Lit
+  rotate: false
+  xy: 214, 10
+  size: 210, 136
+  orig: 210, 136
+  offset: 0, 0
+  index: -1

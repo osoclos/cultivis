@@ -1,0 +1,503 @@
+
+Floater.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+SwampFloaters/BabyExploderHead
+  rotate: false
+  xy: 827, 498
+  size: 127, 87
+  orig: 127, 87
+  offset: 0, 0
+  index: -1
+SwampFloaters/BabyExploderSkirt
+  rotate: true
+  xy: 815, 57
+  size: 102, 54
+  orig: 102, 54
+  offset: 0, 0
+  index: -1
+SwampFloaters/BackgroundJellyHead
+  rotate: true
+  xy: 434, 220
+  size: 264, 174
+  orig: 264, 174
+  offset: 0, 0
+  index: -1
+SwampFloaters/BackgroundJellyHead_Medium
+  rotate: true
+  xy: 439, 25
+  size: 193, 122
+  orig: 193, 122
+  offset: 0, 0
+  index: -1
+SwampFloaters/BackgroundJellyHead_Small
+  rotate: false
+  xy: 609, 491
+  size: 127, 80
+  orig: 127, 80
+  offset: 0, 0
+  index: -1
+SwampFloaters/BackgroundJellySkirt
+  rotate: true
+  xy: 669, 47
+  size: 179, 55
+  orig: 179, 55
+  offset: 0, 0
+  index: -1
+SwampFloaters/BackgroundJellySkirt_Medium
+  rotate: false
+  xy: 669, 2
+  size: 135, 43
+  orig: 135, 43
+  offset: 0, 0
+  index: -1
+SwampFloaters/BackgroundJellySkirt_Small
+  rotate: true
+  xy: 1015, 136
+  size: 102, 54
+  orig: 102, 54
+  offset: 0, 0
+  index: -1
+SwampFloaters/BodyBtm3
+  rotate: true
+  xy: 953, 761
+  size: 111, 104
+  orig: 111, 104
+  offset: 0, 0
+  index: -1
+SwampFloaters/BodyTop3
+  rotate: false
+  xy: 482, 489
+  size: 125, 82
+  orig: 125, 82
+  offset: 0, 0
+  index: -1
+SwampFloaters/DripsSpiker
+  rotate: false
+  xy: 943, 2
+  size: 76, 71
+  orig: 76, 71
+  offset: 0, 0
+  index: -1
+SwampFloaters/ExploderBigEye1
+  rotate: true
+  xy: 1021, 6
+  size: 71, 61
+  orig: 71, 61
+  offset: 0, 0
+  index: -1
+SwampFloaters/ExploderBigEye1_Closed
+  rotate: true
+  xy: 1084, 6
+  size: 71, 61
+  orig: 71, 61
+  offset: 0, 0
+  index: -1
+SwampFloaters/ExploderBigEye2
+  rotate: true
+  xy: 1031, 688
+  size: 71, 61
+  orig: 71, 61
+  offset: 0, 0
+  index: -1
+SwampFloaters/ExploderBigEye2_Closed
+  rotate: true
+  xy: 1031, 615
+  size: 71, 61
+  orig: 71, 61
+  offset: 0, 0
+  index: -1
+SwampFloaters/ExploderBigHead
+  rotate: true
+  xy: 440, 756
+  size: 266, 190
+  orig: 266, 190
+  offset: 0, 0
+  index: -1
+SwampFloaters/ExploderBigHead_Poison
+  rotate: true
+  xy: 242, 218
+  size: 266, 190
+  orig: 266, 190
+  offset: 0, 0
+  index: -1
+SwampFloaters/ExploderBigSkirt
+  rotate: true
+  xy: 726, 127
+  size: 179, 55
+  orig: 179, 55
+  offset: 0, 0
+  index: -1
+SwampFloaters/ExploderBigSkirt_Poison
+  rotate: true
+  xy: 736, 310
+  size: 179, 55
+  orig: 179, 55
+  offset: 0, 0
+  index: -1
+SwampFloaters/ExploderEye
+  rotate: true
+  xy: 1059, 801
+  size: 71, 61
+  orig: 71, 61
+  offset: 0, 0
+  index: -1
+SwampFloaters/ExploderEye_Closed
+  rotate: true
+  xy: 1049, 542
+  size: 71, 61
+  orig: 71, 61
+  offset: 0, 0
+  index: -1
+SwampFloaters/ExploderHead
+  rotate: true
+  xy: 303, 23
+  size: 193, 134
+  orig: 193, 134
+  offset: 0, 0
+  index: -1
+SwampFloaters/ExploderSkirt
+  rotate: false
+  xy: 806, 2
+  size: 135, 43
+  orig: 135, 43
+  offset: 0, 0
+  index: -1
+SwampFloaters/Eye
+  rotate: true
+  xy: 1097, 883
+  size: 67, 52
+  orig: 67, 52
+  offset: 0, 0
+  index: -1
+SwampFloaters/GruntEye
+  rotate: true
+  xy: 1147, 2
+  size: 76, 66
+  orig: 76, 66
+  offset: 0, 0
+  index: -1
+SwampFloaters/HeadRingGrunt
+  rotate: false
+  xy: 950, 874
+  size: 145, 148
+  orig: 145, 148
+  offset: 0, 0
+  index: -1
+SwampFloaters/RingshotTurretHead
+  rotate: true
+  xy: 2, 747
+  size: 275, 196
+  orig: 275, 196
+  offset: 0, 0
+  index: -1
+SwampFloaters/ScuttleSkirt
+  rotate: true
+  xy: 871, 60
+  size: 140, 47
+  orig: 140, 47
+  offset: 0, 0
+  index: -1
+SwampFloaters/ScuttleSkirt2
+  rotate: true
+  xy: 907, 209
+  size: 140, 47
+  orig: 140, 47
+  offset: 0, 0
+  index: -1
+SwampFloaters/ScuttleTurretHead
+  rotate: true
+  xy: 2, 10
+  size: 197, 157
+  orig: 199, 157
+  offset: 0, 0
+  index: -1
+SwampFloaters/Scuttle_Eye_Back
+  rotate: true
+  xy: 956, 240
+  size: 122, 90
+  orig: 122, 90
+  offset: 0, 0
+  index: -1
+SwampFloaters/Scuttle_Eye_Back2
+  rotate: true
+  xy: 1012, 374
+  size: 122, 90
+  orig: 122, 90
+  offset: 0, 0
+  index: -1
+SwampFloaters/Scuttle_Eye_Closed
+  rotate: true
+  xy: 966, 682
+  size: 77, 63
+  orig: 77, 63
+  offset: 0, 0
+  index: -1
+SwampFloaters/Scuttle_Eye_Closed2
+  rotate: true
+  xy: 966, 603
+  size: 77, 63
+  orig: 77, 63
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerEyes
+  rotate: true
+  xy: 563, 37
+  size: 181, 104
+  orig: 181, 104
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerEyes2
+  rotate: true
+  xy: 610, 308
+  size: 181, 61
+  orig: 181, 61
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerEyes2_Closed
+  rotate: true
+  xy: 673, 308
+  size: 181, 61
+  orig: 181, 61
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerEyes_Closed
+  rotate: true
+  xy: 482, 573
+  size: 181, 104
+  orig: 181, 104
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerEyes_Closed_attack1
+  rotate: true
+  xy: 588, 573
+  size: 181, 104
+  orig: 181, 104
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerEyes_Closed_attack2
+  rotate: true
+  xy: 632, 841
+  size: 181, 104
+  orig: 181, 104
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerEyes_attack1
+  rotate: true
+  xy: 694, 578
+  size: 181, 104
+  orig: 181, 104
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerEyes_attack2
+  rotate: true
+  xy: 844, 841
+  size: 181, 104
+  orig: 181, 104
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerEyes_attack3
+  rotate: true
+  xy: 738, 841
+  size: 181, 104
+  orig: 181, 104
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerHead
+  rotate: true
+  xy: 2, 478
+  size: 267, 238
+  orig: 267, 238
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerHead2
+  rotate: true
+  xy: 200, 755
+  size: 267, 238
+  orig: 267, 238
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerHead2_Big
+  rotate: true
+  xy: 2, 209
+  size: 267, 238
+  orig: 267, 238
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerHead_Big
+  rotate: true
+  xy: 242, 486
+  size: 267, 238
+  orig: 267, 238
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerHorn
+  rotate: true
+  xy: 800, 587
+  size: 172, 164
+  orig: 172, 164
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerSkirt
+  rotate: true
+  xy: 161, 12
+  size: 195, 69
+  orig: 195, 69
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerSkirtBig
+  rotate: true
+  xy: 232, 12
+  size: 195, 69
+  orig: 195, 69
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerSpike1
+  rotate: false
+  xy: 783, 161
+  size: 62, 147
+  orig: 62, 147
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerSpike1_Big
+  rotate: false
+  xy: 793, 349
+  size: 62, 147
+  orig: 62, 147
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerSpike2
+  rotate: false
+  xy: 847, 202
+  size: 58, 145
+  orig: 58, 145
+  offset: 0, 0
+  index: -1
+SwampFloaters/SpikerSpike2_Big
+  rotate: false
+  xy: 857, 351
+  size: 58, 145
+  orig: 58, 145
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_BackgroundJelly_Btm
+  rotate: true
+  xy: 1071, 136
+  size: 54, 62
+  orig: 54, 62
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_BackgroundJelly_Btm_Medium
+  rotate: false
+  xy: 1097, 952
+  size: 45, 70
+  orig: 45, 70
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_BackgroundJelly_Top
+  rotate: false
+  xy: 632, 761
+  size: 114, 78
+  orig: 114, 78
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_BackgroundJelly_Top_Medium
+  rotate: false
+  xy: 726, 47
+  size: 87, 78
+  orig: 87, 78
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_ExploderBig_Btm
+  rotate: true
+  xy: 1135, 136
+  size: 54, 62
+  orig: 54, 62
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_ExploderBig_Btm_Poison
+  rotate: true
+  xy: 1145, 80
+  size: 54, 62
+  orig: 54, 62
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_ExploderBig_Top
+  rotate: false
+  xy: 748, 761
+  size: 114, 78
+  orig: 114, 78
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_ExploderBig_Top_Poison
+  rotate: false
+  xy: 610, 228
+  size: 114, 78
+  orig: 114, 78
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_Exploder_Top
+  rotate: false
+  xy: 738, 498
+  size: 87, 78
+  orig: 87, 78
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_Scuttle_Btm
+  rotate: true
+  xy: 1015, 79
+  size: 55, 63
+  orig: 55, 63
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_Scuttle_Btm2
+  rotate: true
+  xy: 1080, 79
+  size: 55, 63
+  orig: 55, 63
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_Scuttle_Top
+  rotate: false
+  xy: 864, 761
+  size: 87, 78
+  orig: 87, 78
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_Scuttle_Top2
+  rotate: true
+  xy: 1071, 192
+  size: 87, 78
+  orig: 87, 78
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_Spiker_Btm
+  rotate: true
+  xy: 956, 498
+  size: 87, 91
+  orig: 87, 91
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_Spiker_Btm_Big
+  rotate: false
+  xy: 1048, 281
+  size: 87, 91
+  orig: 87, 91
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_Spiker_Top
+  rotate: true
+  xy: 917, 364
+  size: 132, 93
+  orig: 132, 107
+  offset: 0, 0
+  index: -1
+SwampFloaters/Tail_Spiker_Top_Big
+  rotate: true
+  xy: 920, 75
+  size: 132, 93
+  orig: 132, 107
+  offset: 0, 0
+  index: -1

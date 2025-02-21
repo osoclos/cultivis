@@ -100,6 +100,11 @@
         },
 
         {
+            "fileMatch": ["/humanoid-data.json"],
+            "url": "/src/data/schemas/characters/enemies/humanoid-data.schema.json"
+        },
+
+        {
             "fileMatch": ["/bishop-data.json"],
             "url": "/src/data/schemas/characters/bosses/bishop-data.schema.json"
         },

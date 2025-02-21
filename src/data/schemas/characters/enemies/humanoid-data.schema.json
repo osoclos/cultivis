@@ -1,0 +1,38 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "toww-data.schema.json",
+
+    "title": "Humanoid Data",
+    "description": "Information on humanoid enemies that provides metadata and other related information",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/Id" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The display name of this humanoid."
+            },
+
+            "skin": {
+                "type": "string",
+                "description": "The skin name of this humanoid."
+            },
+
+            "canHoldShield": {
+                "type": "boolean",
+                "description": "Can this humanoid hold a shield."
+            }
+        },
+
+        "required": ["name", "skin", "canHoldShield"]
+    },
+
+    "definitions": {
+        "Id": {
+            "type": "string",
+            "enum": ["Swordsman", "Scytheman", "Bomber", "Archer", "Sharpshooter", "Scamp", "Juggernaut"]
+        }
+    }
+}

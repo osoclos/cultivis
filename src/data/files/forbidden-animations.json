@@ -185,5 +185,31 @@
         "weapon-pose",
         "walk-template",
         "zipline"
+    ],
+
+    "humanoid": [
+        "!2",
+        "OLD",
+        "old",
+        "_idles",
+        "alarm",
+        "cheer",
+        "dead-on-ground",
+        "Directions",
+        "fall",
+        "hurt",
+        "jeer",
+        "knockback",
+        "notice-player",
+        "parry",
+        "possess",
+        "scared",
+        "!sacrifice",
+        "sleeping",
+        "spawn-in",
+        "vulnerable",
+        "wake-up",
+        "walk",
+        "worship"
     ]
 }

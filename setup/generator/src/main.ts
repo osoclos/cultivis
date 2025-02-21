@@ -3,7 +3,7 @@ import "./style.css";
 import { Scene, Factory, Exporter, Actor } from "@/scripts";
 
 import { followerData, miniBossData, playerData, towwData } from "@/data/files";
-import { CLOTHING_IDS, FOLLOWER_IDS, HATS_ID, MINI_BOSS_IDS, NECKLACE_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
+import { CLOTHING_IDS, FOLLOWER_IDS, HATS_ID, HUMANOID_IDS, MINI_BOSS_IDS, NECKLACE_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
 import { Player } from "@/scripts/characters";
 
 const WIDTH: number = 64;
@@ -266,6 +266,27 @@ bellExporter.addEventListener("click", () => {
     sendForm(form, "/bells");
 });
 
+const humanoidExporter = document.querySelector<HTMLButtonElement>("button#export-humanoids")!;
+humanoidExporter.addEventListener("click", () => {
+    const form = new FormData();
+
+    for (const id of HUMANOID_IDS) {
+        const humanoid = factory.humanoid(id);
+        humanoid.setAnimation("idle");
+
+        setupScene(humanoid);
+        
+        if (["Swordsman", "Scytheman", "Juggernaut"].includes(id)) {
+            scene.scale *= 0.9 - 0.1 * +(id === "Scytheman");
+            humanoid.pos.set(0, -10 - 20 * +(id === "Scytheman"));
+        }
+
+        appendPixelsToForm(form, id);
+    }
+
+    sendForm(form, "/humanoids");
+});
+
 const towwExporter = document.querySelector<HTMLButtonElement>("button#export-toww")!;
 towwExporter.addEventListener("click", () => {
     const form = new FormData();
@@ -343,7 +364,7 @@ witnessExporter.addEventListener("click", () => {
     }
 
     sendForm(form, "/witnesses");
-})
+});
 
 function setupScene(actor: Actor) {
     scene.removeActors(...scene.actors);

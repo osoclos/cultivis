@@ -76,13 +76,13 @@
     import { twMerge } from "tailwind-merge";
 
     import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, ArrowSelection, Slider, Toggle } from "../base";
-    import { BISHOP_MENU_NAME, MINI_BOSS_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
+    import { BISHOP_MENU_NAME, HUMANOID_MENU_NAME, MINI_BOSS_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
     import { MultiList } from "../utils";
 
     import { Actor, Factory, type ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isMiniBossObj, isPlayerObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isHumanoidObj, isMiniBossObj, isPlayerObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
 
-    import { forbiddenAnimations } from "../../data/files";
+    import { forbiddenAnimations, humanoidData } from "../../data/files";
     import { Random, Vector, type VectorObject } from "../../utils";
 
     interface Props {
@@ -118,15 +118,21 @@
     }: Props = $props();
 
     const animations: string[] = $derived.by(() => {
-        const { follower, player } = forbiddenAnimations;
+        const { follower, player, humanoid } = forbiddenAnimations;
         const { animationNames } = actor;
         
-        switch (true) {
-            case isFollowerObj(actor): return animationNames.filter((name) => !(follower.includes(`!${name}`) || follower.some((keyword) => !keyword.startsWith("!") && name.includes(keyword)))).sort();
-            case isPlayerObj(actor): return animationNames.filter((name) => !(player.includes(`!${name}`) || player.some((keyword) => !keyword.startsWith("!") && name.includes(keyword)))).sort();
+        const actorForbiddenAnimations: string[] = (() => {
+            switch (true) {
+                case isFollowerObj(actor): return follower;
+                case isPlayerObj(actor): return player;
 
-            default: return animationNames;
-        }
+                case isHumanoidObj(actor): return humanoid;
+
+                default: return [];
+            }
+        })();
+        
+        return animationNames.filter((name) => !(actorForbiddenAnimations.includes(`!${name}`) || actorForbiddenAnimations.some((keyword) => !keyword.startsWith("!") && name.includes(keyword)))).sort();
     });
 
     function randomizeAppearance() {
@@ -256,6 +262,8 @@
                     <BannerButton label="Choose Bell" playClickSound={false} onclick={() => proceed("bell")} />
                     
                     <BannerButton label="Randomize" src="/static/ui/dice-6.png" onclick={randomizeAppearance} />
+                {:else if isHumanoidObj(obj)}
+                    <BannerButton label="Choose Role" playClickSound={false} onclick={() => proceed(HUMANOID_MENU_NAME)} />
                 {:else if isBishopObj(obj)}
                     <BannerButton label="Choose Bishop" playClickSound={false} onclick={() => proceed(BISHOP_MENU_NAME)} />
                 {:else if isTOWW_Obj(obj)}
@@ -291,6 +299,12 @@
                                 <Label label="Hurt State">
                                     <ArrowSelection class="ml-6" label="Hurt State" options={["Normal", "Bruised", "Injured"]} bind:i={obj.hurtState} oninput={(_, i) => actor.hurtState = i} />
                                 </Label>
+                            {:else if isHumanoidObj(obj) && isHumanoidObj(actor)}
+                                {#if humanoidData[obj.humanoid].canHoldShield}
+                                    <Label label="Is Holding Shield?">
+                                        <Toggle label="Is Holding Shield?" bind:enabled={obj.isHoldingShield!} oninput={(isHoldingShield) => actor.isHoldingShield = isHoldingShield} />
+                                    </Label>
+                                {/if}
                             {:else if isBishopObj(obj) && isBishopObj(actor)}
                                 {#if "bossSrc" in bishopData[obj.bishop]}
                                     <Label label="Is in Boss Form?">

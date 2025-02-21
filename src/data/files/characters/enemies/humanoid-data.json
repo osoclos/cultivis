@@ -1,0 +1,50 @@
+{
+    "Swordsman": {
+        "name": "Swordsman",
+
+        "skin": "Cult_Swordsman",
+        "canHoldShield": true
+    },
+
+    "Scytheman": {
+        "name": "Scytheman",
+
+        "skin": "Cult_Swordsman_Captain",
+        "canHoldShield": true
+    },
+
+    "Bomber": {
+        "name": "Bomber",
+
+        "skin": "Cult_Scout",
+        "canHoldShield": true
+    },
+
+    "Archer": {
+        "name": "Archer",
+
+        "skin": "Cult_Archer",
+        "canHoldShield": true
+    },
+
+    "Sharpshooter": {
+        "name": "Sharpshooter",
+
+        "skin": "Cult_Archer_Captain",
+        "canHoldShield": true
+    },
+
+    "Scamp": {
+        "name": "Scamp",
+
+        "skin": "Cult_Scamp",
+        "canHoldShield": true
+    },
+
+    "Juggernaut": {
+        "name": "Juggernaut",
+        "skin": "Cult_ArcherBoss",
+
+        "canHoldShield": false
+    }
+}

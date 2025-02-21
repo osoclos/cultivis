@@ -65,6 +65,7 @@
     }: Props = $props();
 
     let container: HTMLDivElement = $state(document.createElement("div"));
+    let numOfChildren: number = $state(0);
 
     const focusPos = $state(Vector[focusFirst ? "Zero" : "NegOne"].toObj());
     const focusIdx = $derived(Vector.NegOne.equalsObj(focusPos) ? -1 : focusPos.x + focusPos.y * columns);
@@ -82,10 +83,10 @@
     });
 
     function updateGridSize(width: number = container.clientWidth) {
-        const elements = ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0);
+        numOfChildren = ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0).length;
 
         if (autoColumns) columns = MoreMath.clamp(((width + gapWidth) / (tileWidth + gapWidth)) | 0, minColumns, maxColumns);
-        rows = Math.ceil(elements.length / columns);
+        rows = Math.ceil(numOfChildren / columns);
     }
 
     onMount(() => {
@@ -181,7 +182,7 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div bind:this={container} class={twMerge("grid place-content-center w-full", className)} style:grid-template-columns="repeat(auto-fit, {tileWidth}px)" style:grid-template-rows="repeat(auto-fit, {tileHeight}px)" style:column-gap="{gapWidth}px" style:row-gap="{gapHeight}px" style:min-width="{(tileWidth + gapWidth) * minColumns - gapWidth}px" style:max-width="{(tileWidth + gapWidth) * maxColumns - gapWidth + 0.1}px" tabindex="0" role="grid" aria-label={label} {onkeydown} {onfocusin} onfocusout={({ relatedTarget }) => !relatedTarget && Vector.NegOne.cloneObj(focusPos)}>
     {@render children?.()}
-    {#each Array(Math.max(maxColumns - ([...container.children] as HTMLElement[]).filter(({ tabIndex }) => tabIndex >= 0).length, 0)).keys() as i (i)}
+    {#each Array(Math.max(maxColumns - numOfChildren, 0)).keys() as i (i)}
         <div tabindex="-1"></div>
     {/each}
 </div>

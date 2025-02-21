@@ -9,14 +9,25 @@
     "properties": {
         "follower": {
             "type": "array",
+            "description": "Followers should not play these animations listed in this array",
+
             "items": { "type": "string" }
         },
 
         "player": {
             "type": "array",
+            "description": "Players should not play these animations listed in this array",
+
+            "items": { "type": "string" }
+        },
+
+        "humanoid": {
+            "type": "array",
+            "description": "Humanoid enemies should not play these animations listed in this array",
+
             "items": { "type": "string" }
         }
     },
 
-    "required": ["follower", "player"]
+    "required": ["follower", "player", "humanoid"]
 }

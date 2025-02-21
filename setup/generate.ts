@@ -135,6 +135,14 @@ app.post("/bells", data.array("files"), (req) => {
     createSpritesheets(buffers, "bells");
 });
 
+app.post("/humanoids", data.array("files"), (req) => {
+    const { files } = req;
+    if (!files) return;
+
+    const buffers: Buffer[] = (<Express.Multer.File[]>files).map(({ buffer }) => buffer);
+    createSpritesheets([buffers], "humanoids");
+});
+
 app.post("/toww", data.array("files"), (req) => {
     const { files } = req;
     if (!files) return;

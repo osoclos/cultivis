@@ -1,0 +1,125 @@
+
+hopper.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Big/Body
+  rotate: true
+  xy: 2, 35
+  size: 219, 190
+  orig: 219, 190
+  offset: 0, 0
+  index: -1
+Big/Body_Back
+  rotate: true
+  xy: 194, 35
+  size: 219, 190
+  orig: 219, 190
+  offset: 0, 0
+  index: -1
+Big/Eye
+  rotate: true
+  xy: 602, 48
+  size: 61, 56
+  orig: 61, 56
+  offset: 0, 0
+  index: -1
+Big/Eye_Back
+  rotate: true
+  xy: 660, 80
+  size: 61, 56
+  orig: 61, 56
+  offset: 0, 0
+  index: -1
+Big/Eye_Big
+  rotate: true
+  xy: 684, 17
+  size: 61, 56
+  orig: 61, 56
+  offset: 0, 0
+  index: -1
+Big/Leg_2
+  rotate: false
+  xy: 644, 143
+  size: 47, 111
+  orig: 47, 111
+  offset: 0, 0
+  index: -1
+Big/Mouth
+  rotate: false
+  xy: 466, 23
+  size: 134, 69
+  orig: 134, 69
+  offset: 0, 0
+  index: -1
+Big/Paws
+  rotate: true
+  xy: 600, 111
+  size: 143, 42
+  orig: 143, 42
+  offset: 0, 0
+  index: -1
+images/Body
+  rotate: true
+  xy: 386, 94
+  size: 160, 105
+  orig: 160, 105
+  offset: 0, 0
+  index: -1
+images/Body_Back
+  rotate: true
+  xy: 493, 94
+  size: 160, 105
+  orig: 160, 105
+  offset: 0, 0
+  index: -1
+images/Eye
+  rotate: true
+  xy: 602, 2
+  size: 44, 39
+  orig: 44, 39
+  offset: 0, 0
+  index: -1
+images/Eye_Back
+  rotate: true
+  xy: 643, 2
+  size: 44, 39
+  orig: 44, 39
+  offset: 0, 0
+  index: -1
+images/Eye_Closed
+  rotate: false
+  xy: 2, 2
+  size: 25, 31
+  orig: 25, 31
+  offset: 0, 0
+  index: -1
+images/Leg_2
+  rotate: false
+  xy: 431, 15
+  size: 33, 77
+  orig: 33, 77
+  offset: 0, 0
+  index: -1
+images/Mouth
+  rotate: true
+  xy: 386, 3
+  size: 89, 43
+  orig: 89, 43
+  offset: 0, 0
+  index: -1
+images/Nose
+  rotate: true
+  xy: 128, 16
+  size: 17, 12
+  orig: 17, 12
+  offset: 0, 0
+  index: -1
+images/Paws
+  rotate: false
+  xy: 29, 4
+  size: 97, 29
+  orig: 97, 29
+  offset: 0, 0
+  index: -1

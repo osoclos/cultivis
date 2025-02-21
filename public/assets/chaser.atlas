@@ -1,0 +1,90 @@
+
+chaser.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Patroller,Chaser/Chaser_images/Body_0
+  rotate: false
+  xy: 187, 65
+  size: 169, 188
+  orig: 169, 188
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Body_1
+  rotate: false
+  xy: 525, 118
+  size: 130, 135
+  orig: 130, 135
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Body_2
+  rotate: false
+  xy: 657, 168
+  size: 85, 85
+  orig: 85, 85
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Head
+  rotate: true
+  xy: 358, 69
+  size: 184, 165
+  orig: 184, 165
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Head_Behind
+  rotate: false
+  xy: 2, 59
+  size: 183, 194
+  orig: 186, 196
+  offset: 2, 2
+  index: -1
+Patroller,Chaser/Chaser_images/Head_Face
+  rotate: false
+  xy: 2, 2
+  size: 100, 55
+  orig: 102, 57
+  offset: 1, 1
+  index: -1
+Patroller,Chaser/Chaser_images/Head_GrassBit_0
+  rotate: true
+  xy: 295, 3
+  size: 60, 67
+  orig: 60, 67
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Head_GrassBit_1
+  rotate: false
+  xy: 104, 2
+  size: 65, 55
+  orig: 65, 55
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Head_StabbyBit_Top_0
+  rotate: true
+  xy: 525, 2
+  size: 114, 111
+  orig: 114, 111
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Head_StabbyBit__0
+  rotate: true
+  xy: 364, 2
+  size: 65, 58
+  orig: 65, 58
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/Head_StabbyBit__0 copy
+  rotate: false
+  xy: 187, 3
+  size: 106, 60
+  orig: 106, 60
+  offset: 0, 0
+  index: -1
+Patroller,Chaser/Chaser_images/StabbyBit_Top_0 copy
+  rotate: true
+  xy: 638, 2
+  size: 114, 109
+  orig: 132, 109
+  offset: 18, 0
+  index: -1

@@ -4,7 +4,7 @@
     import { SpritesheetImage } from "../utils";
 
     import { Actor } from "../../scripts";
-    import { Bishop, Follower, MiniBoss, Player, TOWW, Witness } from "../../scripts/characters";
+    import { Bishop, Follower, Humanoid, MiniBoss, Player, TOWW, Witness } from "../../scripts/characters";
     import { soundManager } from "../../scripts/managers";
 
     interface Props {
@@ -29,7 +29,9 @@
         switch (actor) {
             case Follower: return "/static/assets/followers.png";
             case Player: return "/static/assets/player.png";
-
+            
+            case Humanoid: return "/static/assets/humanoids.png";
+            
             case Bishop:
             case TOWW: return "/static/assets/crowns.png";
 
@@ -46,6 +48,8 @@
         switch (actor) {
             case Follower: return "Follower";
             case Player: return "Player";
+
+            case Humanoid: return "Humanoid";
 
             case Bishop: return "Bishop";
             case TOWW: return "T.O.W.W.";

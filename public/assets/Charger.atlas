@@ -1,0 +1,195 @@
+
+Charger.png
+size: 2048,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/ExploderEye
+  rotate: true
+  xy: 547, 37
+  size: 64, 55
+  orig: 64, 55
+  offset: 0, 0
+  index: -1
+images/ExploderEyeAnticipation
+  rotate: false
+  xy: 123, 7
+  size: 108, 93
+  orig: 108, 93
+  offset: 0, 0
+  index: -1
+images/ExploderEye_Side
+  rotate: false
+  xy: 981, 48
+  size: 43, 53
+  orig: 43, 53
+  offset: 0, 0
+  index: -1
+images/Exploder_Head
+  rotate: true
+  xy: 344, 103
+  size: 151, 132
+  orig: 151, 132
+  offset: 0, 0
+  index: -1
+images/Exploder_HeadDown
+  rotate: true
+  xy: 76, 102
+  size: 152, 132
+  orig: 152, 132
+  offset: 0, 0
+  index: -1
+images/Exploder_HeadSide
+  rotate: true
+  xy: 478, 103
+  size: 151, 132
+  orig: 151, 132
+  offset: 0, 0
+  index: -1
+images/Exploder_HeadUp
+  rotate: true
+  xy: 612, 103
+  size: 151, 132
+  orig: 151, 132
+  offset: 0, 0
+  index: -1
+images/Exploder_Leaves
+  rotate: true
+  xy: 338, 14
+  size: 86, 103
+  orig: 86, 103
+  offset: 0, 0
+  index: -1
+images/Exploder_Leaves2
+  rotate: false
+  xy: 443, 33
+  size: 50, 68
+  orig: 50, 68
+  offset: 0, 0
+  index: -1
+images/Eyes
+  rotate: false
+  xy: 1119, 5
+  size: 117, 47
+  orig: 117, 47
+  offset: 0, 0
+  index: -1
+images/Eyes_Anticipation
+  rotate: true
+  xy: 2, 84
+  size: 170, 72
+  orig: 180, 72
+  offset: 10, 0
+  index: -1
+images/Eyes_Down
+  rotate: false
+  xy: 1075, 54
+  size: 124, 47
+  orig: 124, 47
+  offset: 0, 0
+  index: -1
+images/Eyes_Side
+  rotate: true
+  xy: 1026, 49
+  size: 52, 47
+  orig: 52, 47
+  offset: 0, 0
+  index: -1
+images/Goop
+  rotate: false
+  xy: 2, 14
+  size: 119, 68
+  orig: 119, 68
+  offset: 0, 0
+  index: -1
+images/Head
+  rotate: true
+  xy: 746, 103
+  size: 151, 132
+  orig: 151, 132
+  offset: 0, 0
+  index: -1
+images/HeadDown
+  rotate: true
+  xy: 210, 102
+  size: 152, 132
+  orig: 152, 132
+  offset: 0, 0
+  index: -1
+images/HeadSide
+  rotate: true
+  xy: 880, 103
+  size: 151, 132
+  orig: 151, 132
+  offset: 0, 0
+  index: -1
+images/HeadUp
+  rotate: true
+  xy: 1014, 103
+  size: 151, 132
+  orig: 151, 132
+  offset: 0, 0
+  index: -1
+images/HornLeft
+  rotate: true
+  xy: 604, 41
+  size: 60, 129
+  orig: 60, 129
+  offset: 0, 0
+  index: -1
+images/HornLeftSide
+  rotate: false
+  xy: 1192, 140
+  size: 46, 114
+  orig: 46, 114
+  offset: 0, 0
+  index: -1
+images/HornRight
+  rotate: true
+  xy: 735, 42
+  size: 59, 122
+  orig: 59, 122
+  offset: 0, 0
+  index: -1
+images/HornRightSide
+  rotate: true
+  xy: 983, 2
+  size: 44, 134
+  orig: 44, 134
+  offset: 0, 0
+  index: -1
+images/Leaves
+  rotate: true
+  xy: 233, 13
+  size: 87, 103
+  orig: 87, 103
+  offset: 0, 0
+  index: -1
+images/Leaves2
+  rotate: false
+  xy: 495, 33
+  size: 50, 68
+  orig: 50, 68
+  offset: 0, 0
+  index: -1
+images/Skirt
+  rotate: false
+  xy: 859, 2
+  size: 122, 42
+  orig: 122, 42
+  offset: 0, 0
+  index: -1
+images/SkirtDown
+  rotate: false
+  xy: 859, 46
+  size: 120, 55
+  orig: 120, 55
+  offset: 0, 0
+  index: -1
+images/Skirt_Exploder
+  rotate: true
+  xy: 1148, 132
+  size: 122, 42
+  orig: 122, 42
+  offset: 0, 0
+  index: -1

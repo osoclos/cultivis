@@ -1,0 +1,27 @@
+
+Fly.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Fly/Body
+  rotate: false
+  xy: 2, 2
+  size: 84, 69
+  orig: 84, 69
+  offset: 0, 0
+  index: -1
+Fly/Wing1
+  rotate: true
+  xy: 44, 73
+  size: 30, 39
+  orig: 30, 39
+  offset: 0, 0
+  index: -1
+Fly/Wing2
+  rotate: true
+  xy: 2, 76
+  size: 27, 40
+  orig: 27, 40
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,69 @@
+
+Enemies_Bat.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+FlyingFrog/Body
+  rotate: false
+  xy: 136, 66
+  size: 138, 184
+  orig: 138, 184
+  offset: 0, 0
+  index: -1
+FlyingFrog/FrogFace
+  rotate: false
+  xy: 163, 2
+  size: 117, 62
+  orig: 117, 62
+  offset: 0, 0
+  index: -1
+FlyingFrog/FrogFrontLegs
+  rotate: false
+  xy: 2, 3
+  size: 84, 44
+  orig: 84, 44
+  offset: 0, 0
+  index: -1
+FlyingFrog/FrogHorn
+  rotate: false
+  xy: 370, 89
+  size: 32, 64
+  orig: 32, 64
+  offset: 0, 0
+  index: -1
+FlyingWorm/Body
+  rotate: false
+  xy: 2, 49
+  size: 132, 201
+  orig: 132, 201
+  offset: 0, 0
+  index: -1
+FlyingWorm/Wing
+  rotate: true
+  xy: 276, 155
+  size: 95, 94
+  orig: 95, 94
+  offset: 0, 0
+  index: -1
+FlyingWorm/WormAntlers
+  rotate: false
+  xy: 282, 5
+  size: 103, 68
+  orig: 103, 68
+  offset: 0, 0
+  index: -1
+FlyingWorm/WormEyes
+  rotate: false
+  xy: 88, 15
+  size: 73, 32
+  orig: 73, 32
+  offset: 0, 0
+  index: -1
+FlyingWorm/WormFace
+  rotate: false
+  xy: 276, 75
+  size: 92, 78
+  orig: 92, 78
+  offset: 0, 0
+  index: -1

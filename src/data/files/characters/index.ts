@@ -7,4 +7,6 @@ const followerData: FollowerDataJSON = followerDataJSON;
 const playerData: PlayerDataJSON = playerDataJSON;
 
 export { followerData, playerData };
+
+export * from "./enemies";
 export * from "./bosses";

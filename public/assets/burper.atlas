@@ -1,0 +1,125 @@
+
+burper.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Burper/Body
+  rotate: true
+  xy: 2, 87
+  size: 167, 143
+  orig: 167, 143
+  offset: 0, 0
+  index: -1
+Burper/Body_Back
+  rotate: true
+  xy: 147, 87
+  size: 167, 143
+  orig: 167, 143
+  offset: 0, 0
+  index: -1
+Burper/Body_Back_Poison
+  rotate: true
+  xy: 292, 87
+  size: 167, 143
+  orig: 167, 143
+  offset: 0, 0
+  index: -1
+Burper/Body_Poison
+  rotate: true
+  xy: 437, 87
+  size: 167, 143
+  orig: 167, 143
+  offset: 0, 0
+  index: -1
+Burper/CheekBall1
+  rotate: true
+  xy: 678, 205
+  size: 49, 46
+  orig: 49, 46
+  offset: 0, 0
+  index: -1
+Burper/CheekBall1_Poison
+  rotate: true
+  xy: 678, 154
+  size: 49, 46
+  orig: 49, 46
+  offset: 0, 0
+  index: -1
+Burper/Eye
+  rotate: true
+  xy: 582, 93
+  size: 54, 51
+  orig: 54, 51
+  offset: 0, 0
+  index: -1
+Burper/Eye_Back
+  rotate: true
+  xy: 635, 93
+  size: 54, 51
+  orig: 54, 51
+  offset: 0, 0
+  index: -1
+Burper/Horns
+  rotate: false
+  xy: 119, 18
+  size: 119, 67
+  orig: 119, 67
+  offset: 0, 0
+  index: -1
+Burper/Horns_Poison
+  rotate: false
+  xy: 240, 18
+  size: 119, 67
+  orig: 119, 67
+  offset: 0, 0
+  index: -1
+Burper/Leg
+  rotate: false
+  xy: 582, 149
+  size: 46, 105
+  orig: 46, 105
+  offset: 0, 0
+  index: -1
+Burper/Leg_Poison
+  rotate: false
+  xy: 630, 149
+  size: 46, 105
+  orig: 46, 105
+  offset: 0, 0
+  index: -1
+Burper/Mouth_Open
+  rotate: false
+  xy: 2, 6
+  size: 115, 79
+  orig: 115, 80
+  offset: 0, 1
+  index: -1
+Burper/Mouth_Shut
+  rotate: true
+  xy: 688, 107
+  size: 45, 29
+  orig: 45, 29
+  offset: 0, 0
+  index: -1
+Burper/Paws
+  rotate: false
+  xy: 361, 29
+  size: 165, 56
+  orig: 165, 56
+  offset: 0, 0
+  index: -1
+Burper/Paws_Poison
+  rotate: false
+  xy: 528, 29
+  size: 165, 56
+  orig: 165, 56
+  offset: 0, 0
+  index: -1
+images/Eye_Closed
+  rotate: true
+  xy: 361, 2
+  size: 25, 31
+  orig: 25, 31
+  offset: 0, 0
+  index: -1

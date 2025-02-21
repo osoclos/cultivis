@@ -1,6 +1,6 @@
-import { BISHOP_IDS, TOWW_IDS, type BishopId, type ClothingId, type FollowerId, type TOWW_Id, type PlayerCreatureId, type PlayerFleeceId, MINI_BOSS_IDS, type MiniBossId, type WitnessId } from "../data/types";
+import { BISHOP_IDS, TOWW_IDS, type BishopId, type ClothingId, type FollowerId, type TOWW_Id, type PlayerCreatureId, type PlayerFleeceId, MINI_BOSS_IDS, type MiniBossId, type WitnessId, type HumanoidId } from "../data/types";
 
-import { Bishop, Follower, TOWW, Player, MiniBoss, Witness } from "./characters";
+import { Bishop, Follower, TOWW, Player, MiniBoss, Witness, Humanoid } from "./characters";
 import { AssetManager } from "./managers";
 
 import { Actor } from "./Actor";
@@ -9,6 +9,8 @@ import { bishopData, towwData, miniBossData } from "../data/files";
 export class Factory {
     private _follower?: Follower;
     private _player?: Player;
+
+    private _humanoid?: Humanoid;
 
     private _bishops: Map<BishopId, Bishop>;
     private _bishopBosses: Map<BishopId, Bishop>;
@@ -42,6 +44,10 @@ export class Factory {
 
     get hasLoadedPlayer(): boolean {
         return !!this._player;
+    }
+
+    get hasLoadedHumanoid(): boolean {
+        return !!this._humanoid;
     }
 
     hasLoadedBishop(bishop: BishopId, isBoss: boolean): boolean {
@@ -82,7 +88,7 @@ export class Factory {
                     if (this.hasLoadedFollower) break;
                     
                     const [skeleton, animationState] = await this.fetchData([Follower.TEXTURE_FILENAME], Follower.ATLAS_FILENAME, Follower.SKELETON_FILENAME);
-                    this._follower = new Follower(skeleton, animationState, undefined, undefined, "Deer", "Default_Clothing");
+                    this._follower = new Follower(skeleton, animationState);
 
                     break;
                 }
@@ -91,7 +97,16 @@ export class Factory {
                     if (this.hasLoadedPlayer) break;
 
                     const [skeleton, animationState] = await this.fetchData([Player.TEXTURE_FILENAME], Player.ATLAS_FILENAME, Player.SKELETON_FILENAME);
-                    this._player = new Player(skeleton, animationState, undefined, undefined, "Lamb", "Lamb");
+                    this._player = new Player(skeleton, animationState);
+
+                    break;
+                }
+
+                case Humanoid: {
+                    if (this.hasLoadedHumanoid) break;
+
+                    const [skeleton, animationState] = await this.fetchData([Humanoid.TEXTURE_FILENAME], Humanoid.ATLAS_FILENAME, Humanoid.SKELETON_FILENAME);
+                    this._humanoid = new Humanoid(skeleton, animationState);
 
                     break;
                 }
@@ -115,7 +130,7 @@ export class Factory {
                     if (this.hasLoadedWitness) return;
 
                     const [skeleton, animationState] = await this.fetchData([Witness.TEXTURE_FILENAME], Witness.ATLAS_FILENAME, Witness.SKELETON_FILENAME);
-                    this._witness = new Witness(skeleton, animationState, undefined, undefined, "Darkwood", false);
+                    this._witness = new Witness(skeleton, animationState);
 
                     break;
                 }
@@ -151,7 +166,7 @@ export class Factory {
     }
 
     async loadAll() {
-        await this.load(Follower, Player, Bishop, TOWW, MiniBoss, Witness);
+        await this.load(Follower, Player, Humanoid, Bishop, TOWW, MiniBoss, Witness);
     }
 
     async custom(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string, id?: string, label: string = "Custom Actor") {
@@ -167,6 +182,11 @@ export class Factory {
     player(creature: PlayerCreatureId, fleece: PlayerFleeceId, id?: string, label?: string) {
         if (!this.hasLoadedPlayer) throw new Error("Player has not been loaded.");
         return this._player!.clone(id, label, creature, fleece);
+    }
+
+    humanoid(humanoidId: HumanoidId, id?: string, label?: string) {
+        if (!this.hasLoadedHumanoid) throw new Error("Humanoid has not been loaded.");
+        return this._humanoid!.clone(id, label, humanoidId);
     }
 
     bishop(bishopId: BishopId, isBoss: boolean, id?: string, label?: string) {
