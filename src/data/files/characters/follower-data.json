@@ -169,7 +169,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Pig": {
             "name": "Pig",
@@ -320,7 +321,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Dog": {
             "name": "Dog",
@@ -491,7 +493,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Cat": {
             "name": "Cat",
@@ -662,7 +665,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Fox": {
             "name": "Fox",
@@ -833,7 +837,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Night Wolf": {
             "name": "Wolf",
@@ -1004,7 +1009,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Fish": {
             "name": "Fish",
@@ -1175,7 +1181,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Pangolin": {
             "name": "Pangolin",
@@ -1346,7 +1353,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Shrew": {
             "name": "Shrew",
@@ -1517,7 +1525,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Unicorn": {
             "name": "Unicorn",
@@ -1648,7 +1657,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Axolotl": {
             "name": "Axolotl",
@@ -1799,7 +1809,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Starfish": {
             "name": "Starfish",
@@ -1932,7 +1943,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Red Panda": {
             "name": "Red Panda",
@@ -2103,7 +2115,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Poop": {
             "name": "Poop",
@@ -2233,7 +2246,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Massive Monster": {
             "name": "Monster",
@@ -2403,7 +2417,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Crab": {
             "name": "Crab",
@@ -2574,7 +2589,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Snail": {
             "name": "Snail",
@@ -2745,7 +2761,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Owl": {
             "name": "Owl",
@@ -2916,7 +2933,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Butterfly": {
             "name": "Butterfly",
@@ -3087,7 +3105,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Koala": {
             "name": "Koala",
@@ -3258,7 +3277,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Shrimp": {
             "name": "Shrimp",
@@ -3299,7 +3319,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Snake": {
             "name": "Snake",
@@ -3470,7 +3491,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Worm": {
             "name": "Worm",
@@ -3601,7 +3623,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Mushroom": {
             "name": "Mushroom",
@@ -3760,7 +3783,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Bee": {
             "name": "Bee",
@@ -3931,7 +3955,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Tapir": {
             "name": "Tapir",
@@ -4102,7 +4127,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Turtle": {
             "name": "Turtle",
@@ -4273,7 +4299,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Monkey": {
             "name": "Monkey",
@@ -4444,7 +4471,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Narwal": {
             "name": "Narwhal",
@@ -4615,7 +4643,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Moose": {
             "name": "Moose",
@@ -4786,7 +4815,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Gorilla": {
             "name": "Gorilla",
@@ -4957,7 +4987,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Mosquito": {
             "name": "Mosquito",
@@ -5128,7 +5159,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Goldfish": {
             "name": "Goldfish",
@@ -5299,7 +5331,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Possum": {
             "name": "Possum",
@@ -5470,7 +5503,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Hammerhead": {
             "name": "Hammerhead",
@@ -5641,7 +5675,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Llama": {
             "name": "Llama",
@@ -5812,7 +5847,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Tiger": {
             "name": "Tiger",
@@ -5983,7 +6019,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Sphynx": {
             "name": "Sphynx",
@@ -6124,7 +6161,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "LadyBug": {
             "name": "Ladybug",
@@ -6295,7 +6333,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "TwitchMouse": {
             "name": "Twitch Mouse",
@@ -6466,7 +6505,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "TwitchCat": {
             "name": "Twitch Cat",
@@ -6637,7 +6677,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "TwitchDog": {
             "name": "Frankerz",
@@ -6766,7 +6807,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "TwitchDogAlt": {
             "name": "Ralpherz",
@@ -6895,7 +6937,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "TwitchPoggers": {
             "name": "Poggers",
@@ -7024,7 +7067,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Lion": {
             "name": "Lion",
@@ -7195,7 +7239,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Penguin": {
             "name": "Penguin",
@@ -7366,7 +7411,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Pelican": {
             "name": "Pelican",
@@ -7537,7 +7583,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Kiwi": {
             "name": "Kiwi",
@@ -7708,7 +7755,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "DogTeddy": {
             "name": "Teddy Dog",
@@ -7875,7 +7923,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Camel": {
             "name": "Camel",
@@ -8046,7 +8095,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Anteater": {
             "name": "Anteater",
@@ -8177,7 +8227,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Skunk": {
             "name": "Skunk",
@@ -8348,7 +8399,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Panda": {
             "name": "Panda",
@@ -8519,7 +8571,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Enchida": {
             "name": "Echidna",
@@ -8690,7 +8743,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Death Cat": {
             "name": "Narinder",
@@ -8729,7 +8783,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "CultLeader 1": {
             "name": "Leshy",
@@ -8759,7 +8814,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "CultLeader 2": {
             "name": "Heket",
@@ -8799,7 +8855,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "CultLeader 3": {
             "name": "Kallamar",
@@ -8839,7 +8896,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "CultLeader 4": {
             "name": "Shamura",
@@ -8879,7 +8937,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Baal": {
             "name": "Baal",
@@ -8908,7 +8967,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Aym": {
             "name": "Aym",
@@ -8947,7 +9007,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Sozo": {
             "name": "Sozo",
@@ -8970,7 +9031,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Jalala": {
             "name": "Jalala",
@@ -9009,7 +9071,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Rinor": {
             "name": "Rinor",
@@ -9058,7 +9121,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Abomination": {
             "name": "Abomination",
@@ -9098,7 +9162,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Seal": {
             "name": "Seal",
@@ -9269,7 +9334,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Lemur": {
             "name": "Lemur",
@@ -9440,7 +9506,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Caterpillar": {
             "name": "Caterpillar",
@@ -9601,7 +9668,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Webber": {
             "name": "Webber",
@@ -9772,7 +9840,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Volvy": {
             "name": "Volvy",
@@ -9794,7 +9863,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "StarBunny": {
             "name": "StarBunny",
@@ -9963,7 +10033,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Crow": {
             "name": "Crow",
@@ -10134,7 +10205,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "BatDemon": {
             "name": "BatDemon",
@@ -10305,7 +10377,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "DeerSkull": {
             "name": "DeerSkull",
@@ -10476,7 +10549,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Cthulhu": {
             "name": "Cthulhu",
@@ -10647,7 +10721,17 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
+        },
+        "Skeleton": {
+            "name": "Skeleton",
+            "category": 2,
+            "variants": [
+                "Skeleton"
+            ],
+            "sets": [],
+            "canBeTinted": false
         },
         "DeerRitual": {
             "name": "Stag",
@@ -10818,7 +10902,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Poppy": {
             "name": "Schnauzer",
@@ -10989,7 +11074,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Cow": {
             "name": "Cow",
@@ -11160,7 +11246,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Horse": {
             "name": "Horse",
@@ -11331,7 +11418,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Hedgehog": {
             "name": "Hedgehog",
@@ -11462,7 +11550,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Rabbit": {
             "name": "Rabbit",
@@ -11633,7 +11722,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Chicken": {
             "name": "Chicken",
@@ -11804,7 +11894,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Squirrel": {
             "name": "Squirrel",
@@ -11935,7 +12026,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Mama Worm": {
             "name": "Amdusias",
@@ -12004,7 +12096,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Mama Maggot": {
             "name": "Valefar",
@@ -12073,7 +12166,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Burrow Worm": {
             "name": "Barbatos",
@@ -12142,7 +12236,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Beholder 1": {
             "name": "Agares",
@@ -12181,7 +12276,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Giraffe": {
             "name": "Giraffe",
@@ -12352,7 +12448,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Bison": {
             "name": "Bison",
@@ -12523,7 +12620,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Frog": {
             "name": "Frog",
@@ -12694,7 +12792,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Capybara": {
             "name": "Capybara",
@@ -12825,7 +12924,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Fennec Fox": {
             "name": "Fennec Fox",
@@ -12996,7 +13096,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Rhino": {
             "name": "Rhino",
@@ -13167,7 +13268,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Eagle": {
             "name": "Eagle",
@@ -13348,7 +13450,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Flying Burp Frog": {
             "name": "Eligos",
@@ -13417,7 +13520,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Egg Hopper": {
             "name": "Gusion",
@@ -13486,7 +13590,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Mortar Hopper": {
             "name": "Zepar",
@@ -13555,7 +13660,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Beholder 2": {
             "name": "Bathin",
@@ -13594,7 +13700,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Crocodile": {
             "name": "Crocodile",
@@ -13765,7 +13872,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Elephant": {
             "name": "Elephant",
@@ -13896,7 +14004,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Hippo": {
             "name": "Hippo",
@@ -14027,7 +14136,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Otter": {
             "name": "Otter",
@@ -14198,7 +14308,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Seahorse": {
             "name": "Seahorse",
@@ -14369,7 +14480,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Duck": {
             "name": "Duck",
@@ -14500,7 +14612,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Spiker": {
             "name": "Saleos",
@@ -14569,7 +14682,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Charger": {
             "name": "Haborym",
@@ -14638,7 +14752,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Scuttle Turret": {
             "name": "Baalzebub",
@@ -14707,7 +14822,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Beholder 3": {
             "name": "Astaroth",
@@ -14746,7 +14862,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Racoon": {
             "name": "Raccoon",
@@ -14918,7 +15035,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Bear": {
             "name": "Bear",
@@ -15089,7 +15207,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Bat": {
             "name": "Bat",
@@ -15220,7 +15339,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Beetle": {
             "name": "Beetle",
@@ -15391,7 +15511,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Badger": {
             "name": "Badger",
@@ -15532,7 +15653,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Spider Jump": {
             "name": "Focalor",
@@ -15571,7 +15693,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Millipede Poisoner": {
             "name": "Vephar",
@@ -15610,7 +15733,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Scorpion": {
             "name": "Hauras",
@@ -15649,7 +15773,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         },
         "Boss Beholder 4": {
             "name": "Allocer",
@@ -15688,7 +15813,8 @@
                         ]
                     }
                 ]
-            ]
+            ],
+            "canBeTinted": true
         }
     },
     "clothing": {
@@ -20156,6 +20282,18 @@
             "category": 0,
             "variants": [
                 "Clothes/Baby"
+            ]
+        },
+        "Torn": {
+            "name": "Shredded Tunic",
+            "category": 0,
+            "variants": [
+                "Skeleton"
+            ],
+            "attachments": [
+                "BODY_BTM",
+                "BODY_TOP",
+                "EXTRA_TOP"
             ]
         },
         "Warrior_Clothing": {

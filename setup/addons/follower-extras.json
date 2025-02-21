@@ -152,6 +152,14 @@
     "DeerSkull": { "category": 2 },
     "Cthulhu": { "category": 2 },
 
+    "Skeleton": {
+        "name": "Skeleton",
+        "category": 2,
+
+        "variants": ["Skeleton"],
+        "canBeTinted": false
+    },
+
     "DeerRitual": {
         "name": "Stag",
         "category": 3

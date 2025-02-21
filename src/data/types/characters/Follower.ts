@@ -18,10 +18,15 @@ export interface FormData {
 
     variants: string[];
     sets: ColorSet[];
+
+    canBeTinted: boolean;
 }
 
-export const FOLLOWER_IDS: (keyof typeof followerData.forms)[] = ["Deer", "Pig", "Dog", "Cat", "Fox", "Night Wolf", "Fish", "Pangolin", "Shrew", "Unicorn", "Axolotl", "Starfish", "Red Panda", "Poop", "Massive Monster", "Crab", "Snail", "Owl", "Butterfly", "Koala", "Shrimp", "Snake", "Worm", "Mushroom", "Bee", "Tapir", "Turtle", "Monkey", "Narwal", "Moose", "Gorilla", "Mosquito", "Goldfish", "Possum", "Hammerhead", "Llama", "Tiger", "Sphynx", "LadyBug", "TwitchMouse", "TwitchCat", "TwitchDog", "TwitchDogAlt", "TwitchPoggers", "Lion", "Penguin", "Pelican", "Kiwi", "DogTeddy", "Camel", "Anteater", "Skunk", "Panda", "Enchida", "Boss Death Cat", "CultLeader 1", "CultLeader 2", "CultLeader 3", "CultLeader 4", "Baal", "Aym", "Sozo", "Jalala", "Rinor", "Abomination", "Seal", "Lemur", "Caterpillar", "Webber", "Volvy", "StarBunny", "Crow", "BatDemon", "DeerSkull", "Cthulhu", "DeerRitual", "Poppy", "Cow", "Horse", "Hedgehog", "Rabbit", "Chicken", "Squirrel", "Boss Mama Worm", "Boss Mama Maggot", "Boss Burrow Worm", "Boss Beholder 1", "Giraffe", "Bison", "Frog", "Capybara", "Fennec Fox", "Rhino", "Eagle", "Boss Flying Burp Frog", "Boss Egg Hopper", "Boss Mortar Hopper", "Boss Beholder 2", "Crocodile", "Elephant", "Hippo", "Otter", "Seahorse", "Duck", "Boss Spiker", "Boss Charger", "Boss Scuttle Turret", "Boss Beholder 3", "Racoon", "Bear", "Bat", "Beetle", "Badger", "Boss Spider Jump", "Boss Millipede Poisoner", "Boss Scorpion", "Boss Beholder 4"] as const;
+export const FOLLOWER_IDS: (keyof typeof followerData.forms | FollowerIdExtras)[] = ["Deer", "Pig", "Dog", "Cat", "Fox", "Night Wolf", "Fish", "Pangolin", "Shrew", "Unicorn", "Axolotl", "Starfish", "Red Panda", "Poop", "Massive Monster", "Crab", "Snail", "Owl", "Butterfly", "Koala", "Shrimp", "Snake", "Worm", "Mushroom", "Bee", "Tapir", "Turtle", "Monkey", "Narwal", "Moose", "Gorilla", "Mosquito", "Goldfish", "Possum", "Hammerhead", "Llama", "Tiger", "Sphynx", "LadyBug", "TwitchMouse", "TwitchCat", "TwitchDog", "TwitchDogAlt", "TwitchPoggers", "Lion", "Penguin", "Pelican", "Kiwi", "DogTeddy", "Camel", "Anteater", "Skunk", "Panda", "Enchida", "Boss Death Cat", "CultLeader 1", "CultLeader 2", "CultLeader 3", "CultLeader 4", "Baal", "Aym", "Sozo", "Jalala", "Rinor", "Abomination", "Seal", "Lemur", "Caterpillar", "Webber", "Volvy", "StarBunny", "Crow", "BatDemon", "DeerSkull", "Cthulhu", "Skeleton", "DeerRitual", "Poppy", "Cow", "Horse", "Hedgehog", "Rabbit", "Chicken", "Squirrel", "Boss Mama Worm", "Boss Mama Maggot", "Boss Burrow Worm", "Boss Beholder 1", "Giraffe", "Bison", "Frog", "Capybara", "Fennec Fox", "Rhino", "Eagle", "Boss Flying Burp Frog", "Boss Egg Hopper", "Boss Mortar Hopper", "Boss Beholder 2", "Crocodile", "Elephant", "Hippo", "Otter", "Seahorse", "Duck", "Boss Spiker", "Boss Charger", "Boss Scuttle Turret", "Boss Beholder 3", "Racoon", "Bear", "Bat", "Beetle", "Badger", "Boss Spider Jump", "Boss Millipede Poisoner", "Boss Scorpion", "Boss Beholder 4"] as const;
 export type FollowerId = typeof FOLLOWER_IDS[number];
+
+export const FOLLOWER_ID_EXTRAS = ["Skeleton"] as const;
+export type FollowerIdExtras = typeof FOLLOWER_ID_EXTRAS[number];
 
 export enum FollowerCategory {
     General,
@@ -45,11 +50,15 @@ export interface ClothingData {
 
     variants: string[];
     sets?: ColorSet[];
+
+    attachments?: string[];
 }
 
-export const CLOTHING_IDS: (keyof typeof followerData.clothing | ClothingIdExtras)[] = ["Default_Clothing", "Normal9_Clothing", "Normal8_Clothing", "Normal7_Clothing", "Normal6_Clothing", "Normal5_Clothing", "Normal4_Clothing", "Normal3_Clothing", "Normal2_Clothing", "Normal1_Clothing", "Normal12_Clothing", "Normal11_Clothing", "Normal10_Clothing", "Naked_Clothing", "Rags", "Missionary", "Undertaker", "Holiday", "Old", "Baby", "Warrior_Clothing", "Special_7_Clothing", "Special_6_Clothing", "Special_5_Clothing", "Special_4_Clothing", "Special_3_Clothing", "Special_2_Clothing", "Special_1_Clothing", "Fancy_Suit_Clothing", "Fancy_Clothing", "Baal_Robes", "Aym_Robes", "Sozo_Backpack", "Heretic_DLC_Clothing", "Heretic_DLC_Clothing2", "DLC_6", "DLC_5", "DLC_4", "DLC_3", "DLC_2", "DLC_1", "Cultist_DLC_Clothing", "Cultist_DLC_Clothing2", "Pilgrim_DLC_Clothing", "Pilgrim_DLC_Clothing2"];
+export const CLOTHING_IDS: (keyof typeof followerData.clothing | ClothingIdExtras)[] = ["Default_Clothing", "Normal9_Clothing", "Normal8_Clothing", "Normal7_Clothing", "Normal6_Clothing", "Normal5_Clothing", "Normal4_Clothing", "Normal3_Clothing", "Normal2_Clothing", "Normal1_Clothing", "Normal12_Clothing", "Normal11_Clothing", "Normal10_Clothing", "Naked_Clothing", "Rags", "Missionary", "Undertaker", "Holiday", "Old", "Baby", "Torn", "Warrior_Clothing", "Special_7_Clothing", "Special_6_Clothing", "Special_5_Clothing", "Special_4_Clothing", "Special_3_Clothing", "Special_2_Clothing", "Special_1_Clothing", "Fancy_Suit_Clothing", "Fancy_Clothing", "Baal_Robes", "Aym_Robes", "Sozo_Backpack", "Heretic_DLC_Clothing", "Heretic_DLC_Clothing2", "DLC_6", "DLC_5", "DLC_4", "DLC_3", "DLC_2", "DLC_1", "Cultist_DLC_Clothing", "Cultist_DLC_Clothing2", "Pilgrim_DLC_Clothing", "Pilgrim_DLC_Clothing2"];
 export type ClothingId = typeof CLOTHING_IDS[number];
-export type ClothingIdExtras = "Rags" | "Old" | "Baby" | "Missionary" | "Undertaker" | "Holiday" | "Baal_Robes" | "Aym_Robes" | "Sozo_Backpack";
+
+export const CLOTHING_ID_EXTRAS = ["Rags", "Old", "Baby", "Torn", "Missionary", "Undertaker", "Holiday", "Baal_Robes", "Aym_Robes", "Sozo_Backpack"] as const;
+export type ClothingIdExtras = typeof CLOTHING_ID_EXTRAS[number];
 
 export enum ClothingCategory {
     General,
@@ -101,7 +110,7 @@ export interface ColorSetItem {
 
 const followerIdsByCategory = <Record<FollowerCategoryName, FollowerId[]>>{};
 for (const id of FOLLOWER_IDS) {
-    const { category } = followerData.forms[id];
+    const { category = 0 } = followerData.forms[id] ?? {};
     const categoryName = FOLLOWER_CATEGORIES[category];
 
     categoryName in followerIdsByCategory ? followerIdsByCategory[categoryName].push(id) : followerIdsByCategory[categoryName] = [id];
@@ -109,7 +118,7 @@ for (const id of FOLLOWER_IDS) {
 
 const clothingIdsByCategory = <Record<ClothingCategoryName, ClothingId[]>>{};
 for (const id of CLOTHING_IDS) {
-    const { category } = followerData.clothing[id];
+    const { category = 0 } = followerData.clothing[id] ?? {};
     const categoryName = CLOTHING_CATEGORIES[category];
 
     categoryName in clothingIdsByCategory ? clothingIdsByCategory[categoryName].push(id) : clothingIdsByCategory[categoryName] = [id];

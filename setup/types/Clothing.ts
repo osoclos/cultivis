@@ -6,6 +6,7 @@ export interface ClothingExtras {
     category: ClothingCategory;
 
     variants: string[];
+    attachments: string[];
 }
 
 export type ClothingMetadataJSON = Record<string, Omit<ClothingMetadata, "id">>;

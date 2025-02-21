@@ -6,6 +6,7 @@ export interface FollowerExtras {
     category: FollowerCategory;
 
     variants: string[];
+    canBeTinted: boolean;
 }
 
 export interface WorshipperData {

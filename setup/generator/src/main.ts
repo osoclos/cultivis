@@ -64,7 +64,13 @@ clothingExporter.addEventListener("click", () => {
             sets: [set] = [[]]
         } = followerData.clothing[id];
 
-        follower.setSkin(variant);
+        if ("attachments" in followerData.clothing[id]) {
+            const clothingSkin = new spine.Skin("Clothing");
+            
+            follower.skeleton.data.findSkin(variant).getAttachments().filter(({ name }) => followerData.clothing[id].attachments!.some((str) => name.includes(str))).forEach(({ name, attachment, slotIndex }) => clothingSkin.setAttachment(slotIndex, name, attachment));
+            follower.addCustomSkin(clothingSkin);
+        } else follower.setSkin(variant);
+
         follower.applyColors(set);
         
         appendPixelsToForm(form, id);
@@ -86,7 +92,7 @@ variantExporter.addEventListener("click", () => {
     const form = new FormData();
     for (const id of FOLLOWER_IDS) {
         follower.form = id;
-        for (const i of Array(followerData.forms[id].variants.length)) {
+        for (const i of Array(followerData.forms[id].variants.length).keys()) {
             follower.formVariantIdx = i;
             follower.reset();
 
@@ -106,7 +112,13 @@ variantExporter.addEventListener("click", () => {
         const { variants, sets: [set] = [[]] } = followerData.clothing[id];
 
         for (const [i, variant] of variants.entries()) {
-            follower.setSkin(variant);
+            if ("attachments" in followerData.clothing[id]) {
+                const clothingSkin = new spine.Skin("Clothing");
+                
+                follower.skeleton.data.findSkin(variant).getAttachments().filter(({ name }) => followerData.clothing[id].attachments!.some((str) => name.includes(str))).forEach(({ name, attachment, slotIndex }) => clothingSkin.setAttachment(slotIndex, name, attachment));
+                follower.addCustomSkin(clothingSkin);
+            } else follower.setSkin(variant);
+            
             follower.applyColors(set);
 
             appendPixelsToForm(form, `${id}-${i}`);

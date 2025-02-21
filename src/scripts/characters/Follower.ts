@@ -381,16 +381,22 @@ export class Follower extends Actor implements FollowerObject {
         ageState !== FollowerAgeState.Adult && this.addSkins(Follower[ageState === FollowerAgeState.Baby ? "BABY_SKIN_NAME" : "ELDER_SKIN_NAME"]);
 
         isHooded && this.addSkins(ageState === FollowerAgeState.Elder ? Follower.ELDER_HOOD_SKIN_NAME : `${Follower.HOOD_SKIN_PREFIX}${Math.min(level, Follower.MAX_HOOD_LEVEL)}`)
-        this.addSkins(
+        
+        if ("attachments" in clothingData) {
+            const clothingSkin = new spine.Skin(clothingData.variants[clothingVariantIdx]);
+            
+            this.skeleton.data.findSkin(clothingData.variants[clothingVariantIdx]).getAttachments().filter(({ name }) => clothingData.attachments!.some((str) => name.includes(str))).forEach(({ name, attachment, slotIndex }) => clothingSkin.setAttachment(slotIndex, name, attachment));
+            this.addCustomSkin(clothingSkin);
+        } else this.addSkins(
             isHooded
                 ? ageState === FollowerAgeState.Elder
                     ? Follower.ELDER_ROBES_SKIN_NAME
                     : `${Follower.ROBES_SKIN_PREFIX}${level > Follower.MAX_ROBES_FOLLOWER_LEVEL ? Follower.ROBES_LEVEL_WHEN_EXCEEDED : (((level - 1) / Follower.LEVELS_PER_ROBES_UPGRADE) | 0) + Follower.ROBES_STARTING_LEVEL}`
                 : clothingData.variants[clothingVariantIdx]
         );
-        
+
         isHooded ? ageState !== FollowerAgeState.Elder && this.applyColors(followerData.clothing.Default_Clothing.sets![clothingColorSetIdx]) : clothingData.sets && this.applyColors(clothingData.sets[clothingColorSetIdx]);
-        this.applyColors(colorSetData[formColorSetIdx]);
+        formData.canBeTinted && this.applyColors(colorSetData[formColorSetIdx]);
 
         necklaceData && this.addSkins(necklaceData.variant);
         hatData && this.addSkins(hatData.variant);

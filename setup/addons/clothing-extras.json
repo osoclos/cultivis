@@ -113,6 +113,18 @@
         "variants": ["Clothes/Baby"]
     },
 
+    "Torn": {
+        "name": "Shredded Tunic",
+        "category": 0,
+
+        "variants": ["Skeleton"],
+        "attachments": [
+            "BODY_BTM",
+            "BODY_TOP",
+            "EXTRA_TOP"
+        ]
+    },
+
     "Warrior_Clothing": {
         "name": "Warrior's Cuirass",
         "category": 1

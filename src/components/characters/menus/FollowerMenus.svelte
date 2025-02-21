@@ -61,7 +61,7 @@
             case "clothing": return Object.keys(clothingIdsByCategory);
             case "accessory": return [...Object.keys(necklaceIdsByCategory), "Hats"];
             
-            case "color": return ["Follower Form Colors", "General Follower Colors", "Clothing Colors"].slice(0, 2 + +(clothingColorSets?.length ?? 0));
+            case "color": return ["Follower Form Colors", "General Follower Colors", "Clothing Colors"].slice(+!followerColorSets.length + +!followerData.forms[obj.form].canBeTinted, 2 + +!!(clothingColorSets?.length ?? 0));
             case "variant": return ["Follower Form Variants", "Clothing Variants"];
         }
     });
@@ -196,7 +196,7 @@
                     {/each}
                 {/if}
             {:else if menu === "color"}
-                {#if y === 0}
+                {#if y === 0 && followerData.forms[obj.form].canBeTinted && followerColorSets.length}
                     <BoxOption label="Select Random Follower Form Color" hideBackground onclick={() => updateFormColorSetIdx(Random.int(followerColorSets.length))}>
                         <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />
                     </BoxOption>
@@ -206,7 +206,7 @@
                             <div class="m-3 w-10 h-10 rounded-full border-2 border-[#00000030]" style:background-color={Color.fromObj(findMostPopularColor(set)).toRGB_Str()}></div>
                         </BoxOption>
                     {/each}
-                {:else if y === 1}
+                {:else if y === +!!followerColorSets.length && followerData.forms[obj.form].canBeTinted}
                     <BoxOption label="Select Random General Follower Color" hideBackground onclick={() => updateFormColorSetIdx(Random.int(generalColorSets.length) + followerColorSets.length)}>
                         <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />
                     </BoxOption>
@@ -216,7 +216,7 @@
                             <div class="m-3 w-10 h-10 rounded-full border-2 border-[#00000030]" style:background-color={Color.fromObj(findMostPopularColor(set)).toRGB_Str()}></div>
                         </BoxOption>
                     {/each}
-                {:else if y === 2 && clothingColorSets}
+                {:else if y === +!!followerColorSets.length + +followerData.forms[obj.form].canBeTinted && clothingColorSets?.length}
                     <BoxOption label="Select Random Clothing Color" hideBackground onclick={() => updateClothingColorSetIdx(Random.int(clothingColorSets.length))}>
                         <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />
                     </BoxOption>
