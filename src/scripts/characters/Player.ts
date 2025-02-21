@@ -145,7 +145,7 @@ export class Player extends Actor implements PlayerObject {
 
         const fleeceSkin = new spine.Skin(Player.FLEECE_SKIN_NAME);
         
-        this.skeleton.data.findSkin(fleeceData.variant).getAttachments().filter(({ name }) => [Player.FLEECE_ATTACHMENT_NAME, ...Player.BODY_ATTACHMENT_NAMES.slice(+(fleece === "Natural" && creature !== "Lamb") * (Player.BODY_ATTACHMENT_NAMES.length - 1))].some((str) => name.includes(str))).forEach(({ name, attachment, slotIndex }) => fleeceSkin.setAttachment(slotIndex, name, attachment));
+        this.skeleton.data.findSkin(fleeceData.variant).getAttachments().filter(({ name }) => [Player.FLEECE_ATTACHMENT_NAME, ...Player.BODY_ATTACHMENT_NAMES.slice(+(creature !== "Lamb") * (Player.BODY_ATTACHMENT_NAMES.length - 1))].some((str) => name.includes(str))).forEach(({ name, attachment, slotIndex }) => fleeceSkin.setAttachment(slotIndex, name, attachment));
         this.addCustomSkin(fleeceSkin);
 
         if (bell) {
