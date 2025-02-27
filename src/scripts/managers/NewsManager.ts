@@ -2,7 +2,9 @@ import { MONTH_NAMES } from "../../utils";
 import { serverManager, ServerManager, type ContentReplyBody } from "./ServerManager";
 
 export class NewsManager {
-    static readonly NEWS_LOCAL_STORAGE_NAME: string = "news-last-updated";
+    static readonly NEWS_LAST_CHECKED_LOCAL_STORAGE_NAME: string = "news-last-updated";
+    static readonly NEWS_LAST_FETCHED_LOCAL_STORAGE_NAME: string = "news-last-fetched";
+
     static readonly TERMS_LOCAL_STORAGE_NAME: string = "terms-last-updated";
 
     static readonly CHANGELOG_FOLDER_NAME: string = "changelog";
@@ -60,11 +62,14 @@ export class NewsManager {
     }
 
     async getOutdatedNewsFiles(): Promise<string[]> {
-        const lastUpdate = +(localStorage.getItem(NewsManager.NEWS_LOCAL_STORAGE_NAME) ?? 0);
+        const lastUpdate = +(localStorage.getItem(NewsManager.NEWS_LAST_FETCHED_LOCAL_STORAGE_NAME) ?? 0);
         const files: string[] = await this.areNewsUpdated() ? [] : await Promise.all(await this.serverManager.getCommit("", ServerManager.NEWS_ROUTE_ROOT, { page: -1, perPage: 100, since: lastUpdate + 1 }).then((commits) => commits.flatMap(({ sha }) => this.serverManager.getCommitData(sha, ServerManager.NEWS_ROUTE_ROOT, true).then(({ files }) => files.map((url) => url.replace("%2F", "/")))))).then((arr) => arr.flat()).catch((err) => {
             console.error(err instanceof Error ? `Unable to fetch outdated news data: ${err.message}, caused by: ${err.cause}` : `Unable to fetch outdated news data: ${err}, caused by: ${import.meta.url}`);
             return [];
         });
+
+        const unix = await this.getNewsUnix();
+        localStorage.setItem(NewsManager.NEWS_LAST_FETCHED_LOCAL_STORAGE_NAME, `${unix}`);
 
         return files;
     }
@@ -74,8 +79,8 @@ export class NewsManager {
         return content.match(/<!-- CHANGES_SUMMARY="(.+)" -->/)?.[1] ?? "";
     }
 
-    async areNewsUpdated(): Promise<boolean> {
-        const lastUpdate = +(localStorage.getItem(NewsManager.NEWS_LOCAL_STORAGE_NAME) ?? 0);
+    async areNewsUpdated(useCheckedName: boolean = false): Promise<boolean> {
+        const lastUpdate = +(localStorage.getItem(NewsManager[useCheckedName ? "NEWS_LAST_CHECKED_LOCAL_STORAGE_NAME" : "NEWS_LAST_FETCHED_LOCAL_STORAGE_NAME"]) ?? 0);
         const unix = await this.getNewsUnix();
         
         return unix <= lastUpdate;
@@ -89,7 +94,7 @@ export class NewsManager {
     }
 
     async getNewsUnix(): Promise<number> {
-        const lastUpdate = +(localStorage.getItem(NewsManager.NEWS_LOCAL_STORAGE_NAME) ?? 0);
+        const lastUpdate = +(localStorage.getItem(NewsManager.NEWS_LAST_FETCHED_LOCAL_STORAGE_NAME) ?? 0);
         const unix = await this.getUnix("", ServerManager.NEWS_ROUTE_ROOT, lastUpdate);
 
         return unix;

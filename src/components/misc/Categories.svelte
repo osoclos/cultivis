@@ -33,14 +33,14 @@
     let newsUnix: number = 0;
 
     onMount(async () => {
-        hasCheckedNews = await newsManager.areNewsUpdated();
+        hasCheckedNews = await newsManager.areNewsUpdated(true);
         newsUnix = await newsManager.getNewsUnix();
     });
 
     async function onclick(i: number) {
         if (!hasCheckedNews && LABELS[i] === "News") {
             hasCheckedNews = true;
-            localStorage.setItem(NewsManager.NEWS_LOCAL_STORAGE_NAME, `${newsUnix}`);
+            localStorage.setItem(NewsManager.NEWS_LAST_CHECKED_LOCAL_STORAGE_NAME, `${newsUnix}`);
         }
 
         click(i);
