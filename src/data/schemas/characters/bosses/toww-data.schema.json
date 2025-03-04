@@ -21,7 +21,7 @@
             },
 
             "src": {
-                "$ref": "globals.schema.json#/definitions/Sources",
+                "$ref": "../../globals.schema.json#/definitions/Sources",
                 "description": "The source paths to the files needed to load The One Who Waits in this form."
             },
 

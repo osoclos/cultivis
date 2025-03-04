@@ -334,11 +334,12 @@ miniBossExporter.addEventListener("click", () => {
         boss.setAnimation(animation);
 
         setupScene(boss);
-        if (["Flying Burp Frog", "Spiker", "Charger", "Scuttle Turret"].includes(id)) {
+        if (["Flying Burp Frog", "Spiker", "Charger", "Scuttle Turret", "Millipede Poisoner"].includes(id)) {
             const isEligos = id === "Flying Burp Frog";
+            const isVephar = id === "Millipede Poisoner";
 
             scene.scale *= 0.8 - 0.2 * +isEligos;
-            !isEligos && boss.pos.set(0, -60);
+            !isEligos && boss.pos.set(0 + 16 * +isVephar, -60 + 40 * +isVephar);
         }
 
         appendPixelsToForm(form, id);

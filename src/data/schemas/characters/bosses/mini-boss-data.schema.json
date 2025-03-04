@@ -24,7 +24,7 @@
             },
 
             "src": {
-                "$ref": "globals.schema.json#/definitions/Sources",
+                "$ref": "../../globals.schema.json#/definitions/Sources",
                 "description": "The source paths to the files needed to load the mini boss."
             },
 
@@ -65,7 +65,10 @@
 
         "Skins": {
             "type": "array",
-            "items": { "type": "string" }
+            "items": {
+                "type": "array",
+                "items": { "type": "string" }
+            }
         }
     }
 }

@@ -2,17 +2,31 @@ import { miniBossData } from "../../../data/files";
 import type { MiniBossId } from "../../../data/types";
 
 import { Actor, type ActorObject } from "../../Actor";
+import { MoreMath } from "/src/utils";
 
 export class MiniBoss extends Actor implements MiniBossObject {
+    #stage: number;
+
     #isUpgraded: boolean;
     #isBackFacing: boolean | null;
 
     constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = miniBossData["Mama Worm"].name, readonly miniBoss: MiniBossId = "Mama Worm", isUpgraded: boolean = false) {
         super(skeleton, animationState, id, label);
 
+        this.#stage = 0;
+
         this.#isUpgraded = isUpgraded;
         this.#isBackFacing = ["backSkins", "backUpgradedSkins"].every((key) => key in miniBossData[this.miniBoss]) ? false : null;
 
+        this.update();
+    }
+
+    get stage(): number {
+        return this.#stage;
+    }
+
+    set stage(stage: number) {
+        this.#stage = MoreMath.clamp(stage, 0, miniBossData[this.miniBoss].upgradedSkins.length - 1);
         this.update();
     }
 
@@ -44,7 +58,7 @@ export class MiniBoss extends Actor implements MiniBossObject {
     }
 
     update() {
-        const { miniBoss, isUpgraded, isBackFacing } = this;
+        const { miniBoss, stage, isUpgraded, isBackFacing } = this;
         const {
             skins,
             backSkins = skins,
@@ -54,13 +68,13 @@ export class MiniBoss extends Actor implements MiniBossObject {
         } = miniBossData[miniBoss];
 
         const [firstSkin, ...additionalSkins] = 
-            isBackFacing
-                ? [...(isUpgraded
+            (isBackFacing
+                ? isUpgraded
                     ? backUpgradedSkins
-                    : backSkins)].reverse()
+                    : backSkins
                 : isUpgraded
                     ? upgradedSkins
-                    : skins;
+                    : skins)[stage];
 
         this.setSkin(firstSkin);
         this.addSkins(...additionalSkins);
@@ -69,7 +83,9 @@ export class MiniBoss extends Actor implements MiniBossObject {
     }
 
     copyFromObj(obj: MiniBossObject) {
-        const { isUpgraded, isBackFacing } = obj;
+        const { stage, isUpgraded, isBackFacing } = obj;
+        
+        this.stage = stage;
 
         this.isUpgraded = isUpgraded;
         this.isBackFacing = isBackFacing;
@@ -78,13 +94,15 @@ export class MiniBoss extends Actor implements MiniBossObject {
     }
 
     toObj(): MiniBossObject {
-        const { miniBoss, isUpgraded, isBackFacing } = this;
-        return { ...super.toObj(), type: "mini-boss", miniBoss, isUpgraded, isBackFacing };
+        const { miniBoss, stage, isUpgraded, isBackFacing } = this;
+        return { ...super.toObj(), type: "mini-boss", miniBoss, stage, isUpgraded, isBackFacing };
     }
 }
 
 export interface MiniBossObject extends ActorObject {
     miniBoss: MiniBossId;
+
+    stage: number;
 
     isUpgraded: boolean;
     isBackFacing: boolean | null;

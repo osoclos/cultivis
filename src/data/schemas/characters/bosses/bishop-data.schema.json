@@ -16,12 +16,12 @@
             },
 
             "src": {
-                "$ref": "globals.schema.json#/definitions/Sources",
+                "$ref": "../../globals.schema.json#/definitions/Sources",
                 "description": "The source paths to the files needed to load the bishop (in normal form)."
             },
 
             "bossSrc": {
-                "$ref": "globals.schema.json#/definitions/Sources",
+                "$ref": "../../globals.schema.json#/definitions/Sources",
                 "description": "The source paths to the files needed to load the bishop (in boss form)."
             },
 

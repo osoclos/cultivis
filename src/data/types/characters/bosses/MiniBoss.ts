@@ -8,11 +8,11 @@ export interface MiniBossData {
 
     src: Sources;
 
-    skins: string[];
-    backSkins?: string[];
+    skins: string[][];
+    backSkins?: string[][];
 
-    upgradedSkins: string[];
-    backUpgradedSkins?: string[];
+    upgradedSkins: string[][];
+    backUpgradedSkins?: string[][];
 
     animation: string;
 }

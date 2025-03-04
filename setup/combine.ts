@@ -3,8 +3,8 @@ import path from "path";
 
 import ffmpeg from "fluent-ffmpeg";
 
-import { SoundExtrasJSON } from "./types";
-import { SOUND_IDS, SoundDataJSON } from "../src/data/types";
+import { type SoundExtrasJSON } from "./types";
+import { SOUND_IDS, type SoundDataJSON } from "../src/data/types";
 
 const SRC_FOLDER_PATH: string = path.join(__dirname, "extracted/sounds");
 const DEST_FOLDER_PATH: string = path.join(__dirname, "../public/sounds");

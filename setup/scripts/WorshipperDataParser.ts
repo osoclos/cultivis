@@ -1,6 +1,6 @@
 import { deepEquals } from "bun";
 
-import { WorshipperData } from "../types";
+import { type WorshipperData } from "../types";
 import { DataReader } from "../utils";
 
 import type { ColorSet } from "../../src/data/types";

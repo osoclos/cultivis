@@ -1,4 +1,4 @@
-import { SoundId } from "../../src/data/types";
+import { type SoundId } from "../../src/data/types";
 
 export type SoundExtrasJSON = Record<SoundId, SoundExtras>;
 export interface SoundExtras {

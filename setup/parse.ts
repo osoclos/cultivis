@@ -4,7 +4,7 @@ import path from "path";
 import type { FollowerExtrasJSON, ClothingExtrasJSON, ClothingMetadataJSON } from "./types";
 import { ClothingDataParser, WorshipperDataParser } from "./utils";
 
-import { CLOTHING_IDS, ClothingDataJSON, FOLLOWER_IDS, FollowerDataJSON, FormDataJSON, HatDataJSON, NecklaceDataJSON } from "../src/data/types";
+import { CLOTHING_IDS, type ClothingDataJSON, FOLLOWER_IDS, type FollowerDataJSON, type FormDataJSON, type HatDataJSON, type NecklaceDataJSON } from "../src/data/types";
 
 const WORSHIPPER_DATA_PATH = path.join(__dirname, "extracted/data/Worshipper_Data.dat");
 const CLOTHING_DATA_DIR = path.join(__dirname, "extracted/data/clothing/");

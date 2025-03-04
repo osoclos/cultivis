@@ -9,11 +9,11 @@
             "skeleton": "patroller.skel"
         },
 
-        "skins": ["CHASERBOSS_BODY_4", "CHASERBOSS_BODY_3", "CHASERBOSS_BODY_2", "CHASERBOSS_BODY_1", "CHASERBOSS_BODY_0"],
-        "backSkins": ["CHASERBOSS_BODY_4", "CHASERBOSS_BODY_3", "CHASERBOSS_BODY_2", "CHASERBOSS_BODY_1", "CHASERBOSS_BODY_0_BACK"],
+        "skins": [["CHASERBOSS_BODY_0"], ["CHASERBOSS_BODY_1"], ["CHASERBOSS_BODY_2"], ["CHASERBOSS_BODY_3"], ["CHASERBOSS_BODY_4"]],
+        "backSkins": [["CHASERBOSS_BODY_0_BACK"], ["CHASERBOSS_BODY_1"], ["CHASERBOSS_BODY_2"], ["CHASERBOSS_BODY_3"], ["CHASERBOSS_BODY_4"]],
 
-        "upgradedSkins": ["CHASERBOSS2_BODY_4", "CHASERBOSS2_BODY_3", "CHASERBOSS2_BODY_2", "CHASERBOSS2_BODY_1", "CHASERBOSS2_BODY_0"],
-        "backUpgradedSkins": ["CHASERBOSS2_BODY_4", "CHASERBOSS2_BODY_3", "CHASERBOSS2_BODY_2", "CHASERBOSS2_BODY_1", "CHASERBOSS2_BODY_0_BACK"],
+        "upgradedSkins": [["CHASERBOSS2_BODY_0"], ["CHASERBOSS2_BODY_1"], ["CHASERBOSS2_BODY_2"], ["CHASERBOSS2_BODY_3"], ["CHASERBOSS2_BODY_4"]],
+        "backUpgradedSkins": [["CHASERBOSS2_BODY_0_BACK"], ["CHASERBOSS2_BODY_1"], ["CHASERBOSS2_BODY_2"], ["CHASERBOSS2_BODY_3"], ["CHASERBOSS2_BODY_4"]],
 
         "animation": "animation"
     },
@@ -28,11 +28,11 @@
             "skeleton": "patroller.skel"
         },
 
-        "skins": ["POUNCERBOSS_BODY_4", "POUNCERBOSS_BODY_3", "POUNCERBOSS_BODY_2", "POUNCERBOSS_BODY_1", "POUNCERBOSS_BODY_0"],
-        "backSkins": ["POUNCERBOSS_BODY_4", "POUNCERBOSS_BODY_3", "POUNCERBOSS_BODY_2", "POUNCERBOSS_BODY_1", "POUNCERBOSS_BODY_0_BACK"],
+        "skins": [["POUNCERBOSS_BODY_0"], ["POUNCERBOSS_BODY_1"], ["POUNCERBOSS_BODY_2"], ["POUNCERBOSS_BODY_3"], ["POUNCERBOSS_BODY_4"]],
+        "backSkins": [["POUNCERBOSS_BODY_0_BACK"], ["POUNCERBOSS_BODY_1"], ["POUNCERBOSS_BODY_2"], ["POUNCERBOSS_BODY_3"], ["POUNCERBOSS_BODY_4"]],
 
-        "upgradedSkins": ["POUNCERBOSS2_BODY_4", "POUNCERBOSS2_BODY_3", "POUNCERBOSS2_BODY_2", "POUNCERBOSS2_BODY_1", "POUNCERBOSS2_BODY_0"],
-        "backUpgradedSkins": ["POUNCERBOSS2_BODY_4", "POUNCERBOSS2_BODY_3", "POUNCERBOSS2_BODY_2", "POUNCERBOSS2_BODY_1", "POUNCERBOSS2_BODY_0_BACK"],
+        "upgradedSkins": [["POUNCERBOSS2_BODY_0"], ["POUNCERBOSS2_BODY_1"], ["POUNCERBOSS2_BODY_2"], ["POUNCERBOSS2_BODY_3"], ["POUNCERBOSS2_BODY_4"]],
+        "backUpgradedSkins": [["POUNCERBOSS2_BODY_0_BACK"], ["POUNCERBOSS2_BODY_1"], ["POUNCERBOSS2_BODY_2"], ["POUNCERBOSS2_BODY_3"], ["POUNCERBOSS2_BODY_4"]],
 
         "animation": "animation"
     },
@@ -47,8 +47,8 @@
             "skeleton": "TunnelTurret.skel"
         },
 
-        "skins": ["Miniboss"],
-        "upgradedSkins": ["Miniboss2"],
+        "skins": [["Miniboss"]],
+        "upgradedSkins": [["Miniboss2"]],
 
         "animation": "idle"
     },
@@ -63,8 +63,8 @@
             "skeleton": "FrogMiniBossForest.skel"
         },
 
-        "skins": ["HopperMiniboss"],
-        "upgradedSkins": ["HopperMiniboss2"],
+        "skins": [["HopperMiniboss"]],
+        "upgradedSkins": [["HopperMiniboss2"]],
 
         "animation": "idle"
     },
@@ -79,8 +79,8 @@
             "skeleton": "ForestFlyingFrogMiniboss.skel"
         },
 
-        "skins": ["FlyingFrog"],
-        "upgradedSkins": ["FlyingFrog2"],
+        "skins": [["FlyingFrog"]],
+        "upgradedSkins": [["FlyingFrog2"]],
 
         "animation": "Fly"
     },
@@ -95,8 +95,8 @@
             "skeleton": "FrogMiniBossForest.skel"
         },
 
-        "skins": ["MortarMiniboss"],
-        "upgradedSkins": ["MortarMiniboss2"],
+        "skins": [["MortarMiniboss"]],
+        "upgradedSkins": [["MortarMiniboss2"]],
 
         "animation": "idle"
     },
@@ -111,8 +111,8 @@
             "skeleton": "JellyfishMiniboss.skel"
         },
 
-        "skins": ["Spiker"],
-        "upgradedSkins": ["Spiker2"],
+        "skins": [["Spiker"]],
+        "upgradedSkins": [["Spiker2"]],
 
         "animation": "animation"
     },
@@ -127,8 +127,8 @@
             "skeleton": "JellyfishMiniboss.skel"
         },
 
-        "skins": ["Chaser"],
-        "upgradedSkins": ["Chaser2"],
+        "skins": [["Chaser"]],
+        "upgradedSkins": [["Chaser2"]],
 
         "animation": "animation"
     },
@@ -143,8 +143,8 @@
             "skeleton": "JellyfishMiniboss.skel"
         },
 
-        "skins": ["Scuttle"],
-        "upgradedSkins": ["Scuttle2"],
+        "skins": [["Scuttle"]],
+        "upgradedSkins": [["Scuttle2"]],
 
         "animation": "animation"
     },
@@ -159,11 +159,11 @@
             "skeleton": "Spiders.skel"
         },
 
-        "skins": ["Miniboss_Spider", "Miniboss_Spider_Body", "Miniboss_Spider_Head"],
-        "backSkins": ["Miniboss_Spider_Back", "Miniboss_Spider_Body_Back", "Miniboss_Spider_Head_Back"],
+        "skins": [["Miniboss_Spider", "Miniboss_Spider_Body", "Miniboss_Spider_Head"]],
+        "backSkins": [["Miniboss_Spider_Back", "Miniboss_Spider_Body_Back", "Miniboss_Spider_Head_Back"]],
 
-        "upgradedSkins": ["Miniboss_Spider2", "Miniboss_Spider_Body", "Miniboss_Spider_Head"],
-        "backUpgradedSkins": ["Miniboss_Spider_Back2", "Miniboss_Spider_Body_Back", "Miniboss_Spider_Head_Back"],
+        "upgradedSkins": [["Miniboss_Spider2", "Miniboss_Spider_Body", "Miniboss_Spider_Head"]],
+        "backUpgradedSkins": [["Miniboss_Spider_Back2", "Miniboss_Spider_Body_Back", "Miniboss_Spider_Head_Back"]],
 
         "animation": "idle"
     },
@@ -178,11 +178,11 @@
             "skeleton": "Millipede.skel"
         },
 
-        "skins": ["MILLIPEDE_BOSS_BODY_4", "MILLIPEDE_BOSS_BODY_3", "MILLIPEDE_BOSS_BODY_2", "MILLIPEDE_BOSS_BODY_1", "MILLIPEDE_BOSS_BODY_0", "MILLIPEDE_BOSS_HEAD"],
-        "backSkins": ["MILLIPEDE_BOSS_BODY_4_2", "MILLIPEDE_BOSS_BODY_3_2", "MILLIPEDE_BOSS_BODY_2_2", "MILLIPEDE_BOSS_BODY_1_2", "MILLIPEDE_BOSS_BODY_0", "MILLIPEDE_BOSS_HEAD_BACK"],
+        "skins": [["MILLIPEDE_BOSS_HEAD"], ["MILLIPEDE_BOSS_BODY_0"], ["MILLIPEDE_BOSS_BODY_1"], ["MILLIPEDE_BOSS_BODY_2"], ["MILLIPEDE_BOSS_BODY_3"], ["MILLIPEDE_BOSS_BODY_4"]],
+        "backSkins": [["MILLIPEDE_BOSS_HEAD_BACK"], ["MILLIPEDE_BOSS_BODY_0_2"], ["MILLIPEDE_BOSS_BODY_1_2"], ["MILLIPEDE_BOSS_BODY_2_2"], ["MILLIPEDE_BOSS_BODY_3"], ["MILLIPEDE_BOSS_BODY_4_2"]],
 
-        "upgradedSkins": ["MILLIPEDE_BOSS2_BODY_4", "MILLIPEDE_BOSS2_BODY_3", "MILLIPEDE_BOSS2_BODY_2", "MILLIPEDE_BOSS2_BODY_1", "MILLIPEDE_BOSS2_BODY_0", "MILLIPEDE_BOSS2_HEAD"],
-        "backUpgradedSkins": ["MILLIPEDE_BOSS2_BODY_4_2", "MILLIPEDE_BOSS2_BODY_3_2", "MILLIPEDE_BOSS2_BODY_2_2", "MILLIPEDE_BOSS2_BODY_1_2", "MILLIPEDE_BOSS2_BODY_0", "MILLIPEDE_BOSS2_HEAD_BACK"],
+        "upgradedSkins": [["MILLIPEDE_BOSS2_HEAD"], ["MILLIPEDE_BOSS2_BODY_0"], ["MILLIPEDE_BOSS2_BODY_1"], ["MILLIPEDE_BOSS2_BODY_2"], ["MILLIPEDE_BOSS2_BODY_3"], ["MILLIPEDE_BOSS2_BODY_4"]],
+        "backUpgradedSkins": [["MILLIPEDE_BOSS2_HEAD_BACK"], ["MILLIPEDE_BOSS2_BODY_0_2"], ["MILLIPEDE_BOSS2_BODY_1_2"], ["MILLIPEDE_BOSS2_BODY_2_2"], ["MILLIPEDE_BOSS2_BODY_3"], ["MILLIPEDE_BOSS2_BODY_4_2"]],
 
         "animation": "idle"
     },
@@ -197,11 +197,11 @@
             "skeleton": "Scorpions.skel"
         },
 
-        "skins": ["ScorpionMiniboss"],
-        "backSkins": ["ScorpionMiniboss_Back"],
+        "skins": [["ScorpionMiniboss"]],
+        "backSkins": [["ScorpionMiniboss_Back"]],
 
-        "upgradedSkins": ["ScorpionMiniboss2"],
-        "backUpgradedSkins": ["ScorpionMiniboss_Back2"],
+        "upgradedSkins": [["ScorpionMiniboss2"]],
+        "backUpgradedSkins": [["ScorpionMiniboss_Back2"]],
 
         "animation": "idle"
     }

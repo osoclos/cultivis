@@ -1,4 +1,4 @@
-import { ColorSet, FollowerCategory, FollowerId } from "../../src/data/types";
+import { type ColorSet, FollowerCategory, type FollowerId } from "../../src/data/types";
 
 export type FollowerExtrasJSON = Partial<Record<FollowerId, Partial<FollowerExtras>>>;
 export interface FollowerExtras {

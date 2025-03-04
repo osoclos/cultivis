@@ -12,23 +12,27 @@
         // Modules
         "allowImportingTsExtensions": true,
         "module": "ESNext",
-        "moduleResolution": "Bundler",
+        "moduleResolution": "bundler",
         "noUncheckedSideEffectImports": true,
         "paths": { "/*": ["./*", "./public/*"] },
-        "resolveJsonModule": true,
         "types": ["./lib/spine-ts/build/spine-webgl.d.ts", "./lib/upng-js/UPNG.d.ts", "./lib/eruda/eruda.d.ts"],
 
         // Emit
         "noEmit": true,
+        "preserveConstEnums": true,
 
         // Interop Constraints
         "isolatedModules": true,
+        "verbatimModuleSyntax": true,
 
         // Language and Environment
         "lib": ["ES2022", "DOM", "DOM.Iterable"],
         "moduleDetection": "force",
         "target": "ES2022",
         "useDefineForClassFields": true,
+
+        // Projects
+        "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
 
         // Completeness
         "skipLibCheck": true

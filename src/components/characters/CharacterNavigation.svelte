@@ -193,6 +193,16 @@
         change(bishop);
     }
 
+    function updateMiniBossStage(stage: number) {
+        if (!isMiniBossObj(obj) || !isMiniBossObj(actor)) return;
+        stage--;
+
+        obj.stage = stage;
+        actor.stage = stage;
+
+        update();
+    }
+
     function updateName(name: string) {
         actor.label = name;
         obj.label = name;
@@ -344,6 +354,12 @@
                                     </Label>
                                 {/if}
                             {:else if isMiniBossObj(obj) && isMiniBossObj(actor)}
+                                {#if miniBossData[obj.miniBoss].upgradedSkins.length > 1}
+                                    <Label label="Body Part Number">
+                                        <Slider class="ml-4" label="Body Part Number" value={obj.stage + 1} min={1} max={miniBossData[obj.miniBoss].upgradedSkins.length} step={1} oninput={updateMiniBossStage} />
+                                    </Label>
+                                {/if}
+
                                 <Label label="Is Upgraded?">
                                     <Toggle label="Is Upgraded?" bind:enabled={obj.isUpgraded} oninput={(isUpgraded) => actor.isUpgraded = isUpgraded} />
                                 </Label>

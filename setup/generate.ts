@@ -7,7 +7,7 @@ import multer from "multer";
 import sharp from "sharp";
 
 import { followerData, miniBossData, playerData } from "../src/data/files";
-import { CLOTHING_CATEGORY_LENGTH, CLOTHING_IDS, type ClothingId, FOLLOWER_CATEGORY_LENGTH, FOLLOWER_IDS, type FollowerId, MINI_BOSS_CATEGORY_LENGTH, MiniBossId, NECKLACE_CATEGORY_LENGTH, type NecklaceId, PLAYER_BELL_CATEGORY_LENGTH, PLAYER_FLEECE_CATEGORY_LENGTH, PlayerBellId, PlayerFleeceId } from "../src/data/types";
+import { CLOTHING_CATEGORY_LENGTH, CLOTHING_IDS, type ClothingId, FOLLOWER_CATEGORY_LENGTH, FOLLOWER_IDS, type FollowerId, MINI_BOSS_CATEGORY_LENGTH, type MiniBossId, NECKLACE_CATEGORY_LENGTH, type NecklaceId, PLAYER_BELL_CATEGORY_LENGTH, PLAYER_FLEECE_CATEGORY_LENGTH, type PlayerBellId, type PlayerFleeceId } from "../src/data/types";
 
 const PORT: number = 3000;
 const OUTPUT_DIR: string = path.join(__dirname, "../public/static/assets");

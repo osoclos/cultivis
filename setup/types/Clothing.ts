@@ -1,4 +1,4 @@
-import { ClothingCategory, ClothingId, ColorSet } from "../../src/data/types";
+import { ClothingCategory, type ClothingId, type ColorSet } from "../../src/data/types";
 
 export type ClothingExtrasJSON = Partial<Record<ClothingId, Pick<ClothingExtras, "category"> & Partial<ClothingExtras>>>;
 export interface ClothingExtras {
