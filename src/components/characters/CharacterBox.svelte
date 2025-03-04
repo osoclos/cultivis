@@ -5,10 +5,10 @@
     import { SpritesheetImage } from "../utils";
 
     import type { ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, isMiniBossObj, isWitnessObj, isHumanoidObj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, isMiniBossObj, isWitnessObj, isSoldierObj } from "../../scripts/characters";
     import { soundManager } from "../../scripts/managers";
 
-    import { bishopData, followerData, towwData, playerData, miniBossData, witnessData, humanoidData } from "../../data/files";
+    import { bishopData, followerData, towwData, playerData, miniBossData, witnessData, soldierData } from "../../data/files";
     import { BISHOP_IDS, MINI_BOSS_CATEGORIES, followerIdsByCategory, PLAYER_CREATURE_IDS, WITNESS_IDS, miniBossIdsByCategory, FOLLOWER_CATEGORIES } from "../../data/types";
 
     interface Props {
@@ -45,7 +45,7 @@
             case isFollowerObj(actor): return "Follower";
             case isPlayerObj(actor): return "Player";
 
-            case isHumanoidObj(actor): return "Humanoid";
+            case isSoldierObj(actor): return "Soldier";
 
             case isBishopObj(actor): return "Bishop";
             case isTOWW_Obj(actor): return "T.O.W.W.";
@@ -62,7 +62,7 @@
             case isFollowerObj(actor): return `Form: ${followerData.forms[actor.form].name}`;
             case isPlayerObj(actor): return `Creature: ${playerData.creatures[actor.creature].name}`;
 
-            case isHumanoidObj(actor): return `Role: ${humanoidData[actor.humanoid].name}`;
+            case isSoldierObj(actor): return `Role: ${soldierData[actor.soldier].name}`;
 
             case isBishopObj(actor): return `Bishop: ${bishopData[actor.bishop].name}`;
             case isTOWW_Obj(actor): return `Form: ${towwData[actor.form].name}`;
@@ -79,7 +79,7 @@
             case isFollowerObj(actor): return "/static/assets/followers.png";
             case isPlayerObj(actor): return "/static/assets/player.png";
 
-            case isHumanoidObj(actor): return "/static/assets/humanoids.png";
+            case isSoldierObj(actor): return "/static/assets/soldiers.png";
 
             case isBishopObj(actor):
             case isTOWW_Obj(actor): return "/static/assets/crowns.png";

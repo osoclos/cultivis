@@ -100,8 +100,8 @@
         },
 
         {
-            "fileMatch": ["/humanoid-data.json"],
-            "url": "/src/data/schemas/characters/enemies/humanoid-data.schema.json"
+            "fileMatch": ["/soldier-data.json"],
+            "url": "/src/data/schemas/characters/enemies/soldier-data.schema.json"
         },
 
         {

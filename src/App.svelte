@@ -6,14 +6,14 @@
     import { SceneCanvas, Categories, LoadingThrobber, LoadingSymbol } from "./components/misc";
     import { List } from "./components/utils";
     
-    import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, TOWW_MENU_NAME, TOWW_Menus, MINI_BOSS_MENU_NAME, MiniBossMenu, WITNESS_MENU_NAME, WitnessMenu, HumanoidMenus, HUMANOID_MENU_NAME } from "./components/characters";
+    import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, TOWW_MENU_NAME, TOWW_Menus, MINI_BOSS_MENU_NAME, MiniBossMenu, WITNESS_MENU_NAME, WitnessMenu, SoldierMenus, SOLDIER_MENU_NAME } from "./components/characters";
     import { FormatOptions, SizeOptions, TimingOptions } from "./components/exporting";
 
     import { News } from "./components/news";
     import { CreationDetails, SpecialThanks, HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME } from "./components/credits";
 
     import { Actor, Exporter, Factory, FORMAT_IDS, Scene, type ActorObject, type FormatData, type FormatId } from "./scripts";
-    import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness, isMiniBossObj, isWitnessObj, Humanoid, isHumanoidObj } from "./scripts/characters";
+    import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness, isMiniBossObj, isWitnessObj, Soldier, isSoldierObj } from "./scripts/characters";
     import { soundManager, newsManager, NewsManager, type NewsLoader, serverManager } from "./scripts/managers";
 
     import { bishopData, miniBossData, towwData, witnessData } from "./data/files";
@@ -230,13 +230,13 @@
                 break;
             }
 
-            case Humanoid: {
-                !factory.hasLoadedHumanoid && await factory.load(Humanoid);
+            case Soldier: {
+                !factory.hasLoadedSoldier && await factory.load(Soldier);
 
-                const humanoid = factory.humanoid("Swordsman");
-                humanoid.setAnimation("idle");
+                const soldier = factory.soldier("Swordsman");
+                soldier.setAnimation("idle");
 
-                addedActor = humanoid;
+                addedActor = soldier;
                 break;
             }
 
@@ -499,8 +499,8 @@
                             <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={actorMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                         {:else if isPlayerObj(actorObj) && isStrPlayerMenuName(actorMenu)}
                             <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={actorMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
-                        {:else if isHumanoidObj(actorObj) && actorMenu === HUMANOID_MENU_NAME}
-                            <HumanoidMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" humanoid={actor as Humanoid} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                        {:else if isSoldierObj(actorObj) && actorMenu === SOLDIER_MENU_NAME}
+                            <SoldierMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" soldier={actor as Soldier} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                         {:else if isBishopObj(actorObj) && actorMenu === BISHOP_MENU_NAME}
                             <BishopMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
                         {:else if isTOWW_Obj(actorObj) && actorMenu === TOWW_MENU_NAME}

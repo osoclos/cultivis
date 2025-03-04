@@ -75,6 +75,10 @@ export class Actor implements ActorObject {
         return this.skeleton.data.animations.map(({ name }) => name);
     }
 
+    get attachmentNames(): string[] {
+        return this.skeleton.slots.map(({ attachment }) => attachment?.name);
+    }
+
     get time(): number {
         return this.firstTrack?.trackTime ?? 0;
     }
@@ -173,6 +177,18 @@ export class Actor implements ActorObject {
 
         this.reset();
         this.updateBounds();
+    }
+
+    findAnimationsWithAttachment(name: string): string[] {
+        const { animation, animationNames } = this;
+
+        const filteredAnimations = animationNames.filter((animation) => {
+            this.setAnimation(animation);
+            return this.attachmentNames.some((attachment) => attachment?.includes(name));
+        });
+
+        this.setAnimation(animation);
+        return filteredAnimations;
     }
 
     reset() {

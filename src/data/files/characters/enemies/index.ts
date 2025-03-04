@@ -1,6 +1,6 @@
-import type { HumanoidDataJSON } from "../../../types";
+import type { SoldierDataJSON } from "../../../types";
 
-import humanoidDataJSON from "./humanoid-data.json";
+import soldierDataJSON from "./soldier-data.json";
 
-const humanoidData: HumanoidDataJSON = humanoidDataJSON;
-export { humanoidData };
+const soldierData: SoldierDataJSON = soldierDataJSON;
+export { soldierData };

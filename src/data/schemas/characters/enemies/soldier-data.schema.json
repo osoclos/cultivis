@@ -1,9 +1,9 @@
 {
     "$schema": "https://json-schema.org/draft-07/schema",
-    "$id": "toww-data.schema.json",
+    "$id": "soldier-data.schema.json",
 
-    "title": "Humanoid Data",
-    "description": "Information on humanoid enemies that provides metadata and other related information",
+    "title": "Soldier Data",
+    "description": "Information on soldiers that provides metadata and other related information",
 
     "type": "object",
     "propertyNames": { "$ref": "#/definitions/Id" },
@@ -12,17 +12,17 @@
         "properties": {
             "name": {
                 "type": "string",
-                "description": "The display name of this humanoid."
+                "description": "The display name of this soldier."
             },
 
             "skin": {
                 "type": "string",
-                "description": "The skin name of this humanoid."
+                "description": "The skin name of this soldier."
             },
 
             "canHoldShield": {
                 "type": "boolean",
-                "description": "Can this humanoid hold a shield."
+                "description": "Can this soldier hold a shield."
             }
         },
 

@@ -1,6 +1,6 @@
-import { BISHOP_IDS, TOWW_IDS, type BishopId, type ClothingId, type FollowerId, type TOWW_Id, type PlayerCreatureId, type PlayerFleeceId, MINI_BOSS_IDS, type MiniBossId, type WitnessId, type HumanoidId } from "../data/types";
+import { BISHOP_IDS, TOWW_IDS, type BishopId, type ClothingId, type FollowerId, type TOWW_Id, type PlayerCreatureId, type PlayerFleeceId, MINI_BOSS_IDS, type MiniBossId, type WitnessId, type SoldierId } from "../data/types";
 
-import { Bishop, Follower, TOWW, Player, MiniBoss, Witness, Humanoid } from "./characters";
+import { Bishop, Follower, TOWW, Player, MiniBoss, Witness, Soldier } from "./characters";
 import { AssetManager } from "./managers";
 
 import { Actor } from "./Actor";
@@ -10,7 +10,7 @@ export class Factory {
     private _follower?: Follower;
     private _player?: Player;
 
-    private _humanoid?: Humanoid;
+    private _soldier?: Soldier;
 
     private _bishops: Map<BishopId, Bishop>;
     private _bishopBosses: Map<BishopId, Bishop>;
@@ -46,8 +46,8 @@ export class Factory {
         return !!this._player;
     }
 
-    get hasLoadedHumanoid(): boolean {
-        return !!this._humanoid;
+    get hasLoadedSoldier(): boolean {
+        return !!this._soldier;
     }
 
     hasLoadedBishop(bishop: BishopId, isBoss: boolean): boolean {
@@ -102,11 +102,11 @@ export class Factory {
                     break;
                 }
 
-                case Humanoid: {
-                    if (this.hasLoadedHumanoid) break;
+                case Soldier: {
+                    if (this.hasLoadedSoldier) break;
 
-                    const [skeleton, animationState] = await this.fetchData([Humanoid.TEXTURE_FILENAME], Humanoid.ATLAS_FILENAME, Humanoid.SKELETON_FILENAME);
-                    this._humanoid = new Humanoid(skeleton, animationState);
+                    const [skeleton, animationState] = await this.fetchData([Soldier.TEXTURE_FILENAME], Soldier.ATLAS_FILENAME, Soldier.SKELETON_FILENAME);
+                    this._soldier = new Soldier(skeleton, animationState);
 
                     break;
                 }
@@ -166,7 +166,7 @@ export class Factory {
     }
 
     async loadAll() {
-        await this.load(Follower, Player, Humanoid, Bishop, TOWW, MiniBoss, Witness);
+        await this.load(Follower, Player, Soldier, Bishop, TOWW, MiniBoss, Witness);
     }
 
     async custom(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string, id?: string, label: string = "Custom Actor") {
@@ -184,9 +184,9 @@ export class Factory {
         return this._player!.clone(id, label, creature, fleece);
     }
 
-    humanoid(humanoidId: HumanoidId, id?: string, label?: string) {
-        if (!this.hasLoadedHumanoid) throw new Error("Humanoid has not been loaded.");
-        return this._humanoid!.clone(id, label, humanoidId);
+    soldier(soldierId: SoldierId, id?: string, label?: string) {
+        if (!this.hasLoadedSoldier) throw new Error("Soldier has not been loaded.");
+        return this._soldier!.clone(id, label, soldierId);
     }
 
     bishop(bishopId: BishopId, isBoss: boolean, id?: string, label?: string) {

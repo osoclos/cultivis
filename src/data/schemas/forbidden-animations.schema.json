@@ -21,13 +21,13 @@
             "items": { "type": "string" }
         },
 
-        "humanoid": {
+        "soldier": {
             "type": "array",
-            "description": "Humanoid enemies should not play these animations listed in this array",
+            "description": "Soldiers should not play these animations listed in this array",
 
             "items": { "type": "string" }
         }
     },
 
-    "required": ["follower", "player", "humanoid"]
+    "required": ["follower", "player", "soldier"]
 }

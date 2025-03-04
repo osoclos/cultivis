@@ -1,6 +1,6 @@
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
 
-import { Follower, isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, Player, isWitnessObj, isMiniBossObj, Witness, isHumanoidObj, Humanoid } from "./characters";
+import { Follower, isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, Player, isWitnessObj, isMiniBossObj, Witness, isSoldierObj, Soldier } from "./characters";
 import { APNG_Manager, GIF_Manager } from "./managers";
 
 import { Vector } from "../utils";
@@ -144,12 +144,12 @@ export class Exporter {
                 break;
             }
 
-            case isHumanoidObj(obj): {
-                const { humanoid: id } = obj;
-                if (!this.factory.hasLoadedHumanoid) await this.factory.load(Humanoid);
+            case isSoldierObj(obj): {
+                const { soldier: id } = obj;
+                if (!this.factory.hasLoadedSoldier) await this.factory.load(Soldier);
 
-                const humanoid = this.factory.humanoid(id, id, label);
-                actor = humanoid;
+                const soldier = this.factory.soldier(id, id, label);
+                actor = soldier;
 
                 break; 
             }

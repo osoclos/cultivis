@@ -1,1 +1,1 @@
-export * from "./Humanoid";
+export * from "./Soldier";
