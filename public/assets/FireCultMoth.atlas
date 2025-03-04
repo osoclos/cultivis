@@ -1,0 +1,97 @@
+
+FireCultMoth.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/Arm
+  rotate: false
+  xy: 173, 7
+  size: 136, 41
+  orig: 136, 41
+  offset: 0, 0
+  index: -1
+images/Ear
+  rotate: true
+  xy: 482, 155
+  size: 99, 59
+  orig: 99, 59
+  offset: 0, 0
+  index: -1
+images/Ear2
+  rotate: true
+  xy: 482, 54
+  size: 99, 59
+  orig: 99, 59
+  offset: 0, 0
+  index: -1
+images/Eyes
+  rotate: false
+  xy: 311, 7
+  size: 105, 41
+  orig: 105, 41
+  offset: 0, 0
+  index: -1
+images/Eyes_Closed
+  rotate: false
+  xy: 325, 53
+  size: 99, 23
+  orig: 99, 23
+  offset: 0, 0
+  index: -1
+images/Eyes_Shocked
+  rotate: true
+  xy: 543, 143
+  size: 111, 51
+  orig: 111, 51
+  offset: 0, 0
+  index: -1
+images/Head
+  rotate: false
+  xy: 173, 50
+  size: 150, 204
+  orig: 150, 204
+  offset: 0, 0
+  index: -1
+images/Mouth_Dance
+  rotate: false
+  xy: 501, 21
+  size: 31, 31
+  orig: 31, 31
+  offset: 0, 0
+  index: -1
+images/Mouth_Normal
+  rotate: false
+  xy: 2, 2
+  size: 74, 22
+  orig: 74, 22
+  offset: 0, 0
+  index: -1
+images/Mouth_Talk1
+  rotate: false
+  xy: 418, 14
+  size: 81, 37
+  orig: 81, 37
+  offset: 0, 0
+  index: -1
+images/Mouth_Waiting
+  rotate: true
+  xy: 78, 4
+  size: 20, 18
+  orig: 20, 18
+  offset: 0, 0
+  index: -1
+images/Neck
+  rotate: false
+  xy: 325, 78
+  size: 155, 176
+  orig: 155, 176
+  offset: 0, 0
+  index: -1
+images/Tunic
+  rotate: true
+  xy: 2, 26
+  size: 228, 169
+  orig: 228, 169
+  offset: 0, 0
+  index: -1

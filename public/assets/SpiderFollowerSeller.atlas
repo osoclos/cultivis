@@ -1,0 +1,181 @@
+
+SpiderFollowerSeller.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arm_Left_1
+  rotate: false
+  xy: 382, 130
+  size: 58, 117
+  orig: 58, 117
+  offset: 0, 0
+  index: -1
+Arm_Left_2
+  rotate: false
+  xy: 267, 249
+  size: 152, 112
+  orig: 159, 127
+  offset: 0, 0
+  index: -1
+Arm_Left_3
+  rotate: true
+  xy: 265, 74
+  size: 163, 115
+  orig: 163, 115
+  offset: 0, 0
+  index: -1
+Arm_Right_0
+  rotate: true
+  xy: 267, 363
+  size: 147, 125
+  orig: 147, 125
+  offset: 0, 0
+  index: -1
+Arm_Right_1
+  rotate: true
+  xy: 394, 382
+  size: 128, 108
+  orig: 128, 108
+  offset: 0, 0
+  index: -1
+Arm_Right_2
+  rotate: true
+  xy: 148, 71
+  size: 166, 115
+  orig: 190, 115
+  offset: 24, 0
+  index: -1
+BODY
+  rotate: false
+  xy: 2, 239
+  size: 263, 271
+  orig: 265, 273
+  offset: 1, 1
+  index: -1
+Bones
+  rotate: true
+  xy: 368, 2
+  size: 70, 212
+  orig: 70, 212
+  offset: 0, 0
+  index: -1
+Eye1
+  rotate: true
+  xy: 442, 135
+  size: 55, 43
+  orig: 55, 43
+  offset: 0, 0
+  index: -1
+Eye1_Angry
+  rotate: true
+  xy: 421, 249
+  size: 55, 45
+  orig: 55, 45
+  offset: 0, 0
+  index: -1
+Eye1_Blink
+  rotate: false
+  xy: 394, 364
+  size: 47, 16
+  orig: 47, 16
+  offset: 0, 0
+  index: -1
+Eye1_Smile
+  rotate: true
+  xy: 468, 325
+  size: 55, 36
+  orig: 55, 36
+  offset: 0, 0
+  index: -1
+Eye2
+  rotate: true
+  xy: 382, 75
+  size: 22, 45
+  orig: 22, 45
+  offset: 0, 0
+  index: -1
+Eye2_Blink
+  rotate: true
+  xy: 2, 3
+  size: 5, 39
+  orig: 5, 39
+  offset: 0, 0
+  index: -1
+Eye3
+  rotate: true
+  xy: 442, 192
+  size: 55, 44
+  orig: 55, 44
+  offset: 0, 0
+  index: -1
+Eye3_Angry
+  rotate: true
+  xy: 421, 306
+  size: 56, 45
+  orig: 56, 45
+  offset: 0, 0
+  index: -1
+Eye3_Blink
+  rotate: false
+  xy: 265, 58
+  size: 48, 14
+  orig: 48, 14
+  offset: 0, 0
+  index: -1
+Eye3_Smile
+  rotate: true
+  xy: 487, 134
+  size: 56, 38
+  orig: 56, 38
+  offset: 0, 0
+  index: -1
+HEAD
+  rotate: false
+  xy: 2, 54
+  size: 144, 183
+  orig: 146, 185
+  offset: 1, 1
+  index: -1
+LEG_Left
+  rotate: true
+  xy: 2, 10
+  size: 42, 182
+  orig: 42, 182
+  offset: 0, 0
+  index: -1
+LEG_Right
+  rotate: true
+  xy: 186, 13
+  size: 42, 180
+  orig: 42, 180
+  offset: 0, 0
+  index: -1
+Mouth_Closed
+  rotate: false
+  xy: 315, 59
+  size: 32, 13
+  orig: 32, 13
+  offset: 0, 0
+  index: -1
+Mouth_Talk
+  rotate: false
+  xy: 487, 106
+  size: 78, 26
+  orig: 78, 26
+  offset: 0, 0
+  index: -1
+Mouth_smile
+  rotate: false
+  xy: 148, 57
+  size: 57, 12
+  orig: 57, 13
+  offset: 0, 1
+  index: -1
+Spiker
+  rotate: true
+  xy: 382, 99
+  size: 29, 103
+  orig: 31, 105
+  offset: 1, 1
+  index: -1

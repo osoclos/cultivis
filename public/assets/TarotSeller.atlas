@@ -1,0 +1,125 @@
+
+TarotSeller.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arms
+  rotate: true
+  xy: 242, 71
+  size: 338, 173
+  orig: 338, 173
+  offset: 0, 0
+  index: -1
+Arms_Blue
+  rotate: true
+  xy: 1016, 729
+  size: 292, 149
+  orig: 292, 149
+  offset: 0, 0
+  index: -1
+Body
+  rotate: false
+  xy: 417, 109
+  size: 503, 300
+  orig: 503, 300
+  offset: 0, 0
+  index: -1
+Body_Blue
+  rotate: true
+  xy: 922, 12
+  size: 503, 300
+  orig: 503, 300
+  offset: 0, 0
+  index: -1
+Eye
+  rotate: true
+  xy: 242, 4
+  size: 30, 25
+  orig: 30, 25
+  offset: 0, 0
+  index: -1
+EyeClosed
+  rotate: false
+  xy: 2, 12
+  size: 32, 8
+  orig: 32, 8
+  offset: 0, 0
+  index: -1
+EyeClosed_Blue
+  rotate: false
+  xy: 2, 2
+  size: 32, 8
+  orig: 32, 8
+  offset: 0, 0
+  index: -1
+Eye_Blue
+  rotate: true
+  xy: 242, 36
+  size: 33, 28
+  orig: 33, 28
+  offset: 0, 0
+  index: -1
+Face
+  rotate: false
+  xy: 1016, 588
+  size: 130, 139
+  orig: 130, 139
+  offset: 0, 0
+  index: -1
+Face_Blue
+  rotate: true
+  xy: 1148, 609
+  size: 118, 114
+  orig: 118, 114
+  offset: 0, 0
+  index: -1
+Hands
+  rotate: true
+  xy: 556, 31
+  size: 76, 137
+  orig: 76, 137
+  offset: 0, 0
+  index: -1
+Hands_BLue
+  rotate: true
+  xy: 417, 31
+  size: 76, 137
+  orig: 76, 137
+  offset: 0, 0
+  index: -1
+Head
+  rotate: false
+  xy: 2, 411
+  size: 534, 610
+  orig: 534, 610
+  offset: 0, 0
+  index: -1
+Head_Blue
+  rotate: false
+  xy: 538, 517
+  size: 476, 504
+  orig: 476, 504
+  offset: 0, 0
+  index: -1
+Mouth_Btm
+  rotate: false
+  xy: 272, 42
+  size: 136, 27
+  orig: 136, 27
+  offset: 0, 0
+  index: -1
+Mouth_Top
+  rotate: false
+  xy: 269, 6
+  size: 126, 28
+  orig: 126, 28
+  offset: 0, 0
+  index: -1
+Swords
+  rotate: false
+  xy: 2, 22
+  size: 238, 387
+  orig: 238, 387
+  offset: 0, 0
+  index: -1

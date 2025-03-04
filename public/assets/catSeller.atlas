@@ -1,0 +1,104 @@
+
+catSeller.png
+size: 512,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ARM
+  rotate: true
+  xy: 2, 722
+  size: 59, 86
+  orig: 59, 86
+  offset: 0, 0
+  index: -1
+BODY
+  rotate: false
+  xy: 2, 2
+  size: 487, 258
+  orig: 487, 258
+  offset: 0, 0
+  index: -1
+FACE
+  rotate: false
+  xy: 2, 652
+  size: 241, 59
+  orig: 241, 59
+  offset: 0, 0
+  index: -1
+FACE_ANGRY
+  rotate: false
+  xy: 245, 641
+  size: 241, 70
+  orig: 241, 70
+  offset: 0, 0
+  index: -1
+FACE_BLINK
+  rotate: false
+  xy: 160, 760
+  size: 223, 44
+  orig: 223, 44
+  offset: 0, 0
+  index: -1
+FACE_HAPPY
+  rotate: false
+  xy: 90, 713
+  size: 236, 45
+  orig: 236, 45
+  offset: 0, 0
+  index: -1
+HAT
+  rotate: true
+  xy: 2, 432
+  size: 133, 344
+  orig: 133, 344
+  offset: 0, 0
+  index: -1
+HEAD
+  rotate: false
+  xy: 2, 262
+  size: 432, 168
+  orig: 432, 168
+  offset: 0, 0
+  index: -1
+LEG
+  rotate: false
+  xy: 385, 750
+  size: 88, 54
+  orig: 88, 54
+  offset: 0, 0
+  index: -1
+MOUTH_ANGRY
+  rotate: true
+  xy: 2, 787
+  size: 17, 28
+  orig: 17, 28
+  offset: 0, 0
+  index: -1
+MOUTH_SHUT
+  rotate: false
+  xy: 79, 783
+  size: 32, 21
+  orig: 32, 21
+  offset: 0, 0
+  index: -1
+MOUTH_TALK
+  rotate: false
+  xy: 113, 774
+  size: 45, 30
+  orig: 45, 30
+  offset: 0, 0
+  index: -1
+MOUTH_TALK2
+  rotate: false
+  xy: 32, 784
+  size: 45, 20
+  orig: 45, 20
+  offset: 0, 0
+  index: -1
+TAIL
+  rotate: false
+  xy: 2, 567
+  size: 194, 83
+  orig: 194, 83
+  offset: 0, 0
+  index: -1

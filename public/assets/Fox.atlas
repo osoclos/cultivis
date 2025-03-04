@@ -1,0 +1,132 @@
+
+Fox.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arm
+  rotate: true
+  xy: 694, 221
+  size: 122, 174
+  orig: 122, 174
+  offset: 0, 0
+  index: -1
+Arms
+  rotate: true
+  xy: 382, 269
+  size: 237, 126
+  orig: 237, 126
+  offset: 0, 0
+  index: -1
+Face_Angry
+  rotate: false
+  xy: 258, 56
+  size: 118, 51
+  orig: 118, 51
+  offset: 0, 0
+  index: -1
+Face_Blink
+  rotate: false
+  xy: 501, 46
+  size: 113, 22
+  orig: 113, 22
+  offset: 0, 0
+  index: -1
+Face_Default
+  rotate: false
+  xy: 381, 6
+  size: 118, 50
+  orig: 118, 50
+  offset: 0, 0
+  index: -1
+Face_Laugh
+  rotate: false
+  xy: 258, 5
+  size: 121, 49
+  orig: 121, 49
+  offset: 0, 0
+  index: -1
+Face_Smile
+  rotate: false
+  xy: 378, 58
+  size: 121, 49
+  orig: 121, 49
+  offset: 0, 0
+  index: -1
+Face_Smile2
+  rotate: false
+  xy: 501, 70
+  size: 119, 43
+  orig: 119, 43
+  offset: 0, 0
+  index: -1
+Hand_1
+  rotate: true
+  xy: 133, 10
+  size: 97, 123
+  orig: 97, 123
+  offset: 0, 0
+  index: -1
+Hand_2
+  rotate: true
+  xy: 2, 2
+  size: 105, 129
+  orig: 105, 129
+  offset: 0, 0
+  index: -1
+Head
+  rotate: true
+  xy: 545, 180
+  size: 163, 147
+  orig: 163, 147
+  offset: 0, 0
+  index: -1
+Head_Laugh
+  rotate: true
+  xy: 622, 17
+  size: 161, 144
+  orig: 161, 144
+  offset: 0, 0
+  index: -1
+Head_Laugh2
+  rotate: false
+  xy: 382, 115
+  size: 161, 152
+  orig: 161, 152
+  offset: 0, 0
+  index: -1
+Head_OpenMouth
+  rotate: true
+  xy: 664, 345
+  size: 161, 147
+  orig: 163, 147
+  offset: 2, 0
+  index: -1
+Head_Teeth
+  rotate: true
+  xy: 510, 345
+  size: 161, 152
+  orig: 161, 152
+  offset: 0, 0
+  index: -1
+Mouth
+  rotate: false
+  xy: 501, 4
+  size: 102, 19
+  orig: 102, 19
+  offset: 0, 0
+  index: -1
+Mouth_Talk
+  rotate: false
+  xy: 501, 25
+  size: 104, 19
+  orig: 104, 19
+  offset: 0, 0
+  index: -1
+Robes
+  rotate: false
+  xy: 2, 109
+  size: 378, 397
+  orig: 378, 397
+  offset: 0, 0
+  index: -1

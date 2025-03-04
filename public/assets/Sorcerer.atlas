@@ -1,0 +1,300 @@
+
+Sorcerer.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Other/Fire/Fire_0
+  rotate: true
+  xy: 236, 682
+  size: 108, 221
+  orig: 150, 275
+  offset: 21, 27
+  index: -1
+Other/Fire/Fire_1
+  rotate: false
+  xy: 719, 605
+  size: 118, 201
+  orig: 150, 275
+  offset: 16, 37
+  index: -1
+Other/Fire/Fire_2
+  rotate: false
+  xy: 857, 792
+  size: 119, 228
+  orig: 150, 275
+  offset: 15, 24
+  index: -1
+Other/Fire/Fire_3
+  rotate: true
+  xy: 255, 6
+  size: 116, 249
+  orig: 150, 275
+  offset: 17, 13
+  index: -1
+Other/Fire/Fire_4
+  rotate: true
+  xy: 2, 2
+  size: 116, 251
+  orig: 150, 275
+  offset: 17, 12
+  index: -1
+Other/Fire/Fire_5
+  rotate: true
+  xy: 236, 912
+  size: 108, 205
+  orig: 150, 275
+  offset: 21, 35
+  index: -1
+Other/Fire/Fire_6
+  rotate: false
+  xy: 719, 808
+  size: 115, 212
+  orig: 150, 275
+  offset: 17, 32
+  index: -1
+Other/SpawnParticles
+  rotate: false
+  xy: 649, 413
+  size: 104, 128
+  orig: 108, 131
+  offset: 2, 2
+  index: -1
+Other/SpawnParticles2
+  rotate: false
+  xy: 506, 4
+  size: 135, 129
+  orig: 137, 131
+  offset: 1, 1
+  index: -1
+Other/Teleport_1
+  rotate: false
+  xy: 554, 183
+  size: 99, 38
+  orig: 160, 55
+  offset: 35, 12
+  index: -1
+Other/Teleport_2
+  rotate: false
+  xy: 229, 124
+  size: 143, 44
+  orig: 160, 55
+  offset: 11, 7
+  index: -1
+Other/Teleport_3
+  rotate: false
+  xy: 380, 397
+  size: 152, 50
+  orig: 160, 55
+  offset: 4, 3
+  index: -1
+Other/Teleport_4
+  rotate: false
+  xy: 220, 394
+  size: 158, 53
+  orig: 160, 55
+  offset: 1, 1
+  index: -1
+Other/whiteball
+  rotate: false
+  xy: 719, 300
+  size: 111, 111
+  orig: 111, 111
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Arm
+  rotate: false
+  xy: 459, 769
+  size: 116, 95
+  orig: 116, 95
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Arm_Medic
+  rotate: true
+  xy: 755, 487
+  size: 116, 95
+  orig: 116, 95
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Arm_Protector
+  rotate: false
+  xy: 839, 695
+  size: 116, 95
+  orig: 116, 95
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Cape
+  rotate: false
+  xy: 655, 2
+  size: 200, 219
+  orig: 200, 219
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Cape_Back
+  rotate: false
+  xy: 236, 804
+  size: 174, 106
+  orig: 174, 106
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Cape_Medic
+  rotate: false
+  xy: 447, 461
+  size: 200, 219
+  orig: 200, 219
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Cape_Protector
+  rotate: false
+  xy: 229, 170
+  size: 219, 222
+  orig: 219, 222
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Chain_Protector
+  rotate: false
+  xy: 649, 768
+  size: 63, 252
+  orig: 63, 252
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Eyes
+  rotate: false
+  xy: 832, 391
+  size: 79, 94
+  orig: 79, 94
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Eyes_Medic
+  rotate: true
+  xy: 719, 225
+  size: 73, 130
+  orig: 73, 130
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Eyes_Open
+  rotate: true
+  xy: 839, 610
+  size: 83, 97
+  orig: 83, 97
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Eyes_Open_Medic
+  rotate: true
+  xy: 459, 693
+  size: 73, 131
+  orig: 75, 131
+  offset: 1, 0
+  index: -1
+Sorcerer/Cult/Eyes_Protector
+  rotate: false
+  xy: 978, 1004
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Hand1
+  rotate: false
+  xy: 649, 543
+  size: 68, 64
+  orig: 68, 64
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Hand2
+  rotate: true
+  xy: 649, 609
+  size: 74, 65
+  orig: 74, 65
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Hand3
+  rotate: true
+  xy: 577, 776
+  size: 88, 69
+  orig: 88, 69
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Hand4
+  rotate: false
+  xy: 534, 397
+  size: 58, 62
+  orig: 58, 62
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Hand5
+  rotate: true
+  xy: 582, 135
+  size: 46, 63
+  orig: 46, 63
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Hood
+  rotate: false
+  xy: 2, 120
+  size: 225, 267
+  orig: 225, 267
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Hood_Medic
+  rotate: false
+  xy: 2, 389
+  size: 216, 288
+  orig: 216, 288
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Hood_Protector
+  rotate: false
+  xy: 220, 449
+  size: 225, 228
+  orig: 225, 228
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Medic_Ring
+  rotate: false
+  xy: 450, 223
+  size: 267, 172
+  orig: 267, 172
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Necklace
+  rotate: false
+  xy: 592, 685
+  size: 115, 81
+  orig: 115, 81
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Necklace_Protector
+  rotate: false
+  xy: 459, 866
+  size: 158, 154
+  orig: 158, 154
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Sleeve
+  rotate: true
+  xy: 374, 126
+  size: 42, 102
+  orig: 42, 102
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Sleeve_Medic
+  rotate: true
+  xy: 450, 179
+  size: 42, 102
+  orig: 42, 102
+  offset: 0, 0
+  index: -1
+Sorcerer/Cult/Sleeve_Protector
+  rotate: true
+  xy: 478, 135
+  size: 42, 102
+  orig: 42, 102
+  offset: 0, 0
+  index: -1
+Sorcerer/GoatCult/Weapon
+  rotate: false
+  xy: 2, 679
+  size: 232, 341
+  orig: 232, 341
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,188 @@
+
+Fisherman.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ArmCuff
+  rotate: true
+  xy: 818, 103
+  size: 47, 43
+  orig: 47, 43
+  offset: 0, 0
+  index: -1
+ArmLeft
+  rotate: false
+  xy: 488, 139
+  size: 49, 114
+  orig: 49, 114
+  offset: 0, 0
+  index: -1
+ArmRight
+  rotate: false
+  xy: 539, 139
+  size: 43, 114
+  orig: 43, 114
+  offset: 0, 0
+  index: -1
+BackFin
+  rotate: false
+  xy: 263, 4
+  size: 135, 79
+  orig: 135, 79
+  offset: 0, 0
+  index: -1
+EyeLeft
+  rotate: false
+  xy: 803, 26
+  size: 53, 73
+  orig: 55, 75
+  offset: 1, 1
+  index: -1
+EyeLeft_Up
+  rotate: false
+  xy: 858, 28
+  size: 53, 73
+  orig: 53, 73
+  offset: 0, 0
+  index: -1
+EyeLeft_close_0
+  rotate: false
+  xy: 746, 24
+  size: 55, 75
+  orig: 55, 75
+  offset: 0, 0
+  index: -1
+EyeLeft_close_1
+  rotate: true
+  xy: 488, 100
+  size: 37, 76
+  orig: 39, 78
+  offset: 1, 1
+  index: -1
+EyeLeft_close_2
+  rotate: true
+  xy: 566, 100
+  size: 37, 76
+  orig: 37, 76
+  offset: 0, 0
+  index: -1
+EyeRight
+  rotate: false
+  xy: 664, 150
+  size: 75, 103
+  orig: 77, 105
+  offset: 1, 1
+  index: -1
+EyeRight_Up
+  rotate: false
+  xy: 741, 150
+  size: 75, 103
+  orig: 75, 103
+  offset: 0, 0
+  index: -1
+EyeRight_close_0
+  rotate: true
+  xy: 641, 22
+  size: 76, 103
+  orig: 78, 105
+  offset: 1, 1
+  index: -1
+EyeRight_close_1
+  rotate: true
+  xy: 469, 20
+  size: 78, 103
+  orig: 80, 105
+  offset: 1, 1
+  index: -1
+EyeRight_close_2
+  rotate: false
+  xy: 584, 150
+  size: 78, 103
+  orig: 78, 103
+  offset: 0, 0
+  index: -1
+EyebrowLeft
+  rotate: false
+  xy: 772, 101
+  size: 44, 47
+  orig: 44, 47
+  offset: 0, 0
+  index: -1
+EyebrowRight
+  rotate: false
+  xy: 644, 101
+  size: 69, 47
+  orig: 69, 47
+  offset: 0, 0
+  index: -1
+FishingRod_Reel
+  rotate: true
+  xy: 818, 152
+  size: 101, 68
+  orig: 103, 70
+  offset: 1, 1
+  index: -1
+FishingRod_Rod
+  rotate: false
+  xy: 2, 6
+  size: 108, 247
+  orig: 110, 249
+  offset: 1, 1
+  index: -1
+Head
+  rotate: false
+  xy: 340, 100
+  size: 146, 153
+  orig: 146, 153
+  offset: 0, 0
+  index: -1
+LegLeft
+  rotate: false
+  xy: 279, 86
+  size: 59, 167
+  orig: 59, 167
+  offset: 0, 0
+  index: -1
+LegRight
+  rotate: false
+  xy: 213, 85
+  size: 64, 168
+  orig: 69, 168
+  offset: 0, 0
+  index: -1
+Moustache
+  rotate: true
+  xy: 213, 2
+  size: 81, 48
+  orig: 81, 48
+  offset: 0, 0
+  index: -1
+Mouth_Open
+  rotate: true
+  xy: 400, 12
+  size: 86, 67
+  orig: 88, 69
+  offset: 1, 1
+  index: -1
+Mouth_closed
+  rotate: true
+  xy: 574, 21
+  size: 77, 65
+  orig: 79, 67
+  offset: 1, 1
+  index: -1
+Nose
+  rotate: false
+  xy: 715, 101
+  size: 55, 47
+  orig: 55, 47
+  offset: 0, 0
+  index: -1
+Sweater
+  rotate: true
+  xy: 112, 26
+  size: 227, 99
+  orig: 229, 101
+  offset: 1, 1
+  index: -1

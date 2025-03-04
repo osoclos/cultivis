@@ -1,0 +1,41 @@
+
+hopper-egg.png
+size: 512,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Egg_0
+  rotate: false
+  xy: 2, 498
+  size: 253, 313
+  orig: 253, 314
+  offset: 0, 1
+  index: -1
+Egg_1
+  rotate: false
+  xy: 257, 498
+  size: 253, 313
+  orig: 253, 314
+  offset: 0, 1
+  index: -1
+Egg_2
+  rotate: false
+  xy: 2, 183
+  size: 253, 313
+  orig: 253, 314
+  offset: 0, 1
+  index: -1
+Egg_3
+  rotate: false
+  xy: 257, 183
+  size: 253, 313
+  orig: 253, 314
+  offset: 0, 1
+  index: -1
+Egg_4
+  rotate: false
+  xy: 2, 2
+  size: 247, 179
+  orig: 247, 180
+  offset: 0, 1
+  index: -1

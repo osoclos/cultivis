@@ -1,0 +1,62 @@
+
+Dropper.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/Eyes
+  rotate: false
+  xy: 659, 146
+  size: 270, 104
+  orig: 270, 104
+  offset: 0, 0
+  index: -1
+images/Stomper_Body
+  rotate: false
+  xy: 2, 162
+  size: 434, 786
+  orig: 434, 786
+  offset: 0, 0
+  index: -1
+images/Stomper_Head
+  rotate: false
+  xy: 438, 444
+  size: 366, 504
+  orig: 366, 504
+  offset: 0, 0
+  index: -1
+images/Stomper_HornsLeft
+  rotate: true
+  xy: 2, 22
+  size: 138, 443
+  orig: 138, 444
+  offset: 0, 1
+  index: -1
+images/Stomper_HornsRight
+  rotate: false
+  xy: 806, 495
+  size: 142, 453
+  orig: 142, 453
+  offset: 0, 0
+  index: -1
+images/Stomper_Mouth_Btm
+  rotate: false
+  xy: 690, 252
+  size: 213, 190
+  orig: 213, 190
+  offset: 0, 0
+  index: -1
+images/Stomper_Mouth_Top
+  rotate: false
+  xy: 447, 49
+  size: 210, 208
+  orig: 210, 208
+  offset: 0, 0
+  index: -1
+images/Stomper_Spikes
+  rotate: false
+  xy: 438, 259
+  size: 250, 183
+  orig: 250, 183
+  offset: 0, 0
+  index: -1

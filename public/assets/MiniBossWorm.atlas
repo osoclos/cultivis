@@ -1,0 +1,118 @@
+
+MiniBossWorm.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/Body_1
+  rotate: false
+  xy: 2, 621
+  size: 385, 401
+  orig: 385, 401
+  offset: 0, 0
+  index: -1
+images/Body_2
+  rotate: true
+  xy: 657, 626
+  size: 348, 342
+  orig: 348, 342
+  offset: 0, 0
+  index: -1
+images/Body_3
+  rotate: true
+  xy: 389, 723
+  size: 299, 266
+  orig: 299, 266
+  offset: 0, 0
+  index: -1
+images/Body_4
+  rotate: false
+  xy: 630, 404
+  size: 223, 220
+  orig: 223, 220
+  offset: 0, 0
+  index: -1
+images/Eye_Big
+  rotate: false
+  xy: 146, 164
+  size: 111, 125
+  orig: 111, 125
+  offset: 0, 0
+  index: -1
+images/Eye_Big_Back
+  rotate: false
+  xy: 855, 499
+  size: 111, 125
+  orig: 111, 125
+  offset: 0, 0
+  index: -1
+images/Eye_Big_Shut
+  rotate: true
+  xy: 290, 529
+  size: 90, 88
+  orig: 90, 88
+  offset: 0, 0
+  index: -1
+images/Eye_Small
+  rotate: false
+  xy: 290, 454
+  size: 64, 73
+  orig: 64, 73
+  offset: 0, 0
+  index: -1
+images/Eye_Small_Back
+  rotate: false
+  xy: 290, 379
+  size: 64, 73
+  orig: 64, 73
+  offset: 0, 0
+  index: -1
+images/Eye_Small_Shut
+  rotate: false
+  xy: 259, 229
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+images/Head_Back
+  rotate: true
+  xy: 672, 976
+  size: 464, 445
+  orig: 464, 445
+  offset: 0, 0
+  index: -1
+images/Horns_Back
+  rotate: false
+  xy: 2, 1024
+  size: 668, 416
+  orig: 668, 416
+  offset: 0, 0
+  index: -1
+images/Horns_front
+  rotate: true
+  xy: 356, 183
+  size: 263, 215
+  orig: 263, 215
+  offset: 0, 0
+  index: -1
+images/MouthBtm
+  rotate: true
+  xy: 389, 448
+  size: 273, 239
+  orig: 273, 239
+  offset: 0, 0
+  index: -1
+images/MouthFront
+  rotate: true
+  xy: 2, 291
+  size: 328, 286
+  orig: 328, 286
+  offset: 0, 0
+  index: -1
+images/MouthShut
+  rotate: true
+  xy: 2, 2
+  size: 287, 142
+  orig: 287, 142
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,111 @@
+
+KnucklebonesPlayer_1_KlunkoAndBop.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ArmLeft
+  rotate: false
+  xy: 615, 105
+  size: 46, 148
+  orig: 46, 148
+  offset: 0, 0
+  index: -1
+ArmRight
+  rotate: false
+  xy: 712, 6
+  size: 42, 101
+  orig: 44, 103
+  offset: 1, 1
+  index: -1
+BackFeathers
+  rotate: true
+  xy: 926, 114
+  size: 139, 96
+  orig: 139, 96
+  offset: 0, 0
+  index: -1
+Body
+  rotate: false
+  xy: 663, 109
+  size: 261, 144
+  orig: 261, 144
+  offset: 0, 0
+  index: -1
+FaceBlinds
+  rotate: true
+  xy: 756, 8
+  size: 99, 121
+  orig: 99, 121
+  offset: 0, 0
+  index: -1
+Face_Angry
+  rotate: false
+  xy: 399, 7
+  size: 110, 33
+  orig: 110, 33
+  offset: 0, 0
+  index: -1
+Face_Happy
+  rotate: true
+  xy: 667, 6
+  size: 101, 43
+  orig: 101, 43
+  offset: 0, 0
+  index: -1
+Head
+  rotate: true
+  xy: 148, 26
+  size: 227, 137
+  orig: 229, 139
+  offset: 1, 1
+  index: -1
+Head_Talk
+  rotate: true
+  xy: 2, 21
+  size: 232, 144
+  orig: 232, 144
+  offset: 0, 0
+  index: -1
+KnucklebonesMap
+  rotate: true
+  xy: 424, 84
+  size: 169, 137
+  orig: 169, 137
+  offset: 0, 0
+  index: -1
+Layer 864
+  rotate: false
+  xy: 287, 2
+  size: 110, 38
+  orig: 112, 40
+  offset: 1, 1
+  index: -1
+LegLeft
+  rotate: true
+  xy: 511, 25
+  size: 57, 154
+  orig: 57, 154
+  offset: 0, 0
+  index: -1
+LegRight
+  rotate: false
+  xy: 563, 95
+  size: 50, 158
+  orig: 50, 158
+  offset: 0, 0
+  index: -1
+Scarf
+  rotate: true
+  xy: 287, 42
+  size: 211, 135
+  orig: 211, 135
+  offset: 0, 0
+  index: -1
+Worm
+  rotate: false
+  xy: 926, 12
+  size: 92, 100
+  orig: 92, 100
+  offset: 0, 0
+  index: -1

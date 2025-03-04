@@ -1,0 +1,83 @@
+
+KnucklebonesPlayer_2_Shrumy.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ArmRight
+  rotate: true
+  xy: 213, 19
+  size: 33, 85
+  orig: 33, 85
+  offset: 0, 0
+  index: -1
+Body
+  rotate: false
+  xy: 2, 54
+  size: 314, 294
+  orig: 314, 294
+  offset: 0, 0
+  index: -1
+Face
+  rotate: true
+  xy: 484, 29
+  size: 57, 19
+  orig: 59, 21
+  offset: 1, 1
+  index: -1
+Face_Happy
+  rotate: true
+  xy: 484, 145
+  size: 62, 21
+  orig: 62, 21
+  offset: 0, 0
+  index: -1
+Face_Sad
+  rotate: true
+  xy: 484, 88
+  size: 55, 20
+  orig: 55, 20
+  offset: 0, 0
+  index: -1
+Faceblinds
+  rotate: true
+  xy: 119, 11
+  size: 41, 92
+  orig: 41, 92
+  offset: 0, 0
+  index: -1
+Hat
+  rotate: false
+  xy: 318, 4
+  size: 94, 69
+  orig: 96, 71
+  offset: 1, 1
+  index: -1
+KnucklebonesMap_Back
+  rotate: false
+  xy: 318, 209
+  size: 174, 139
+  orig: 174, 139
+  offset: 0, 0
+  index: -1
+LegRight
+  rotate: true
+  xy: 2, 13
+  size: 39, 115
+  orig: 39, 115
+  offset: 0, 0
+  index: -1
+Neck
+  rotate: true
+  xy: 318, 75
+  size: 132, 164
+  orig: 132, 164
+  offset: 0, 0
+  index: -1
+Scarf
+  rotate: true
+  xy: 414, 2
+  size: 71, 64
+  orig: 71, 64
+  offset: 0, 0
+  index: -1

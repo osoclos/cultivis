@@ -1,0 +1,139 @@
+
+BarrierEye.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/Eyeball
+  rotate: false
+  xy: 197, 8
+  size: 193, 194
+  orig: 193, 194
+  offset: 0, 0
+  index: -1
+images/Eyeball2
+  rotate: false
+  xy: 2, 8
+  size: 193, 194
+  orig: 193, 194
+  offset: 0, 0
+  index: -1
+images/GoldRing1_Back
+  rotate: true
+  xy: 167, 778
+  size: 232, 118
+  orig: 232, 118
+  offset: 0, 0
+  index: -1
+images/GoldRing1_Front1
+  rotate: true
+  xy: 2, 204
+  size: 237, 130
+  orig: 237, 130
+  offset: 0, 0
+  index: -1
+images/GoldRing1_Front2
+  rotate: true
+  xy: 134, 204
+  size: 237, 130
+  orig: 237, 130
+  offset: 0, 0
+  index: -1
+images/GoldRing1_Front3
+  rotate: true
+  xy: 158, 475
+  size: 237, 130
+  orig: 237, 130
+  offset: 0, 0
+  index: -1
+images/GoldRing1_Front4
+  rotate: true
+  xy: 266, 236
+  size: 237, 130
+  orig: 237, 130
+  offset: 0, 0
+  index: -1
+images/GoldRing2_Back
+  rotate: false
+  xy: 398, 317
+  size: 128, 227
+  orig: 128, 227
+  offset: 0, 0
+  index: -1
+images/GoldRing2_Front1
+  rotate: false
+  xy: 287, 779
+  size: 141, 231
+  orig: 141, 231
+  offset: 0, 0
+  index: -1
+images/GoldRing2_Front2
+  rotate: false
+  xy: 290, 546
+  size: 141, 231
+  orig: 141, 231
+  offset: 0, 0
+  index: -1
+images/GoldRing2_Front3
+  rotate: false
+  xy: 430, 779
+  size: 141, 231
+  orig: 141, 231
+  offset: 0, 0
+  index: -1
+images/GoldRing2_Front4
+  rotate: false
+  xy: 392, 2
+  size: 141, 232
+  orig: 141, 232
+  offset: 0, 0
+  index: -1
+images/Pupil_1
+  rotate: false
+  xy: 167, 715
+  size: 66, 61
+  orig: 66, 61
+  offset: 0, 0
+  index: -1
+images/Pupil_2
+  rotate: false
+  xy: 555, 685
+  size: 89, 92
+  orig: 89, 92
+  offset: 0, 0
+  index: -1
+images/Pupil_3
+  rotate: false
+  xy: 528, 242
+  size: 89, 92
+  orig: 89, 92
+  offset: 0, 0
+  index: -1
+images/RedRing1_Back
+  rotate: true
+  xy: 528, 336
+  size: 217, 121
+  orig: 217, 121
+  offset: 0, 0
+  index: -1
+images/RedRing1_Front
+  rotate: true
+  xy: 2, 443
+  size: 269, 154
+  orig: 272, 154
+  offset: 3, 0
+  index: -1
+images/RedRing2_Back
+  rotate: false
+  xy: 433, 555
+  size: 120, 222
+  orig: 120, 222
+  offset: 0, 0
+  index: -1
+images/RedRing2_Front
+  rotate: false
+  xy: 2, 714
+  size: 163, 296
+  orig: 163, 296
+  offset: 0, 0
+  index: -1

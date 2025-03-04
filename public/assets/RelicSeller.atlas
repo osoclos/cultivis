@@ -1,0 +1,167 @@
+
+RelicSeller.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/ RelicSeller_Hands
+  rotate: false
+  xy: 1267, 634
+  size: 106, 182
+  orig: 106, 182
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Arms
+  rotate: false
+  xy: 984, 6
+  size: 500, 288
+  orig: 500, 288
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Body_Btm
+  rotate: false
+  xy: 458, 657
+  size: 456, 364
+  orig: 456, 364
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Body_Top
+  rotate: true
+  xy: 984, 296
+  size: 725, 281
+  orig: 725, 281
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Crown
+  rotate: false
+  xy: 1267, 818
+  size: 173, 203
+  orig: 173, 203
+  offset: 0, 0
+  index: -1
+images/RelicSeller_CrownEye1
+  rotate: false
+  xy: 150, 6
+  size: 20, 58
+  orig: 20, 58
+  offset: 0, 0
+  index: -1
+images/RelicSeller_CrownEye2
+  rotate: false
+  xy: 172, 16
+  size: 17, 48
+  orig: 17, 48
+  offset: 0, 0
+  index: -1
+images/RelicSeller_CrownEye3
+  rotate: false
+  xy: 127, 2
+  size: 21, 62
+  orig: 21, 63
+  offset: 0, 0
+  index: -1
+images/RelicSeller_CrownPupil1
+  rotate: false
+  xy: 15, 3
+  size: 10, 11
+  orig: 10, 11
+  offset: 0, 0
+  index: -1
+images/RelicSeller_CrownPupil2
+  rotate: false
+  xy: 2, 2
+  size: 11, 12
+  orig: 11, 12
+  offset: 0, 0
+  index: -1
+images/RelicSeller_CrownPupil3
+  rotate: false
+  xy: 191, 19
+  size: 17, 17
+  orig: 17, 17
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Eye_Angry
+  rotate: true
+  xy: 1267, 527
+  size: 105, 86
+  orig: 105, 86
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Eye_Closed
+  rotate: true
+  xy: 916, 941
+  size: 80, 66
+  orig: 80, 66
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Eye_Closed2
+  rotate: false
+  xy: 2, 16
+  size: 77, 48
+  orig: 77, 48
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Eye_Left
+  rotate: false
+  xy: 1267, 434
+  size: 83, 91
+  orig: 83, 91
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Eye_Right
+  rotate: false
+  xy: 1267, 341
+  size: 83, 91
+  orig: 83, 91
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Face
+  rotate: true
+  xy: 812, 344
+  size: 311, 138
+  orig: 311, 138
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Head
+  rotate: true
+  xy: 2, 242
+  size: 779, 454
+  orig: 779, 454
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Hook
+  rotate: true
+  xy: 2, 66
+  size: 174, 980
+  orig: 174, 980
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Mouth
+  rotate: true
+  xy: 812, 264
+  size: 78, 135
+  orig: 78, 135
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Pupil_Left
+  rotate: true
+  xy: 81, 18
+  size: 46, 44
+  orig: 46, 44
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Pupil_Right
+  rotate: false
+  xy: 191, 38
+  size: 26, 26
+  orig: 26, 26
+  offset: 0, 0
+  index: -1
+images/RelicSeller_Tail
+  rotate: false
+  xy: 458, 262
+  size: 352, 393
+  orig: 352, 393
+  offset: 0, 0
+  index: -1

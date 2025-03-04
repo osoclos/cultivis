@@ -1,0 +1,209 @@
+
+chefSeller.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+AttackSlash1
+  rotate: false
+  xy: 2, 5
+  size: 487, 273
+  orig: 515, 273
+  offset: 0, 0
+  index: -1
+BODY
+  rotate: false
+  xy: 491, 9
+  size: 320, 269
+  orig: 320, 269
+  offset: 0, 0
+  index: -1
+FACE
+  rotate: false
+  xy: 813, 135
+  size: 126, 36
+  orig: 126, 36
+  offset: 0, 0
+  index: -1
+FACE_ANGRY
+  rotate: false
+  xy: 813, 53
+  size: 107, 34
+  orig: 107, 34
+  offset: 0, 0
+  index: -1
+FACE_BLINK
+  rotate: false
+  xy: 813, 34
+  size: 107, 17
+  orig: 107, 18
+  offset: 0, 0
+  index: -1
+FACE_EyesOpen
+  rotate: true
+  xy: 942, 94
+  size: 124, 46
+  orig: 126, 60
+  offset: 0, 2
+  index: -1
+FACE_SCARED1
+  rotate: false
+  xy: 813, 89
+  size: 125, 44
+  orig: 125, 44
+  offset: 0, 0
+  index: -1
+FACE_SCARED2
+  rotate: true
+  xy: 990, 124
+  size: 94, 30
+  orig: 94, 30
+  offset: 0, 0
+  index: -1
+Face_Furious
+  rotate: false
+  xy: 813, 173
+  size: 127, 45
+  orig: 127, 45
+  offset: 0, 0
+  index: -1
+Fork
+  rotate: true
+  xy: 813, 220
+  size: 58, 196
+  orig: 58, 196
+  offset: 0, 0
+  index: -1
+LEGS_BOTTOM_LEFT_0
+  rotate: true
+  xy: 940, 56
+  size: 36, 40
+  orig: 36, 40
+  offset: 0, 0
+  index: -1
+LEGS_BOTTOM_LEFT_1
+  rotate: true
+  xy: 940, 56
+  size: 36, 40
+  orig: 36, 40
+  offset: 0, 0
+  index: -1
+LEGS_BOTTOM_LEFT_2
+  rotate: true
+  xy: 940, 56
+  size: 36, 40
+  orig: 36, 40
+  offset: 0, 0
+  index: -1
+LEGS_BOTTOM_RIGHT_0
+  rotate: true
+  xy: 940, 56
+  size: 36, 40
+  orig: 36, 40
+  offset: 0, 0
+  index: -1
+LEGS_BOTTOM_RIGHT_1
+  rotate: true
+  xy: 940, 56
+  size: 36, 40
+  orig: 36, 40
+  offset: 0, 0
+  index: -1
+LEGS_BOTTOM_RIGHT_2
+  rotate: true
+  xy: 940, 56
+  size: 36, 40
+  orig: 36, 40
+  offset: 0, 0
+  index: -1
+LEGS_TOP_LEFT_0
+  rotate: false
+  xy: 982, 26
+  size: 38, 34
+  orig: 40, 36
+  offset: 1, 1
+  index: -1
+LEGS_TOP_LEFT_1
+  rotate: false
+  xy: 982, 26
+  size: 38, 34
+  orig: 40, 36
+  offset: 1, 1
+  index: -1
+LEGS_TOP_LEFT_2
+  rotate: false
+  xy: 982, 26
+  size: 38, 34
+  orig: 40, 36
+  offset: 1, 1
+  index: -1
+LEGS_TOP_RIGHT_0
+  rotate: false
+  xy: 982, 26
+  size: 38, 34
+  orig: 40, 36
+  offset: 1, 1
+  index: -1
+LEGS_TOP_RIGHT_1
+  rotate: false
+  xy: 982, 26
+  size: 38, 34
+  orig: 40, 36
+  offset: 1, 1
+  index: -1
+LEGS_TOP_RIGHT_2
+  rotate: false
+  xy: 982, 26
+  size: 38, 34
+  orig: 40, 36
+  offset: 1, 1
+  index: -1
+MOUTH_ANGRY
+  rotate: true
+  xy: 922, 69
+  size: 18, 16
+  orig: 18, 16
+  offset: 0, 0
+  index: -1
+MOUTH_HAPPY
+  rotate: true
+  xy: 1011, 252
+  size: 26, 9
+  orig: 26, 9
+  offset: 0, 0
+  index: -1
+MOUTH_SCARED
+  rotate: true
+  xy: 990, 62
+  size: 35, 23
+  orig: 36, 23
+  offset: 1, 0
+  index: -1
+MOUTH_SHUT
+  rotate: true
+  xy: 1011, 226
+  size: 24, 6
+  orig: 24, 10
+  offset: 0, 0
+  index: -1
+MOUTH_TALK1
+  rotate: true
+  xy: 961, 2
+  size: 22, 34
+  orig: 22, 34
+  offset: 0, 0
+  index: -1
+MOUTH_TALK2
+  rotate: true
+  xy: 990, 99
+  size: 23, 24
+  orig: 23, 24
+  offset: 0, 0
+  index: -1
+Mouth_Furious
+  rotate: false
+  xy: 922, 20
+  size: 37, 34
+  orig: 37, 34
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,146 @@
+
+Ratoo.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ARM Left
+  rotate: false
+  xy: 830, 37
+  size: 31, 103
+  orig: 31, 103
+  offset: 0, 0
+  index: -1
+ARM_Right
+  rotate: false
+  xy: 721, 96
+  size: 31, 90
+  orig: 31, 90
+  offset: 0, 0
+  index: -1
+BODY
+  rotate: false
+  xy: 273, 8
+  size: 156, 105
+  orig: 156, 105
+  offset: 0, 0
+  index: -1
+BODY_WithHeart
+  rotate: false
+  xy: 410, 148
+  size: 156, 105
+  orig: 156, 105
+  offset: 0, 0
+  index: -1
+DigMound_1
+  rotate: false
+  xy: 431, 10
+  size: 166, 66
+  orig: 166, 66
+  offset: 0, 0
+  index: -1
+DigMound_2
+  rotate: false
+  xy: 568, 188
+  size: 168, 65
+  orig: 168, 65
+  offset: 0, 0
+  index: -1
+DigMound_3
+  rotate: false
+  xy: 431, 78
+  size: 164, 68
+  orig: 164, 68
+  offset: 0, 0
+  index: -1
+DigParticle_1
+  rotate: false
+  xy: 701, 50
+  size: 37, 39
+  orig: 37, 39
+  offset: 0, 0
+  index: -1
+DigParticle_2
+  rotate: false
+  xy: 50, 13
+  size: 24, 25
+  orig: 24, 25
+  offset: 0, 0
+  index: -1
+DigParticle_3
+  rotate: false
+  xy: 76, 19
+  size: 16, 19
+  orig: 16, 19
+  offset: 0, 0
+  index: -1
+FACE
+  rotate: false
+  xy: 597, 91
+  size: 122, 46
+  orig: 122, 46
+  offset: 0, 0
+  index: -1
+FACE_Talk
+  rotate: false
+  xy: 597, 139
+  size: 122, 47
+  orig: 124, 48
+  offset: 1, 0
+  index: -1
+FishingRod
+  rotate: false
+  xy: 754, 32
+  size: 74, 221
+  orig: 74, 221
+  offset: 0, 0
+  index: -1
+HEAD
+  rotate: false
+  xy: 2, 40
+  size: 185, 213
+  orig: 185, 213
+  offset: 0, 0
+  index: -1
+LEG_Left
+  rotate: false
+  xy: 660, 2
+  size: 39, 87
+  orig: 39, 87
+  offset: 0, 0
+  index: -1
+Lantern
+  rotate: false
+  xy: 830, 142
+  size: 70, 111
+  orig: 70, 111
+  offset: 0, 0
+  index: -1
+RatoosHeart
+  rotate: false
+  xy: 273, 115
+  size: 135, 138
+  orig: 135, 138
+  offset: 0, 0
+  index: -1
+Stick
+  rotate: false
+  xy: 189, 4
+  size: 82, 249
+  orig: 82, 249
+  offset: 0, 0
+  index: -1
+Stick_Back
+  rotate: false
+  xy: 2, 3
+  size: 46, 35
+  orig: 46, 35
+  offset: 0, 0
+  index: -1
+Stick_Heart
+  rotate: false
+  xy: 599, 17
+  size: 59, 72
+  orig: 62, 74
+  offset: 2, 1
+  index: -1

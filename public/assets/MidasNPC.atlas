@@ -1,0 +1,202 @@
+
+MidasNPC.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ArmLeft
+  rotate: false
+  xy: 884, 802
+  size: 76, 42
+  orig: 76, 42
+  offset: 0, 0
+  index: -1
+ArmRight
+  rotate: false
+  xy: 761, 867
+  size: 78, 42
+  orig: 78, 42
+  offset: 0, 0
+  index: -1
+BODY
+  rotate: false
+  xy: 2, 909
+  size: 229, 112
+  orig: 230, 112
+  offset: 0, 0
+  index: -1
+BodyCentre
+  rotate: false
+  xy: 462, 911
+  size: 209, 110
+  orig: 209, 110
+  offset: 0, 0
+  index: -1
+BodyCentre_Beaten
+  rotate: false
+  xy: 673, 911
+  size: 209, 110
+  orig: 209, 110
+  offset: 0, 0
+  index: -1
+Body_Beaten
+  rotate: false
+  xy: 233, 911
+  size: 227, 110
+  orig: 228, 110
+  offset: 0, 0
+  index: -1
+Collar
+  rotate: false
+  xy: 2, 677
+  size: 179, 42
+  orig: 179, 42
+  offset: 0, 0
+  index: -1
+Crown
+  rotate: true
+  xy: 884, 934
+  size: 87, 89
+  orig: 87, 89
+  offset: 0, 0
+  index: -1
+Crown_Beaten
+  rotate: true
+  xy: 884, 846
+  size: 86, 87
+  orig: 86, 87
+  offset: 0, 0
+  index: -1
+Eyes_0
+  rotate: false
+  xy: 425, 706
+  size: 161, 62
+  orig: 161, 62
+  offset: 0, 0
+  index: -1
+Eyes_0_Beaten
+  rotate: false
+  xy: 425, 839
+  size: 166, 70
+  orig: 166, 70
+  offset: 0, 0
+  index: -1
+Eyes_1
+  rotate: true
+  xy: 761, 663
+  size: 161, 63
+  orig: 161, 63
+  offset: 0, 0
+  index: -1
+Eyes_1_Beaten
+  rotate: false
+  xy: 2, 605
+  size: 166, 70
+  orig: 166, 70
+  offset: 0, 0
+  index: -1
+Eyes_Closed
+  rotate: true
+  xy: 194, 747
+  size: 160, 37
+  orig: 163, 65
+  offset: 2, 9
+  index: -1
+Eyes_Closed_Beaten
+  rotate: false
+  xy: 593, 842
+  size: 166, 67
+  orig: 166, 70
+  offset: 0, 3
+  index: -1
+Eyes_Closing
+  rotate: true
+  xy: 975, 771
+  size: 163, 44
+  orig: 163, 65
+  offset: 0, 6
+  index: -1
+Eyes_Closing_Beaten
+  rotate: false
+  xy: 593, 773
+  size: 166, 67
+  orig: 166, 70
+  offset: 0, 3
+  index: -1
+Eyes_Suss
+  rotate: false
+  xy: 593, 716
+  size: 163, 55
+  orig: 163, 65
+  offset: 0, 6
+  index: -1
+Eyes_Suss_Beaten
+  rotate: false
+  xy: 425, 770
+  size: 166, 67
+  orig: 166, 70
+  offset: 0, 3
+  index: -1
+HEAD
+  rotate: false
+  xy: 233, 723
+  size: 190, 186
+  orig: 190, 186
+  offset: 0, 0
+  index: -1
+Head_Beaten
+  rotate: false
+  xy: 2, 721
+  size: 190, 186
+  orig: 190, 186
+  offset: 0, 0
+  index: -1
+MOUTH_OPEN
+  rotate: true
+  xy: 975, 936
+  size: 85, 46
+  orig: 85, 46
+  offset: 0, 0
+  index: -1
+MOUTH_OPEN_Beaten
+  rotate: true
+  xy: 841, 831
+  size: 78, 41
+  orig: 78, 41
+  offset: 0, 0
+  index: -1
+Mouth_Shut
+  rotate: true
+  xy: 840, 770
+  size: 59, 20
+  orig: 59, 20
+  offset: 0, 0
+  index: -1
+Nose
+  rotate: false
+  xy: 170, 633
+  size: 22, 42
+  orig: 22, 42
+  offset: 0, 0
+  index: -1
+Smile
+  rotate: false
+  xy: 761, 826
+  size: 77, 39
+  orig: 77, 46
+  offset: 0, 0
+  index: -1
+SmileSmall
+  rotate: true
+  xy: 862, 780
+  size: 49, 20
+  orig: 49, 20
+  offset: 0, 0
+  index: -1
+Smile_Beaten
+  rotate: true
+  xy: 194, 675
+  size: 70, 30
+  orig: 70, 30
+  offset: 0, 0
+  index: -1

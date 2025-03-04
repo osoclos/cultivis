@@ -1,0 +1,55 @@
+
+LighthouseFollower.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ARMS_FOLDED
+  rotate: true
+  xy: 269, 99
+  size: 155, 62
+  orig: 157, 64
+  offset: 1, 1
+  index: -1
+ARM_LEFT
+  rotate: true
+  xy: 2, 14
+  size: 42, 95
+  orig: 42, 95
+  offset: 0, 0
+  index: -1
+ARM_RIGHT
+  rotate: true
+  xy: 2, 14
+  size: 42, 95
+  orig: 42, 95
+  offset: 0, 0
+  index: -1
+BODY
+  rotate: true
+  xy: 2, 58
+  size: 196, 265
+  orig: 196, 265
+  offset: 0, 0
+  index: -1
+FACE
+  rotate: false
+  xy: 99, 2
+  size: 98, 21
+  orig: 100, 23
+  offset: 1, 1
+  index: -1
+FACE_CantAfford
+  rotate: false
+  xy: 201, 28
+  size: 90, 28
+  orig: 90, 28
+  offset: 0, 0
+  index: -1
+FACE_Happy
+  rotate: false
+  xy: 99, 25
+  size: 100, 31
+  orig: 100, 31
+  offset: 0, 0
+  index: -1

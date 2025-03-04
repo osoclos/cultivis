@@ -1,0 +1,20 @@
+
+MortarFly.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+MortarFly/FlyMortar
+  rotate: false
+  xy: 2, 2
+  size: 166, 139
+  orig: 166, 139
+  offset: 0, 0
+  index: -1
+MortarFly/WingBig
+  rotate: false
+  xy: 170, 71
+  size: 52, 70
+  orig: 52, 70
+  offset: 0, 0
+  index: -1

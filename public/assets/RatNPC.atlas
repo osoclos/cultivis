@@ -1,0 +1,223 @@
+
+RatNPC.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ARM_LEFT
+  rotate: true
+  xy: 420, 230
+  size: 27, 43
+  orig: 27, 43
+  offset: 0, 0
+  index: -1
+LEG_LEFT
+  rotate: true
+  xy: 420, 230
+  size: 27, 43
+  orig: 27, 43
+  offset: 0, 0
+  index: -1
+LEG_RIGHT
+  rotate: true
+  xy: 420, 230
+  size: 27, 43
+  orig: 27, 43
+  offset: 0, 0
+  index: -1
+ARM_RIGHT
+  rotate: true
+  xy: 465, 230
+  size: 27, 43
+  orig: 27, 43
+  offset: 0, 0
+  index: -1
+BODY
+  rotate: true
+  xy: 450, 133
+  size: 95, 70
+  orig: 95, 70
+  offset: 0, 0
+  index: -1
+DigMound_1
+  rotate: true
+  xy: 201, 73
+  size: 149, 59
+  orig: 149, 59
+  offset: 0, 0
+  index: -1
+DigMound_2
+  rotate: true
+  xy: 140, 71
+  size: 151, 59
+  orig: 151, 59
+  offset: 0, 0
+  index: -1
+DigMound_3
+  rotate: true
+  xy: 262, 74
+  size: 148, 61
+  orig: 148, 61
+  offset: 0, 0
+  index: -1
+DigParticle_1
+  rotate: true
+  xy: 383, 224
+  size: 33, 35
+  orig: 33, 35
+  offset: 0, 0
+  index: -1
+DigParticle_2
+  rotate: false
+  xy: 322, 224
+  size: 22, 23
+  orig: 22, 23
+  offset: 0, 0
+  index: -1
+DigParticle_3
+  rotate: true
+  xy: 171, 55
+  size: 14, 17
+  orig: 14, 17
+  offset: 0, 0
+  index: -1
+FACE
+  rotate: false
+  xy: 2, 2
+  size: 107, 49
+  orig: 107, 49
+  offset: 0, 0
+  index: -1
+FACE_Blink
+  rotate: false
+  xy: 111, 2
+  size: 106, 49
+  orig: 107, 49
+  offset: 1, 0
+  index: -1
+FACE_CLOSED
+  rotate: true
+  xy: 436, 10
+  size: 105, 47
+  orig: 105, 47
+  offset: 0, 0
+  index: -1
+FACE_Frown
+  rotate: true
+  xy: 384, 5
+  size: 105, 50
+  orig: 105, 50
+  offset: 0, 0
+  index: -1
+FACE_SACRIFICE
+  rotate: true
+  xy: 325, 112
+  size: 110, 73
+  orig: 110, 73
+  offset: 0, 0
+  index: -1
+FACE_Sad
+  rotate: true
+  xy: 400, 117
+  size: 105, 48
+  orig: 105, 48
+  offset: 0, 0
+  index: -1
+FACE_WARNING
+  rotate: false
+  xy: 219, 4
+  size: 110, 51
+  orig: 110, 51
+  offset: 0, 0
+  index: -1
+HAND
+  rotate: false
+  xy: 510, 232
+  size: 24, 25
+  orig: 24, 25
+  offset: 0, 0
+  index: -1
+HAT
+  rotate: false
+  xy: 485, 47
+  size: 61, 84
+  orig: 61, 84
+  offset: 0, 0
+  index: -1
+HEAD
+  rotate: true
+  xy: 2, 53
+  size: 169, 136
+  orig: 169, 136
+  offset: 0, 0
+  index: -1
+MOUTH
+  rotate: false
+  xy: 224, 65
+  size: 32, 6
+  orig: 32, 6
+  offset: 0, 0
+  index: -1
+MOUTH_OPEN
+  rotate: false
+  xy: 190, 57
+  size: 32, 12
+  orig: 32, 12
+  offset: 0, 0
+  index: -1
+MOUTH_SAD
+  rotate: false
+  xy: 140, 55
+  size: 29, 14
+  orig: 29, 14
+  offset: 0, 0
+  index: -1
+MOUTH_WARNING
+  rotate: false
+  xy: 289, 224
+  size: 31, 23
+  orig: 31, 23
+  offset: 0, 0
+  index: -1
+Mouth_Happy
+  rotate: false
+  xy: 346, 228
+  size: 35, 19
+  orig: 35, 19
+  offset: 0, 0
+  index: -1
+Mouth_Smile
+  rotate: false
+  xy: 224, 57
+  size: 30, 6
+  orig: 30, 6
+  offset: 0, 0
+  index: -1
+SCARF'
+  rotate: true
+  xy: 331, 2
+  size: 108, 51
+  orig: 108, 51
+  offset: 0, 0
+  index: -1
+STICK
+  rotate: false
+  xy: 289, 249
+  size: 88, 261
+  orig: 88, 261
+  offset: 0, 0
+  index: -1
+Splat-00
+  rotate: false
+  xy: 379, 259
+  size: 249, 251
+  orig: 249, 251
+  offset: 0, 0
+  index: -1
+Splat-01
+  rotate: true
+  xy: 2, 224
+  size: 286, 285
+  orig: 286, 285
+  offset: 0, 0
+  index: -1

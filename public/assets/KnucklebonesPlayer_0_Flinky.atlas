@@ -1,0 +1,83 @@
+
+KnucklebonesPlayer_0_Flinky.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Body
+  rotate: false
+  xy: 219, 11
+  size: 281, 240
+  orig: 294, 249
+  offset: 13, 0
+  index: -1
+Face
+  rotate: true
+  xy: 763, 107
+  size: 144, 60
+  orig: 144, 60
+  offset: 0, 0
+  index: -1
+Face_Angry
+  rotate: true
+  xy: 573, 106
+  size: 145, 60
+  orig: 145, 60
+  offset: 0, 0
+  index: -1
+Face_Blink
+  rotate: false
+  xy: 791, 45
+  size: 137, 60
+  orig: 137, 60
+  offset: 0, 0
+  index: -1
+Face_Happy
+  rotate: true
+  xy: 700, 107
+  size: 144, 61
+  orig: 144, 61
+  offset: 0, 0
+  index: -1
+Face_Talk
+  rotate: true
+  xy: 635, 107
+  size: 144, 63
+  orig: 144, 63
+  offset: 0, 0
+  index: -1
+Faceblinds
+  rotate: false
+  xy: 502, 94
+  size: 69, 157
+  orig: 69, 157
+  offset: 0, 0
+  index: -1
+Hat
+  rotate: true
+  xy: 502, 6
+  size: 86, 94
+  orig: 88, 96
+  offset: 1, 1
+  index: -1
+Neck
+  rotate: false
+  xy: 2, 2
+  size: 215, 249
+  orig: 215, 249
+  offset: 0, 0
+  index: -1
+Scarf
+  rotate: false
+  xy: 598, 8
+  size: 68, 96
+  orig: 68, 96
+  offset: 0, 0
+  index: -1
+Tail
+  rotate: true
+  xy: 668, 39
+  size: 66, 121
+  orig: 66, 121
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,146 @@
+
+MysticShopKeeper.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Back
+  rotate: false
+  xy: 2, 574
+  size: 368, 448
+  orig: 368, 448
+  offset: 0, 0
+  index: -1
+Eye_0
+  rotate: true
+  xy: 2, 16
+  size: 108, 53
+  orig: 125, 125
+  offset: 9, 36
+  index: -1
+Eye_0_0
+  rotate: true
+  xy: 112, 19
+  size: 105, 33
+  orig: 125, 125
+  offset: 11, 43
+  index: -1
+Eye_0_1
+  rotate: false
+  xy: 147, 74
+  size: 108, 19
+  orig: 125, 125
+  offset: 9, 50
+  index: -1
+Eye_1
+  rotate: true
+  xy: 57, 18
+  size: 106, 53
+  orig: 125, 125
+  offset: 9, 36
+  index: -1
+Eye_1_0
+  rotate: false
+  xy: 147, 95
+  size: 107, 29
+  orig: 125, 125
+  offset: 8, 44
+  index: -1
+Eye_1_1
+  rotate: false
+  xy: 112, 2
+  size: 104, 15
+  orig: 125, 125
+  offset: 10, 48
+  index: -1
+Head_InnerCircle_
+  rotate: true
+  xy: 1130, 21
+  size: 246, 220
+  orig: 246, 220
+  offset: 0, 0
+  index: -1
+Head_InnerCircle_0
+  rotate: false
+  xy: 628, 2
+  size: 248, 247
+  orig: 256, 256
+  offset: 4, 6
+  index: -1
+Head_InnerCircle_1
+  rotate: false
+  xy: 878, 12
+  size: 250, 251
+  orig: 256, 256
+  offset: 3, 4
+  index: -1
+Head_InnerCircle_2
+  rotate: true
+  xy: 1070, 412
+  size: 250, 244
+  orig: 256, 256
+  offset: 3, 11
+  index: -1
+Head_InnerCircle_4
+  rotate: true
+  xy: 372, 3
+  size: 246, 254
+  orig: 256, 256
+  offset: 5, 1
+  index: -1
+Head_OuterCircle
+  rotate: true
+  xy: 722, 265
+  size: 350, 346
+  orig: 350, 346
+  offset: 0, 0
+  index: -1
+Head_WhiteDetails
+  rotate: false
+  xy: 1070, 269
+  size: 202, 141
+  orig: 204, 143
+  offset: 1, 1
+  index: -1
+Head_WhiteDetails_1
+  rotate: false
+  xy: 1274, 269
+  size: 202, 141
+  orig: 204, 143
+  offset: 1, 1
+  index: -1
+Layer 1798
+  rotate: true
+  xy: 742, 677
+  size: 345, 321
+  orig: 347, 335
+  offset: 1, 13
+  index: -1
+Poncho
+  rotate: false
+  xy: 2, 126
+  size: 368, 446
+  orig: 368, 446
+  offset: 0, 0
+  index: -1
+Poncho_0
+  rotate: true
+  xy: 1065, 664
+  size: 358, 280
+  orig: 358, 280
+  offset: 0, 0
+  index: -1
+Poncho_1
+  rotate: true
+  xy: 372, 251
+  size: 364, 348
+  orig: 364, 348
+  offset: 0, 0
+  index: -1
+Poncho_2
+  rotate: false
+  xy: 372, 617
+  size: 368, 405
+  orig: 368, 415
+  offset: 0, 10
+  index: -1

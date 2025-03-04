@@ -1,0 +1,118 @@
+
+Haro.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Beak copy
+  rotate: false
+  xy: 244, 8
+  size: 141, 62
+  orig: 141, 62
+  offset: 0, 0
+  index: -1
+BehindCloak
+  rotate: true
+  xy: 2, 72
+  size: 97, 363
+  orig: 97, 363
+  offset: 0, 0
+  index: -1
+BehindCloak_Floating
+  rotate: true
+  xy: 554, 29
+  size: 188, 471
+  orig: 188, 471
+  offset: 0, 0
+  index: -1
+Cloak
+  rotate: false
+  xy: 342, 219
+  size: 354, 291
+  orig: 354, 291
+  offset: 0, 0
+  index: -1
+Collar
+  rotate: false
+  xy: 2, 3
+  size: 240, 67
+  orig: 240, 67
+  offset: 0, 0
+  index: -1
+Crown
+  rotate: true
+  xy: 367, 101
+  size: 83, 120
+  orig: 83, 120
+  offset: 0, 0
+  index: -1
+CrownEye
+  rotate: false
+  xy: 508, 8
+  size: 35, 41
+  orig: 35, 41
+  offset: 0, 0
+  index: -1
+Face
+  rotate: false
+  xy: 387, 2
+  size: 119, 47
+  orig: 119, 47
+  offset: 0, 0
+  index: -1
+Face2
+  rotate: false
+  xy: 387, 51
+  size: 120, 48
+  orig: 120, 48
+  offset: 0, 0
+  index: -1
+Face_Closed
+  rotate: false
+  xy: 342, 197
+  size: 155, 20
+  orig: 155, 20
+  offset: 0, 0
+  index: -1
+Head
+  rotate: true
+  xy: 2, 171
+  size: 339, 338
+  orig: 339, 338
+  offset: 0, 0
+  index: -1
+Inner face
+  rotate: false
+  xy: 1027, 17
+  size: 217, 200
+  orig: 217, 200
+  offset: 0, 0
+  index: -1
+Leaf
+  rotate: false
+  xy: 489, 105
+  size: 63, 90
+  orig: 65, 92
+  offset: 1, 1
+  index: -1
+Nostrils
+  rotate: false
+  xy: 342, 186
+  size: 30, 9
+  orig: 30, 9
+  offset: 0, 0
+  index: -1
+Tunic_Left
+  rotate: false
+  xy: 698, 219
+  size: 176, 291
+  orig: 176, 291
+  offset: 0, 0
+  index: -1
+Tunic_Right
+  rotate: false
+  xy: 876, 219
+  size: 175, 291
+  orig: 176, 291
+  offset: 1, 0
+  index: -1

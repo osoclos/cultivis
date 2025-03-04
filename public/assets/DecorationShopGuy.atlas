@@ -1,0 +1,167 @@
+
+DecorationShopGuy.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Antique1
+  rotate: true
+  xy: 422, 7
+  size: 56, 82
+  orig: 56, 82
+  offset: 0, 0
+  index: -1
+Antique2
+  rotate: false
+  xy: 725, 158
+  size: 53, 96
+  orig: 53, 96
+  offset: 0, 0
+  index: -1
+Arm_Bottom
+  rotate: true
+  xy: 571, 82
+  size: 172, 52
+  orig: 172, 52
+  offset: 0, 0
+  index: -1
+Arm_Top
+  rotate: true
+  xy: 496, 76
+  size: 178, 73
+  orig: 178, 73
+  offset: 0, 0
+  index: -1
+BODY
+  rotate: false
+  xy: 377, 65
+  size: 117, 189
+  orig: 117, 189
+  offset: 0, 0
+  index: -1
+Bubble_0
+  rotate: false
+  xy: 70, 9
+  size: 13, 13
+  orig: 15, 15
+  offset: 1, 1
+  index: -1
+Bubble_1
+  rotate: false
+  xy: 70, 24
+  size: 20, 20
+  orig: 22, 22
+  offset: 1, 1
+  index: -1
+Bubble_2
+  rotate: false
+  xy: 37, 12
+  size: 31, 32
+  orig: 33, 34
+  offset: 1, 1
+  index: -1
+Bubble_3
+  rotate: true
+  xy: 673, 2
+  size: 72, 43
+  orig: 74, 45
+  offset: 1, 1
+  index: -1
+COAT_BACK_LEFT
+  rotate: true
+  xy: 698, 76
+  size: 76, 70
+  orig: 78, 72
+  offset: 1, 1
+  index: -1
+COAT_BACK_RIGHT
+  rotate: true
+  xy: 625, 76
+  size: 76, 71
+  orig: 78, 73
+  offset: 1, 1
+  index: -1
+COAT_LEFT
+  rotate: false
+  xy: 2, 46
+  size: 99, 208
+  orig: 99, 208
+  offset: 0, 0
+  index: -1
+COAT_RIGHT
+  rotate: false
+  xy: 103, 49
+  size: 114, 205
+  orig: 114, 205
+  offset: 0, 0
+  index: -1
+EYE
+  rotate: false
+  xy: 103, 3
+  size: 48, 44
+  orig: 50, 46
+  offset: 1, 1
+  index: -1
+EYE_ANGRY
+  rotate: true
+  xy: 371, 4
+  size: 58, 49
+  orig: 58, 49
+  offset: 0, 0
+  index: -1
+EYE_BLINK
+  rotate: false
+  xy: 153, 3
+  size: 48, 44
+  orig: 50, 46
+  offset: 1, 1
+  index: -1
+EYE_BLINK2
+  rotate: false
+  xy: 203, 3
+  size: 48, 44
+  orig: 48, 44
+  offset: 0, 0
+  index: -1
+HAT
+  rotate: true
+  xy: 219, 64
+  size: 190, 156
+  orig: 192, 158
+  offset: 1, 1
+  index: -1
+HEAD
+  rotate: true
+  xy: 625, 154
+  size: 100, 98
+  orig: 100, 98
+  offset: 0, 0
+  index: -1
+LEG copy 2
+  rotate: true
+  xy: 506, 2
+  size: 72, 165
+  orig: 72, 165
+  offset: 0, 0
+  index: -1
+MOUTH
+  rotate: true
+  xy: 2, 3
+  size: 41, 33
+  orig: 41, 33
+  offset: 0, 0
+  index: -1
+Moustache
+  rotate: false
+  xy: 253, 3
+  size: 116, 59
+  orig: 116, 59
+  offset: 0, 0
+  index: -1
+PIPE
+  rotate: false
+  xy: 718, 27
+  size: 77, 47
+  orig: 79, 49
+  offset: 1, 1
+  index: -1
