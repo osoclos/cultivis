@@ -71,12 +71,12 @@ export class Exporter {
                 switch (true) {
                     case format === "gif" && isDataGIF_Data(data): {
                         const pixels = frames[i];
-                        const { hasAccurateColors } = data;
+                        const { useAccurateColors } = data;
 
-                        const palette = this.gifManager.quantizeFrame(pixels, hasAccurateColors);
-                        const indices = this.gifManager.mapFrameToPalette(pixels, palette, hasAccurateColors);
+                        const palette = this.gifManager.quantizeFrame(pixels, useAccurateColors);
+                        const indices = this.gifManager.mapFrameToPalette(pixels, palette, useAccurateColors);
 
-                        this.gifManager.addFrame(indices, palette, width, height, delay, +hasAccurateColors - 1);
+                        this.gifManager.addFrame(indices, palette, width, height, delay, +useAccurateColors - 1);
                         break;
                     }
                 }
@@ -234,7 +234,7 @@ export type ExportingState = typeof EXPORTING_STATES[number];
 
 export interface GIF_Data extends FormatData {
     type: "gif";
-    hasAccurateColors: boolean;
+    useAccurateColors: boolean;
 }
 
 export interface APNG_Data extends FormatData { type: "apng"; }

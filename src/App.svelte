@@ -79,7 +79,7 @@
             type: "gif",
 
             delay: 20,
-            hasAccurateColors: false
+            useAccurateColors: false
         },
 
         "apng": {

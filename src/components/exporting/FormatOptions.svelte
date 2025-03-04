@@ -20,15 +20,15 @@
             <NumberInput label="Delay Per Frame" bind:value={data.delay} unit="ms" min={10} max={1000} />
         </Label>
 
-        <Label label="Has Accurate Colors">
-            <Toggle label="Has Accurate Colors" bind:enabled={data.hasAccurateColors} />
+        <Label label="Use Accurate Colors">
+            <Toggle label="Use Accurate Colors" bind:enabled={data.useAccurateColors} />
         </Label>
 
         <div class="flex flex-col gap-2 text-sm">
             {#if data.delay < 15}
                 <Notice label="Some viewers will not display the scene at such a low refresh delay. Make sure that your viewer is compatible with high-framerate animations." />
             {/if}
-            {#if data.hasAccurateColors}
+            {#if data.useAccurateColors}
                 <Notice label="Some mobile devices/low-end computers may not be able to handle exporting .GIF files with accurate colors. Consider switching to a more powerful device or exporting in the .APNG format." />
             {/if}
         </div>

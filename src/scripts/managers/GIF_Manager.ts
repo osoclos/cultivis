@@ -7,8 +7,8 @@ export class GIF_Manager {
         this.gif = GIFEncoder();
     }
 
-    quantizeFrame(pixels: Uint8Array, hasAccurateColors: boolean = false): number[][] {
-        if (!hasAccurateColors) return quantize(pixels, 256, { format: "rgba4444" });
+    quantizeFrame(pixels: Uint8Array, useAccurateColors: boolean = false): number[][] {
+        if (!useAccurateColors) return quantize(pixels, 256, { format: "rgba4444" });
 
         const palette = quantize(pixels, 255, { format: "rgb565" });
         const clearColor = new Color();
@@ -26,8 +26,8 @@ export class GIF_Manager {
         return [colorArr, ...palette];
     }
 
-    mapFrameToPalette(pixels: Uint8Array, palette: number[][], hasAccurateColors: boolean = false) {
-        return applyPalette(pixels, palette, hasAccurateColors ? "rgb565" : "rgba4444");
+    mapFrameToPalette(pixels: Uint8Array, palette: number[][], useAccurateColors: boolean = false) {
+        return applyPalette(pixels, palette, useAccurateColors ? "rgb565" : "rgba4444");
     }
 
     addFrame(indices: Uint8Array, palette: number[][], width: number, height: number, delay: number = 1000 / 10, clearColorIdx: number = -1) {

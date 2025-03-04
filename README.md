@@ -94,7 +94,7 @@ There are also different formats that the exported animation can come in, the tw
 | Options | Description | Type |
 | ------- | ----------- | ---- |
 | Delay Per Frame | How long should each frame last before it moves on to the next one/loops | number |
-| Has Accurate Colors | Should the animation show more accurate colors (takes a longer time to export if enabled) | on/off |
+| Use Accurate Colors | Should the animation show more accurate colors (takes a longer time to export if enabled) | on/off |
 
 #### Format Options (.APNG)
 
