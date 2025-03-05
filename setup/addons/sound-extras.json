@@ -11,5 +11,10 @@
     },
 
     "Menu_Open": { "dest": "menu-open.wav" },
-    "Menu_Close": { "dest": "menu-close.wav" }
+    "Menu_Close": { "dest": "menu-close.wav" },
+
+    "Pet_Laugh": {
+        "src": ["pet-laugh0.wav", "pet-laugh1.wav", "pet-laugh2.wav", "pet-laugh3.wav", "pet-laugh4.wav"],
+        "dest": "pet-laugh.wav"
+    }
 }

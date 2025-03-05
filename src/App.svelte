@@ -10,7 +10,7 @@
     import { FormatOptions, SizeOptions, TimingOptions } from "./components/exporting";
 
     import { News } from "./components/news";
-    import { CreationDetails, SpecialThanks, HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME } from "./components/credits";
+    import { CreationDetails, SpecialThanks, HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME, NarinderPetter } from "./components/credits";
 
     import { Actor, Exporter, Factory, FORMAT_IDS, Scene, type ActorObject, type FormatData, type FormatId } from "./scripts";
     import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness, isMiniBossObj, isWitnessObj, Soldier, isSoldierObj } from "./scripts/characters";
@@ -92,6 +92,8 @@
 
     let exportState: number = $state(-1);
     const exportText: string = $derived(EXPORTING_TEXTS[MoreMath.clamp(exportState, 0, EXPORTING_TEXTS.length - 1)]);
+
+    let numOfPets: number = $state(-1);
 
     // svelte-ignore state_referenced_locally
     matchMedia("(max-width: 64rem)").matches && Vector.fromObj(size).swap().cloneObj(size);
@@ -190,6 +192,8 @@
 
         lastUpdatedUnix = await newsManager.getLastUpdatedUnix();
         import.meta.env.PROD && await serverManager.addNewVisitor();
+        
+        numOfPets = await serverManager.getPets();
         
         loadingState = LOADING_STATES.indexOf("FetchingNews");
 
@@ -451,6 +455,11 @@
         news = await loadNews!(NewsManager.DEFAULT_LOAD_NUM_OF_FILES, [name]);
         fullyLoadedFolders = newsManager.fullyLoadedNewsFolders;
     }
+
+    async function petNarinder() {
+        numOfPets++;
+        await serverManager.addNewPet();
+    }
 </script>
 
 <div class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-secondary {hasFinishedLoading ? "opacity-0" : "opacity-100"} not-motion-reduce:transition-opacity not-motion-reduce:duration-900 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
@@ -551,6 +560,16 @@
                 <News {news} {fullyLoadedFolders} onloadmore={loadMoreNews} />
             {:else if categoryIdx === 3}
                 <CreationDetails {lastUpdatedUnix} bind:hasNoticedTutorial />
+
+                <div class="flex flex-col gap-2">
+                    <Header title="Pet Narinder" />
+
+                    <LabelTitle class="mb-2" title="Pets Today: {numOfPets}" />
+                    <NarinderPetter onclick={petNarinder} />
+
+                    <LabelTitle title="Click to pet Narinder." />
+                </div>
+
                 <SpecialThanks />
             {/if}
         </div>

@@ -46,7 +46,7 @@
     "definitions": {
         "Id": {
             "type": "string",
-            "enum": ["Click", "Flicker", "Option_Change", "Menu_Open", "Menu_Close"]
+            "enum": ["Click", "Flicker", "Option_Change", "Menu_Open", "Menu_Close", "Pet_Laugh"]
         }
     }
 }

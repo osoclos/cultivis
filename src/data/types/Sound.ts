@@ -11,5 +11,5 @@ export interface SoundTimeRange {
     duration: number;
 }
 
-export const SOUND_IDS: (keyof typeof soundData)[] = ["Click", "Flicker", "Option_Change", "Menu_Open", "Menu_Close"] as const;
+export const SOUND_IDS: (keyof typeof soundData)[] = ["Click", "Flicker", "Option_Change", "Menu_Open", "Menu_Close", "Pet_Laugh"] as const;
 export type SoundId = typeof SOUND_IDS[number];

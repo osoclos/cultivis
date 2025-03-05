@@ -19,7 +19,10 @@ export class ServerManager {
     static readonly REVOKE_TOKEN_ROUTE: string = "revoke";
 
     static readonly VISITS_DB_ROUTE: string = "visits";
+    static readonly PETS_DB_ROUTE: string = "pets";
+
     static readonly NEW_VISITOR_DB_ROUTE: string = "new-visitor";
+    static readonly NEW_PET_DB_ROUTE: string = "new-pet";
     static readonly NEW_EXPORT_DB_ROUTE: keyof ResponseDataMap = "new-export";
 
     static readonly CONTENT_ROUTE: keyof ResponseDataMap = "content";
@@ -77,6 +80,20 @@ export class ServerManager {
         await fetch(resolvePath(ServerManager.NEW_VISITOR_DB_ROUTE, ServerManager.DATABASE_ROUTE_ROOT, ServerManager.PROXY_SERVER_URL), {
             method: "POST",
             body: this.token
+        });
+    }
+
+    async addNewPet() {
+        await fetch(resolvePath(ServerManager.NEW_PET_DB_ROUTE, ServerManager.DATABASE_ROUTE_ROOT, ServerManager.PROXY_SERVER_URL), {
+            method: "POST",
+            body: this.token
+        });
+    }
+
+    async getPets(): Promise<number> {
+        return fetch(resolvePath(ServerManager.PETS_DB_ROUTE, ServerManager.DATABASE_ROUTE_ROOT, ServerManager.PROXY_SERVER_URL)).then((res) => res.json()).then(({ pets }: PetReplyBody) => pets).catch((err) => {
+            console.error(err instanceof Error ? `Unable to fetch pets: ${err.message}, caused by: ${err.cause}` : `Unable to fetch pets: ${err}, caused by: ${import.meta.url}`);
+            return 0;
         });
     }
     
@@ -172,6 +189,8 @@ interface ExportRequestBody {
     duration: number;
     format_data: FormatData;
 }
+
+interface PetReplyBody { pets: number; }
 
 export type ContentReplyBody = ContentReplyData[];
 interface ContentReplyData {
