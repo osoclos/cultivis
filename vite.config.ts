@@ -55,7 +55,9 @@ const nonModuleImporterPlugin = (): Plugin => ({
         }
         
         html = html.replace("</title>", "</title>\n");
+        return html.replaceAll(/\n      </g, "\n        <");
 
+        // not necessary, very dumb (causes large network payloads)
         html = html.replace("</head>", "\n        </head>");
 
         const preloadFiles = await fs.readdir(STATIC_ASSETS_FOLDER_NAME).then((files) => files.map((file) => path.join(__dirname, STATIC_ASSETS_FOLDER_NAME, file)));
@@ -93,7 +95,6 @@ const nonModuleImporterPlugin = (): Plugin => ({
         }
 
         html = html.replace("    </head>", "</head>");
-        
         return html.replaceAll(/\n      </g, "\n        <");
     }
 });
