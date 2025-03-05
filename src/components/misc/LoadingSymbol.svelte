@@ -17,6 +17,6 @@
 </script>
 
 <div class="relative">
-    <SpritesheetImage src="/static/assets/loading-symbols.png" srcset={["/static/assets/loading-symbols.webp", "/static/assets/loading-symbols.png"]} label="Loading Symbol" x={Random.int(2)} y={0} tileWidth={512} tileHeight={512} width={512 - 128 * +isMobile} height={512 - 128 * +isMobile} />
+    <SpritesheetImage src="/static/assets/misc/loading-symbols.png" srcset={["/static/assets/misc/loading-symbols.webp", "/static/assets/misc/loading-symbols.png"]} label="Loading Symbol" x={Random.int(2)} y={0} tileWidth={512} tileHeight={512} width={512 - 128 * +isMobile} height={512 - 128 * +isMobile} />
     <div class="absolute top-0 left-0 {isMobile ? "w-96 h-96" : "w-128 h-128"} bg-[length:64rem_64rem] {hasFadedIn ? endPosition : startPosition} {gradient} from-dark-highlight via-dark-highlight via-45% to-55% to-secondary mix-blend-darken transition-[background-position] duration-4500 ease-out"></div>
 </div>

@@ -3,6 +3,8 @@ import { Actor, type ActorObject } from "..";
 import { playerData } from "../../data/files";
 import { PLAYER_BELL_IDS, type PlayerBellData, type PlayerBellId, type PlayerCreatureData, type PlayerCreatureId, type PlayerCrownData, type PlayerCrownId, type PlayerFleeceData, type PlayerFleeceId } from "../../data/types";
 
+const TYPE: string = "player";
+
 export class Player extends Actor implements PlayerObject {
     static readonly TEXTURE_FILENAME: string = "player-main.png";
     static readonly ATLAS_FILENAME: string = "player-main.atlas";
@@ -176,7 +178,7 @@ export class Player extends Actor implements PlayerObject {
 
     toObj(): PlayerObject {
         const { creature, crown, fleece, bell, hurtState } = this;
-        return { ...super.toObj(), type: "player", creature, crown, fleece, bell, hurtState };
+        return { ...super.toObj(), type: TYPE, creature, crown, fleece, bell, hurtState };
     }
 }
 
@@ -197,5 +199,5 @@ export enum PlayerHurtState {
 }
 
 export function isPlayerObj(obj: ActorObject): obj is PlayerObject {
-    return obj instanceof Player || obj.type === "player";
+    return obj instanceof Player || obj.type === TYPE;
 } 

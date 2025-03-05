@@ -36,7 +36,7 @@
         {/if}
     </div>
     
-    <List class="flex flex-col justify-center items-center" enableKeyInput>
+    <List class="flex flex-col justify-center items-center" label="Links" enableKeyInput>
         <BannerButton label="View Repository" href="https://github.com/osoclos/cultivis" />
         <BannerButton label="How to Use" href="https://github.com/osoclos/cultivis/blob/main/README.md#usage" hasNotice={!hasNoticedTutorial} {onnotice} />
     </List>

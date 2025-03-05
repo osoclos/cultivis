@@ -1,6 +1,8 @@
 import type { TOWW_Id } from "../../../data/types";
 import { Actor, type ActorObject } from "../../Actor";
 
+const TYPE: string = "toww";
+
 export class TOWW extends Actor implements TOWW_Object {
     static readonly BISHOP_CROWN_SKIN_NAME: string = "Crown";
     static readonly BISHOP_NO_CROWN_SKIN_NAME: string = "NoCrown";
@@ -120,7 +122,7 @@ export class TOWW extends Actor implements TOWW_Object {
     
     toObj(): TOWW_Object {
         const { form, hasCrown, hasChains, eyeState, isInjured } = this;
-        return { ...super.toObj(), type: "toww", form, hasCrown, hasChains, eyeState, isInjured };
+        return { ...super.toObj(), type: TYPE, form, hasCrown, hasChains, eyeState, isInjured };
     }
 }
 
@@ -135,5 +137,5 @@ export interface TOWW_Object extends ActorObject {
 }
 
 export function isTOWW_Obj(obj: ActorObject): obj is TOWW_Object {
-    return obj instanceof TOWW || obj.type === "toww";
+    return obj instanceof TOWW || obj.type === TYPE;
 }

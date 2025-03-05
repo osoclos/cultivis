@@ -3,6 +3,8 @@ import { Actor, type ActorObject } from "../../Actor";
 import { soldierData } from "../../../data/files";
 import type { SoldierId } from "../../../data/types";
 
+const TYPE: string = "soldier";
+
 export class Soldier extends Actor implements SoldierObject {
     static readonly TEXTURE_FILENAME: string = "Human.png";
     static readonly ATLAS_FILENAME: string = "Human.atlas";
@@ -69,7 +71,7 @@ export class Soldier extends Actor implements SoldierObject {
     
     toObj(): SoldierObject {
         const { soldier, isHoldingShield } = this;
-        return { ...super.toObj(), type: "soldier", soldier, isHoldingShield };
+        return { ...super.toObj(), type: TYPE, soldier, isHoldingShield };
     }
 }
 
@@ -79,5 +81,5 @@ export interface SoldierObject extends ActorObject {
 }
 
 export function isSoldierObj(obj: ActorObject): obj is SoldierObject {
-    return obj instanceof Soldier || obj.type === "soldier";
+    return obj instanceof Soldier || obj.type === TYPE;
 }

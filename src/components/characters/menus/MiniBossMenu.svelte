@@ -69,7 +69,7 @@
 
             {#each Object.values(miniBossIdsByCategory)[y].map<[MiniBossId, MiniBossData]>((id) => [id, miniBossData[id]]) as [id, { name }], x (id) }
                 <BoxOption label={name} selected={id === obj.miniBoss} onclick={() => updateMiniBoss(id as MiniBossId)}>
-                    <SpritesheetImage src="/static/assets/mini-bosses.png" label={name} class="m-1" {x} {y} tileWidth={64} tileHeight={64} width={56} height={56} />
+                    <SpritesheetImage src="/static/assets/characters/mini-bosses.png" label={name} class="m-1" {x} {y} tileWidth={64} tileHeight={64} width={56} height={56} />
                 </BoxOption>
             {/each}
         {/snippet}

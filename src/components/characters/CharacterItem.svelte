@@ -27,16 +27,16 @@
 
     const src: string = $derived.by(() => {
         switch (actor) {
-            case Follower: return "/static/assets/followers.png";
-            case Player: return "/static/assets/player.png";
+            case Follower: return "/static/assets/characters/followers.png";
+            case Player: return "/static/assets/characters/player.png";
             
-            case Soldier: return "/static/assets/soldiers.png";
+            case Soldier: return "/static/assets/characters/soldiers.png";
             
             case Bishop:
-            case TOWW: return "/static/assets/crowns.png";
+            case TOWW: return "/static/assets/characters/crowns.png";
 
-            case MiniBoss: return "/static/assets/mini-bosses.png";
-            case Witness: return "/static/assets/witnesses.png";
+            case MiniBoss: return "/static/assets/characters/mini-bosses.png";
+            case Witness: return "/static/assets/characters/witnesses.png";
             
             default: return "/static/ui/cancel.png";
         }
@@ -64,7 +64,7 @@
     const tileWidth: number = $derived.by(() => {
         switch (src) {
             case "/static/ui/cancel.png": return 100;
-            case "/static/assets/crowns.png": return 200;
+            case "/static/assets/characters/crowns.png": return 200;
 
             default: return 64;
         }
@@ -73,7 +73,7 @@
     const tileHeight: number = $derived.by(() => {
         switch (src) {
             case "/static/ui/cancel.png": return 100;
-            case "/static/assets/crowns.png": return 200;
+            case "/static/assets/characters/crowns.png": return 200;
 
             default: return 64;
         }

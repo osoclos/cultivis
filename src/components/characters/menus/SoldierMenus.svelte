@@ -54,7 +54,7 @@
 
         {#each Object.entries(soldierData) as [id, { name }], i (id) }
             <BoxOption label={name} selected={id === obj.soldier} onclick={() => updateSoldier(id as SoldierId)}>
-                <SpritesheetImage src="/static/assets/soldiers.png" label={name} class="m-1" x={i} y={0} tileWidth={64} tileHeight={64} width={56} height={56} />
+                <SpritesheetImage src="/static/assets/characters/soldiers.png" label={name} class="m-1" x={i} y={0} tileWidth={64} tileHeight={64} width={56} height={56} />
             </BoxOption>
         {/each}
     </Grid>

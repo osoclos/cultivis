@@ -2,7 +2,9 @@ import { miniBossData } from "../../../data/files";
 import type { MiniBossId } from "../../../data/types";
 
 import { Actor, type ActorObject } from "../../Actor";
-import { MoreMath } from "/src/utils";
+import { MoreMath } from "../../../utils";
+
+const TYPE: string = "mini-boss";
 
 export class MiniBoss extends Actor implements MiniBossObject {
     #stage: number;
@@ -95,7 +97,7 @@ export class MiniBoss extends Actor implements MiniBossObject {
 
     toObj(): MiniBossObject {
         const { miniBoss, stage, isUpgraded, isBackFacing } = this;
-        return { ...super.toObj(), type: "mini-boss", miniBoss, stage, isUpgraded, isBackFacing };
+        return { ...super.toObj(), type: TYPE, miniBoss, stage, isUpgraded, isBackFacing };
     }
 }
 
@@ -109,5 +111,5 @@ export interface MiniBossObject extends ActorObject {
 }
 
 export function isMiniBossObj(obj: ActorObject): obj is MiniBossObject {
-    return obj instanceof MiniBoss || obj.type === "mini-boss";
+    return obj instanceof MiniBoss || obj.type === TYPE;
 }

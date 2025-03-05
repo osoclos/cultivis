@@ -150,7 +150,7 @@
 
                 {#each Object.values(followerIdsByCategory)[y].map<[FollowerId, FormData]>((id) => [id, followerData.forms[id]]) as [id, { name }], x (id)}
                     <BoxOption label={name} selected={id === obj.form} onclick={() => updateForm(id)}>
-                        <SpritesheetImage src="/static/assets/followers.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
+                        <SpritesheetImage src="/static/assets/characters/followers.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
                     </BoxOption>
                 {/each}
             {:else if menu === "clothing"}
@@ -160,7 +160,7 @@
 
                 {#each Object.values(clothingIdsByCategory)[y].map<[ClothingId, ClothingData]>((id) => [id, followerData.clothing[id]]) as [id, { name }], x (id) }
                     <BoxOption label={name} selected={id === obj.clothing} onclick={() => updateClothing(id)}>
-                        <SpritesheetImage src="/static/assets/clothing.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
+                        <SpritesheetImage src="/static/assets/characters/clothing.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
                     </BoxOption>
                 {/each}
             {:else if menu === "accessory"}
@@ -177,7 +177,7 @@
 
                     {#each Object.values(necklaceIdsByCategory)[y].map<[NecklaceId, NecklaceData]>((id) => [id, followerData.necklaces[id]]) as [id, { name }], x (id) }
                         <BoxOption label={name} selected={id === obj.necklace} onclick={() => updateNecklace(id)}>
-                            <SpritesheetImage src="/static/assets/necklaces.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
+                            <SpritesheetImage src="/static/assets/characters/necklaces.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
                         </BoxOption>
                     {/each}
                 {:else}
@@ -191,7 +191,7 @@
         
                     {#each Object.entries(followerData.hats) as [id, { name }], x (id) }
                         <BoxOption label={name} selected={id === obj.hat} onclick={() => updateHat(id as HatId)}>
-                            <SpritesheetImage src="/static/assets/hats.png" label={name} {x} y={0} tileWidth={64} tileHeight={64} />
+                            <SpritesheetImage src="/static/assets/characters/hats.png" label={name} {x} y={0} tileWidth={64} tileHeight={64} />
                         </BoxOption>
                     {/each}
                 {/if}
@@ -235,7 +235,7 @@
         
                     {#each followerVariants as name, x (x) }
                         <BoxOption label="Form Variant {x}" selected={x === obj.formVariantIdx} onclick={() => updateFormVariantIdx(x)}>
-                            <SpritesheetImage src="/static/assets/variants.png" label={name} {x} y={FOLLOWER_IDS.indexOf(obj.form)} tileWidth={64} tileHeight={64} />
+                            <SpritesheetImage src="/static/assets/characters/variants.png" label={name} {x} y={FOLLOWER_IDS.indexOf(obj.form)} tileWidth={64} tileHeight={64} />
                         </BoxOption>
                     {/each}
                 {:else if y === 1}
@@ -245,7 +245,7 @@
         
                     {#each clothingVariants as name, x (x) }
                         <BoxOption label="Clothing Variant {x}" selected={x === obj.clothingVariantIdx} onclick={() => updateClothingVariantIdx(x)}>
-                            <SpritesheetImage src="/static/assets/variants.png" label={name} {x} y={CLOTHING_IDS.indexOf(obj.clothing) + FOLLOWER_IDS.length} tileWidth={64} tileHeight={64} />
+                            <SpritesheetImage src="/static/assets/characters/variants.png" label={name} {x} y={CLOTHING_IDS.indexOf(obj.clothing) + FOLLOWER_IDS.length} tileWidth={64} tileHeight={64} />
                         </BoxOption>
                     {/each}
                 {/if}

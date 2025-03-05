@@ -8,5 +8,5 @@ export interface SoldierData {
     canHoldShield: boolean;
 }
 
-export const SOLDIER_IDS: (keyof typeof soldierData)[] = ["Swordsman", "Scytheman", "Bomber", "Archer", "Sharpshooter", "Scamp", "Juggernaut"] as const;
+export const SOLDIER_IDS: (keyof typeof soldierData)[] = ["Swordsman", "Scytheman", "Bomber", "Archer", "Sharpshooter", "Scamp", "Toxophilite"] as const;
 export type SoldierId = typeof SOLDIER_IDS[number];

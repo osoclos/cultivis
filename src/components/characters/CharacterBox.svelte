@@ -76,16 +76,16 @@
 
     const src: string = $derived.by(() => {
         switch (true) {
-            case isFollowerObj(actor): return "/static/assets/followers.png";
-            case isPlayerObj(actor): return "/static/assets/player.png";
+            case isFollowerObj(actor): return "/static/assets/characters/followers.png";
+            case isPlayerObj(actor): return "/static/assets/characters/player.png";
 
-            case isSoldierObj(actor): return "/static/assets/soldiers.png";
+            case isSoldierObj(actor): return "/static/assets/characters/soldiers.png";
 
             case isBishopObj(actor):
-            case isTOWW_Obj(actor): return "/static/assets/crowns.png";
+            case isTOWW_Obj(actor): return "/static/assets/characters/crowns.png";
 
-            case isMiniBossObj(actor): return "/static/assets/mini-bosses.png";
-            case isWitnessObj(actor): return "/static/assets/witnesses.png";
+            case isMiniBossObj(actor): return "/static/assets/characters/mini-bosses.png";
+            case isWitnessObj(actor): return "/static/assets/characters/witnesses.png";
             
             default: return "/static/ui/cancel.png";
         }
@@ -127,7 +127,7 @@
     const tileWidth: number = $derived.by(() => {
         switch (src) {
             case "/static/ui/cancel.png": return 100;
-            case "/static/assets/crowns.png": return 200;
+            case "/static/assets/characters/crowns.png": return 200;
 
             default: return 64;
         }
@@ -136,7 +136,7 @@
     const tileHeight: number = $derived.by(() => {
         switch (src) {
             case "/static/ui/cancel.png": return 100;
-            case "/static/assets/crowns.png": return 200;
+            case "/static/assets/characters/crowns.png": return 200;
 
             default: return 64;
         }

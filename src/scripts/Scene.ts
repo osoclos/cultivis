@@ -160,7 +160,7 @@ export class Scene implements SceneObject {
         const [width, height] = this.size;
         const [boundsWidth, boundsHeight] = this.sceneSize;
 
-        this.translation.copy(this.sceneOffset.add(this.sceneSize.divVal(2)));
+        this.translation.copy(this.actors.length ? this.sceneOffset.add(this.sceneSize.divVal(2)) : Vector.Zero);
         this.scale = Math.max(boundsWidth / width, boundsHeight / height);
     }
 

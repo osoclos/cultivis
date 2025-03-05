@@ -82,7 +82,7 @@
 
         {#each Object.entries(towwData) as [id, { name }], i (id) }
             <BoxOption label={name} selected={id === obj.form} onclick={() => updateTOWW(id as TOWW_Id)}>
-                <SpritesheetImage src="/static/assets/toww.png" label={name} class="m-1" x={i} y={0} tileWidth={64} tileHeight={64} width={56} height={56} />
+                <SpritesheetImage src="/static/assets/characters/toww.png" label={name} class="m-1" x={i} y={0} tileWidth={64} tileHeight={64} width={56} height={56} />
             </BoxOption>
         {/each}
     </Grid>

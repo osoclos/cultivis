@@ -3,6 +3,8 @@ import { WITNESS_IDS, type WitnessId } from "../../../data/types";
 
 import { Actor, type ActorObject } from "../../Actor";
 
+const TYPE: string = "witness";
+
 export class Witness extends Actor implements WitnessObject {
     static readonly TEXTURE_FILENAME: string = "Beholder.png";
     static readonly ATLAS_FILENAME: string = "Beholder.atlas";
@@ -87,7 +89,7 @@ export class Witness extends Actor implements WitnessObject {
 
     toObj(): WitnessObject {
         const { witness, isUpgraded, isPurged } = this;
-        return { ...super.toObj(), type: "witness", witness, isUpgraded, isPurged };
+        return { ...super.toObj(), type: TYPE, witness, isUpgraded, isPurged };
     }
 }
 
@@ -99,5 +101,5 @@ export interface WitnessObject extends ActorObject {
 }
 
 export function isWitnessObj(obj: ActorObject): obj is WitnessObject {
-    return obj instanceof Witness || obj.type === "witness";
+    return obj instanceof Witness || obj.type === TYPE;
 }

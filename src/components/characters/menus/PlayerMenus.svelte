@@ -106,7 +106,7 @@
 
                     {#each Object.entries(playerData.creatures) as [id, { name }], x (id) }
                         <BoxOption label={name} selected={id === obj.creature} onclick={() => updateCreature(id as PlayerCreatureId)}>
-                            <SpritesheetImage src="/static/assets/player.png" label={name} {x} y={0} tileWidth={64} tileHeight={64} />
+                            <SpritesheetImage src="/static/assets/characters/player.png" label={name} {x} y={0} tileWidth={64} tileHeight={64} />
                         </BoxOption>
                     {/each}
                 {/if}
@@ -122,7 +122,7 @@
 
                     {#each Object.entries(playerData.crowns) as [id, { name }], x (id) }
                         <BoxOption label={name} selected={id === obj.crown} onclick={() => updateCrown(id as PlayerCrownId)}>
-                            <SpritesheetImage src="/static/assets/player.png" label={name} {x} y={1} tileWidth={64} tileHeight={64} />
+                            <SpritesheetImage src="/static/assets/characters/player.png" label={name} {x} y={1} tileWidth={64} tileHeight={64} />
                         </BoxOption>
                     {/each}
                 {/if}
@@ -133,7 +133,7 @@
 
                 {#each Object.values(playerFleeceIdsByCategory)[y].map<[PlayerFleeceId, PlayerFleeceData]>((id) => [id, playerData.fleeces[id]]) as [id, { name }], x (id) }
                     <BoxOption label={name} selected={id === obj.fleece} onclick={() => updateFleece(id as PlayerFleeceId)}>
-                        <SpritesheetImage src="/static/assets/fleeces.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
+                        <SpritesheetImage src="/static/assets/characters/fleeces.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
                     </BoxOption>
                 {/each}
             {:else if menu === "bell"}
@@ -148,7 +148,7 @@
 
                 {#each Object.values(playerBellIdsByCategory)[y].map<[PlayerBellId, PlayerBellData]>((id) => [id, playerData.bells[id]]) as [id, { name }], x (id) }
                     <BoxOption label={name} selected={id === obj.bell} onclick={() => updateBell(id as PlayerBellId)}>
-                        <SpritesheetImage src="/static/assets/bells.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
+                        <SpritesheetImage src="/static/assets/characters/bells.png" label={name} {x} {y} tileWidth={64} tileHeight={64} />
                     </BoxOption>
                 {/each}
             {/if}

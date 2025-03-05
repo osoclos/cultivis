@@ -32,7 +32,7 @@
     "definitions": {
         "Id": {
             "type": "string",
-            "enum": ["Swordsman", "Scytheman", "Bomber", "Archer", "Sharpshooter", "Scamp", "Juggernaut"]
+            "enum": ["Swordsman", "Scytheman", "Bomber", "Archer", "Sharpshooter", "Scamp", "Toxophilite"]
         }
     }
 }

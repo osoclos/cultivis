@@ -41,8 +41,8 @@
         "canHoldShield": true
     },
 
-    "Juggernaut": {
-        "name": "Juggernaut",
+    "Toxophilite": {
+        "name": "Toxophilite",
         "skin": "Cult_ArcherBoss",
 
         "canHoldShield": false

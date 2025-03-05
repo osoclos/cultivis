@@ -308,6 +308,7 @@
         actors = scene.actors.map((actor) => actor.toObj());
 
         updateActorIdx && selectActor((actors?.length ?? 0) - 1);
+        updateSceneFromChanges();
     }
 
     function removeActor(actor: Actor, i: number) {
@@ -347,6 +348,8 @@
 
         Vector.round(actor.pos, 2).cloneObj(actorObj.pos);
         Vector.round(actor.scale, 2).cloneObj(actorObj.scale);
+
+        updateSceneFromChanges();
     }
 
     function swapActor(newActor: Actor) {
@@ -433,14 +436,14 @@
 
     function setCroppedScene() {
         scene.size.copyObj(size);
-        scene.resetCamera();
 
-        if (!cropScene) return;
-
+        if (cropScene) {
         Vector.ceil(scene.sceneSize).cloneObj(size);
         scene.size.copyObj(size);
 
         fitScene = true;
+        }
+        
         scene.resetCamera();
     }
 

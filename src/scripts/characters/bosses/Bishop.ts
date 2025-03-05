@@ -3,6 +3,7 @@ import type { BishopId } from "../../../data/types";
 
 import { Actor, type ActorObject } from "../../Actor";
 
+const TYPE: string = "bishop";
 export class Bishop extends Actor implements BishopObject {
     static readonly NORMAL_SKIN_NAME: string = "Normal";
     static readonly PURGED_SKIN_NAME: string = "Beaten";
@@ -75,7 +76,7 @@ export class Bishop extends Actor implements BishopObject {
     
     toObj(): BishopObject {
         const { bishop, isBoss, isPurged, isBandaged } = this;
-        return { ...super.toObj(), type: "bishop", bishop, isBoss, isPurged, isBandaged };
+        return { ...super.toObj(), type: TYPE, bishop, isBoss, isPurged, isBandaged };
     }
 }
 
@@ -88,5 +89,5 @@ export interface BishopObject extends ActorObject {
 }
 
 export function isBishopObj(obj: ActorObject): obj is BishopObject {
-    return obj instanceof Bishop || obj.type === "bishop";
+    return obj instanceof Bishop || obj.type === TYPE;
 }

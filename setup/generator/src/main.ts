@@ -276,7 +276,7 @@ soldierExporter.addEventListener("click", () => {
 
         setupScene(soldier);
         
-        if (["Swordsman", "Scytheman", "Juggernaut"].includes(id)) {
+        if (["Swordsman", "Scytheman", "Toxophilite"].includes(id)) {
             scene.scale *= 0.9 - 0.1 * +(id === "Scytheman");
             soldier.pos.set(0, -10 - 20 * +(id === "Scytheman"));
         }
@@ -369,9 +369,8 @@ witnessExporter.addEventListener("click", () => {
 
 function setupScene(actor: Actor) {
     scene.removeActors(...scene.actors);
-    scene.resetCamera();
-
     scene.addActors(actor);
+    
     scene.resetCamera();
 }
 

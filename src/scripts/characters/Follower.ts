@@ -5,6 +5,8 @@ import type { ColorSet, FollowerId, ClothingId, ClothingData, FormData, Necklace
 
 import { Color, MoreMath } from "../../utils";
 
+const TYPE: string = "follower";
+
 export class Follower extends Actor implements FollowerObject {
     static readonly TEXTURE_FILENAME: string = "Follower.png";
     static readonly ATLAS_FILENAME: string = "Follower.atlas";
@@ -455,7 +457,7 @@ export class Follower extends Actor implements FollowerObject {
 
     toObj(): FollowerObject {
         const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, isDisciple, isHooded, isEnlightened, isSinned, isTired, isHungry, isSick, isTraumatized, isZombie, isPossessed, isBrainwashed, isDissenting, isBefuddled, isSweating } = this;
-        return { ...super.toObj(), type: "follower", form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, isDisciple, isHooded, isEnlightened, isSinned, isTired, isHungry, isSick, isTraumatized, isZombie, isPossessed, isBrainwashed, isDissenting, isBefuddled, isSweating };
+        return { ...super.toObj(), type: TYPE, form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, isDisciple, isHooded, isEnlightened, isSinned, isTired, isHungry, isSick, isTraumatized, isZombie, isPossessed, isBrainwashed, isDissenting, isBefuddled, isSweating };
     }
 
     applyColors(set: ColorSet) {
@@ -562,5 +564,5 @@ export enum FollowerEmotionState {
 }
 
 export function isFollowerObj(obj: ActorObject): obj is FollowerObject {
-    return obj instanceof Follower || obj.type === "follower";
+    return obj instanceof Follower || obj.type === TYPE;
 }
