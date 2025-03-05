@@ -26,7 +26,7 @@ There is a disclaimer popup when you first visit CultiVis, which informs you on 
 
 ![Desktop Interface](markdown/assets/desktop-interface.png)
 
-On a desktop, you will see a customization menu of how you can modify the characters and scene on the left-hand side of your screen. This is where you can click On the right-hand side, you should see two characters bobbing about.
+On a desktop, you will see a customization menu of how you can modify the characters and scene on the left-hand side of your screen. On the right-hand side, you should see two characters bobbing about.
 
 ![Mobile Interface](markdown/assets/mobile-interface.png)
 
