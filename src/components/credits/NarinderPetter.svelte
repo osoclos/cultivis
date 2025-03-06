@@ -1,10 +1,16 @@
 <script lang="ts">
     import { soundManager } from "../../scripts/managers";
+    import { SpritesheetImage } from "../utils";
 
-    const NARINDER_PET_DURATION: number = 1917;
-    const LAMB_PET_DURATION: number = 1783;
+    const NARINDER_FRAME_LENGTHS: number[] = [59, 121];
+    const NARINDER_FRAME_WIDTH: number = 235;
+    const NARINDER_FRAME_HEIGHT: number = 244;
 
-    const PET_LAUGH_START: number = 783;
+    const LAMB_FRAME_LENGTHS: number[] = [181, 110];
+    const LAMB_FRAME_WIDTH: number = 258;
+    const LAMB_FRAME_HEIGHT: number = 303;
+
+    const LAUGH_SOUND_FRAME_INDEX_START: number = 48;
 
     interface Props { onclick?: VoidFunction; }
     const { onclick: click = () => {} }: Props = $props();
@@ -12,22 +18,47 @@
     let isPettingNarinder: boolean = $state(false);
     let isLambPetting: boolean = $state(false);
 
+    let hasPlayedSound: boolean = $state(true);
+
+    let narinderCount: number = $state(0);
+    let lambCount: number = $state(0);
+
+    setInterval(() => {
+        narinderCount++;
+        lambCount++;
+
+        if (isPettingNarinder && narinderCount >= NARINDER_FRAME_LENGTHS[1]) {
+            isPettingNarinder = false;
+            narinderCount = 0;
+        }
+
+        if (isLambPetting && lambCount >= LAMB_FRAME_LENGTHS[1]) {
+            isLambPetting = false;
+            lambCount = 0;
+        }
+
+        if (!hasPlayedSound && narinderCount >= LAUGH_SOUND_FRAME_INDEX_START) {
+            hasPlayedSound = true;
+            soundManager.play("Pet_Laugh");
+        }
+    }, 1000 / 60);
+
     function onclick() {
         if (isPettingNarinder || isLambPetting) return;
 
         isPettingNarinder = true;
         isLambPetting = true;
 
-        setTimeout(() => isPettingNarinder = false, NARINDER_PET_DURATION);
-        setTimeout(() => isLambPetting = false, LAMB_PET_DURATION);
+        hasPlayedSound = false;
 
-        setTimeout(() => soundManager.play("Pet_Laugh"), PET_LAUGH_START);
+        narinderCount = 0;
+        lambCount = 0;
 
         click();
     }
 </script>
 
-<button class="relative ml-8 w-50 h-30 outline-none" {onclick}>
-    <img src="/static/assets/credits/narinder-{isPettingNarinder ? "pet" : "idle"}.apng" alt="Narinder" class="absolute top-0 left-0 h-30" draggable="false" role="presentation" aria-hidden="true" />
-    <img src="/static/assets/credits/lamb-{isLambPetting ? "pet" : "idle"}.apng" alt="Lamb" class="absolute -top-6 right-0 h-36" draggable="false" role="presentation" aria-hidden="true" />
+<button class="relative ml-12 w-38 h-24 outline-none" {onclick}>
+    <SpritesheetImage src="/static/assets/credits/narinder-petting.png" label={isPettingNarinder ? "Narinder Being Pet" : "Narinder Idling"} class="absolute top-0 left-0 scale-125" x={narinderCount % NARINDER_FRAME_LENGTHS[+isPettingNarinder]} y={+isPettingNarinder}  width={78.3} height={83} tileWidth={NARINDER_FRAME_WIDTH} tileHeight={NARINDER_FRAME_HEIGHT} />
+    <SpritesheetImage src="/static/assets/credits/lamb-petting.png" label={isLambPetting ? "Lamb Petting" : "Lamb Idling"} class="absolute -top-6 right-0 scale-125" x={lambCount % LAMB_FRAME_LENGTHS[+isLambPetting]} y={+isLambPetting} width={86} height={101} tileWidth={LAMB_FRAME_WIDTH} tileHeight={LAMB_FRAME_HEIGHT} />
 </button>
