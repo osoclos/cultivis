@@ -39,22 +39,22 @@
         onchange: change = () => {}
     }: Props = $props();
 
-    async function updateMiniBoss(miniBoss: MiniBossId) {
+    async function updateMiniBoss(miniBossId: MiniBossId) {
         const { id, label, isUpgraded } = obj;
 
-        if (!factory.hasLoadedMiniBoss(miniBoss)) await factory.loadMiniBoss(miniBoss);
-        const boss = factory.miniBoss(miniBoss, isUpgraded, id, label);
+        if (!factory.hasLoadedMiniBoss(miniBossId)) await factory.loadMiniBoss(miniBossId);
+        const miniBoss = factory.miniBoss(miniBossId, isUpgraded, id, label);
 
-        obj.miniBoss = miniBoss;
-        boss.copyFromObj(obj);
+        obj.miniBoss = miniBossId;
+        miniBoss.copyFromObj(obj);
 
-        const { animation } = miniBossData[miniBoss];
+        const { animation } = miniBossData[miniBossId];
 
         obj.animation = animation;
-        boss.setAnimation(animation);
+        miniBoss.setAnimation(animation);
 
         update();
-        change(boss);
+        change(miniBoss);
     }
 </script>
 

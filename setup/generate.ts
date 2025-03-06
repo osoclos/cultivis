@@ -6,11 +6,11 @@ import ViteExpress from "vite-express";
 import multer from "multer";
 import sharp from "sharp";
 
-import { followerData, miniBossData, playerData } from "../src/data/files";
-import { CLOTHING_CATEGORY_LENGTH, CLOTHING_IDS, type ClothingId, FOLLOWER_CATEGORY_LENGTH, FOLLOWER_IDS, type FollowerId, MINI_BOSS_CATEGORY_LENGTH, type MiniBossId, NECKLACE_CATEGORY_LENGTH, type NecklaceId, PLAYER_BELL_CATEGORY_LENGTH, PLAYER_FLEECE_CATEGORY_LENGTH, type PlayerBellId, type PlayerFleeceId } from "../src/data/types";
+import { followerData, hereticData, miniBossData, playerData } from "../src/data/files";
+import { CLOTHING_CATEGORY_LENGTH, CLOTHING_IDS, type ClothingId, FOLLOWER_CATEGORY_LENGTH, FOLLOWER_IDS, type FollowerId, HERETIC_CATEGORY_LENGTH, type HereticId, MINI_BOSS_CATEGORY_LENGTH, type MiniBossId, NECKLACE_CATEGORY_LENGTH, type NecklaceId, PLAYER_BELL_CATEGORY_LENGTH, PLAYER_FLEECE_CATEGORY_LENGTH, type PlayerBellId, type PlayerFleeceId } from "../src/data/types";
 
 const PORT: number = 3000;
-const OUTPUT_DIR: string = path.join(__dirname, "../public/static/assets");
+const OUTPUT_DIR: string = path.join(__dirname, "../public/static/assets/characters");
 
 const MIN_TILE_WIDTH: number = 64;
 const MIN_TILE_HEIGHT: number = 64;
@@ -141,6 +141,21 @@ app.post("/soldiers", data.array("files"), (req) => {
 
     const buffers: Buffer[] = (<Express.Multer.File[]>files).map(({ buffer }) => buffer);
     createSpritesheets([buffers], "soldiers");
+});
+
+app.post("/heretics", data.array("files"), (req) => {
+    const { files } = req;
+    if (!files) return;
+
+    const buffers: Buffer[][] = Array(HERETIC_CATEGORY_LENGTH).fill(null).map(() => []);
+    for (const { buffer, originalname } of <Express.Multer.File[]>files) {
+        const id = <HereticId>originalname.replace(".dat", "");
+        const { category } = hereticData[id];
+
+        buffers[category].push(buffer);
+    }
+
+    createSpritesheets(buffers, "heretics");
 });
 
 app.post("/toww", data.array("files"), (req) => {

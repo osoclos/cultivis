@@ -13,13 +13,14 @@
     import { CreationDetails, SpecialThanks, HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME, NarinderPetter } from "./components/credits";
 
     import { Actor, Exporter, Factory, FORMAT_IDS, Scene, type ActorObject, type FormatData, type FormatId } from "./scripts";
-    import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness, isMiniBossObj, isWitnessObj, Soldier, isSoldierObj } from "./scripts/characters";
+    import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness, isMiniBossObj, isWitnessObj, Soldier, isSoldierObj, Heretic, isHereticObj } from "./scripts/characters";
     import { soundManager, newsManager, NewsManager, type NewsLoader, serverManager } from "./scripts/managers";
 
-    import { bishopData, miniBossData, towwData, witnessData } from "./data/files";
-    import { BISHOP_IDS, MINI_BOSS_IDS, WITNESS_IDS } from "./data/types";
+    import { bishopData, hereticData, miniBossData, towwData } from "./data/files";
+    import { BISHOP_IDS, HERETIC_IDS, MINI_BOSS_IDS, SOLDIER_IDS, WITNESS_IDS } from "./data/types";
 
     import { MoreMath, Random, unixToDate, Vector } from "./utils";
+    import HereticMenus, { HERETIC_MENU_NAME } from "./components/characters/menus/HereticMenus.svelte";
 
     const LOADING_STATES = ["ToSAcknowledgement", "LoadingAssets", "SceneSetup", "FetchingNews"] as const;
     const LOADING_TEXTS: string[] = ["Checking ToS Acknowledgement", "Loading Assets", "Setting Up Scene", "Fetching News"];
@@ -211,7 +212,7 @@
 
         switch (actor) {
             case Follower: {
-                !factory.hasLoadedFollower && await factory.load(Follower);
+                !factory.hasLoadedFollower( ) && await factory.loadFollower();
                 const [form, formVariantIdx, formColorSetIdx] = getRandomFollowerAppearance();
 
                 const follower = factory.follower(form, "Default_Clothing", undefined, getSpecialFollowerName(form, formVariantIdx));
@@ -225,7 +226,7 @@
             }
 
             case Player: {
-                !factory.hasLoadedPlayer && await factory.load(Player);
+                !factory.hasLoadedPlayer() && await factory.loadPlayer();
 
                 const player = factory.player("Lamb", "Lamb");
                 player.setAnimation("idle");
@@ -235,12 +236,24 @@
             }
 
             case Soldier: {
-                !factory.hasLoadedSoldier && await factory.load(Soldier);
+                const id = Random.item(SOLDIER_IDS);
+                !factory.hasLoadedSoldier() && await factory.loadSoldier();
 
-                const soldier = factory.soldier("Swordsman");
+                const soldier = factory.soldier(id);
                 soldier.setAnimation("idle");
 
                 addedActor = soldier;
+                break;
+            }
+
+            case Heretic: {
+                const id = Random.item(HERETIC_IDS);
+                !factory.hasLoadedHeretic(id) && await factory.loadHeretic(id);
+
+                const heretic = factory.heretic(id);
+                heretic.setAnimation(hereticData[id].animation);
+                
+                addedActor = heretic;
                 break;
             }
 
@@ -248,10 +261,8 @@
                 const id = Random.item(BISHOP_IDS);
                 !factory.hasLoadedBishop(id, false) && await factory.loadBishop(id, false);
 
-                const { name, animation } = bishopData[id];
-
-                const bishop = factory.bishop(id, false, undefined, name);
-                bishop.setAnimation(animation);
+                const bishop = factory.bishop(id, false);
+                bishop.setAnimation(bishopData[id].animation);
 
                 addedActor = bishop;
                 break;
@@ -280,20 +291,18 @@
                 const id = Random.item(MINI_BOSS_IDS);
                 !factory.hasLoadedMiniBoss(id) && await factory.loadMiniBoss(id);
 
-                const { name, animation } = miniBossData[id];
-
-                const boss = factory.miniBoss(id, false, undefined, name);
-                boss.setAnimation(animation);
+                const boss = factory.miniBoss(id, false);
+                boss.setAnimation(miniBossData[id].animation);
 
                 addedActor = boss;
                 break;
             }
 
             case Witness: {
-                !factory.hasLoadedWitness && await factory.load(Witness);
+                !factory.hasLoadedWitness() && await factory.loadWitness();
                 const id = Random.item(WITNESS_IDS);
 
-                const witness = factory.witness(id, false, undefined, witnessData[id].name);
+                const witness = factory.witness(id, false);
                 witness.setAnimation("animation");
 
                 addedActor = witness;
@@ -442,10 +451,10 @@
         scene.size.copyObj(size);
 
         if (cropScene) {
-        Vector.ceil(scene.sceneSize).cloneObj(size);
-        scene.size.copyObj(size);
+            Vector.ceil(scene.sceneSize).cloneObj(size);
+            scene.size.copyObj(size);
 
-        fitScene = true;
+            fitScene = true;
         }
         
         scene.resetCamera();
@@ -513,6 +522,8 @@
                             <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={actorMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                         {:else if isSoldierObj(actorObj) && actorMenu === SOLDIER_MENU_NAME}
                             <SoldierMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" soldier={actor as Soldier} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                        {:else if isHereticObj(actorObj) && actorMenu === HERETIC_MENU_NAME}
+                            <HereticMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
                         {:else if isBishopObj(actorObj) && actorMenu === BISHOP_MENU_NAME}
                             <BishopMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
                         {:else if isTOWW_Obj(actorObj) && actorMenu === TOWW_MENU_NAME}
@@ -567,7 +578,7 @@
                     <LabelTitle class="mb-2" title="Pets Today: {numOfPets}" />
                     <NarinderPetter onclick={petNarinder} />
 
-                    <LabelTitle title="Click to pet Narinder." />
+                    <LabelTitle title="Click them to pet Narinder." />
                 </div>
 
                 <SpecialThanks />

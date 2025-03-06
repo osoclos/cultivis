@@ -1,0 +1,64 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "heretic-data.schema.json",
+
+    "title": "Heretic Data",
+    "description": "Information on heretics that provides metadata and other related information, such as source files and animations",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/Id" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The display name of this heretic."
+            },
+
+            "category": {
+                "type": "integer",
+                "description": "The category index where this heretic belongs in.",
+
+                "minimum": 0,
+                "maximum": 4
+            },
+
+            "src": {
+                "$ref": "../../globals.schema.json#/definitions/Sources",
+                "description": "The source paths to the files needed to load the heretic."
+            },
+
+            "skins": {
+                "$ref": "#/definitions/Skins",
+                "description": "The list of skins needed to fully create the heretic correctly (in normal form)."
+            },
+
+            "backSkins": {
+                "$ref": "#/definitions/Skins",
+                "description": "The list of skins needed to fully create the heretic correctly (in normal form facing the back)."
+            },
+
+            "animation": {
+                "type": "string",
+                "description": "The default animation it should play when this form is loaded."
+            }
+        },
+
+        "required": ["name", "category", "src", "skins", "animation"]
+    },
+
+    "definitions": {
+        "Id": {
+            "type": "string",
+            "enum": ["Green_Bagworm", "Mega_Green_Bagworm", "Red_Bagworm", "Bobbitworm", "Poisonous_Bobbitworm", "Moss_Shooter", "Cannon_Shooter", "Turret_Shooter", "Moss_Bat", "Green_Frog", "Poisonous_Green_Frog", "Red_Frog", "Mega_Red_Frog", "Mortar_Frog", "Frog_Bat", "Fly", "Devil_Fly", "Charger", "Explosive_Charger", "Bomber_Jellyfish", "Immature_Bomber_Jellyfish", "Fertile_Bomber_Jellyfish", "Fertile_Poisonous_Bomber_Jellyfish", "Cannon_Octopus", "Turret_Octopus", "Green_Spikefish", "Blue_Spikefish", "Horned_Spikefish", "Pouncer_Crab", "Spiked_Burrowfish", "Landmine_Burrowfish", "Blue_Spider", "Mini_Blue_Spider", "Mega_Blue_Spider", "Red_Spider", "Mini_Red_Spider", "Mega_Red_Spider", "Poisonous_Spider", "Scorpion", "Poisonous_Scorpion", "Mega_Scorpion", "Millipede", "Poisonous_Millipede"]
+        },
+
+        "Skins": {
+            "type": "array",
+            "items": {
+                "type": "array",
+                "items": { "type": "string" }
+            }
+        }
+    }
+}

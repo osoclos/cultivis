@@ -1,6 +1,6 @@
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
 
-import { Follower, isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, Player, isWitnessObj, isMiniBossObj, Witness, isSoldierObj, Soldier } from "./characters";
+import { isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, isWitnessObj, isMiniBossObj, isSoldierObj, isHereticObj } from "./characters";
 import { APNG_Manager, GIF_Manager } from "./managers";
 
 import { Vector } from "../utils";
@@ -126,7 +126,7 @@ export class Exporter {
         switch (true) {
             case isFollowerObj(obj): {
                 const { form, clothing } = obj;
-                if (!this.factory.hasLoadedFollower) await this.factory.load(Follower);
+                if (!this.factory.hasLoadedFollower()) await this.factory.loadFollower();
                 
                 const follower = this.factory.follower(form, clothing, id, label);
                 actor = follower;
@@ -136,7 +136,7 @@ export class Exporter {
 
             case isPlayerObj(obj): {
                 const { creature, fleece } = obj;
-                if (!this.factory.hasLoadedPlayer) await this.factory.load(Player);
+                if (!this.factory.hasLoadedPlayer()) await this.factory.loadPlayer();
                 
                 const player = this.factory.player(creature, fleece, id, label);
                 actor = player;
@@ -145,20 +145,30 @@ export class Exporter {
             }
 
             case isSoldierObj(obj): {
-                const { soldier: id } = obj;
-                if (!this.factory.hasLoadedSoldier) await this.factory.load(Soldier);
+                const { soldier: soldierId } = obj;
+                if (!this.factory.hasLoadedSoldier()) await this.factory.loadSoldier();
 
-                const soldier = this.factory.soldier(id, id, label);
+                const soldier = this.factory.soldier(soldierId, id, label);
                 actor = soldier;
 
                 break; 
             }
 
-            case isBishopObj(obj): {
-                const { bishop: id, isBoss } = obj;
-                if (!this.factory.hasLoadedBishop(id, isBoss)) await this.factory.loadBishop(id, isBoss);
+            case isHereticObj(obj): {
+                const { heretic: hereticId } = obj;
+                if (!this.factory.hasLoadedHeretic(hereticId)) await this.factory.loadHeretic(hereticId);
 
-                const bishop = this.factory.bishop(id, isBoss, id, label);
+                const heretic = this.factory.heretic(hereticId, id, label);
+                actor = heretic;
+
+                break;
+            }
+
+            case isBishopObj(obj): {
+                const { bishop: bishopId, isBoss } = obj;
+                if (!this.factory.hasLoadedBishop(bishopId, isBoss)) await this.factory.loadBishop(bishopId, isBoss);
+
+                const bishop = this.factory.bishop(bishopId, isBoss, id, label);
                 actor = bishop;
 
                 break;
@@ -175,18 +185,18 @@ export class Exporter {
             }
 
             case isMiniBossObj(obj): {
-                const { miniBoss, isUpgraded } = obj;
-                if (!this.factory.hasLoadedMiniBoss(miniBoss)) await this.factory.loadMiniBoss(miniBoss);
+                const { miniBoss: miniBossId, isUpgraded } = obj;
+                if (!this.factory.hasLoadedMiniBoss(miniBossId)) await this.factory.loadMiniBoss(miniBossId);
 
-                const boss = this.factory.miniBoss(miniBoss, isUpgraded, id, label);
-                actor = boss;
+                const miniBoss = this.factory.miniBoss(miniBossId, isUpgraded, id, label);
+                actor = miniBoss;
 
                 break;
             }
 
             case isWitnessObj(obj): {
                 const { witness: witnessId, isUpgraded } = obj;
-                if (!this.factory.hasLoadedWitness) await this.factory.load(Witness);
+                if (!this.factory.hasLoadedWitness()) await this.factory.loadWitness();
                 
                 const witness = this.factory.witness(witnessId, isUpgraded, id, label);
                 actor = witness;

@@ -25,8 +25,7 @@ export class AssetManager {
             image.src = url;
 
             image.addEventListener("load", () => resolve(image));
-            image.addEventListener("error", () => reject("Encountered an error while creating image"));
-            image.addEventListener("abort", () => reject("Image creation was aborted"));
+            image.addEventListener("error", () => reject(`Encountered an error while creating image: ${path}`));
         });
 
         return new spine.webgl.GLTexture(this.gl, image);

@@ -2,8 +2,8 @@ import "./style.css";
 
 import { Scene, Factory, Exporter, Actor } from "@/scripts";
 
-import { followerData, miniBossData, playerData, towwData } from "@/data/files";
-import { CLOTHING_IDS, FOLLOWER_IDS, HATS_ID, SOLDIER_IDS, MINI_BOSS_IDS, NECKLACE_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
+import { followerData, hereticData, miniBossData, playerData, towwData } from "@/data/files";
+import { CLOTHING_IDS, FOLLOWER_IDS, HATS_ID, SOLDIER_IDS, MINI_BOSS_IDS, NECKLACE_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, TOWW_IDS, WITNESS_IDS, HERETIC_IDS } from "@/data/types";
 import { Player } from "@/scripts/characters";
 
 const WIDTH: number = 64;
@@ -287,6 +287,33 @@ soldierExporter.addEventListener("click", () => {
     sendForm(form, "/soldiers");
 });
 
+const hereticExporter = document.querySelector<HTMLButtonElement>("button#export-heretics")!;
+hereticExporter.addEventListener("click", () => {
+    const form = new FormData();
+
+    for (const id of HERETIC_IDS) {
+        const heretic = factory.heretic(id);
+
+        const { animation } = hereticData[id];
+        heretic.setAnimation(animation);
+
+        setupScene(heretic);
+        if (["Moss_Bat", "Red_Frog", "Mega_Red_Frog", "Mortar_Frog", "Frog_Bat", "Devil_Fly", "Millipede", "Poisonous_Millipede"].includes(id)) {
+            const isFrog = ["Red_Frog", "Mega_Red_Frog", "Mortar_Frog"].includes(id);
+            const isMillipede = ["Millipede", "Poisonous_Millipede"].includes(id);
+            
+            const isDevilFly = id === "Devil_Fly";
+            
+            if (!isFrog && !isDevilFly) scene.scale *= 0.8;
+            heretic.pos.set(12 * +isMillipede, isDevilFly ? 16 : -40 + 10 * +isFrog + 20 * +isMillipede);
+        }
+
+        appendPixelsToForm(form, id);
+    }
+
+    sendForm(form, "/heretics");
+});
+
 const towwExporter = document.querySelector<HTMLButtonElement>("button#export-toww")!;
 towwExporter.addEventListener("click", () => {
     const form = new FormData();
@@ -339,7 +366,7 @@ miniBossExporter.addEventListener("click", () => {
             const isVephar = id === "Millipede Poisoner";
 
             scene.scale *= 0.8 - 0.2 * +isEligos;
-            !isEligos && boss.pos.set(0 + 16 * +isVephar, -60 + 40 * +isVephar);
+            !isEligos && boss.pos.set(16 * +isVephar, -60 + 40 * +isVephar);
         }
 
         appendPixelsToForm(form, id);

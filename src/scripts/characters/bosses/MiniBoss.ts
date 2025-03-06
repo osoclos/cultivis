@@ -1,8 +1,9 @@
 import { miniBossData } from "../../../data/files";
 import type { MiniBossId } from "../../../data/types";
 
-import { Actor, type ActorObject } from "../../Actor";
 import { MoreMath } from "../../../utils";
+
+import { Actor, type ActorObject } from "../../Actor";
 
 const TYPE: string = "mini-boss";
 
@@ -18,7 +19,7 @@ export class MiniBoss extends Actor implements MiniBossObject {
         this.#stage = 0;
 
         this.#isUpgraded = isUpgraded;
-        this.#isBackFacing = ["backSkins", "backUpgradedSkins"].every((key) => key in miniBossData[this.miniBoss]) ? false : null;
+        this.#isBackFacing = ["backSkins", "backUpgradedSkins"].every((key) => key in miniBossData[miniBoss]) ? false : null;
 
         this.update();
     }
@@ -28,7 +29,25 @@ export class MiniBoss extends Actor implements MiniBossObject {
     }
 
     set stage(stage: number) {
-        this.#stage = MoreMath.clamp(stage, 0, miniBossData[this.miniBoss].upgradedSkins.length - 1);
+        const { miniBoss, isUpgraded, isBackFacing } = this;
+        const {
+            skins,
+            backSkins = skins,
+            
+            upgradedSkins,
+            backUpgradedSkins = upgradedSkins,
+        } = miniBossData[miniBoss];
+
+        const selectedSkins = 
+            (isBackFacing
+                ? isUpgraded
+                    ? backUpgradedSkins
+                    : backSkins
+                : isUpgraded
+                    ? upgradedSkins
+                    : skins);
+
+        this.#stage = MoreMath.clamp(stage, 0, selectedSkins.length - 1);
         this.update();
     }
 

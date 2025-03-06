@@ -68,20 +68,24 @@ export const PLAYER_BELL_CATEGORY_LENGTH: number = Object.keys(PlayerBellCategor
 
 export type PlayerBellCategoryName = typeof PLAYER_BELL_CATEGORIES[number];
 
-const playerFleeceIdsByCategory = <Record<PlayerFleeceCategoryName, PlayerFleeceId[]>>{};
-for (const id of PLAYER_FLEECE_IDS) {
-    const { category } = playerData.fleeces[id];
-    const categoryName = PLAYER_FLEECE_CATEGORIES[category];
+let tempArr: any[];
 
-    categoryName in playerFleeceIdsByCategory ? playerFleeceIdsByCategory[categoryName].push(id) : playerFleeceIdsByCategory[categoryName] = [id];
+tempArr = Array(PLAYER_FLEECE_CATEGORY_LENGTH);
+for (const id of PLAYER_FLEECE_IDS) {
+    const { category = 0 } = playerData.fleeces[id] ?? {};
+    tempArr[category] ? tempArr[category].push(id) : tempArr[category] = [id];
+}
+
+const playerFleeceIdsByCategory = <Record<PlayerFleeceCategoryName, PlayerFleeceId[]>>{};
+for (const [i, ids] of tempArr.entries()) playerFleeceIdsByCategory[PLAYER_FLEECE_CATEGORIES[i]] = ids;
+
+tempArr = Array(PLAYER_BELL_CATEGORY_LENGTH);
+for (const id of PLAYER_BELL_IDS) {
+    const { category = 0 } = playerData.bells[id] ?? {};
+    tempArr[category] ? tempArr[category].push(id) : tempArr[category] = [id];
 }
 
 const playerBellIdsByCategory = <Record<PlayerBellCategoryName, PlayerBellId[]>>{};
-for (const id of PLAYER_BELL_IDS) {
-    const { category } = playerData.bells[id];
-    const categoryName = PLAYER_BELL_CATEGORIES[category];
-
-    categoryName in playerBellIdsByCategory ? playerBellIdsByCategory[categoryName].push(id) : playerBellIdsByCategory[categoryName] = [id];
-}
+for (const [i, ids] of tempArr.entries()) playerBellIdsByCategory[PLAYER_BELL_CATEGORIES[i]] = ids;
 
 export { playerFleeceIdsByCategory, playerBellIdsByCategory };

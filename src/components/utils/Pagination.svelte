@@ -70,6 +70,6 @@
 
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <!-- svelte-ignore a11y_click_events_have_key_events -->
-<div bind:this={container} class={twMerge("flex flex-row", className)} role="navigation" aria-label={label} {onclick}>
+<div bind:this={container} class={twMerge("flex flex-row outline-none", className)} role="navigation" aria-label={label} {onclick}>
     {@render children?.(selectedIdx)}
 </div>

@@ -9,6 +9,8 @@
         "Baalzebub",
         "Barbatos",
         "Bathin",
+        "burper",
+        "Burrowfish",
         "CHASERBOSS",
         "coprophiliac",
         "COTL",
@@ -63,6 +65,7 @@
         "Ralpherz",
         "Ratau",
         "requestfailed",
+        "Ringshot",
         "Rinor",
         "Saleos",
         "Segoe",
@@ -72,6 +75,7 @@
         "Sozo",
         "Sozonius",
         "Sphynx",
+        "Spikefish",
         "startrun",
         "steamapps",
         "stoprun",
@@ -102,6 +106,10 @@
         {
             "fileMatch": ["/soldier-data.json"],
             "url": "/src/data/schemas/characters/enemies/soldier-data.schema.json"
+        },
+        {
+            "fileMatch": ["/heretic-data.json"],
+            "url": "/src/data/schemas/characters/enemies/heretic-data.schema.json"
         },
 
         {

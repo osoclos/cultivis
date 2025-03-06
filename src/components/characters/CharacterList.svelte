@@ -4,7 +4,7 @@
     import { List, MultiList } from "../utils";
 
     import type { Actor, ActorObject } from "../../scripts";
-    import { Bishop, Follower, Soldier, MiniBoss, Player, TOWW, Witness } from "../../scripts/characters";
+    import { Bishop, Follower, Soldier, MiniBoss, Player, TOWW, Witness, Heretic } from "../../scripts/characters";
 
     interface Props {
         actors: ActorObject[] | null;
@@ -62,7 +62,7 @@
         <Header title="Add Character" />
 
         <List class="no-scrollbar overflow-x-auto flex-row gap-4 p-2 w-90 sm:w-100" label="List of Characters" {enableKeyInput} isHorizontal isTabbable={false}>
-            {#each [Follower, Player, Soldier, Bishop, TOWW, MiniBoss, Witness] as actor, i (i)} 
+            {#each [Follower, Player, Soldier, Heretic, Bishop, TOWW, MiniBoss, Witness] as actor, i (i)} 
                 <CharacterItem {actor} isLoading={actor === loadingActor} onclick={() => add(actor)} />
             {/each}
         </List>
@@ -71,8 +71,20 @@
     <MultiList class="flex flex-col gap-6" titles={["", ""]} {enableKeyInput}>
         {#snippet children(_, i)}
             {#if i === 0}
-                <BannerButton label={isRemoving ? "Confirm Selection" : "Remove Characters"} onclick={() => onButtonClick(MANIPULATE_STATES.indexOf("REMOVE"))}/>
-                <BannerButton label={isCloning ? "Confirm Selection" : "Clone Characters"} onclick={() => onButtonClick(MANIPULATE_STATES.indexOf("CLONE"))}/>
+                <BannerButton label={
+                    isRemoving
+                        ? tickedItems.some((item) => item)
+                            ? "Confirm Selection"
+                            : "Cancel Selection"
+                        : "Remove Characters"
+                } onclick={() => onButtonClick(MANIPULATE_STATES.indexOf("REMOVE"))}/>
+                <BannerButton label={
+                    isCloning
+                        ? tickedItems.some((item) => item)
+                            ? "Confirm Selection"
+                            : "Cancel Selection"
+                        : "Clone Characters"
+                } onclick={() => onButtonClick(MANIPULATE_STATES.indexOf("CLONE"))}/>
             {:else if i === 1}
                 <Header class="mb-6" title="Choose Character" />
 

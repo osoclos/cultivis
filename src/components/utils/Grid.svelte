@@ -180,7 +180,7 @@
 </script>
 
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div bind:this={container} class={twMerge("grid place-content-center w-full", className)} style:grid-template-columns="repeat(auto-fit, {tileWidth}px)" style:grid-template-rows="repeat(auto-fit, {tileHeight}px)" style:column-gap="{gapWidth}px" style:row-gap="{gapHeight}px" style:min-width="{(tileWidth + gapWidth) * minColumns - gapWidth}px" style:max-width="{(tileWidth + gapWidth) * maxColumns - gapWidth + 0.1}px" tabindex="0" role="grid" aria-label={label} {onkeydown} {onfocusin} onfocusout={({ relatedTarget }) => !relatedTarget && Vector.NegOne.cloneObj(focusPos)}>
+<div bind:this={container} class={twMerge("grid place-content-center w-full outline-none", className)} style:grid-template-columns="repeat(auto-fit, {tileWidth}px)" style:grid-template-rows="repeat(auto-fit, {tileHeight}px)" style:column-gap="{gapWidth}px" style:row-gap="{gapHeight}px" style:min-width="{(tileWidth + gapWidth) * minColumns - gapWidth}px" style:max-width="{(tileWidth + gapWidth) * maxColumns - gapWidth + 0.1}px" tabindex="0" role="grid" aria-label={label} {onkeydown} {onfocusin} onfocusout={({ relatedTarget }) => !relatedTarget && Vector.NegOne.cloneObj(focusPos)}>
     {@render children?.()}
     {#each Array(Math.max(maxColumns - numOfChildren, 0)).keys() as i (i)}
         <div tabindex="-1"></div>

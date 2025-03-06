@@ -32,12 +32,15 @@ export const MINI_BOSS_CATEGORY_LENGTH = MINI_BOSS_CATEGORIES.length;
 
 export type MiniBossCategoryName = typeof MINI_BOSS_CATEGORIES[number];
 
-const miniBossIdsByCategory = <Record<MiniBossCategoryName, MiniBossId[]>>{};
-for (const id of MINI_BOSS_IDS) {
-    const { category } = miniBossData[id];
-    const categoryName = MINI_BOSS_CATEGORIES[category];
+let tempArr: any[];
 
-    categoryName in miniBossIdsByCategory ? miniBossIdsByCategory[categoryName].push(id) : miniBossIdsByCategory[categoryName] = [id];
+tempArr = Array(MINI_BOSS_CATEGORY_LENGTH);
+for (const id of MINI_BOSS_IDS) {
+    const { category = 0 } = miniBossData[id] ?? {};
+    tempArr[category] ? tempArr[category].push(id) : tempArr[category] = [id];
 }
+
+const miniBossIdsByCategory = <Record<MiniBossCategoryName, MiniBossId[]>>{};
+for (const [i, ids] of tempArr.entries()) miniBossIdsByCategory[MINI_BOSS_CATEGORIES[i]] = ids;
 
 export { miniBossIdsByCategory };

@@ -1,0 +1,630 @@
+{
+    "Green_Bagworm": {
+        "name": "Green Bagworm",
+        "category": 1,
+
+        "src": {
+            "textures": ["patroller.png"],
+            "atlas": "patroller.atlas",
+            "skeleton": "patroller.skel"
+        },
+
+        "skins": [["BABY_BODY_0"], ["BABY_BODY_1"], ["BABY_BODY_2"], ["BABY_BODY_3"]],
+        "backSkins": [["BABY_BODY_0_BACK"], ["BABY_BODY_1"], ["BABY_BODY_2"], ["BABY_BODY_3"]],
+
+        "animation": "animation"
+    },
+
+    "Mega_Green_Bagworm": {
+        "name": "Mega Green Bagworm",
+        "category": 1,
+
+        "src": {
+            "textures": ["patroller.png"],
+            "atlas": "patroller.atlas",
+            "skeleton": "patroller.skel"
+        },
+
+        "skins": [["BODY_0"], ["BODY_1"], ["BODY_2"], ["BODY_3"], ["BODY_4"]],
+        "backSkins": [["BODY_0_BACK"], ["BODY_1"], ["BODY_2"], ["BODY_3"], ["BODY_4"]],
+
+        "animation": "animation"
+    },
+
+    "Red_Bagworm": {
+        "name": "Red Bagworm",
+        "category": 1,
+
+        "src": {
+            "textures": ["patroller.png"],
+            "atlas": "patroller.atlas",
+            "skeleton": "patroller.skel"
+        },
+
+        "skins": [["POUNCER_BODY_0"], ["POUNCER_BODY_1"], ["POUNCER_BODY_2"], ["POUNCER_BODY_3"], ["POUNCER_BODY_4"]],
+        "backSkins": [["POUNCER_BODY_0_BACK"], ["POUNCER_BODY_1"], ["POUNCER_BODY_2"], ["POUNCER_BODY_3"], ["POUNCER_BODY_4"]],
+
+        "animation": "animation"
+    },
+
+    "Bobbitworm": {
+        "name": "Bobbitworm",
+        "category": 1,
+
+        "src": {
+            "textures": ["TunnelTurret.png"],
+            "atlas": "TunnelTurret.atlas",
+            "skeleton": "TunnelTurret.skel"
+        },
+
+        "skins": [["TurretSpiker"]],
+        "animation": "idle"
+    },
+
+    "Poisonous_Bobbitworm": {
+        "name": "Poisonous_Bobbitworm",
+        "category": 1,
+
+        "src": {
+            "textures": ["TunnelTurret.png"],
+            "atlas": "TunnelTurret.atlas",
+            "skeleton": "TunnelTurret.skel"
+        },
+
+        "skins": [["Turret"]],
+        "animation": "idle"
+    },
+
+    "Moss_Shooter": {
+        "name": "Moss Shooter",
+        "category": 1,
+
+        "src": {
+            "textures": ["Turret.png"],
+            "atlas": "Turret.atlas",
+            "skeleton": "Turret.skel"
+        },
+
+        "skins": [["Forest Area Turret"]],
+        "animation": "idle"
+    },
+
+    "Cannon_Shooter": {
+        "name": "Cannon Shooter",
+        "category": 0,
+
+        "src": {
+            "textures": ["Turret.png"],
+            "atlas": "Turret.atlas",
+            "skeleton": "Turret.skel"
+        },
+
+        "skins": [["Forest Turret"]],
+        "animation": "idle"
+    },
+
+    "Turret_Shooter": {
+        "name": "Turret Shooter",
+        "category": 0,
+
+        "src": {
+            "textures": ["Turret.png"],
+            "atlas": "Turret.atlas",
+            "skeleton": "Turret.skel"
+        },
+
+        "skins": [["Forest Ringshot Turret"]],
+        "animation": "idle"
+    },
+
+    "Moss_Bat": {
+        "name": "Moss Bat",
+        "category": 1,
+        
+        "src": {
+            "textures": ["Enemies_Bat.png"],
+            "atlas": "Enemies_Bat.atlas",
+            "skeleton": "Enemies_Bat.skel"
+        },
+
+        "skins": [["Forest"]],
+        "animation": "Fly"
+    },
+
+    "Green_Frog": {
+        "name": "Fly Spit Frog",
+        "category": 2,
+        
+        "src": {
+            "textures": ["burper.png"],
+            "atlas": "burper.atlas",
+            "skeleton": "burper.skel"
+        },
+
+        "skins": [["burper-front"]],
+        "backSkins": [["burper-back"]],
+
+        "animation": "idle"
+    },
+
+    "Poisonous_Green_Frog": {
+        "name": "Poison Spit Frog",
+        "category": 2,
+        
+        "src": {
+            "textures": ["burper.png"],
+            "atlas": "burper.atlas",
+            "skeleton": "burper.skel"
+        },
+
+        "skins": [["burper-front-variant"]],
+        "backSkins": [["burper-back-variant"]],
+
+        "animation": "idle"
+    },
+
+    "Red_Frog": {
+        "name": "Hopper Toad",
+        "category": 2,
+        
+        "src": {
+            "textures": ["hopper.png"],
+            "atlas": "hopper.atlas",
+            "skeleton": "hopper.skel"
+        },
+
+        "skins": [["hopper-front"]],
+        "backSkins": [["hopper-back"]],
+
+        "animation": "idle"
+    },
+
+    "Mega_Red_Frog": {
+        "name": "Mega Hopper Toad",
+        "category": 2,
+        
+        "src": {
+            "textures": ["hopper.png"],
+            "atlas": "hopper.atlas",
+            "skeleton": "hopper.skel"
+        },
+
+        "skins": [["hopper-big-front"]],
+        "backSkins": [["hopper-big-back"]],
+
+        "animation": "idle"
+    },
+
+    "Mortar_Frog": {
+        "name": "Mortar Toad",
+        "category": 2,
+        
+        "src": {
+            "textures": ["FrogMiniBossForest.png"],
+            "atlas": "FrogMiniBossForest.atlas",
+            "skeleton": "FrogMiniBossForest.skel"
+        },
+
+        "skins": [["MortarFrog"]],
+        "animation": "idle"
+    },
+
+    "Frog_Bat": {
+        "name": "Frog Bat",
+        "category": 2,
+        
+        "src": {
+            "textures": ["Enemies_Bat.png"],
+            "atlas": "Enemies_Bat.atlas",
+            "skeleton": "Enemies_Bat.skel"
+        },
+
+        "skins": [["Frog"]],
+        "animation": "Fly"
+    },
+
+    "Fly": {
+        "name": "Fly",
+        "category": 2,
+
+        "src": {
+            "textures": ["Fly.png"],
+            "atlas": "Fly.atlas",
+            "skeleton": "Fly.skel"
+        },
+
+        "skins": [["default"]],
+        "animation": "animation"
+    },
+
+    "Devil_Fly": {
+        "name": "Devil Fly",
+        "category": 2,
+
+        "src": {
+            "textures": ["MortarFly.png"],
+            "atlas": "MortarFly.atlas",
+            "skeleton": "MortarFly.skel"
+        },
+
+        "skins": [["default"]],
+        "animation": "animation"
+    },
+
+    "Charger": {
+        "name": "Dashing Squid",
+        "category": 3,
+
+        "src": {
+            "textures": ["Charger.png"],
+            "atlas": "Charger.atlas",
+            "skeleton": "Charger.skel"
+        },
+
+        "skins": [["Normal"]],
+        "animation": "idle"
+    },
+
+    "Explosive_Charger": {
+        "name": "Explosive Dashing Squid",
+        "category": 3,
+
+        "src": {
+            "textures": ["Charger.png"],
+            "atlas": "Charger.atlas",
+            "skeleton": "Charger.skel"
+        },
+
+        "skins": [["ExplodingCharger"]],
+        "animation": "idle"
+    },
+
+    "Bomber_Jellyfish": {
+        "name": "Bomber Jellyfish",
+        "category": 3,
+
+        "src": {
+            "textures": ["Floater.png"],
+            "atlas": "Floater.atlas",
+            "skeleton": "Floater.skel"
+        },
+
+        "skins": [["ScuttleExploder"]],
+        "animation": "animation"
+    },
+
+    "Immature_Bomber_Jellyfish": {
+        "name": "Mini Bomber Jellyfish",
+        "category": 3,
+
+        "src": {
+            "textures": ["Floater.png"],
+            "atlas": "Floater.atlas",
+            "skeleton": "Floater.skel"
+        },
+
+        "skins": [["ScuttleExploderBaby"]],
+        "animation": "animation"
+    },
+
+    "Fertile_Bomber_Jellyfish": {
+        "name": "Devil Bomber Jellyfish",
+        "category": 3,
+
+        "src": {
+            "textures": ["Floater.png"],
+            "atlas": "Floater.atlas",
+            "skeleton": "Floater.skel"
+        },
+
+        "skins": [["ScuttleBigExploder"]],
+        "animation": "animation"
+    },
+
+    "Fertile_Poisonous_Bomber_Jellyfish": {
+        "name": "Poison Blood Devil Bomber Jellyfish",
+        "category": 3,
+
+        "src": {
+            "textures": ["Floater.png"],
+            "atlas": "Floater.atlas",
+            "skeleton": "Floater.skel"
+        },
+
+        "skins": [["ScuttleBigExploder_Poison"]],
+        "animation": "animation"
+    },
+
+    "Cannon_Octopus": {
+        "name": "Targeting Octopus",
+        "category": 3,
+
+        "src": {
+            "textures": ["Floater.png"],
+            "atlas": "Floater.atlas",
+            "skeleton": "Floater.skel"
+        },
+
+        "skins": [["ScuttleTurret"]],
+        "animation": "animation"
+    },
+
+    "Turret_Octopus": {
+        "name": "Turret Octopus",
+        "category": 3,
+
+        "src": {
+            "textures": ["Floater.png"],
+            "atlas": "Floater.atlas",
+            "skeleton": "Floater.skel"
+        },
+
+        "skins": [["ScuttleRingShot"]],
+        "animation": "animation"
+    },
+
+    "Green_Spikefish": {
+        "name": "Green Spikefish",
+        "category": 3,
+
+        "src": {
+            "textures": ["Floater.png"],
+            "atlas": "Floater.atlas",
+            "skeleton": "Floater.skel"
+        },
+
+        "skins": [["Spiker"]],
+        "animation": "animation"
+    },
+
+    "Blue_Spikefish": {
+        "name": "Blue Spikefish",
+        "category": 3,
+
+        "src": {
+            "textures": ["Floater.png"],
+            "atlas": "Floater.atlas",
+            "skeleton": "Floater.skel"
+        },
+
+        "skins": [["SpikerBig"]],
+        "animation": "animation"
+    },
+
+    "Horned_Spikefish": {
+        "name": "Horn Spikefish",
+        "category": 3,
+
+        "src": {
+            "textures": ["Floater.png"],
+            "atlas": "Floater.atlas",
+            "skeleton": "Floater.skel"
+        },
+
+        "skins": [["SpikerVariant"], ["SpikerVariant_attacked1"], ["SpikerVariant_attacked2"], ["SpikerVariant_attacked3"]],
+        "animation": "animation"
+    },
+
+    "Pouncer_Crab": {
+        "name": "Pouncer Crab",
+        "category": 3,
+
+        "src": {
+            "textures": ["patroller.png"],
+            "atlas": "patroller.atlas",
+            "skeleton": "patroller.skel"
+        },
+
+        "skins": [["POUNCER_CRAB"]],
+        "backSkins": [["POUNCER_CRAB_BACK"]],
+
+        "animation": "animation"
+    },
+
+    "Spiked_Burrowfish": {
+        "name": "Spiked Burrowfish",
+        "category": 3,
+
+        "src": {
+            "textures": ["TunnelTurret.png"],
+            "atlas": "TunnelTurret.atlas",
+            "skeleton": "TunnelTurret.skel"
+        },
+
+        "skins": [["SwampSpiker"]],
+        "animation": "idle"
+    },
+
+    "Landmine_Burrowfish": {
+        "name": "Landmine Burrowfish",
+        "category": 3,
+
+        "src": {
+            "textures": ["JellyBombTrap.png"],
+            "atlas": "JellyBombTrap.atlas",
+            "skeleton": "JellyBombTrap.skel"
+        },
+
+        "skins": [["default"]],
+        "animation": "animation"
+    },
+
+    "Blue_Spider": {
+        "name": "Dashing Spider",
+        "category": 4,
+
+        "src": {
+            "textures": ["Spiders.png"],
+            "atlas": "Spiders.atlas",
+            "skeleton": "Spiders.skel"
+        },
+
+        "skins": [["DashSpider_Medium_Body", "DashSpider_Medium_Head"]],
+        "animation": "idle"
+    },
+
+    "Mini_Blue_Spider": {
+        "name": "Mini Dashing Spider",
+        "category": 4,
+
+        "src": {
+            "textures": ["Spiders.png"],
+            "atlas": "Spiders.atlas",
+            "skeleton": "Spiders.skel"
+        },
+
+        "skins": [["DashSpider_Small_Body", "DashSpider_Small_Head"]],
+        "animation": "idle"
+    },
+
+    "Mega_Blue_Spider": {
+        "name": "Mega Dashing Spider",
+        "category": 4,
+
+        "src": {
+            "textures": ["Spiders.png"],
+            "atlas": "Spiders.atlas",
+            "skeleton": "Spiders.skel"
+        },
+
+        "skins": [["DashSpider_Big_Body", "DashSpider_Big_Head"], ["DashSpider_Big_Body_Eggs", "DashSpider_Big_Head"]],
+        "animation": "idle"
+    },
+
+    "Red_Spider": {
+        "name": "Pouncing Spider",
+        "category": 4,
+
+        "src": {
+            "textures": ["Spiders.png"],
+            "atlas": "Spiders.atlas",
+            "skeleton": "Spiders.skel"
+        },
+
+        "skins": [["JumpSpider_Medium"]],
+        "animation": "idle"
+    },
+
+    "Mini_Red_Spider": {
+        "name": "Pouncing Spider",
+        "category": 4,
+
+        "src": {
+            "textures": ["Spiders.png"],
+            "atlas": "Spiders.atlas",
+            "skeleton": "Spiders.skel"
+        },
+
+        "skins": [["JumpSpider_Small"]],
+        "animation": "idle"
+    },
+
+    "Mega_Red_Spider": {
+        "name": "Pouncing Spider",
+        "category": 4,
+
+        "src": {
+            "textures": ["Spiders.png"],
+            "atlas": "Spiders.atlas",
+            "skeleton": "Spiders.skel"
+        },
+
+        "skins": [["JumpSpider_Big"]],
+        "animation": "idle"
+    },
+
+    "Poisonous_Spider": {
+        "name": "Poisonous Spider",
+        "category": 4,
+
+        "src": {
+            "textures": ["Spiders.png"],
+            "atlas": "Spiders.atlas",
+            "skeleton": "Spiders.skel"
+        },
+
+        "skins": [["PoisonSpider"]],
+        "animation": "idle"
+    },
+
+    "Scorpion": {
+        "name": "Scorpion",
+        "category": 4,
+
+        "src": {
+            "textures": ["Scorpions.png"],
+            "atlas": "Scorpions.atlas",
+            "skeleton": "Scorpions.skel"
+        },
+
+        "skins": [["Scorpion_Small"]],
+        "backSkins": [["Scorpion_Small_Back"]],
+
+        "animation": "idle"
+    },
+
+    "Poisonous_Scorpion": {
+        "name": "Scorpion",
+        "category": 4,
+
+        "src": {
+            "textures": ["Scorpions.png"],
+            "atlas": "Scorpions.atlas",
+            "skeleton": "Scorpions.skel"
+        },
+
+        "skins": [["Scorpion_Small_Poison"]],
+        "backSkins": [["Scorpion_Small_Poison_Back"]],
+
+        "animation": "idle"
+    },
+
+    "Mega_Scorpion": {
+        "name": "Mega Scorpion",
+        "category": 4,
+
+        "src": {
+            "textures": ["Scorpions.png"],
+            "atlas": "Scorpions.atlas",
+            "skeleton": "Scorpions.skel"
+        },
+
+        "skins": [["Scorpion"]],
+        "backSkins": [["Scorpion_Back"]],
+
+        "animation": "idle"
+    },
+
+
+    "Millipede": {
+        "name": "Millipede",
+        "category": 4,
+
+        "src": {
+            "textures": ["Millipede.png"],
+            "atlas": "Millipede.atlas",
+            "skeleton": "Millipede.skel"
+        },
+
+        "skins": [["MILLIPEDE_HEAD"], ["MILLIPEDE_BODY_0"], ["MILLIPEDE_BODY_1"], ["MILLIPEDE_BODY_2"], ["MILLIPEDE_BODY_3"], ["MILLIPEDE_BODY_4"]],
+        "backSkins": [["MILLIPEDE_HEAD_BACK"], ["MILLIPEDE_BODY_0"], ["MILLIPEDE_BODY_1"], ["MILLIPEDE_BODY_2"], ["MILLIPEDE_BODY_3"], ["MILLIPEDE_BODY_4"]],
+
+        "animation": "idle"
+    },
+
+    "Poisonous_Millipede": {
+        "name": "Poisonous Millipede",
+        "category": 4,
+
+        "src": {
+            "textures": ["Millipede.png"],
+            "atlas": "Millipede.atlas",
+            "skeleton": "Millipede.skel"
+        },
+
+        "skins": [["MILLIPEDE_HEAD_Poison"], ["MILLIPEDE_BODY_0_Poison"], ["MILLIPEDE_BODY_1_Poison"], ["MILLIPEDE_BODY_2_Poison"], ["MILLIPEDE_BODY_3_Poison"], ["MILLIPEDE_BODY_4_Poison"]],
+        "backSkins": [["MILLIPEDE_HEAD_BACK_Poison"], ["MILLIPEDE_BODY_0_Poison"], ["MILLIPEDE_BODY_1_Poison"], ["MILLIPEDE_BODY_2_Poison"], ["MILLIPEDE_BODY_3_Poison"], ["MILLIPEDE_BODY_4_Poison"]],
+
+        "animation": "idle"
+    }
+}

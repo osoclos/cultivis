@@ -1,6 +1,9 @@
-import type { SoldierDataJSON } from "../../../types";
+import type { HereticDataJSON, SoldierDataJSON } from "../../../types";
 
 import soldierDataJSON from "./soldier-data.json";
+import hereticDataJSON from "./heretic-data.json";
 
 const soldierData: SoldierDataJSON = soldierDataJSON;
-export { soldierData };
+const hereticData: HereticDataJSON = hereticDataJSON;
+
+export { soldierData, hereticData };

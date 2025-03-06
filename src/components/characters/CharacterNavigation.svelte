@@ -1,6 +1,6 @@
 <script lang="ts" module>
     import { FOLLOWER_IDS, type FollowerId, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, type PlayerBellId, type PlayerCreatureId, type PlayerCrownId, type PlayerFleeceId } from "../../data/types";
-    import { bishopData, followerData, miniBossData } from "../../data/files";
+    import { bishopData, followerData, hereticData, miniBossData } from "../../data/files";
 
     const FOLLOWER_STARTING_NAMES: string[] = ["Ja", "Jul", "Na", "No", "Gre", "Bre", "Tre", "Mer", "Ty", "Ar", "An", "Yar", "Fe", "Fi", "The", "Thor", "Al", "Ha", "He", "Joo", "Ma", "Me", "Pa", "Pu"];
     const FOLLOWER_MIDDLE_NAMES: string[] = ["na"].concat(...FOLLOWER_STARTING_NAMES.slice(1, 11).map((name) => name.toLowerCase()));
@@ -76,11 +76,11 @@
     import { twMerge } from "tailwind-merge";
 
     import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, ArrowSelection, Slider, Toggle } from "../base";
-    import { BISHOP_MENU_NAME, SOLDIER_MENU_NAME, MINI_BOSS_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
+    import { BISHOP_MENU_NAME, SOLDIER_MENU_NAME, MINI_BOSS_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME, HERETIC_MENU_NAME } from "./menus";
     import { MultiList } from "../utils";
 
     import { Actor, Factory, type ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isSoldierObj, isMiniBossObj, isPlayerObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isSoldierObj, isMiniBossObj, isPlayerObj, isTOWW_Obj, isWitnessObj, isHereticObj } from "../../scripts/characters";
 
     import { forbiddenAnimations, soldierData } from "../../data/files";
     import { Random, Vector, type VectorObject } from "../../utils";
@@ -135,6 +135,15 @@
         return animationNames.filter((name) => !(actorForbiddenAnimations.includes(`!${name}`) || actorForbiddenAnimations.some((keyword) => !keyword.startsWith("!") && name.includes(keyword)))).sort();
     });
 
+    const hasAttributes: boolean = $derived.by(() => {
+        switch (true) {
+            case isSoldierObj(obj) && isSoldierObj(actor): return soldierData[obj.soldier].canHoldShield;
+            case isHereticObj(obj) && isHereticObj(actor): return (hereticData[obj.heretic].skins.length > 1 && obj.heretic !== "Mega_Blue_Spider") || obj.heretic === "Mega_Blue_Spider" || "backSkins" in hereticData[obj.heretic];
+
+            default: return true;
+        }
+    });
+
     function randomizeAppearance() {
         switch (true) {
             case isFollowerObj(actor) && isFollowerObj(obj): {
@@ -169,6 +178,16 @@
                 break;
             }
         }
+
+        update();
+    }
+
+    function updateHereticStage(stage: number) {
+        if (!isHereticObj(obj) || !isHereticObj(actor)) return;
+        stage--;
+
+        obj.stage = stage;
+        actor.stage = stage;
 
         update();
     }
@@ -274,6 +293,8 @@
                     <BannerButton label="Randomize" src="/static/ui/dice-6.png" onclick={randomizeAppearance} />
                 {:else if isSoldierObj(obj)}
                     <BannerButton label="Choose Role" playClickSound={false} onclick={() => proceed(SOLDIER_MENU_NAME)} />
+                {:else if isHereticObj(obj)}
+                    <BannerButton label="Choose Heretic" playClickSound={false} onclick={() => proceed(HERETIC_MENU_NAME)} />
                 {:else if isBishopObj(obj)}
                     <BannerButton label="Choose Bishop" playClickSound={false} onclick={() => proceed(BISHOP_MENU_NAME)} />
                 {:else if isTOWW_Obj(obj)}
@@ -285,101 +306,121 @@
                 {/if}
             {:else if i === 2}
                 <div class="flex flex-col gap-12 pt-6 pb-8">
-                    <div class="flex flex-col gap-6 items-center">
-                        <LabelTitle title="Attributes" />
-                    
-                        <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
-                            {#if isFollowerObj(obj) && isFollowerObj(actor)}
-                                <Label label="Level">
-                                    <Slider class="ml-12" label="Level" bind:value={obj.level} min={1} max={10} step={1} displayValues={["O", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]} oninput={(level) => actor.level = level} />
-                                </Label>
+                    {#if hasAttributes}
+                        <div class="flex flex-col gap-6 items-center">
+                            <LabelTitle title="Attributes" />
+                        
+                            <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
+                                {#if isFollowerObj(obj) && isFollowerObj(actor)}
+                                    <Label label="Level">
+                                        <Slider class="ml-12" label="Level" bind:value={obj.level} min={1} max={10} step={1} displayValues={["O", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]} oninput={(level) => actor.level = level} />
+                                    </Label>
 
-                                <Label label="Age State">
-                                    <ArrowSelection class="ml-6" label="Age State" options={["Baby", "Adult", "Elder"]} bind:i={obj.ageState} oninput={(_, i) => actor.ageState = i} />
-                                </Label>
+                                    <Label label="Age State">
+                                        <ArrowSelection class="ml-6" label="Age State" options={["Baby", "Adult", "Elder"]} bind:i={obj.ageState} oninput={(_, i) => actor.ageState = i} />
+                                    </Label>
 
-                                <Label label="Is a Disciple?">
-                                    <Toggle label="Is a Disciple?" bind:enabled={obj.isDisciple} oninput={(isDisciple) => actor.isDisciple = isDisciple} />
-                                </Label>
+                                    <Label label="Is a Disciple?">
+                                        <Toggle label="Is a Disciple?" bind:enabled={obj.isDisciple} oninput={(isDisciple) => actor.isDisciple = isDisciple} />
+                                    </Label>
 
-                                <Label label="Is Wearing a Hood?">
-                                    <Toggle label="Is Wearing a Hood?" bind:enabled={obj.isHooded} oninput={(isHooded) => actor.isHooded = isHooded} />
-                                </Label>
-                            {:else if isPlayerObj(obj) && isPlayerObj(actor)}
-                                <Label label="Hurt State">
-                                    <ArrowSelection class="ml-6" label="Hurt State" options={["Normal", "Bruised", "Injured"]} bind:i={obj.hurtState} oninput={(_, i) => actor.hurtState = i} />
-                                </Label>
-                            {:else if isSoldierObj(obj) && isSoldierObj(actor)}
-                                {#if soldierData[obj.soldier].canHoldShield}
-                                    <Label label="Is Holding Shield?">
-                                        <Toggle label="Is Holding Shield?" bind:enabled={obj.isHoldingShield!} oninput={(isHoldingShield) => actor.isHoldingShield = isHoldingShield} />
+                                    <Label label="Is Wearing a Hood?">
+                                        <Toggle label="Is Wearing a Hood?" bind:enabled={obj.isHooded} oninput={(isHooded) => actor.isHooded = isHooded} />
                                     </Label>
-                                {/if}
-                            {:else if isBishopObj(obj) && isBishopObj(actor)}
-                                {#if "bossSrc" in bishopData[obj.bishop]}
-                                    <Label label="Is in Boss Form?">
-                                        <Toggle label="Is in Boss Form?" bind:enabled={obj.isBoss} oninput={updateBishopIsBoss} />
+                                {:else if isPlayerObj(obj) && isPlayerObj(actor)}
+                                    <Label label="Hurt State">
+                                        <ArrowSelection class="ml-6" label="Hurt State" options={["Normal", "Bruised", "Injured"]} bind:i={obj.hurtState} oninput={(_, i) => actor.hurtState = i} />
                                     </Label>
-                                {/if}
-        
-                                <Label label="Is Purged?">
-                                    <Toggle label="Is Purged?" bind:enabled={obj.isPurged} oninput={(isPurged) => actor.isPurged = isPurged} />
-                                </Label>
-        
-                                {#if obj.bishop === "Spider"}
-                                    <Label label="Is Bandaged?">
-                                        <Toggle label="Is Bandaged?" bind:enabled={obj.isBandaged!} oninput={(isBandaged) => actor.isBandaged = isBandaged} />
-                                    </Label>
-                                {/if}
-                            {:else if isTOWW_Obj(obj) && isTOWW_Obj(actor)}
-                                {#if obj.form === "Bishop"}
-                                    <Label label="Has Crown?">
-                                        <Toggle label="Has Crown?" bind:enabled={obj.hasCrown!} oninput={(hasCrown) => actor.hasCrown = hasCrown} />
-                                    </Label>
-        
-                                    <Label label="Has Chains?">
-                                        <Toggle label="Has Chains?" bind:enabled={obj.hasChains!} oninput={(hasChains) => actor.hasChains = hasChains} />
-                                    </Label>
-                                {:else if obj.form === "Boss"}
-                                    <Label label="Has Crown?">
-                                        <Toggle label="Has Crown?" bind:enabled={obj.hasCrown!} oninput={(hasCrown) => actor.hasCrown = hasCrown} />
-                                    </Label>
-                                {:else if obj.form === "Mega_Boss"}
-                                    <Label label="Number of Missing Eyes">
-                                        <Slider class="ml-4" label="Number of Missing Eyes" bind:value={obj.eyeState!} min={0} max={3} step={1} oninput={(eyeState) => actor.eyeState = eyeState} />
-                                    </Label>
-                                {:else if obj.form === "Eyeball"}
-                                    <Label label="Is Injured?">
-                                        <Toggle label="Is Injured?" bind:enabled={obj.isInjured!} oninput={(isInjured) => actor.isInjured = isInjured} />
-                                    </Label>
-                                {/if}
-                            {:else if isMiniBossObj(obj) && isMiniBossObj(actor)}
-                                {#if miniBossData[obj.miniBoss].upgradedSkins.length > 1}
-                                    <Label label="Body Part Number">
-                                        <Slider class="ml-4" label="Body Part Number" value={obj.stage + 1} min={1} max={miniBossData[obj.miniBoss].upgradedSkins.length} step={1} oninput={updateMiniBossStage} />
-                                    </Label>
-                                {/if}
+                                {:else if isSoldierObj(obj) && isSoldierObj(actor)}
+                                    {#if soldierData[obj.soldier].canHoldShield}
+                                        <Label label="Is Holding Shield?">
+                                            <Toggle label="Is Holding Shield?" bind:enabled={obj.isHoldingShield!} oninput={(isHoldingShield) => actor.isHoldingShield = isHoldingShield} />
+                                        </Label>
+                                    {/if}
+                                {:else if isHereticObj(obj) && isHereticObj(actor)}
+                                    {#if hereticData[obj.heretic].skins.length > 1 && obj.heretic !== "Mega_Blue_Spider"}
+                                        <Label label={obj.heretic === "Horned_Spikefish" ? "Number of Angry Eyes" : "Body Part Number"}>
+                                            <Slider class="ml-4" label="Body Part Number" value={obj.stage + 1} min={1} max={hereticData[obj.heretic].skins.length} step={1} oninput={updateHereticStage} />
+                                        </Label>
+                                    {/if}
 
-                                <Label label="Is Upgraded?">
-                                    <Toggle label="Is Upgraded?" bind:enabled={obj.isUpgraded} oninput={(isUpgraded) => actor.isUpgraded = isUpgraded} />
-                                </Label>
-        
-                                {#if ["backSkins", "backUpgradedSkins"].every((key) => key in miniBossData[obj.miniBoss])}
-                                    <Label label="Is Facing the Back?">
-                                        <Toggle label="Is Facing the Back?" bind:enabled={obj.isBackFacing!} oninput={(isBackFacing) => actor.isBackFacing = isBackFacing} />
+                                    {#if obj.heretic === "Mega_Blue_Spider"}
+                                        <Label label="Has Eggs?">
+                                            <Toggle label="Has Eggs?" enabled={!!obj.stage} oninput={(hasEggs) => updateHereticStage(+hasEggs + 1)} />
+                                        </Label>
+                                    {/if}
+            
+                                    {#if "backSkins" in hereticData[obj.heretic]}
+                                        <Label label="Is Facing the Back?">
+                                            <Toggle label="Is Facing the Back?" bind:enabled={obj.isBackFacing!} oninput={(isBackFacing) => actor.isBackFacing = isBackFacing} />
+                                        </Label>
+                                    {/if}
+                                {:else if isBishopObj(obj) && isBishopObj(actor)}
+                                    {#if "bossSrc" in bishopData[obj.bishop]}
+                                        <Label label="Is in Boss Form?">
+                                            <Toggle label="Is in Boss Form?" bind:enabled={obj.isBoss} oninput={updateBishopIsBoss} />
+                                        </Label>
+                                    {/if}
+            
+                                    <Label label="Is Purged?">
+                                        <Toggle label="Is Purged?" bind:enabled={obj.isPurged} oninput={(isPurged) => actor.isPurged = isPurged} />
+                                    </Label>
+            
+                                    {#if obj.bishop === "Spider"}
+                                        <Label label="Is Bandaged?">
+                                            <Toggle label="Is Bandaged?" bind:enabled={obj.isBandaged!} oninput={(isBandaged) => actor.isBandaged = isBandaged} />
+                                        </Label>
+                                    {/if}
+                                {:else if isTOWW_Obj(obj) && isTOWW_Obj(actor)}
+                                    {#if obj.form === "Bishop"}
+                                        <Label label="Has Crown?">
+                                            <Toggle label="Has Crown?" bind:enabled={obj.hasCrown!} oninput={(hasCrown) => actor.hasCrown = hasCrown} />
+                                        </Label>
+            
+                                        <Label label="Has Chains?">
+                                            <Toggle label="Has Chains?" bind:enabled={obj.hasChains!} oninput={(hasChains) => actor.hasChains = hasChains} />
+                                        </Label>
+                                    {:else if obj.form === "Boss"}
+                                        <Label label="Has Crown?">
+                                            <Toggle label="Has Crown?" bind:enabled={obj.hasCrown!} oninput={(hasCrown) => actor.hasCrown = hasCrown} />
+                                        </Label>
+                                    {:else if obj.form === "Mega_Boss"}
+                                        <Label label="Number of Missing Eyes">
+                                            <Slider class="ml-4" label="Number of Missing Eyes" bind:value={obj.eyeState!} min={0} max={3} step={1} oninput={(eyeState) => actor.eyeState = eyeState} />
+                                        </Label>
+                                    {:else if obj.form === "Eyeball"}
+                                        <Label label="Is Injured?">
+                                            <Toggle label="Is Injured?" bind:enabled={obj.isInjured!} oninput={(isInjured) => actor.isInjured = isInjured} />
+                                        </Label>
+                                    {/if}
+                                {:else if isMiniBossObj(obj) && isMiniBossObj(actor)}
+                                    {#if miniBossData[obj.miniBoss].skins.length > 1}
+                                        <Label label="Body Part Number">
+                                            <Slider class="ml-4" label="Body Part Number" value={obj.stage + 1} min={1} max={miniBossData[obj.miniBoss].skins.length} step={1} oninput={updateMiniBossStage} />
+                                        </Label>
+                                    {/if}
+
+                                    <Label label="Is Upgraded?">
+                                        <Toggle label="Is Upgraded?" bind:enabled={obj.isUpgraded} oninput={(isUpgraded) => actor.isUpgraded = isUpgraded} />
+                                    </Label>
+            
+                                    {#if ["backSkins", "backUpgradedSkins"].every((key) => key in miniBossData[obj.miniBoss])}
+                                        <Label label="Is Facing the Back?">
+                                            <Toggle label="Is Facing the Back?" bind:enabled={obj.isBackFacing!} oninput={(isBackFacing) => actor.isBackFacing = isBackFacing} />
+                                        </Label>
+                                    {/if}
+                                {:else if isWitnessObj(obj) && isWitnessObj(actor)}
+                                    <Label label="Is Upgraded?">
+                                        <Toggle label="Is Upgraded?" bind:enabled={obj.isUpgraded} oninput={(isUpgraded) => actor.isUpgraded = isUpgraded} />
+                                    </Label>
+            
+                                    <Label label="Is Purged?">
+                                        <Toggle label="Is Purged?" bind:enabled={obj.isPurged} oninput={(isPurged) => actor.isPurged = isPurged} />
                                     </Label>
                                 {/if}
-                            {:else if isWitnessObj(obj) && isWitnessObj(actor)}
-                                <Label label="Is Upgraded?">
-                                    <Toggle label="Is Upgraded?" bind:enabled={obj.isUpgraded} oninput={(isUpgraded) => actor.isUpgraded = isUpgraded} />
-                                </Label>
-        
-                                <Label label="Is Purged?">
-                                    <Toggle label="Is Purged?" bind:enabled={obj.isPurged} oninput={(isPurged) => actor.isPurged = isPurged} />
-                                </Label>
-                            {/if}
+                            </div>
                         </div>
-                    </div>
+                    {/if}
 
                     <div class="flex flex-col gap-6 items-center mx-8">
                         <LabelTitle title="Positioning" />

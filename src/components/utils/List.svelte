@@ -88,6 +88,6 @@
     onDestroy(() => abortController.abort());
 </script>
 
-<div bind:this={container} class={twMerge("flex", isHorizontal ? "flex-row" : "flex-col", className)} aria-label={label} {onfocusin} onfocusout={({ relatedTarget }) => !relatedTarget && (focusIdx = -1)}>
+<div bind:this={container} class={twMerge("flex outline-none", isHorizontal ? "flex-row" : "flex-col", className)} aria-label={label} {onfocusin} onfocusout={({ relatedTarget }) => !relatedTarget && (focusIdx = -1)}>
     {@render children?.()}
 </div>

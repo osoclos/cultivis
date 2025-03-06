@@ -1,16 +1,17 @@
-import { BISHOP_IDS, TOWW_IDS, type BishopId, type ClothingId, type FollowerId, type TOWW_Id, type PlayerCreatureId, type PlayerFleeceId, MINI_BOSS_IDS, type MiniBossId, type WitnessId, type SoldierId } from "../data/types";
+import { BISHOP_IDS, TOWW_IDS, type BishopId, type ClothingId, type FollowerId, type TOWW_Id, type PlayerCreatureId, type PlayerFleeceId, MINI_BOSS_IDS, type MiniBossId, type WitnessId, type SoldierId, HERETIC_IDS, type HereticId } from "../data/types";
 
-import { Bishop, Follower, TOWW, Player, MiniBoss, Witness, Soldier } from "./characters";
+import { Bishop, Follower, TOWW, Player, MiniBoss, Witness, Soldier, Heretic } from "./characters";
 import { AssetManager } from "./managers";
 
 import { Actor } from "./Actor";
-import { bishopData, towwData, miniBossData } from "../data/files";
+import { bishopData, towwData, miniBossData, hereticData, witnessData, soldierData, followerData, playerData } from "../data/files";
 
 export class Factory {
     private _follower?: Follower;
     private _player?: Player;
 
     private _soldier?: Soldier;
+    private _heretics: Map<HereticId, Heretic>;
 
     private _bishops: Map<BishopId, Bishop>;
     private _bishopBosses: Map<BishopId, Bishop>;
@@ -21,6 +22,8 @@ export class Factory {
     private _witness?: Witness;
 
     private constructor(private assetManager: AssetManager) {
+        this._heretics = new Map();
+
         this._bishops = new Map();
         this._bishopBosses = new Map();
 
@@ -38,16 +41,20 @@ export class Factory {
         return factory;
     }
 
-    get hasLoadedFollower(): boolean {
+    hasLoadedFollower(): boolean {
         return !!this._follower;
     }
 
-    get hasLoadedPlayer(): boolean {
+    hasLoadedPlayer(): boolean {
         return !!this._player;
     }
 
-    get hasLoadedSoldier(): boolean {
+    hasLoadedSoldier(): boolean {
         return !!this._soldier;
+    }
+
+    hasLoadedHeretic(heretic: HereticId): boolean {
+        return this._heretics.has(heretic);
     }
 
     hasLoadedBishop(bishop: BishopId, isBoss: boolean): boolean {
@@ -62,7 +69,7 @@ export class Factory {
         return this._miniBosses.has(miniBoss);
     }
 
-    get hasLoadedWitness(): boolean {
+    hasLoadedWitness(): boolean {
         return !!this._witness;
     }
 
@@ -85,29 +92,28 @@ export class Factory {
         for (const actor of actors) {
             switch (actor) {
                 case Follower: {
-                    if (this.hasLoadedFollower) break;
-                    
-                    const [skeleton, animationState] = await this.fetchData([Follower.TEXTURE_FILENAME], Follower.ATLAS_FILENAME, Follower.SKELETON_FILENAME);
-                    this._follower = new Follower(skeleton, animationState);
+                    if (this.hasLoadedFollower()) break;
+                    await this.loadFollower();
 
                     break;
                 }
 
                 case Player: {
-                    if (this.hasLoadedPlayer) break;
-
-                    const [skeleton, animationState] = await this.fetchData([Player.TEXTURE_FILENAME], Player.ATLAS_FILENAME, Player.SKELETON_FILENAME);
-                    this._player = new Player(skeleton, animationState);
+                    if (this.hasLoadedPlayer()) break;
+                    await this.loadPlayer();
 
                     break;
                 }
 
                 case Soldier: {
-                    if (this.hasLoadedSoldier) break;
+                    if (this.hasLoadedSoldier()) break;
+                    await this.loadSoldier();
 
-                    const [skeleton, animationState] = await this.fetchData([Soldier.TEXTURE_FILENAME], Soldier.ATLAS_FILENAME, Soldier.SKELETON_FILENAME);
-                    this._soldier = new Soldier(skeleton, animationState);
+                    break;
+                }
 
+                case Heretic: {
+                    await Promise.all(HERETIC_IDS.filter((id) => !this.hasLoadedHeretic(id)).map(this.loadHeretic.bind(this)));
                     break;
                 }
 
@@ -127,10 +133,8 @@ export class Factory {
                 }
 
                 case Witness: {
-                    if (this.hasLoadedWitness) return;
-
-                    const [skeleton, animationState] = await this.fetchData([Witness.TEXTURE_FILENAME], Witness.ATLAS_FILENAME, Witness.SKELETON_FILENAME);
-                    this._witness = new Witness(skeleton, animationState);
+                    if (this.hasLoadedWitness()) return;
+                    await this.loadWitness();
 
                     break;
                 }
@@ -138,35 +142,74 @@ export class Factory {
         }
     }
 
-    async loadBishop(id: BishopId, isBoss: boolean) {
-        const data = bishopData[id];
-        const loadBoss = isBoss && "bossSrc" in data;
+    async loadFollower() {
+        const [skeleton, animationState] = await this.fetchData([Follower.TEXTURE_FILENAME], Follower.ATLAS_FILENAME, Follower.SKELETON_FILENAME);
+        this._follower = new Follower(skeleton, animationState);
+    }
 
-        const { textures, atlas, skeleton: skeletonPath } = data[loadBoss ? "bossSrc" : "src"]!;
+    async loadPlayer() {
+        const [skeleton, animationState] = await this.fetchData([Player.TEXTURE_FILENAME], Player.ATLAS_FILENAME, Player.SKELETON_FILENAME);
+        this._player = new Player(skeleton, animationState);
+    }
+
+    async loadSoldier() {
+        const [skeleton, animationState] = await this.fetchData([Soldier.TEXTURE_FILENAME], Soldier.ATLAS_FILENAME, Soldier.SKELETON_FILENAME);
+        this._soldier = new Soldier(skeleton, animationState);
+    }
+
+    async loadHeretic(id: HereticId) {
+        const data = hereticData[id];
+        const { name, src } = data;
+
+        const { textures, atlas, skeleton: skeletonPath } = src;
         const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
 
-        const bishop = new Bishop(skeleton, animationState, undefined, bishopData[id].name, id, isBoss);
+        const heretic = new Heretic(skeleton, animationState, undefined, name, id);
+        this._heretics.set(id, heretic);
+    }
+
+    async loadBishop(id: BishopId, isBoss: boolean) {
+        const data = bishopData[id];
+        const { name, src, bossSrc } = data;
+
+        const loadBoss = isBoss && "bossSrc" in data;
+
+        const { textures, atlas, skeleton: skeletonPath } = loadBoss ? bossSrc! : src;
+        const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
+
+        const bishop = new Bishop(skeleton, animationState, undefined, name, id, isBoss);
         (loadBoss ? this._bishopBosses : this._bishops).set(id, bishop);
     }
     
     async loadTOWW(form: TOWW_Id) {
-        const { textures, atlas, skeleton: skeletonPath } = towwData[form].src;
+        const data = towwData[form];
+        const { name, src } = data;
+
+        const { textures, atlas, skeleton: skeletonPath } = src;
         const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
 
-        const toww = new TOWW(skeleton, animationState, undefined, towwData[form].name, form);
+        const toww = new TOWW(skeleton, animationState, undefined, name, form);
         this._TOWWs.set(form, toww);
     }
 
-    async loadMiniBoss(miniBoss: MiniBossId) {
-        const { textures, atlas, skeleton: skeletonPath } = miniBossData[miniBoss].src;
+    async loadMiniBoss(id: MiniBossId) {
+        const data = miniBossData[id];
+        const { name, src } = data;
+
+        const { textures, atlas, skeleton: skeletonPath } = src;
         const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
 
-        const boss = new MiniBoss(skeleton, animationState, undefined, miniBossData[miniBoss].name, miniBoss, false);
-        this._miniBosses.set(miniBoss, boss);
+        const miniBoss = new MiniBoss(skeleton, animationState, undefined, name, id, false);
+        this._miniBosses.set(id, miniBoss);
+    }
+
+    async loadWitness() {
+        const [skeleton, animationState] = await this.fetchData([Witness.TEXTURE_FILENAME], Witness.ATLAS_FILENAME, Witness.SKELETON_FILENAME);
+        this._witness = new Witness(skeleton, animationState);
     }
 
     async loadAll() {
-        await this.load(Follower, Player, Soldier, Bishop, TOWW, MiniBoss, Witness);
+        await this.load(Follower, Player, Soldier, Heretic, Bishop, TOWW, MiniBoss, Witness);
     }
 
     async custom(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string, id?: string, label: string = "Custom Actor") {
@@ -174,38 +217,43 @@ export class Factory {
         return new Actor(skeleton, animationState, id, label);
     }
 
-    follower(form: FollowerId, clothing: ClothingId, id?: string, label?: string) {
-        if (!this.hasLoadedFollower) throw new Error("Follower has not been loaded.");
+    follower(form: FollowerId, clothing: ClothingId, id?: string, label: string = followerData.forms[form].name) {
+        if (!this.hasLoadedFollower()) throw new Error("Follower has not been loaded.");
         return this._follower!.clone(id, label, form, clothing);
     }
 
-    player(creature: PlayerCreatureId, fleece: PlayerFleeceId, id?: string, label?: string) {
-        if (!this.hasLoadedPlayer) throw new Error("Player has not been loaded.");
+    player(creature: PlayerCreatureId, fleece: PlayerFleeceId, id?: string, label: string = playerData.creatures[creature].name) {
+        if (!this.hasLoadedPlayer()) throw new Error("Player has not been loaded.");
         return this._player!.clone(id, label, creature, fleece);
     }
 
-    soldier(soldierId: SoldierId, id?: string, label?: string) {
-        if (!this.hasLoadedSoldier) throw new Error("Soldier has not been loaded.");
-        return this._soldier!.clone(id, label, soldierId);
+    soldier(soldier: SoldierId, id?: string, label: string = soldierData[soldier].name) {
+        if (!this.hasLoadedSoldier()) throw new Error("Soldier has not been loaded.");
+        return this._soldier!.clone(id, label, soldier);
     }
 
-    bishop(bishopId: BishopId, isBoss: boolean, id?: string, label?: string) {
-        if (!this.hasLoadedBishop(bishopId, isBoss)) throw new Error(`Bishop${isBoss ? "Boss" : ""} ${bishopId} has not been loaded.`);
-        return (isBoss && "bossSrc" in bishopData[bishopId] ? this._bishopBosses : this._bishops).get(bishopId)!.clone(id, label);
+    heretic(heretic: HereticId, id?: string, label: string = hereticData[heretic].name) {
+        if (!this.hasLoadedHeretic(heretic)) throw new Error(`Heretic ${heretic} has not been loaded.`);
+        return this._heretics.get(heretic)!.clone(id, label);
     }
 
-    TOWW(form: TOWW_Id, id?: string, label?: string) {
+    bishop(bishop: BishopId, isBoss: boolean, id?: string, label: string = bishopData[bishop].name) {
+        if (!this.hasLoadedBishop(bishop, isBoss)) throw new Error(`Bishop ${isBoss ? "Boss" : ""} ${bishop} has not been loaded.`);
+        return (isBoss && "bossSrc" in bishopData[bishop] ? this._bishopBosses : this._bishops).get(bishop)!.clone(id, label);
+    }
+
+    TOWW(form: TOWW_Id, id?: string, label: string = towwData[form].name) {
         if (!this.hasLoadedTOWW(form)) throw new Error(`TOWW ${form} has not been loaded.`);
         return this._TOWWs.get(form)!.clone(id, label);
     }
 
-    miniBoss(miniBoss: MiniBossId, isUpgraded?: boolean, id?: string, label?: string) {
+    miniBoss(miniBoss: MiniBossId, isUpgraded?: boolean, id?: string, label: string = miniBossData[miniBoss].name) {
         if (!this.hasLoadedMiniBoss(miniBoss)) throw new Error(`Mini Boss ${miniBoss} has not been loaded.`);
         return this._miniBosses.get(miniBoss)!.clone(id, label, isUpgraded);
     }
 
-    witness(witness: WitnessId, isUpgraded?: boolean, id?: string, label?: string) {
-        if (!this.hasLoadedWitness) throw new Error(`Witness has not been loaded.`);
+    witness(witness: WitnessId, isUpgraded?: boolean, id?: string, label: string = witnessData[witness].name) {
+        if (!this.hasLoadedWitness()) throw new Error(`Witness has not been loaded.`);
         return this._witness!.clone(id, label, witness, isUpgraded);
     }
 }

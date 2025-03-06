@@ -159,11 +159,11 @@
             "skeleton": "Spiders.skel"
         },
 
-        "skins": [["Miniboss_Spider", "Miniboss_Spider_Body", "Miniboss_Spider_Head"]],
-        "backSkins": [["Miniboss_Spider_Back", "Miniboss_Spider_Body_Back", "Miniboss_Spider_Head_Back"]],
+        "skins": [["Miniboss_Spider"]],
+        "backSkins": [["Miniboss_Spider_Back"]],
 
-        "upgradedSkins": [["Miniboss_Spider2", "Miniboss_Spider_Body", "Miniboss_Spider_Head"]],
-        "backUpgradedSkins": [["Miniboss_Spider_Back2", "Miniboss_Spider_Body_Back", "Miniboss_Spider_Head_Back"]],
+        "upgradedSkins": [["Miniboss_Spider2"]],
+        "backUpgradedSkins": [["Miniboss_Spider_Back2"]],
 
         "animation": "idle"
     },

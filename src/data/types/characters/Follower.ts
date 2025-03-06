@@ -105,28 +105,33 @@ export interface ColorSetItem {
     slots: string[];
 }
 
-const followerIdsByCategory = <Record<FollowerCategoryName, FollowerId[]>>{};
+let tempArr: any[];
+
+tempArr = Array(FOLLOWER_CATEGORY_LENGTH);
 for (const id of FOLLOWER_IDS) {
     const { category = 0 } = followerData.forms[id] ?? {};
-    const categoryName = FOLLOWER_CATEGORIES[category];
+    tempArr[category] ? tempArr[category].push(id) : tempArr[category] = [id];
+}
 
-    categoryName in followerIdsByCategory ? followerIdsByCategory[categoryName].push(id) : followerIdsByCategory[categoryName] = [id];
+const followerIdsByCategory = <Record<FollowerCategoryName, FollowerId[]>>{};
+for (const [i, ids] of tempArr.entries()) followerIdsByCategory[FOLLOWER_CATEGORIES[i]] = ids;
+
+tempArr = Array(CLOTHING_CATEGORY_LENGTH);
+for (const id of CLOTHING_IDS) {
+    const { category = 0 } = followerData.clothing[id] ?? {};
+    tempArr[category] ? tempArr[category].push(id) : tempArr[category] = [id];
 }
 
 const clothingIdsByCategory = <Record<ClothingCategoryName, ClothingId[]>>{};
-for (const id of CLOTHING_IDS) {
-    const { category = 0 } = followerData.clothing[id] ?? {};
-    const categoryName = CLOTHING_CATEGORIES[category];
+for (const [i, ids] of tempArr.entries()) clothingIdsByCategory[CLOTHING_CATEGORIES[i]] = ids;
 
-    categoryName in clothingIdsByCategory ? clothingIdsByCategory[categoryName].push(id) : clothingIdsByCategory[categoryName] = [id];
+tempArr = Array(NECKLACE_CATEGORY_LENGTH);
+for (const id of NECKLACE_IDS) {
+    const { category = 0 } = followerData.necklaces[id] ?? {};
+    tempArr[category] ? tempArr[category].push(id) : tempArr[category] = [id];
 }
 
 const necklaceIdsByCategory = <Record<NecklaceCategoryName, NecklaceId[]>>{};
-for (const id of NECKLACE_IDS) {
-    const { category } = followerData.necklaces[id];
-    const categoryName = NECKLACE_CATEGORIES[category];
-
-    categoryName in necklaceIdsByCategory ? necklaceIdsByCategory[categoryName].push(id) : necklaceIdsByCategory[categoryName] = [id];
-}
+for (const [i, ids] of tempArr.entries()) necklaceIdsByCategory[NECKLACE_CATEGORIES[i]] = ids;
 
 export { followerIdsByCategory, clothingIdsByCategory, necklaceIdsByCategory };
