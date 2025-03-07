@@ -3,7 +3,7 @@
     import { twMerge } from "tailwind-merge";
 
     import { ArrowSelection, BannerButton, Dialog, Header, Label, LabelTitle, NavTip, Notice, ProgressRing } from "./components/base";
-    import { SceneCanvas, Categories, LoadingThrobber, LoadingSymbol } from "./components/misc";
+    import { SceneCanvas, Categories, LoadingThrobber, LoadingSymbol, CloudShaders } from "./components/misc";
     import { List } from "./components/utils";
     
     import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, TOWW_MENU_NAME, TOWW_Menus, MINI_BOSS_MENU_NAME, MiniBossMenu, WITNESS_MENU_NAME, WitnessMenu, SoldierMenus, SOLDIER_MENU_NAME } from "./components/characters";
@@ -38,6 +38,8 @@
 
     let isOnPhone: boolean = $state(false);
     let isMobile: boolean = $state(false);
+
+    let isFullScreen: boolean = $state(false);
 
     let loadingState: number = $state(-1);
     const loadingText: string = $derived(LOADING_TEXTS[MoreMath.clamp(loadingState, 0, LOADING_TEXTS.length - 1)]);
@@ -102,7 +104,9 @@
     const abortController = new AbortController();
     const resizer = new ResizeObserver(() => {
         isOnPhone = matchMedia("(max-width: 40rem)").matches;
+
         isMobile = matchMedia("(max-width: 64rem)").matches;
+        isFullScreen = matchMedia("(max-width: 80rem)").matches;
     });
 
     onMount(async () => {
@@ -498,8 +502,8 @@
 {/if}
 
 {#if hasUserCompliedToTOS}
-    <div class="aspect-square {hasFinishedLoading ? "grid" : "hidden"} lg:order-1 place-items-center px-4 w-full lg:w-[calc(100dvw_-40rem)] h-[calc(100dvh_-_74px)] lg:h-dvh">
-        <SceneCanvas class="inline-block max-h-[calc(100dvh_-_106px)]" disableManipulation={fitScene} manipulationIdx={actorIdx} onshift={manipulateActor} onscroll={manipulateActor} onzoom={manipulateActor} onpinch={manipulateActor} style="aspect-ratio: {size.x} / {size.y}; max-width: calc((100dvh - 106px) * {size.x} / {size.y})" onload={onCanvasLoad} />
+    <div class="aspect-square {hasFinishedLoading ? "grid" : "hidden"} lg:order-1 xl:justify-end place-items-center px-4 w-full lg:w-[calc(100dvw_-40rem)] h-[calc(100dvh_-_74px)] lg:h-dvh">
+        <SceneCanvas class="inline-block xl:w-[calc(100dvw_-50rem)] max-h-[calc(100dvh_-_106px)]" disableManipulation={fitScene} manipulationIdx={actorIdx} onshift={manipulateActor} onscroll={manipulateActor} onzoom={manipulateActor} onpinch={manipulateActor} style="aspect-ratio: {size.x} / {size.y}; max-width: calc((100dvh - 106px) * {size.x} / {size.y})" onload={onCanvasLoad} />
     </div>
 
     <div class={["overflow-hidden lg:h-dvh bg-secondary", { "hidden": !hasFinishedLoading }]}>
@@ -508,13 +512,13 @@
             {#if categoryIdx === 0}
                 <CharacterList bind:actors bind:loadingActor enableKeyInput={actorIdx < 0} onadd={addActor} onremove={(indexes) => [...indexes].sort((a, b) => b - a).forEach((i) => removeActor(scene.actors[i], i))} onclone={(indexes) => indexes.forEach((i) => cloneActor(scene.actors[i]))} onactorclick={selectActor} />
 
-                <div class={["lg:absolute z-90 lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
+                <div class={["lg:absolute z-90 lg:top-0 w-full lg:w-160 lg:h-full bg-secondary transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                     {#if actor && actorObj}
                         <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectMenu} onexit={exitMenu} onchange={swapActor} />
                     {/if}
                 </div>
 
-                <div class={["lg:absolute z-90 lg:top-0 w-full lg:w-160 lg:h-full bg-black transition-[left,_filter] motion-reduce:transition-opacity duration-500", !showActorMenu ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
+                <div class={["lg:absolute z-90 lg:top-0 w-full lg:w-160 lg:h-full bg-secondary transition-[left,_filter] motion-reduce:transition-opacity duration-500", !showActorMenu ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
                     {#if actor && actorObj && actorMenu}
                         {#if isFollowerObj(actorObj) && isStrFollowerMenuName(actorMenu)}
                             <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={actorMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
@@ -584,10 +588,12 @@
                 <SpecialThanks />
             {/if}
         </div>
+
+        <CloudShaders bind:disabled={isFullScreen} />
     </div>
 {/if}
 
-<div class="not-lg:hidden flex fixed bottom-0 left-0 z-90 flex-row gap-8 p-6 pt-4 w-160 bg-black">
+<div class="not-lg:hidden flex fixed bottom-0 left-0 z-90 flex-row gap-8 p-6 pt-4 max-w-160 bg-black">
     <NavTip key="E" code="KeyE" label="Accept" />
     
     {#if categoryIdx === 0 && actorIdx >= 0}
