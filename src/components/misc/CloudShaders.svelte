@@ -218,4 +218,4 @@
     });
 </script>
 
-<canvas bind:this={canvas} class="{disabled ? "hidden" : ""} absolute top-0 left-160 w-60 h-full min-h-1 pointer-events-none"></canvas>
+<canvas bind:this={canvas} class="{disabled ? "hidden" : ""} absolute top-0 left-160 w-60 h-full min-h-1 pointer-events-none touch-none"></canvas>
