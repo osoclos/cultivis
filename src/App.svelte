@@ -502,7 +502,7 @@
 {/if}
 
 {#if hasUserCompliedToTOS}
-    <div class="aspect-square {hasFinishedLoading ? "grid" : "hidden"} lg:order-1 xl:justify-end place-items-center px-4 w-full lg:w-[calc(100dvw_-40rem)] h-[calc(100dvh_-_74px)] lg:h-dvh">
+    <div class="aspect-square {hasFinishedLoading ? "grid" : "hidden"} lg:order-1 place-items-center px-4 w-full lg:w-[calc(100dvw_-40rem)] h-[calc(100dvh_-_74px)] lg:h-dvh">
         <SceneCanvas class="inline-block xl:w-[calc(100dvw_-50rem)] max-h-[calc(100dvh_-_106px)]" disableManipulation={fitScene} manipulationIdx={actorIdx} onshift={manipulateActor} onscroll={manipulateActor} onzoom={manipulateActor} onpinch={manipulateActor} style="aspect-ratio: {size.x} / {size.y}; max-width: calc((100dvh - 106px) * {size.x} / {size.y})" onload={onCanvasLoad} />
     </div>
 
