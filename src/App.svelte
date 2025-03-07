@@ -153,11 +153,11 @@
         exporter?.dispose();
     });
 
-    async function acknowledgeTerms() {
-        localStorage.setItem(NewsManager.TERMS_LOCAL_STORAGE_NAME, `${await newsManager.getTermsUnix()}`);
+    function acknowledgeTerms() {
+        if (hasUserCompliedToTOS) return;
         hasUserCompliedToTOS = true;
-
-        if (scene instanceof Scene) await init();
+        
+        if (scene instanceof Scene) init();
     }
 
     async function onCanvasLoad(canvasScene: Scene, canvasFactory: Factory) {
@@ -169,6 +169,8 @@
     }
 
     async function init() {
+        hasUserCompliedToTOS && localStorage.setItem(NewsManager.TERMS_LOCAL_STORAGE_NAME, `${await newsManager.getTermsUnix()}`);
+
         loadingState = LOADING_STATES.indexOf("LoadingAssets");
 
         await factory.load(Follower, Player);
@@ -479,7 +481,7 @@
     <LoadingSymbol {isMobile} />
     <div class="flex absolute {isMobile ? "bottom-4 left-6" : "bottom-10 left-16"} flex-row gap-6 items-center">
         <LoadingThrobber percent={((loadingState + 1) / LOADING_STATES.length) * 100} {isOnPhone} {isMobile} />
-        <p class={["text-highlight", isMobile ? "text-lg" : "text-2xl",{ "hidden": loadingState < 0 }]}>{loadingText}... {MoreMath.clamp(loadingState + 1, 1, LOADING_STATES.length)}/{LOADING_STATES.length}</p>
+        <p class={["text-highlight", isMobile ? "text-lg" : "text-2xl", {"hidden": loadingState < 0 }]}>{loadingText}... {MoreMath.clamp(loadingState + 1, 1, LOADING_STATES.length)}/{LOADING_STATES.length}</p>
     </div>
 </div>
 
@@ -502,8 +504,8 @@
 {/if}
 
 {#if hasUserCompliedToTOS}
-    <div class="aspect-square {hasFinishedLoading ? "grid" : "hidden"} lg:order-1 place-items-center px-4 w-full lg:w-[calc(100dvw_-40rem)] h-[calc(100dvh_-_74px)] lg:h-dvh">
-        <SceneCanvas class="inline-block xl:w-[calc(100dvw_-50rem)] max-h-[calc(100dvh_-_106px)]" disableManipulation={fitScene} manipulationIdx={actorIdx} onshift={manipulateActor} onscroll={manipulateActor} onzoom={manipulateActor} onpinch={manipulateActor} style="aspect-ratio: {size.x} / {size.y}; max-width: calc((100dvh - 106px) * {size.x} / {size.y})" onload={onCanvasLoad} />
+    <div class="aspect-square {hasFinishedLoading ? "grid" : "hidden"} lg:order-1 place-items-center px-4 xl:ml-32 w-full lg:w-[calc(100dvw_-40rem)] xl:w-[calc(100dvw_-48rem)] h-[calc(100dvh_-_74px)] lg:h-dvh">
+        <SceneCanvas class="inline-block max-h-[calc(100dvh_-_106px)]" disableManipulation={fitScene} manipulationIdx={actorIdx} onshift={manipulateActor} onscroll={manipulateActor} onzoom={manipulateActor} onpinch={manipulateActor} style="aspect-ratio: {size.x} / {size.y}; max-width: calc((100dvh - 106px) * {size.x} / {size.y})" onload={onCanvasLoad} />
     </div>
 
     <div class={["overflow-hidden lg:h-dvh bg-secondary", { "hidden": !hasFinishedLoading }]}>
