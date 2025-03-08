@@ -432,7 +432,7 @@
 
     function updateSceneFromChanges() {
         fitScene || cropScene ? setCroppedScene() : setSceneSize();
-        trimLongest && (duration = MoreMath.round(Math.max(...scene.actors.map(({ duration }) => duration), 0), 2))
+        if (trimLongest) duration = MoreMath.round(Math.max(...scene.actors.map(({ duration }) => duration), 0), 2);
     }
 
     function setSceneSize() {
@@ -455,14 +455,14 @@
 
     function setCroppedScene() {
         scene.size.copyObj(size);
+        scene.resetCamera();
 
-        if (cropScene) {
-            Vector.ceil(scene.sceneSize).cloneObj(size);
-            scene.size.copyObj(size);
+        if (!cropScene) return;
+        fitScene = true;
 
-            fitScene = true;
-        }
-        
+        Vector.ceil(scene.sceneSize).cloneObj(size);
+
+        scene.size.copyObj(size);
         scene.resetCamera();
     }
 
