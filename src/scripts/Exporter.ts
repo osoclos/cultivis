@@ -79,6 +79,8 @@ export class Exporter {
                         this.gifManager.addFrame(indices, palette, width, height, delay, +useAccurateColors - 1);
                         break;
                     }
+
+                    case format === "apng" && isDataAPNG_Data(data): break;
                 }
 
                 onProgress(i / frames.length / 2 + 0.5, EXPORTING_STATES.indexOf("EncodeFrames"));
