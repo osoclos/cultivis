@@ -37,5 +37,7 @@
         <Label label="Delay Per Frame">
             <NumberInput label="Delay Per Frame" bind:value={data.delay} unit="ms" max={Infinity} />
         </Label>
+
+        <Notice label="A known issue is found where a few visual features and functions are broken after exporting an .APNG image. A fix is in the works right now." />
     {/if}
 </div>
