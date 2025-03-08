@@ -3,12 +3,12 @@
     import { SpritesheetImage } from "../utils";
 
     const NARINDER_FRAME_LENGTHS: number[] = [59, 121];
-    const NARINDER_FRAME_WIDTH: number = 235;
-    const NARINDER_FRAME_HEIGHT: number = 244;
+    const NARINDER_FRAME_WIDTH: number = 77;
+    const NARINDER_FRAME_HEIGHT: number = 80;
 
     const LAMB_FRAME_LENGTHS: number[] = [181, 110];
-    const LAMB_FRAME_WIDTH: number = 258;
-    const LAMB_FRAME_HEIGHT: number = 303;
+    const LAMB_FRAME_WIDTH: number = 86;
+    const LAMB_FRAME_HEIGHT: number = 101;
 
     const LAUGH_SOUND_FRAME_INDEX_START: number = 48;
 
@@ -59,6 +59,6 @@
 </script>
 
 <button class="relative ml-12 w-38 h-24 outline-none" {onclick}>
-    <SpritesheetImage src="/static/assets/credits/narinder-petting.png" label={isPettingNarinder ? "Narinder Being Pet" : "Narinder Idling"} class="absolute top-0 left-0 scale-125" x={narinderCount % NARINDER_FRAME_LENGTHS[+isPettingNarinder]} y={+isPettingNarinder}  width={78.3} height={83} tileWidth={NARINDER_FRAME_WIDTH} tileHeight={NARINDER_FRAME_HEIGHT} />
-    <SpritesheetImage src="/static/assets/credits/lamb-petting.png" label={isLambPetting ? "Lamb Petting" : "Lamb Idling"} class="absolute -top-6 right-0 scale-125" x={lambCount % LAMB_FRAME_LENGTHS[+isLambPetting]} y={+isLambPetting} width={86} height={101} tileWidth={LAMB_FRAME_WIDTH} tileHeight={LAMB_FRAME_HEIGHT} />
+    <SpritesheetImage src="/static/assets/credits/narinder-petting.png" label={isPettingNarinder ? "Narinder Being Pet" : "Narinder Idling"} class="absolute top-0 left-0 scale-125" x={narinderCount % NARINDER_FRAME_LENGTHS[+isPettingNarinder]} y={+isPettingNarinder} tileWidth={NARINDER_FRAME_WIDTH} tileHeight={NARINDER_FRAME_HEIGHT} />
+    <SpritesheetImage src="/static/assets/credits/lamb-petting.png" label={isLambPetting ? "Lamb Petting" : "Lamb Idling"} class="absolute -top-7 right-0 scale-125" x={lambCount % LAMB_FRAME_LENGTHS[+isLambPetting]} y={+isLambPetting} tileWidth={LAMB_FRAME_WIDTH} tileHeight={LAMB_FRAME_HEIGHT} />
 </button>
