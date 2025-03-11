@@ -87,7 +87,7 @@
 
         "apng": {
             type: "apng",
-            delay: 1000 / 60
+            fps: 60
         }
     });
     

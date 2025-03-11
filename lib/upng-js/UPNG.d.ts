@@ -1,1 +1,0 @@
-declare module UPNG { export { decode, encode, encodeLL, quantize, toRGBA8 } from "upng-js" };

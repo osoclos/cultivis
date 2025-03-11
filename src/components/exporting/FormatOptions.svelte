@@ -34,10 +34,12 @@
         </div>
         
     {:else if format === "apng" && isDataAPNG_Data(data)}
-        <Label label="Delay Per Frame">
-            <NumberInput label="Delay Per Frame" bind:value={data.delay} unit="ms" max={Infinity} />
+        <Label label="Frames Per Second">
+            <NumberInput label="Frames Per Second" bind:value={data.fps} unit="fps" min={1} step={1} max={Infinity} />
         </Label>
 
-        <Notice label="A known issue is found where a few visual features and functions are broken after exporting an .APNG image. A fix is in the works right now." />
+        {#if data.fps > 60}
+            <Notice label="Some viewers will not display the scene at such a high framerate. Make sure that your viewer is compatible with high-framerate animations." />
+        {/if}
     {/if}
 </div>

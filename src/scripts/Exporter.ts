@@ -1,14 +1,17 @@
+// NEW ENCODER AND DECODER THAT IS TOTALLY MADE BY ME YIPEEEEEEEE
+import { APNG, Frame } from "apng-fest";
+
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
 
 import { isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, isWitnessObj, isMiniBossObj, isSoldierObj, isHereticObj } from "./characters";
-import { APNG_Manager, GIF_Manager } from "./managers";
+import { GIF_Manager } from "./managers";
 
 import { Vector } from "../utils";
 
 export class Exporter {
     static readonly ASSETS_ROOT: string = "assets";
 
-    private constructor(public canvas: HTMLCanvasElement | OffscreenCanvas, public gl: WebGLRenderingContext, public scene: Scene, public factory: Factory, private gifManager: GIF_Manager, private apngManager: APNG_Manager) {}
+    private constructor(public canvas: HTMLCanvasElement | OffscreenCanvas, public gl: WebGLRenderingContext, public scene: Scene, public factory: Factory, private gifManager: GIF_Manager, private apng: APNG) {}
     static async create(scene?: Scene, initFactory?: Factory) {
         if (!scene) {
             const canvas = new OffscreenCanvas(300, 150);
@@ -23,20 +26,23 @@ export class Exporter {
         const factory = initFactory ?? await Factory.create(gl, this.ASSETS_ROOT);
 
         const gifManager = new GIF_Manager();
-        const apngManager = new APNG_Manager();
+        const apng = await APNG.create(1, 1);
 
-        return new Exporter(canvas, gl, scene, factory, gifManager, apngManager);
+        return new Exporter(canvas, gl, scene, factory, gifManager, apng);
     }
 
     async exportScene(obj: SceneObject, duration: number, size: Vector, format: FormatId, data: FormatData, onProgress: (progress: number, state: number) => void = () => {}) {
         const [width, height] = size;
-        const { delay } = data;
 
         this.resetScene();
         await this.setupScene(obj, size);
 
         return new Promise<Uint8Array>((resolve) => {
             this.gifManager.reset();
+            this.apng.frames = [];
+
+            this.apng.width = width;
+            this.apng.height = height;
 
             const frames: Uint8Array[] = [];
             let time: number = 0;
@@ -47,13 +53,20 @@ export class Exporter {
                     return;
                 }
 
-                this.scene.render(delay / 1000);
+                const delay =
+                    isDataGIF_Data(data)
+                        ? data.delay / 1000 :
+                    isDataAPNG_Data(data) 
+                    ? 1 / data.fps
+                    : 1 / 60;
+
+                this.scene.render(delay);
 
                 const pixels = this.getPixels();
                 frames.push(pixels);
 
                 onProgress(time / duration / 2, EXPORTING_STATES.indexOf("ReadingPixels"));
-                time += delay / 1000;
+                time += delay;
                 
                 setTimeout(() => draw());
             };
@@ -61,17 +74,17 @@ export class Exporter {
             let i: number = 0;
             const encode = () => {
                 if (i >= frames.length) {
-                    const buffer = format === "gif" ? this.gifManager.end() : this.apngManager.encode(frames, width, height, delay);
+                    const buffer = format === "gif" ? this.gifManager.end() : this.apng.toBuffer();
                     resolve(buffer);
 
                     onProgress(1.0, EXPORTING_STATES.indexOf("DownloadScene"));
                     return;
                 }
 
+                const pixels = frames[i];
                 switch (true) {
                     case format === "gif" && isDataGIF_Data(data): {
-                        const pixels = frames[i];
-                        const { useAccurateColors } = data;
+                        const { delay, useAccurateColors } = data;
 
                         const palette = this.gifManager.quantizeFrame(pixels, useAccurateColors);
                         const indices = this.gifManager.mapFrameToPalette(pixels, palette, useAccurateColors);
@@ -80,7 +93,14 @@ export class Exporter {
                         break;
                     }
 
-                    case format === "apng" && isDataAPNG_Data(data): break;
+                    case format === "apng" && isDataAPNG_Data(data): {
+                        const { fps } = data;
+
+                        const frame = Frame.fromPixels(pixels.buffer, { width, height, delay: 1 / fps });
+                        this.apng.frames.push(frame);
+
+                        break;
+                    }
                 }
 
                 onProgress(i / frames.length / 2 + 0.5, EXPORTING_STATES.indexOf("EncodeFrames"));
@@ -246,14 +266,17 @@ export type ExportingState = typeof EXPORTING_STATES[number];
 
 export interface GIF_Data extends FormatData {
     type: "gif";
+
+    delay: number;
     useAccurateColors: boolean;
 }
 
-export interface APNG_Data extends FormatData { type: "apng"; }
-export interface FormatData {
-    type: FormatId;
-    delay: number;
+export interface APNG_Data extends FormatData {
+    type: "apng";
+    fps: number;
 }
+
+export interface FormatData { type: FormatId; }
 
 export function isDataGIF_Data(data: FormatData): data is GIF_Data {
     return data.type === "gif";

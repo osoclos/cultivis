@@ -17,14 +17,7 @@ const SOUNDS_FOLDER_NAME: string = "public/sounds";
 const LIB_SRC_FOLDER_NAME: string = "lib";
 const LIB_DEST_FOLDER_NAME: string = "scripts/lib";
 
-const LIB_PATHS: Record<string, string> = {
-    "spine-ts/build/spine-webgl.js": "spine-webgl.min.js",
-
-    "pako/pako.js": "pako.min.js",
-    "upng-js/UPNG.js": "UPNG.min.js",
-
-    "eruda/eruda.js": ""
-};
+const LIB_PATHS: Record<string, string> = { "spine-ts/build/spine-webgl.js": "spine-webgl.min.js" };
 
 const nonModuleImporterPlugin = (): Plugin => ({
     name: "non-module-importer",

@@ -100,7 +100,7 @@ There are also different formats that the exported animation can come in, the tw
 
 | Options | Description | Type |
 | ------- | ----------- | ---- |
-| Delay Per Frame | How long should each frame last before it moves on to the next one/loops | number |
+| Frames Per Second | How many frames should the animation display per second | integer |
 
 Once you have selected all of your desired settings, you can then click the Export Scene button and wait for the animation to generate.
 
