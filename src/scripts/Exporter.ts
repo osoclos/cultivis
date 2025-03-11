@@ -1,4 +1,4 @@
-// NEW ENCODER AND DECODER THAT IS TOTALLY MADE BY ME YIPEEEEEEEE
+// NEW ENCODER AND DECODER THAT IS TOTALLY MADE BY ME YIPEEEEEEEE (EDIT: NOOOOOOOOOOOO got bug :( MUST FIX!!!! >:( )
 import { APNG, Frame } from "apng-fest";
 
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
