@@ -1,17 +1,14 @@
-// NEW ENCODER AND DECODER THAT IS TOTALLY MADE BY ME YIPEEEEEEEE
-import { APNG, Frame } from "apng-fest";
-
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
 
 import { isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, isWitnessObj, isMiniBossObj, isSoldierObj, isHereticObj } from "./characters";
-import { GIF_Manager } from "./managers";
+import { APNG_Manager, GIF_Manager } from "./managers";
 
 import { Vector } from "../utils";
 
 export class Exporter {
     static readonly ASSETS_ROOT: string = "assets";
 
-    private constructor(public canvas: HTMLCanvasElement | OffscreenCanvas, public gl: WebGLRenderingContext, public scene: Scene, public factory: Factory, private gifManager: GIF_Manager, private apng: APNG) {}
+    private constructor(public canvas: HTMLCanvasElement | OffscreenCanvas, public gl: WebGLRenderingContext, public scene: Scene, public factory: Factory, private gifManager: GIF_Manager, private apngManager: APNG_Manager) {}
     static async create(scene?: Scene, initFactory?: Factory) {
         if (!scene) {
             const canvas = new OffscreenCanvas(300, 150);
@@ -26,9 +23,9 @@ export class Exporter {
         const factory = initFactory ?? await Factory.create(gl, this.ASSETS_ROOT);
 
         const gifManager = new GIF_Manager();
-        const apng = await APNG.create(1, 1);
+        const apngManager = await APNG_Manager.create();
 
-        return new Exporter(canvas, gl, scene, factory, gifManager, apng);
+        return new Exporter(canvas, gl, scene, factory, gifManager, apngManager);
     }
 
     async exportScene(obj: SceneObject, duration: number, size: Vector, format: FormatId, data: FormatData, onProgress: (progress: number, state: number) => void = () => {}) {
@@ -39,10 +36,7 @@ export class Exporter {
 
         return new Promise<Uint8Array>((resolve) => {
             this.gifManager.reset();
-            this.apng.frames = [];
-
-            this.apng.width = width;
-            this.apng.height = height;
+            this.apngManager.reset(width, height);
 
             const frames: Uint8Array[] = [];
             let time: number = 0;
@@ -74,7 +68,7 @@ export class Exporter {
             let i: number = 0;
             const encode = async () => {
                 if (i >= frames.length) {
-                    const buffer = format === "gif" ? this.gifManager.end() : await this.apng.toBuffer();
+                    const buffer = this[format === "gif" ? "gifManager" : "apngManager"].end();
                     resolve(buffer);
 
                     onProgress(1.0, EXPORTING_STATES.indexOf("DownloadScene"));
@@ -95,9 +89,7 @@ export class Exporter {
 
                     case format === "apng" && isDataAPNG_Data(data): {
                         const { fps } = data;
-
-                        const frame = Frame.fromPixels(pixels.buffer, { width, height, delay: 1 / fps });
-                        this.apng.frames.push(frame);
+                        await this.apngManager.addFrame(pixels, fps);
 
                         break;
                     }
