@@ -1,4 +1,4 @@
-// NEW ENCODER AND DECODER THAT IS TOTALLY MADE BY ME YIPEEEEEEEE (EDIT: NOOOOOOOOOOOO got bug :( MUST FIX!!!! >:( )
+// NEW ENCODER AND DECODER THAT IS TOTALLY MADE BY ME YIPEEEEEEEE
 import { APNG, Frame } from "apng-fest";
 
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
@@ -72,9 +72,9 @@ export class Exporter {
             };
 
             let i: number = 0;
-            const encode = () => {
+            const encode = async () => {
                 if (i >= frames.length) {
-                    const buffer = format === "gif" ? this.gifManager.end() : this.apng.toBuffer();
+                    const buffer = format === "gif" ? this.gifManager.end() : await this.apng.toBuffer();
                     resolve(buffer);
 
                     onProgress(1.0, EXPORTING_STATES.indexOf("DownloadScene"));
@@ -106,7 +106,7 @@ export class Exporter {
                 onProgress(i / frames.length / 2 + 0.5, EXPORTING_STATES.indexOf("EncodeFrames"));
                 i++;
 
-                setTimeout(() => encode());
+                setTimeout(encode);
             };
 
             draw();

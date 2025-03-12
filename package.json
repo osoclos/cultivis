@@ -18,7 +18,7 @@
         "combine": "bun run setup/combine.ts"
     },
     "dependencies": {
-        "apng-fest": "^1.0.2",
+        "apng-fest": "^1.0.4",
         "gifenc": "^1.0.3",
         "howler": "^2.2.4",
         "svelte": "^5.19.6",
