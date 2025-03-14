@@ -110,6 +110,13 @@ export class Scene implements SceneObject {
         endRenderer && this.renderer.end();
     }
 
+    async dispose() {
+        this.gl.getExtension("WEBGL_lose_context")?.loseContext();
+        
+        this.removeActors(...this.actors);
+        this.renderer.dispose();
+    }
+
     toObj(): SceneObject {
         const { actors, translation, scale, size, renderSize, backgroundColor, drawDebug } = this;
         return {
@@ -148,11 +155,6 @@ export class Scene implements SceneObject {
     findActorsByLabel(label: string) {
         return this.actors.filter(({ label: name }) => name === label);
     }
-
-    // TODO: set custom scenarios in-game
-    // setScenario() {
-
-    // }
 
     resetCamera() {
         this.updateBounds();

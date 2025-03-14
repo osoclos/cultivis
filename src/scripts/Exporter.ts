@@ -105,7 +105,7 @@ export class Exporter {
         });
     }
 
-    async dispose() {
+    dispose() {
         this.gl.getExtension("WEBGL_lose_context")?.loseContext();
     }
 
@@ -278,7 +278,7 @@ export function isDataAPNG_Data(data: FormatData): data is APNG_Data {
     return data.type === "apng";
 }
 
-export const FORMAT_IDS = ["gif", "apng"] as const; // TODO: add webp/true-color gifs when possible
+export const FORMAT_IDS = ["gif", "apng"] as const; // TODO: add mp4/webp when possible
 export type FormatId = typeof FORMAT_IDS[number];
 
 export function isStrFormatId(str: string): str is FormatId {

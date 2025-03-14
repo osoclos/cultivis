@@ -106,7 +106,7 @@
             usage: GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST | GPUTextureUsage.RENDER_ATTACHMENT
         });
 
-        device.queue.writeTexture({ texture }, textureData, { bytesPerRow: 512 * 4 }, [512, 512, 1]);
+        device.queue.writeTexture({ texture }, textureData, { bytesPerRow: textureWidth * 4 }, [textureWidth, textureHeight, 1]);
 
         const sampler = device.createSampler({
             label: "Clouds Texture Sampler",
@@ -139,7 +139,9 @@
 
     let frameId: number;
     function render(time: number) {
-        if (disabled) {
+        const { width, height } = canvas;
+
+        if (disabled || !width || !height) {
             frameId = requestAnimationFrame(render);
             return;
         }
@@ -201,7 +203,7 @@
             aspectRatio * 2 - 1.0,  1.0,   1.0, 0.0
         ]);
 
-        ctx.configure({ device, format, alphaMode: "premultiplied" });
+        !disabled && width && height && ctx.configure({ device, format, alphaMode: "premultiplied" });
 
         device.queue.writeBuffer(vertBuffer, 0, vertices);
         render(0);

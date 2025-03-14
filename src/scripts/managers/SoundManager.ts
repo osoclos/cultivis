@@ -1,15 +1,19 @@
-import { Howl, type SoundSpriteDefinitions } from "howler";
+import { Howl, Howler, type SoundSpriteDefinitions } from "howler";
 
 import { soundData } from "../../data/files";
 import { SOUND_IDS, type SoundId } from "../../data/types";
 
 import { fetchAndCache, Random, resolvePath } from "../../utils";
 
+const MAX_POOL_SIZE: number = 48;
+Howler.html5PoolSize = MAX_POOL_SIZE;
+
 export class SoundManager {
     static readonly SOUNDS_FOLDER_NAME: string = "sounds";
     static readonly CACHE_NAME: string = "sounds";
 
     static readonly DEFAULT_VOLUME: number = 0.7;
+    static readonly DEFAULT_POOL_SIZE: number = 6;
 
     private howlers: Map<SoundId, Howl>;
     private constructor(private cache: Cache) {
@@ -38,6 +42,7 @@ export class SoundManager {
             format: "wav",
 
             sprite,
+            pool: SoundManager.DEFAULT_POOL_SIZE,
 
             volume: SoundManager.DEFAULT_VOLUME
         });
@@ -58,9 +63,9 @@ export class SoundManager {
         return this.howlers.has(id);
     }
 
-    play<I extends SoundId, K extends keyof typeof soundData[I]["timeRanges"]>(id: SoundId, key: K = Random.item(<K[]>Object.keys(soundData[id].timeRanges ?? {}))) {       
+    play<I extends SoundId>(id: I, key: keyof (typeof soundData[I]["timeRanges"] & {}) = Random.item(Object.keys(soundData[id].timeRanges ?? {}))) {       
         if (!this.hasLoaded(id)) throw new Error(`Sound ${id} has not been loaded`);
-        this.howlers.get(id)!.play(Object.keys(soundData[id].timeRanges ?? {}).length ? key : undefined);
+        this.howlers.get(id)!.play(Object.keys(soundData[id].timeRanges ?? {}).length ? <string>key : undefined);
     }
 }
 
