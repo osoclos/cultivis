@@ -1,6 +1,6 @@
 <script lang="ts" module>
-    import { FOLLOWER_IDS, type FollowerId, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, type PlayerBellId, type PlayerCreatureId, type PlayerCrownId, type PlayerFleeceId } from "../../data/types";
-    import { bishopData, followerData, hereticData, miniBossData } from "../../data/files";
+    import { FOLLOWER_ANIMATION_IDS, FOLLOWER_IDS, type FollowerAnimationId, type FollowerId, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, type PlayerBellId, type PlayerCreatureId, type PlayerCrownId, type PlayerFleeceId } from "../../data/types";
+    import { followerAnimationData, followerData } from "../../data/files";
 
     const FOLLOWER_STARTING_NAMES: string[] = ["Ja", "Jul", "Na", "No", "Gre", "Bre", "Tre", "Mer", "Ty", "Ar", "An", "Yar", "Fe", "Fi", "The", "Thor", "Al", "Ha", "He", "Joo", "Ma", "Me", "Pa", "Pu"];
     const FOLLOWER_MIDDLE_NAMES: string[] = ["na"].concat(...FOLLOWER_STARTING_NAMES.slice(1, 11).map((name) => name.toLowerCase()));
@@ -75,14 +75,14 @@
 <script  lang="ts">
     import { twMerge } from "tailwind-merge";
 
-    import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, ArrowSelection, Slider, Toggle } from "../base";
+    import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, ArrowSelection, Slider, Toggle, Notice } from "../base";
     import { BISHOP_MENU_NAME, SOLDIER_MENU_NAME, MINI_BOSS_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME, HERETIC_MENU_NAME } from "./menus";
     import { MultiList } from "../utils";
 
     import { Actor, Factory, type ActorObject } from "../../scripts";
     import { isBishopObj, isFollowerObj, isSoldierObj, isMiniBossObj, isPlayerObj, isTOWW_Obj, isWitnessObj, isHereticObj } from "../../scripts/characters";
 
-    import { forbiddenAnimations, soldierData } from "../../data/files";
+    import { bishopData, forbiddenAnimations, hereticData, miniBossData, soldierData } from "../../data/files";
     import { Random, Vector, type VectorObject } from "../../utils";
 
     interface Props {
@@ -93,6 +93,8 @@
 
         class?: string;
         enableKeyInput?: boolean;
+
+        useExperimentalAnimations?: boolean;
 
         onupdate?: VoidFunction;
         onchange?: (actor: Actor) => void;
@@ -109,6 +111,8 @@
 
         class: className,
         enableKeyInput = false,
+
+        useExperimentalAnimations = $bindable(true),
 
         onupdate: update = () => {},
         onchange: change = () => {},
@@ -135,6 +139,13 @@
         return animationNames.filter((name) => !(actorForbiddenAnimations.includes(`!${name}`) || actorForbiddenAnimations.some((keyword) => !keyword.startsWith("!") && name.includes(keyword)))).sort();
     });
 
+    const experimentalAnimations: Record<string, string> = $derived.by(() => {
+        switch (true) {
+            case isFollowerObj(actor): return Object.fromEntries(FOLLOWER_ANIMATION_IDS.map((id) => [id, followerAnimationData[id].name]));
+            default: return {};
+        }
+    });
+
     const hasAttributes: boolean = $derived.by(() => {
         switch (true) {
             case isSoldierObj(obj) && isSoldierObj(actor): return soldierData[obj.soldier].canHoldShield;
@@ -144,7 +155,7 @@
         }
     });
 
-    function randomizeAppearance() {
+    function randomizeFollowerAppearance() {
         switch (true) {
             case isFollowerObj(actor) && isFollowerObj(obj): {
                 const [form, formVariantIdx, formColorSetIdx] = getRandomFollowerAppearance();
@@ -181,6 +192,36 @@
 
         update();
     }
+    
+    function updateFollowerPossessionState(possessionState: number) {
+        if (!isFollowerObj(obj) || !isFollowerObj(actor)) return;
+        possessionState--;
+
+        obj.possessionState = possessionState < 0 ? null : possessionState;
+        actor.possessionState = possessionState < 0 ? null : possessionState;
+
+        update();
+    }
+
+    function updateFollowerSickState(sickState: number) {
+        if (!isFollowerObj(obj) || !isFollowerObj(actor)) return;
+        sickState--;
+
+        obj.sickState = sickState < 0 ? null : sickState;
+        actor.sickState = sickState < 0 ? null : sickState;
+
+        update();
+    }
+
+    function updateFollowerBeliefState(beliefState: number) {
+        if (!isFollowerObj(obj) || !isFollowerObj(actor)) return;
+        beliefState--;
+
+        obj.beliefState = beliefState < 0 ? null : beliefState;
+        actor.beliefState = beliefState < 0 ? null : beliefState;
+
+        update();
+    }
 
     function updateHereticStage(stage: number) {
         if (!isHereticObj(obj) || !isHereticObj(actor)) return;
@@ -206,8 +247,8 @@
 
         const { animation, bossAnimation = animation } = bishopData[id];
 
-        obj.animation = isBoss ? bossAnimation : animation;
-        bishop.setAnimation(isBoss ? bossAnimation : animation);
+        bishop.setRawAnimation(isBoss ? bossAnimation : animation);
+        obj.animation = bishop.animation;
 
         change(bishop);
     }
@@ -259,8 +300,26 @@
         update();
     }
 
+    function updateUseExperimentalAnimation(useExperimentalAnimations: boolean) {
+        useExperimentalAnimations ? updateExperimentalAnimation(experimentalAnimations[0]) : updateAnimation(animations[0]);
+        obj.animationId = actor.animationId;
+    }
+
+    function updateExperimentalAnimation(animationId: string) {
+        switch (true) {
+            case isFollowerObj(actor): {
+                actor.animationId = animationId as FollowerAnimationId;
+                break;
+            }
+        } 
+
+        update();
+    }
+    
     function updateAnimation(animation: string) {
-        actor.setAnimation(animation);
+        actor.setRawAnimation(animation);
+        obj.animation = actor.animation;
+        
         update();
     }
 </script>
@@ -283,14 +342,14 @@
                     <BannerButton label="Choose Color" playClickSound={false} onclick={() => proceed("color")} />
                     <BannerButton label="Choose Variant" playClickSound={false} onclick={() => proceed("variant")} />
 
-                    <BannerButton label="Randomize" src="/static/ui/dice-6.png" onclick={randomizeAppearance} />
+                    <BannerButton label="Randomize" src="/static/ui/dice-6.png" onclick={randomizeFollowerAppearance} />
                 {:else if isPlayerObj(obj)}
                     <BannerButton label="Choose Creature" playClickSound={false} onclick={() => proceed("creature")} />
                     <BannerButton label="Choose Crown" playClickSound={false} onclick={() => proceed("crown")} />
                     <BannerButton label="Choose Fleece" playClickSound={false} onclick={() => proceed("fleece")} />
                     <BannerButton label="Choose Bell" playClickSound={false} onclick={() => proceed("bell")} />
                     
-                    <BannerButton label="Randomize" src="/static/ui/dice-6.png" onclick={randomizeAppearance} />
+                    <BannerButton label="Randomize" src="/static/ui/dice-6.png" onclick={randomizeFollowerAppearance} />
                 {:else if isSoldierObj(obj)}
                     <BannerButton label="Choose Role" playClickSound={false} onclick={() => proceed(SOLDIER_MENU_NAME)} />
                 {:else if isHereticObj(obj)}
@@ -320,12 +379,40 @@
                                         <ArrowSelection class="ml-6" label="Age State" options={["Baby", "Adult", "Elder"]} bind:i={obj.ageState} oninput={(_, i) => actor.ageState = i} />
                                     </Label>
 
+                                    <Label label="Emotion State">
+                                        <ArrowSelection class="ml-6" label="Emotion State" options={["Normal", "Happy", "Sad", "Angry", "Scared"]} bind:i={obj.emotionState} oninput={(_, i) => actor.emotionState = i} />
+                                    </Label>
+
+                                    <Label label="Possession State">
+                                        <ArrowSelection class="ml-6" label="Possession State" options={["Normal", "Enlightened", "Sinned"]} oninput={(_, i) => updateFollowerPossessionState(i)} />
+                                    </Label>
+
+                                    <Label label="Sick State">
+                                        <ArrowSelection class="ml-6" label="Sick State" options={["Well", "Sick", "Traumatized", "Zombie", "Scared"]} oninput={(_, i) => updateFollowerSickState(i)} />
+                                    </Label>
+
+                                    <Label label="Belief State">
+                                        <ArrowSelection class="ml-6" label="Belief State" options={["Normal", "Brainwashed", "Dissenting"]} oninput={(_, i) => updateFollowerBeliefState(i)} />
+                                    </Label>
+
                                     <Label label="Is a Disciple?">
                                         <Toggle label="Is a Disciple?" bind:enabled={obj.isDisciple} oninput={(isDisciple) => actor.isDisciple = isDisciple} />
                                     </Label>
 
                                     <Label label="Is Wearing a Hood?">
                                         <Toggle label="Is Wearing a Hood?" bind:enabled={obj.isHooded} oninput={(isHooded) => actor.isHooded = isHooded} />
+                                    </Label>
+
+                                    <Label label="Is Tired?">
+                                        <Toggle label="Is Tired?" bind:enabled={obj.isTired} oninput={(isTired) => actor.isTired = isTired} />
+                                    </Label>
+
+                                    <Label label="Is Sweating?">
+                                        <Toggle label="Is Sweating?" bind:enabled={obj.isSweating} oninput={(isSweating) => actor.isSweating = isSweating} />
+                                    </Label>
+
+                                    <Label label="Is Befuddled?">
+                                        <Toggle label="Is Befuddled?" bind:enabled={obj.isBefuddled} oninput={(isBefuddled) => actor.isBefuddled = isBefuddled} />
                                     </Label>
                                 {:else if isPlayerObj(obj) && isPlayerObj(actor)}
                                     <Label label="Hurt State">
@@ -451,6 +538,30 @@
                     </div>
 
                     <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
+                        <LabelTitle title="Animations" />
+
+                        {#if Object.keys(experimentalAnimations).length}
+                            <Label label="Use Experimental Animations">
+                                <Toggle label="Use Experimental Animations" bind:enabled={useExperimentalAnimations} oninput={updateUseExperimentalAnimation} />
+                            </Label>
+                        {/if}
+
+                        <Label class="h-24" label="Selected Animation">
+                            {#if useExperimentalAnimations && Object.keys(experimentalAnimations).length}
+                                <Dropdown options={experimentalAnimations} bind:value={obj.animationId} label="Select Animation" oninput={updateExperimentalAnimation} />
+                            {:else}
+                                <Dropdown options={animations} bind:value={obj.animationId} label="Select Animation" oninput={updateAnimation} />
+                            {/if}
+                        </Label>
+
+                        {#if useExperimentalAnimations && Object.keys(experimentalAnimations).length}
+                            <Notice label="Experimental Animations may be buggy and introduce unforeseen issues. Use them with caution." />
+                        {/if}
+                    </div>
+
+                    <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
+                        <LabelTitle title="Miscellaneous" />
+
                         <Label label="Flip Character">
                             <Toggle label="Flip Character" bind:enabled={obj.flipX} oninput={(flipX) => actor.flipX = flipX} />
                         </Label>
@@ -459,8 +570,8 @@
                             <Toggle label="Hide Character" bind:enabled={obj.hidden} oninput={(hidden) => actor.hidden = hidden} />
                         </Label>
 
-                        <Label class="h-24" label="Selected Animation">
-                            <Dropdown options={animations} bind:value={obj.animation} label="Select Animation" oninput={updateAnimation} />
+                        <Label label="Mute Character">
+                            <Toggle label="Mute Character" bind:enabled={obj.muted} oninput={(muted) => actor.muted = muted} />
                         </Label>
                     </div>
                 </div>

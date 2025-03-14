@@ -1,3 +1,6 @@
+import { soundManager } from "./managers";
+
+import type { AnimationData, AnimationSound } from "../data/types";
 import { Random, Vector, type VectorObject } from "../utils";
 
 export class Actor implements ActorObject {
@@ -11,9 +14,15 @@ export class Actor implements ActorObject {
     #size: Vector;
 
     hidden: boolean;
+    muted: boolean;
+
     #flipX: boolean;
 
+    animation: AnimationData;
+    #animationId: string;
+
     private skinEntries: Set<spine.Skin>;
+    private soundEntries: Set<AnimationSound & { nextPlay: number; }>;
 
     constructor(public skeleton: spine.Skeleton, public animationState: spine.AnimationState, public id: string = Random.id(), public label: string = "Actor") {
         this.pos = Vector.Zero;
@@ -26,12 +35,21 @@ export class Actor implements ActorObject {
         this.#size = Vector.Zero;
 
         this.hidden = false;
+        this.muted = false;
+
         this.#flipX = false;
 
-        this.skinEntries = new Set();
+        this.animation = {
+            name: "",
 
-        this.setSkin(this.skinNames[0]);
-        this.setAnimation(this.animationNames[0]);
+            animations: [],
+            sounds: []
+        };
+
+        this.#animationId = "";
+
+        this.skinEntries = new Set();
+        this.soundEntries = new Set();
     }
 
     get type(): string {
@@ -55,16 +73,16 @@ export class Actor implements ActorObject {
         this.skeleton.scaleX = this.scale.x * (-flipped || 1);
     }
 
+    get animationId(): string {
+        return this.#animationId;
+    }
+
+    set animationId(animationId: string) {
+        this.#animationId = animationId;
+    }
+
     private get firstTrack(): spine.TrackEntry | null {
         return this.animationState.tracks[0] ?? null;
-    }
-
-    get skin(): spine.Skin {
-        return this.skeleton.skin;
-    }
-
-    get animation(): string {
-        return this.firstTrack?.animation.name ?? "";
     }
 
     get skinNames(): string[] {
@@ -73,6 +91,10 @@ export class Actor implements ActorObject {
 
     get animationNames(): string[] {
         return this.skeleton.data.animations.map(({ name }) => name);
+    }
+
+    get animationDurations(): Record<string, number> {
+        return Object.fromEntries(this.skeleton.data.animations.map(({ name, duration }) => [name, duration]));
     }
 
     get attachmentNames(): string[] {
@@ -84,12 +106,12 @@ export class Actor implements ActorObject {
     }
 
     set time(time: number) {
-        if (this.firstTrack) this.firstTrack.trackTime = time;
+        for (const track of this.animationState.tracks.filter((track) => track)) track.trackTime = time;
         this.tick(0, false);
     }
 
     get duration(): number {
-        return this.animationState.tracks[0]?.animationEnd ?? 0;
+        return Math.max(...this.animationState.tracks.filter((track) => track).map(({ animationEnd, delay }) => animationEnd + delay));
     }
 
     clone(id?: string, label: string = `${this.label} (Copy)`) {
@@ -119,7 +141,7 @@ export class Actor implements ActorObject {
     }
 
     toObj(): ActorObject {
-        const { type, id, label, pos, scale, hidden, flipX, animation, time, duration } = this;
+        const { type, id, label, pos, scale, hidden, muted, flipX, animation, animationId, time, duration } = this;
         return {
             type,
 
@@ -130,13 +152,39 @@ export class Actor implements ActorObject {
             scale: scale.toObj(),
             
             hidden,
+            muted,
+
             flipX,
 
             animation,
+            animationId,
             
             time,
             duration
         };
+    }
+
+    setAnimation(animation: AnimationData, id?: string) {
+        this.animation = animation;
+        if (id !== undefined) this.animationId = id;
+        
+        this.reset();
+        this.updateBounds();
+    }
+
+    setRawAnimation(name: string, track: number = 0) {
+        this.setAnimation({
+            name,
+            
+            animations: [{
+                animation: name,
+                track,
+
+                start: 0
+            }],
+            
+            sounds: []
+        }, name);
     }
 
     addSkins(...names: string[]) {
@@ -170,20 +218,11 @@ export class Actor implements ActorObject {
         this.addCustomSkin(skin);
     }
 
-    // TODO: add code to run animation sequences
-    setAnimation(name: string) {
-        this.animationState.clearTrack(0);
-        this.animationState.setAnimation(0, name, true);
-
-        this.reset();
-        this.updateBounds();
-    }
-
     findAnimationsWithAttachment(name: string): string[] {
         const { animation, animationNames } = this;
 
         const filteredAnimations = animationNames.filter((animation) => {
-            this.setAnimation(animation);
+            this.setRawAnimation(animation);
             return this.attachmentNames.some((attachment) => attachment?.includes(name));
         });
 
@@ -193,34 +232,76 @@ export class Actor implements ActorObject {
 
     reset() {
         this.time = 0;
+
+        this.resetAnimation();
         this.resetSkin();
     }
 
-    resetSkin() {
-        const combinedSkin = new spine.Skin("Combined Skin");
-        for (const skin of this.skinEntries.values()) combinedSkin.addSkin(skin);
+    resetAnimation() {
+        const { animationState, animation, soundEntries, muted } = this;
+
+        animationState.clearTracks();
+        soundEntries.clear();
         
-        this.skeleton.setSkin(combinedSkin);
-        this.skeleton.setToSetupPose();
+        const { animations, sounds } = animation;
+        for (const animationData of animations) {
+            const {
+                animation,
+                track,
+                
+                start,
+                duration = 0,
+                
+                loops = 0,
+                offset = 0
+            } = animationData;
 
-        this.animationState.apply(this.skeleton);
-        this.animationState.update(0);
+            for (const i of Array(Math.max(loops, 1)).keys()) {
+                const entry = animationState.addAnimation(track, animation, loops <= 0, start + (duration - offset) * i);
+    
+                if ("duration" in animationData) entry.animationEnd = duration;
+                if ("offset" in animationData) entry.animationStart = offset;
+            }
+        }
 
-        this.skeleton.updateWorldTransform();
+        for (const sound of sounds) soundEntries.add({ ...sound, nextPlay: muted ? -1 : sound.start });
+
+        this.tick(0, false);
+    }
+
+    resetSkin() {
+        const { skeleton, skinEntries } = this;
+
+        const combinedSkin = new spine.Skin("Combined Skin");
+        for (const skin of skinEntries) combinedSkin.addSkin(skin);
+        
+        skeleton.setSkin(combinedSkin);
+        skeleton.setToSetupPose();
+
+        this.tick(0, false);
     }
 
     tick(delta: number = 0, checkManipulation: boolean = true) {
         checkManipulation && this.checkManipulation();
 
-        this.animationState.apply(this.skeleton);
-        this.animationState.update(delta);
+        const { skeleton, animationState, muted, time, duration, soundEntries } = this;
 
-        this.skeleton.updateWorldTransform();
+        animationState.apply(skeleton);
+        animationState.update(delta);
+        
+        if (!muted && time > 0) for (const entry of soundEntries) {
+            const { sound, variants, step = duration, nextPlay } = entry;
+            if (time < nextPlay) continue;
+
+            soundManager.play(sound, variants ? Random.item(variants) : undefined);
+            entry.nextPlay += step;
+        }
+
+        skeleton.updateWorldTransform();
     }
 
     updateBounds() {
-        const track = this.animationState.tracks[0];
-        if (!track) {
+        if (!this.firstTrack) {
             this.reset();
 
             const { x, y } = this.pos;
@@ -292,9 +373,12 @@ export interface ActorObject {
     scale: VectorObject;
 
     hidden: boolean;
+    muted: boolean;
+
     flipX: boolean;
 
-    animation: string;
+    animation: AnimationData;
+    animationId: string;
 
     time: number;
     duration: number;

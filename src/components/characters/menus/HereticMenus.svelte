@@ -50,8 +50,8 @@
 
         const { animation } = hereticData[hereticId];
 
-        obj.animation = animation;
-        heretic.setAnimation(animation);
+        heretic.setRawAnimation(animation);
+        obj.animation = heretic.animation;
 
         update();
         change(heretic);

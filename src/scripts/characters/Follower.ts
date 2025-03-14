@@ -1,9 +1,9 @@
-import { Actor, type ActorObject } from "..";
-
-import { followerData } from "../../data/files";
-import type { ColorSet, FollowerId, ClothingId, ClothingData, FormData, NecklaceId, HatId, NecklaceData, HatData } from "../../data/types";
+import { followerAnimationData, followerData } from "../../data/files";
+import type { ColorSet, FollowerId, ClothingId, ClothingData, FormData, NecklaceId, HatId, NecklaceData, HatData, FollowerAnimationId } from "../../data/types";
 
 import { Color, MoreMath } from "../../utils";
+
+import { Actor, type ActorObject } from "../Actor";
 
 const TYPE: string = "follower";
 
@@ -11,6 +11,23 @@ export class Follower extends Actor implements FollowerObject {
     static readonly TEXTURE_FILENAME: string = "Follower.png";
     static readonly ATLAS_FILENAME: string = "Follower.atlas";
     static readonly SKELETON_FILENAME: string = "Follower.skel";
+
+    static readonly BABY_SKIN_NAME: string = "Other/Baby";
+    static readonly ELDER_SKIN_NAME: string = "Other/Old";
+
+    static readonly EMOTIONS_ANIMATION_PREFIX: string = "Emotions"
+
+    static readonly EMOTION_STATE_TRACK_INDEX: number = 100;
+
+    static readonly POSSESSION_STATE_TRACK_INDEX: number = 101;
+    static readonly SICK_STATE_TRACK_INDEX: number = 102;
+    static readonly BELIEF_STATE_TRACK_INDEX: number = 103;
+
+    static readonly TIRED_TRACK_INDEX: number = 104;
+    static readonly SWEATING_TRACK_INDEX: number = 105;
+
+    static readonly TIRED_ANIMATION_NAME: string = "emotion-tired";
+    static readonly SWEATING_ANIMATION_NAME: string = "emotion-soaked";
 
     static readonly HALO_SLOT_NAME: string = "halo";
     static readonly HALO_ATTACHMENT_NAME: string = "Other/Halo";
@@ -21,54 +38,46 @@ export class Follower extends Actor implements FollowerObject {
 
     static readonly ROBES_SKIN_PREFIX: string = "Clothes/Robes_Lvl";
     static readonly ELDER_ROBES_SKIN_NAME: string = "Clothes/Robes_Old";
+    
     static readonly ROBES_STARTING_LEVEL: number = 3;
     static readonly LEVELS_PER_ROBES_UPGRADE: number = 2;
     static readonly MAX_ROBES_FOLLOWER_LEVEL: number = (5 - this.ROBES_STARTING_LEVEL + 1) * this.LEVELS_PER_ROBES_UPGRADE; // highest robes level is 5.
     static readonly ROBES_LEVEL_WHEN_EXCEEDED: number = 3;
 
-    static readonly BABY_SKIN_NAME: string = "Other/Baby";
-    static readonly ELDER_SKIN_NAME: string = "Other/Old";
-
     static readonly BODY_EXTRA_SLOT_NAME: string = "BODY_EXTRA";
 
-    private _form: FollowerId;
+    #animationId: FollowerAnimationId;
+
+    #form: FollowerId;
     #clothing: ClothingId;
 
     #necklace: NecklaceId | null;
     #hat: HatId | null;
 
     #level: FollowerLevel;
+
     #ageState: FollowerAgeState;
+    #emotionState: FollowerEmotionState;
+
+    #possessionState: FollowerPossessionState | null;
+    #sickState: FollowerSickState | null;
+    #beliefState: FollowerBeliefState | null;
 
     #isDisciple: boolean;
     #isHooded: boolean;
 
-    // TODO: attributes other than isDisciple and ageState are animation-based, so will require animation sequencing. add this when scenarios are added
-    #emotionState: FollowerEmotionState;
-
-    #isEnlightened: boolean;
-    #isSinned: boolean;
-
     #isTired: boolean;
-    #isHungry: boolean;
-
-    #isSick: boolean;
-    #isTraumatized: boolean;
-
-    #isZombie: boolean;
-    #isPossessed: boolean;
-
-    #isBrainwashed: boolean;
-    #isDissenting: boolean;
+    #isSweating: boolean;
 
     #isBefuddled: boolean;
-    #isSweating: boolean;
 
     private indexes: FollowerIndexes
     constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = followerData.forms.Deer.name, form: FollowerId = "Deer", clothing: ClothingId = "Default_Clothing") {
         super(skeleton, animationState, id, label);
 
-        this._form = form;
+        this.#animationId = "Idle";
+
+        this.#form = form;
         this.#clothing = clothing;
 
         this.#necklace = null;
@@ -79,26 +88,17 @@ export class Follower extends Actor implements FollowerObject {
         this.#ageState = FollowerAgeState.Adult;
         this.#emotionState = FollowerEmotionState.Normal;
 
+        this.#possessionState = null;
+        this.#sickState = null;
+        this.#beliefState = null;
+
         this.#isDisciple = false;
         this.#isHooded = false;
 
-        this.#isEnlightened = false;
-        this.#isSinned = false;
-
         this.#isTired = false;
-        this.#isHungry = false;
-
-        this.#isSick = false;
-        this.#isTraumatized = false;
-
-        this.#isZombie = false;
-        this.#isPossessed = false;
-
-        this.#isBrainwashed = false;
-        this.#isDissenting = false;
+        this.#isSweating = false;
 
         this.#isBefuddled = false;
-        this.#isSweating = false;
 
         this.indexes = {
             form: {
@@ -115,12 +115,22 @@ export class Follower extends Actor implements FollowerObject {
         this.update();
     }
 
+    get animationId(): FollowerAnimationId {
+        return this.#animationId;
+    }
+
+    set animationId(animationId: FollowerAnimationId) {
+        this.#animationId = animationId;
+        console.log(animationId)
+        animationId in followerAnimationData && this.setAnimation(followerAnimationData[animationId]);
+    }
+
     get form(): FollowerId {
-        return this._form;
+        return this.#form;
     }
 
     set form(form: FollowerId) {
-        this._form = form;
+        this.#form = form;
         this.clampIndexes();
 
         this.update();
@@ -182,6 +192,33 @@ export class Follower extends Actor implements FollowerObject {
         this.update();
     }
 
+    get possessionState(): FollowerPossessionState | null {
+        return this.#possessionState;
+    }
+
+    set possessionState(possessionState: FollowerPossessionState | null) {
+        this.#possessionState = possessionState;
+        this.update();
+    }
+
+    get sickState(): FollowerSickState | null {
+        return this.#sickState;
+    }
+
+    set sickState(sickState: FollowerSickState | null) {
+        this.#sickState = sickState;
+        this.update();
+    }
+
+    get beliefState(): FollowerBeliefState | null {
+        return this.#beliefState;
+    }
+
+    set beliefState(beliefState: FollowerBeliefState | null) {
+        this.#beliefState = beliefState;
+        this.update();
+    }
+
     get isDisciple(): boolean {
         return this.#isDisciple;
     }
@@ -200,93 +237,12 @@ export class Follower extends Actor implements FollowerObject {
         this.update();
     }
 
-    get isEnlightened(): boolean {
-        return this.#isEnlightened;
-    }
-
-    set isEnlightened(isEnlightened: boolean) {
-        this.#isEnlightened = isEnlightened;
-        this.update();
-    }
-
-    get isSinned(): boolean {
-        return this.#isSinned;
-    }
-
-    set isSinned(isSinned: boolean) {
-        this.#isSinned = isSinned;
-        this.update();
-    }
-
     get isTired(): boolean {
         return this.#isTired;
     }
 
     set isTired(isTired: boolean) {
         this.#isTired = isTired;
-        this.update();
-    }
-
-    get isHungry(): boolean {
-        return this.#isHungry;
-    }
-
-    set isHungry(isHungry: boolean) {
-        this.#isHungry = isHungry;
-        this.update();
-    }
-
-    get isSick(): boolean {
-        return this.#isSick;
-    }
-
-    set isSick(isSick: boolean) {
-        this.#isSick = isSick;
-        this.update();
-    }
-
-    get isTraumatized(): boolean {
-        return this.#isTraumatized;
-    }
-
-    set isTraumatized(isTraumatized: boolean) {
-        this.#isTraumatized = isTraumatized;
-        this.update();
-    }
-
-    get isZombie(): boolean {
-        return this.#isZombie;
-    }
-
-    set isZombie(isZombie: boolean) {
-        this.#isZombie = isZombie;
-        this.update();
-    }
-
-    get isPossessed(): boolean {
-        return this.#isPossessed;
-    }
-
-    set isPossessed(isPossessed: boolean) {
-        this.#isPossessed = isPossessed;
-        this.update();
-    }
-
-    get isBrainwashed(): boolean {
-        return this.#isBrainwashed;
-    }
-
-    set isBrainwashed(isBrainwashed: boolean) {
-        this.#isBrainwashed = isBrainwashed;
-        this.update();
-    }
-
-    get isDissenting(): boolean {
-        return this.#isDissenting;
-    }
-
-    set isDissenting(isDissenting: boolean) {
-        this.#isDissenting = isDissenting;
         this.update();
     }
 
@@ -404,6 +360,9 @@ export class Follower extends Actor implements FollowerObject {
         hatData && this.addSkins(hatData.variant);
 
         isDisciple && this.skeleton.setAttachment(Follower.HALO_SLOT_NAME, Follower.HALO_ATTACHMENT_NAME);
+
+        
+
         this.tick();
     }
 
@@ -412,8 +371,63 @@ export class Follower extends Actor implements FollowerObject {
         this.form === "Deer" && this.skeleton.slots[this.skeleton.findSlotIndex(Follower.BODY_EXTRA_SLOT_NAME)].setAttachment(null as unknown as spine.Attachment);
     }
 
+    resetAnimation() {
+        super.resetAnimation();
+
+        const { animationState, emotionState, possessionState, sickState, beliefState, isTired, isBefuddled, isSweating } = this;
+
+        const emotionStateAnimation: string = (() => {
+            switch (emotionState) {
+                case FollowerEmotionState.Normal: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-${isBefuddled ? "drunk" : "normal"}`;
+                case FollowerEmotionState.Happy: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-${isBefuddled ? "drunk" : "happy"}`;
+                case FollowerEmotionState.Sad: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-${isBefuddled ? "drunk-sad" : "unhappy"}`;
+                case FollowerEmotionState.Angry: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-${isBefuddled ? "drunk-angry" : "angry"}`;
+                case FollowerEmotionState.Scared: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-${isBefuddled ? "drunk" : "scared"}`;
+            }
+        })();
+
+        const possessionStateAnimation: string | null = (() => {
+            switch (possessionState) {
+                case FollowerPossessionState.Enlightened: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-enlightened`;
+                case FollowerPossessionState.Sinned: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-sin`;
+                
+                default: return null;
+            }
+        })();
+
+        const sickStateAnimation: string | null = (() => {
+            switch (sickState) {
+                case FollowerSickState.Sick: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-sick`;
+                case FollowerSickState.Traumatized: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-dread`;
+                
+                case FollowerSickState.Zombie: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-zombie`;
+                case FollowerSickState.Possessed: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-possessed`;
+                
+                default: return null;
+            }
+        })();
+
+        const beliefStateAnimation: string | null = (() => {
+            switch (beliefState) {
+                case FollowerBeliefState.Brainwashed: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-brainwashed`;
+                case FollowerBeliefState.Dissenting: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-dissenter`;
+                
+                default: return null;
+            }
+        })();
+
+        animationState.setAnimation(Follower.EMOTION_STATE_TRACK_INDEX, emotionStateAnimation, true);
+
+        possessionStateAnimation ? animationState.setAnimation(Follower.POSSESSION_STATE_TRACK_INDEX, possessionStateAnimation, true) : animationState.setEmptyAnimation(Follower.POSSESSION_STATE_TRACK_INDEX, 0);
+        sickStateAnimation ? animationState.setAnimation(Follower.SICK_STATE_TRACK_INDEX, sickStateAnimation, true) : animationState.setEmptyAnimation(Follower.SICK_STATE_TRACK_INDEX, 0);
+        beliefStateAnimation ? animationState.setAnimation(Follower.BELIEF_STATE_TRACK_INDEX, beliefStateAnimation, true) : animationState.setEmptyAnimation(Follower.BELIEF_STATE_TRACK_INDEX, 0);
+
+        isTired ? animationState.setAnimation(Follower.TIRED_TRACK_INDEX, `${Follower.EMOTIONS_ANIMATION_PREFIX}/${Follower.TIRED_ANIMATION_NAME}`, true) : animationState.setEmptyAnimation(Follower.TIRED_TRACK_INDEX, 0);
+        isSweating ? animationState.setAnimation(Follower.SWEATING_TRACK_INDEX, `${Follower.EMOTIONS_ANIMATION_PREFIX}/${Follower.SWEATING_ANIMATION_NAME}`, true) : animationState.setEmptyAnimation(Follower.SWEATING_TRACK_INDEX, 0);
+    }
+
     copyFromObj(obj: FollowerObject) {
-        const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, isDisciple, isHooded, isEnlightened, isSinned, isTired, isHungry, isSick, isTraumatized, isZombie, isPossessed, isBrainwashed, isDissenting, isBefuddled, isSweating } = obj;
+        const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, possessionState, sickState, beliefState, isDisciple, isHooded, isTired, isSweating, isBefuddled } = obj;
         
         this.form = form;
         this.formVariantIdx = formVariantIdx;
@@ -431,33 +445,24 @@ export class Follower extends Actor implements FollowerObject {
         this.ageState = ageState;
         this.emotionState = emotionState;
 
+        this.possessionState = possessionState;
+        this.sickState = sickState;
+        this.beliefState = beliefState;
+
         this.isDisciple = isDisciple;
         this.isHooded = isHooded;
 
-        this.isEnlightened = isEnlightened;
-        this.isSinned = isSinned;
-
         this.isTired = isTired;
-        this.isHungry = isHungry;
-        
-        this.isSick = isSick;
-        this.isTraumatized = isTraumatized;
-        
-        this.isZombie = isZombie;
-        this.isPossessed = isPossessed;
-        
-        this.isBrainwashed = isBrainwashed;
-        this.isDissenting = isDissenting;
+        this.isSweating = isSweating;
         
         this.isBefuddled = isBefuddled;
-        this.isSweating = isSweating;
 
         super.copyFromObj(obj);
     }
 
     toObj(): FollowerObject {
-        const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, isDisciple, isHooded, isEnlightened, isSinned, isTired, isHungry, isSick, isTraumatized, isZombie, isPossessed, isBrainwashed, isDissenting, isBefuddled, isSweating } = this;
-        return { ...super.toObj(), type: TYPE, form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, isDisciple, isHooded, isEnlightened, isSinned, isTired, isHungry, isSick, isTraumatized, isZombie, isPossessed, isBrainwashed, isDissenting, isBefuddled, isSweating };
+        const { animationId, form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, possessionState, sickState, beliefState, isDisciple, isHooded, isTired, isSweating, isBefuddled } = this;
+        return { ...super.toObj(), type: TYPE, animationId, form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, possessionState, sickState, beliefState, isDisciple, isHooded, isTired, isSweating, isBefuddled };
     }
 
     applyColors(set: ColorSet) {
@@ -488,6 +493,8 @@ export class Follower extends Actor implements FollowerObject {
 }
 
 export interface FollowerObject extends ActorObject {
+    animationId: FollowerAnimationId;
+
     form: FollowerId;
     formVariantIdx: number;
     formColorSetIdx: number;
@@ -504,26 +511,17 @@ export interface FollowerObject extends ActorObject {
     ageState: FollowerAgeState;
     emotionState: FollowerEmotionState;
 
+    possessionState: FollowerPossessionState | null;
+    sickState: FollowerSickState | null;
+    beliefState: FollowerBeliefState | null;
+
     isDisciple: boolean;
     isHooded: boolean;
 
-    isEnlightened: boolean;
-    isSinned: boolean;
-
     isTired: boolean;
-    isHungry: boolean;
-
-    isSick: boolean;
-    isTraumatized: boolean;
-
-    isZombie: boolean;
-    isPossessed: boolean;
-
-    isBrainwashed: boolean;
-    isDissenting: boolean;
+    isSweating: boolean;
 
     isBefuddled: boolean;
-    isSweating: boolean;
 }
 
 export interface FollowerIndexes {
@@ -536,7 +534,7 @@ export interface FollowerIndex {
     colorSet: number;
 }
 
-export enum FollowerLevel {
+export const enum FollowerLevel {
     I = 1,
     II,
     III,
@@ -549,18 +547,36 @@ export enum FollowerLevel {
     X
 }
 
-export enum FollowerAgeState {
+export const enum FollowerAgeState {
     Baby,
     Adult,
     Elder
 }
 
-export enum FollowerEmotionState {
+export const enum FollowerEmotionState {
     Normal,
     Happy,
     Sad,
     Angry,
     Scared
+}
+
+export const enum FollowerPossessionState {
+    Enlightened,
+    Sinned
+}
+
+export const enum FollowerSickState {
+    Sick,
+    Traumatized,
+    
+    Zombie,
+    Possessed
+}
+
+export const enum FollowerBeliefState {
+    Brainwashed,
+    Dissenting
 }
 
 export function isFollowerObj(obj: ActorObject): obj is FollowerObject {

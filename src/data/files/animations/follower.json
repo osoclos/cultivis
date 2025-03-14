@@ -1,0 +1,50 @@
+{
+    "Idle": {
+        "name": "Idle",
+
+        "animations": [{
+            "animation": "idle",
+            "track": 0,
+
+            "start": 0
+        }],
+
+        "sounds": []
+    },
+
+    "Wave": {
+        "name": "Wave",
+        
+        "animations": [{
+            "animation": "wave",
+            "track": 0,
+
+            "start": 0
+        }],
+
+        "sounds": [{
+            "sound": "Greet",
+
+            "start": 0,
+            "step": 1.9333332777023315
+        }]
+    },
+
+    "Angry_Wave": {
+        "name": "Angry Wave",
+        
+        "animations": [{
+            "animation": "wave-angry",
+            "track": 0,
+
+            "start": 0
+        }],
+
+        "sounds": [{
+            "sound": "Grunt",
+
+            "start": 0,
+            "step": 1.9333332777023315
+        }]
+    }
+}

@@ -32,7 +32,7 @@ export class Random {
         return this.int(100) < percent;
     }
 
-    static item<T>(arr: T[]): T {
+    static item<T>(arr: T[] | readonly T[]): T {
         return arr[this.int(arr.length)];
     }
 

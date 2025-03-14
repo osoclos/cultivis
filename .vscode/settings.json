@@ -159,6 +159,11 @@
             "url": "/src/data/schemas/sound-data.schema.json"
         },
         {
+            "fileMatch": ["/animations/*.json"],
+            "url": "/src/data/schemas/animation-data.schema.json"
+        },
+
+        {
             "fileMatch": ["/forbidden-animations.json"],
             "url": "/src/data/schemas/forbidden-animations.schema.json"
         }

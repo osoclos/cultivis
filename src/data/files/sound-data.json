@@ -1,75 +1,125 @@
 {
     "Click": {
-        "src": "click.wav"
+        "src": "ui/click.wav"
     },
     "Flicker": {
-        "src": "flicker.wav",
+        "src": "ui/flicker.wav",
         "timeRanges": {
-            "flicker0": {
+            "flicker1": {
                 "start": 0,
                 "duration": 70
             },
-            "flicker1": {
+            "flicker2": {
                 "start": 70,
                 "duration": 66
             },
-            "flicker2": {
+            "flicker3": {
                 "start": 136,
                 "duration": 94
             },
-            "flicker3": {
+            "flicker4": {
                 "start": 230,
                 "duration": 95
             },
-            "flicker4": {
+            "flicker5": {
                 "start": 325,
                 "duration": 104
             }
         }
     },
     "Option_Change": {
-        "src": "option-change.wav",
+        "src": "ui/option-change.wav",
         "timeRanges": {
-            "option-change0": {
+            "option-change1": {
                 "start": 0,
                 "duration": 250
             },
-            "option-change1": {
+            "option-change2": {
                 "start": 250,
                 "duration": 250
             },
-            "option-change2": {
+            "option-change3": {
                 "start": 500,
                 "duration": 250
             }
         }
     },
     "Menu_Open": {
-        "src": "menu-open.wav"
+        "src": "ui/menu-open.wav"
     },
     "Menu_Close": {
-        "src": "menu-close.wav"
+        "src": "ui/menu-close.wav"
     },
-    "Pet_Laugh": {
-        "src": "pet-laugh.wav",
+    "Greet": {
+        "src": "characters/follower/greet.wav",
         "timeRanges": {
-            "pet-laugh0": {
+            "greet1": {
+                "start": 0,
+                "duration": 533
+            },
+            "greet2": {
+                "start": 533,
+                "duration": 684
+            },
+            "greet3": {
+                "start": 1217,
+                "duration": 809
+            },
+            "greet4": {
+                "start": 2026,
+                "duration": 687
+            },
+            "greet5": {
+                "start": 2713,
+                "duration": 890
+            },
+            "greet6": {
+                "start": 3603,
+                "duration": 705
+            },
+            "greet7": {
+                "start": 4308,
+                "duration": 537
+            }
+        }
+    },
+    "Grunt": {
+        "src": "characters/follower/grunt.wav",
+        "timeRanges": {
+            "grunt1": {
+                "start": 0,
+                "duration": 898
+            },
+            "grunt2": {
+                "start": 898,
+                "duration": 959
+            },
+            "grunt3": {
+                "start": 1857,
+                "duration": 887
+            }
+        }
+    },
+    "Laugh": {
+        "src": "characters/follower/laugh.wav",
+        "timeRanges": {
+            "laugh1": {
                 "start": 0,
                 "duration": 1127
             },
-            "pet-laugh1": {
+            "laugh2": {
                 "start": 1127,
                 "duration": 1331
             },
-            "pet-laugh2": {
+            "laugh3": {
                 "start": 2458,
                 "duration": 1309
             },
-            "pet-laugh3": {
+            "laugh4": {
                 "start": 3767,
                 "duration": 1577
             },
-            "pet-laugh4": {
+            "laugh5": {
                 "start": 5344,
                 "duration": 1163
             }

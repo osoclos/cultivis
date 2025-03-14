@@ -20,6 +20,8 @@ export class Soldier extends Actor implements SoldierObject {
 
         this.#soldier = soldier;
         this.#isHoldingShield = soldierData[soldier].canHoldShield ? false : null;
+
+        this.update();
     }
 
     get soldier(): SoldierId {

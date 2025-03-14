@@ -1,7 +1,7 @@
-import { Actor, type ActorObject } from "..";
-
 import { playerData } from "../../data/files";
 import { PLAYER_BELL_IDS, type PlayerBellData, type PlayerBellId, type PlayerCreatureData, type PlayerCreatureId, type PlayerCrownData, type PlayerCrownId, type PlayerFleeceData, type PlayerFleeceId } from "../../data/types";
+
+import { Actor, type ActorObject } from "../Actor";
 
 const TYPE: string = "player";
 
@@ -192,7 +192,7 @@ export interface PlayerObject extends ActorObject {
     hurtState: PlayerHurtState;
 }
 
-export enum PlayerHurtState {
+export const enum PlayerHurtState {
     Normal,
     Bruised,
     Injured

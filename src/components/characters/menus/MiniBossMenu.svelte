@@ -50,8 +50,8 @@
 
         const { animation } = miniBossData[miniBossId];
 
-        obj.animation = animation;
-        miniBoss.setAnimation(animation);
+        miniBoss.setRawAnimation(animation);
+        obj.animation = miniBoss.animation;
 
         update();
         change(miniBoss);

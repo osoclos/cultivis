@@ -50,8 +50,8 @@
 
         const { attributes, animation } = towwData[form];
 
-        obj.animation = animation;
-        toww.setAnimation(animation);
+        toww.setRawAnimation(animation);
+        obj.animation = toww.animation;
 
         const {
             hasCrown = null,

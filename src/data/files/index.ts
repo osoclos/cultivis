@@ -6,4 +6,6 @@ import soundDataJSON from "./sound-data.json";
 const soundData: SoundDataJSON = soundDataJSON;
 
 export { forbiddenAnimations, soundData };
+
 export * from "./characters";
+export * from "./animations";

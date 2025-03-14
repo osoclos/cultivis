@@ -1,0 +1,103 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "animation-data.schema.json",
+
+    "title": "Animations",
+    "description": "Information and metadata on how animations are played in the visualizer.",
+
+    "type": "object",
+    "propertyNames": { "type": "string" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The name of this animation."
+            },
+
+            "animations": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "animation": {
+                            "type": "string",
+                            "description": "The name of this animation in the skeleton."
+                        },
+
+                        "track": {
+                            "type": "integer",
+                            "description": "Which track should the animation be placed. (The higher it is, the more priority it has over other animations)",
+                            
+                            "minimum": 0
+                        },
+
+                        "start": {
+                            "type": "number",
+                            "description": "When does the animation start playing in seconds.",
+
+                            "minimum": 0
+                        },
+
+                        "duration": {
+                            "type": "number",
+                            "description": "How long should the animation play in seconds. (default: until it ends)",
+
+                            "minimum": 0
+                        },
+
+                        "loops": {
+                            "type": "integer",
+                            "description": "How many times should this animation loop? (default: Infinity)"
+                        },
+
+                        "offset": {
+                            "type": "number",
+                            "description": "Where should the first frame of the animation start in seconds. (default: the first frame)",
+
+                            "minimum": 0
+                        }
+                    },
+
+                    "required": ["animation", "track", "start"]
+                }
+            },
+
+            "sounds": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "sound": {
+                            "$ref": "sound-data.schema.json#/definitions/Id",
+                            "description": "The name of this animation in the skeleton."
+                        },
+
+                        "variants": {
+                            "type": "array",
+                            "description": "Which variants from the list of sound from this specific key should it play (default: all)",
+
+                            "items": { "type": "string" }
+                        },
+
+                        "start": {
+                            "type": "number",
+                            "description": "When does the sound start playing in seconds.",
+
+                            "minimum": 0
+                        },
+
+                        "step": {
+                            "type": "number",
+                            "description": "How long does it take before this sound plays again? (default: the longest animation, set to a negative number to not repeat)"
+                        }
+                    },
+
+                    "required": ["sound", "start"]
+                }
+            }
+        },
+
+        "required": ["name", "animations", "sounds"]
+    }
+}

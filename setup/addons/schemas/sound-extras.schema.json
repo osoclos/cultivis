@@ -6,7 +6,7 @@
     "description": "Additional information and metadata on how sounds are played in the visualizer.",
 
     "type": "object",
-    "propertyNames": { "$ref": "#/definitions/Id" },
+    "propertyNames": { "$ref": "../../../src/data/schemas/sound-data.schema.json#/definitions/Id" },
     "additionalProperties": {
         "type": "object",
         "properties": {
@@ -24,12 +24,5 @@
         },
 
         "required": ["dest"]
-    },
-
-    "definitions": {
-        "Id": {
-            "type": "string",
-            "enum": ["Click", "Flicker", "Option_Change", "Menu_Open", "Menu_Close", "Pet_Laugh"]
-        }
     }
 }

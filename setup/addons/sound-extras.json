@@ -1,20 +1,30 @@
 {
-    "Click": { "dest": "click.wav" },
+    "Click": { "dest": "ui/click.wav" },
     "Flicker": {
-        "src": ["flicker0.wav", "flicker1.wav", "flicker2.wav", "flicker3.wav", "flicker4.wav"],
-        "dest": "flicker.wav"
+        "src": ["ui/flicker1.wav", "ui/flicker2.wav", "ui/flicker3.wav", "ui/flicker4.wav", "ui/flicker5.wav"],
+        "dest": "ui/flicker.wav"
     },
 
     "Option_Change": {
-        "src": ["option-change0.wav", "option-change1.wav", "option-change2.wav"],
-        "dest": "option-change.wav"
+        "src": ["ui/option-change1.wav", "ui/option-change2.wav", "ui/option-change3.wav"],
+        "dest": "ui/option-change.wav"
     },
 
-    "Menu_Open": { "dest": "menu-open.wav" },
-    "Menu_Close": { "dest": "menu-close.wav" },
+    "Menu_Open": { "dest": "ui/menu-open.wav" },
+    "Menu_Close": { "dest": "ui/menu-close.wav" },
 
-    "Pet_Laugh": {
-        "src": ["pet-laugh0.wav", "pet-laugh1.wav", "pet-laugh2.wav", "pet-laugh3.wav", "pet-laugh4.wav"],
-        "dest": "pet-laugh.wav"
+    "Greet": {
+        "src": ["characters/follower/greet1.wav", "characters/follower/greet2.wav", "characters/follower/greet3.wav", "characters/follower/greet4.wav", "characters/follower/greet5.wav", "characters/follower/greet6.wav", "characters/follower/greet7.wav"],
+        "dest": "characters/follower/greet.wav"
+    },
+
+    "Grunt": {
+        "src": ["characters/follower/grunt1.wav", "characters/follower/grunt2.wav", "characters/follower/grunt3.wav"],
+        "dest": "characters/follower/grunt.wav"
+    },
+
+    "Laugh": {
+        "src": ["characters/follower/laugh1.wav", "characters/follower/laugh2.wav", "characters/follower/laugh3.wav", "characters/follower/laugh4.wav", "characters/follower/laugh5.wav"],
+        "dest": "characters/follower/laugh.wav"
     }
 }

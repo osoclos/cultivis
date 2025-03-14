@@ -16,7 +16,7 @@
     import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness, isMiniBossObj, isWitnessObj, Soldier, isSoldierObj, Heretic, isHereticObj } from "./scripts/characters";
     import { soundManager, newsManager, NewsManager, type NewsLoader, serverManager } from "./scripts/managers";
 
-    import { bishopData, hereticData, miniBossData, towwData } from "./data/files";
+    import { bishopData, followerAnimationData, hereticData, miniBossData, towwData } from "./data/files";
     import { BISHOP_IDS, HERETIC_IDS, MINI_BOSS_IDS, SOLDIER_IDS, WITNESS_IDS } from "./data/types";
 
     import { MoreMath, Random, unixToDate, Vector } from "./utils";
@@ -61,6 +61,7 @@
 
     let loadingActor: typeof Actor | null = $state(null);
     let showActorMenu: boolean = $state(false);
+    let useExperimentalAnimations: boolean = $state(true);
 
     let actor: Actor | null = $state(null);
     let actorObj: ActorObject | null = $state(null);
@@ -150,6 +151,8 @@
         abortController.abort();
         
         resizer.disconnect();
+        
+        scene?.dispose();
         exporter?.dispose();
     });
 
@@ -174,20 +177,22 @@
         loadingState = LOADING_STATES.indexOf("LoadingAssets");
 
         await factory.load(Follower, Player);
+
         exporter = await Exporter.create();
+        await exporter.factory.load(Follower, Player);
 
         loadingState = LOADING_STATES.indexOf("SceneSetup");
     
         const deer = factory.follower("Deer", "Default_Clothing");
         deer.label = "Deer";
-        deer.setAnimation("idle");
+        deer.setAnimation(followerAnimationData.Idle);
 
         deer.pos.setX(-180);
         deer.flipX = true;
 
         const player = factory.player("Lamb", "Lamb");
         player.label = "Lamb";
-        player.setAnimation("idle");
+        player.setRawAnimation("idle");
 
         player.pos.setX(180);
 
@@ -203,7 +208,6 @@
         numOfPets = await serverManager.getPets();
         
         loadingState = LOADING_STATES.indexOf("FetchingNews");
-
         loadNews = await newsManager.getNews();
 
         news = await loadNews(FIRST_LOAD_NEWS_NUM_OF_FILES, [NewsManager.CHANGELOG_FOLDER_NAME, NewsManager.BLOG_FOLDER_NAME]);
@@ -218,11 +222,11 @@
 
         switch (actor) {
             case Follower: {
-                !factory.hasLoadedFollower( ) && await factory.loadFollower();
+                !factory.hasLoadedFollower() && await factory.loadFollower() && await exporter.factory.loadFollower();
                 const [form, formVariantIdx, formColorSetIdx] = getRandomFollowerAppearance();
 
                 const follower = factory.follower(form, "Default_Clothing", undefined, getSpecialFollowerName(form, formVariantIdx));
-                follower.setAnimation("idle");
+                follower.setRawAnimation("idle");
 
                 follower.formVariantIdx = formVariantIdx;
                 follower.formColorSetIdx = formColorSetIdx;
@@ -232,10 +236,10 @@
             }
 
             case Player: {
-                !factory.hasLoadedPlayer() && await factory.loadPlayer();
+                !factory.hasLoadedPlayer() && await factory.loadPlayer() && await exporter.factory.loadPlayer();
 
                 const player = factory.player("Lamb", "Lamb");
-                player.setAnimation("idle");
+                player.setRawAnimation("idle");
 
                 addedActor = player;
                 break;
@@ -243,10 +247,10 @@
 
             case Soldier: {
                 const id = Random.item(SOLDIER_IDS);
-                !factory.hasLoadedSoldier() && await factory.loadSoldier();
+                !factory.hasLoadedSoldier() && await factory.loadSoldier() && await exporter.factory.loadSoldier();
 
                 const soldier = factory.soldier(id);
-                soldier.setAnimation("idle");
+                soldier.setRawAnimation("idle");
 
                 addedActor = soldier;
                 break;
@@ -254,10 +258,10 @@
 
             case Heretic: {
                 const id = Random.item(HERETIC_IDS);
-                !factory.hasLoadedHeretic(id) && await factory.loadHeretic(id);
+                !factory.hasLoadedHeretic(id) && await factory.loadHeretic(id) && await exporter.factory.loadHeretic(id);
 
                 const heretic = factory.heretic(id);
-                heretic.setAnimation(hereticData[id].animation);
+                heretic.setRawAnimation(hereticData[id].animation);
                 
                 addedActor = heretic;
                 break;
@@ -265,17 +269,17 @@
 
             case Bishop: {
                 const id = Random.item(BISHOP_IDS);
-                !factory.hasLoadedBishop(id, false) && await factory.loadBishop(id, false);
+                !factory.hasLoadedBishop(id, false) && await factory.loadBishop(id, false) && await exporter.factory.loadBishop(id, false);
 
                 const bishop = factory.bishop(id, false);
-                bishop.setAnimation(bishopData[id].animation);
+                bishop.setRawAnimation(bishopData[id].animation);
 
                 addedActor = bishop;
                 break;
             }
 
             case TOWW: {
-                !factory.hasLoadedTOWW("Bishop") && await factory.loadTOWW("Bishop");
+                !factory.hasLoadedTOWW("Bishop") && await factory.loadTOWW("Bishop") && await exporter.factory.loadTOWW("Bishop");
                 const toww = factory.TOWW("Bishop");
                 
                 const { attributes, animation } = towwData.Bishop;
@@ -287,7 +291,7 @@
                 toww.hasCrown = hasCrown;
                 toww.hasChains = hasChains;
 
-                toww.setAnimation(animation);
+                toww.setRawAnimation(animation);
 
                 addedActor = toww;
                 break;
@@ -295,21 +299,21 @@
 
             case MiniBoss: {
                 const id = Random.item(MINI_BOSS_IDS);
-                !factory.hasLoadedMiniBoss(id) && await factory.loadMiniBoss(id);
+                !factory.hasLoadedMiniBoss(id) && await factory.loadMiniBoss(id) && await exporter.factory.loadMiniBoss(id);
 
                 const boss = factory.miniBoss(id, false);
-                boss.setAnimation(miniBossData[id].animation);
+                boss.setRawAnimation(miniBossData[id].animation);
 
                 addedActor = boss;
                 break;
             }
 
             case Witness: {
-                !factory.hasLoadedWitness() && await factory.loadWitness();
+                !factory.hasLoadedWitness() && await factory.loadWitness() && await exporter.factory.loadWitness();
                 const id = Random.item(WITNESS_IDS);
 
                 const witness = factory.witness(id, false);
-                witness.setAnimation("animation");
+                witness.setRawAnimation("animation");
 
                 addedActor = witness;
                 break;
@@ -516,7 +520,7 @@
 
                 <div class={["lg:absolute z-90 lg:top-0 w-full lg:w-160 lg:h-full bg-secondary transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                     {#if actor && actorObj}
-                        <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && !showActorMenu} onupdate={updateSceneFromChanges} onproceed={selectMenu} onexit={exitMenu} onchange={swapActor} />
+                        <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && !showActorMenu} bind:useExperimentalAnimations onupdate={updateSceneFromChanges} onproceed={selectMenu} onexit={exitMenu} onchange={swapActor} />
                     {/if}
                 </div>
 
@@ -565,7 +569,11 @@
                     <LabelTitle title="Name" />
                     <BannerButton label="Export Name" bind:value={exportName} editable />
                 </div>
-                
+
+                {#if useExperimentalAnimations}
+                    <Notice label="Audio from Experimental Animations are not supported at the moment." />
+                {/if}
+
                 <BannerButton class="mt-2" label={exportProgress < 0 ? "Export Scene" : "Exporting..."} disabled={exportProgress >= 0} onclick={exportScene} />
                 
                 {#if exportProgress >= 0}

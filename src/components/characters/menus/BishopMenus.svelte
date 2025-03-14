@@ -50,8 +50,8 @@
 
         const { animation, bossAnimation = animation } = bishopData[bishopId];
 
-        obj.animation = isBoss ? bossAnimation : animation;
-        bishop.setAnimation(isBoss ? bossAnimation : animation);
+        bishop.setRawAnimation(isBoss ? bossAnimation : animation);
+        obj.animation = bishop.animation;
 
         update();
         change(bishop);
