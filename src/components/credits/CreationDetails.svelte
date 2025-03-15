@@ -13,7 +13,10 @@
         hasNoticedTutorial?: boolean;
     }
 
-    let { lastUpdatedUnix = -1, hasNoticedTutorial = $bindable(false) }: Props = $props();
+    let {
+        lastUpdatedUnix = -1,
+        hasNoticedTutorial = $bindable(false)
+    }: Props = $props();
     
     function onnotice() {
         if (hasNoticedTutorial) return;

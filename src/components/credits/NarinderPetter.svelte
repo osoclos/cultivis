@@ -16,8 +16,15 @@
 
     const LAUGH_SOUND_FRAME_INDEX_START: number = 48;
 
-    interface Props { onclick?: VoidFunction; }
-    const { onclick: click = () => {} }: Props = $props();
+    interface Props {
+        hasPetNarinder?: boolean;
+        onclick?: VoidFunction;
+    }
+
+    let {
+        hasPetNarinder = $bindable(false),
+        onclick: click = () => {}
+    }: Props = $props();
 
     let isPettingNarinder: boolean = $state(false);
     let isLambPetting: boolean = $state(false);
@@ -49,9 +56,11 @@
 
     function onclick() {
         if (isPettingNarinder || isLambPetting) return;
-
         isPettingNarinder = true;
         isLambPetting = true;
+
+        hasPetNarinder = true;
+        localStorage.setItem(HAS_PET_NARINDER_LOCAL_STORAGE_NAME, "PET");
 
         hasPlayedSound = false;
 

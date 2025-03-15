@@ -479,10 +479,6 @@
 
     async function petNarinder() {
         numOfPets++;
-
-        hasPetNarinder = true;
-        localStorage.setItem(HAS_PET_NARINDER_LOCAL_STORAGE_NAME, "PET");
-
         await serverManager.addNewPet();
     }
 </script>
@@ -519,7 +515,7 @@
     </div>
 
     <div class={["overflow-hidden lg:h-dvh bg-secondary", { "hidden": !hasFinishedLoading }]}>
-        <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:hasNoticedTutorial={hasNoticedTutorial && hasPetNarinder} enableKeyInput={(actorIdx < 0 || isMobile)} onclick={selectCategoryMenu} />
+        <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:hasNoticedTutorial bind:hasPetNarinder enableKeyInput={(actorIdx < 0 || isMobile)} onclick={selectCategoryMenu} />
         <div bind:this={categoryMenu} class="no-scrollbar lg:overflow-y-auto flex flex-col {[1, 3].includes(categoryIdx) ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] select-none">
             {#if categoryIdx === 0}
                 <CharacterList bind:actors bind:loadingActor enableKeyInput={actorIdx < 0} onadd={addActor} onremove={(indexes) => [...indexes].sort((a, b) => b - a).forEach((i) => removeActor(scene.actors[i], i))} onclone={(indexes) => indexes.forEach((i) => cloneActor(scene.actors[i]))} onactorclick={selectActor} />
@@ -596,7 +592,7 @@
                     <Header title="Pet Narinder" />
 
                     <LabelTitle class="mb-2" title="Pets Today: {numOfPets}" />
-                    <NarinderPetter onclick={petNarinder} />
+                    <NarinderPetter bind:hasPetNarinder onclick={petNarinder} />
 
                     <LabelTitle title="Click them to pet Narinder." />
                 </div>

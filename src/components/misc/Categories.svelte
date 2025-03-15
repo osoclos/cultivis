@@ -11,6 +11,8 @@
         selectedIdx?: number;
 
         hasNoticedTutorial?: boolean;
+        hasPetNarinder?: boolean;
+
         enableKeyInput?: boolean;
 
         class?: string;
@@ -21,6 +23,8 @@
         selectedIdx = $bindable(0),
 
         hasNoticedTutorial = $bindable(false),
+        hasPetNarinder = $bindable(false),
+
         enableKeyInput = false,
 
         class: className,
@@ -52,7 +56,7 @@
         <Pagination bind:selectedIdx label="Categories" {enableKeyInput} {onclick}>
             {#snippet children(i)}
                 {#each LABELS as label, j (j)}
-                    <Tab {label} selected={j === i} style="z-index: {(LABELS.length - j) * 10}" hasNotice={(label === "News" && !hasCheckedNews) || (label === "Credits" && !hasNoticedTutorial)} />
+                    <Tab {label} selected={j === i} style="z-index: {(LABELS.length - j) * 10}" hasNotice={(label === "News" && !hasCheckedNews) || (label === "Credits" && (!hasNoticedTutorial || !hasPetNarinder))} />
                 {/each}
             {/snippet}
         </Pagination>
