@@ -294,7 +294,7 @@ export class Actor implements ActorObject {
             if (time < nextPlay) continue;
 
             soundManager.play(sound, variants ? Random.item(variants) : undefined);
-            entry.nextPlay += step;
+            while (entry.nextPlay < time) entry.nextPlay += step;
         }
 
         skeleton.updateWorldTransform();

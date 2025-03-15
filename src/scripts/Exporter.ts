@@ -222,6 +222,8 @@ export class Exporter {
         }
         
         actor.copyFromObj(obj);
+        
+        actor.muted = true;
         actor.setAnimation(animation);
         
         return actor;

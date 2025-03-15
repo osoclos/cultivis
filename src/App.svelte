@@ -10,7 +10,7 @@
     import { FormatOptions, SizeOptions, TimingOptions } from "./components/exporting";
 
     import { News } from "./components/news";
-    import { CreationDetails, SpecialThanks, HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME, NarinderPetter } from "./components/credits";
+    import { CreationDetails, SpecialThanks, HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME, NarinderPetter, HAS_PET_NARINDER_LOCAL_STORAGE_NAME } from "./components/credits";
 
     import { Actor, Exporter, Factory, FORMAT_IDS, Scene, type ActorObject, type FormatData, type FormatId } from "./scripts";
     import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness, isMiniBossObj, isWitnessObj, Soldier, isSoldierObj, Heretic, isHereticObj } from "./scripts/characters";
@@ -53,7 +53,9 @@
     let loadNews: NewsLoader | null = $state(null);
 
     let lastUpdatedUnix: number = $state(-1);
+
     let hasNoticedTutorial: boolean = $state(!!localStorage.getItem(HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME));
+    let hasPetNarinder: boolean = $state(!!localStorage.getItem(HAS_PET_NARINDER_LOCAL_STORAGE_NAME));
 
     let actors: ActorObject[] | null = $state(null);
     let actorIdx: number = $state(-1);
@@ -477,6 +479,10 @@
 
     async function petNarinder() {
         numOfPets++;
+
+        hasPetNarinder = true;
+        localStorage.setItem(HAS_PET_NARINDER_LOCAL_STORAGE_NAME, "PET");
+
         await serverManager.addNewPet();
     }
 </script>

@@ -6,4 +6,6 @@ import SpecialThanks from "./SpecialThanks.svelte";
 import NarinderPetter from "./NarinderPetter.svelte";
 
 export { ImageLink, CreationDetails, SpecialThanks, NarinderPetter };
+
 export * from "./CreationDetails.svelte";
+export * from "./NarinderPetter.svelte";

@@ -1,3 +1,7 @@
+<script lang="ts" module>
+    export const HAS_PET_NARINDER_LOCAL_STORAGE_NAME: string = "has-pet-narinder";
+</script>
+
 <script lang="ts">
     import { soundManager } from "../../scripts/managers";
     import { SpritesheetImage } from "../utils";
@@ -39,7 +43,7 @@
 
         if (!hasPlayedSound && narinderCount >= LAUGH_SOUND_FRAME_INDEX_START) {
             hasPlayedSound = true;
-            soundManager.play("Pet_Laugh");
+            soundManager.play("Laugh");
         }
     }, 1000 / 60);
 
