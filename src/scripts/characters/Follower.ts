@@ -361,8 +361,7 @@ export class Follower extends Actor implements FollowerObject {
 
         isDisciple && this.skeleton.setAttachment(Follower.HALO_SLOT_NAME, Follower.HALO_ATTACHMENT_NAME);
 
-        
-
+        this.resetAnimation();
         this.tick();
     }
 
