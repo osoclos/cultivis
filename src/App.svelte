@@ -6,21 +6,20 @@
     import { SceneCanvas, Categories, LoadingThrobber, LoadingSymbol, CloudShaders } from "./components/misc";
     import { List } from "./components/utils";
     
-    import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, TOWW_MENU_NAME, TOWW_Menus, MINI_BOSS_MENU_NAME, MiniBossMenu, WITNESS_MENU_NAME, WitnessMenu, SoldierMenus, SOLDIER_MENU_NAME } from "./components/characters";
+    import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, HereticMenus, HERETIC_MENU_NAME, MiniBossMenu, MINI_BOSS_MENU_NAME, OccultistMenus, OCCULTIST_MENU_NAME, SoldierMenus, SOLDIER_MENU_NAME, TOWW_Menus, TOWW_MENU_NAME, WitnessMenu, WITNESS_MENU_NAME } from "./components/characters";
     import { FormatOptions, SizeOptions, TimingOptions } from "./components/exporting";
 
     import { News } from "./components/news";
     import { CreationDetails, SpecialThanks, HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME, NarinderPetter, HAS_PET_NARINDER_LOCAL_STORAGE_NAME } from "./components/credits";
 
     import { Actor, Exporter, Factory, FORMAT_IDS, Scene, type ActorObject, type FormatData, type FormatId } from "./scripts";
-    import { Follower, isFollowerObj, isPlayerObj, TOWW, Player, Bishop, isBishopObj, isTOWW_Obj, MiniBoss, Witness, isMiniBossObj, isWitnessObj, Soldier, isSoldierObj, Heretic, isHereticObj } from "./scripts/characters";
+    import { Bishop, isBishopObj, Follower, isFollowerObj, Heretic, isHereticObj, MiniBoss, isMiniBossObj, Occultist, isOccultistObj, Player, isPlayerObj, Soldier, isSoldierObj, TOWW, isTOWW_Obj, Witness, isWitnessObj } from "./scripts/characters";
     import { soundManager, newsManager, NewsManager, type NewsLoader, serverManager } from "./scripts/managers";
 
     import { bishopData, followerAnimationData, hereticData, miniBossData, towwData } from "./data/files";
-    import { BISHOP_IDS, HERETIC_IDS, MINI_BOSS_IDS, SOLDIER_IDS, WITNESS_IDS } from "./data/types";
+    import { BISHOP_IDS, HERETIC_IDS, MINI_BOSS_IDS, OCCULTIST_IDS, SOLDIER_IDS, WITNESS_IDS } from "./data/types";
 
     import { MoreMath, Random, unixToDate, Vector } from "./utils";
-    import HereticMenus, { HERETIC_MENU_NAME } from "./components/characters/menus/HereticMenus.svelte";
 
     const LOADING_STATES = ["ToSAcknowledgement", "LoadingAssets", "SceneSetup", "FetchingNews"] as const;
     const LOADING_TEXTS: string[] = ["Checking ToS Acknowledgement", "Loading Assets", "Setting Up Scene", "Fetching News"];
@@ -255,6 +254,17 @@
                 soldier.setRawAnimation("idle");
 
                 addedActor = soldier;
+                break;
+            }
+
+            case Occultist: {
+                const id = Random.item(OCCULTIST_IDS);
+                !factory.hasLoadedOccultist() && await factory.loadOccultist() && await exporter.factory.loadOccultist();
+
+                const occultist = factory.occultist(id);
+                occultist.setRawAnimation("idle");
+
+                addedActor = occultist;
                 break;
             }
 
@@ -534,6 +544,8 @@
                             <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={actorMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                         {:else if isSoldierObj(actorObj) && actorMenu === SOLDIER_MENU_NAME}
                             <SoldierMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" soldier={actor as Soldier} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                        {:else if isOccultistObj(actorObj) && actorMenu === OCCULTIST_MENU_NAME}
+                            <OccultistMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" occultist={actor as Occultist} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                         {:else if isHereticObj(actorObj) && actorMenu === HERETIC_MENU_NAME}
                             <HereticMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
                         {:else if isBishopObj(actorObj) && actorMenu === BISHOP_MENU_NAME}

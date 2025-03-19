@@ -3,7 +3,8 @@ import "./style.css";
 import { Scene, Factory, Exporter, Actor } from "@/scripts";
 
 import { followerData, hereticData, miniBossData, playerData, towwData } from "@/data/files";
-import { CLOTHING_IDS, FOLLOWER_IDS, HATS_ID, SOLDIER_IDS, MINI_BOSS_IDS, NECKLACE_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, TOWW_IDS, WITNESS_IDS, HERETIC_IDS } from "@/data/types";
+import { CLOTHING_IDS, FOLLOWER_IDS, HATS_ID, HERETIC_IDS, MINI_BOSS_IDS, NECKLACE_IDS, OCCULTIST_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, SOLDIER_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
+
 import { Player } from "@/scripts/characters";
 
 const WIDTH: number = 64;
@@ -29,7 +30,7 @@ message.textContent = "Ready!";
 const followerExporter = document.querySelector<HTMLButtonElement>("button#export-followers")!;
 followerExporter.addEventListener("click", () => {
     const follower = factory.follower("Deer", "Default_Clothing");
-    follower.setAnimation("Avatars/avatar-normal");
+    follower.setRawAnimation("Avatars/avatar-normal");
 
     setupScene(follower);
     scene.scale *= 0.92;
@@ -50,7 +51,7 @@ followerExporter.addEventListener("click", () => {
 const clothingExporter = document.querySelector<HTMLButtonElement>("button#export-clothing")!;
 clothingExporter.addEventListener("click", () => {
     const follower = factory.follower("Deer", "Default_Clothing");
-    follower.setAnimation("outfit");
+    follower.setRawAnimation("outfit");
 
     setupScene(follower);
     scene.scale *= 0.84;
@@ -82,7 +83,7 @@ clothingExporter.addEventListener("click", () => {
 const variantExporter = document.querySelector<HTMLButtonElement>("button#export-variants")!;
 variantExporter.addEventListener("click", () => {
     let follower = factory.follower("Deer", "Default_Clothing");
-    follower.setAnimation("Avatars/avatar-normal");
+    follower.setRawAnimation("Avatars/avatar-normal");
 
     setupScene(follower);
     scene.scale *= 0.92;
@@ -101,7 +102,7 @@ variantExporter.addEventListener("click", () => {
     }
 
     follower = factory.follower("Deer", "Default_Clothing");
-    follower.setAnimation("outfit");
+    follower.setRawAnimation("outfit");
 
     setupScene(follower);
     scene.scale *= 0.84;
@@ -131,7 +132,7 @@ variantExporter.addEventListener("click", () => {
 const necklaceExporter = document.querySelector<HTMLButtonElement>("button#export-necklaces")!;
 necklaceExporter.addEventListener("click", () => {
     const follower = factory.follower("Deer", "Default_Clothing");
-    follower.setAnimation("outfit");
+    follower.setRawAnimation("outfit");
 
     setupScene(follower);
     scene.scale *= 0.54;
@@ -152,7 +153,7 @@ necklaceExporter.addEventListener("click", () => {
 const hatExporter = document.querySelector<HTMLButtonElement>("button#export-hats")!;
 hatExporter.addEventListener("click", () => {
     const follower = factory.follower("Deer", "Default_Clothing");
-    follower.setAnimation("outfit");
+    follower.setRawAnimation("outfit");
 
     setupScene(follower);
     scene.scale *= 0.9;
@@ -173,7 +174,7 @@ hatExporter.addEventListener("click", () => {
 const playerExporter = document.querySelector<HTMLButtonElement>("button#export-player")!;
 playerExporter.addEventListener("click", () => {
     let player = factory.player("Lamb", "Lamb");
-    player.setAnimation("testing");
+    player.setRawAnimation("testing");
 
     player.crown = null;
     player.bell = null;
@@ -195,7 +196,7 @@ playerExporter.addEventListener("click", () => {
     }
 
     player = factory.player("Lamb", "Lamb");
-    player.setAnimation("testing");
+    player.setRawAnimation("testing");
 
     player.crown = null;
     player.bell = null;
@@ -221,7 +222,7 @@ playerExporter.addEventListener("click", () => {
 const fleeceExporter = document.querySelector<HTMLButtonElement>("button#export-fleeces")!;
 fleeceExporter.addEventListener("click", () => {
     const player = factory.player("Lamb", "Lamb");
-    player.setAnimation("testing");
+    player.setRawAnimation("testing");
 
     player.crown = null;
     player.bell = null;
@@ -245,7 +246,7 @@ fleeceExporter.addEventListener("click", () => {
 const bellExporter = document.querySelector<HTMLButtonElement>("button#export-bells")!;
 bellExporter.addEventListener("click", () => {
     const player = factory.player("Lamb", "Lamb");
-    player.setAnimation("testing");
+    player.setRawAnimation("testing");
 
     player.crown = null;
     player.bell = null;
@@ -272,7 +273,7 @@ soldierExporter.addEventListener("click", () => {
 
     for (const id of SOLDIER_IDS) {
         const soldier = factory.soldier(id);
-        soldier.setAnimation("idle");
+        soldier.setRawAnimation("idle");
 
         setupScene(soldier);
         
@@ -287,6 +288,22 @@ soldierExporter.addEventListener("click", () => {
     sendForm(form, "/soldiers");
 });
 
+const occultistExporter = document.querySelector<HTMLButtonElement>("button#export-occultists")!;
+occultistExporter.addEventListener("click", () => {
+    const form = new FormData();
+
+    for (const id of OCCULTIST_IDS) {
+        const occultist = factory.occultist(id);
+        occultist.setRawAnimation("idle");
+
+        setupScene(occultist);
+
+        appendPixelsToForm(form, id);
+    }
+
+    sendForm(form, "/occultists");
+});
+
 const hereticExporter = document.querySelector<HTMLButtonElement>("button#export-heretics")!;
 hereticExporter.addEventListener("click", () => {
     const form = new FormData();
@@ -295,7 +312,7 @@ hereticExporter.addEventListener("click", () => {
         const heretic = factory.heretic(id);
 
         const { animation } = hereticData[id];
-        heretic.setAnimation(animation);
+        heretic.setRawAnimation(animation);
 
         setupScene(heretic);
         if (["Moss_Bat", "Red_Frog", "Mega_Red_Frog", "Mortar_Frog", "Frog_Bat", "Devil_Fly", "Millipede", "Poisonous_Millipede"].includes(id)) {
@@ -322,7 +339,7 @@ towwExporter.addEventListener("click", () => {
         const toww = factory.TOWW(id);
         
         const { attributes, animation } = towwData[id];
-        toww.setAnimation(animation);
+        toww.setRawAnimation(animation);
 
         const {
             hasCrown = null,
@@ -358,7 +375,7 @@ miniBossExporter.addEventListener("click", () => {
         const boss = factory.miniBoss(id);
 
         const { animation } = miniBossData[id];
-        boss.setAnimation(animation);
+        boss.setRawAnimation(animation);
 
         setupScene(boss);
         if (["Flying Burp Frog", "Spiker", "Charger", "Scuttle Turret", "Millipede Poisoner"].includes(id)) {
@@ -381,7 +398,7 @@ witnessExporter.addEventListener("click", () => {
 
     for (const id of WITNESS_IDS) {
         const witness = factory.witness(id);
-        witness.setAnimation("animation");
+        witness.setRawAnimation("animation");
 
         setupScene(witness);
         

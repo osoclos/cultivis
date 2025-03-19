@@ -1,0 +1,33 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "occultist-data.schema.json",
+
+    "title": "Occultist Data",
+    "description": "Information on occultists that provides metadata and other related information",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/Id" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The display name of this occultist."
+            },
+
+            "skin": {
+                "type": "string",
+                "description": "The skin name of this occultist."
+            }
+        },
+
+        "required": ["name", "skin"]
+    },
+
+    "definitions": {
+        "Id": {
+            "type": "string",
+            "enum": ["Summoner", "Healer", "Protector"]
+        }
+    }
+}

@@ -5,11 +5,11 @@
     import { SpritesheetImage } from "../utils";
 
     import type { ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, isMiniBossObj, isWitnessObj, isSoldierObj, isHereticObj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isHereticObj, isMiniBossObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
     import { soundManager } from "../../scripts/managers";
 
-    import { bishopData, followerData, towwData, playerData, miniBossData, witnessData, soldierData, hereticData } from "../../data/files";
-    import { BISHOP_IDS, MINI_BOSS_CATEGORIES, followerIdsByCategory, PLAYER_CREATURE_IDS, WITNESS_IDS, miniBossIdsByCategory, FOLLOWER_CATEGORIES, SOLDIER_IDS, hereticIdsByCategory, HERETIC_CATEGORIES } from "../../data/types";
+    import { bishopData, followerData, hereticData, miniBossData, occultistData, playerData, soldierData, towwData, witnessData } from "../../data/files";
+    import { BISHOP_IDS, followerIdsByCategory, FOLLOWER_CATEGORIES, hereticIdsByCategory, HERETIC_CATEGORIES, miniBossIdsByCategory, MINI_BOSS_CATEGORIES, PLAYER_CREATURE_IDS, SOLDIER_IDS, WITNESS_IDS, OCCULTIST_IDS } from "../../data/types";
 
     interface Props {
         actor: ActorObject;
@@ -46,6 +46,8 @@
             case isPlayerObj(actor): return "Player";
 
             case isSoldierObj(actor): return "Soldier";
+            case isOccultistObj(actor): return "Occultist";
+
             case isHereticObj(actor): return "Heretic";
 
             case isBishopObj(actor): return "Bishop";
@@ -64,6 +66,8 @@
             case isPlayerObj(actor): return `Creature: ${playerData.creatures[actor.creature].name}`;
 
             case isSoldierObj(actor): return `Role: ${soldierData[actor.soldier].name}`;
+            case isOccultistObj(actor): return `Role: ${occultistData[actor.occultist].name}`;
+
             case isHereticObj(actor): return `Enemy: ${hereticData[actor.heretic].name}`;
 
             case isBishopObj(actor): return `Bishop: ${bishopData[actor.bishop].name}`;
@@ -82,6 +86,8 @@
             case isPlayerObj(actor): return "/static/assets/characters/player.png";
 
             case isSoldierObj(actor): return "/static/assets/characters/soldiers.png";
+            case isOccultistObj(actor): return "/static/assets/characters/occultists.png";
+
             case isHereticObj(actor): return "/static/assets/characters/heretics.png";
 
             case isBishopObj(actor):
@@ -100,6 +106,8 @@
             case isPlayerObj(actor): return PLAYER_CREATURE_IDS.indexOf(actor.creature);
 
             case isSoldierObj(actor): return SOLDIER_IDS.indexOf(actor.soldier);
+            case isOccultistObj(actor): return OCCULTIST_IDS.indexOf(actor.occultist);
+
             case isHereticObj(actor): return hereticIdsByCategory[HERETIC_CATEGORIES[y]].indexOf(actor.heretic);
 
             case isBishopObj(actor): return BISHOP_IDS.indexOf(actor.bishop);
@@ -115,10 +123,14 @@
     const y: number = $derived.by(() => {
         switch (true) {
             case isFollowerObj(actor): return followerData.forms[actor.form].category;
+
             case isHereticObj(actor): return hereticData[actor.heretic].category;
             case isMiniBossObj(actor): return miniBossData[actor.miniBoss].category;
 
             case isPlayerObj(actor):
+
+            case isSoldierObj(actor):
+            case isOccultistObj(actor):
 
             case isBishopObj(actor):
             case isTOWW_Obj(actor):

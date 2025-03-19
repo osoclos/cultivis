@@ -1,0 +1,16 @@
+{
+    "Summoner": {
+        "name": "Summoner",
+        "skin": "Cult"
+    },
+
+    "Healer": {
+        "name": "Healer",
+        "skin": "Cult_Medic"
+    },
+
+    "Protector": {
+        "name": "Protector",
+        "skin": "Cult_Protector"
+    }
+}

@@ -210,5 +210,13 @@
         "wake-up",
         "walk",
         "worship"
+    ],
+
+    "occultist": [
+        "OLD",
+        "teleport-in",
+        "teleport-out",
+        "teleport2",
+        "wake-up"
     ]
 }

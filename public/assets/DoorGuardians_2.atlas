@@ -1,0 +1,720 @@
+
+DoorGuardians_2.png
+size: 2048,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ATTACK_EFFECT
+  rotate: false
+  xy: 240, 1435
+  size: 267, 611
+  orig: 267, 611
+  offset: 0, 0
+  index: -1
+ATTACK_EFFECT_RED
+  rotate: false
+  xy: 509, 1435
+  size: 267, 611
+  orig: 267, 611
+  offset: 0, 0
+  index: -1
+ArmLeft
+  rotate: true
+  xy: 2, 2
+  size: 47, 179
+  orig: 47, 179
+  offset: 0, 0
+  index: -1
+ArmRight
+  rotate: true
+  xy: 2, 2
+  size: 47, 179
+  orig: 47, 179
+  offset: 0, 0
+  index: -1
+ArmLeft_Enforcer
+  rotate: true
+  xy: 1739, 786
+  size: 72, 172
+  orig: 72, 172
+  offset: 0, 0
+  index: -1
+ArmLeft_Enforcer2
+  rotate: true
+  xy: 900, 380
+  size: 72, 172
+  orig: 72, 172
+  offset: 0, 0
+  index: -1
+ArmLeft_Skele
+  rotate: true
+  xy: 183, 18
+  size: 52, 183
+  orig: 52, 183
+  offset: 0, 0
+  index: -1
+ArmRight_Enforcer
+  rotate: true
+  xy: 899, 306
+  size: 72, 172
+  orig: 72, 172
+  offset: 0, 0
+  index: -1
+ArmRight_Enforcer2
+  rotate: true
+  xy: 899, 232
+  size: 72, 172
+  orig: 72, 172
+  offset: 0, 0
+  index: -1
+ArmRight_Skele
+  rotate: false
+  xy: 1307, 614
+  size: 52, 183
+  orig: 52, 183
+  offset: 0, 0
+  index: -1
+ArmThingLeft
+  rotate: true
+  xy: 1326, 363
+  size: 55, 153
+  orig: 55, 153
+  offset: 0, 0
+  index: -1
+ArmThingRight
+  rotate: false
+  xy: 1515, 716
+  size: 63, 157
+  orig: 63, 157
+  offset: 0, 0
+  index: -1
+BlueVeins_0
+  rotate: true
+  xy: 368, 2
+  size: 26, 126
+  orig: 26, 126
+  offset: 0, 0
+  index: -1
+BlueVeins_1
+  rotate: false
+  xy: 2011, 1049
+  size: 32, 148
+  orig: 32, 148
+  offset: 0, 0
+  index: -1
+Body1
+  rotate: true
+  xy: 1758, 1517
+  size: 315, 275
+  orig: 315, 275
+  offset: 0, 0
+  index: -1
+Body2
+  rotate: false
+  xy: 203, 953
+  size: 315, 274
+  orig: 315, 274
+  offset: 0, 0
+  index: -1
+BodyDead
+  rotate: false
+  xy: 1076, 406
+  size: 248, 171
+  orig: 248, 171
+  offset: 0, 0
+  index: -1
+Body_Btm_Enforcer2
+  rotate: false
+  xy: 778, 1470
+  size: 430, 324
+  orig: 430, 324
+  offset: 0, 0
+  index: -1
+Body_Enforcer
+  rotate: false
+  xy: 1440, 1550
+  size: 316, 282
+  orig: 318, 282
+  offset: 0, 0
+  index: -1
+Body_Enforcer2
+  rotate: false
+  xy: 1440, 1266
+  size: 316, 282
+  orig: 318, 282
+  offset: 0, 0
+  index: -1
+Body_Skele
+  rotate: true
+  xy: 1758, 1199
+  size: 316, 282
+  orig: 318, 282
+  offset: 0, 0
+  index: -1
+Cape
+  rotate: false
+  xy: 784, 1055
+  size: 294, 183
+  orig: 294, 183
+  offset: 0, 0
+  index: -1
+Cape_Enforcer
+  rotate: false
+  xy: 1072, 865
+  size: 280, 183
+  orig: 280, 187
+  offset: 0, 2
+  index: -1
+Cape_Skele
+  rotate: false
+  xy: 1080, 1050
+  size: 282, 183
+  orig: 282, 184
+  offset: 0, 0
+  index: -1
+DeathCatImages/BODY
+  rotate: true
+  xy: 1581, 975
+  size: 226, 122
+  orig: 233, 122
+  offset: 7, 0
+  index: -1
+DeathCatImages/BODY_Snarl
+  rotate: false
+  xy: 1354, 875
+  size: 224, 125
+  orig: 231, 125
+  offset: 7, 0
+  index: -1
+DeathCatImages/COLLAR
+  rotate: false
+  xy: 1886, 722
+  size: 104, 52
+  orig: 104, 52
+  offset: 0, 0
+  index: -1
+DeathCatImages/FACE_CURTAINS
+  rotate: false
+  xy: 1580, 709
+  size: 132, 90
+  orig: 132, 90
+  offset: 0, 0
+  index: -1
+DeathCatImages/FaceNormal
+  rotate: false
+  xy: 1326, 309
+  size: 134, 52
+  orig: 134, 53
+  offset: 0, 1
+  index: -1
+DeathCatImages/FaceSnarl
+  rotate: true
+  xy: 1289, 161
+  size: 134, 46
+  orig: 134, 46
+  offset: 0, 0
+  index: -1
+DeathCatImages/HEAD
+  rotate: false
+  xy: 845, 21
+  size: 176, 184
+  orig: 181, 184
+  offset: 5, 0
+  index: -1
+DeathCatImages/LEG_BACK
+  rotate: false
+  xy: 1992, 692
+  size: 54, 82
+  orig: 54, 82
+  offset: 0, 0
+  index: -1
+DeathCatImages/LEG_RIGHT
+  rotate: false
+  xy: 1337, 232
+  size: 102, 75
+  orig: 102, 75
+  offset: 0, 0
+  index: -1
+DeathCatImages/Mouth_Growl
+  rotate: false
+  xy: 1574, 657
+  size: 115, 50
+  orig: 115, 50
+  offset: 0, 0
+  index: -1
+DeathCatImages/Mouth_Normal
+  rotate: false
+  xy: 589, 2
+  size: 30, 26
+  orig: 30, 26
+  offset: 0, 0
+  index: -1
+DeathCatImages/Mouth_Snarl
+  rotate: true
+  xy: 203, 1234
+  size: 113, 35
+  orig: 113, 35
+  offset: 0, 0
+  index: -1
+DeathCatImages/SnarlSpit
+  rotate: false
+  xy: 496, 2
+  size: 91, 26
+  orig: 91, 26
+  offset: 0, 0
+  index: -1
+EYES
+  rotate: true
+  xy: 1153, 119
+  size: 166, 69
+  orig: 166, 69
+  offset: 0, 0
+  index: -1
+EYES2
+  rotate: false
+  xy: 1714, 705
+  size: 170, 79
+  orig: 170, 79
+  offset: 0, 0
+  index: -1
+EYES_ANGRY
+  rotate: true
+  xy: 1224, 119
+  size: 166, 63
+  orig: 166, 63
+  offset: 0, 0
+  index: -1
+EYES_ANGRY2
+  rotate: false
+  xy: 1326, 480
+  size: 166, 63
+  orig: 166, 63
+  offset: 0, 0
+  index: -1
+EYES_ANGRY_Enforcer
+  rotate: false
+  xy: 1691, 656
+  size: 102, 47
+  orig: 102, 47
+  offset: 0, 0
+  index: -1
+EYES_BLINK
+  rotate: false
+  xy: 1074, 363
+  size: 172, 41
+  orig: 172, 41
+  offset: 0, 0
+  index: -1
+EYES_BLINK2
+  rotate: true
+  xy: 1023, 55
+  size: 175, 53
+  orig: 175, 53
+  offset: 0, 0
+  index: -1
+EYES_BLINK_Enforcer
+  rotate: true
+  xy: 2015, 1930
+  size: 116, 21
+  orig: 116, 21
+  offset: 0, 0
+  index: -1
+EYES_Enforcer
+  rotate: false
+  xy: 1886, 672
+  size: 104, 48
+  orig: 104, 48
+  offset: 0, 0
+  index: -1
+EYES_SHUT
+  rotate: false
+  xy: 1326, 420
+  size: 165, 58
+  orig: 165, 58
+  offset: 0, 0
+  index: -1
+EYES_SHUT2
+  rotate: true
+  xy: 1078, 115
+  size: 170, 73
+  orig: 170, 73
+  offset: 0, 0
+  index: -1
+EYES_SHUT_Enforcer
+  rotate: false
+  xy: 783, 684
+  size: 105, 33
+  orig: 105, 33
+  offset: 0, 0
+  index: -1
+EYES_WIDE
+  rotate: false
+  xy: 1326, 545
+  size: 166, 64
+  orig: 166, 64
+  offset: 0, 0
+  index: -1
+EYES_WIDE2
+  rotate: false
+  xy: 1073, 287
+  size: 170, 74
+  orig: 170, 74
+  offset: 0, 0
+  index: -1
+EYES_WIDE_Enforcer
+  rotate: false
+  xy: 1574, 615
+  size: 109, 40
+  orig: 109, 40
+  offset: 0, 0
+  index: -1
+Exclaim
+  rotate: false
+  xy: 1920, 984
+  size: 89, 213
+  orig: 89, 213
+  offset: 0, 0
+  index: -1
+FaceCurtain1
+  rotate: false
+  xy: 1580, 801
+  size: 157, 172
+  orig: 157, 172
+  offset: 0, 0
+  index: -1
+HEAD1
+  rotate: false
+  xy: 1364, 1002
+  size: 215, 199
+  orig: 215, 199
+  offset: 0, 0
+  index: -1
+HEAD2
+  rotate: false
+  xy: 568, 1223
+  size: 214, 210
+  orig: 214, 210
+  offset: 0, 0
+  index: -1
+HairTuft
+  rotate: false
+  xy: 1337, 153
+  size: 100, 77
+  orig: 100, 77
+  offset: 0, 0
+  index: -1
+Head_Enforcer
+  rotate: true
+  xy: 784, 1240
+  size: 228, 317
+  orig: 228, 317
+  offset: 0, 0
+  index: -1
+Head_Enforcer2
+  rotate: false
+  xy: 1210, 1455
+  size: 228, 339
+  orig: 228, 339
+  offset: 0, 0
+  index: -1
+Head_Skele
+  rotate: true
+  xy: 900, 454
+  size: 263, 174
+  orig: 263, 174
+  offset: 0, 0
+  index: -1
+Head_Skele2
+  rotate: false
+  xy: 240, 1229
+  size: 326, 204
+  orig: 326, 206
+  offset: 0, 2
+  index: -1
+LegLeft
+  rotate: true
+  xy: 1415, 1203
+  size: 61, 259
+  orig: 61, 259
+  offset: 0, 0
+  index: -1
+LegRight
+  rotate: true
+  xy: 1064, 799
+  size: 64, 259
+  orig: 68, 259
+  offset: 4, 0
+  index: -1
+Leg_Enforcer
+  rotate: true
+  xy: 783, 719
+  size: 73, 258
+  orig: 73, 258
+  offset: 0, 0
+  index: -1
+Leg_Skele
+  rotate: true
+  xy: 780, 984
+  size: 69, 290
+  orig: 69, 290
+  offset: 0, 0
+  index: -1
+MonsterHeart_glow
+  rotate: false
+  xy: 1705, 1011
+  size: 213, 186
+  orig: 219, 194
+  offset: 3, 4
+  index: -1
+Mouth
+  rotate: true
+  xy: 1396, 1796
+  size: 36, 25
+  orig: 36, 25
+  offset: 0, 0
+  index: -1
+Mouth_Open
+  rotate: true
+  xy: 1441, 231
+  size: 76, 37
+  orig: 76, 37
+  offset: 0, 0
+  index: -1
+Mouth_Talk1
+  rotate: true
+  xy: 1439, 156
+  size: 73, 35
+  orig: 75, 36
+  offset: 1, 1
+  index: -1
+Mouth_Talk2
+  rotate: true
+  xy: 2011, 990
+  size: 57, 29
+  orig: 57, 29
+  offset: 0, 0
+  index: -1
+Sword_Enforcer
+  rotate: false
+  xy: 2, 692
+  size: 199, 655
+  orig: 199, 655
+  offset: 0, 0
+  index: -1
+Sword_Enforcer2
+  rotate: false
+  xy: 2, 1349
+  size: 236, 697
+  orig: 236, 697
+  offset: 0, 0
+  index: -1
+Sword_Skele
+  rotate: false
+  xy: 2, 51
+  size: 143, 639
+  orig: 143, 639
+  offset: 0, 0
+  index: -1
+Weapon1
+  rotate: true
+  xy: 778, 1796
+  size: 250, 616
+  orig: 250, 616
+  offset: 0, 0
+  index: -1
+Weapon2
+  rotate: true
+  xy: 1396, 1834
+  size: 212, 617
+  orig: 212, 617
+  offset: 0, 0
+  index: -1
+WeaponHand
+  rotate: false
+  xy: 342, 371
+  size: 41, 62
+  orig: 41, 62
+  offset: 0, 0
+  index: -1
+WeaponHand_Enforcer
+  rotate: true
+  xy: 1685, 603
+  size: 51, 79
+  orig: 51, 79
+  offset: 0, 0
+  index: -1
+WeaponHand_Skele
+  rotate: true
+  xy: 1676, 1206
+  size: 58, 80
+  orig: 58, 80
+  offset: 0, 0
+  index: -1
+blackgoop_0
+  rotate: true
+  xy: 1795, 626
+  size: 77, 81
+  orig: 77, 81
+  offset: 0, 0
+  index: -1
+blackgoop_1
+  rotate: true
+  xy: 1248, 297
+  size: 107, 76
+  orig: 107, 76
+  offset: 0, 0
+  index: -1
+blackgoop_2
+  rotate: false
+  xy: 1739, 860
+  size: 166, 149
+  orig: 166, 150
+  offset: 0, 0
+  index: -1
+blood_explosion0001
+  rotate: true
+  xy: 1913, 776
+  size: 93, 100
+  orig: 323, 313
+  offset: 93, 132
+  index: -1
+blood_explosion0002
+  rotate: false
+  xy: 1361, 720
+  size: 152, 153
+  orig: 323, 313
+  offset: 70, 120
+  index: -1
+blood_explosion0003
+  rotate: true
+  xy: 648, 2
+  size: 203, 195
+  orig: 323, 313
+  offset: 48, 106
+  index: -1
+blood_explosion0004
+  rotate: false
+  xy: 1076, 579
+  size: 229, 218
+  orig: 323, 313
+  offset: 33, 95
+  index: -1
+blood_explosion0005
+  rotate: false
+  xy: 648, 207
+  size: 249, 233
+  orig: 323, 313
+  offset: 20, 73
+  index: -1
+blood_explosion0006
+  rotate: false
+  xy: 640, 442
+  size: 258, 240
+  orig: 323, 313
+  offset: 15, 66
+  index: -1
+blood_explosion0007
+  rotate: true
+  xy: 401, 169
+  size: 264, 245
+  orig: 323, 313
+  offset: 9, 58
+  index: -1
+blood_explosion0008
+  rotate: false
+  xy: 509, 684
+  size: 272, 253
+  orig: 323, 313
+  offset: 6, 47
+  index: -1
+blood_explosion0009
+  rotate: true
+  xy: 520, 939
+  size: 282, 258
+  orig: 323, 313
+  offset: 3, 39
+  index: -1
+blood_explosion0010
+  rotate: false
+  xy: 342, 435
+  size: 296, 247
+  orig: 323, 313
+  offset: 3, 38
+  index: -1
+blood_explosion0011
+  rotate: true
+  xy: 147, 72
+  size: 297, 252
+  orig: 323, 313
+  offset: 4, 21
+  index: -1
+blood_explosion0012
+  rotate: false
+  xy: 203, 698
+  size: 304, 253
+  orig: 323, 313
+  offset: 2, 4
+  index: -1
+blood_explosion0013
+  rotate: false
+  xy: 1103, 1235
+  size: 310, 218
+  orig: 323, 313
+  offset: 1, 20
+  index: -1
+blood_explosion0014
+  rotate: false
+  xy: 783, 794
+  size: 279, 188
+  orig: 323, 313
+  offset: 0, 30
+  index: -1
+blood_explosion0015
+  rotate: true
+  xy: 147, 371
+  size: 319, 193
+  orig: 323, 313
+  offset: 0, 5
+  index: -1
+blood_explosion0016
+  rotate: false
+  xy: 401, 30
+  size: 242, 137
+  orig: 323, 313
+  offset: 25, 34
+  index: -1
+blood_explosion0017
+  rotate: false
+  xy: 1361, 611
+  size: 145, 107
+  orig: 323, 313
+  offset: 28, 18
+  index: -1
+lilgoops_0
+  rotate: false
+  xy: 1508, 612
+  size: 64, 102
+  orig: 64, 102
+  offset: 0, 0
+  index: -1
+lilgoops_1
+  rotate: true
+  xy: 1878, 609
+  size: 61, 93
+  orig: 61, 93
+  offset: 0, 0
+  index: -1
+randomGoop
+  rotate: false
+  xy: 1078, 2
+  size: 60, 111
+  orig: 60, 111
+  offset: 0, 0
+  index: -1
+whiteball
+  rotate: false
+  xy: 1907, 871
+  size: 111, 111
+  orig: 111, 111
+  offset: 0, 0
+  index: -1

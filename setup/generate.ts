@@ -143,6 +143,14 @@ app.post("/soldiers", data.array("files"), (req) => {
     createSpritesheets([buffers], "soldiers");
 });
 
+app.post("/occultists", data.array("files"), (req) => {
+    const { files } = req;
+    if (!files) return;
+
+    const buffers: Buffer[] = (<Express.Multer.File[]>files).map(({ buffer }) => buffer);
+    createSpritesheets([buffers], "occultists");
+});
+
 app.post("/heretics", data.array("files"), (req) => {
     const { files } = req;
     if (!files) return;

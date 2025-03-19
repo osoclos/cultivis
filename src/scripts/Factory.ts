@@ -1,16 +1,18 @@
-import { BISHOP_IDS, TOWW_IDS, type BishopId, type ClothingId, type FollowerId, type TOWW_Id, type PlayerCreatureId, type PlayerFleeceId, MINI_BOSS_IDS, type MiniBossId, type WitnessId, type SoldierId, HERETIC_IDS, type HereticId } from "../data/types";
+import { BISHOP_IDS, TOWW_IDS, type BishopId, type ClothingId, type FollowerId, type TOWW_Id, type PlayerCreatureId, type PlayerFleeceId, MINI_BOSS_IDS, type MiniBossId, type WitnessId, type SoldierId, HERETIC_IDS, type HereticId, type OccultistId } from "../data/types";
 
-import { Bishop, Follower, TOWW, Player, MiniBoss, Witness, Soldier, Heretic } from "./characters";
+import { Bishop, Follower, TOWW, Player, MiniBoss, Witness, Soldier, Heretic, Occultist } from "./characters";
 import { AssetManager } from "./managers";
 
 import { Actor } from "./Actor";
-import { bishopData, towwData, miniBossData, hereticData, witnessData, soldierData, followerData, playerData } from "../data/files";
+import { bishopData, towwData, miniBossData, hereticData, witnessData, soldierData, followerData, playerData, occultistData } from "../data/files";
 
 export class Factory {
     private _follower?: Follower;
     private _player?: Player;
 
     private _soldier?: Soldier;
+    private _occultist?: Occultist;
+
     private _heretics: Map<HereticId, Heretic>;
 
     private _bishops: Map<BishopId, Bishop>;
@@ -51,6 +53,10 @@ export class Factory {
 
     hasLoadedSoldier(): boolean {
         return !!this._soldier;
+    }
+
+    hasLoadedOccultist(): boolean {
+        return !!this._occultist;
     }
 
     hasLoadedHeretic(heretic: HereticId): boolean {
@@ -112,6 +118,13 @@ export class Factory {
                     break;
                 }
 
+                case Occultist: {
+                    if (this.hasLoadedOccultist()) break;
+                    await this.loadOccultist();
+
+                    break;
+                }
+
                 case Heretic: {
                     await Promise.all(HERETIC_IDS.filter((id) => !this.hasLoadedHeretic(id)).map(this.loadHeretic.bind(this)));
                     break;
@@ -155,6 +168,11 @@ export class Factory {
     async loadSoldier() {
         const [skeleton, animationState] = await this.fetchData([Soldier.TEXTURE_FILENAME], Soldier.ATLAS_FILENAME, Soldier.SKELETON_FILENAME);
         this._soldier = new Soldier(skeleton, animationState);
+    }
+
+    async loadOccultist() {
+        const [skeleton, animationState] = await this.fetchData([Occultist.TEXTURE_FILENAME], Occultist.ATLAS_FILENAME, Occultist.SKELETON_FILENAME);        
+        this._occultist = new Occultist(skeleton, animationState);
     }
 
     async loadHeretic(id: HereticId) {
@@ -209,7 +227,7 @@ export class Factory {
     }
 
     async loadAll() {
-        await this.load(Follower, Player, Soldier, Heretic, Bishop, TOWW, MiniBoss, Witness);
+        await this.load(Follower, Player, Soldier, Occultist, Heretic, Bishop, TOWW, MiniBoss, Witness);
     }
 
     async custom(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string, id?: string, label: string = "Custom Actor") {
@@ -230,6 +248,11 @@ export class Factory {
     soldier(soldier: SoldierId, id?: string, label: string = soldierData[soldier].name) {
         if (!this.hasLoadedSoldier()) throw new Error("Soldier has not been loaded.");
         return this._soldier!.clone(id, label, soldier);
+    }
+
+    occultist(occultist: OccultistId, id?: string, label: string = occultistData[occultist].name) {
+        if (!this.hasLoadedOccultist()) throw new Error("Occultist has not been loaded.");
+        return this._occultist!.clone(id, label, occultist);
     }
 
     heretic(heretic: HereticId, id?: string, label: string = hereticData[heretic].name) {

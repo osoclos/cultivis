@@ -110,6 +110,10 @@
             "url": "/src/data/schemas/characters/enemies/soldier-data.schema.json"
         },
         {
+            "fileMatch": ["/occultist-data.json"],
+            "url": "/src/data/schemas/characters/enemies/occultist-data.schema.json"
+        },
+        {
             "fileMatch": ["/guard-data.json"],
             "url": "/src/data/schemas/characters/enemies/guard-data.schema.json"
         },
@@ -118,7 +122,7 @@
             "fileMatch": ["/heretic-data.json"],
             "url": "/src/data/schemas/characters/enemies/heretic-data.schema.json"
         },
-{
+        {
             "fileMatch": ["/machine-data.json"],
             "url": "/src/data/schemas/characters/enemies/machine-data.schema.json"
         },
