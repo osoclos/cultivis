@@ -1,0 +1,62 @@
+
+RestaurantWorms.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Worms/Eyes_Scared
+  rotate: false
+  xy: 121, 21
+  size: 119, 72
+  orig: 119, 72
+  offset: 0, 0
+  index: -1
+Worms/Eyes_Shut
+  rotate: false
+  xy: 121, 2
+  size: 91, 17
+  orig: 91, 17
+  offset: 0, 0
+  index: -1
+Worms/MouthDerp
+  rotate: false
+  xy: 285, 77
+  size: 20, 34
+  orig: 20, 34
+  offset: 0, 0
+  index: -1
+Worms/MouthEting
+  rotate: false
+  xy: 242, 8
+  size: 64, 31
+  orig: 64, 31
+  offset: 0, 0
+  index: -1
+Worms/MouthScared
+  rotate: false
+  xy: 242, 41
+  size: 41, 52
+  orig: 41, 52
+  offset: 0, 0
+  index: -1
+Worms/Stool
+  rotate: true
+  xy: 264, 113
+  size: 141, 101
+  orig: 141, 101
+  offset: 0, 0
+  index: -1
+Worms/WormBtm
+  rotate: true
+  xy: 2, 10
+  size: 83, 117
+  orig: 83, 117
+  offset: 0, 0
+  index: -1
+Worms/WormTop
+  rotate: true
+  xy: 2, 95
+  size: 159, 260
+  orig: 161, 260
+  offset: 0, 0
+  index: -1

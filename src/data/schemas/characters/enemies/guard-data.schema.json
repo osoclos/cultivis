@@ -1,0 +1,33 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "guard-data.schema.json",
+
+    "title": "Guard Data",
+    "description": "Information on guards that provides metadata and other related information",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/Id" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The display name of this guard."
+            },
+
+            "skin": {
+                "type": "string",
+                "description": "The skin name of this guard."
+            }
+        },
+
+        "required": ["name", "skin"]
+    },
+
+    "definitions": {
+        "Id": {
+            "type": "string",
+            "enum": [""]
+        }
+    }
+}
