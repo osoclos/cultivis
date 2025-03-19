@@ -121,7 +121,6 @@ export class Follower extends Actor implements FollowerObject {
 
     set animationId(animationId: FollowerAnimationId) {
         this.#animationId = animationId;
-        console.log(animationId)
         animationId in followerAnimationData && this.setAnimation(followerAnimationData[animationId]);
     }
 
