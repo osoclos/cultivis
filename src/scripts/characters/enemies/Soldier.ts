@@ -1,7 +1,7 @@
-import { Actor, type ActorObject } from "../../Actor";
-
 import { soldierData } from "../../../data/files";
 import type { SoldierId } from "../../../data/types";
+
+import { Actor, type ActorObject } from "../../Actor";
 
 const TYPE: string = "soldier";
 
