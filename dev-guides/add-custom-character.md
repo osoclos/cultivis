@@ -37,6 +37,8 @@ Next, you can add your custom character class in the `src/scripts` subfolder. Yo
 
 Afterwards, you can then add functions and switch cases to the `Factory` and `Exporter` class, which would allow you to easily create and cache your character.
 
+You can also limit the animations that can be selected in `src/data/files/forbidden-animations.json`, which you can then add it to `src/components/characters/CharacterNavigation.svelte` to restrict them.
+
 ### Step 4: Create UI for character customization
 
 You can add Svelte components as UI for your character customization in the `src/components` subfolder. You will have to add a menu component for your character, as well as modify the existing character navigation components to include your custom character.

@@ -12,7 +12,7 @@
     import { soldierData } from "../../../data/files";
     import { SOLDIER_IDS, type SoldierId } from "../../../data/types";
 
-    import type { Soldier, SoldierObject } from "../../../scripts/characters";
+    import { Soldier, type SoldierObject } from "../../../scripts/characters";
 
     import { Random } from "../../../utils";
 

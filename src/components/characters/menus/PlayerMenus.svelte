@@ -17,7 +17,7 @@
     import { playerData } from "../../../data/files";
     import { PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, playerBellIdsByCategory, playerFleeceIdsByCategory, type PlayerBellData, type PlayerBellId, type PlayerCreatureId, type PlayerCrownId, type PlayerFleeceData, type PlayerFleeceId } from "../../../data/types";
 
-    import type { Player, PlayerObject } from "../../../scripts/characters";
+    import { Player, type PlayerObject } from "../../../scripts/characters";
     import { Random } from "../../../utils";
     
     interface Props {

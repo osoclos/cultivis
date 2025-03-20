@@ -12,7 +12,7 @@
     import { witnessData } from "../../../data/files";
     import { WITNESS_IDS, type WitnessId } from "../../../data/types";
 
-    import type { Witness, WitnessObject } from "../../../scripts/characters";
+    import { Witness, type WitnessObject } from "../../../scripts/characters";
 
     import { Random } from "../../../utils";
 

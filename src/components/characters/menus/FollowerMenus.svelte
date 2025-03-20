@@ -17,7 +17,7 @@
     import { followerData } from "../../../data/files";
     import { CLOTHING_IDS, clothingIdsByCategory, FOLLOWER_IDS, followerIdsByCategory, HATS_ID, necklaceIdsByCategory, type ClothingCategoryName, type ClothingData, type ClothingId, type ColorSet, type FollowerCategoryName, type FollowerId, type FormData, type HatId, type NecklaceCategoryName, type NecklaceData, type NecklaceId } from "../../../data/types";
 
-    import type { Follower, FollowerObject } from "../../../scripts/characters";
+    import { Follower, type FollowerObject } from "../../../scripts/characters";
     import { Color, Random } from "../../../utils";
 
     interface Props {

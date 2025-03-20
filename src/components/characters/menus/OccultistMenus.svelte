@@ -12,7 +12,7 @@
     import { occultistData } from "../../../data/files";
     import { OCCULTIST_IDS, type OccultistId } from "../../../data/types";
 
-    import type { Occultist, OccultistObject } from "../../../scripts/characters";
+    import { Occultist, type OccultistObject } from "../../../scripts/characters";
 
     import { Random } from "../../../utils";
 

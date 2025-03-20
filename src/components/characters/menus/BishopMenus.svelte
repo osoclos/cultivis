@@ -13,7 +13,7 @@
     import { BISHOP_IDS, type BishopId } from "../../../data/types";
 
     import { Factory } from "../../../scripts";
-    import type { Bishop, BishopObject } from "../../../scripts/characters";
+    import { Bishop, type BishopObject } from "../../../scripts/characters";
 
     import { Random } from "../../../utils";
     

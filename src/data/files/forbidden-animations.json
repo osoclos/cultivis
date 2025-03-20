@@ -214,6 +214,9 @@
 
     "occultist": [
         "OLD",
+        "hurt",
+        "notice-player",
+        "sleeping",
         "teleport-in",
         "teleport-out",
         "teleport2",

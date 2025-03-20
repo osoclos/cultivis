@@ -13,7 +13,7 @@
     import { miniBossIdsByCategory, type MiniBossCategoryName, type MiniBossData, type MiniBossId } from "../../../data/types";
 
     import { Factory } from "../../../scripts";
-    import type { MiniBoss, MiniBossObject } from "../../../scripts/characters";
+    import { MiniBoss, type MiniBossObject } from "../../../scripts/characters";
 
     import { Random } from "../../../utils";
     

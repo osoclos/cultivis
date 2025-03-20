@@ -13,7 +13,7 @@
     import { TOWW_IDS, type TOWW_Id } from "../../../data/types";
 
     import { Factory } from "../../../scripts";
-    import type { TOWW, TOWW_Object } from "../../../scripts/characters";
+    import { TOWW, type TOWW_Object } from "../../../scripts/characters";
 
     import { Random } from "../../../utils";
     
