@@ -6,5 +6,5 @@ export interface OccultistData {
     skin: string;
 }
 
-export const OCCULTIST_IDS: (keyof typeof occultistData)[] = ["Summoner", "Healer", "Protector"];
+export const OCCULTIST_IDS: (keyof typeof occultistData)[] = ["Summoner", "Healer", "Protector"] as const;
 export type OccultistId = typeof OCCULTIST_IDS[number];
