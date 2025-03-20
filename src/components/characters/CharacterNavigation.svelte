@@ -76,11 +76,11 @@
     import { twMerge } from "tailwind-merge";
 
     import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, ArrowSelection, Slider, Toggle, Notice } from "../base";
-    import { BISHOP_MENU_NAME, HERETIC_MENU_NAME, MINI_BOSS_MENU_NAME, OCCULTIST_MENU_NAME, SOLDIER_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
+    import { BISHOP_MENU_NAME, GUARD_MENU_NAME, HERETIC_MENU_NAME, MINI_BOSS_MENU_NAME, OCCULTIST_MENU_NAME, SOLDIER_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
     import { MultiList } from "../utils";
 
     import { Actor, Factory, type ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isHereticObj, isMiniBossObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isMiniBossObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
 
     import { bishopData, forbiddenAnimations, hereticData, miniBossData, soldierData } from "../../data/files";
     import { Random, Vector, type VectorObject } from "../../utils";
@@ -122,7 +122,7 @@
     }: Props = $props();
 
     const animations: string[] = $derived.by(() => {
-        const { follower, player, soldier, occultist } = forbiddenAnimations;
+        const { follower, player, soldier, occultist, guard } = forbiddenAnimations;
         const { animationNames } = actor;
         
         const actorForbiddenAnimations: string[] = (() => {
@@ -132,6 +132,7 @@
 
                 case isSoldierObj(actor): return soldier;
                 case isOccultistObj(actor): return occultist;
+                case isGuardObj(actor): return guard;
 
                 default: return [];
             }
@@ -150,7 +151,8 @@
     const hasAttributes: boolean = $derived.by(() => {
         switch (true) {
             case isSoldierObj(obj) && isSoldierObj(actor): return soldierData[obj.soldier].canHoldShield;
-            case isOccultistObj(obj) && isOccultistObj(actor): return false;
+            case isOccultistObj(obj) && isOccultistObj(actor): 
+            case isGuardObj(obj) && isGuardObj(actor): return false;
 
             case isHereticObj(obj) && isHereticObj(actor): return (hereticData[obj.heretic].skins.length > 1 && obj.heretic !== "Mega_Blue_Spider") || obj.heretic === "Mega_Blue_Spider" || "backSkins" in hereticData[obj.heretic];
 
@@ -357,6 +359,8 @@
                     <BannerButton label="Choose Role" playClickSound={false} onclick={() => proceed(SOLDIER_MENU_NAME)} />
                 {:else if isOccultistObj(obj)}
                     <BannerButton label="Choose Role" playClickSound={false} onclick={() => proceed(OCCULTIST_MENU_NAME)} />
+                {:else if isGuardObj(obj)}
+                    <BannerButton label="Choose Role" playClickSound={false} onclick={() => proceed(GUARD_MENU_NAME)} />
                 {:else if isHereticObj(obj)}
                     <BannerButton label="Choose Heretic" playClickSound={false} onclick={() => proceed(HERETIC_MENU_NAME)} />
                 {:else if isBishopObj(obj)}
@@ -430,6 +434,8 @@
                                         </Label>
                                     {/if}
                                 {:else if isOccultistObj(obj) && isOccultistObj(actor)}
+                                    <!-- NO CUSTOMIZABLE ATTRIBUTES  -->
+                                {:else if isGuardObj(obj) && isGuardObj(actor)}
                                     <!-- NO CUSTOMIZABLE ATTRIBUTES  -->
                                 {:else if isHereticObj(obj) && isHereticObj(actor)}
                                     {#if hereticData[obj.heretic].skins.length > 1 && obj.heretic !== "Mega_Blue_Spider"}

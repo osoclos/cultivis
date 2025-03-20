@@ -221,5 +221,21 @@
         "teleport-out",
         "teleport2",
         "wake-up"
+    ],
+
+    "guard": [
+        "dash",
+        "-monsterheart",
+        "-noheart",
+        "dead2",
+        "die",
+        "grave-spawn-long",
+        "hurt",
+        "sleeping-hidden",
+        "snarling",
+        "sneaky",
+        "summon-fast",
+        "!walk",
+        "walk2"
     ]
 }

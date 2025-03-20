@@ -6,8 +6,8 @@ import ViteExpress from "vite-express";
 import multer from "multer";
 import sharp from "sharp";
 
-import { followerData, hereticData, miniBossData, playerData } from "../src/data/files";
-import { CLOTHING_CATEGORY_LENGTH, CLOTHING_IDS, type ClothingId, FOLLOWER_CATEGORY_LENGTH, FOLLOWER_IDS, type FollowerId, HERETIC_CATEGORY_LENGTH, type HereticId, MINI_BOSS_CATEGORY_LENGTH, type MiniBossId, NECKLACE_CATEGORY_LENGTH, type NecklaceId, PLAYER_BELL_CATEGORY_LENGTH, PLAYER_FLEECE_CATEGORY_LENGTH, type PlayerBellId, type PlayerFleeceId } from "../src/data/types";
+import { followerData, guardData, hereticData, miniBossData, playerData } from "../src/data/files";
+import { CLOTHING_CATEGORY_LENGTH, CLOTHING_IDS, type ClothingId, FOLLOWER_CATEGORY_LENGTH, FOLLOWER_IDS, type FollowerId, GUARD_CATEGORY_LENGTH, type GuardId, HERETIC_CATEGORY_LENGTH, type HereticId, MINI_BOSS_CATEGORY_LENGTH, type MiniBossId, NECKLACE_CATEGORY_LENGTH, type NecklaceId, PLAYER_BELL_CATEGORY_LENGTH, PLAYER_FLEECE_CATEGORY_LENGTH, type PlayerBellId, type PlayerFleeceId } from "../src/data/types";
 
 const PORT: number = 3000;
 const OUTPUT_DIR: string = path.join(__dirname, "../public/static/assets/characters");
@@ -149,6 +149,21 @@ app.post("/occultists", data.array("files"), (req) => {
 
     const buffers: Buffer[] = (<Express.Multer.File[]>files).map(({ buffer }) => buffer);
     createSpritesheets([buffers], "occultists");
+});
+
+app.post("/guards", data.array("files"), (req) => {
+    const { files } = req;
+    if (!files) return;
+
+    const buffers: Buffer[][] = Array(GUARD_CATEGORY_LENGTH).fill(null).map(() => []);
+    for (const { buffer, originalname } of <Express.Multer.File[]>files) {
+        const id = <GuardId>originalname.replace(".dat", "");
+        const { category } = guardData[id];
+
+        buffers[category].push(buffer);
+    }
+
+    createSpritesheets(buffers, "guards");
 });
 
 app.post("/heretics", data.array("files"), (req) => {

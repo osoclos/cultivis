@@ -15,6 +15,14 @@
                 "description": "The display name of this guard."
             },
 
+            "category": {
+                "type": "integer",
+                "description": "The category index this guard belongs to.",
+
+                "minimum": 0,
+                "maximum": 1
+            },
+
             "skin": {
                 "type": "string",
                 "description": "The skin name of this guard."
@@ -27,7 +35,7 @@
     "definitions": {
         "Id": {
             "type": "string",
-            "enum": [""]
+            "enum": ["Guardian", "Velvet_Guardian", "Aym", "Baal"]
         }
     }
 }

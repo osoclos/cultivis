@@ -4,7 +4,7 @@
     import { SpritesheetImage } from "../utils";
 
     import { Actor } from "../../scripts";
-    import { Bishop, Follower, Heretic, MiniBoss, Occultist, Player, Soldier, TOWW, Witness } from "../../scripts/characters";
+    import { Bishop, Follower, Guard, Heretic, MiniBoss, Occultist, Player, Soldier, TOWW, Witness } from "../../scripts/characters";
     import { soundManager } from "../../scripts/managers";
 
     interface Props {
@@ -32,6 +32,7 @@
             
             case Soldier: return "/static/assets/characters/soldiers.png";
             case Occultist: return "/static/assets/characters/occultists.png";
+            case Guard: return "/static/assets/characters/guards.png";
 
             case Heretic: return "/static/assets/characters/heretics.png";
             
@@ -54,6 +55,7 @@
 
             case Soldier: return "Soldier";
             case Occultist: return "Occultist";
+            case Guard: return "Guard";
 
             case Heretic: return "Heretic";
 

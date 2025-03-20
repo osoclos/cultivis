@@ -1,1 +1,29 @@
-{}
+{
+    "Guardian": {
+        "name": "Guardian",
+        "category": 0,
+
+        "skin": "enforcer"
+    },
+    
+    "Velvet_Guardian": {
+        "name": "Velvet Guardian",
+        "category": 0,
+
+        "skin": "enforcerBig"
+    },
+
+    "Aym": {
+        "name": "Aym",
+        "category": 1,
+
+        "skin": "red"
+    },
+
+    "Baal": {
+        "name": "Baal",
+        "category": 1,
+
+        "skin": "blue"
+    }
+}

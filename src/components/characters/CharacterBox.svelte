@@ -5,11 +5,11 @@
     import { SpritesheetImage } from "../utils";
 
     import type { ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isHereticObj, isMiniBossObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isMiniBossObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
     import { soundManager } from "../../scripts/managers";
 
-    import { bishopData, followerData, hereticData, miniBossData, occultistData, playerData, soldierData, towwData, witnessData } from "../../data/files";
-    import { BISHOP_IDS, followerIdsByCategory, FOLLOWER_CATEGORIES, hereticIdsByCategory, HERETIC_CATEGORIES, miniBossIdsByCategory, MINI_BOSS_CATEGORIES, PLAYER_CREATURE_IDS, SOLDIER_IDS, WITNESS_IDS, OCCULTIST_IDS } from "../../data/types";
+    import { bishopData, followerData, guardData, hereticData, miniBossData, occultistData, playerData, soldierData, towwData, witnessData } from "../../data/files";
+    import { BISHOP_IDS, followerIdsByCategory, FOLLOWER_CATEGORIES, guardIdsByCategory, GUARD_CATEGORIES, hereticIdsByCategory, HERETIC_CATEGORIES, miniBossIdsByCategory, MINI_BOSS_CATEGORIES, PLAYER_CREATURE_IDS, SOLDIER_IDS, WITNESS_IDS, OCCULTIST_IDS } from "../../data/types";
 
     interface Props {
         actor: ActorObject;
@@ -47,6 +47,7 @@
 
             case isSoldierObj(actor): return "Soldier";
             case isOccultistObj(actor): return "Occultist";
+            case isGuardObj(actor): return "Guard";
 
             case isHereticObj(actor): return "Heretic";
 
@@ -67,6 +68,7 @@
 
             case isSoldierObj(actor): return `Role: ${soldierData[actor.soldier].name}`;
             case isOccultistObj(actor): return `Role: ${occultistData[actor.occultist].name}`;
+            case isGuardObj(actor): return `Role ${guardData[actor.guard].name}`;
 
             case isHereticObj(actor): return `Enemy: ${hereticData[actor.heretic].name}`;
 
@@ -87,6 +89,7 @@
 
             case isSoldierObj(actor): return "/static/assets/characters/soldiers.png";
             case isOccultistObj(actor): return "/static/assets/characters/occultists.png";
+            case isGuardObj(actor): return "/static/assets/characters/guards.png";
 
             case isHereticObj(actor): return "/static/assets/characters/heretics.png";
 
@@ -107,6 +110,7 @@
 
             case isSoldierObj(actor): return SOLDIER_IDS.indexOf(actor.soldier);
             case isOccultistObj(actor): return OCCULTIST_IDS.indexOf(actor.occultist);
+            case isGuardObj(actor): return guardIdsByCategory[GUARD_CATEGORIES[y]].indexOf(actor.guard);
 
             case isHereticObj(actor): return hereticIdsByCategory[HERETIC_CATEGORIES[y]].indexOf(actor.heretic);
 
@@ -123,8 +127,11 @@
     const y: number = $derived.by(() => {
         switch (true) {
             case isFollowerObj(actor): return followerData.forms[actor.form].category;
+            
+            case isGuardObj(actor): return guardData[actor.guard].category;
 
             case isHereticObj(actor): return hereticData[actor.heretic].category;
+
             case isMiniBossObj(actor): return miniBossData[actor.miniBoss].category;
 
             case isPlayerObj(actor):

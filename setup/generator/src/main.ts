@@ -3,7 +3,7 @@ import "./style.css";
 import { Scene, Factory, Exporter, Actor } from "@/scripts";
 
 import { followerData, hereticData, miniBossData, playerData, towwData } from "@/data/files";
-import { CLOTHING_IDS, FOLLOWER_IDS, HATS_ID, HERETIC_IDS, MINI_BOSS_IDS, NECKLACE_IDS, OCCULTIST_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, SOLDIER_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
+import { CLOTHING_IDS, FOLLOWER_IDS, GUARD_IDS, HATS_ID, HERETIC_IDS, MINI_BOSS_IDS, NECKLACE_IDS, OCCULTIST_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, SOLDIER_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
 
 import { Player } from "@/scripts/characters";
 
@@ -302,6 +302,23 @@ occultistExporter.addEventListener("click", () => {
     }
 
     sendForm(form, "/occultists");
+});
+
+const guardExporter = document.querySelector<HTMLButtonElement>("button#export-guards")!;
+guardExporter.addEventListener("click", () => {
+    const form = new FormData();
+
+    for (const id of GUARD_IDS) {
+        const guard = factory.guard(id);
+        guard.setRawAnimation("idle");
+
+        setupScene(guard);
+        guard.pos.set(24, -44);
+
+        appendPixelsToForm(form, id);
+    }
+
+    sendForm(form, "/guards");
 });
 
 const hereticExporter = document.querySelector<HTMLButtonElement>("button#export-heretics")!;

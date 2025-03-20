@@ -1,6 +1,6 @@
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
 
-import { isBishopObj, isFollowerObj, isTOWW_Obj, isPlayerObj, isWitnessObj, isMiniBossObj, isSoldierObj, isHereticObj, isOccultistObj } from "./characters";
+import { isFollowerObj, isPlayerObj, isSoldierObj, isOccultistObj, isGuardObj, isHereticObj, isBishopObj, isTOWW_Obj, isMiniBossObj, isWitnessObj } from "./characters";
 import { APNG_Manager, GIF_Manager } from "./managers";
 
 import { Vector } from "../utils";
@@ -174,6 +174,16 @@ export class Exporter {
 
                 const occultist = this.factory.occultist(occultistId, id, label);
                 actor = occultist;
+
+                break; 
+            }
+
+            case isGuardObj(obj): {
+                const { guard: guardId } = obj;
+                if (!this.factory.hasLoadedGuard()) await this.factory.loadGuard();
+
+                const guard = this.factory.guard(guardId, id, label);
+                actor = guard;
 
                 break; 
             }
