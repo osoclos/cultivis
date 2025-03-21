@@ -70,12 +70,12 @@ export class MiniBoss extends Actor implements MiniBossObject {
     }
 
     clone(id?: string, label?: string, isUpgraded: boolean = this.isUpgraded) {
-        const { skeleton, animationState, miniBoss } = this;
+        const { skeleton, animationState, miniBoss: miniBossId } = this;
 
-        const boss = new MiniBoss(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, miniBoss, isUpgraded);
-        boss.copyFromObj(this.toObj());
+        const miniBoss = new MiniBoss(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, miniBossId, isUpgraded);
+        miniBoss.copyFromObj(this.toObj());
 
-        return boss;
+        return miniBoss;
     }
 
     update() {

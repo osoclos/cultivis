@@ -44,12 +44,12 @@ export class Heretic extends Actor implements HereticObject {
     }
 
     clone(id?: string, label?: string) {
-        const { skeleton, animationState, heretic } = this;
+        const { skeleton, animationState, heretic: hereticId } = this;
 
-        const boss = new Heretic(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, heretic);
-        boss.copyFromObj(this.toObj());
+        const heretic = new Heretic(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, hereticId);
+        heretic.copyFromObj(this.toObj());
 
-        return boss;
+        return heretic;
     }
 
     update() {
