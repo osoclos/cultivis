@@ -1,0 +1,27 @@
+
+RecordPlayer.png
+size: 512,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/ClothesSeller_RecordPlayer_Back
+  rotate: true
+  xy: 242, 284
+  size: 143, 185
+  orig: 143, 185
+  offset: 0, 0
+  index: -1
+images/ClothesSeller_RecordPlayer_Front
+  rotate: false
+  xy: 99, 319
+  size: 141, 108
+  orig: 141, 108
+  offset: 0, 0
+  index: -1
+images/ClothesSeller_RecordPlayer_Vinyl
+  rotate: false
+  xy: 2, 381
+  size: 95, 46
+  orig: 95, 46
+  offset: 0, 0
+  index: -1

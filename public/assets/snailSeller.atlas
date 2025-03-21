@@ -1,0 +1,55 @@
+
+snailSeller.png
+size: 1024,2048
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Snail/BODY
+  rotate: false
+  xy: 2, 2
+  size: 895, 859
+  orig: 895, 859
+  offset: 0, 0
+  index: -1
+Snail/Belt
+  rotate: true
+  xy: 616, 1293
+  size: 65, 67
+  orig: 65, 67
+  offset: 0, 0
+  index: -1
+Snail/MOUTH
+  rotate: true
+  xy: 305, 1300
+  size: 58, 309
+  orig: 58, 309
+  offset: 0, 0
+  index: -1
+Snail/MOUTH_Closed
+  rotate: true
+  xy: 2, 1311
+  size: 47, 301
+  orig: 47, 301
+  offset: 0, 0
+  index: -1
+Snail/SnailEye
+  rotate: true
+  xy: 685, 1268
+  size: 90, 95
+  orig: 90, 95
+  offset: 0, 0
+  index: -1
+Snail/Sticks
+  rotate: false
+  xy: 2, 1044
+  size: 395, 254
+  orig: 395, 254
+  offset: 0, 0
+  index: -1
+Snail/StuffOnTop
+  rotate: false
+  xy: 399, 863
+  size: 499, 403
+  orig: 499, 403
+  offset: 0, 0
+  index: -1
