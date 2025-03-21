@@ -1,6 +1,6 @@
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
 
-import { isFollowerObj, isPlayerObj, isSoldierObj, isOccultistObj, isGuardObj, isHereticObj, isBishopObj, isTOWW_Obj, isMiniBossObj, isWitnessObj } from "./characters";
+import { isFollowerObj, isPlayerObj, isSoldierObj, isOccultistObj, isGuardObj, isHereticObj, isMachineObj, isBishopObj, isTOWW_Obj, isMiniBossObj, isWitnessObj } from "./characters";
 import { APNG_Manager, GIF_Manager } from "./managers";
 
 import { Vector } from "../utils";
@@ -194,6 +194,16 @@ export class Exporter {
 
                 const heretic = this.factory.heretic(hereticId, id, label);
                 actor = heretic;
+
+                break;
+            }
+
+            case isMachineObj(obj): {
+                const { machine: machineId } = obj;
+                if (!this.factory.hasLoadedMachine(machineId)) await this.factory.loadMachine(machineId);
+
+                const machine = this.factory.machine(machineId, id, label);
+                actor = machine;
 
                 break;
             }

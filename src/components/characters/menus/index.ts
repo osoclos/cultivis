@@ -6,6 +6,7 @@ import OccultistMenus from "./OccultistMenus.svelte";
 import GuardMenus from "./GuardMenus.svelte";
 
 import HereticMenus from "./HereticMenus.svelte";
+import MachineMenus from "./MachineMenus.svelte";
 
 import BishopMenus from "./BishopMenus.svelte";
 import TOWW_Menus from "./TOWW_Menus.svelte";
@@ -13,7 +14,7 @@ import TOWW_Menus from "./TOWW_Menus.svelte";
 import MiniBossMenus from "./MiniBossMenus.svelte";
 import WitnessMenus from "./WitnessMenus.svelte";
 
-export { FollowerMenus, PlayerMenus, SoldierMenus, OccultistMenus, GuardMenus, HereticMenus, BishopMenus, TOWW_Menus, MiniBossMenus, WitnessMenus };
+export { FollowerMenus, PlayerMenus, SoldierMenus, OccultistMenus, GuardMenus, HereticMenus, MachineMenus, BishopMenus, TOWW_Menus, MiniBossMenus, WitnessMenus };
 
 export * from "./FollowerMenus.svelte";
 export * from "./PlayerMenus.svelte";
@@ -23,6 +24,7 @@ export * from "./OccultistMenus.svelte";
 export * from "./GuardMenus.svelte";
 
 export * from "./HereticMenus.svelte";
+export * from "./MachineMenus.svelte";
 
 export * from "./BishopMenus.svelte";
 export * from "./TOWW_Menus.svelte";

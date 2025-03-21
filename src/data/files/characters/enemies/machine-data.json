@@ -1,1 +1,71 @@
-{}
+{
+    "Howler": {
+        "name": "Howler",
+        "category": 0,
+
+        "src": {
+            "textures": ["Dropper.png"],
+            "atlas": "Dropper.atlas",
+            "skeleton": "Dropper.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "normal"
+    },
+
+    "Eye": {
+        "name": "Eye",
+        "category": 0,
+
+        "src": {
+            "textures": ["BarrierEye.png"],
+            "atlas": "BarrierEye.atlas",
+            "skeleton": "BarrierEye.skel"
+        },
+
+        "skins": ["Light"],
+        "animation": "animation"
+    }, 
+
+    "Eye_Brute": {
+        "name": "Eye Brute",
+        "category": 0,
+
+        "src": {
+            "textures": ["BarrierEye.png"],
+            "atlas": "BarrierEye.atlas",
+            "skeleton": "BarrierEye.skel"
+        },
+
+        "skins": ["Heavy"],
+        "animation": "animation"
+    }, 
+
+    "Frog_Egg": {
+        "name": "Frog Egg",
+        "category": 1,
+
+        "src": {
+            "textures": ["hopper-egg.png"],
+            "atlas": "hopper-egg.atlas",
+            "skeleton": "hopper-egg.skel"
+        },
+
+        "skins": ["egg_0", "egg_1", "egg_2", "egg_3", "egg_4"],
+        "animation": "idle"
+    }, 
+
+    "Spider_Egg": {
+        "name": "Spider Egg",
+        "category": 1,
+
+        "src": {
+            "textures": ["BreakableSpiderEgg.png"],
+            "atlas": "BreakableSpiderEgg.atlas",
+            "skeleton": "BreakableSpiderEgg.skel"
+        },
+
+        "skins": ["egg1", "egg2", "egg3", "eggBig"],
+        "animation": "animation"
+    }
+}

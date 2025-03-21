@@ -72,17 +72,17 @@
     }
 </script>
 
-<script  lang="ts">
+<script lang="ts">
     import { twMerge } from "tailwind-merge";
 
     import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, ArrowSelection, Slider, Toggle, Notice } from "../base";
-    import { BISHOP_MENU_NAME, GUARD_MENU_NAME, HERETIC_MENU_NAME, MINI_BOSS_MENU_NAME, OCCULTIST_MENU_NAME, SOLDIER_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
+    import { BISHOP_MENU_NAME, GUARD_MENU_NAME, HERETIC_MENU_NAME, MACHINE_MENU_NAME, MINI_BOSS_MENU_NAME, OCCULTIST_MENU_NAME, SOLDIER_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
     import { MultiList } from "../utils";
 
     import { Actor, Factory, type ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isMiniBossObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isMachineObj, isMiniBossObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
 
-    import { bishopData, forbiddenAnimations, hereticData, miniBossData, soldierData } from "../../data/files";
+    import { bishopData, forbiddenAnimations, hereticData, machineData, miniBossData, soldierData } from "../../data/files";
     import { Random, Vector, type VectorObject } from "../../utils";
 
     interface Props {
@@ -155,6 +155,7 @@
             case isGuardObj(obj) && isGuardObj(actor): return false;
 
             case isHereticObj(obj) && isHereticObj(actor): return (hereticData[obj.heretic].skins.length > 1 && obj.heretic !== "Mega_Blue_Spider") || obj.heretic === "Mega_Blue_Spider" || "backSkins" in hereticData[obj.heretic];
+            case isMachineObj(obj) && isMachineObj(actor): return machineData[obj.machine].skins.length > 1;
 
             default: return true;
         }
@@ -228,16 +229,6 @@
         update();
     }
 
-    function updateHereticStage(stage: number) {
-        if (!isHereticObj(obj) || !isHereticObj(actor)) return;
-        stage--;
-
-        obj.stage = stage;
-        actor.stage = stage;
-
-        update();
-    }
-
     async function updateBishopIsBoss(isBoss: boolean) {
         if (!isBishopObj(obj) || !isBishopObj(actor)) return;
         const { bishop: id, label } = obj;
@@ -258,8 +249,8 @@
         change(bishop);
     }
 
-    function updateMiniBossStage(stage: number) {
-        if (!isMiniBossObj(obj) || !isMiniBossObj(actor)) return;
+    function updateStage(stage: number) {
+        if ((!isHereticObj(obj) || !isHereticObj(actor)) && (!isMachineObj(obj) || !isMachineObj(actor)) && (!isMiniBossObj(obj) || !isMiniBossObj(actor))) return;
         stage--;
 
         obj.stage = stage;
@@ -363,6 +354,8 @@
                     <BannerButton label="Choose Role" playClickSound={false} onclick={() => proceed(GUARD_MENU_NAME)} />
                 {:else if isHereticObj(obj)}
                     <BannerButton label="Choose Heretic" playClickSound={false} onclick={() => proceed(HERETIC_MENU_NAME)} />
+                {:else if isMachineObj(obj)}
+                    <BannerButton label="Choose Machine" playClickSound={false} onclick={() => proceed(MACHINE_MENU_NAME)} />
                 {:else if isBishopObj(obj)}
                     <BannerButton label="Choose Bishop" playClickSound={false} onclick={() => proceed(BISHOP_MENU_NAME)} />
                 {:else if isTOWW_Obj(obj)}
@@ -440,13 +433,13 @@
                                 {:else if isHereticObj(obj) && isHereticObj(actor)}
                                     {#if hereticData[obj.heretic].skins.length > 1 && obj.heretic !== "Mega_Blue_Spider"}
                                         <Label label={obj.heretic === "Horned_Spikefish" ? "Number of Angry Eyes" : "Body Part Number"}>
-                                            <Slider class="ml-4" label="Body Part Number" value={obj.stage + 1} min={1} max={hereticData[obj.heretic].skins.length} step={1} oninput={updateHereticStage} />
+                                            <Slider class="ml-4" label="Body Part Number" value={obj.stage + 1} min={1} max={hereticData[obj.heretic].skins.length} step={1} oninput={updateStage} />
                                         </Label>
                                     {/if}
 
                                     {#if obj.heretic === "Mega_Blue_Spider"}
                                         <Label label="Has Eggs?">
-                                            <Toggle label="Has Eggs?" enabled={!!obj.stage} oninput={(hasEggs) => updateHereticStage(+hasEggs + 1)} />
+                                            <Toggle label="Has Eggs?" enabled={!!obj.stage} oninput={(hasEggs) => updateStage(+hasEggs + 1)} />
                                         </Label>
                                     {/if}
             
@@ -454,6 +447,18 @@
                                         <Label label="Is Facing the Back?">
                                             <Toggle label="Is Facing the Back?" bind:enabled={obj.isBackFacing!} oninput={(isBackFacing) => actor.isBackFacing = isBackFacing} />
                                         </Label>
+                                    {/if}
+                                {:else if isMachineObj(obj) && isMachineObj(actor)}
+                                    {#if machineData[obj.machine].skins.length > 1}
+                                        {#if obj.machine === "Frog_Egg"}
+                                            <Label label="Maturity Stage">
+                                                <Slider class="ml-4" label="Maturity Stage" value={obj.stage + 1} min={1} max={machineData[obj.machine].skins.length} step={1} oninput={updateStage} />
+                                            </Label>
+                                        {:else if obj.machine === "Spider_Egg"}
+                                            <Label label="Size">
+                                                <ArrowSelection class="ml-6" label="Size" options={["I", "II", "III", "Max"]} bind:i={obj.stage} oninput={(_, i) => actor.stage = i} />
+                                            </Label>
+                                        {/if}
                                     {/if}
                                 {:else if isBishopObj(obj) && isBishopObj(actor)}
                                     {#if "bossSrc" in bishopData[obj.bishop]}
@@ -496,7 +501,7 @@
                                 {:else if isMiniBossObj(obj) && isMiniBossObj(actor)}
                                     {#if miniBossData[obj.miniBoss].skins.length > 1}
                                         <Label label="Body Part Number">
-                                            <Slider class="ml-4" label="Body Part Number" value={obj.stage + 1} min={1} max={miniBossData[obj.miniBoss].skins.length} step={1} oninput={updateMiniBossStage} />
+                                            <Slider class="ml-4" label="Body Part Number" value={obj.stage + 1} min={1} max={miniBossData[obj.miniBoss].skins.length} step={1} oninput={updateStage} />
                                         </Label>
                                     {/if}
 

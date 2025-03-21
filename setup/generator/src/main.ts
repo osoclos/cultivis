@@ -2,8 +2,8 @@ import "./style.css";
 
 import { Scene, Factory, Exporter, Actor } from "@/scripts";
 
-import { followerData, hereticData, miniBossData, playerData, towwData } from "@/data/files";
-import { CLOTHING_IDS, FOLLOWER_IDS, GUARD_IDS, HATS_ID, HERETIC_IDS, MINI_BOSS_IDS, NECKLACE_IDS, OCCULTIST_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, SOLDIER_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
+import { followerData, hereticData, machineData, miniBossData, playerData, towwData } from "@/data/files";
+import { CLOTHING_IDS, FOLLOWER_IDS, GUARD_IDS, HATS_ID, HERETIC_IDS, MACHINE_IDS, MINI_BOSS_IDS, NECKLACE_IDS, OCCULTIST_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, SOLDIER_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
 
 import { Player } from "@/scripts/characters";
 
@@ -346,6 +346,25 @@ hereticExporter.addEventListener("click", () => {
     }
 
     sendForm(form, "/heretics");
+});
+
+const machineExporter = document.querySelector<HTMLButtonElement>("button#export-machines")!;
+machineExporter.addEventListener("click", () => {
+    const form = new FormData();
+
+    for (const id of MACHINE_IDS) {
+        const machine = factory.machine(id);
+
+        const { animation } = machineData[id];
+        machine.setRawAnimation(animation);
+
+        setupScene(machine);
+        if (["Eye", "Eye_Brute"].includes(id)) machine.pos.set(0, 18);
+
+        appendPixelsToForm(form, id);
+    }
+
+    sendForm(form, "/machines");
 });
 
 const towwExporter = document.querySelector<HTMLButtonElement>("button#export-toww")!;

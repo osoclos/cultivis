@@ -5,11 +5,11 @@
     import { SpritesheetImage } from "../utils";
 
     import type { ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isMiniBossObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isMachineObj, isMiniBossObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
     import { soundManager } from "../../scripts/managers";
 
-    import { bishopData, followerData, guardData, hereticData, miniBossData, occultistData, playerData, soldierData, towwData, witnessData } from "../../data/files";
-    import { BISHOP_IDS, followerIdsByCategory, FOLLOWER_CATEGORIES, guardIdsByCategory, GUARD_CATEGORIES, hereticIdsByCategory, HERETIC_CATEGORIES, miniBossIdsByCategory, MINI_BOSS_CATEGORIES, PLAYER_CREATURE_IDS, SOLDIER_IDS, WITNESS_IDS, OCCULTIST_IDS } from "../../data/types";
+    import { bishopData, followerData, guardData, hereticData, machineData, miniBossData, occultistData, playerData, soldierData, towwData, witnessData } from "../../data/files";
+    import { BISHOP_IDS, followerIdsByCategory, FOLLOWER_CATEGORIES, guardIdsByCategory, GUARD_CATEGORIES, hereticIdsByCategory, HERETIC_CATEGORIES, machineIdsByCategory, MACHINE_CATEGORIES, miniBossIdsByCategory, MINI_BOSS_CATEGORIES, PLAYER_CREATURE_IDS, SOLDIER_IDS, WITNESS_IDS, OCCULTIST_IDS } from "../../data/types";
 
     interface Props {
         actor: ActorObject;
@@ -50,6 +50,7 @@
             case isGuardObj(actor): return "Guard";
 
             case isHereticObj(actor): return "Heretic";
+            case isMachineObj(actor): return "Machine";
 
             case isBishopObj(actor): return "Bishop";
             case isTOWW_Obj(actor): return "T.O.W.W.";
@@ -71,6 +72,7 @@
             case isGuardObj(actor): return `Role ${guardData[actor.guard].name}`;
 
             case isHereticObj(actor): return `Enemy: ${hereticData[actor.heretic].name}`;
+            case isMachineObj(actor): return `Mechanic: ${machineData[actor.machine].name}`;
 
             case isBishopObj(actor): return `Bishop: ${bishopData[actor.bishop].name}`;
             case isTOWW_Obj(actor): return `Form: ${towwData[actor.form].name}`;
@@ -92,6 +94,7 @@
             case isGuardObj(actor): return "/static/assets/characters/guards.png";
 
             case isHereticObj(actor): return "/static/assets/characters/heretics.png";
+            case isMachineObj(actor): return "/static/assets/characters/machines.png";
 
             case isBishopObj(actor):
             case isTOWW_Obj(actor): return "/static/assets/characters/crowns.png";
@@ -113,6 +116,7 @@
             case isGuardObj(actor): return guardIdsByCategory[GUARD_CATEGORIES[y]].indexOf(actor.guard);
 
             case isHereticObj(actor): return hereticIdsByCategory[HERETIC_CATEGORIES[y]].indexOf(actor.heretic);
+            case isMachineObj(actor): return machineIdsByCategory[MACHINE_CATEGORIES[y]].indexOf(actor.machine);
 
             case isBishopObj(actor): return BISHOP_IDS.indexOf(actor.bishop);
             case isTOWW_Obj(actor): return BISHOP_IDS.length;
@@ -131,6 +135,7 @@
             case isGuardObj(actor): return guardData[actor.guard].category;
 
             case isHereticObj(actor): return hereticData[actor.heretic].category;
+            case isMachineObj(actor): return machineData[actor.machine].category;
 
             case isMiniBossObj(actor): return miniBossData[actor.miniBoss].category;
 

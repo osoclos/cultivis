@@ -15,19 +15,39 @@
                 "description": "The display name of this machine."
             },
 
-            "skin": {
+            "category": {
+                "type": "integer",
+                "description": "The category index this machine belongs to.",
+
+                "minimum": 0,
+                "maximum": 1
+            },
+
+            "src": {
+                "$ref": "../../globals.schema.json#/definitions/Sources",
+                "description": "The source paths to the files needed to load the machine."
+            },
+
+            "skins": {
+                "type": "array",
+                "description": "The list of skins needed to fully create the machine correctly.",
+
+                "items": { "type": "string" }
+            },
+
+            "animation": {
                 "type": "string",
-                "description": "The skin name of this machine."
+                "description": "The default animation it should play when this form is loaded."
             }
         },
 
-        "required": ["name", "skin"]
+        "required": ["name", "category", "src", "skins", "animation"]
     },
 
     "definitions": {
         "Id": {
             "type": "string",
-            "enum": [""]
+            "enum": ["Howler", "Eye", "Eye_Brute", "Frog_Egg", "Spider_Egg"]
         }
     }
 }

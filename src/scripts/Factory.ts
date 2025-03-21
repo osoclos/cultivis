@@ -1,7 +1,7 @@
-import { followerData, playerData, soldierData, occultistData, guardData, hereticData, bishopData, towwData, miniBossData, witnessData } from "../data/files";
-import { type FollowerId, type ClothingId, type PlayerCreatureId, type PlayerFleeceId, type SoldierId, type OccultistId, type HereticId, type BishopId, type TOWW_Id, type MiniBossId, type WitnessId, HERETIC_IDS, BISHOP_IDS, TOWW_IDS, MINI_BOSS_IDS, type GuardId } from "../data/types";
+import { followerData, playerData, soldierData, occultistData, guardData, hereticData, machineData, bishopData, towwData, miniBossData, witnessData } from "../data/files";
+import { type FollowerId, type ClothingId, type PlayerCreatureId, type PlayerFleeceId, type SoldierId, type OccultistId, type HereticId, type MachineId, type BishopId, type TOWW_Id, type MiniBossId, type WitnessId, HERETIC_IDS, MACHINE_IDS, BISHOP_IDS, TOWW_IDS, MINI_BOSS_IDS, type GuardId } from "../data/types";
 
-import { Follower, Player, Soldier, Occultist, Guard, Heretic, Bishop, TOWW, MiniBoss, Witness } from "./characters";
+import { Follower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness } from "./characters";
 import { AssetManager } from "./managers";
 
 import { Actor } from "./Actor";
@@ -15,6 +15,7 @@ export class Factory {
     private _guard?: Guard;
 
     private _heretics: Map<HereticId, Heretic>;
+    private _machines: Map<MachineId, Machine>;
 
     private _bishops: Map<BishopId, Bishop>;
     private _bishopBosses: Map<BishopId, Bishop>;
@@ -26,6 +27,7 @@ export class Factory {
 
     private constructor(private assetManager: AssetManager) {
         this._heretics = new Map();
+        this._machines = new Map();
 
         this._bishops = new Map();
         this._bishopBosses = new Map();
@@ -66,6 +68,10 @@ export class Factory {
 
     hasLoadedHeretic(heretic: HereticId): boolean {
         return this._heretics.has(heretic);
+    }
+
+    hasLoadedMachine(machine: MachineId): boolean {
+        return this._machines.has(machine);
     }
 
     hasLoadedBishop(bishop: BishopId, isBoss: boolean): boolean {
@@ -142,6 +148,11 @@ export class Factory {
                     break;
                 }
 
+                case Machine: {
+                    await Promise.all(MACHINE_IDS.filter((id) => !this.hasLoadedMachine(id)).map(this.loadMachine.bind(this)));
+                    break;
+                }
+
                 case Bishop: {
                     await Promise.all(BISHOP_IDS.map((id) => Array(2).fill(null).filter((_, i) => !this.hasLoadedBishop(id, !!i)).map((_, i) => this.loadBishop(id, !!i))));
                     break;
@@ -165,6 +176,10 @@ export class Factory {
                 }
             }
         }
+    }
+
+    async loadAll() {
+        await this.load(Follower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness);
     }
 
     async loadFollower() {
@@ -201,6 +216,17 @@ export class Factory {
 
         const heretic = new Heretic(skeleton, animationState, undefined, name, id);
         this._heretics.set(id, heretic);
+    }
+
+    async loadMachine(id: MachineId) {
+        const data = machineData[id];
+        const { name, src } = data;
+
+        const { textures, atlas, skeleton: skeletonPath } = src;
+        const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
+
+        const machine = new Machine(skeleton, animationState, undefined, name, id);
+        this._machines.set(id, machine);
     }
 
     async loadBishop(id: BishopId, isBoss: boolean) {
@@ -243,10 +269,6 @@ export class Factory {
         this._witness = new Witness(skeleton, animationState);
     }
 
-    async loadAll() {
-        await this.load(Follower, Player, Soldier, Occultist, Guard, Heretic, Bishop, TOWW, MiniBoss, Witness);
-    }
-
     async custom(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string, id?: string, label: string = "Custom Actor") {
         const [skeleton, animationState] = await this.fetchData(texturePaths, atlasPath, skeletonPath);
         return new Actor(skeleton, animationState, id, label);
@@ -280,6 +302,11 @@ export class Factory {
     heretic(heretic: HereticId, id?: string, label: string = hereticData[heretic].name) {
         if (!this.hasLoadedHeretic(heretic)) throw new Error(`Heretic ${heretic} has not been loaded.`);
         return this._heretics.get(heretic)!.clone(id, label);
+    }
+
+    machine(machine: MachineId, id?: string, label: string = machineData[machine].name) {
+        if (!this.hasLoadedMachine(machine)) throw new Error(`Machine ${machine} has not been loaded.`);
+        return this._machines.get(machine)!.clone(id, label);
     }
 
     bishop(bishop: BishopId, isBoss: boolean, id?: string, label: string = bishopData[bishop].name) {
