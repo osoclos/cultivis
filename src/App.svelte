@@ -6,7 +6,7 @@
     import { SceneCanvas, Categories, LoadingThrobber, LoadingSymbol, CloudShaders } from "./components/misc";
     import { List } from "./components/utils";
     
-    import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, GuardMenus, GUARD_MENU_NAME, HereticMenus, HERETIC_MENU_NAME, MiniBossMenu, MINI_BOSS_MENU_NAME, OccultistMenus, OCCULTIST_MENU_NAME, SoldierMenus, SOLDIER_MENU_NAME, TOWW_Menus, TOWW_MENU_NAME, WitnessMenu, WITNESS_MENU_NAME } from "./components/characters";
+    import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, GuardMenus, GUARD_MENU_NAME, HereticMenus, HERETIC_MENU_NAME, MiniBossMenus, MINI_BOSS_MENU_NAME, OccultistMenus, OCCULTIST_MENU_NAME, SoldierMenus, SOLDIER_MENU_NAME, TOWW_Menus, TOWW_MENU_NAME, WitnessMenus, WITNESS_MENU_NAME } from "./components/characters";
     import { FormatOptions, SizeOptions, TimingOptions } from "./components/exporting";
 
     import { News } from "./components/news";
@@ -566,9 +566,9 @@
                         {:else if isTOWW_Obj(actorObj) && actorMenu === TOWW_MENU_NAME}
                             <TOWW_Menus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
                         {:else if isMiniBossObj(actorObj) && actorMenu === MINI_BOSS_MENU_NAME}
-                            <MiniBossMenu class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
+                            <MiniBossMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
                         {:else if isWitnessObj(actorObj) && actorMenu === WITNESS_MENU_NAME}
-                            <WitnessMenu class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" witness={actor as Witness} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                            <WitnessMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" witness={actor as Witness} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                         {/if}
                     {/if}
                 </div>
