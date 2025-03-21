@@ -30,12 +30,12 @@
 
             "skins": {
                 "$ref": "../../globals.schema.json#/definitions/Skins",
-                "description": "The list of skins needed to fully create the heretic correctly (in normal form)."
+                "description": "The list of skins needed to fully create the heretic correctly."
             },
 
             "backSkins": {
                 "$ref": "../../globals.schema.json#/definitions/Skins",
-                "description": "The list of skins needed to fully create the heretic correctly (in normal form facing the back)."
+                "description": "The list of skins needed to fully create the heretic correctly when facing the back."
             },
 
             "animation": {
