@@ -60,6 +60,7 @@
         "onnotice",
         "onpinch",
         "onproceed",
+        "onreorder",
         "onshift",
         "pageerror",
         "pocams",

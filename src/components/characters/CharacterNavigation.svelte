@@ -79,7 +79,7 @@
     import { BISHOP_MENU_NAME, GUARD_MENU_NAME, HERETIC_MENU_NAME, MACHINE_MENU_NAME, MINI_BOSS_MENU_NAME, OCCULTIST_MENU_NAME, SOLDIER_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
     import { MultiList } from "../utils";
 
-    import { Actor, Factory, type ActorObject } from "../../scripts";
+    import { Actor, Factory, Scene, type ActorObject } from "../../scripts";
     import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isMachineObj, isMiniBossObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
 
     import { bishopData, forbiddenAnimations, hereticData, machineData, miniBossData, soldierData } from "../../data/files";
@@ -88,6 +88,9 @@
     interface Props {
         actor: Actor;
         obj: ActorObject;
+
+        scene: Scene;
+        actorIdx: number;
 
         factory: Factory;
 
@@ -98,6 +101,7 @@
 
         onupdate?: VoidFunction;
         onchange?: (actor: Actor) => void;
+        onreorder?: (offset: number) => void;
 
         onproceed?: (menu: string) => void;
         onexit?: (removeFollower: boolean) => void;
@@ -106,6 +110,9 @@
     let {
         actor,
         obj,
+
+        scene,
+        actorIdx,
 
         factory,
 
@@ -116,6 +123,7 @@
 
         onupdate: update = () => {},
         onchange: change = () => {},
+        onreorder: reorder = () => {},
 
         onproceed: proceed = () => {},
         onexit: exit = () => {}
@@ -596,6 +604,9 @@
 
                 <BannerButton label="Reset Position" onclick={() => updatePosition(Vector.Zero.toObj())} />
                 <BannerButton class="mb-6" label="Reset Scale" onclick={resetScale} />
+
+                <BannerButton label="Increase Priority" disabled={actorIdx >= scene.actors.length - 1} onclick={() => reorder(1)} />
+                <BannerButton class="mb-6" label="Decrease Priority" disabled={!actorIdx} onclick={() => reorder(-1)} />
 
                 <BannerButton label="Accept" playClickSound={false} onclick={() => exit(false)} />
                 <BannerButton label="Remove" playClickSound={false} onclick={() => exit(true)} />
