@@ -81,6 +81,7 @@
 
     import { Actor, Factory, Scene, type ActorObject } from "../../scripts";
     import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isMachineObj, isMiniBossObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
+    import { soundManager } from "../../scripts/managers";
 
     import { bishopData, forbiddenAnimations, hereticData, machineData, miniBossData, soldierData } from "../../data/files";
     import { Random, Vector, type VectorObject } from "../../utils";
@@ -309,10 +310,14 @@
         obj.animationId = actor.animationId;
     }
 
-    function updateExperimentalAnimation(animationId: string) {
+    async function updateExperimentalAnimation(animationId: string) {
         switch (true) {
             case isFollowerObj(actor): {
-                actor.animationId = animationId as FollowerAnimationId;
+                const id = animationId as FollowerAnimationId;
+
+                await soundManager.load(...followerAnimationData[id].sounds.map(({ sound }) => sound));
+                actor.animationId = id;
+
                 break;
             }
         } 

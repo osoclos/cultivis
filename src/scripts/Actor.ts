@@ -167,9 +167,6 @@ export class Actor implements ActorObject {
     setAnimation(animation: AnimationData, id?: string) {
         this.animation = animation;
         if (id !== undefined) this.animationId = id;
-
-        // is non-async because its too ingrained and low-level in the code.
-        soundManager.load(...animation.sounds.map(({ sound }) => sound));
         
         this.reset();
         this.updateBounds();
