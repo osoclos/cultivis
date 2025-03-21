@@ -1,6 +1,6 @@
 # CultiVis
 
-A Cult of the Lamb visualizer
+A Cult of the Lamb Visualizer
 
 ![Preview Banner](markdown/assets/preview-banner.png)
 
