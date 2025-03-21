@@ -142,7 +142,7 @@
 
         resizer.observe(document.documentElement);
 
-        await soundManager.loadAll();
+        await soundManager.load("Click", "Flicker");
 
         loadingState = LOADING_STATES.indexOf("ToSAcknowledgement");
         if (await newsManager.areTermsAcknowledged()) hasUserCompliedToTOS = true;
@@ -206,6 +206,7 @@
         lastUpdatedUnix = await newsManager.getLastUpdatedUnix();
         import.meta.env.PROD && await serverManager.addNewVisitor();
         
+        await soundManager.load("Menu_Close", "Menu_Open", "Option_Change", "Laugh");
         numOfPets = await serverManager.getPets();
         
         loadingState = LOADING_STATES.indexOf("FetchingNews");

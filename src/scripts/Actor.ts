@@ -167,6 +167,8 @@ export class Actor implements ActorObject {
     setAnimation(animation: AnimationData, id?: string) {
         this.animation = animation;
         if (id !== undefined) this.animationId = id;
+
+        soundManager.load(...animation.sounds.map(({ sound }) => sound));
         
         this.reset();
         this.updateBounds();

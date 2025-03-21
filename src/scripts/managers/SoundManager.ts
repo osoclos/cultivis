@@ -25,38 +25,41 @@ export class SoundManager {
         return new SoundManager(cache);
     }
 
-    async load(id: SoundId) {
-        const { src, timeRanges = {} } = soundData[id];
+    async load(...ids: SoundId[]) {
+        for (const id of ids) {
+            if (this.hasLoaded(id)) continue;
+            const { src, timeRanges = {} } = soundData[id];
 
-        const blob = await fetchAndCache(resolvePath(src, SoundManager.SOUNDS_FOLDER_NAME), this.cache).then((res) => res.blob()).catch((err) => {
-            throw err instanceof Error ? new Error(`Unable to fetch audio file: ${err.message}, caused by: ${err.cause}`) : new Error(`Unable to fetch audio file: ${err}, caused by: ${import.meta.url}`);
-        });
-
-        const url = URL.createObjectURL(blob);
-
-        const sprite = <SoundSpriteDefinitions>{};
-        for (const [key, { start, duration }] of Object.entries(timeRanges)) sprite[key] = [start, duration];
-
-        const howler = new Howl({
-            src: url,
-            format: "wav",
-
-            sprite,
-            pool: SoundManager.DEFAULT_POOL_SIZE,
-
-            volume: SoundManager.DEFAULT_VOLUME
-        });
-
-        this.howlers.set(id, howler);
-
-        await new Promise((resolve, reject) => {
-            howler.once("load", resolve);
-            howler.on("loaderror", (_, err) => reject(err));
-        });
+            const blob = await fetchAndCache(resolvePath(src, SoundManager.SOUNDS_FOLDER_NAME), this.cache).then((res) => res.blob()).catch((err) => {
+                throw err instanceof Error ? new Error(`Unable to fetch audio file: ${err.message}, caused by: ${err.cause}`) : new Error(`Unable to fetch audio file: ${err}, caused by: ${import.meta.url}`);
+            });
+    
+            const url = URL.createObjectURL(blob);
+    
+            const sprite = <SoundSpriteDefinitions>{};
+            for (const [key, { start, duration }] of Object.entries(timeRanges)) sprite[key] = [start, duration];
+    
+            const howler = new Howl({
+                src: url,
+                format: "wav",
+    
+                sprite,
+                pool: SoundManager.DEFAULT_POOL_SIZE,
+    
+                volume: SoundManager.DEFAULT_VOLUME
+            });
+    
+            this.howlers.set(id, howler);
+    
+            await new Promise((resolve, reject) => {
+                howler.once("load", resolve);
+                howler.on("loaderror", (_, err) => reject(err));
+            });
+        }
     }
 
     async loadAll() {
-        await Promise.all(SOUND_IDS.map(this.load.bind(this)));
+        await this.load(...SOUND_IDS);
     }
 
     hasLoaded(id: SoundId): boolean {
