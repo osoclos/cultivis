@@ -29,22 +29,22 @@
             },
 
             "skins": {
-                "$ref": "#/definitions/Skins",
+                "$ref": "../../globals.schema.json#/definitions/Skins",
                 "description": "The list of skins needed to fully create the mini boss correctly (in normal form)."
             },
 
             "backSkins": {
-                "$ref": "#/definitions/Skins",
+                "$ref": "../../globals.schema.json#/definitions/Skins",
                 "description": "The list of skins needed to fully create the mini boss correctly (in normal form facing the back)."
             },
 
             "upgradedSkins": {
-                "$ref": "#/definitions/Skins",
+                "$ref": "../../globals.schema.json#/definitions/Skins",
                 "description": "The list of skins needed to fully create the mini boss correctly (in upgraded form)."
             },
 
             "backUpgradedSkins": {
-                "$ref": "#/definitions/Skins",
+                "$ref": "../../globals.schema.json#/definitions/Skins",
                 "description": "The list of skins needed to fully create the mini boss correctly (in upgraded form facing the back)."
             },
 
@@ -61,14 +61,6 @@
         "Id": {
             "type": "string",
             "enum": ["Mama Worm", "Mama Maggot", "Burrow Worm", "Flying Burp Frog", "Egg Hopper", "Mortar Hopper", "Spiker", "Charger", "Scuttle Turret", "Spider Jump", "Millipede Poisoner", "Scorpion"]
-        },
-
-        "Skins": {
-            "type": "array",
-            "items": {
-                "type": "array",
-                "items": { "type": "string" }
-            }
         }
     }
 }

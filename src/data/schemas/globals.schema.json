@@ -27,6 +27,14 @@
             },
 
             "required": ["textures", "atlas", "skeleton"]
+        },
+
+        "Skins": {
+            "type": "array",
+            "items": {
+                "type": "array",
+                "items": { "type": "string" }
+            }
         }
     }
 }
