@@ -13,7 +13,7 @@
     import { hereticIdsByCategory, type HereticCategoryName, type HereticData, type HereticId } from "../../../data/types";
 
     import { Factory } from "../../../scripts";
-    import { Heretic, type  HereticObject } from "../../../scripts/characters";
+    import { Heretic, type HereticObject } from "../../../scripts/characters";
 
     import { Random } from "../../../utils";
     
