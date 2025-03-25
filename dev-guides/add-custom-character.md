@@ -39,18 +39,18 @@ Afterwards, you can then add functions and switch cases to the `Factory` and `Ex
 
 You can also limit the animations that can be selected in `src/data/files/forbidden-animations.json`, which you can then add it to `src/components/characters/CharacterNavigation.svelte` to restrict them.
 
-### Step 4: Create UI for character customization
-
-You can add Svelte components as UI for your character customization in the `src/components` subfolder. You will have to add a menu component for your character, as well as modify the existing character navigation components to include your custom character.
-
-If you have additional attributes you need to customize, you can add them to the `CharacterNavigation.svelte` component in `src/components/characters` subfolder.
-
-### Step 5: Generate static assets for the character
+### Step 4: Generate static assets for the character
 
 You can generate static assets in the `public` folder by first adding an endpoint in the `setup/generate.ts` file. Afterwards, you can create a button and connect it to create the assets for your characters in the `generator` subfolder.
 
 Then run `bun generate` in the terminal and click on the button to generate your custom character assets, which will appear in the `public/static/assets` subfolder.
 
+### Step 5: Create UI for character customization
+
+You can add Svelte components as UI for your character customization in the `src/components` subfolder. You will have to add a menu component for your character, as well as modify the existing character navigation components to include your custom character.
+
+If you have additional attributes you need to customize, you can add them to the `CharacterNavigation.svelte` component in `src/components/characters` subfolder.
+
 ## Reference
 
-You may refer to commit [cd71a50](https://github.com/osoclos/cultivis/commit/cd71a5099464a48e52dc0085356ce42cdb3852b8) for an example addition of a custom character. If you require more low-level modifications, you may check out the other character classes in the repository.
+You may refer to commits [cd71a50](https://github.com/osoclos/cultivis/commit/cd71a5099464a48e52dc0085356ce42cdb3852b8), [7ac37e7](https://github.com/osoclos/cultivis/commit/7ac37e75f59b56c19b04b8ca7f42e77f9f0096f2) and [fd8620f](https://github.com/osoclos/cultivis/commit/fd8620f1739f6038d1de3f64a6976b655545aaba) for an example addition of a custom character. If you require more low-level modifications, you may check out the other character classes in the repository.
