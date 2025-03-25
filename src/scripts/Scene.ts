@@ -147,11 +147,9 @@ export class Scene implements SceneObject {
 
     replaceActorFromIdx(i: number, actor: Actor) {
         const newActors = this.actors;
-        console.log(newActors);
         newActors.splice(i, 1, actor);
 
         this.#actors = new Set(newActors);
-        console.log(this.#actors)
     }
 
     findActor(id: string) {
