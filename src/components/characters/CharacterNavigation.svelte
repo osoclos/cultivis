@@ -433,6 +433,10 @@
                                     <Label label="Hurt State">
                                         <ArrowSelection class="ml-6" label="Hurt State" options={["Normal", "Bruised", "Injured"]} bind:i={obj.hurtState} oninput={(_, i) => actor.hurtState = i} />
                                     </Label>
+
+                                    <Label label="Show Head Only?">
+                                        <Toggle label="Show Head Only?" bind:enabled={obj.isOnlyHead} oninput={(isOnlyHead) => actor.isOnlyHead = isOnlyHead} />
+                                    </Label>
                                 {:else if isSoldierObj(obj) && isSoldierObj(actor)}
                                     {#if soldierData[obj.soldier].canHoldShield}
                                         <Label label="Is Holding Shield?">

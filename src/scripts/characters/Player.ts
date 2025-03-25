@@ -26,6 +26,9 @@ export class Player extends Actor implements PlayerObject {
     static readonly HURT_LAMB_PREFIX: string = "Hurt";
     static readonly HURT_GOAT_PREFIX: string = "Goat_Hurt";
 
+    static readonly LAMB_HEAD_SKIN_NAME: string = "JustHead";
+    static readonly GOAT_HEAD_SKIN_NAME: string = "Goat_JustHead";
+    
     #creature: PlayerCreatureId;
     #crown: PlayerCrownId | null;
 
@@ -33,6 +36,7 @@ export class Player extends Actor implements PlayerObject {
     #bell: PlayerBellId | null;
 
     #hurtState: PlayerHurtState;
+    #isOnlyHead: boolean;
 
     constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = playerData.creatures.Lamb.name, creature: PlayerCreatureId = "Lamb", fleece: PlayerFleeceId = "Lamb") {
         super(skeleton, animationState, id, label);
@@ -48,6 +52,7 @@ export class Player extends Actor implements PlayerObject {
                 : "Goat";
 
         this.#hurtState = PlayerHurtState.Normal;
+        this.#isOnlyHead = false;
 
         this.update();
     }
@@ -97,6 +102,15 @@ export class Player extends Actor implements PlayerObject {
         this.update();
     }
 
+    get isOnlyHead(): boolean {
+        return this.#isOnlyHead;
+    }
+
+    set isOnlyHead(isOnlyHead: boolean) {
+        this.#isOnlyHead = isOnlyHead;
+        this.update();
+    }
+
     get creatureData(): PlayerCreatureData {
         return playerData.creatures[this.creature];
     }
@@ -126,12 +140,12 @@ export class Player extends Actor implements PlayerObject {
     }
 
     update() {
-        const { creature, creatureData, crown, crownData, fleeceData, bell, bellData, hurtState } = this;
+        const { creature, creatureData, crown, crownData, fleeceData, bell, bellData, hurtState, isOnlyHead } = this;
         
         const creatureVariant = creatureData.variant;
         const creatureSkin = new spine.Skin(Player.CREATURE_SKIN_NAME);
 
-        creatureSkin.copySkin(this.skeleton.data.findSkin(creatureVariant));
+        creatureSkin.copySkin(this.skeleton.data.findSkin(isOnlyHead ? Player[creature === "Goat" ? "GOAT_HEAD_SKIN_NAME" : "LAMB_HEAD_SKIN_NAME"] : creatureVariant));
         creatureSkin.getAttachments().filter(({ name }) => [Player.FLEECE_ATTACHMENT_NAME, Player.CROWN_ATTACHMENT_NAME, Player.CROWN_EYE_ATTACHMENT_NAME, ...Player.BELL_ATTACHMENT_NAMES].some((str) => name.includes(str))).forEach(({ name, slotIndex }) => creatureSkin.removeAttachment(slotIndex, name));
 
         this.setCustomSkin(creatureSkin);
@@ -145,16 +159,18 @@ export class Player extends Actor implements PlayerObject {
             this.addCustomSkin(crownSkin);
         }
 
-        const fleeceSkin = new spine.Skin(Player.FLEECE_SKIN_NAME);
+        if (!isOnlyHead) {
+            const fleeceSkin = new spine.Skin(Player.FLEECE_SKIN_NAME);
         
-        this.skeleton.data.findSkin(fleeceData.variant).getAttachments().filter(({ name }) => [Player.FLEECE_ATTACHMENT_NAME, ...Player.BODY_ATTACHMENT_NAMES.slice(+(creature !== "Lamb") * (Player.BODY_ATTACHMENT_NAMES.length - 1))].some((str) => name.includes(str))).forEach(({ name, attachment, slotIndex }) => fleeceSkin.setAttachment(slotIndex, name, attachment));
-        this.addCustomSkin(fleeceSkin);
-
-        if (bell) {
-            const bellSkin = new spine.Skin(Player.BELL_SKIN_NAME);
-            this.skeleton.data.findSkin(bellData!.variant).getAttachments().filter(({ name }) => Player.BELL_ATTACHMENT_NAMES.some((str) => name.includes(str))).forEach(({ name, attachment, slotIndex }) => bellSkin.setAttachment(slotIndex, name, attachment));
-            
-            this.addCustomSkin(bellSkin);
+            this.skeleton.data.findSkin(fleeceData.variant).getAttachments().filter(({ name }) => [Player.FLEECE_ATTACHMENT_NAME, ...Player.BODY_ATTACHMENT_NAMES.slice(+(creature !== "Lamb") * (Player.BODY_ATTACHMENT_NAMES.length - 1))].some((str) => name.includes(str))).forEach(({ name, attachment, slotIndex }) => fleeceSkin.setAttachment(slotIndex, name, attachment));
+            this.addCustomSkin(fleeceSkin);
+    
+            if (bell) {
+                const bellSkin = new spine.Skin(Player.BELL_SKIN_NAME);
+                this.skeleton.data.findSkin(bellData!.variant).getAttachments().filter(({ name }) => Player.BELL_ATTACHMENT_NAMES.some((str) => name.includes(str))).forEach(({ name, attachment, slotIndex }) => bellSkin.setAttachment(slotIndex, name, attachment));
+                
+                this.addCustomSkin(bellSkin);
+            }
         }
 
         hurtState !== PlayerHurtState.Normal && this.addSkins(`${creature === "Goat" ? Player.HURT_GOAT_PREFIX : Player.HURT_LAMB_PREFIX}${hurtState}`);
@@ -163,7 +179,7 @@ export class Player extends Actor implements PlayerObject {
     }
 
     copyFromObj(obj: PlayerObject) {
-        const { creature, crown, fleece, bell, hurtState } = obj;
+        const { creature, crown, fleece, bell, hurtState, isOnlyHead } = obj;
         
         this.creature = creature;
         this.crown = crown;
@@ -172,13 +188,14 @@ export class Player extends Actor implements PlayerObject {
         this.bell = bell;
 
         this.hurtState = hurtState;
+        this.isOnlyHead = isOnlyHead;
 
         super.copyFromObj(obj);
     }
 
     toObj(): PlayerObject {
-        const { creature, crown, fleece, bell, hurtState } = this;
-        return { ...super.toObj(), type: TYPE, creature, crown, fleece, bell, hurtState };
+        const { creature, crown, fleece, bell, hurtState, isOnlyHead } = this;
+        return { ...super.toObj(), type: TYPE, creature, crown, fleece, bell, hurtState, isOnlyHead };
     }
 }
 
@@ -190,6 +207,7 @@ export interface PlayerObject extends ActorObject {
     bell: PlayerBellId | null;
 
     hurtState: PlayerHurtState;
+    isOnlyHead: boolean;
 }
 
 export const enum PlayerHurtState {

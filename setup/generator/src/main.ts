@@ -187,7 +187,7 @@ playerExporter.addEventListener("click", () => {
     const form = new FormData();
     for (const id of PLAYER_CREATURE_IDS) {
         const skin = new spine.Skin(Player.CREATURE_SKIN_NAME);
-        skin.copySkin(player.skeleton.data.findSkin(id === "Lamb" ? "JustHead" : "Goat_JustHead"));
+        skin.copySkin(player.skeleton.data.findSkin(Player[id === "Goat" ? "GOAT_HEAD_SKIN_NAME" : "LAMB_HEAD_SKIN_NAME"]));
 
         skin.getAttachments().filter(({ name }) => name.includes(Player.CROWN_ATTACHMENT_NAME)).forEach(({ name, slotIndex }) => skin.removeAttachment(slotIndex, name));
         
