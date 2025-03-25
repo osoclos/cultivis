@@ -37,7 +37,7 @@
 
             "animation": {
                 "type": "string",
-                "description": "The default animation it should play when this form is loaded."
+                "description": "The default animation it should play when this machine is loaded."
             }
         },
 
