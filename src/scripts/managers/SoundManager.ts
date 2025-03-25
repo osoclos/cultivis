@@ -5,7 +5,7 @@ import { SOUND_IDS, type SoundId } from "../../data/types";
 
 import { fetchAndCache, Random, resolvePath } from "../../utils";
 
-const MAX_POOL_SIZE: number = 48;
+const MAX_POOL_SIZE: number = 96;
 Howler.html5PoolSize = MAX_POOL_SIZE;
 
 export class SoundManager {
