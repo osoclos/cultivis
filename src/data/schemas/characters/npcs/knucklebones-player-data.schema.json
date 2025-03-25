@@ -1,0 +1,48 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "knucklebones-player-data.schema.json",
+
+    "title": "Knucklebones Player Data",
+    "description": "Information on knucklebones players that provides metadata and other related information, such as source files and animations",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/Id" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The display name of this knucklebones player."
+            },
+
+            "src": {
+                "$ref": "../../globals.schema.json#/definitions/Sources",
+                "description": "The source paths to the files needed to load the knucklebones player."
+            },
+
+            "skin": {
+                "type": "string",
+                "description": "The default skin name of this knucklebones player."
+            },
+
+            "headSkin": {
+                "type": "string",
+                "description": "The skin name of this knucklebones player when it is only showing the head."
+            },
+
+            "animation": {
+                "type": "string",
+                "description": "The default animation it should play when this knucklebones player is loaded."
+            }
+        },
+
+        "required": ["name", "src", "skin", "headSkin", "animation"]
+    },
+
+    "definitions": {
+        "Id": {
+            "type": "string",
+            "enum": ["Ratau", "Flinky", "Klunko_And_Bop", "Shrumy"]
+        }
+    }
+}

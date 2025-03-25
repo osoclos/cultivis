@@ -76,11 +76,11 @@
     import { twMerge } from "tailwind-merge";
 
     import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, ArrowSelection, Slider, Toggle, Notice } from "../base";
-    import { BISHOP_MENU_NAME, GUARD_MENU_NAME, HERETIC_MENU_NAME, MACHINE_MENU_NAME, MINI_BOSS_MENU_NAME, OCCULTIST_MENU_NAME, SOLDIER_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
+    import { BISHOP_MENU_NAME, GUARD_MENU_NAME, HERETIC_MENU_NAME, KNUCKLEBONES_PLAYER_MENU_NAME, MACHINE_MENU_NAME, MINI_BOSS_MENU_NAME, OCCULTIST_MENU_NAME, SOLDIER_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
     import { MultiList } from "../utils";
 
     import { Actor, Factory, Scene, type ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isMachineObj, isMiniBossObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isKnucklebonesPlayerObj, isMachineObj, isMiniBossObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
     import { soundManager } from "../../scripts/managers";
 
     import { bishopData, forbiddenAnimations, hereticData, machineData, miniBossData, soldierData } from "../../data/files";
@@ -377,6 +377,8 @@
                     <BannerButton label="Choose Boss" playClickSound={false} onclick={() => proceed(MINI_BOSS_MENU_NAME)} />
                 {:else if isWitnessObj(obj)}
                     <BannerButton label="Choose Witness" playClickSound={false} onclick={() => proceed(WITNESS_MENU_NAME)} />
+                {:else if isKnucklebonesPlayerObj(obj)}
+                    <BannerButton label="Choose Player" playClickSound={false} onclick={() => proceed(KNUCKLEBONES_PLAYER_MENU_NAME)} />
                 {/if}
             {:else if i === 2}
                 <div class="flex flex-col gap-12 pt-6 pb-8">
@@ -538,6 +540,10 @@
             
                                     <Label label="Is Purged?">
                                         <Toggle label="Is Purged?" bind:enabled={obj.isPurged} oninput={(isPurged) => actor.isPurged = isPurged} />
+                                    </Label>
+                                {:else if isKnucklebonesPlayerObj(obj) && isKnucklebonesPlayerObj(actor)}
+                                    <Label label="Show Head Only?">
+                                        <Toggle label="Show Head Only?" bind:enabled={obj.isOnlyHead} oninput={(isOnlyHead) => actor.isOnlyHead = isOnlyHead} />
                                     </Label>
                                 {/if}
                             </div>

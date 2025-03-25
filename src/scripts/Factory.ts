@@ -1,7 +1,7 @@
-import { followerData, playerData, soldierData, occultistData, guardData, hereticData, machineData, bishopData, towwData, miniBossData, witnessData } from "../data/files";
-import { type FollowerId, type ClothingId, type PlayerCreatureId, type PlayerFleeceId, type SoldierId, type OccultistId, type HereticId, type MachineId, type BishopId, type TOWW_Id, type MiniBossId, type WitnessId, HERETIC_IDS, MACHINE_IDS, BISHOP_IDS, TOWW_IDS, MINI_BOSS_IDS, type GuardId } from "../data/types";
+import { followerData, playerData, soldierData, occultistData, guardData, hereticData, machineData, bishopData, towwData, miniBossData, witnessData, knucklebonesPlayerData } from "../data/files";
+import { type FollowerId, type ClothingId, type PlayerCreatureId, type PlayerFleeceId, type SoldierId, type OccultistId, type GuardId, type HereticId, type MachineId, type BishopId, type TOWW_Id, type MiniBossId, type WitnessId, type KnucklebonesPlayerId, HERETIC_IDS, MACHINE_IDS, BISHOP_IDS, TOWW_IDS, MINI_BOSS_IDS, KNUCKLEBONES_PLAYER_IDS } from "../data/types";
 
-import { Follower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness } from "./characters";
+import { Follower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer } from "./characters";
 import { AssetManager } from "./managers";
 
 import { Actor } from "./Actor";
@@ -25,6 +25,8 @@ export class Factory {
     private _miniBosses: Map<MiniBossId, MiniBoss>;
     private _witness?: Witness;
 
+    private _knucklebonesPlayers: Map<KnucklebonesPlayerId, KnucklebonesPlayer>;
+
     private constructor(private assetManager: AssetManager) {
         this._heretics = new Map();
         this._machines = new Map();
@@ -35,6 +37,8 @@ export class Factory {
         this._TOWWs = new Map();
 
         this._miniBosses = new Map();
+
+        this._knucklebonesPlayers = new Map();
     }
 
     static async create(gl: WebGLRenderingContext, root: string = "/", actorsToPreload: (typeof Actor)[] = []) {
@@ -88,6 +92,10 @@ export class Factory {
 
     hasLoadedWitness(): boolean {
         return !!this._witness;
+    }
+
+    hasLoadedKnucklebonesPlayer(player: KnucklebonesPlayerId): boolean {
+        return this._knucklebonesPlayers.has(player);
     }
 
     async fetchData(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string): Promise<[spine.Skeleton, spine.AnimationState]> {
@@ -174,12 +182,17 @@ export class Factory {
 
                     break;
                 }
+
+                case KnucklebonesPlayer: {
+                    await Promise.all(KNUCKLEBONES_PLAYER_IDS.filter((id) => !this.hasLoadedKnucklebonesPlayer(id)).map(this.loadKnucklebonesPlayer.bind(this)));
+                    break;
+                }
             }
         }
     }
 
     async loadAll() {
-        await this.load(Follower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness);
+        await this.load(Follower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer);
     }
 
     async loadFollower() {
@@ -269,6 +282,17 @@ export class Factory {
         this._witness = new Witness(skeleton, animationState);
     }
 
+    async loadKnucklebonesPlayer(id: KnucklebonesPlayerId) {
+        const data = knucklebonesPlayerData[id];
+        const { name, src } = data;
+
+        const { textures, atlas, skeleton: skeletonPath } = src;
+        const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
+
+        const knucklebonesPlayer = new KnucklebonesPlayer(skeleton, animationState, undefined, name, id);
+        this._knucklebonesPlayers.set(id, knucklebonesPlayer);
+    }
+
     async custom(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string, id?: string, label: string = "Custom Actor") {
         const [skeleton, animationState] = await this.fetchData(texturePaths, atlasPath, skeletonPath);
         return new Actor(skeleton, animationState, id, label);
@@ -327,5 +351,10 @@ export class Factory {
     witness(witness: WitnessId, isUpgraded?: boolean, id?: string, label: string = witnessData[witness].name) {
         if (!this.hasLoadedWitness()) throw new Error(`Witness has not been loaded.`);
         return this._witness!.clone(id, label, witness, isUpgraded);
+    }
+
+    knucklebonesPlayer(player: KnucklebonesPlayerId, id?: string, label: string = knucklebonesPlayerData[player].name) {
+        if (!this.hasLoadedKnucklebonesPlayer(player)) throw new Error(`Knucklebones Player ${player} has not been loaded.`);
+        return this._knucklebonesPlayers.get(player)!.clone(id, label);
     }
 }

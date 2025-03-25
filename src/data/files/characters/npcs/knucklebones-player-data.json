@@ -1,0 +1,57 @@
+{
+    "Ratau": {
+        "name": "Ratau",
+        "src": {
+            "textures": ["RatNPC.png"],
+            "atlas": "RatNPC.atlas",
+            "skeleton": "RatNPC.skel"
+        },
+
+        "skin": "normal",
+        "headSkin": "just-head",
+
+        "animation": "idle"
+    },
+
+    "Flinky": {
+        "name": "Flinky",
+        "src": {
+            "textures": ["KnucklebonesPlayer_0_Flinky.png"],
+            "atlas": "KnucklebonesPlayer_0_Flinky.atlas",
+            "skeleton": "KnucklebonesPlayer_0_Flinky.skel"
+        },
+
+        "skin": "Normal",
+        "headSkin": "Just-Head",
+
+        "animation": "animation"
+    },
+
+    "Klunko_And_Bop": {
+        "name": "Klunko and Bop",
+        "src": {
+            "textures": ["KnucklebonesPlayer_1_KlunkoAndBop.png"],
+            "atlas": "KnucklebonesPlayer_1_KlunkoAndBop.atlas",
+            "skeleton": "KnucklebonesPlayer_1_KlunkoAndBop.skel"
+        },
+
+        "skin": "Normal",
+        "headSkin": "Just-Head",
+
+        "animation": "animation"
+    },
+
+    "Shrumy": {
+        "name": "Shrumy",
+        "src": {
+            "textures": ["KnucklebonesPlayer_2_Shrumy.png"],
+            "atlas": "KnucklebonesPlayer_2_Shrumy.atlas",
+            "skeleton": "KnucklebonesPlayer_2_Shrumy.skel"
+        },
+
+        "skin": "Normal",
+        "headSkin": "Just-Head",
+
+        "animation": "animation"
+    }
+}

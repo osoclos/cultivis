@@ -25,6 +25,7 @@
         "encoderpack",
         "exmarkdown",
         "fillbowl",
+        "Flinky",
         "fmod",
         "Focalor",
         "Frankerz",
@@ -39,6 +40,7 @@
         "Jalala",
         "jjFpHWtfcZGHc1zmdTieh1P-x0BBMlzk60qlqRajxGc",
         "kallamar",
+        "Klunko",
         "Lapture",
         "leshy",
         "monsterheart",
@@ -75,6 +77,7 @@
         "Segoe",
         "shamura",
         "Shroom",
+        "Shrumy",
         "skel",
         "Sozo",
         "Sozonius",
@@ -145,6 +148,11 @@
         {
             "fileMatch": ["/witness-data.json"],
             "url": "/src/data/schemas/characters/bosses/witness-data.schema.json"
+        },
+
+        {
+            "fileMatch": ["/knucklebones-player-data.json"],
+            "url": "/src/data/schemas/characters/npcs/knucklebones-player-data.schema.json"
         },
 
         {

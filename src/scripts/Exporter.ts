@@ -1,6 +1,6 @@
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
 
-import { isFollowerObj, isPlayerObj, isSoldierObj, isOccultistObj, isGuardObj, isHereticObj, isMachineObj, isBishopObj, isTOWW_Obj, isMiniBossObj, isWitnessObj } from "./characters";
+import { isFollowerObj, isPlayerObj, isSoldierObj, isOccultistObj, isGuardObj, isHereticObj, isMachineObj, isBishopObj, isTOWW_Obj, isMiniBossObj, isWitnessObj, isKnucklebonesPlayerObj } from "./characters";
 import { APNG_Manager, GIF_Manager } from "./managers";
 
 import { Vector } from "../utils";
@@ -244,6 +244,16 @@ export class Exporter {
                 
                 const witness = this.factory.witness(witnessId, isUpgraded, id, label);
                 actor = witness;
+
+                break;
+            }
+
+            case isKnucklebonesPlayerObj(obj): {
+                const { player } = obj;
+                if (!this.factory.hasLoadedKnucklebonesPlayer(player)) await this.factory.loadKnucklebonesPlayer(player);
+
+                const knucklebonesPlayer = this.factory.knucklebonesPlayer(player, id, label);
+                actor = knucklebonesPlayer;
 
                 break;
             }

@@ -2,8 +2,8 @@ import "./style.css";
 
 import { Scene, Factory, Exporter, Actor } from "@/scripts";
 
-import { followerData, hereticData, machineData, miniBossData, playerData, towwData } from "@/data/files";
-import { CLOTHING_IDS, FOLLOWER_IDS, GUARD_IDS, HATS_ID, HERETIC_IDS, MACHINE_IDS, MINI_BOSS_IDS, NECKLACE_IDS, OCCULTIST_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, SOLDIER_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
+import { followerData, hereticData, knucklebonesPlayerData, machineData, miniBossData, playerData, towwData } from "@/data/files";
+import { CLOTHING_IDS, FOLLOWER_IDS, GUARD_IDS, HATS_ID, HERETIC_IDS, KNUCKLEBONES_PLAYER_IDS, MACHINE_IDS, MINI_BOSS_IDS, NECKLACE_IDS, OCCULTIST_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, SOLDIER_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
 
 import { Player } from "@/scripts/characters";
 
@@ -445,6 +445,27 @@ witnessExporter.addEventListener("click", () => {
     }
 
     sendForm(form, "/witnesses");
+});
+
+const knucklebonesPlayerExporter = document.querySelector<HTMLButtonElement>("button#export-knucklebones-players")!;
+knucklebonesPlayerExporter.addEventListener("click", () => {
+    const form = new FormData();
+
+    for (const id of KNUCKLEBONES_PLAYER_IDS) {
+        const knucklebonesPlayer = factory.knucklebonesPlayer(id);
+
+        const { animation } = knucklebonesPlayerData[id];
+        knucklebonesPlayer.setRawAnimation(animation);
+
+        setupScene(knucklebonesPlayer);
+
+        if (id === "Shrumy") scene.scale *= 0.84;
+        knucklebonesPlayer.pos.set(-20 * +(id !== "Ratau"), 36 * +(id === "Shrumy"));
+
+        appendPixelsToForm(form, id);
+    }
+
+    sendForm(form, "/knucklebones-players");
 });
 
 function setupScene(actor: Actor) {

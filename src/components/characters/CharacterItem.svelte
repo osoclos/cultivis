@@ -4,7 +4,7 @@
     import { SpritesheetImage } from "../utils";
 
     import { Actor } from "../../scripts";
-    import { Bishop, Follower, Guard, Heretic, Machine, MiniBoss, Occultist, Player, Soldier, TOWW, Witness } from "../../scripts/characters";
+    import { Bishop, Follower, Guard, Heretic, KnucklebonesPlayer, Machine, MiniBoss, Occultist, Player, Soldier, TOWW, Witness } from "../../scripts/characters";
     import { soundManager } from "../../scripts/managers";
 
     interface Props {
@@ -42,6 +42,8 @@
 
             case MiniBoss: return "/static/assets/characters/mini-bosses.png";
             case Witness: return "/static/assets/characters/witnesses.png";
+
+            case KnucklebonesPlayer: return "/static/assets/characters/knucklebones-players.png";
             
             default: return "/static/ui/cancel.png";
         }
@@ -66,6 +68,8 @@
 
             case MiniBoss: return "Mini Boss";
             case Witness: return "Witness";
+
+            case KnucklebonesPlayer: return "K.B. Player";
             
             default: return "Actor";
         }
