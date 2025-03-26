@@ -120,7 +120,7 @@
         class: className,
         enableKeyInput = false,
 
-        useExperimentalAnimations = $bindable(true),
+        useExperimentalAnimations = $bindable(false),
 
         onupdate: update = () => {},
         onchange: change = () => {},

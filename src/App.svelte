@@ -16,7 +16,7 @@
     import { Bishop, isBishopObj, Follower, isFollowerObj, Guard, isGuardObj, Heretic, isHereticObj, Machine, isMachineObj, MiniBoss, isMiniBossObj, Occultist, isOccultistObj, Player, isPlayerObj, Soldier, isSoldierObj, TOWW, isTOWW_Obj, Witness, isWitnessObj, KnucklebonesPlayer, isKnucklebonesPlayerObj } from "./scripts/characters";
     import { soundManager, newsManager, NewsManager, type NewsLoader, serverManager } from "./scripts/managers";
 
-    import { bishopData, followerAnimationData, hereticData, knucklebonesPlayerData, machineData, miniBossData, towwData } from "./data/files";
+    import { bishopData, hereticData, knucklebonesPlayerData, machineData, miniBossData, towwData } from "./data/files";
     import { BISHOP_IDS, GUARD_IDS, HERETIC_IDS, KNUCKLEBONES_PLAYER_IDS, MACHINE_IDS, MINI_BOSS_IDS, OCCULTIST_IDS, SOLDIER_IDS, WITNESS_IDS } from "./data/types";
 
     import { MoreMath, Random, unixToDate, Vector } from "./utils";
@@ -186,7 +186,7 @@
     
         const deer = factory.follower("Deer", "Default_Clothing");
         deer.label = "Deer";
-        deer.setAnimation(followerAnimationData.Idle);
+        deer.setRawAnimation("idle");
 
         deer.pos.setX(-180);
         deer.flipX = true;
