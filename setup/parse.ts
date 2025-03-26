@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
 
+import { ClothingDataParser, WorshipperDataParser } from "./scripts";
 import type { FollowerExtrasJSON, ClothingExtrasJSON, ClothingMetadataJSON } from "./types";
-import { ClothingDataParser, WorshipperDataParser } from "./utils";
 
 import { CLOTHING_IDS, type ClothingDataJSON, FOLLOWER_IDS, type FollowerDataJSON, type FormDataJSON, type HatDataJSON, type NecklaceDataJSON } from "../src/data/types";
 
