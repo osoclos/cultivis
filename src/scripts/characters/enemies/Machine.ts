@@ -9,8 +9,8 @@ const TYPE: string = "machine";
 
 export class Machine extends Actor implements MachineObject {
     #stage: number;
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = machineData.Howler.name, readonly machine: MachineId = "Howler") {
-        super(skeleton, animationState, id, label);
+    constructor(skeletonData: spine.SkeletonData, atlas: spine.TextureAtlas, id?: string, label: string = machineData.Howler.name, readonly machine: MachineId = "Howler") {
+        super(skeletonData, atlas, id, label);
         this.#stage = 0;
         
         this.update();
@@ -29,9 +29,9 @@ export class Machine extends Actor implements MachineObject {
     }
 
     clone(id?: string, label?: string) {
-        const { skeleton, animationState, machine: machineId } = this;
+        const { skeleton, atlas, machine: machineId } = this;
 
-        const machine = new Machine(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, machineId);
+        const machine = new Machine(skeleton.data, atlas, id, label, machineId);
         machine.copyFromObj(this.toObj());
 
         return machine;

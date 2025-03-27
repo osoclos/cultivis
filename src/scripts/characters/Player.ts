@@ -38,8 +38,9 @@ export class Player extends Actor implements PlayerObject {
     #hurtState: PlayerHurtState;
     #isOnlyHead: boolean;
 
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = playerData.creatures.Lamb.name, creature: PlayerCreatureId = "Lamb", fleece: PlayerFleeceId = "Lamb") {
-        super(skeleton, animationState, id, label);
+    constructor(skeletonData: spine.SkeletonData, atlas: spine.TextureAtlas, id?: string, label: string = playerData.creatures.Lamb.name, creature: PlayerCreatureId = "Lamb", fleece: PlayerFleeceId = "Lamb") {
+        super(skeletonData, atlas, id, label);
+
         this.#creature = creature;
         this.#crown = creature === "Lamb" ? "Red" : "Purple";
 
@@ -128,9 +129,9 @@ export class Player extends Actor implements PlayerObject {
     }
 
     clone(id?: string, label?: string, creature: PlayerCreatureId = this.creature, fleece: PlayerFleeceId = this.fleece) {
-        const { skeleton, animationState } = this;
+        const { skeleton, atlas } = this;
         
-        const player = new Player(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, creature, fleece);
+        const player = new Player(skeleton.data, atlas, id, label, creature, fleece);
         player.copyFromObj(this.toObj());
 
         player.creature = creature;

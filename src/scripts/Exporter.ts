@@ -1,6 +1,6 @@
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
 
-import { isFollowerObj, isPlayerObj, isSoldierObj, isOccultistObj, isGuardObj, isHereticObj, isMachineObj, isBishopObj, isTOWW_Obj, isMiniBossObj, isWitnessObj, isKnucklebonesPlayerObj } from "./characters";
+import { isFollowerObj, isModdedFollowerObj, isPlayerObj, isSoldierObj, isOccultistObj, isGuardObj, isHereticObj, isMachineObj, isBishopObj, isTOWW_Obj, isMiniBossObj, isWitnessObj, isKnucklebonesPlayerObj } from "./characters";
 import { APNG_Manager, GIF_Manager } from "./managers";
 
 import { Vector } from "../utils";
@@ -145,6 +145,16 @@ export class Exporter {
                 const follower = this.factory.follower(form, clothing, id, label);
                 actor = follower;
 
+                break;
+            }
+
+            case isModdedFollowerObj(obj): {
+                const { form, clothing } = obj;
+                if (!this.factory.hasLoadedModdedFollower()) await this.factory.loadModdedFollower();
+                
+                const follower = this.factory.moddedFollower(form, clothing, id, label);
+                actor = follower;
+                
                 break;
             }
 

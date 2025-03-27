@@ -56,7 +56,7 @@ export function from(str: string): Atlas {
         }
 
         const [_rotate, rotate] = checkKV("rotate", kvs);
-        const isRotated = Boolean(rotate);
+        const isRotated = rotate === "true";
 
         const [_xy, xy] = checkKV("xy", kvs);
         const [x, y] = readCSV(xy).map((val) => +val);

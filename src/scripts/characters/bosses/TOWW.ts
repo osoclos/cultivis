@@ -22,8 +22,8 @@ export class TOWW extends Actor implements TOWW_Object {
     #eyeState: number | null;
     #isInjured: boolean | null;
 
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = "The One Who Waits", readonly form: TOWW_Id = "Bishop") {
-        super(skeleton, animationState, id, label);
+    constructor(skeletonData: spine.SkeletonData, atlas: spine.TextureAtlas, id?: string, label: string = "The One Who Waits", readonly form: TOWW_Id = "Bishop") {
+        super(skeletonData, atlas, id, label);
 
         this.#hasCrown = Array<TOWW_Id>("Bishop", "Boss").includes(form) ? true : null;
         this.#hasChains = form === "Bishop" ? true : null;
@@ -71,9 +71,9 @@ export class TOWW extends Actor implements TOWW_Object {
     }
 
     clone(id?: string, label?: string) {
-        const { skeleton, animationState, form } = this;
+        const { skeleton, atlas, form } = this;
 
-        const toww = new TOWW(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, form);
+        const toww = new TOWW(skeleton.data, atlas, id, label, form);
         toww.copyFromObj(this.toObj());
 
         return toww;

@@ -59,10 +59,7 @@ export class ServerManager {
                 "Content-Type": "text/plain",
                 "Authorization": `Bearer ${import.meta.env.DEV ? import.meta.env.VITE_SERVER_BYPASS_DEV_TOKEN : ""}`
             }
-        }).then((res) => res.text()).catch((err) => {
-            console.error(err instanceof Error ? `Unable to fetch token: ${err.message}, caused by: ${err.cause}` : `Unable to fetch token: ${err}, caused by: ${import.meta.url}`);
-            return "";
-        });
+        }).then((res) => res.text());
     }
 
     private static async revokeToken(token: string) {
@@ -91,10 +88,7 @@ export class ServerManager {
     }
 
     async getPets(): Promise<number> {
-        return fetch(resolvePath(ServerManager.PETS_DB_ROUTE, ServerManager.DATABASE_ROUTE_ROOT, ServerManager.PROXY_SERVER_URL)).then((res) => res.json()).then(({ pets }: PetReplyBody) => pets).catch((err) => {
-            console.error(err instanceof Error ? `Unable to fetch pets: ${err.message}, caused by: ${err.cause}` : `Unable to fetch pets: ${err}, caused by: ${import.meta.url}`);
-            return 0;
-        });
+        return fetch(resolvePath(ServerManager.PETS_DB_ROUTE, ServerManager.DATABASE_ROUTE_ROOT, ServerManager.PROXY_SERVER_URL)).then((res) => res.json()).then(({ pets }: PetReplyBody) => pets);
     }
     
     async getContent(path: string, root: string, forceFetch: boolean = false) {
@@ -144,10 +138,7 @@ export class ServerManager {
                 case isExportBody(body):
                 default: return fetch(url, init);
             }
-        })().then((res) => res.json()).catch((err) => {
-            console.error(err instanceof Error ? `Unable to fetch data: ${err.message}, caused by: ${err.cause}` : `Unable to fetch data: ${err}, caused by: ${import.meta.url}`);
-            return {};
-        });
+        })().then((res) => res.json());
 
         if (Object.keys(data).length) this.cache.set(key, data);
         return data;

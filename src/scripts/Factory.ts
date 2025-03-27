@@ -1,13 +1,15 @@
 import { followerData, playerData, soldierData, occultistData, guardData, hereticData, machineData, bishopData, towwData, miniBossData, witnessData, knucklebonesPlayerData } from "../data/files";
 import { type FollowerId, type ClothingId, type PlayerCreatureId, type PlayerFleeceId, type SoldierId, type OccultistId, type GuardId, type HereticId, type MachineId, type BishopId, type TOWW_Id, type MiniBossId, type WitnessId, type KnucklebonesPlayerId, HERETIC_IDS, MACHINE_IDS, BISHOP_IDS, TOWW_IDS, MINI_BOSS_IDS, KNUCKLEBONES_PLAYER_IDS } from "../data/types";
 
-import { Follower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer } from "./characters";
+import { Follower, ModdedFollower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer } from "./characters";
 import { AssetManager } from "./managers";
 
 import { Actor } from "./Actor";
 
 export class Factory {
     private _follower?: Follower;
+    private _moddedFollower?: ModdedFollower;
+
     private _player?: Player;
 
     private _soldier?: Soldier;
@@ -54,6 +56,10 @@ export class Factory {
         return !!this._follower;
     }
 
+    hasLoadedModdedFollower(): boolean {
+        return !!this._moddedFollower;
+    }
+
     hasLoadedPlayer(): boolean {
         return !!this._player;
     }
@@ -98,19 +104,16 @@ export class Factory {
         return this._knucklebonesPlayers.has(player);
     }
 
-    async fetchData(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string): Promise<[spine.Skeleton, spine.AnimationState]> {
+    async fetchData(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string): Promise<[spine.SkeletonData, spine.TextureAtlas]> {
         if (Array.isArray(texturePaths)) texturePaths = Object.fromEntries(texturePaths.map((path) => Array<string>(2).fill(path)));
         
         const textures: Record<string, spine.webgl.GLTexture> = {};
         for (const path in texturePaths) textures[path] = await this.assetManager.fetchTexture(path);
 
         const atlas = await this.assetManager.fetchAtlas(atlasPath, textures);
-        const skeleton = await this.assetManager[skeletonPath.endsWith(".json") ? "fetchJSON" : "fetchSkeleton"](skeletonPath, atlas);
+        const skeletonData = await this.assetManager.fetchSkeletonData(skeletonPath, atlas);
 
-        const animationStateData = new spine.AnimationStateData(skeleton.data);
-        const animationState = new spine.AnimationState(animationStateData);
-
-        return [skeleton, animationState];
+        return [skeletonData, atlas];
     }
 
     async load(...actors: (typeof Actor)[]) {
@@ -119,6 +122,13 @@ export class Factory {
                 case Follower: {
                     if (this.hasLoadedFollower()) break;
                     await this.loadFollower();
+
+                    break;
+                }
+
+                case ModdedFollower: {
+                    if (this.hasLoadedModdedFollower()) break;
+                    await this.loadModdedFollower();
 
                     break;
                 }
@@ -196,38 +206,49 @@ export class Factory {
     }
 
     async loadFollower() {
-        const [skeleton, animationState] = await this.fetchData([Follower.TEXTURE_FILENAME], Follower.ATLAS_FILENAME, Follower.SKELETON_FILENAME);
-        this._follower = new Follower(skeleton, animationState);
+        const [skeletonData, atlas] = await this.fetchData([Follower.TEXTURE_FILENAME], Follower.ATLAS_FILENAME, Follower.SKELETON_FILENAME);
+        this._follower = new Follower(skeletonData, atlas);
+    }
+
+    async loadModdedFollower() {
+        const [skeletonData, atlas] = await this.fetchData(ModdedFollower.TEXTURE_PATHS, ModdedFollower.ATLAS_FILENAME, ModdedFollower.SKELETON_FILENAME);
+        this._moddedFollower = new ModdedFollower(skeletonData, atlas, undefined, undefined, undefined, undefined);
     }
 
     async loadPlayer() {
-        const [skeleton, animationState] = await this.fetchData([Player.TEXTURE_FILENAME], Player.ATLAS_FILENAME, Player.SKELETON_FILENAME);
-        this._player = new Player(skeleton, animationState);
+        const [skeletonData, atlas] = await this.fetchData([Player.TEXTURE_FILENAME], Player.ATLAS_FILENAME, Player.SKELETON_FILENAME);
+        this._player = new Player(skeletonData, atlas);
     }
 
     async loadSoldier() {
-        const [skeleton, animationState] = await this.fetchData([Soldier.TEXTURE_FILENAME], Soldier.ATLAS_FILENAME, Soldier.SKELETON_FILENAME);
-        this._soldier = new Soldier(skeleton, animationState);
+        const [skeletonData, atlas] = await this.fetchData([Soldier.TEXTURE_FILENAME], Soldier.ATLAS_FILENAME, Soldier.SKELETON_FILENAME);
+        this._soldier = new Soldier(skeletonData, atlas);
     }
 
     async loadOccultist() {
-        const [skeleton, animationState] = await this.fetchData([Occultist.TEXTURE_FILENAME], Occultist.ATLAS_FILENAME, Occultist.SKELETON_FILENAME);        
-        this._occultist = new Occultist(skeleton, animationState);
+        const [skeletonData, atlas] = await this.fetchData([Occultist.TEXTURE_FILENAME], Occultist.ATLAS_FILENAME, Occultist.SKELETON_FILENAME);        
+        this._occultist = new Occultist(skeletonData, atlas);
     }
 
     async loadGuard() {
-        const [skeleton, animationState] = await this.fetchData([Guard.TEXTURE_FILENAME], Guard.ATLAS_FILENAME, Guard.SKELETON_FILENAME);        
-        this._guard = new Guard(skeleton, animationState);
+        const [skeletonData, atlas] = await this.fetchData([Guard.TEXTURE_FILENAME], Guard.ATLAS_FILENAME, Guard.SKELETON_FILENAME);        
+        this._guard = new Guard(skeletonData, atlas);
     }
 
     async loadHeretic(id: HereticId) {
         const data = hereticData[id];
         const { name, src } = data;
 
-        const { textures, atlas, skeleton: skeletonPath } = src;
-        const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
+        const {
+            textures,
+            atlas: atlasPath,
+            
+            skeleton: skeletonPath
+        } = src;
+        
+        const [skeletonData, atlas] = await this.fetchData(textures, atlasPath, skeletonPath);
 
-        const heretic = new Heretic(skeleton, animationState, undefined, name, id);
+        const heretic = new Heretic(skeletonData, atlas, undefined, name, id);
         this._heretics.set(id, heretic);
     }
 
@@ -235,10 +256,16 @@ export class Factory {
         const data = machineData[id];
         const { name, src } = data;
 
-        const { textures, atlas, skeleton: skeletonPath } = src;
-        const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
+        const {
+            textures,
+            atlas: atlasPath,
+            
+            skeleton: skeletonPath
+        } = src;
+        
+        const [skeletonData, atlas] = await this.fetchData(textures, atlasPath, skeletonPath);
 
-        const machine = new Machine(skeleton, animationState, undefined, name, id);
+        const machine = new Machine(skeletonData, atlas, undefined, name, id);
         this._machines.set(id, machine);
     }
 
@@ -248,10 +275,16 @@ export class Factory {
 
         const loadBoss = isBoss && "bossSrc" in data;
 
-        const { textures, atlas, skeleton: skeletonPath } = loadBoss ? bossSrc! : src;
-        const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
+        const {
+            textures,
+            atlas: atlasPath,
+            
+            skeleton: skeletonPath
+        } = loadBoss ? bossSrc! : src;
+        
+        const [skeletonData, atlas] = await this.fetchData(textures, atlasPath, skeletonPath);
 
-        const bishop = new Bishop(skeleton, animationState, undefined, name, id, isBoss);
+        const bishop = new Bishop(skeletonData, atlas, undefined, name, id, isBoss);
         (loadBoss ? this._bishopBosses : this._bishops).set(id, bishop);
     }
     
@@ -259,10 +292,16 @@ export class Factory {
         const data = towwData[form];
         const { name, src } = data;
 
-        const { textures, atlas, skeleton: skeletonPath } = src;
-        const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
+        const {
+            textures,
+            atlas: atlasPath,
+            
+            skeleton: skeletonPath
+        } = src;
+        
+        const [skeletonData, atlas] = await this.fetchData(textures, atlasPath, skeletonPath);
 
-        const toww = new TOWW(skeleton, animationState, undefined, name, form);
+        const toww = new TOWW(skeletonData, atlas, undefined, name, form);
         this._TOWWs.set(form, toww);
     }
 
@@ -270,37 +309,54 @@ export class Factory {
         const data = miniBossData[id];
         const { name, src } = data;
 
-        const { textures, atlas, skeleton: skeletonPath } = src;
-        const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
+        const {
+            textures,
+            atlas: atlasPath,
+            
+            skeleton: skeletonPath
+        } = src;
+        
+        const [skeletonData, atlas] = await this.fetchData(textures, atlasPath, skeletonPath);
 
-        const miniBoss = new MiniBoss(skeleton, animationState, undefined, name, id, false);
+        const miniBoss = new MiniBoss(skeletonData, atlas, undefined, name, id, false);
         this._miniBosses.set(id, miniBoss);
     }
 
     async loadWitness() {
-        const [skeleton, animationState] = await this.fetchData([Witness.TEXTURE_FILENAME], Witness.ATLAS_FILENAME, Witness.SKELETON_FILENAME);
-        this._witness = new Witness(skeleton, animationState);
+        const [skeletonData, atlas] = await this.fetchData([Witness.TEXTURE_FILENAME], Witness.ATLAS_FILENAME, Witness.SKELETON_FILENAME);
+        this._witness = new Witness(skeletonData, atlas);
     }
 
     async loadKnucklebonesPlayer(id: KnucklebonesPlayerId) {
         const data = knucklebonesPlayerData[id];
         const { name, src } = data;
 
-        const { textures, atlas, skeleton: skeletonPath } = src;
-        const [skeleton, animationState] = await this.fetchData(textures, atlas, skeletonPath);
+        const {
+            textures,
+            atlas: atlasPath,
+            
+            skeleton: skeletonPath
+        } = src;
+        
+        const [skeletonData, atlas] = await this.fetchData(textures, atlasPath, skeletonPath);
 
-        const knucklebonesPlayer = new KnucklebonesPlayer(skeleton, animationState, undefined, name, id);
+        const knucklebonesPlayer = new KnucklebonesPlayer(skeletonData, atlas, undefined, name, id);
         this._knucklebonesPlayers.set(id, knucklebonesPlayer);
     }
 
     async custom(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string, id?: string, label: string = "Custom Actor") {
-        const [skeleton, animationState] = await this.fetchData(texturePaths, atlasPath, skeletonPath);
-        return new Actor(skeleton, animationState, id, label);
+        const [skeletonData, atlas] = await this.fetchData(texturePaths, atlasPath, skeletonPath);
+        return new Actor(skeletonData, atlas, id, label);
     }
 
     follower(form: FollowerId, clothing: ClothingId, id?: string, label: string = followerData.forms[form].name) {
         if (!this.hasLoadedFollower()) throw new Error("Follower has not been loaded.");
         return this._follower!.clone(id, label, form, clothing);
+    }
+
+    moddedFollower(form: FollowerId, clothing: ClothingId, id?: string, label: string = followerData.forms[form].name) {
+        if (!this.hasLoadedModdedFollower()) throw new Error("Modded Follower has not been loaded.");
+        return this._moddedFollower!.clone(id, label, form, clothing);
     }
 
     player(creature: PlayerCreatureId, fleece: PlayerFleeceId, id?: string, label: string = playerData.creatures[creature].name) {

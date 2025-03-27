@@ -1,3 +1,4 @@
+import type { ColorSet } from "../data/types";
 import { MoreMath } from "./MoreMath";
 
 export class Color implements ColorObject {
@@ -315,23 +316,23 @@ export class Color implements ColorObject {
         return this;
     }
 
-    cloneR(dest: Color) {
+    cloneR(dest: Color = new Color()) {
         return dest.copyR(this);
     }
 
-    cloneG(dest: Color) {
+    cloneG(dest: Color = new Color()) {
         return dest.copyG(this);
     }
 
-    cloneB(dest: Color) {
+    cloneB(dest: Color = new Color()) {
         return dest.copyB(this);
     }
 
-    cloneA(dest: Color) {
+    cloneA(dest: Color = new Color()) {
         return dest.copyA(this);
     }
 
-    clone(dest: Color) {
+    clone(dest: Color = new Color()) {
         return dest.copy(this);
     }
 
@@ -354,7 +355,7 @@ export class Color implements ColorObject {
     }
 
     toArr(forceAlpha: boolean = false): number[] {
-        return [...this].slice(0, 2 + +(forceAlpha || this.hasTransparency));
+        return [...this].slice(0, 3 + +(forceAlpha || this.hasTransparency));
     }
 
     toStr(format: string = this.hasTransparency ? Color.DEFAULT_ALPHA_STR_FORMAT : Color.DEFAULT_NON_ALPHA_STR_FORMAT): string {
@@ -370,7 +371,7 @@ export class Color implements ColorObject {
     }
 
     toNum(forceAlpha: boolean = false): number {
-        return this.toArr(forceAlpha).reverse().reduce((num, val, i) => num + val * (0xff ** i));
+        return this.toArr(forceAlpha).reverse().reduce((num, val, i) => num | val << 8 * i);
     }
 
     normalize(): Required<ColorObject> {
@@ -406,6 +407,29 @@ export class Color implements ColorObject {
     equalsArr(arr: number[]): boolean {
         const color = Color.fromArr(arr);
         return this.equals(color);
+    }
+
+    static fromColorSet(set: ColorSet): Record<string, Color> {
+        const colors: Record<string, Color> = {};
+        for (const { color: colorObj, slots } of set) {
+            const color = Color.fromObj(colorObj);
+            for (const slot of slots) colors[slot] = color.clone();
+        }
+
+        return colors;
+    }
+
+    static toColorSet(colors: Record<string, Color>): ColorSet {
+        const set: ColorSet = [];
+
+        for (const slot in colors) {
+            const color = colors[slot];
+            
+            const i = set.findIndex(({ color: c }) => color.equalsObj(c));
+            i < 0 ? set.push({ color, slots: [slot] }) : set[i].slots.push(slot);
+        }
+
+        return set;
     }
 
     private clampVal(val: number): number {

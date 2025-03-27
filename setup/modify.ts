@@ -29,8 +29,18 @@ for (const file of files) {
     }
 
     const originalAtlasPath = path.join(ASSETS_ROOT_PATH, file);
-    const originalAtlas = Atlas.from(await fs.readFile(originalAtlasPath, { encoding: "utf-8" }));
     
+    const originalAtlas = Atlas.from(await fs.readFile(originalAtlasPath, { encoding: "utf-8" }));
+    for (const originalPath in originalAtlas) {
+        const srcPath = path.join(MODS_SRC_FOLDER_PATH, originalPath);
+        if (!await fs.exists(srcPath)) continue;
+
+        const destPath = path.join(MODS_DEST_FOLDER_NAME, originalPath).replaceAll("\\", "/");
+
+        originalAtlas[destPath] = originalAtlas[originalPath];
+        delete originalAtlas[originalPath];
+    }
+
     const atlas = Atlas.to({ ...originalAtlas, ...modsAtlas });
     await fs.writeFile(destPath, atlas);
 }

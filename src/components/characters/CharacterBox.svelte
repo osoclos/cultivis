@@ -5,7 +5,7 @@
     import { SpritesheetImage } from "../utils";
 
     import type { ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isKnucklebonesPlayerObj, isMachineObj, isMiniBossObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isKnucklebonesPlayerObj, isMachineObj, isMiniBossObj, isModdedFollowerObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
     import { soundManager } from "../../scripts/managers";
 
     import { bishopData, followerData, guardData, hereticData, knucklebonesPlayerData, machineData, miniBossData, occultistData, playerData, soldierData, towwData, witnessData } from "../../data/files";
@@ -42,7 +42,9 @@
 
     const typeName: string = $derived.by(() => {
         switch (true) {
-            case isFollowerObj(actor): return "Follower";
+            case isFollowerObj(actor):
+            case isModdedFollowerObj(actor): return "Follower";
+
             case isPlayerObj(actor): return "Player";
 
             case isSoldierObj(actor): return "Soldier";
@@ -66,7 +68,9 @@
 
     const info: string = $derived.by(() => {
         switch (true) {
-            case isFollowerObj(actor): return `Form: ${followerData.forms[actor.form].name}`;
+            case isFollowerObj(actor):
+            case isModdedFollowerObj(actor): return `Form: ${followerData.forms[actor.form].name}`;
+
             case isPlayerObj(actor): return `Creature: ${playerData.creatures[actor.creature].name}`;
 
             case isSoldierObj(actor): return `Role: ${soldierData[actor.soldier].name}`;
@@ -90,7 +94,9 @@
 
     const src: string = $derived.by(() => {
         switch (true) {
-            case isFollowerObj(actor): return "/static/assets/characters/followers.png";
+            case isFollowerObj(actor):
+            case isModdedFollowerObj(actor): return "/static/assets/characters/followers.png";
+
             case isPlayerObj(actor): return "/static/assets/characters/player.png";
 
             case isSoldierObj(actor): return "/static/assets/characters/soldiers.png";
@@ -114,7 +120,9 @@
 
     const x: number = $derived.by(() => {
         switch (true) {
-            case isFollowerObj(actor): return followerIdsByCategory[FOLLOWER_CATEGORIES[y]].indexOf(actor.form);
+            case isFollowerObj(actor):
+            case isModdedFollowerObj(actor): return followerIdsByCategory[FOLLOWER_CATEGORIES[y]].indexOf(actor.form);
+
             case isPlayerObj(actor): return PLAYER_CREATURE_IDS.indexOf(actor.creature);
 
             case isSoldierObj(actor): return SOLDIER_IDS.indexOf(actor.soldier);
@@ -138,7 +146,8 @@
 
     const y: number = $derived.by(() => {
         switch (true) {
-            case isFollowerObj(actor): return followerData.forms[actor.form].category;
+            case isFollowerObj(actor):
+            case isModdedFollowerObj(actor): return followerData.forms[actor.form].category;
             
             case isGuardObj(actor): return guardData[actor.guard].category;
 

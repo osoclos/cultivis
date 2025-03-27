@@ -63,10 +63,7 @@ export class NewsManager {
 
     async getOutdatedNewsFiles(): Promise<string[]> {
         const lastUpdate = +(localStorage.getItem(NewsManager.NEWS_LAST_FETCHED_LOCAL_STORAGE_NAME) ?? 0);
-        const files: string[] = await this.areNewsUpdated() ? [] : await Promise.all(await this.serverManager.getCommit("", ServerManager.NEWS_ROUTE_ROOT, { page: -1, perPage: 100, since: lastUpdate + 1 }).then((commits) => commits.flatMap(({ sha }) => this.serverManager.getCommitData(sha, ServerManager.NEWS_ROUTE_ROOT, true).then(({ files }) => files.map((url) => url.replace("%2F", "/")))))).then((arr) => arr.flat()).catch((err) => {
-            console.error(err instanceof Error ? `Unable to fetch outdated news data: ${err.message}, caused by: ${err.cause}` : `Unable to fetch outdated news data: ${err}, caused by: ${import.meta.url}`);
-            return [];
-        });
+        const files: string[] = await this.areNewsUpdated() ? [] : await Promise.all(await this.serverManager.getCommit("", ServerManager.NEWS_ROUTE_ROOT, { page: -1, perPage: 100, since: lastUpdate + 1 }).then((commits) => commits.flatMap(({ sha }) => this.serverManager.getCommitData(sha, ServerManager.NEWS_ROUTE_ROOT, true).then(({ files }) => files.map((url) => url.replace("%2F", "/")))))).then((arr) => arr.flat());
 
         const unix = await this.getNewsUnix();
         localStorage.setItem(NewsManager.NEWS_LAST_FETCHED_LOCAL_STORAGE_NAME, `${unix}`);

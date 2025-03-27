@@ -15,8 +15,8 @@ export class Soldier extends Actor implements SoldierObject {
     #soldier: SoldierId;
     #isHoldingShield: boolean | null;
 
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = soldierData.Swordsman.name, soldier: SoldierId = "Swordsman") {
-        super(skeleton, animationState, id, label);
+    constructor(skeletonData: spine.SkeletonData, atlas: spine.TextureAtlas, id?: string, label: string = soldierData.Swordsman.name, soldier: SoldierId = "Swordsman") {
+        super(skeletonData, atlas, id, label);
 
         this.#soldier = soldier;
         this.#isHoldingShield = soldierData[soldier].canHoldShield ? false : null;
@@ -43,9 +43,9 @@ export class Soldier extends Actor implements SoldierObject {
     }
 
     clone(id?: string, label?: string, soldierId: SoldierId = this.soldier) {
-        const { skeleton, animationState } = this;
+        const { skeleton, atlas } = this;
 
-        const soldier = new Soldier(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, soldierId);
+        const soldier = new Soldier(skeleton.data, atlas, id, label, soldierId);
         soldier.copyFromObj(this.toObj());
 
         soldier.soldier = soldierId;

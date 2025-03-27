@@ -30,10 +30,7 @@ export class SoundManager {
             if (this.hasLoaded(id)) continue;
             const { src, timeRanges = {} } = soundData[id];
 
-            const blob = await fetchAndCache(resolvePath(src, SoundManager.SOUNDS_FOLDER_NAME), this.cache).then((res) => res.blob()).catch((err) => {
-                throw err instanceof Error ? new Error(`Unable to fetch audio file: ${err.message}, caused by: ${err.cause}`) : new Error(`Unable to fetch audio file: ${err}, caused by: ${import.meta.url}`);
-            });
-    
+            const blob = await fetchAndCache(resolvePath(src, SoundManager.SOUNDS_FOLDER_NAME), this.cache).then((res) => res.blob());
             const url = URL.createObjectURL(blob);
     
             const sprite = <SoundSpriteDefinitions>{};

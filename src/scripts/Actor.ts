@@ -1,9 +1,12 @@
 import { soundManager } from "./managers";
 
-import type { AnimationData, AnimationSound } from "../data/types";
-import { Random, Vector, type VectorObject } from "../utils";
+import type { AnimationData, AnimationSound, ColorSet } from "../data/types";
+import { Color, Random, Vector, type VectorObject } from "../utils";
 
 export class Actor implements ActorObject {
+    skeleton: spine.Skeleton;
+    animationState: spine.AnimationState;
+
     pos: Vector;
     scale: Vector;
 
@@ -22,9 +25,16 @@ export class Actor implements ActorObject {
     #animationId: string;
 
     private skinEntries: Set<spine.Skin>;
+    private slotEntries: Set<ActorSlot>;
+
     private soundEntries: Set<AnimationSound & { nextPlay: number; }>;
 
-    constructor(public skeleton: spine.Skeleton, public animationState: spine.AnimationState, public id: string = Random.id(), public label: string = "Actor") {
+    constructor(skeletonData: spine.SkeletonData, public atlas: spine.TextureAtlas, public id: string = Random.id(), public label: string = "Actor") {
+        this.skeleton = new spine.Skeleton(skeletonData);
+        
+        const animationStateData = new spine.AnimationStateData(skeletonData);
+        this.animationState = new spine.AnimationState(animationStateData);
+        
         this.pos = Vector.Zero;
         this.scale = Vector.One;
 
@@ -49,6 +59,8 @@ export class Actor implements ActorObject {
         this.#animationId = "";
 
         this.skinEntries = new Set();
+        this.slotEntries = new Set();
+
         this.soundEntries = new Set();
     }
 
@@ -101,6 +113,10 @@ export class Actor implements ActorObject {
         return this.skeleton.slots.map(({ attachment }) => attachment?.name);
     }
 
+    get slotNames(): string[] {
+        return this.skeleton.slots.map(({ data: { name } }) => name);
+    }
+
     get time(): number {
         return this.firstTrack?.trackTime ?? 0;
     }
@@ -115,9 +131,9 @@ export class Actor implements ActorObject {
     }
 
     clone(id?: string, label: string = `${this.label} (Copy)`) {
-        const { skeleton, animationState, pos, scale, hidden, flipX, animation } = this;
+        const { skeleton, atlas, pos, scale, hidden, flipX, animation } = this;
         
-        const actor = new Actor(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label);
+        const actor = new Actor(skeleton.data, atlas, id, label);
         actor.setCustomSkin(skeleton.skin);
         actor.setAnimation(animation);
 
@@ -218,6 +234,68 @@ export class Actor implements ActorObject {
         this.addCustomSkin(skin);
     }
 
+    addSlot(name: string, bone: spine.Bone, index: number = this.skeleton.slots.length) {
+        const { skeleton } = this;
+        
+        const slotData = new spine.SlotData(index, name, bone.data);
+        slotData.blendMode = spine.BlendMode.Normal;
+
+        const slot = new spine.Slot(slotData, bone);
+
+        skeleton.slots.splice(index, 0, slot);
+        skeleton.drawOrder.splice(index, 0, slot);
+    }
+
+    addRegionToSlot(regions: Record<string, string>, slotName: string, targetSlotName: string) {
+        const { skeleton, atlas, slotEntries } = this;
+
+        const slot = skeleton.findSlot(slotName);
+        const targetSlot = skeleton.findSlot(targetSlotName);
+        
+        const attachments: Record<string, spine.Attachment> = {};
+        for (const name in regions) {
+            const regionName = regions[name];
+
+            const region = atlas.findRegion(regionName);
+            region.renderObject = region;
+
+            const { originalWidth, originalHeight } = region;
+
+            const attachment = new spine.RegionAttachment(regionName);
+            attachment.width = originalWidth;
+            attachment.height = originalHeight;
+
+            attachment.setRegion(region);
+            attachment.updateOffset();
+
+            slot.setAttachment(attachment);
+            slot.data.attachmentName ??= regionName;
+
+            attachments[name] = attachment;
+        }
+
+        slotEntries.add({ name: slotName, slot, targetSlot, attachments });
+        this.resetSkin();
+    }
+
+    removeSlot(name: string) {
+        const { skeleton } = this;
+
+        skeleton.slots.splice(skeleton.slots.findIndex(({ data }) => data.name === name), 1);
+        skeleton.drawOrder.splice(skeleton.drawOrder.findIndex(({ data }) => data.name === name), 1);
+    }
+
+    applyColors(set: ColorSet) {
+        for (const { color, slots } of set) {
+            for (const slot of slots) {
+                const attachments: spine.SkinEntry[] = [];
+                this.skeleton.skin.getAttachmentsForSlot(this.skeleton.findSlotIndex(slot), attachments);
+
+                for (const { attachment } of attachments) if ("color" in attachment && attachment.color instanceof spine.Color) spine.Color.rgba8888ToColor(attachment.color, Color.fromObj(color).toNum(true));
+            }
+        }
+    }
+
     findAnimationsWithAttachment(name: string): string[] {
         const { animation, animationNames } = this;
 
@@ -270,11 +348,12 @@ export class Actor implements ActorObject {
     }
 
     resetSkin() {
-        const { skeleton, skinEntries } = this;
+        const { skeleton, skinEntries, slotEntries } = this;
 
         const combinedSkin = new spine.Skin("Combined Skin");
         for (const skin of skinEntries) combinedSkin.addSkin(skin);
-        
+        for (const { slot: { data: { index, attachmentName } }, attachments } of slotEntries) combinedSkin.setAttachment(index, attachmentName, Object.values(attachments).find(({ name }) => name === attachmentName)!);
+
         skeleton.setSkin(combinedSkin);
         skeleton.setToSetupPose();
 
@@ -284,7 +363,7 @@ export class Actor implements ActorObject {
     tick(delta: number = 0, checkManipulation: boolean = true) {
         checkManipulation && this.checkManipulation();
 
-        const { skeleton, animationState, muted, time, duration, soundEntries } = this;
+        const { skeleton, animationState, muted, time, duration, slotEntries, soundEntries } = this;
 
         animationState.apply(skeleton);
         animationState.update(delta);
@@ -298,6 +377,15 @@ export class Actor implements ActorObject {
         }
 
         skeleton.updateWorldTransform();
+        for (const { slot, targetSlot, attachments } of slotEntries) {
+            const { name: targetName } = targetSlot.getAttachment() ?? {};
+            const isAttachmentAvailable = targetName in attachments;
+
+            const attachment = attachments[targetName];
+
+            slot.color.a = +!!isAttachmentAvailable;
+            isAttachmentAvailable && skeleton.skin.setAttachment(slot.data.index, attachments[targetName].name, attachment);
+        }
     }
 
     updateBounds() {
@@ -382,4 +470,13 @@ export interface ActorObject {
 
     time: number;
     duration: number;
+}
+
+interface ActorSlot {
+    name: string;
+
+    slot: spine.Slot;
+    targetSlot: spine.Slot;
+
+    attachments: Record<string, spine.Attachment>;
 }

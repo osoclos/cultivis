@@ -13,8 +13,8 @@ export class MiniBoss extends Actor implements MiniBossObject {
     #isUpgraded: boolean;
     #isBackFacing: boolean | null;
 
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = miniBossData["Mama Worm"].name, readonly miniBoss: MiniBossId = "Mama Worm", isUpgraded: boolean = false) {
-        super(skeleton, animationState, id, label);
+    constructor(skeletonData: spine.SkeletonData, atlas: spine.TextureAtlas, id?: string, label: string = miniBossData["Mama Worm"].name, readonly miniBoss: MiniBossId = "Mama Worm", isUpgraded: boolean = false) {
+        super(skeletonData, atlas, id, label);
 
         this.#stage = 0;
 
@@ -70,9 +70,9 @@ export class MiniBoss extends Actor implements MiniBossObject {
     }
 
     clone(id?: string, label?: string, isUpgraded: boolean = this.isUpgraded) {
-        const { skeleton, animationState, miniBoss: miniBossId } = this;
+        const { skeleton, atlas, miniBoss: miniBossId } = this;
 
-        const miniBoss = new MiniBoss(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, miniBossId, isUpgraded);
+        const miniBoss = new MiniBoss(skeleton.data, atlas, id, label, miniBossId, isUpgraded);
         miniBoss.copyFromObj(this.toObj());
 
         return miniBoss;

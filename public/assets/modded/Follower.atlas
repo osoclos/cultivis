@@ -12,21 +12,21 @@ Body/ArmDead
   offset: 0,0
   index: -1
 Body/ArmLeft
-  rotate: true
+  rotate: false
   xy: 3489,2352
   size: 26,65
   orig: 26,65
   offset: 0,0
   index: -1
 Body/ArmLeftPig
-  rotate: true
+  rotate: false
   xy: 3489,2352
   size: 26,65
   orig: 26,65
   offset: 0,0
   index: -1
 Body/ArmLeftArcher1
-  rotate: true
+  rotate: false
   xy: 2368,2138
   size: 34,70
   orig: 34,70
@@ -47,14 +47,14 @@ Body/ArmLeftVolvy
   offset: 0,0
   index: -1
 Body/ArmRight
-  rotate: true
+  rotate: false
   xy: 3414,3229
   size: 26,63
   orig: 26,63
   offset: 0,0
   index: -1
 Body/ArmRightArcher1
-  rotate: true
+  rotate: false
   xy: 4111,2775
   size: 32,73
   orig: 32,73
@@ -75,42 +75,42 @@ Body/ArmRightPig
   offset: 0,0
   index: -1
 Body/ArmRightVolvy
-  rotate: true
+  rotate: false
   xy: 8158,1787
   size: 26,63
   orig: 26,63
   offset: 0,0
   index: -1
 Body/BODY_GLOW
-  rotate: true
+  rotate: false
   xy: 5645,302
   size: 98,97
   orig: 102,100
   offset: 2,2
   index: -1
 Body/BodyArcher1
-  rotate: true
+  rotate: false
   xy: 1883,2131
   size: 79,73
   orig: 79,74
   offset: 0,0
   index: -1
 Body/BodyDead
-  rotate: true
+  rotate: false
   xy: 3597,51
   size: 69,69
   orig: 69,70
   offset: 0,0
   index: -1
 Body/BodyFollowerRags
-  rotate: true
+  rotate: false
   xy: 6170,62
   size: 72,71
   orig: 72,72
   offset: 0,0
   index: -1
 Body/BodyFollowerRagsUp
-  rotate: true
+  rotate: false
   xy: 365,60
   size: 72,71
   orig: 72,72
@@ -131,14 +131,14 @@ Body/BodyFollowerUp
   offset: 0,0
   index: -1
 Body/Body_Aym
-  rotate: true
+  rotate: false
   xy: 3452,250
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Baal
-  rotate: true
+  rotate: false
   xy: 7275,250
   size: 92,89
   orig: 92,89
@@ -159,56 +159,56 @@ Body/Body_Buff
   offset: 0,0
   index: -1
 Body/Body_Buff_Up
-  rotate: true
+  rotate: false
   xy: 2,55
   size: 71,68
   orig: 71,68
   offset: 0,0
   index: -1
 Body/Body_Cool1_Btm
-  rotate: true
+  rotate: false
   xy: 5356,81
   size: 73,70
   orig: 73,71
   offset: 0,0
   index: -1
 Body/Body_Cool1_Top
-  rotate: true
+  rotate: false
   xy: 6540,81
   size: 73,70
   orig: 73,71
   offset: 0,0
   index: -1
 Body/Body_Cool1_Up_Btm
-  rotate: true
+  rotate: false
   xy: 182,80
   size: 73,70
   orig: 73,71
   offset: 0,0
   index: -1
 Body/Body_Cultist1_Btm
-  rotate: true
+  rotate: false
   xy: 4811,128
   size: 79,71
   orig: 79,72
   offset: 0,0
   index: -1
 Body/Body_Cultist1_Top
-  rotate: true
+  rotate: false
   xy: 7775,128
   size: 79,71
   orig: 79,72
   offset: 0,0
   index: -1
 Body/Body_Cultist1_Up_Btm
-  rotate: true
+  rotate: false
   xy: 2091,125
   size: 79,71
   orig: 79,72
   offset: 0,0
   index: -1
 Body/Body_Cultist1_Up_Top
-  rotate: true
+  rotate: false
   xy: 5932,125
   size: 79,71
   orig: 79,72
@@ -243,84 +243,84 @@ Body/Body_Cultist2_Up_Btm
   offset: 0,0
   index: -1
 Body/Body_DLC1_Btm
-  rotate: true
+  rotate: false
   xy: 5281,245
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC1_Extra
-  rotate: true
+  rotate: false
   xy: 8030,245
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC1_Top
-  rotate: true
+  rotate: false
   xy: 7139,244
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC1_Up_Btm
-  rotate: true
+  rotate: false
   xy: 1500,243
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC1_Up_Extra
-  rotate: true
+  rotate: false
   xy: 5375,241
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC2_Btm
-  rotate: true
+  rotate: false
   xy: 6541,241
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC2_Extra
-  rotate: true
+  rotate: false
   xy: 221,240
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC2_Top
-  rotate: true
+  rotate: false
   xy: 5469,240
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC2_Up_Btm
-  rotate: true
+  rotate: false
   xy: 4163,238
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC2_Up_Extra
-  rotate: true
+  rotate: false
   xy: 960,230
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC2_Up_Top
-  rotate: true
+  rotate: false
   xy: 2397,229
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC3_Btm
-  rotate: true
+  rotate: false
   xy: 638,169
   size: 86,89
   orig: 86,89
@@ -362,49 +362,49 @@ Body/Body_DLC4_Up_Btm
   offset: 0,0
   index: -1
 Body/Body_DLC5_Btm
-  rotate: true
+  rotate: false
   xy: 4413,229
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC5_Extra
-  rotate: true
+  rotate: false
   xy: 3747,228
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC5_Top
-  rotate: true
+  rotate: false
   xy: 2718,227
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC5_Up_Btm
-  rotate: true
+  rotate: false
   xy: 5078,226
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC5_Up_Top
-  rotate: true
+  rotate: false
   xy: 1374,225
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_DLC6_Btm
-  rotate: true
+  rotate: false
   xy: 5431,83
   size: 73,67
   orig: 73,68
   offset: 0,0
   index: -1
 Body/Body_Dead_Btm
-  rotate: true
+  rotate: false
   xy: 2794,52
   size: 69,67
   orig: 69,68
@@ -418,7 +418,7 @@ Body/Body_Dead_Skele
   offset: 0,0
   index: -1
 Body/Body_Dead_Top
-  rotate: true
+  rotate: false
   xy: 6690,51
   size: 69,67
   orig: 69,68
@@ -460,42 +460,42 @@ Body/Body_Heretic2_Top
   offset: 0,0
   index: -1
 Body/Body_Holiday
-  rotate: true
+  rotate: false
   xy: 1005,112
   size: 77,67
   orig: 77,68
   offset: 0,0
   index: -1
 Body/Body_Lvl1
-  rotate: true
+  rotate: false
   xy: 5708,83
   size: 73,67
   orig: 73,68
   offset: 0,0
   index: -1
 Body/Body_Lvl1_Btm
-  rotate: true
+  rotate: false
   xy: 2420,82
   size: 73,67
   orig: 73,68
   offset: 0,0
   index: -1
 Body/Body_Lvl1_Top
-  rotate: true
+  rotate: false
   xy: 3522,82
   size: 73,67
   orig: 73,68
   offset: 0,0
   index: -1
 Body/Body_Lvl1_Up_Btm
-  rotate: true
+  rotate: false
   xy: 4159,81
   size: 73,67
   orig: 73,68
   offset: 0,0
   index: -1
 Body/Body_Lvl2_Btm
-  rotate: true
+  rotate: false
   xy: 3092,111
   size: 77,68
   orig: 77,69
@@ -530,28 +530,28 @@ Body/Body_Lvl3_Top
   offset: 0,0
   index: -1
 Body/Body_Lvl3_Up_Btm
-  rotate: true
+  rotate: false
   xy: 2616,225
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Lvl4
-  rotate: true
+  rotate: false
   xy: 3018,225
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Lvl4_Top
-  rotate: true
+  rotate: false
   xy: 3245,225
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Lvl5
-  rotate: true
+  rotate: false
   xy: 7729,264
   size: 93,93
   orig: 93,93
@@ -572,126 +572,126 @@ Body/Body_Naked_Up
   offset: 0,0
   index: -1
 Body/Body_Normal10_Btm
-  rotate: true
+  rotate: false
   xy: 465,206
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal10_Extra
-  rotate: true
+  rotate: false
   xy: 4257,205
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal10_Top
-  rotate: true
+  rotate: false
   xy: 2,203
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal10_Up_Btm
-  rotate: true
+  rotate: false
   xy: 820,201
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal10_Up_Extra
-  rotate: true
+  rotate: false
   xy: 3841,201
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal1_Btm
-  rotate: true
+  rotate: false
   xy: 7568,103
   size: 76,68
   orig: 76,69
   offset: 0,0
   index: -1
 Body/Body_Normal1_Top
-  rotate: true
+  rotate: false
   xy: 7646,103
   size: 76,68
   orig: 76,69
   offset: 0,0
   index: -1
 Body/Body_Normal1_Up_Btm
-  rotate: true
+  rotate: false
   xy: 6301,102
   size: 76,68
   orig: 76,69
   offset: 0,0
   index: -1
 Body/Body_Normal1_Up_Top
-  rotate: true
+  rotate: false
   xy: 574,99
   size: 76,68
   orig: 76,69
   offset: 0,0
   index: -1
 Body/Body_Normal2_Btm
-  rotate: true
+  rotate: false
   xy: 7004,110
   size: 77,68
   orig: 77,69
   offset: 0,0
   index: -1
 Body/Body_Normal2_Top
-  rotate: true
+  rotate: false
   xy: 1948,93
   size: 76,68
   orig: 76,69
   offset: 0,0
   index: -1
 Body/Body_Normal2_Up_Btm
-  rotate: true
+  rotate: false
   xy: 1869,109
   size: 77,68
   orig: 77,69
   offset: 0,0
   index: -1
 Body/Body_Normal2_Up_Top
-  rotate: true
+  rotate: false
   xy: 3375,92
   size: 76,68
   orig: 76,69
   offset: 0,0
   index: -1
 Body/Body_Normal3_Btm
-  rotate: true
+  rotate: false
   xy: 1594,224
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal3_Top
-  rotate: true
+  rotate: false
   xy: 2908,224
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal3_Up_Btm
-  rotate: true
+  rotate: false
   xy: 6123,224
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal3_Up_Top
-  rotate: true
+  rotate: false
   xy: 2491,223
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal4_Btm
-  rotate: true
+  rotate: false
   xy: 7187,92
   size: 76,68
   orig: 76,69
@@ -705,21 +705,21 @@ Body/Body_Normal4_Extra
   offset: 0,0
   index: -1
 Body/Body_Normal4_Top
-  rotate: true
+  rotate: false
   xy: 4585,91
   size: 76,68
   orig: 76,69
   offset: 0,0
   index: -1
 Body/Body_Normal4_Up_Btm
-  rotate: true
+  rotate: false
   xy: 7856,91
   size: 76,68
   orig: 76,69
   offset: 0,0
   index: -1
 Body/Body_Normal4_Up_Top
-  rotate: true
+  rotate: false
   xy: 5206,87
   size: 76,68
   orig: 76,69
@@ -747,119 +747,119 @@ Body/Body_Normal5_Top
   offset: 0,0
   index: -1
 Body/Body_Normal5_Up_Btm
-  rotate: true
+  rotate: false
   xy: 3546,223
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal5_Up_Top
-  rotate: true
+  rotate: false
   xy: 5745,223
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal6_Btm
-  rotate: true
+  rotate: false
   xy: 726,222
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal6_Top
-  rotate: true
+  rotate: false
   xy: 1814,222
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal6_Up_Btm
-  rotate: true
+  rotate: false
   xy: 6217,222
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal6_Up_Top
-  rotate: true
+  rotate: false
   xy: 4938,220
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal7_Btm
-  rotate: true
+  rotate: false
   xy: 6817,218
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal7_Top
-  rotate: true
+  rotate: false
   xy: 7369,218
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal8_Btm
-  rotate: true
+  rotate: false
   xy: 6615,81
   size: 73,67
   orig: 73,68
   offset: 0,0
   index: -1
 Body/Body_Normal8_Extra
-  rotate: true
+  rotate: false
   xy: 84,77
   size: 73,67
   orig: 73,68
   offset: 0,0
   index: -1
 Body/Body_Normal8_Top
-  rotate: true
+  rotate: false
   xy: 4892,77
   size: 73,67
   orig: 73,68
   offset: 0,0
   index: -1
 Body/Body_Normal8_Up_Btm
-  rotate: true
+  rotate: false
   xy: 7265,77
   size: 73,67
   orig: 73,68
   offset: 0,0
   index: -1
 Body/Body_Normal8_Up_Top
-  rotate: true
+  rotate: false
   xy: 896,74
   size: 73,67
   orig: 73,68
   offset: 0,0
   index: -1
 Body/Body_Normal9_Btm
-  rotate: true
+  rotate: false
   xy: 99,216
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal9_Top
-  rotate: true
+  rotate: false
   xy: 5563,211
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal9_Up_Btm
-  rotate: true
+  rotate: false
   xy: 5172,210
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Normal9_Up_Top
-  rotate: true
+  rotate: false
   xy: 3971,207
   size: 92,89
   orig: 92,89
@@ -880,63 +880,63 @@ Body/Body_Old_Naked_Up
   offset: 0,0
   index: -1
 Body/Body_Pilgrim1_Btm
-  rotate: true
+  rotate: false
   xy: 4842,201
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Pilgrim1_Extra
-  rotate: true
+  rotate: false
   xy: 7824,201
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Pilgrim1_Top
-  rotate: true
+  rotate: false
   xy: 2141,198
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Pilgrim1_Up_Btm
-  rotate: true
+  rotate: false
   xy: 2812,195
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Pilgrim1_Up_Extra
-  rotate: true
+  rotate: false
   xy: 4065,191
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Pilgrim1_Up_Top
-  rotate: true
+  rotate: false
   xy: 4717,191
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Pilgrim2_Btm
-  rotate: true
+  rotate: false
   xy: 6446,191
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Pilgrim2_Extra
-  rotate: true
+  rotate: false
   xy: 315,190
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Pilgrim2_Top
-  rotate: true
+  rotate: false
   xy: 3640,190
   size: 92,89
   orig: 92,89
@@ -957,14 +957,14 @@ Body/Body_Rain1_Top
   offset: 0,0
   index: -1
 Body/Body_Rain1_Up_Btm
-  rotate: true
+  rotate: false
   xy: 6635,238
   size: 77,92
   orig: 77,92
   offset: 0,0
   index: -1
 Body/Body_Sherpa
-  rotate: true
+  rotate: false
   xy: 6714,120
   size: 78,68
   orig: 78,69
@@ -985,7 +985,7 @@ Body/Body_Special1_Btm
   offset: 0,0
   index: -1
 Body/Body_Special1_Top
-  rotate: true
+  rotate: false
   xy: 6041,184
   size: 80,91
   orig: 80,91
@@ -999,7 +999,7 @@ Body/Body_Special1_Up_Btm
   offset: 0,0
   index: -1
 Body/Body_Special1_Up_Top
-  rotate: true
+  rotate: false
   xy: 3150,267
   size: 93,89
   orig: 93,89
@@ -1013,182 +1013,182 @@ Body/Body_Special2_Btm
   offset: 0,0
   index: -1
 Body/Body_Special2_Top
-  rotate: true
+  rotate: false
   xy: 409,133
   size: 81,71
   orig: 81,72
   offset: 0,0
   index: -1
 Body/Body_Special3_Btm
-  rotate: true
+  rotate: false
   xy: 193,152
   size: 89,86
   orig: 89,86
   offset: 0,0
   index: -1
 Body/Body_Special3_Extra
-  rotate: true
+  rotate: false
   xy: 5448,152
   size: 89,86
   orig: 89,86
   offset: 0,0
   index: -1
 Body/Body_Special3_Top
-  rotate: true
+  rotate: false
   xy: 4159,150
   size: 89,86
   orig: 89,86
   offset: 0,0
   index: -1
 Body/Body_Special4_Btm
-  rotate: true
+  rotate: false
   xy: 5839,174
   size: 91,89
   orig: 91,89
   offset: 0,0
   index: -1
 Body/Body_Special4_Top
-  rotate: true
+  rotate: false
   xy: 6911,174
   size: 91,89
   orig: 91,89
   offset: 0,0
   index: -1
 Body/Body_Special4_Up_Btm
-  rotate: true
+  rotate: false
   xy: 1688,173
   size: 91,89
   orig: 91,89
   offset: 0,0
   index: -1
 Body/Body_Special4_Up_Top
-  rotate: true
+  rotate: false
   xy: 7682,173
   size: 91,89
   orig: 91,89
   offset: 0,0
   index: -1
 Body/Body_Special5_Btm
-  rotate: true
+  rotate: false
   xy: 4314,296
   size: 97,95
   orig: 97,95
   offset: 0,0
   index: -1
 Body/Body_Special5_Extra
-  rotate: true
+  rotate: false
   xy: 861,292
   size: 97,95
   orig: 97,95
   offset: 0,0
   index: -1
 Body/Body_Special5_Top
-  rotate: true
+  rotate: false
   xy: 3872,292
   size: 97,95
   orig: 97,95
   offset: 0,0
   index: -1
 Body/Body_Special6_Btm
-  rotate: true
+  rotate: false
   xy: 2,125
   size: 80,76
   orig: 80,77
   offset: 0,0
   index: -1
 Body/Body_Special6_Extra
-  rotate: true
+  rotate: false
   xy: 492,125
   size: 80,76
   orig: 80,77
   offset: 0,0
   index: -1
 Body/Body_Special6_Top
-  rotate: true
+  rotate: false
   xy: 814,123
   size: 80,76
   orig: 80,77
   offset: 0,0
   index: -1
 Body/Body_Special6_Up_Btm
-  rotate: true
+  rotate: false
   xy: 1279,123
   size: 80,76
   orig: 80,77
   offset: 0,0
   index: -1
 Body/Body_Special7_Btm
-  rotate: true
+  rotate: false
   xy: 1147,122
   size: 79,72
   orig: 79,73
   offset: 0,0
   index: -1
 Body/Body_Special7_Extra
-  rotate: true
+  rotate: false
   xy: 2800,121
   size: 79,72
   orig: 79,73
   offset: 0,0
   index: -1
 Body/Body_Special7_Top
-  rotate: true
+  rotate: false
   xy: 4019,117
   size: 79,72
   orig: 79,73
   offset: 0,0
   index: -1
 Body/Body_Special7_Up_Btm
-  rotate: true
+  rotate: false
   xy: 4691,117
   size: 79,72
   orig: 79,73
   offset: 0,0
   index: -1
 Body/Body_Special7_Up_Extra
-  rotate: true
+  rotate: false
   xy: 6403,117
   size: 79,72
   orig: 79,73
   offset: 0,0
   index: -1
 Body/Body_Special7_Up_Top
-  rotate: true
+  rotate: false
   xy: 284,116
   size: 79,72
   orig: 79,73
   offset: 0,0
   index: -1
 Body/Body_Undertaker
-  rotate: true
+  rotate: false
   xy: 6714,190
   size: 92,89
   orig: 92,89
   offset: 0,0
   index: -1
 Body/Body_Up_Aym
-  rotate: true
+  rotate: false
   xy: 5657,208
   size: 77,92
   orig: 77,92
   offset: 0,0
   index: -1
 Body/Body_Up_Baal
-  rotate: true
+  rotate: false
   xy: 559,203
   size: 77,92
   orig: 77,92
   offset: 0,0
   index: -1
 Body/Body_Up_Holiday
-  rotate: true
+  rotate: false
   xy: 7410,110
   size: 77,67
   orig: 77,68
   offset: 0,0
   index: -1
 Body/Body_Up_Lvl1
-  rotate: true
+  rotate: false
   xy: 2322,73
   size: 73,67
   orig: 73,68
@@ -1209,14 +1209,14 @@ Body/Body_Up_Undertaker
   offset: 0,0
   index: -1
 Body/Body_Warm1_Btm
-  rotate: true
+  rotate: false
   xy: 5122,133
   size: 82,75
   orig: 82,76
   offset: 0,0
   index: -1
 Body/Body_Warm1_Up_Btm
-  rotate: true
+  rotate: false
   xy: 5624,131
   size: 82,75
   orig: 82,76
@@ -1265,21 +1265,21 @@ Body/Body_Warrior1_Up_Top
   offset: 0,0
   index: -1
 Body/Body_WeddingDress1_Btm
-  rotate: true
+  rotate: false
   xy: 4528,267
   size: 93,89
   orig: 93,89
   offset: 0,0
   index: -1
 Body/Body_WeddingDress1_Extra
-  rotate: true
+  rotate: false
   xy: 5852,265
   size: 93,89
   orig: 93,89
   offset: 0,0
   index: -1
 Body/Body_WeddingDress1_Top
-  rotate: true
+  rotate: false
   xy: 1090,263
   size: 93,89
   orig: 93,89
@@ -1307,21 +1307,21 @@ Body/Body_WeddingDress1_Up_Top
   offset: 0,0
   index: -1
 Body/Body_WeddingDress2_Btm
-  rotate: true
+  rotate: false
   xy: 7492,263
   size: 93,89
   orig: 93,89
   offset: 0,0
   index: -1
 Body/Body_WeddingDress2_Extra
-  rotate: true
+  rotate: false
   xy: 6351,260
   size: 93,89
   orig: 93,89
   offset: 0,0
   index: -1
 Body/Body_WeddingDress2_Top
-  rotate: true
+  rotate: false
   xy: 7587,260
   size: 93,89
   orig: 93,89
@@ -1349,35 +1349,35 @@ Body/Body_WeddingDress2_Up_Top
   offset: 0,0
   index: -1
 Body/Body_WeddingSuit1_Btm
-  rotate: true
+  rotate: false
   xy: 4333,73
   size: 73,67
   orig: 73,68
   offset: 0,0
   index: -1
 Body/Body_WeddingSuit1_Extra
-  rotate: true
+  rotate: false
   xy: 4408,73
   size: 73,67
   orig: 73,68
   offset: 0,0
   index: -1
 Body/Body_WeddingSuit1_Top
-  rotate: true
+  rotate: false
   xy: 1728,72
   size: 73,67
   orig: 73,68
   offset: 0,0
   index: -1
 Body/Body_WeddingSuit1_Up_Btm
-  rotate: true
+  rotate: false
   xy: 4234,63
   size: 72,68
   orig: 72,69
   offset: 0,0
   index: -1
 Body/Body_WeddingSuit1_Up_Top
-  rotate: true
+  rotate: false
   xy: 5117,63
   size: 72,68
   orig: 72,69
@@ -1391,28 +1391,28 @@ Body/Body_WeddingSuit2_Btm
   offset: 0,0
   index: -1
 Body/Body_WeddingSuit2_Extra
-  rotate: true
+  rotate: false
   xy: 3907,76
   size: 73,63
   orig: 73,64
   offset: 0,0
   index: -1
 Body/Body_WeddingSuit2_Top
-  rotate: true
+  rotate: false
   xy: 2495,75
   size: 73,63
   orig: 73,64
   offset: 0,0
   index: -1
 Body/Body_WeddingSuit2_Up_Btm
-  rotate: true
+  rotate: false
   xy: 2659,74
   size: 73,64
   orig: 73,65
   offset: 0,0
   index: -1
 Body/Body_WeddingSuit2_Up_Extra
-  rotate: true
+  rotate: false
   xy: 3692,74
   size: 73,64
   orig: 73,65
@@ -1440,14 +1440,14 @@ Body/HorseTown/BODY_Up_HorseTown
   offset: 0,0
   index: -1
 Body/HorseTown/SleeveLeft__HorseTown
-  rotate: true
+  rotate: false
   xy: 2133,2960
   size: 28,57
   orig: 28,57
   offset: 0,0
   index: -1
 Body/HorseTown/SleeveRight_HorseTown
-  rotate: true
+  rotate: false
   xy: 3776,1730
   size: 30,63
   orig: 30,63
@@ -1468,35 +1468,35 @@ Body/LegPig
   offset: 0,2
   index: -1
 Body/Leg1
-  rotate: true
+  rotate: false
   xy: 2915,2341
   size: 31,56
   orig: 31,57
   offset: 0,1
   index: -1
 Body/LegDead
-  rotate: true
+  rotate: false
   xy: 5463,2589
   size: 26,52
   orig: 26,53
   offset: 0,1
   index: -1
 Body/LegHurt
-  rotate: true
+  rotate: false
   xy: 3308,2613
   size: 26,59
   orig: 26,61
   offset: 0,2
   index: -1
 Body/LegVolvy
-  rotate: true
+  rotate: false
   xy: 6779,2510
   size: 26,59
   orig: 26,61
   offset: 0,2
   index: -1
 Body/Nudist_Leaf
-  rotate: true
+  rotate: false
   xy: 2040,2468
   size: 31,36
   orig: 31,36
@@ -1524,7 +1524,7 @@ Body/Shawl_Cultist2_Up_Btm
   offset: 0,0
   index: -1
 Body/Shawl_DLC3_Btm
-  rotate: true
+  rotate: false
   xy: 2687,1412
   size: 120,58
   orig: 120,58
@@ -1552,56 +1552,56 @@ Body/Shawl_Heretic1_Btm
   offset: 0,0
   index: -1
 Body/Shawl_Heretic1_Top
-  rotate: true
+  rotate: false
   xy: 6612,420
   size: 120,58
   orig: 120,58
   offset: 0,0
   index: -1
 Body/Shawl_Heretic1_Up_Btm
-  rotate: true
+  rotate: false
   xy: 1407,419
   size: 120,58
   orig: 120,58
   offset: 0,0
   index: -1
 Body/Shawl_Heretic1_Up_Top
-  rotate: true
+  rotate: false
   xy: 2276,419
   size: 120,58
   orig: 120,58
   offset: 0,0
   index: -1
 Body/Shawl_Heretic2_Btm
-  rotate: true
+  rotate: false
   xy: 4914,419
   size: 120,58
   orig: 120,58
   offset: 0,0
   index: -1
 Body/Shawl_Heretic2_Top
-  rotate: true
+  rotate: false
   xy: 4623,417
   size: 120,58
   orig: 120,58
   offset: 0,0
   index: -1
 Body/Shawl_Lvl4
-  rotate: true
+  rotate: false
   xy: 5310,416
   size: 120,58
   orig: 120,58
   offset: 0,0
   index: -1
 Body/Shawl_Lvl5
-  rotate: true
+  rotate: false
   xy: 5745,413
   size: 120,58
   orig: 120,58
   offset: 0,0
   index: -1
 Body/Shawl_Pilgrim1_Btm
-  rotate: true
+  rotate: false
   xy: 5861,1491
   size: 103,60
   orig: 103,60
@@ -1622,21 +1622,21 @@ Body/Shawl_Pilgrim1_Up_Btm
   offset: 0,0
   index: -1
 Body/Shawl_Pilgrim1_Up_Top
-  rotate: true
+  rotate: false
   xy: 3784,2752
   size: 102,60
   orig: 102,60
   offset: 0,0
   index: -1
 Body/Shawl_Rain1_Btm
-  rotate: true
+  rotate: false
   xy: 2141,412
   size: 120,58
   orig: 120,58
   offset: 0,0
   index: -1
 Body/Shawl_Rain1_Up_Btm
-  rotate: true
+  rotate: false
   xy: 985,411
   size: 120,58
   orig: 120,58
@@ -1650,7 +1650,7 @@ Body/Shawl_Special7_Btm
   offset: 0,0
   index: -1
 Body/Shawl_Up_Lvl4
-  rotate: true
+  rotate: false
   xy: 3046,410
   size: 120,58
   orig: 120,58
@@ -1664,28 +1664,28 @@ Body/Shawl_Up_Lvl5
   offset: 0,0
   index: -1
 Body/SleeveLeftRags
-  rotate: true
+  rotate: false
   xy: 3024,2269
   size: 26,65
   orig: 26,65
   offset: 0,0
   index: -1
 Body/SleeveLeftWarrior
-  rotate: true
+  rotate: false
   xy: 3852,2724
   size: 33,26
   orig: 34,26
   offset: 0,0
   index: -1
 Body/SleeveLeft_Aym
-  rotate: true
+  rotate: false
   xy: 2167,2258
   size: 26,65
   orig: 26,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Baal
-  rotate: true
+  rotate: false
   xy: 8158,1722
   size: 30,63
   orig: 30,63
@@ -1706,112 +1706,112 @@ Body/SleeveLeft_Cool1_Top
   offset: 0,0
   index: -1
 Body/SleeveLeft_Cultist1_Btm
-  rotate: true
+  rotate: false
   xy: 6620,1664
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Cultist1_Top
-  rotate: true
+  rotate: false
   xy: 2399,1643
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Cultist2_Btm
-  rotate: true
+  rotate: false
   xy: 5237,1223
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Cultist2_Top
-  rotate: true
+  rotate: false
   xy: 5804,1167
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_DLC1_Btm
-  rotate: true
+  rotate: false
   xy: 6431,1792
   size: 35,65
   orig: 35,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_DLC2_Btm
-  rotate: true
+  rotate: false
   xy: 1625,1040
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_DLC3_Btm
-  rotate: true
+  rotate: false
   xy: 7325,1986
   size: 30,65
   orig: 30,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_DLC3_Top
-  rotate: true
+  rotate: false
   xy: 1009,1980
   size: 30,65
   orig: 30,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_DLC4_Btm
-  rotate: true
+  rotate: false
   xy: 5543,974
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_DLC5_Btm
-  rotate: true
+  rotate: false
   xy: 1625,973
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_DLC5_Top
-  rotate: true
+  rotate: false
   xy: 850,901
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Holiday
-  rotate: true
+  rotate: false
   xy: 6275,2138
   size: 26,65
   orig: 26,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Lvl1
-  rotate: true
+  rotate: false
   xy: 6275,2071
   size: 26,65
   orig: 26,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Lvl1_Btm
-  rotate: true
+  rotate: false
   xy: 815,2066
   size: 26,65
   orig: 26,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Lvl2_Btm
-  rotate: true
+  rotate: false
   xy: 1445,2034
   size: 26,65
   orig: 26,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Lvl3_Btm
-  rotate: true
+  rotate: false
   xy: 3394,1962
   size: 30,65
   orig: 30,65
@@ -1825,7 +1825,7 @@ Body/SleeveLeft_Lvl5
   offset: 0,0
   index: -1
 Body/SleeveLeft_Normal10_Btm
-  rotate: true
+  rotate: false
   xy: 1705,777
   size: 38,65
   orig: 38,65
@@ -1839,42 +1839,42 @@ Body/SleeveLeft_Normal10_Top
   offset: 0,0
   index: -1
 Body/SleeveLeft_Normal3_Btm
-  rotate: true
+  rotate: false
   xy: 4171,884
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Normal3_Top
-  rotate: true
+  rotate: false
   xy: 4538,849
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Normal5_Top
-  rotate: true
+  rotate: false
   xy: 6239,1957
   size: 30,65
   orig: 30,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Normal9_Btm
-  rotate: true
+  rotate: false
   xy: 1172,823
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Pilgrim1_Btm
-  rotate: true
+  rotate: false
   xy: 4696,768
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Pilgrim1_Top
-  rotate: true
+  rotate: false
   xy: 808,746
   size: 38,65
   orig: 38,65
@@ -1888,35 +1888,35 @@ Body/SleeveLeft_Pilgrim2_Btm
   offset: 0,0
   index: -1
 Body/SleeveLeft_Pilgrim2_Top
-  rotate: true
+  rotate: false
   xy: 4285,652
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Rain1_Btm
-  rotate: true
+  rotate: false
   xy: 6345,2732
   size: 25,65
   orig: 25,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Sherpa
-  rotate: true
+  rotate: false
   xy: 6701,1966
   size: 26,65
   orig: 26,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Sozo
-  rotate: true
+  rotate: false
   xy: 7325,1919
   size: 26,65
   orig: 26,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Special1_Btm
-  rotate: true
+  rotate: false
   xy: 1639,1914
   size: 30,65
   orig: 30,65
@@ -1930,35 +1930,35 @@ Body/SleeveLeft_Special2_Btm
   offset: 0,0
   index: -1
 Body/SleeveLeft_Special4_Btm
-  rotate: true
+  rotate: false
   xy: 5959,531
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Special4_Top
-  rotate: true
+  rotate: false
   xy: 3586,518
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Special5_Top
-  rotate: true
+  rotate: false
   xy: 6239,1890
   size: 30,65
   orig: 30,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Special7_Btm
-  rotate: true
+  rotate: false
   xy: 3259,514
   size: 38,65
   orig: 38,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_Special7_Top
-  rotate: true
+  rotate: false
   xy: 2276,498
   size: 38,65
   orig: 38,65
@@ -1972,7 +1972,7 @@ Body/SleeveLeft_Undertaker
   offset: 0,0
   index: -1
 Body/SleeveLeft_Warm1_Btm
-  rotate: true
+  rotate: false
   xy: 1202,1864
   size: 34,65
   orig: 34,65
@@ -2000,42 +2000,42 @@ Body/SleeveLeft_WeddingDress2_Btm
   offset: 0,0
   index: -1
 Body/SleeveLeft_WeddingSuit1_Btm
-  rotate: true
+  rotate: false
   xy: 3587,1872
   size: 30,65
   orig: 30,65
   offset: 0,0
   index: -1
 Body/SleeveLeft_WeddingSuit1_Top
-  rotate: true
+  rotate: false
   xy: 3587,1805
   size: 30,65
   orig: 30,65
   offset: 0,0
   index: -1
 Body/SleeveRightRags
-  rotate: true
+  rotate: false
   xy: 6893,1780
   size: 26,63
   orig: 26,63
   offset: 0,0
   index: -1
 Body/SleeveRightWarrior
-  rotate: true
+  rotate: false
   xy: 2368,2110
   size: 33,26
   orig: 34,26
   offset: 1,0
   index: -1
 Body/SleeveRight_Aym
-  rotate: true
+  rotate: false
   xy: 1391,1718
   size: 30,63
   orig: 30,63
   offset: 0,0
   index: -1
 Body/SleeveRight_Baal
-  rotate: true
+  rotate: false
   xy: 6893,1845
   size: 26,65
   orig: 26,65
@@ -2049,35 +2049,35 @@ Body/SleeveRight_Cool1_Btm
   offset: 0,0
   index: -1
 Body/SleeveRight_Cool1_Top
-  rotate: true
+  rotate: false
   xy: 6958,2482
   size: 31,25
   orig: 31,25
   offset: 0,0
   index: -1
 Body/SleeveRight_Cultist1_Btm
-  rotate: true
+  rotate: false
   xy: 3776,1665
   size: 36,63
   orig: 36,63
   offset: 0,0
   index: -1
 Body/SleeveRight_Cultist1_Top
-  rotate: true
+  rotate: false
   xy: 1454,1167
   size: 36,63
   orig: 36,63
   offset: 0,0
   index: -1
 Body/SleeveRight_Cultist2_Btm
-  rotate: true
+  rotate: false
   xy: 4377,916
   size: 36,63
   orig: 36,63
   offset: 0,0
   index: -1
 Body/SleeveRight_Cultist2_Top
-  rotate: true
+  rotate: false
   xy: 1858,666
   size: 36,63
   orig: 36,63
@@ -2091,7 +2091,7 @@ Body/SleeveRight_DLC1_Btm
   offset: 0,0
   index: -1
 Body/SleeveRight_DLC2_Btm
-  rotate: true
+  rotate: false
   xy: 1072,566
   size: 36,63
   orig: 36,63
@@ -2105,7 +2105,7 @@ Body/SleeveRight_DLC2_Top
   offset: 0,0
   index: -1
 Body/SleeveRight_DLC3_Btm
-  rotate: true
+  rotate: false
   xy: 2817,1585
   size: 30,63
   orig: 30,63
@@ -2119,28 +2119,28 @@ Body/SleeveRight_DLC3_Top
   offset: 0,0
   index: -1
 Body/SleeveRight_DLC4_Btm
-  rotate: true
+  rotate: false
   xy: 7682,286
   size: 36,63
   orig: 36,63
   offset: 0,0
   index: -1
 Body/SleeveRight_DLC5_Btm
-  rotate: true
+  rotate: false
   xy: 7233,270
   size: 36,63
   orig: 36,63
   offset: 0,0
   index: -1
 Body/SleeveRight_DLC5_Top
-  rotate: true
+  rotate: false
   xy: 5032,246
   size: 36,63
   orig: 36,63
   offset: 0,0
   index: -1
 Body/SleeveRight_Holiday
-  rotate: true
+  rotate: false
   xy: 2630,1714
   size: 26,63
   orig: 26,63
@@ -2154,21 +2154,21 @@ Body/SleeveRight_Lvl1
   offset: 0,0
   index: -1
 Body/SleeveRight_Lvl1_Btm
-  rotate: true
+  rotate: false
   xy: 1361,1584
   size: 26,63
   orig: 26,63
   offset: 0,0
   index: -1
 Body/SleeveRight_Lvl2_Btm
-  rotate: true
+  rotate: false
   xy: 1545,1484
   size: 26,63
   orig: 26,63
   offset: 0,0
   index: -1
 Body/SleeveRight_Lvl3_Btm
-  rotate: true
+  rotate: false
   xy: 1545,1419
   size: 30,63
   orig: 30,63
@@ -2182,14 +2182,14 @@ Body/SleeveRight_Lvl5
   offset: 0,0
   index: -1
 Body/SleeveRight_Normal10_Btm
-  rotate: true
+  rotate: false
   xy: 6403,195
   size: 36,63
   orig: 36,63
   offset: 0,0
   index: -1
 Body/SleeveRight_Normal10_Top
-  rotate: true
+  rotate: false
   xy: 7187,179
   size: 36,63
   orig: 36,63
@@ -2203,7 +2203,7 @@ Body/SleeveRight_Normal3_Btm
   offset: 0,0
   index: -1
 Body/SleeveRight_Normal3_Top
-  rotate: true
+  rotate: false
   xy: 409,216
   size: 36,63
   orig: 36,63
@@ -2217,28 +2217,28 @@ Body/SleeveRight_Normal5_Top
   offset: 0,0
   index: -1
 Body/SleeveRight_Normal9_Btm
-  rotate: true
+  rotate: false
   xy: 1147,198
   size: 36,63
   orig: 36,63
   offset: 0,0
   index: -1
 Body/SleeveRight_Pilgrim1_Btm
-  rotate: true
+  rotate: false
   xy: 1228,131
   size: 39,63
   orig: 39,63
   offset: 0,0
   index: -1
 Body/SleeveRight_Pilgrim2_Btm
-  rotate: true
+  rotate: false
   xy: 5580,65
   size: 36,63
   orig: 36,63
   offset: 0,0
   index: -1
 Body/SleeveRight_Pilgrim2_Top
-  rotate: true
+  rotate: false
   xy: 4846,63
   size: 36,63
   orig: 36,63
@@ -2252,14 +2252,14 @@ Body/SleeveRight_Rain1_Btm
   offset: 0,0
   index: -1
 Body/SleeveRight_Sherpa
-  rotate: true
+  rotate: false
   xy: 7464,1418
   size: 26,63
   orig: 26,63
   offset: 0,0
   index: -1
 Body/SleeveRight_Sozo
-  rotate: true
+  rotate: false
   xy: 4882,1417
   size: 26,63
   orig: 26,63
@@ -2315,7 +2315,7 @@ Body/SleeveRight_Special7_Top
   offset: 0,0
   index: -1
 Body/SleeveRight_Undertaker
-  rotate: true
+  rotate: false
   xy: 5062,1346
   size: 29,63
   orig: 29,63
@@ -2350,14 +2350,14 @@ Body/SleeveRight_WeddingDress2_Btm
   offset: 0,0
   index: -1
 Body/SleeveRight_WeddingSuit1_Btm
-  rotate: true
+  rotate: false
   xy: 4734,52
   size: 36,63
   orig: 36,63
   offset: 0,0
   index: -1
 Body/SleeveRight_WeddingSuit1_Top
-  rotate: true
+  rotate: false
   xy: 327,51
   size: 36,63
   orig: 36,63
@@ -2378,14 +2378,14 @@ Body/Sleeve_Right_Glow
   offset: 2,1
   index: -1
 Body/WeaponHand
-  rotate: true
+  rotate: false
   xy: 4742,926
   size: 34,34
   orig: 34,34
   offset: 0,0
   index: -1
 Face/EYE
-  rotate: true
+  rotate: false
   xy: 2461,14
   size: 60,59
   orig: 60,59
@@ -2413,7 +2413,7 @@ Face/EYE_ANGRY_HOT
   offset: 0,0
   index: -1
 Face/EYE_ANGRY_HURT
-  rotate: true
+  rotate: false
   xy: 4967,81
   size: 73,56
   orig: 73,56
@@ -2462,7 +2462,7 @@ Face/EYE_ANGRY_UP_HOT
   offset: 0,0
   index: -1
 Face/EYE_ANGRY_UP_HURT
-  rotate: true
+  rotate: false
   xy: 5042,81
   size: 73,56
   orig: 73,56
@@ -2497,14 +2497,14 @@ Face/EYE_BRAINWASHED
   offset: 0,0
   index: -1
 Face/EYE_BRAINWASHED_ANGRY
-  rotate: true
+  rotate: false
   xy: 439,54
   size: 70,69
   orig: 70,69
   offset: 0,0
   index: -1
 Face/EYE_BRAINWASHED_ANGRY_UP
-  rotate: true
+  rotate: false
   xy: 2091,54
   size: 70,69
   orig: 70,69
@@ -2539,7 +2539,7 @@ Face/EYE_BRAINWASHED_HOT
   offset: 0,0
   index: -1
 Face/EYE_BRAINWASHED_HURT
-  rotate: true
+  rotate: false
   xy: 1084,103
   size: 61,76
   orig: 61,76
@@ -2553,28 +2553,28 @@ Face/EYE_CLOSED
   offset: 0,0
   index: -1
 Face/EYE_CLOSED_CURSED
-  rotate: true
+  rotate: false
   xy: 5617,518
   size: 55,42
   orig: 55,42
   offset: 0,0
   index: -1
 Face/EYE_CLOSED_HURT
-  rotate: true
+  rotate: false
   xy: 1808,11
   size: 58,56
   orig: 58,56
   offset: 0,0
   index: -1
 Face/EYE_CRAZY
-  rotate: true
+  rotate: false
   xy: 7934,84
   size: 76,71
   orig: 76,71
   offset: 0,0
   index: -1
 Face/EYE_CRAZY_HURT
-  rotate: true
+  rotate: false
   xy: 7736,502
   size: 76,87
   orig: 76,87
@@ -2630,7 +2630,7 @@ Face/EYE_DEAD_HOT
   offset: 0,0
   index: -1
 Face/EYE_DEAD_LEFT_FREEZING
-  rotate: true
+  rotate: false
   xy: 4442,145
   size: 61,82
   orig: 61,82
@@ -2644,21 +2644,21 @@ Face/EYE_DISSENTER
   offset: 0,0
   index: -1
 Face/EYE_DISSENTER_ANGRY
-  rotate: true
+  rotate: false
   xy: 5903,54
   size: 70,69
   orig: 70,69
   offset: 0,0
   index: -1
 Face/EYE_DISSENTER_ANGRY_UP
-  rotate: true
+  rotate: false
   xy: 799,52
   size: 70,69
   orig: 70,69
   offset: 0,0
   index: -1
 Face/EYE_ENLIGHTENED
-  rotate: true
+  rotate: false
   xy: 1463,90
   size: 75,63
   orig: 77,65
@@ -2728,7 +2728,7 @@ Face/EYE_HALF_CLOSED_ANGRY
   offset: 0,0
   index: -1
 Face/EYE_HALF_CLOSED_ANGRY_BRAINWASHED
-  rotate: true
+  rotate: false
   xy: 5290,3187
   size: 76,29
   orig: 76,29
@@ -2742,7 +2742,7 @@ Face/EYE_HALF_CLOSED_ANGRY_DISSENTER
   offset: 0,0
   index: -1
 Face/EYE_HALF_CLOSED_ANGRY_FREEZING
-  rotate: true
+  rotate: false
   xy: 2523,2566
   size: 76,29
   orig: 76,29
@@ -2840,7 +2840,7 @@ Face/EYE_HALF_CLOSED_OLD
   offset: 5,7
   index: -1
 Face/EYE_HOT
-  rotate: true
+  rotate: false
   xy: 4351,229
   size: 60,65
   orig: 60,65
@@ -2875,14 +2875,14 @@ Face/EYE_LEFT_HOT
   offset: 0,0
   index: -1
 Face/EYE_LEFT_HURT
-  rotate: true
+  rotate: false
   xy: 2634,15
   size: 60,57
   orig: 60,57
   offset: 0,0
   index: -1
 Face/EYE_OLD
-  rotate: true
+  rotate: false
   xy: 1361,76
   size: 73,60
   orig: 73,60
@@ -2896,7 +2896,7 @@ Face/EYE_OLD_ANGRY
   offset: 0,0
   index: -1
 Face/EYE_OLD_ANGRY_LEFT
-  rotate: true
+  rotate: false
   xy: 3767,79
   size: 73,57
   orig: 73,57
@@ -2910,7 +2910,7 @@ Face/EYE_OLD_ANGRY_UP
   offset: 0,0
   index: -1
 Face/EYE_OLD_ANGRY_UP_LEFT
-  rotate: true
+  rotate: false
   xy: 6794,77
   size: 73,57
   orig: 73,57
@@ -2924,21 +2924,21 @@ Face/EYE_OLD_CLOSED
   offset: 0,0
   index: -1
 Face/EYE_OLD_LEFT
-  rotate: true
+  rotate: false
   xy: 1617,37
   size: 66,60
   orig: 66,60
   offset: 0,0
   index: -1
 Face/EYE_OLD_SLEEPING
-  rotate: true
+  rotate: false
   xy: 4548,2205
   size: 59,43
   orig: 59,43
   offset: 0,0
   index: -1
 Face/EYE_OLD_SLEEPY_LEFT
-  rotate: true
+  rotate: false
   xy: 2005,23
   size: 63,63
   orig: 63,63
@@ -2959,7 +2959,7 @@ Face/EYE_OLD_SMILE
   offset: 0,0
   index: -1
 Face/EYE_OLD_SMILE_DOWN
-  rotate: true
+  rotate: false
   xy: 3982,50
   size: 69,65
   orig: 69,65
@@ -2980,14 +2980,14 @@ Face/EYE_OLD_SMILE_LEFT
   offset: 0,0
   index: -1
 Face/EYE_SACRIFICE_1
-  rotate: true
+  rotate: false
   xy: 3446,22
   size: 63,63
   orig: 63,63
   offset: 0,0
   index: -1
 Face/EYE_SACRIFICE_1_HOT
-  rotate: true
+  rotate: false
   xy: 5191,22
   size: 63,63
   orig: 63,63
@@ -3001,7 +3001,7 @@ Face/EYE_SACRIFICE_1_HURT
   offset: 0,0
   index: -1
 Face/EYE_SACRIFICE_2
-  rotate: true
+  rotate: false
   xy: 4663,46
   size: 69,69
   orig: 69,69
@@ -3015,42 +3015,42 @@ Face/EYE_SACRIFICE_2_HURT
   offset: 0,0
   index: -1
 Face/EYE_SHOCKED
-  rotate: true
+  rotate: false
   xy: 1540,27
   size: 66,66
   orig: 66,66
   offset: 0,0
   index: -1
 Face/EYE_SHOCKED_BRAINWASHED
-  rotate: true
+  rotate: false
   xy: 2865,27
   size: 66,66
   orig: 66,66
   offset: 0,0
   index: -1
 Face/EYE_SHOCKED_CURSED
-  rotate: true
+  rotate: false
   xy: 8124,248
   size: 66,86
   orig: 66,86
   offset: 0,0
   index: -1
 Face/EYE_SHOCKED_DISSENTER
-  rotate: true
+  rotate: false
   xy: 7044,26
   size: 66,66
   orig: 66,66
   offset: 0,0
   index: -1
 Face/EYE_SHOCKED_FREEZING
-  rotate: true
+  rotate: false
   xy: 7112,26
   size: 66,66
   orig: 66,66
   offset: 0,0
   index: -1
 Face/EYE_SHOCKED_HOT
-  rotate: true
+  rotate: false
   xy: 7479,26
   size: 66,66
   orig: 66,66
@@ -3064,14 +3064,14 @@ Face/EYE_SHOCKED_HURT
   offset: 0,0
   index: -1
 Face/EYE_SICK_2_LEFT
-  rotate: true
+  rotate: false
   xy: 2081,2030
   size: 65,97
   orig: 65,97
   offset: 0,0
   index: -1
 Face/EYE_SICK_2_LEFT_BRAINWASHED
-  rotate: true
+  rotate: false
   xy: 1631,610
   size: 66,95
   orig: 66,95
@@ -3169,7 +3169,7 @@ Face/EYE_SICK_LEFT_CURSED
   offset: 0,0
   index: -1
 Face/EYE_SICK_LEFT_DISSENTER
-  rotate: true
+  rotate: false
   xy: 3679,281
   size: 66,93
   orig: 66,93
@@ -3211,7 +3211,7 @@ Face/EYE_SICK_RIGHT_CURSED
   offset: 0,0
   index: -1
 Face/EYE_SICK_RIGHT_DISSENTER
-  rotate: true
+  rotate: false
   xy: 6057,279
   size: 64,93
   orig: 64,93
@@ -3232,35 +3232,35 @@ Face/EYE_SICK_RIGHT_HOT
   offset: 0,0
   index: -1
 Face/EYE_SINNER
-  rotate: true
+  rotate: false
   xy: 4634,605
   size: 60,77
   orig: 60,77
   offset: 0,0
   index: -1
 Face/EYE_SLEEPING
-  rotate: true
+  rotate: false
   xy: 6466,1378
   size: 53,28
   orig: 53,28
   offset: 0,0
   index: -1
 Face/EYE_SLEEPING_CURSED
-  rotate: true
+  rotate: false
   xy: 4829,2
   size: 53,53
   orig: 53,53
   offset: 0,0
   index: -1
 Face/EYE_SLEEPING_HURT
-  rotate: true
+  rotate: false
   xy: 5495,3
   size: 57,55
   orig: 57,55
   offset: 0,0
   index: -1
 Face/EYE_SLEEPING_SICK
-  rotate: true
+  rotate: false
   xy: 4218,517
   size: 60,71
   orig: 60,71
@@ -3274,35 +3274,35 @@ Face/EYE_SLEEPING_TIRED
   offset: 0,0
   index: -1
 Face/EYE_SLEEPY_BRAINWASHED
-  rotate: true
+  rotate: false
   xy: 2998,16
   size: 61,60
   orig: 61,60
   offset: 0,0
   index: -1
 Face/EYE_SLEEPY_CURSED
-  rotate: true
+  rotate: false
   xy: 511,55
   size: 61,68
   orig: 61,68
   offset: 0,0
   index: -1
 Face/EYE_SLEEPY_DISSENTER
-  rotate: true
+  rotate: false
   xy: 75,15
   size: 61,60
   orig: 61,60
   offset: 0,0
   index: -1
 Face/EYE_SLEEPY_FREEZING
-  rotate: true
+  rotate: false
   xy: 4884,15
   size: 61,60
   orig: 61,60
   offset: 0,0
   index: -1
 Face/EYE_SLEEPY_HOT
-  rotate: true
+  rotate: false
   xy: 6761,15
   size: 61,60
   orig: 61,60
@@ -3316,28 +3316,28 @@ Face/EYE_SLEEPY_HURT
   offset: 0,0
   index: -1
 Face/EYE_SLEEPY_LEFT
-  rotate: true
+  rotate: false
   xy: 7245,16
   size: 61,59
   orig: 61,59
   offset: 0,0
   index: -1
 Face/EYE_SLEEPY_LEFT_FREEZING
-  rotate: true
+  rotate: false
   xy: 1359,15
   size: 61,59
   orig: 61,59
   offset: 0,0
   index: -1
 Face/EYE_SLEEPY_LEFT_HOT
-  rotate: true
+  rotate: false
   xy: 3902,15
   size: 61,59
   orig: 61,59
   offset: 0,0
   index: -1
 Face/EYE_SLEEPY_RIGHT
-  rotate: true
+  rotate: false
   xy: 3668,13
   size: 60,59
   orig: 60,59
@@ -3358,56 +3358,56 @@ Face/EYE_SMILE_BRAINWASHED
   offset: 0,0
   index: -1
 Face/EYE_SMILE_CURSED
-  rotate: true
+  rotate: false
   xy: 2734,68
   size: 58,70
   orig: 58,70
   offset: 0,0
   index: -1
 Face/EYE_SMILE_DISSENTER
-  rotate: true
+  rotate: false
   xy: 5206,160
   size: 58,48
   orig: 58,48
   offset: 0,0
   index: -1
 Face/EYE_SMILE_DOWN
-  rotate: true
+  rotate: false
   xy: 5618,19
   size: 58,48
   orig: 58,48
   offset: 0,0
   index: -1
 Face/EYE_SMILE_DOWN_BRAINWASHED
-  rotate: true
+  rotate: false
   xy: 2696,14
   size: 58,52
   orig: 58,52
   offset: 0,0
   index: -1
 Face/EYE_SMILE_DOWN_CURSED
-  rotate: true
+  rotate: false
   xy: 3842,66
   size: 58,70
   orig: 58,70
   offset: 0,0
   index: -1
 Face/EYE_SMILE_DOWN_DISSENTER
-  rotate: true
+  rotate: false
   xy: 3831,16
   size: 58,48
   orig: 58,48
   offset: 0,0
   index: -1
 Face/EYE_SMILE_DOWN_FREEZING
-  rotate: true
+  rotate: false
   xy: 1219,13
   size: 58,48
   orig: 58,48
   offset: 0,0
   index: -1
 Face/EYE_SMILE_DOWN_HOT
-  rotate: true
+  rotate: false
   xy: 4187,13
   size: 58,48
   orig: 58,48
@@ -3421,7 +3421,7 @@ Face/EYE_SMILE_DOWN_HURT
   offset: 0,0
   index: -1
 Face/EYE_SMILE_FREEZING
-  rotate: true
+  rotate: false
   xy: 7536,463
   size: 58,47
   orig: 58,47
@@ -3442,7 +3442,7 @@ Face/EYE_SMILE_HURT
   offset: 0,0
   index: -1
 Face/EYE_SMILE_UP
-  rotate: true
+  rotate: false
   xy: 4247,13
   size: 58,48
   orig: 58,48
@@ -3463,28 +3463,28 @@ Face/EYE_SMILE_UP_CURSED
   offset: 0,0
   index: -1
 Face/EYE_SMILE_UP_DISSENTER
-  rotate: true
+  rotate: false
   xy: 5095,13
   size: 58,48
   orig: 58,48
   offset: 0,0
   index: -1
 Face/EYE_SMILE_UP_FREEZING
-  rotate: true
+  rotate: false
   xy: 6167,12
   size: 58,48
   orig: 58,48
   offset: 0,0
   index: -1
 Face/EYE_SMILE_UP_HOT
-  rotate: true
+  rotate: false
   xy: 6227,12
   size: 58,48
   orig: 58,48
   offset: 0,0
   index: -1
 Face/EYE_SQUINT
-  rotate: true
+  rotate: false
   xy: 6286,1408
   size: 36,33
   orig: 60,55
@@ -3505,7 +3505,7 @@ Face/EYE_STARS
   offset: 0,0
   index: -1
 Face/EYE_UNCONVERTED
-  rotate: true
+  rotate: false
   xy: 8174,3420
   size: 16,29
   orig: 16,29
@@ -3561,21 +3561,21 @@ Face/EYE_UP_HURT
   offset: 0,0
   index: -1
 Face/EYE_VERY_ANGRY
-  rotate: true
+  rotate: false
   xy: 1147,55
   size: 70,65
   orig: 70,65
   offset: 0,0
   index: -1
 Face/EYE_VERY_ANGRY_UP_HOT
-  rotate: true
+  rotate: false
   xy: 6379,46
   size: 69,69
   orig: 69,69
   offset: 0,0
   index: -1
 Face/EYE_WHITE
-  rotate: true
+  rotate: false
   xy: 1685,11
   size: 60,59
   orig: 60,59
@@ -3596,7 +3596,7 @@ Face/EYE_WORRIED_LEFT_BRAINWASHED
   offset: 0,0
   index: -1
 Face/EYE_WORRIED_LEFT_CURSED
-  rotate: true
+  rotate: false
   xy: 1775,2581
   size: 66,83
   orig: 66,83
@@ -3638,7 +3638,7 @@ Face/EYE_WORRIED_RIGHT_BRAINWASHED
   offset: 0,0
   index: -1
 Face/EYE_WORRIED_RIGHT_CURSED
-  rotate: true
+  rotate: false
   xy: 4893,3572
   size: 64,84
   orig: 64,84
@@ -3673,14 +3673,14 @@ Face/EYE_WORRIED_RIGHT_HURT
   offset: 0,0
   index: -1
 Face/HOOD_EYE
-  rotate: true
+  rotate: false
   xy: 5060,790
   size: 41,46
   orig: 41,46
   offset: 0,0
   index: -1
 Face/HOOD_EYE_ANGRY
-  rotate: true
+  rotate: false
   xy: 1116,692
   size: 48,46
   orig: 48,46
@@ -3694,14 +3694,14 @@ Face/HOOD_EYE_BRAINWASHED
   offset: 0,0
   index: -1
 Face/HOOD_EYE_CLOSED
-  rotate: true
+  rotate: false
   xy: 7517,1871
   size: 35,40
   orig: 35,40
   offset: 0,0
   index: -1
 Face/HOOD_EYE_DEAD
-  rotate: true
+  rotate: false
   xy: 6991,2482
   size: 27,25
   orig: 27,25
@@ -3715,7 +3715,7 @@ Face/HOOD_EYE_HALF_CLOSED
   offset: 0,0
   index: -1
 Face/HOOD_EYE_HALF_CLOSED_ANGRY
-  rotate: true
+  rotate: false
   xy: 2788,1075
   size: 44,43
   orig: 44,43
@@ -3750,21 +3750,21 @@ Face/HOOD_EYE_SMILE
   offset: 0,0
   index: -1
 Face/MOUTH_BEDREST
-  rotate: true
+  rotate: false
   xy: 2469,1913
   size: 95,50
   orig: 95,50
   offset: 0,0
   index: -1
 Face/MOUTH_CHEEKY
-  rotate: true
+  rotate: false
   xy: 2145,3082
   size: 21,28
   orig: 21,28
   offset: 0,0
   index: -1
 Face/MOUTH_CURSED1
-  rotate: true
+  rotate: false
   xy: 4291,2508
   size: 36,38
   orig: 36,38
@@ -3778,14 +3778,14 @@ Face/MOUTH_DEAD
   offset: 0,0
   index: -1
 Face/MOUTH_DEAD_FREEZING
-  rotate: true
+  rotate: false
   xy: 1300,55
   size: 57,66
   orig: 57,66
   offset: 0,0
   index: -1
 Face/MOUTH_DERP
-  rotate: true
+  rotate: false
   xy: 5785,3499
   size: 61,20
   orig: 61,21
@@ -3799,7 +3799,7 @@ Face/MOUTH_ENLIGHTENED
   offset: 0,0
   index: -1
 Face/MOUTH_ENLIGHTENED2
-  rotate: true
+  rotate: false
   xy: 7920,29
   size: 63,53
   orig: 64,55
@@ -3813,7 +3813,7 @@ Face/MOUTH_FREEZING1
   offset: 0,0
   index: -1
 Face/MOUTH_FREEZING2
-  rotate: true
+  rotate: false
   xy: 708,27
   size: 63,54
   orig: 63,54
@@ -3841,7 +3841,7 @@ Face/MOUTH_HAPPY
   offset: 0,0
   index: -1
 Face/MOUTH_HAPPY-2
-  rotate: true
+  rotate: false
   xy: 3324,3229
   size: 31,19
   orig: 31,19
@@ -3855,7 +3855,7 @@ Face/MOUTH_HAPPY_WEBBER
   offset: 0,0
   index: -1
 Face/MOUTH_HOT
-  rotate: true
+  rotate: false
   xy: 4772,8
   size: 55,47
   orig: 55,47
@@ -3890,7 +3890,7 @@ Face/MOUTH_INDIFFERENT_HUNGRY
   offset: 0,0
   index: -1
 Face/MOUTH_INSANE
-  rotate: true
+  rotate: false
   xy: 726,153
   size: 86,67
   orig: 86,67
@@ -3904,7 +3904,7 @@ Face/MOUTH_KISS
   offset: 0,0
   index: -1
 Face/MOUTH_KISS_BIG
-  rotate: true
+  rotate: false
   xy: 4847,593
   size: 47,41
   orig: 47,41
@@ -3960,7 +3960,7 @@ Face/MOUTH_SAD
   offset: 0,0
   index: -1
 Face/MOUTH_SADDER
-  rotate: true
+  rotate: false
   xy: 7075,2816
   size: 35,33
   orig: 35,33
@@ -3974,7 +3974,7 @@ Face/MOUTH_SCARED
   offset: 0,0
   index: -1
 Face/MOUTH_SCARED_WEBBER
-  rotate: true
+  rotate: false
   xy: 1174,3045
   size: 61,42
   orig: 61,42
@@ -3995,14 +3995,14 @@ Face/MOUTH_SINNER
   offset: 0,0
   index: -1
 Face/MOUTH_SLEEP_0
-  rotate: true
+  rotate: false
   xy: 7960,2503
   size: 37,26
   orig: 37,26
   offset: 0,0
   index: -1
 Face/MOUTH_SLEEP_1
-  rotate: true
+  rotate: false
   xy: 6563,2649
   size: 28,29
   orig: 28,29
@@ -4023,14 +4023,14 @@ Face/MOUTH_TALK_HAPPY_WEBBER
   offset: 0,0
   index: -1
 Face/MOUTH_TALK_INDIFFERENT
-  rotate: true
+  rotate: false
   xy: 7808,3174
   size: 32,20
   orig: 56,46
   offset: 12,13
   index: -1
 Face/MOUTH_TALK_INDIFFERENT_WEBBER
-  rotate: true
+  rotate: false
   xy: 3290,3229
   size: 32,19
   orig: 32,19
@@ -4044,7 +4044,7 @@ Face/MOUTH_TONGUE_1
   offset: 0,0
   index: -1
 Face/MOUTH_TONGUE_2
-  rotate: true
+  rotate: false
   xy: 6275,2038
   size: 29,31
   orig: 31,31
@@ -4058,7 +4058,7 @@ Face/MOUTH_TONGUE_3
   offset: 2,0
   index: -1
 Face/MOUTH_TONGUE_4
-  rotate: true
+  rotate: false
   xy: 6152,3307
   size: 37,19
   orig: 39,19
@@ -4086,7 +4086,7 @@ Face/MOUTH_WORRIED_WEBBER
   offset: 0,0
   index: -1
 Hats/HAT_Che
-  rotate: true
+  rotate: false
   xy: 6850,377
   size: 120,89
   orig: 120,89
@@ -4100,7 +4100,7 @@ Hats/HAT_Farm
   offset: 0,0
   index: -1
 Hats/HAT_Hood
-  rotate: true
+  rotate: false
   xy: 8029,1021
   size: 157,170
   orig: 157,170
@@ -4149,42 +4149,42 @@ Hats/Hat_Enforcer
   offset: 0,0
   index: -1
 Hats/Hat_Enforcer_Up
-  rotate: true
+  rotate: false
   xy: 6612,480
   size: 134,89
   orig: 134,89
   offset: 0,0
   index: -1
 Hats/Hat_FaithEnforcer
-  rotate: true
+  rotate: false
   xy: 1407,479
   size: 134,89
   orig: 134,89
   offset: 0,0
   index: -1
 Hats/Hat_FaithEnforcer_Up
-  rotate: true
+  rotate: false
   xy: 2317,479
   size: 134,89
   orig: 134,89
   offset: 0,0
   index: -1
 Hats/Hat_Forager
-  rotate: true
+  rotate: false
   xy: 2059,1742
   size: 189,114
   orig: 189,114
   offset: 0,0
   index: -1
 Hats/Hat_Lumberjack
-  rotate: true
+  rotate: false
   xy: 6380,924
   size: 165,141
   orig: 165,141
   offset: 0,0
   index: -1
 Hats/Hat_Lumberjack_Up
-  rotate: true
+  rotate: false
   xy: 6204,930
   size: 164,133
   orig: 164,133
@@ -4198,7 +4198,7 @@ Hats/Hat_Miner
   offset: 0,0
   index: -1
 Hats/Hat_Miner_Up
-  rotate: true
+  rotate: false
   xy: 4745,362
   size: 119,101
   orig: 119,101
@@ -4282,21 +4282,21 @@ Hats/Hood_WeddingDress1_Top
   offset: 0,0
   index: -1
 Hats/Hood_up
-  rotate: true
+  rotate: false
   xy: 6168,1604
   size: 186,101
   orig: 186,101
   offset: 0,0
   index: -1
 Hats/NudistCrown
-  rotate: true
+  rotate: false
   xy: 5493,1502
   size: 182,111
   orig: 182,111
   offset: 0,0
   index: -1
 Head/Extra_HorseCrown
-  rotate: true
+  rotate: false
   xy: 2209,374
   size: 36,36
   orig: 36,36
@@ -4310,42 +4310,42 @@ Head/Extra_cow
   offset: 0,0
   index: -1
 Head/Gravestones/Head_Gravestone_1
-  rotate: true
+  rotate: false
   xy: 2661,1650
   size: 188,183
   orig: 188,183
   offset: 0,0
   index: -1
 Head/Gravestones/Head_Gravestone_10
-  rotate: true
+  rotate: false
   xy: 7796,2721
   size: 220,127
   orig: 220,127
   offset: 0,0
   index: -1
 Head/Gravestones/Head_Gravestone_11
-  rotate: true
+  rotate: false
   xy: 4018,1776
   size: 190,142
   orig: 190,142
   offset: 0,0
   index: -1
 Head/Gravestones/Head_Gravestone_2
-  rotate: true
+  rotate: false
   xy: 5849,598
   size: 150,131
   orig: 150,131
   offset: 0,0
   index: -1
 Head/Gravestones/Head_Gravestone_3
-  rotate: true
+  rotate: false
   xy: 3627,1986
   size: 195,105
   orig: 195,105
   offset: 0,0
   index: -1
 Head/Gravestones/Head_Gravestone_4
-  rotate: true
+  rotate: false
   xy: 210,2275
   size: 203,121
   orig: 203,121
@@ -4373,119 +4373,119 @@ Head/Gravestones/Head_Gravestone_7
   offset: 0,0
   index: -1
 Head/Gravestones/Head_Gravestone_8
-  rotate: true
+  rotate: false
   xy: 5861,1330
   size: 178,142
   orig: 178,142
   offset: 0,0
   index: -1
 Head/Gravestones/Head_Gravestone_9
-  rotate: true
+  rotate: false
   xy: 4264,1918
   size: 192,132
   orig: 192,132
   offset: 0,0
   index: -1
 Head/HeadAbominationBack_Btm
-  rotate: true
+  rotate: false
   xy: 1764,1385
   size: 181,153
   orig: 181,153
   offset: 0,0
   index: -1
 Head/HeadAbominationBack_Btm2
-  rotate: true
+  rotate: false
   xy: 3008,951
   size: 167,143
   orig: 167,143
   offset: 0,0
   index: -1
 Head/HeadAbominationBack_Top
-  rotate: true
+  rotate: false
   xy: 2142,1378
   size: 181,153
   orig: 181,153
   offset: 0,0
   index: -1
 Head/HeadAbominationBack_Top2
-  rotate: true
+  rotate: false
   xy: 4045,951
   size: 167,143
   orig: 167,143
   offset: 0,0
   index: -1
 Head/HeadAbomination_Btm
-  rotate: true
+  rotate: false
   xy: 3001,1378
   size: 181,153
   orig: 181,153
   offset: 0,0
   index: -1
 Head/HeadAbomination_Btm2
-  rotate: true
+  rotate: false
   xy: 351,945
   size: 167,143
   orig: 167,143
   offset: 0,0
   index: -1
 Head/HeadAbomination_Top
-  rotate: true
+  rotate: false
   xy: 7492,1378
   size: 181,153
   orig: 181,153
   offset: 0,0
   index: -1
 Head/HeadAbomination_Top2
-  rotate: true
+  rotate: false
   xy: 5209,944
   size: 167,143
   orig: 167,143
   offset: 0,0
   index: -1
 Head/HeadAnteaterBack_Btm
-  rotate: true
+  rotate: false
   xy: 3905,389
   size: 124,111
   orig: 124,111
   offset: 0,0
   index: -1
 Head/HeadAnteaterBack_Btm2
-  rotate: true
+  rotate: false
   xy: 7454,512
   size: 140,118
   orig: 140,118
   offset: 0,0
   index: -1
 Head/HeadAnteater_Btm
-  rotate: true
+  rotate: false
   xy: 1769,1540
   size: 186,160
   orig: 186,160
   offset: 0,0
   index: -1
 Head/HeadAnteater_Btm2
-  rotate: true
+  rotate: false
   xy: 2523,2413
   size: 211,148
   orig: 211,148
   offset: 0,0
   index: -1
 Head/HeadAnteater_Markings
-  rotate: true
+  rotate: false
   xy: 6325,2407
   size: 211,148
   orig: 211,148
   offset: 0,0
   index: -1
 Head/HeadAxolotlBack_Btm
-  rotate: true
+  rotate: false
   xy: 1274,2299
   size: 203,96
   orig: 204,96
   offset: 0,0
   index: -1
 Head/HeadAxolotlBack_Btm2
-  rotate: true
+  rotate: false
   xy: 3430,2961
   size: 228,96
   orig: 228,96
@@ -4499,133 +4499,133 @@ Head/HeadAxolotlBack_Btm3
   offset: 1,0
   index: -1
 Head/HeadAxolotlBack_Top
-  rotate: true
+  rotate: false
   xy: 3736,2291
   size: 203,96
   orig: 204,96
   offset: 0,0
   index: -1
 Head/HeadAxolotlBack_Top2
-  rotate: true
+  rotate: false
   xy: 6394,2961
   size: 228,96
   orig: 228,96
   offset: 0,0
   index: -1
 Head/HeadAxolotl_Btm
-  rotate: true
+  rotate: false
   xy: 4406,2250
   size: 201,96
   orig: 201,96
   offset: 0,0
   index: -1
 Head/HeadAxolotl_Btm2
-  rotate: true
+  rotate: false
   xy: 682,2805
   size: 223,97
   orig: 223,97
   offset: 0,0
   index: -1
 Head/HeadAxolotl_Btm3
-  rotate: true
+  rotate: false
   xy: 5444,2129
   size: 199,108
   orig: 199,108
   offset: 0,0
   index: -1
 Head/HeadAxolotl_Marking
-  rotate: true
+  rotate: false
   xy: 3253,3314
   size: 78,44
   orig: 78,44
   offset: 0,0
   index: -1
 Head/HeadAxolotl_Top
-  rotate: true
+  rotate: false
   xy: 5444,2239
   size: 201,96
   orig: 201,96
   offset: 0,0
   index: -1
 Head/HeadAxolotl_Top2
-  rotate: true
+  rotate: false
   xy: 907,2805
   size: 223,97
   orig: 223,97
   offset: 0,0
   index: -1
 Head/HeadAymBack_Btm
-  rotate: true
+  rotate: false
   xy: 688,813
   size: 160,153
   orig: 160,153
   offset: 0,0
   index: -1
 Head/HeadAym_Btm
-  rotate: true
+  rotate: false
   xy: 2999,642
   size: 154,153
   orig: 154,153
   offset: 0,0
   index: -1
 Head/HeadAym_Top
-  rotate: true
+  rotate: false
   xy: 3978,642
   size: 154,153
   orig: 154,153
   offset: 0,0
   index: -1
 Head/HeadBaalBack_Btm
-  rotate: true
+  rotate: false
   xy: 1225,821
   size: 160,145
   orig: 160,145
   offset: 0,0
   index: -1
 Head/HeadBaal_Btm
-  rotate: true
+  rotate: false
   xy: 6245,649
   size: 154,145
   orig: 154,145
   offset: 0,0
   index: -1
 Head/HeadBadgerBack_Btm
-  rotate: true
+  rotate: false
   xy: 3306,490
   size: 139,123
   orig: 139,123
   offset: 0,0
   index: -1
 Head/HeadBadgerBack_Btm2
-  rotate: true
+  rotate: false
   xy: 1631,485
   size: 139,123
   orig: 139,123
   offset: 0,0
   index: -1
 Head/HeadBadgerBack_Top
-  rotate: true
+  rotate: false
   xy: 4634,477
   size: 139,123
   orig: 139,123
   offset: 0,0
   index: -1
 Head/HeadBadgerBack_Top2
-  rotate: true
+  rotate: false
   xy: 5818,473
   size: 139,123
   orig: 139,123
   offset: 0,0
   index: -1
 Head/HeadBadger_Btm
-  rotate: true
+  rotate: false
   xy: 2,1338
   size: 178,132
   orig: 178,132
   offset: 0,0
   index: -1
 Head/HeadBadger_Btm2
-  rotate: true
+  rotate: false
   xy: 1667,1127
   size: 172,128
   orig: 172,128
@@ -4639,91 +4639,91 @@ Head/HeadBadger_Markings
   offset: 0,0
   index: -1
 Head/HeadBadger_Top
-  rotate: true
+  rotate: false
   xy: 2507,1338
   size: 178,132
   orig: 178,132
   offset: 0,0
   index: -1
 Head/HeadBadger_Top2
-  rotate: true
+  rotate: false
   xy: 731,1126
   size: 172,128
   orig: 172,128
   offset: 0,0
   index: -1
 Head/HeadBatBack_Btm
-  rotate: true
+  rotate: false
   xy: 6126,2649
   size: 217,148
   orig: 217,148
   offset: 0,0
   index: -1
 Head/HeadBatBack_Btm2
-  rotate: true
+  rotate: false
   xy: 5289,2643
   size: 217,147
   orig: 217,147
   offset: 0,0
   index: -1
 Head/HeadBatBack_Btm3
-  rotate: true
+  rotate: false
   xy: 4111,2626
   size: 217,147
   orig: 217,147
   offset: 0,0
   index: -1
 Head/HeadBatDemon2_Btm
-  rotate: true
+  rotate: false
   xy: 5697,3328
   size: 255,169
   orig: 255,169
   offset: 0,0
   index: -1
 Head/HeadBatDemon2_Top
-  rotate: true
+  rotate: false
   xy: 5954,3328
   size: 255,169
   orig: 255,169
   offset: 0,0
   index: -1
 Head/HeadBatDemon3_Top
-  rotate: true
+  rotate: false
   xy: 2415,3034
   size: 238,153
   orig: 238,153
   offset: 0,0
   index: -1
 Head/HeadBatDemonBack2_Btm
-  rotate: true
+  rotate: false
   xy: 7871,3325
   size: 255,169
   orig: 255,171
   offset: 0,1
   index: -1
 Head/HeadBatDemonBack2_Top
-  rotate: true
+  rotate: false
   xy: 6211,3307
   size: 255,169
   orig: 255,171
   offset: 0,1
   index: -1
 Head/HeadBatDemonBack_Btm
-  rotate: true
+  rotate: false
   xy: 5194,3032
   size: 238,153
   orig: 238,153
   offset: 0,0
   index: -1
 Head/HeadBatDemonBack_Top
-  rotate: true
+  rotate: false
   xy: 1237,3031
   size: 238,153
   orig: 238,153
   offset: 0,0
   index: -1
 Head/HeadBatDemon_Btm
-  rotate: true
+  rotate: false
   xy: 5434,3020
   size: 238,153
   orig: 238,153
@@ -4737,35 +4737,35 @@ Head/HeadBatDemon_Markings2
   offset: 0,0
   index: -1
 Head/HeadBatDemon_Top
-  rotate: true
+  rotate: false
   xy: 5674,3020
   size: 238,153
   orig: 238,153
   offset: 0,0
   index: -1
 Head/HeadBat_Btm
-  rotate: true
+  rotate: false
   xy: 5508,2589
   size: 217,148
   orig: 217,148
   offset: 0,0
   index: -1
 Head/HeadBat_Btm2
-  rotate: true
+  rotate: false
   xy: 223,2577
   size: 217,147
   orig: 217,147
   offset: 0,0
   index: -1
 Head/HeadBat_Btm3
-  rotate: true
+  rotate: false
   xy: 442,2577
   size: 217,147
   orig: 217,147
   offset: 0,0
   index: -1
 Head/HeadBat_Markings
-  rotate: true
+  rotate: false
   xy: 3413,1515
   size: 114,93
   orig: 114,93
@@ -4779,21 +4779,21 @@ Head/HeadBearBack_Btm
   offset: 0,0
   index: -1
 Head/HeadBear_Btm
-  rotate: true
+  rotate: false
   xy: 4779,839
   size: 160,125
   orig: 160,125
   offset: 0,0
   index: -1
 Head/HeadBear_Btm2
-  rotate: true
+  rotate: false
   xy: 4779,839
   size: 160,125
   orig: 160,125
   offset: 0,0
   index: -1
 Head/HeadBear_Btm3
-  rotate: true
+  rotate: false
   xy: 7740,842
   size: 160,122
   orig: 160,122
@@ -4807,28 +4807,28 @@ Head/HeadBear_Markings
   offset: 0,0
   index: -1
 Head/HeadBear_Top
-  rotate: true
+  rotate: false
   xy: 2514,835
   size: 160,125
   orig: 160,125
   offset: 0,0
   index: -1
 Head/HeadBear_Top2
-  rotate: true
+  rotate: false
   xy: 4580,835
   size: 160,125
   orig: 160,125
   offset: 0,0
   index: -1
 Head/HeadBear_Top3
-  rotate: true
+  rotate: false
   xy: 4941,838
   size: 160,122
   orig: 160,122
   offset: 0,0
   index: -1
 Head/HeadBeeBack_Btm
-  rotate: true
+  rotate: false
   xy: 8052,558
   size: 125,148
   orig: 125,148
@@ -4842,14 +4842,14 @@ Head/HeadBeeBack_Top
   offset: 0,0
   index: -1
 Head/HeadBee_Btm
-  rotate: true
+  rotate: false
   xy: 567,1384
   size: 181,146
   orig: 181,146
   offset: 0,0
   index: -1
 Head/HeadBee_Btm2
-  rotate: true
+  rotate: false
   xy: 6372,2680
   size: 219,146
   orig: 219,146
@@ -4863,112 +4863,112 @@ Head/HeadBee_Markings
   offset: 0,0
   index: -1
 Head/HeadBee_Top
-  rotate: true
+  rotate: false
   xy: 5493,1354
   size: 181,146
   orig: 181,146
   offset: 0,0
   index: -1
 Head/HeadBee_Top2
-  rotate: true
+  rotate: false
   xy: 7340,2672
   size: 219,146
   orig: 219,146
   offset: 0,0
   index: -1
 Head/HeadBeetleBack_Btm
-  rotate: true
+  rotate: false
   xy: 242,2904
   size: 231,183
   orig: 231,183
   offset: 0,0
   index: -1
 Head/HeadBeetleBack_Btm2
-  rotate: true
+  rotate: false
   xy: 815,1854
   size: 192,191
   orig: 192,191
   offset: 0,0
   index: -1
 Head/HeadBeetleBack_Top
-  rotate: true
+  rotate: false
   xy: 475,2904
   size: 231,183
   orig: 231,183
   offset: 0,0
   index: -1
 Head/HeadBeetleBack_Top2
-  rotate: true
+  rotate: false
   xy: 4743,1854
   size: 192,191
   orig: 192,191
   offset: 0,0
   index: -1
 Head/HeadBeetle_Btm
-  rotate: true
+  rotate: false
   xy: 708,2904
   size: 231,183
   orig: 231,183
   offset: 0,0
   index: -1
 Head/HeadBeetle_Btm2
-  rotate: true
+  rotate: false
   xy: 7972,1852
   size: 192,191
   orig: 192,191
   offset: 0,0
   index: -1
 Head/HeadBeetle_Markings
-  rotate: true
+  rotate: false
   xy: 985,321
   size: 103,88
   orig: 103,88
   offset: 0,0
   index: -1
 Head/HeadBeetle_Top
-  rotate: true
+  rotate: false
   xy: 941,2904
   size: 231,183
   orig: 231,183
   offset: 0,0
   index: -1
 Head/HeadBeetle_Top2
-  rotate: true
+  rotate: false
   xy: 7773,1850
   size: 192,191
   orig: 192,191
   offset: 0,0
   index: -1
 Head/HeadBeholder1_Btm
-  rotate: true
+  rotate: false
   xy: 1404,2806
   size: 227,223
   orig: 227,223
   offset: 0,0
   index: -1
 Head/HeadBeholder1_Top
-  rotate: true
+  rotate: false
   xy: 5914,2802
   size: 227,223
   orig: 227,223
   offset: 0,0
   index: -1
 Head/HeadBeholder2Back_Btm
-  rotate: true
+  rotate: false
   xy: 5545,2872
   size: 226,146
   orig: 226,146
   offset: 0,0
   index: -1
 Head/HeadBeholder2Back_Top
-  rotate: true
+  rotate: false
   xy: 1905,2871
   size: 226,146
   orig: 226,146
   offset: 0,0
   index: -1
 Head/HeadBeholder2_Btm
-  rotate: true
+  rotate: false
   xy: 3920,2850
   size: 226,146
   orig: 226,146
@@ -4982,77 +4982,77 @@ Head/HeadBeholder2_Extra1
   offset: 0,0
   index: -1
 Head/HeadBeholder2_Top
-  rotate: true
+  rotate: false
   xy: 7797,2850
   size: 226,146
   orig: 226,146
   offset: 0,0
   index: -1
 Head/HeadBeholder3Back_Btm
-  rotate: true
+  rotate: false
   xy: 2655,2869
   size: 230,217
   orig: 230,217
   offset: 0,0
   index: -1
 Head/HeadBeholder3Back_Top
-  rotate: true
+  rotate: false
   xy: 3198,2857
   size: 230,217
   orig: 230,217
   offset: 0,0
   index: -1
 Head/HeadBeholder3_Btm
-  rotate: true
+  rotate: false
   xy: 4390,2853
   size: 230,217
   orig: 230,217
   offset: 0,0
   index: -1
 Head/HeadBeholder3_Top
-  rotate: true
+  rotate: false
   xy: 6880,2851
   size: 230,217
   orig: 230,217
   offset: 0,0
   index: -1
 Head/HeadBeholder4Back_Btm
-  rotate: true
+  rotate: false
   xy: 3920,2998
   size: 233,146
   orig: 233,146
   offset: 0,0
   index: -1
 Head/HeadBeholder4Back_Top
-  rotate: true
+  rotate: false
   xy: 6645,2996
   size: 233,146
   orig: 233,146
   offset: 0,0
   index: -1
 Head/HeadBeholder4_Btm
-  rotate: true
+  rotate: false
   xy: 7208,2996
   size: 233,146
   orig: 233,146
   offset: 0,0
   index: -1
 Head/HeadBeholder4_Top
-  rotate: true
+  rotate: false
   xy: 4155,2953
   size: 233,146
   orig: 233,146
   offset: 0,0
   index: -1
 Head/HeadBeholderBack1_Btm
-  rotate: true
+  rotate: false
   xy: 6143,2799
   size: 227,226
   orig: 227,226
   offset: 0,0
   index: -1
 Head/HeadBeholderBack1_Top
-  rotate: true
+  rotate: false
   xy: 5316,2792
   size: 227,226
   orig: 227,226
@@ -5066,105 +5066,105 @@ Head/HeadBeholderBack_Extra
   offset: 0,0
   index: -1
 Head/HeadBisonBack_Btm
-  rotate: true
+  rotate: false
   xy: 3529,1496
   size: 185,173
   orig: 185,173
   offset: 0,0
   index: -1
 Head/HeadBisonBack_Btm2
-  rotate: true
+  rotate: false
   xy: 7680,2360
   size: 210,169
   orig: 210,169
   offset: 0,0
   index: -1
 Head/HeadBisonBack_Top
-  rotate: true
+  rotate: false
   xy: 4572,1493
   size: 185,173
   orig: 185,173
   offset: 0,0
   index: -1
 Head/HeadBisonBack_Top2
-  rotate: true
+  rotate: false
   xy: 2290,2358
   size: 210,169
   orig: 210,169
   offset: 0,0
   index: -1
 Head/HeadBison_Btm
-  rotate: true
+  rotate: false
   xy: 4210,1743
   size: 190,173
   orig: 190,173
   offset: 0,0
   index: -1
 Head/HeadBison_Btm2
-  rotate: true
+  rotate: false
   xy: 6109,2353
   size: 210,169
   orig: 210,169
   offset: 0,0
   index: -1
 Head/HeadBison_Markings
-  rotate: true
+  rotate: false
   xy: 7736,418
   size: 124,82
   orig: 124,82
   offset: 0,0
   index: -1
 Head/HeadBison_Markings2
-  rotate: true
+  rotate: false
   xy: 2040,2506
   size: 31,73
   orig: 31,73
   offset: 0,0
   index: -1
 Head/HeadBison_Markings3
-  rotate: true
+  rotate: false
   xy: 3627,2124
   size: 38,77
   orig: 38,77
   offset: 0,0
   index: -1
 Head/HeadBison_Top
-  rotate: true
+  rotate: false
   xy: 4402,1741
   size: 190,173
   orig: 190,173
   offset: 0,0
   index: -1
 Head/HeadBison_Top2
-  rotate: true
+  rotate: false
   xy: 3524,2351
   size: 210,169
   orig: 210,169
   offset: 0,0
   index: -1
 Head/HeadBurrowWormBack_Btm
-  rotate: true
+  rotate: false
   xy: 3784,2533
   size: 217,188
   orig: 217,188
   offset: 0,0
   index: -1
 Head/HeadBurrowWormBack_Top
-  rotate: true
+  rotate: false
   xy: 7782,2531
   size: 217,188
   orig: 217,188
   offset: 0,0
   index: -1
 Head/HeadBurrowWorm_Btm
-  rotate: true
+  rotate: false
   xy: 6814,2509
   size: 217,188
   orig: 217,188
   offset: 0,0
   index: -1
 Head/HeadBurrowWorm_Extra1
-  rotate: true
+  rotate: false
   xy: 4435,1200
   size: 114,79
   orig: 114,79
@@ -5178,91 +5178,91 @@ Head/HeadBurrowWorm_Top
   offset: 0,0
   index: -1
 Head/HeadButterfly2_Btm
-  rotate: true
+  rotate: false
   xy: 2,2814
   size: 226,180
   orig: 226,180
   offset: 0,0
   index: -1
 Head/HeadButterfly2_Markings
-  rotate: true
+  rotate: false
   xy: 6624,2814
   size: 226,180
   orig: 226,180
   offset: 0,0
   index: -1
 Head/HeadButterfly2_Top
-  rotate: true
+  rotate: false
   xy: 7112,2814
   size: 226,180
   orig: 226,180
   offset: 0,0
   index: -1
 Head/HeadButterfly3_Btm
-  rotate: true
+  rotate: false
   xy: 3466,3229
   size: 245,192
   orig: 245,192
   offset: 0,0
   index: -1
 Head/HeadButterfly3_Markings
-  rotate: true
+  rotate: false
   xy: 3713,3220
   size: 245,192
   orig: 245,192
   offset: 0,0
   index: -1
 Head/HeadButterfly3_Top
-  rotate: true
+  rotate: false
   xy: 5164,3218
   size: 245,192
   orig: 245,192
   offset: 0,0
   index: -1
 Head/HeadButterfly_Btm
-  rotate: true
+  rotate: false
   xy: 7340,2820
   size: 226,164
   orig: 226,164
   offset: 0,0
   index: -1
 Head/HeadButterfly_Markings
-  rotate: true
+  rotate: false
   xy: 7568,2820
   size: 226,164
   orig: 226,164
   offset: 0,0
   index: -1
 Head/HeadButterfly_Top
-  rotate: true
+  rotate: false
   xy: 3660,2814
   size: 226,164
   orig: 226,164
   offset: 0,0
   index: -1
 Head/HeadCamelBack_Btm
-  rotate: true
+  rotate: false
   xy: 6472,460
   size: 138,132
   orig: 138,132
   offset: 0,0
   index: -1
 Head/HeadCamelBack_Btm2
-  rotate: true
+  rotate: false
   xy: 3934,502
   size: 142,138
   orig: 142,138
   offset: 0,0
   index: -1
 Head/HeadCamelBack_Top2
-  rotate: true
+  rotate: false
   xy: 6001,499
   size: 142,138
   orig: 142,138
   offset: 0,0
   index: -1
 Head/HeadCamel_Btm
-  rotate: true
+  rotate: false
   xy: 6041,1309
   size: 178,132
   orig: 178,132
@@ -5276,7 +5276,7 @@ Head/HeadCamel_Btm2
   offset: 0,0
   index: -1
 Head/HeadCamel_Markings
-  rotate: true
+  rotate: false
   xy: 7986,441
   size: 61,50
   orig: 61,50
@@ -5290,28 +5290,28 @@ Head/HeadCamel_Top2
   offset: 0,0
   index: -1
 Head/HeadCapyBack_Btm
-  rotate: true
+  rotate: false
   xy: 5483,430
   size: 132,130
   orig: 132,130
   offset: 0,0
   index: -1
 Head/HeadCapy_Btm
-  rotate: true
+  rotate: false
   xy: 4244,981
   size: 169,128
   orig: 169,128
   offset: 0,0
   index: -1
 Head/HeadCapy_Btm2
-  rotate: true
+  rotate: false
   xy: 1454,977
   size: 169,128
   orig: 169,128
   offset: 0,0
   index: -1
 Head/HeadCapy_Btm3
-  rotate: true
+  rotate: false
   xy: 6031,1179
   size: 173,128
   orig: 173,128
@@ -5325,56 +5325,56 @@ Head/HeadCapy_Markings
   offset: 0,0
   index: -1
 Head/HeadCatBack_Btm
-  rotate: true
+  rotate: false
   xy: 1172,692
   size: 155,127
   orig: 155,127
   offset: 0,0
   index: -1
 Head/HeadCatBack_Btm3
-  rotate: true
+  rotate: false
   xy: 2820,638
   size: 152,126
   orig: 152,126
   offset: 0,0
   index: -1
 Head/HeadCatBack_Top
-  rotate: true
+  rotate: false
   xy: 651,684
   size: 155,127
   orig: 155,127
   offset: 0,0
   index: -1
 Head/HeadCat_Btm
-  rotate: true
+  rotate: false
   xy: 7196,682
   size: 155,127
   orig: 155,127
   offset: 0,0
   index: -1
 Head/HeadCat_Btm3
-  rotate: true
+  rotate: false
   xy: 4330,636
   size: 152,126
   orig: 152,126
   offset: 0,0
   index: -1
 Head/HeadCat_Markings
-  rotate: true
+  rotate: false
   xy: 7556,173
   size: 90,85
   orig: 90,85
   offset: 0,0
   index: -1
 Head/HeadCat_Top
-  rotate: true
+  rotate: false
   xy: 7353,681
   size: 155,127
   orig: 155,127
   offset: 0,0
   index: -1
 Head/HeadCat_Top3
-  rotate: true
+  rotate: false
   xy: 6401,633
   size: 152,126
   orig: 152,126
@@ -5409,7 +5409,7 @@ Head/HeadCaterpillar_Btm2
   offset: 0,0
   index: -1
 Head/HeadCaterpillar_Markings
-  rotate: true
+  rotate: false
   xy: 5194,3191
   size: 94,25
   orig: 94,25
@@ -5430,42 +5430,42 @@ Head/HeadCaterpillar_Top2
   offset: 0,0
   index: -1
 Head/HeadChargerBossBack_Btm
-  rotate: true
+  rotate: false
   xy: 4148,2775
   size: 224,176
   orig: 224,176
   offset: 0,0
   index: -1
 Head/HeadChargerBossBack_Top
-  rotate: true
+  rotate: false
   xy: 230,2726
   size: 224,176
   orig: 224,176
   offset: 0,0
   index: -1
 Head/HeadChargerBoss_Top
-  rotate: true
+  rotate: false
   xy: 230,2726
   size: 224,176
   orig: 224,176
   offset: 0,0
   index: -1
 Head/HeadChargerBoss_Btm
-  rotate: true
+  rotate: false
   xy: 456,2726
   size: 224,176
   orig: 224,176
   offset: 0,0
   index: -1
 Head/HeadChicken2_Btm
-  rotate: true
+  rotate: false
   xy: 2453,432
   size: 133,133
   orig: 133,133
   offset: 0,0
   index: -1
 Head/HeadChicken3_Btm
-  rotate: true
+  rotate: false
   xy: 6555,594
   size: 143,150
   orig: 143,150
@@ -5493,14 +5493,14 @@ Head/HeadChickenBack3_Top
   offset: 0,0
   index: -1
 Head/HeadChickenBack_Btm
-  rotate: true
+  rotate: false
   xy: 3155,581
   size: 149,138
   orig: 149,138
   offset: 0,0
   index: -1
 Head/HeadChickenBack_Top
-  rotate: true
+  rotate: false
   xy: 6852,580
   size: 149,138
   orig: 149,138
@@ -5542,14 +5542,14 @@ Head/HeadChicken_Top
   offset: 0,0
   index: -1
 Head/HeadChosenChildBack_Btm
-  rotate: true
+  rotate: false
   xy: 2498,3342
   size: 254,132
   orig: 254,132
   offset: 0,0
   index: -1
 Head/HeadChosenChild_Btm
-  rotate: true
+  rotate: false
   xy: 2,3323
   size: 254,132
   orig: 254,132
@@ -5563,98 +5563,98 @@ Head/HeadChosenChild_Markings
   offset: 0,0
   index: -1
 Head/HeadCowBack_Btm
-  rotate: true
+  rotate: false
   xy: 3281,2358
   size: 206,131
   orig: 206,131
   offset: 0,0
   index: -1
 Head/HeadCowBack_Top
-  rotate: true
+  rotate: false
   xy: 1066,2352
   size: 206,131
   orig: 206,131
   offset: 0,0
   index: -1
 Head/HeadCow_Btm
-  rotate: true
+  rotate: false
   xy: 5031,2350
   size: 206,131
   orig: 206,131
   offset: 0,0
   index: -1
 Head/HeadCow_Btm2
-  rotate: true
+  rotate: false
   xy: 6958,2349
   size: 206,131
   orig: 206,131
   offset: 0,0
   index: -1
 Head/HeadCow_Btm3
-  rotate: true
+  rotate: false
   xy: 4429,2348
   size: 206,131
   orig: 206,131
   offset: 0,0
   index: -1
 Head/HeadCow_Markings
-  rotate: true
+  rotate: false
   xy: 2616,316
   size: 100,87
   orig: 100,87
   offset: 0,0
   index: -1
 Head/HeadCow_Top
-  rotate: true
+  rotate: false
   xy: 5457,2337
   size: 206,131
   orig: 206,131
   offset: 0,0
   index: -1
 Head/HeadCow_Top2
-  rotate: true
+  rotate: false
   xy: 1991,2325
   size: 206,131
   orig: 206,131
   offset: 0,0
   index: -1
 Head/HeadCow_Top3
-  rotate: true
+  rotate: false
   xy: 4637,2322
   size: 206,131
   orig: 206,131
   offset: 0,0
   index: -1
 Head/HeadCrab_Btm
-  rotate: true
+  rotate: false
   xy: 6538,2362
   size: 208,158
   orig: 208,158
   offset: 0,0
   index: -1
 Head/HeadCrab_Btm2
-  rotate: true
+  rotate: false
   xy: 5893,2278
   size: 206,169
   orig: 206,169
   offset: 0,0
   index: -1
 Head/HeadCrab_Markings
-  rotate: true
+  rotate: false
   xy: 2796,3453
   size: 112,80
   orig: 112,80
   offset: 0,0
   index: -1
 Head/HeadCrab_Top
-  rotate: true
+  rotate: false
   xy: 5247,2356
   size: 208,158
   orig: 208,158
   offset: 0,0
   index: -1
 Head/HeadCrab_Top2
-  rotate: true
+  rotate: false
   xy: 2,2275
   size: 206,169
   orig: 206,169
@@ -5675,21 +5675,21 @@ Head/HeadCrocodileBack_Top
   offset: 0,0
   index: -1
 Head/HeadCrocodile_Btm
-  rotate: true
+  rotate: false
   xy: 5097,1290
   size: 178,129
   orig: 178,129
   offset: 0,0
   index: -1
 Head/HeadCrocodile_Btm2
-  rotate: true
+  rotate: false
   xy: 5118,1571
   size: 186,129
   orig: 186,129
   offset: 0,0
   index: -1
 Head/HeadCrocodile_Btm3
-  rotate: true
+  rotate: false
   xy: 4372,1281
   size: 178,129
   orig: 178,129
@@ -5703,63 +5703,63 @@ Head/HeadCrocodile_Markings
   offset: 0,0
   index: -1
 Head/HeadCrocodile_Top
-  rotate: true
+  rotate: false
   xy: 2687,1280
   size: 178,129
   orig: 178,129
   offset: 0,0
   index: -1
 Head/HeadCrocodile_Top2
-  rotate: true
+  rotate: false
   xy: 5778,1553
   size: 186,129
   orig: 186,129
   offset: 0,0
   index: -1
 Head/HeadCrocodile_Top3
-  rotate: true
+  rotate: false
   xy: 4882,1280
   size: 178,129
   orig: 178,129
   offset: 0,0
   index: -1
 Head/HeadCrow2_Btm
-  rotate: true
+  rotate: false
   xy: 2399,1498
   size: 183,131
   orig: 183,131
   offset: 0,0
   index: -1
 Head/HeadCrow2_Top
-  rotate: true
+  rotate: false
   xy: 4191,1493
   size: 183,131
   orig: 183,131
   offset: 0,0
   index: -1
 Head/HeadCrowBack_Btm
-  rotate: true
+  rotate: false
   xy: 930,496
   size: 140,133
   orig: 140,133
   offset: 0,0
   index: -1
 Head/HeadCrow_Btm
-  rotate: true
+  rotate: false
   xy: 1639,1715
   size: 189,139
   orig: 189,139
   offset: 0,0
   index: -1
 Head/HeadCrow_Markings
-  rotate: true
+  rotate: false
   xy: 1845,313
   size: 105,98
   orig: 105,98
   offset: 0,0
   index: -1
 Head/HeadCrow_Top
-  rotate: true
+  rotate: false
   xy: 795,1713
   size: 189,139
   orig: 189,139
@@ -5780,56 +5780,56 @@ Head/HeadCthulhuBack_Btm2
   offset: 0,0
   index: -1
 Head/HeadCthulhuBack_Top
-  rotate: true
+  rotate: false
   xy: 2706,3088
   size: 244,130
   orig: 244,130
   offset: 0,0
   index: -1
 Head/HeadCthulhuBack_Top2
-  rotate: true
+  rotate: false
   xy: 2502,2308
   size: 205,103
   orig: 205,103
   offset: 0,0
   index: -1
 Head/HeadCthulhu_Btm
-  rotate: true
+  rotate: false
   xy: 3500,3059
   size: 244,159
   orig: 244,159
   offset: 0,0
   index: -1
 Head/HeadCthulhu_Btm2
-  rotate: true
+  rotate: false
   xy: 434,2276
   size: 205,132
   orig: 205,132
   offset: 0,0
   index: -1
 Head/HeadCthulhu_Markings
-  rotate: true
+  rotate: false
   xy: 2212,3385
   size: 25,45
   orig: 25,45
   offset: 0,0
   index: -1
 Head/HeadCthulhu_Top
-  rotate: true
+  rotate: false
   xy: 6399,3059
   size: 244,159
   orig: 244,159
   offset: 0,0
   index: -1
 Head/HeadCthulhu_Top2
-  rotate: true
+  rotate: false
   xy: 5665,2275
   size: 205,132
   orig: 205,132
   offset: 0,0
   index: -1
 Head/HeadDead
-  rotate: true
+  rotate: false
   xy: 1282,3348
   size: 127,107
   orig: 127,107
@@ -5857,56 +5857,56 @@ Head/HeadDeathcat_Btm
   offset: 0,0
   index: -1
 Head/HeadDeerBack_Btm
-  rotate: true
+  rotate: false
   xy: 2852,2543
   size: 214,125
   orig: 214,125
   offset: 0,0
   index: -1
 Head/HeadDeerBack_Top
-  rotate: true
+  rotate: false
   xy: 1343,2541
   size: 214,125
   orig: 214,125
   offset: 0,0
   index: -1
 Head/HeadDeerRitualBack_Btm
-  rotate: true
+  rotate: false
   xy: 2074,2458
   size: 214,208
   orig: 214,208
   offset: 0,0
   index: -1
 Head/HeadDeerRitualBack_Btm2
-  rotate: true
+  rotate: false
   xy: 1559,2495
   size: 214,169
   orig: 214,208
   offset: 0,0
   index: -1
 Head/HeadDeerRitualBack_Top
-  rotate: true
+  rotate: false
   xy: 4815,2455
   size: 214,208
   orig: 214,208
   offset: 0,0
   index: -1
 Head/HeadDeerRitualBack_Top2
-  rotate: true
+  rotate: false
   xy: 903,2491
   size: 214,169
   orig: 214,208
   offset: 0,0
   index: -1
 Head/HeadDeerRitual_Btm
-  rotate: true
+  rotate: false
   xy: 5893,2449
   size: 214,208
   orig: 214,208
   offset: 0,0
   index: -1
 Head/HeadDeerRitual_Btm2
-  rotate: true
+  rotate: false
   xy: 1119,2485
   size: 214,171
   orig: 214,208
@@ -5920,14 +5920,14 @@ Head/HeadDeerRitual_Markings
   offset: 0,0
   index: -1
 Head/HeadDeerRitual_Top
-  rotate: true
+  rotate: false
   xy: 2,2446
   size: 214,208
   orig: 214,208
   offset: 0,0
   index: -1
 Head/HeadDeerRitual_Top2
-  rotate: true
+  rotate: false
   xy: 5031,2483
   size: 214,171
   orig: 214,208
@@ -5941,42 +5941,42 @@ Head/HeadDeerSkull2_Btm
   offset: 0,0
   index: -1
 Head/HeadDeerSkull2_Top
-  rotate: true
+  rotate: false
   xy: 6852,2699
   size: 221,150
   orig: 221,150
   offset: 0,0
   index: -1
 Head/HeadDeerSkullBack2_Btm
-  rotate: true
+  rotate: false
   xy: 7561,2674
   size: 219,144
   orig: 219,144
   offset: 0,0
   index: -1
 Head/HeadDeerSkullBack2_Top
-  rotate: true
+  rotate: false
   xy: 2306,2670
   size: 219,144
   orig: 219,144
   offset: 0,0
   index: -1
 Head/HeadDeerSkullBack_Btm
-  rotate: true
+  rotate: false
   xy: 7675,1235
   size: 177,162
   orig: 177,162
   offset: 0,0
   index: -1
 Head/HeadDeerSkullBack_Top
-  rotate: true
+  rotate: false
   xy: 5676,1234
   size: 177,162
   orig: 177,162
   offset: 0,0
   index: -1
 Head/HeadDeerSkull_Btm
-  rotate: true
+  rotate: false
   xy: 2807,1966
   size: 196,167
   orig: 196,167
@@ -5990,28 +5990,28 @@ Head/HeadDeerSkull_Markings
   offset: 0,1
   index: -1
 Head/HeadDeerSkull_Top
-  rotate: true
+  rotate: false
   xy: 617,1964
   size: 196,167
   orig: 196,167
   offset: 0,0
   index: -1
 Head/HeadDeer_Btm
-  rotate: true
+  rotate: false
   xy: 3563,2522
   size: 214,125
   orig: 214,125
   offset: 0,0
   index: -1
 Head/HeadDeer_Btm2
-  rotate: true
+  rotate: false
   xy: 6109,2524
   size: 214,123
   orig: 214,123
   offset: 0,0
   index: -1
 Head/HeadDeer_Btm3
-  rotate: true
+  rotate: false
   xy: 6563,2522
   size: 214,125
   orig: 214,125
@@ -6025,21 +6025,21 @@ Head/HeadDeer_Markings
   offset: 74,7
   index: -1
 Head/HeadDeer_Top
-  rotate: true
+  rotate: false
   xy: 5247,2516
   size: 214,125
   orig: 214,125
   offset: 0,0
   index: -1
 Head/HeadDeer_Top2
-  rotate: true
+  rotate: false
   xy: 4330,2508
   size: 214,123
   orig: 214,123
   offset: 0,0
   index: -1
 Head/HeadDeer_Top3
-  rotate: true
+  rotate: false
   xy: 4003,2499
   size: 214,125
   orig: 214,125
@@ -6067,189 +6067,189 @@ Head/HeadDogMarkings
   offset: 0,1
   index: -1
 Head/HeadDogTeddyBack_Btm
-  rotate: true
+  rotate: false
   xy: 6748,2252
   size: 203,133
   orig: 203,133
   offset: 0,0
   index: -1
 Head/HeadDogTeddyBack_Top
-  rotate: true
+  rotate: false
   xy: 4201,2251
   size: 203,133
   orig: 203,133
   offset: 0,0
   index: -1
 Head/HeadDogTeddy_Btm
-  rotate: true
+  rotate: false
   xy: 6935,2066
   size: 198,133
   orig: 198,133
   offset: 0,0
   index: -1
 Head/HeadDogTeddy_Btm2
-  rotate: true
+  rotate: false
   xy: 7873,2185
   size: 201,143
   orig: 201,143
   offset: 0,0
   index: -1
 Head/HeadDogTeddy_Markings
-  rotate: true
+  rotate: false
   xy: 2275,1972
   size: 89,55
   orig: 89,55
   offset: 0,0
   index: -1
 Head/HeadDogTeddy_Top
-  rotate: true
+  rotate: false
   xy: 4548,2058
   size: 198,133
   orig: 198,133
   offset: 0,0
   index: -1
 Head/HeadDog_Btm
-  rotate: true
+  rotate: false
   xy: 7665,591
   size: 149,127
   orig: 149,127
   offset: 0,0
   index: -1
 Head/HeadDog_Btm3
-  rotate: true
+  rotate: false
   xy: 4134,590
   size: 149,127
   orig: 149,127
   offset: 0,0
   index: -1
 Head/HeadDog_Top
-  rotate: true
+  rotate: false
   xy: 7003,589
   size: 149,127
   orig: 149,127
   offset: 0,0
   index: -1
 Head/HeadDog_Top3
-  rotate: true
+  rotate: false
   xy: 4901,588
   size: 149,127
   orig: 149,127
   offset: 0,0
   index: -1
 Head/HeadDuck2_Btm
-  rotate: true
+  rotate: false
   xy: 4609,2193
   size: 200,127
   orig: 200,127
   offset: 0,0
   index: -1
 Head/HeadDuck2_Top
-  rotate: true
+  rotate: false
   xy: 844,2189
   size: 200,127
   orig: 200,127
   offset: 0,0
   index: -1
 Head/HeadDuck3_Btm
-  rotate: true
+  rotate: false
   xy: 5300,1374
   size: 181,125
   orig: 181,125
   offset: 0,0
   index: -1
 Head/HeadDuck3_Top
-  rotate: true
+  rotate: false
   xy: 6521,1374
   size: 181,125
   orig: 181,125
   offset: 0,0
   index: -1
 Head/HeadDuckBack2_Btm
-  rotate: true
+  rotate: false
   xy: 1267,466
   size: 138,125
   orig: 138,125
   offset: 0,0
   index: -1
 Head/HeadDuckBack_Btm
-  rotate: true
+  rotate: false
   xy: 7596,463
   size: 138,126
   orig: 138,126
   offset: 0,0
   index: -1
 Head/HeadDuck_Btm
-  rotate: true
+  rotate: false
   xy: 406,1958
   size: 193,118
   orig: 193,118
   offset: 0,0
   index: -1
 Head/HeadDuck_Top
-  rotate: true
+  rotate: false
   xy: 2,1957
   size: 193,118
   orig: 193,118
   offset: 0,0
   index: -1
 Head/HeadEagle2_Back
-  rotate: true
+  rotate: false
   xy: 4377,764
   size: 159,150
   orig: 159,150
   offset: 0,0
   index: -1
 Head/HeadEagle2_Btm
-  rotate: true
+  rotate: false
   xy: 392,1785
   size: 191,171
   orig: 191,172
   offset: 0,1
   index: -1
 Head/HeadEagle2_Markings
-  rotate: true
+  rotate: false
   xy: 2,1784
   size: 191,171
   orig: 191,172
   offset: 0,1
   index: -1
 Head/HeadEagle2_Top
-  rotate: true
+  rotate: false
   xy: 1238,1783
   size: 191,171
   orig: 191,172
   offset: 0,1
   index: -1
 Head/HeadEagle3_Top
-  rotate: true
+  rotate: false
   xy: 6507,1862
   size: 192,169
   orig: 192,169
   offset: 0,0
   index: -1
 Head/HeadEagle_Btm
-  rotate: true
+  rotate: false
   xy: 7554,1860
   size: 192,169
   orig: 192,169
   offset: 0,0
   index: -1
 Head/HeadEagle_Markings
-  rotate: true
+  rotate: false
   xy: 6275,1859
   size: 192,169
   orig: 192,169
   offset: 0,0
   index: -1
 Head/HeadEagle_Top
-  rotate: true
+  rotate: false
   xy: 2081,1858
   size: 192,169
   orig: 192,169
   offset: 0,0
   index: -1
 Head/HeadElephantBack_Btm
-  rotate: true
+  rotate: false
   xy: 4191,1367
   size: 179,124
   orig: 179,124
@@ -6270,7 +6270,7 @@ Head/HeadElephant_Btm2
   offset: 0,0
   index: -1
 Head/HeadElephant_Btm3
-  rotate: true
+  rotate: false
   xy: 6401,1067
   size: 172,172
   orig: 172,172
@@ -6284,7 +6284,7 @@ Head/HeadElephant_Markings
   offset: 0,0
   index: -1
 Head/HeadEnchidaBack_Btm
-  rotate: true
+  rotate: false
   xy: 520,822
   size: 160,137
   orig: 160,137
@@ -6298,21 +6298,21 @@ Head/HeadEnchida_Btm
   offset: 0,0
   index: -1
 Head/HeadEnchida_Btm2
-  rotate: true
+  rotate: false
   xy: 1962,3299
   size: 248,131
   orig: 248,131
   offset: 0,0
   index: -1
 Head/HeadEnchida_Markings
-  rotate: true
+  rotate: false
   xy: 5697,3504
   size: 86,15
   orig: 86,15
   offset: 0,0
   index: -1
 Head/HeadEnchida_Top
-  rotate: true
+  rotate: false
   xy: 5545,2739
   size: 223,131
   orig: 223,131
@@ -6326,28 +6326,28 @@ Head/HeadEnchida_Top2
   offset: 0,0
   index: -1
 Head/HeadFennecBack_Btm2
-  rotate: true
+  rotate: false
   xy: 5966,1474
   size: 185,177
   orig: 185,177
   offset: 0,0
   index: -1
 Head/HeadFennecFoxBack_Btm
-  rotate: true
+  rotate: false
   xy: 6206,1065
   size: 172,169
   orig: 172,169
   offset: 0,0
   index: -1
 Head/HeadFennecFox_Btm
-  rotate: true
+  rotate: false
   xy: 6221,1236
   size: 178,170
   orig: 178,170
   offset: 0,0
   index: -1
 Head/HeadFennecFox_Btm2
-  rotate: true
+  rotate: false
   xy: 5592,1764
   size: 191,178
   orig: 191,178
@@ -6361,14 +6361,14 @@ Head/HeadFennecFox_Markings
   offset: 0,0
   index: -1
 Head/HeadFennecFox_Top
-  rotate: true
+  rotate: false
   xy: 1312,1232
   size: 178,170
   orig: 178,170
   offset: 0,0
   index: -1
 Head/HeadFennecFox_Top2
-  rotate: true
+  rotate: false
   xy: 3394,1759
   size: 191,178
   orig: 191,178
@@ -6389,49 +6389,49 @@ Head/HeadFishBack_Top
   offset: 0,0
   index: -1
 Head/HeadFish_Btm1
-  rotate: true
+  rotate: false
   xy: 2,2656
   size: 219,156
   orig: 219,156
   offset: 0,0
   index: -1
 Head/HeadFish_Btm2
-  rotate: true
+  rotate: false
   xy: 3563,2649
   size: 219,163
   orig: 219,163
   offset: 0,0
   index: -1
 Head/HeadFish_Btm3
-  rotate: true
+  rotate: false
   xy: 1175,1493
   size: 184,154
   orig: 184,154
   offset: 0,0
   index: -1
 Head/HeadFish_Markings
-  rotate: true
+  rotate: false
   xy: 1206,275
   size: 96,96
   orig: 96,96
   offset: 0,0
   index: -1
 Head/HeadFish_Top1
-  rotate: true
+  rotate: false
   xy: 5068,2656
   size: 219,156
   orig: 219,156
   offset: 0,0
   index: -1
 Head/HeadFish_Top2
-  rotate: true
+  rotate: false
   xy: 6593,2649
   size: 219,163
   orig: 219,163
   offset: 0,0
   index: -1
 Head/HeadFish_Top3
-  rotate: true
+  rotate: false
   xy: 4005,1486
   size: 184,154
   orig: 184,154
@@ -6473,21 +6473,21 @@ Head/HeadFoxBack_Btm
   offset: 0,0
   index: -1
 Head/HeadFox_Btm
-  rotate: true
+  rotate: false
   xy: 6705,722
   size: 157,135
   orig: 157,135
   offset: 0,0
   index: -1
 Head/HeadFox_Btm2
-  rotate: true
+  rotate: false
   xy: 4171,719
   size: 157,135
   orig: 157,135
   offset: 0,0
   index: -1
 Head/HeadFox_Btm3
-  rotate: true
+  rotate: false
   xy: 1387,715
   size: 157,135
   orig: 157,135
@@ -6501,70 +6501,70 @@ Head/HeadFox_Markings
   offset: 0,0
   index: -1
 Head/HeadFox_Top
-  rotate: true
+  rotate: false
   xy: 1546,707
   size: 157,135
   orig: 157,135
   offset: 0,0
   index: -1
 Head/HeadFox_Top2
-  rotate: true
+  rotate: false
   xy: 2163,705
   size: 157,135
   orig: 157,135
   offset: 0,0
   index: -1
 Head/HeadFox_Top3
-  rotate: true
+  rotate: false
   xy: 5427,705
   size: 157,135
   orig: 157,135
   offset: 0,0
   index: -1
 Head/HeadFrogBack_Btm
-  rotate: true
+  rotate: false
   xy: 328,666
   size: 154,123
   orig: 154,123
   offset: 0,0
   index: -1
 Head/HeadFrogBossBack_Btm
-  rotate: true
+  rotate: false
   xy: 5785,1684
   size: 187,122
   orig: 187,122
   offset: 0,0
   index: -1
 Head/HeadFrogBossBack_Top
-  rotate: true
+  rotate: false
   xy: 2851,1681
   size: 187,122
   orig: 187,122
   offset: 0,0
   index: -1
 Head/HeadFrogBoss_Btm
-  rotate: true
+  rotate: false
   xy: 3587,1671
   size: 187,122
   orig: 187,122
   offset: 0,0
   index: -1
 Head/HeadFrogBoss_Top
-  rotate: true
+  rotate: false
   xy: 387,1661
   size: 187,122
   orig: 187,122
   offset: 0,0
   index: -1
 Head/HeadFrog_Btm
-  rotate: true
+  rotate: false
   xy: 1907,666
   size: 154,123
   orig: 154,123
   offset: 0,0
   index: -1
 Head/HeadFrog_Btm2
-  rotate: true
+  rotate: false
   xy: 2,1038
   size: 170,128
   orig: 170,128
@@ -6585,14 +6585,14 @@ Head/HeadFrog_Markings
   offset: 0,0
   index: -1
 Head/HeadFrog_Top
-  rotate: true
+  rotate: false
   xy: 5060,665
   size: 154,123
   orig: 154,123
   offset: 0,0
   index: -1
 Head/HeadFrog_Top2
-  rotate: true
+  rotate: false
   xy: 5804,1037
   size: 170,128
   orig: 170,128
@@ -6606,98 +6606,98 @@ Head/HeadFrog_Top3
   offset: 0,0
   index: -1
 Head/HeadGiraffeBack_Btm
-  rotate: true
+  rotate: false
   xy: 7325,1785
   size: 190,126
   orig: 190,126
   offset: 0,0
   index: -1
 Head/HeadGiraffeBack_Top
-  rotate: true
+  rotate: false
   xy: 6701,1784
   size: 190,126
   orig: 190,126
   offset: 0,0
   index: -1
 Head/HeadGiraffe_Btm
-  rotate: true
+  rotate: false
   xy: 7117,1774
   size: 190,135
   orig: 190,135
   offset: 0,0
   index: -1
 Head/HeadGiraffe_Btm3
-  rotate: true
+  rotate: false
   xy: 2469,1779
   size: 190,129
   orig: 190,129
   offset: 0,0
   index: -1
 Head/HeadGiraffe_Markings
-  rotate: true
+  rotate: false
   xy: 5539,130
   size: 83,79
   orig: 83,79
   offset: 0,0
   index: -1
 Head/HeadGiraffe_Top
-  rotate: true
+  rotate: false
   xy: 195,1766
   size: 190,135
   orig: 190,135
   offset: 0,0
   index: -1
 Head/HeadGiraffe_Top3
-  rotate: true
+  rotate: false
   xy: 6469,1731
   size: 190,129
   orig: 190,129
   offset: 0,0
   index: -1
 Head/HeadGoldFishBack_Btm
-  rotate: true
+  rotate: false
   xy: 5978,1653
   size: 188,178
   orig: 188,178
   offset: 0,0
   index: -1
 Head/HeadGoldFishBack_Top
-  rotate: true
+  rotate: false
   xy: 3815,1636
   size: 188,178
   orig: 188,178
   offset: 0,0
   index: -1
 Head/HeadGoldFish_Btm
-  rotate: true
+  rotate: false
   xy: 7808,2998
   size: 238,172
   orig: 238,172
   offset: 0,0
   index: -1
 Head/HeadGoldFish_Btm2
-  rotate: true
+  rotate: false
   xy: 4876,3221
   size: 245,179
   orig: 245,179
   offset: 0,0
   index: -1
 Head/HeadGoldFish_Markings
-  rotate: true
+  rotate: false
   xy: 2,2996
   size: 238,172
   orig: 238,172
   offset: 0,0
   index: -1
 Head/HeadGoldFish_Markings2
-  rotate: true
+  rotate: false
   xy: 7557,2986
   size: 238,172
   orig: 238,172
   offset: 0,0
   index: -1
 Head/HeadGoldFish_Markings3
-  rotate: true
+  rotate: false
   xy: 6468,3220
   size: 245,179
   orig: 245,179
@@ -6711,98 +6711,98 @@ Head/HeadGoldFish_Top
   offset: 0,0
   index: -1
 Head/HeadGoldFish_Top2
-  rotate: true
+  rotate: false
   xy: 2212,3204
   size: 245,179
   orig: 245,179
   offset: 0,0
   index: -1
 Head/HeadGorillaBack_Btm
-  rotate: true
+  rotate: false
   xy: 7309,1637
   size: 187,146
   orig: 187,146
   offset: 0,0
   index: -1
 Head/HeadGorillaBack_Btm2
-  rotate: true
+  rotate: false
   xy: 2,1650
   size: 187,132
   orig: 187,132
   offset: 0,0
   index: -1
 Head/HeadGorillaBack_Top
-  rotate: true
+  rotate: false
   xy: 6661,1636
   size: 187,146
   orig: 187,146
   offset: 0,0
   index: -1
 Head/HeadGorillaBack_Top2
-  rotate: true
+  rotate: false
   xy: 1202,1649
   size: 187,132
   orig: 187,132
   offset: 0,0
   index: -1
 Head/HeadGorilla_Btm
-  rotate: true
+  rotate: false
   xy: 2441,1631
   size: 187,146
   orig: 187,146
   offset: 0,0
   index: -1
 Head/HeadGorilla_Btm2
-  rotate: true
+  rotate: false
   xy: 4005,1642
   size: 187,132
   orig: 187,132
   offset: 0,0
   index: -1
 Head/HeadGorilla_Markings
-  rotate: true
+  rotate: false
   xy: 3253,3250
   size: 159,42
   orig: 159,42
   offset: 0,0
   index: -1
 Head/HeadGorilla_Top
-  rotate: true
+  rotate: false
   xy: 7117,1626
   size: 187,146
   orig: 187,146
   offset: 0,0
   index: -1
 Head/HeadGorilla_Top2
-  rotate: true
+  rotate: false
   xy: 191,1632
   size: 187,132
   orig: 187,132
   offset: 0,0
   index: -1
 Head/HeadHammerheadBack_Btm
-  rotate: true
+  rotate: false
   xy: 661,2501
   size: 214,117
   orig: 214,117
   offset: 0,0
   index: -1
 Head/HeadHammerheadBack_Btm2
-  rotate: true
+  rotate: false
   xy: 2634,2563
   size: 216,121
   orig: 217,121
   offset: 1,0
   index: -1
 Head/HeadHammerhead_Btm
-  rotate: true
+  rotate: false
   xy: 3308,2491
   size: 214,117
   orig: 214,117
   offset: 0,0
   index: -1
 Head/HeadHammerhead_Btm2
-  rotate: true
+  rotate: false
   xy: 6345,2557
   size: 216,121
   orig: 217,121
@@ -6816,7 +6816,7 @@ Head/HeadHammerhead_Markings
   offset: 0,0
   index: -1
 Head/HeadHammerhead_Top
-  rotate: true
+  rotate: false
   xy: 5463,2470
   size: 214,117
   orig: 214,117
@@ -6837,21 +6837,21 @@ Head/HeadHedgehogBack_Btm
   offset: 0,0
   index: -1
 Head/HeadHedgehog_Btm
-  rotate: true
+  rotate: false
   xy: 3148,1708
   size: 190,150
   orig: 190,150
   offset: 0,0
   index: -1
 Head/HeadHedgehog_Btm2
-  rotate: true
+  rotate: false
   xy: 7517,1708
   size: 190,150
   orig: 190,150
   offset: 0,0
   index: -1
 Head/HeadHedgehog_Btm3
-  rotate: true
+  rotate: false
   xy: 6239,1707
   size: 190,150
   orig: 190,150
@@ -6865,35 +6865,35 @@ Head/HeadHedgehog_Markings
   offset: 0,0
   index: -1
 Head/HeadHeketBack_Btm
-  rotate: true
+  rotate: false
   xy: 3200,1860
   size: 192,167
   orig: 192,167
   offset: 0,0
   index: -1
 Head/HeadHeketBack_Btm2
-  rotate: true
+  rotate: false
   xy: 5204,1836
   size: 192,189
   orig: 192,189
   offset: 0,0
   index: -1
 Head/HeadHeketBack_Extra
-  rotate: true
+  rotate: false
   xy: 5164,3538
   size: 118,32
   orig: 118,32
   offset: 0,0
   index: -1
 Head/HeadHeket_Btm
-  rotate: true
+  rotate: false
   xy: 1671,1856
   size: 192,167
   orig: 192,167
   offset: 0,0
   index: -1
 Head/HeadHeket_Btm2
-  rotate: true
+  rotate: false
   xy: 6045,1833
   size: 192,189
   orig: 192,189
@@ -6907,63 +6907,63 @@ Head/HeadHeket_Extra
   offset: 0,0
   index: -1
 Head/HeadHeket_Extra2
-  rotate: true
+  rotate: false
   xy: 3824,1816
   size: 192,189
   orig: 192,189
   offset: 0,0
   index: -1
 Head/HeadHeket_Top
-  rotate: true
+  rotate: false
   xy: 1865,1836
   size: 192,167
   orig: 192,167
   offset: 0,0
   index: -1
 Head/HeadHeket_Top2
-  rotate: true
+  rotate: false
   xy: 3621,1795
   size: 192,189
   orig: 192,189
   offset: 0,0
   index: -1
 Head/HeadHippoBack_Btm
-  rotate: true
+  rotate: false
   xy: 5052,534
   size: 145,129
   orig: 145,130
   offset: 0,1
   index: -1
 Head/HeadHippoBack_Btm2
-  rotate: true
+  rotate: false
   xy: 6182,522
   size: 145,125
   orig: 145,126
   offset: 0,1
   index: -1
 Head/HeadHippo_Btm
-  rotate: true
+  rotate: false
   xy: 1251,968
   size: 168,128
   orig: 168,128
   offset: 0,0
   index: -1
 Head/HeadHippo_Btm2
-  rotate: true
+  rotate: false
   xy: 5583,969
   size: 168,126
   orig: 168,126
   offset: 0,0
   index: -1
 Head/HeadHippo_Btm3
-  rotate: true
+  rotate: false
   xy: 1671,1257
   size: 176,126
   orig: 176,126
   offset: 0,0
   index: -1
 Head/HeadHippo_Markings
-  rotate: true
+  rotate: false
   xy: 5745,314
   size: 105,97
   orig: 105,97
@@ -6977,21 +6977,21 @@ Head/HeadHorseBack
   offset: 0,0
   index: -1
 Head/HeadHorse_Btm
-  rotate: true
+  rotate: false
   xy: 3008,797
   size: 160,152
   orig: 160,152
   offset: 0,0
   index: -1
 Head/HeadHorse_Btm2
-  rotate: true
+  rotate: false
   xy: 4009,797
   size: 160,152
   orig: 160,152
   offset: 0,0
   index: -1
 Head/HeadHorse_Btm3
-  rotate: true
+  rotate: false
   xy: 331,791
   size: 160,152
   orig: 160,152
@@ -7005,133 +7005,133 @@ Head/HeadHorse_Markings
   offset: 0,0
   index: -1
 Head/HeadHorse_Top
-  rotate: true
+  rotate: false
   xy: 2001,791
   size: 160,152
   orig: 160,152
   offset: 0,0
   index: -1
 Head/HeadHorse_Top2
-  rotate: true
+  rotate: false
   xy: 5103,790
   size: 160,152
   orig: 160,152
   offset: 0,0
   index: -1
 Head/HeadHorse_Top3
-  rotate: true
+  rotate: false
   xy: 6083,776
   size: 160,152
   orig: 160,152
   offset: 0,0
   index: -1
 Head/HeadKallamarBack_Btm
-  rotate: true
+  rotate: false
   xy: 3024,2055
   size: 199,179
   orig: 199,179
   offset: 0,0
   index: -1
 Head/HeadKallamarBack_Btm2
-  rotate: true
+  rotate: false
   xy: 7371,2055
   size: 199,179
   orig: 199,179
   offset: 0,0
   index: -1
 Head/HeadKallamarBack_Extra
-  rotate: true
+  rotate: false
   xy: 7158,2053
   size: 199,179
   orig: 199,179
   offset: 0,0
   index: -1
 Head/HeadKallamarBack_Extra2
-  rotate: true
+  rotate: false
   xy: 2606,2052
   size: 199,179
   orig: 199,179
   offset: 0,0
   index: -1
 Head/HeadKallamarBack_Top
-  rotate: true
+  rotate: false
   xy: 6528,2033
   size: 199,179
   orig: 199,179
   offset: 0,0
   index: -1
 Head/HeadKallamarBack_Top2
-  rotate: true
+  rotate: false
   xy: 7572,2031
   size: 199,179
   orig: 199,179
   offset: 0,0
   index: -1
 Head/HeadKallamar_Btm
-  rotate: true
+  rotate: false
   xy: 6306,2030
   size: 199,179
   orig: 199,179
   offset: 0,0
   index: -1
 Head/HeadKallamar_Btm2
-  rotate: true
+  rotate: false
   xy: 2167,2029
   size: 199,179
   orig: 199,179
   offset: 0,0
   index: -1
 Head/HeadKallamar_Extra
-  rotate: true
+  rotate: false
   xy: 3225,2029
   size: 199,179
   orig: 199,179
   offset: 0,0
   index: -1
 Head/HeadKallamar_Extra2
-  rotate: true
+  rotate: false
   xy: 5216,2027
   size: 199,179
   orig: 199,179
   offset: 0,0
   index: -1
 Head/HeadKallamar_Top
-  rotate: true
+  rotate: false
   xy: 1682,2025
   size: 199,179
   orig: 199,179
   offset: 0,0
   index: -1
 Head/HeadKallamar_Top2
-  rotate: true
+  rotate: false
   xy: 6074,2024
   size: 199,179
   orig: 199,179
   offset: 0,0
   index: -1
 Head/HeadKiwiBack_Btm
-  rotate: true
+  rotate: false
   xy: 3330,615
   size: 152,135
   orig: 152,135
   offset: 0,0
   index: -1
 Head/HeadKiwiBack_Btm2
-  rotate: true
+  rotate: false
   xy: 5216,643
   size: 154,144
   orig: 154,144
   offset: 0,0
   index: -1
 Head/HeadKiwi_Btm
-  rotate: true
+  rotate: false
   xy: 3510,3423
   size: 267,135
   orig: 267,135
   offset: 0,0
   index: -1
 Head/HeadKiwi_Btm2
-  rotate: true
+  rotate: false
   xy: 5285,3526
   size: 274,143
   orig: 274,143
@@ -7145,42 +7145,42 @@ Head/HeadKiwi_Markings
   offset: 0,0
   index: -1
 Head/HeadKiwi_Top
-  rotate: true
+  rotate: false
   xy: 3779,3414
   size: 267,135
   orig: 267,135
   offset: 0,0
   index: -1
 Head/HeadKiwi_Top2
-  rotate: true
+  rotate: false
   xy: 4617,3513
   size: 274,143
   orig: 274,143
   offset: 0,0
   index: -1
 Head/HeadKoalaBack_Btm
-  rotate: true
+  rotate: false
   xy: 5398,1853
   size: 192,129
   orig: 192,129
   offset: 0,0
   index: -1
 Head/HeadKoalaBack_Btm2
-  rotate: true
+  rotate: false
   xy: 1046,2073
   size: 199,129
   orig: 199,129
   offset: 0,0
   index: -1
 Head/HeadKoala_Btm
-  rotate: true
+  rotate: false
   xy: 1445,1850
   size: 192,129
   orig: 192,129
   offset: 0,0
   index: -1
 Head/HeadKoala_Btm2
-  rotate: true
+  rotate: false
   xy: 3426,2072
   size: 199,129
   orig: 199,129
@@ -7194,371 +7194,371 @@ Head/HeadKoala_Markings
   offset: 0,0
   index: -1
 Head/HeadKoala_Nose
-  rotate: true
+  rotate: false
   xy: 2167,2220
   size: 27,36
   orig: 27,36
   offset: 0,0
   index: -1
 Head/HeadKoala_Top
-  rotate: true
+  rotate: false
   xy: 2761,1835
   size: 192,129
   orig: 192,129
   offset: 0,0
   index: -1
 Head/HeadKoala_Top2
-  rotate: true
+  rotate: false
   xy: 5009,2071
   size: 199,129
   orig: 199,129
   offset: 0,0
   index: -1
 Head/HeadLadybugBack_Btm
-  rotate: true
+  rotate: false
   xy: 434,2410
   size: 212,165
   orig: 212,165
   offset: 0,0
   index: -1
 Head/HeadLadybugBack_Top
-  rotate: true
+  rotate: false
   xy: 5679,2409
   size: 212,165
   orig: 212,165
   offset: 0,0
   index: -1
 Head/HeadLadybug_Btm
-  rotate: true
+  rotate: false
   xy: 3068,2384
   size: 211,165
   orig: 211,165
   offset: 0,0
   index: -1
 Head/HeadLadybug_Btm2
-  rotate: true
+  rotate: false
   xy: 3068,2384
   size: 211,165
   orig: 211,165
   offset: 0,0
   index: -1
 Head/HeadLadybug_Markings
-  rotate: true
+  rotate: false
   xy: 4003,2675
   size: 106,46
   orig: 106,46
   offset: 0,0
   index: -1
 Head/HeadLadybug_Top
-  rotate: true
+  rotate: false
   xy: 7467,2384
   size: 211,165
   orig: 211,165
   offset: 0,0
   index: -1
 Head/HeadLadybug_Top2
-  rotate: true
+  rotate: false
   xy: 7250,2382
   size: 211,165
   orig: 211,165
   offset: 0,0
   index: -1
 Head/HeadLemurBack_Btm
-  rotate: true
+  rotate: false
   xy: 3054,2236
   size: 203,146
   orig: 203,146
   offset: 0,0
   index: -1
 Head/HeadLemurBack_Btm2
-  rotate: true
+  rotate: false
   xy: 7463,2236
   size: 203,146
   orig: 203,146
   offset: 0,0
   index: -1
 Head/HeadLemurBack_Top
-  rotate: true
+  rotate: false
   xy: 7166,2234
   size: 203,146
   orig: 203,146
   offset: 0,0
   index: -1
 Head/HeadLemurBack_Top2
-  rotate: true
+  rotate: false
   xy: 6528,2214
   size: 203,146
   orig: 203,146
   offset: 0,0
   index: -1
 Head/HeadLemur_Btm
-  rotate: true
+  rotate: false
   xy: 7668,2212
   size: 203,146
   orig: 203,146
   offset: 0,0
   index: -1
 Head/HeadLemur_Btm2
-  rotate: true
+  rotate: false
   xy: 2199,2210
   size: 203,146
   orig: 203,146
   offset: 0,0
   index: -1
 Head/HeadLemur_Btm3
-  rotate: true
+  rotate: false
   xy: 3259,2210
   size: 203,146
   orig: 203,146
   offset: 0,0
   index: -1
 Head/HeadLemur_Markings
-  rotate: true
+  rotate: false
   xy: 5239,2208
   size: 203,146
   orig: 203,146
   offset: 0,0
   index: -1
 Head/HeadLemur_Markings2
-  rotate: true
+  rotate: false
   xy: 6101,2205
   size: 203,146
   orig: 203,146
   offset: 0,0
   index: -1
 Head/HeadLemur_Markings3
-  rotate: true
+  rotate: false
   xy: 1066,2204
   size: 203,146
   orig: 203,146
   offset: 0,0
   index: -1
 Head/HeadLemur_Top
-  rotate: true
+  rotate: false
   xy: 3464,2203
   size: 203,146
   orig: 203,146
   offset: 0,0
   index: -1
 Head/HeadLemur_Top2
-  rotate: true
+  rotate: false
   xy: 5011,2202
   size: 203,146
   orig: 203,146
   offset: 0,0
   index: -1
 Head/HeadLemur_Top3
-  rotate: true
+  rotate: false
   xy: 6953,2201
   size: 203,146
   orig: 203,146
   offset: 0,0
   index: -1
 Head/HeadLeshyBack_Btm
-  rotate: true
+  rotate: false
   xy: 4501,3225
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshyBack_Btm2
-  rotate: true
+  rotate: false
   xy: 3006,3207
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshyBack_Extra
-  rotate: true
+  rotate: false
   xy: 1677,3199
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshyBack_Extra2
-  rotate: true
+  rotate: false
   xy: 2459,3189
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Btm
-  rotate: true
+  rotate: false
   xy: 5411,3187
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Btm2
-  rotate: true
+  rotate: false
   xy: 1282,3186
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra
-  rotate: true
+  rotate: false
   xy: 5658,3175
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra2
-  rotate: true
+  rotate: false
   xy: 5905,3175
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra2_Brainwashed
-  rotate: true
+  rotate: false
   xy: 7851,3172
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra2_Dissenter
-  rotate: true
+  rotate: false
   xy: 2,3170
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra2_Happy
-  rotate: true
+  rotate: false
   xy: 7561,3160
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra2_Possessed
-  rotate: true
+  rotate: false
   xy: 6152,3154
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra2_Sad
-  rotate: true
+  rotate: false
   xy: 1924,3146
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra2_Scared
-  rotate: true
+  rotate: false
   xy: 3960,3146
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra2_Sick
-  rotate: true
+  rotate: false
   xy: 6715,3144
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra2_Sin
-  rotate: true
+  rotate: false
   xy: 7310,3144
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra_Brainwashed
-  rotate: true
+  rotate: false
   xy: 4207,3101
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra_Dissenter
-  rotate: true
+  rotate: false
   xy: 249,3089
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra_Happy
-  rotate: true
+  rotate: false
   xy: 496,3089
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra_Possessed
-  rotate: true
+  rotate: false
   xy: 743,3089
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra_Sad
-  rotate: true
+  rotate: false
   xy: 990,3089
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra_Scared
-  rotate: true
+  rotate: false
   xy: 3253,3076
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra_Sick
-  rotate: true
+  rotate: false
   xy: 4454,3072
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLeshy_Extra_Sin
-  rotate: true
+  rotate: false
   xy: 4701,3068
   size: 245,151
   orig: 245,151
   offset: 0,0
   index: -1
 Head/HeadLion2_Btm
-  rotate: true
+  rotate: false
   xy: 5589,1615
   size: 187,147
   orig: 187,147
   offset: 0,0
   index: -1
 Head/HeadLion2_Top
-  rotate: true
+  rotate: false
   xy: 3340,1610
   size: 187,147
   orig: 187,147
   offset: 0,0
   index: -1
 Head/HeadLionBack_Btm
-  rotate: true
+  rotate: false
   xy: 6850,1486
   size: 184,152
   orig: 184,152
   offset: 0,0
   index: -1
 Head/HeadLionBack_Top
-  rotate: true
+  rotate: false
   xy: 7306,1483
   size: 184,152
   orig: 184,152
   offset: 0,0
   index: -1
 Head/HeadLion_Btm
-  rotate: true
+  rotate: false
   xy: 3716,1482
   size: 184,152
   orig: 184,152
   offset: 0,0
   index: -1
 Head/HeadLion_Markings
-  rotate: true
+  rotate: false
   xy: 1908,179
   size: 90,74
   orig: 90,74
@@ -7600,7 +7600,7 @@ Head/HeadLlama_Btm3
   offset: 0,0
   index: -1
 Head/HeadLlama_Markings
-  rotate: true
+  rotate: false
   xy: 2715,1077
   size: 71,41
   orig: 71,41
@@ -7656,98 +7656,98 @@ Head/HeadMamaMaggot_Top
   offset: 0,0
   index: -1
 Head/HeadMamaWormBack_Btm
-  rotate: true
+  rotate: false
   xy: 641,2133
   size: 201,193
   orig: 201,193
   offset: 0,0
   index: -1
 Head/HeadMamaWormBack_Top
-  rotate: true
+  rotate: false
   xy: 3941,2131
   size: 201,193
   orig: 201,193
   offset: 0,0
   index: -1
 Head/HeadMamaWorm_Btm
-  rotate: true
+  rotate: false
   xy: 1964,2129
   size: 201,194
   orig: 201,194
   offset: 0,0
   index: -1
 Head/HeadMamaWorm_Extra1
-  rotate: true
+  rotate: false
   xy: 4260,1294
   size: 110,71
   orig: 110,71
   offset: 0,0
   index: -1
 Head/HeadMamaWorm_Extra2
-  rotate: true
+  rotate: false
   xy: 5427,844
   size: 110,71
   orig: 110,71
   offset: 0,0
   index: -1
 Head/HeadMamaWorm_Top
-  rotate: true
+  rotate: false
   xy: 1479,2126
   size: 201,194
   orig: 201,194
   offset: 0,0
   index: -1
 Head/HeadMassiveMonster_Btm
-  rotate: true
+  rotate: false
   xy: 3871,2007
   size: 196,122
   orig: 196,122
   offset: 0,0
   index: -1
 Head/HeadMassiveMonster_Btm2
-  rotate: true
+  rotate: false
   xy: 844,2047
   size: 197,140
   orig: 197,140
   offset: 0,0
   index: -1
 Head/HeadMassiveMonster_Top
-  rotate: true
+  rotate: false
   xy: 1883,2005
   size: 196,122
   orig: 196,122
   offset: 0,0
   index: -1
 Head/HeadMassiveMonster_Top2
-  rotate: true
+  rotate: false
   xy: 7773,2043
   size: 197,140
   orig: 197,140
   offset: 0,0
   index: -1
 Head/HeadMillipedeBack_Btm
-  rotate: true
+  rotate: false
   xy: 6962,3070
   size: 244,148
   orig: 244,148
   offset: 0,0
   index: -1
 Head/HeadMillipedeBack_Top
-  rotate: true
+  rotate: false
   xy: 4948,3068
   size: 244,148
   orig: 244,148
   offset: 0,0
   index: -1
 Head/HeadMillipede_Top
-  rotate: true
+  rotate: false
   xy: 4948,3068
   size: 244,148
   orig: 244,148
   offset: 0,0
   index: -1
 Head/HeadMillipede_Btm
-  rotate: true
+  rotate: false
   xy: 2952,3057
   size: 244,148
   orig: 244,148
@@ -7761,63 +7761,63 @@ Head/HeadMillipede_Extra1
   offset: 0,0
   index: -1
 Head/HeadMillipede_Extra2
-  rotate: true
+  rotate: false
   xy: 465,458
   size: 133,106
   orig: 133,106
   offset: 0,0
   index: -1
 Head/HeadMonkeyBack_Btm
-  rotate: true
+  rotate: false
   xy: 2736,2399
   size: 211,142
   orig: 211,142
   offset: 0,0
   index: -1
 Head/HeadMonkeyBack_Btm2
-  rotate: true
+  rotate: false
   xy: 903,2662
   size: 218,141
   orig: 218,141
   offset: 0,0
   index: -1
 Head/HeadMonkey_Btm
-  rotate: true
+  rotate: false
   xy: 1335,2397
   size: 211,142
   orig: 211,142
   offset: 0,0
   index: -1
 Head/HeadMonkey_Btm2
-  rotate: true
+  rotate: false
   xy: 5906,2659
   size: 218,141
   orig: 218,141
   offset: 0,0
   index: -1
 Head/HeadMonkey_Markings
-  rotate: true
+  rotate: false
   xy: 2209,289
   size: 95,71
   orig: 95,71
   offset: 0,0
   index: -1
 Head/HeadMonkey_Top
-  rotate: true
+  rotate: false
   xy: 3779,2389
   size: 211,142
   orig: 211,142
   offset: 0,0
   index: -1
 Head/HeadMonkey_Top2
-  rotate: true
+  rotate: false
   xy: 1123,2658
   size: 218,141
   orig: 218,141
   offset: 0,0
   index: -1
 Head/HeadMooseBack_Btm
-  rotate: true
+  rotate: false
   xy: 2,1472
   size: 185,176
   orig: 185,176
@@ -7831,14 +7831,14 @@ Head/HeadMooseBack_Btm2
   offset: 0,0
   index: -1
 Head/HeadMooseBack_Top
-  rotate: true
+  rotate: false
   xy: 2630,1472
   size: 185,176
   orig: 185,176
   offset: 0,0
   index: -1
 Head/HeadMooseBack_Top2
-  rotate: true
+  rotate: false
   xy: 4249,3254
   size: 250,199
   orig: 250,199
@@ -7852,14 +7852,14 @@ Head/HeadMoose_Btm
   offset: 0,0
   index: -1
 Head/HeadMoose_Btm2
-  rotate: true
+  rotate: false
   xy: 2754,3220
   size: 250,227
   orig: 250,227
   offset: 0,0
   index: -1
 Head/HeadMoose_Markings
-  rotate: true
+  rotate: false
   xy: 3229,1660
   size: 109,46
   orig: 109,46
@@ -7873,28 +7873,28 @@ Head/HeadMoose_Top
   offset: 0,0
   index: -1
 Head/HeadMoose_Top2
-  rotate: true
+  rotate: false
   xy: 7058,3220
   size: 250,227
   orig: 250,227
   offset: 0,0
   index: -1
 Head/HeadMortarBossBack_Btm
-  rotate: true
+  rotate: false
   xy: 6547,906
   size: 164,153
   orig: 164,153
   offset: 0,0
   index: -1
 Head/HeadMortarBossBack_Top
-  rotate: true
+  rotate: false
   xy: 3353,902
   size: 164,153
   orig: 164,153
   offset: 0,0
   index: -1
 Head/HeadMortarBoss_Btm
-  rotate: true
+  rotate: false
   xy: 893,894
   size: 164,153
   orig: 164,153
@@ -7908,49 +7908,49 @@ Head/HeadMortarBoss_Extra1
   offset: 0,0
   index: -1
 Head/HeadMortarBoss_Top
-  rotate: true
+  rotate: false
   xy: 1059,890
   size: 164,153
   orig: 164,153
   offset: 0,0
   index: -1
 Head/HeadMosquitosBack_Btm
-  rotate: true
+  rotate: false
   xy: 2629,3535
   size: 279,183
   orig: 279,183
   offset: 0,0
   index: -1
 Head/HeadMosquitosBack_Btm2
-  rotate: true
+  rotate: false
   xy: 5432,3340
   size: 263,179
   orig: 263,179
   offset: 0,0
   index: -1
 Head/HeadMosquitosBack_Top
-  rotate: true
+  rotate: false
   xy: 1412,3520
   size: 279,183
   orig: 279,183
   offset: 0,0
   index: -1
 Head/HeadMosquitosBack_Top2
-  rotate: true
+  rotate: false
   xy: 1412,3339
   size: 263,179
   orig: 263,179
   offset: 0,0
   index: -1
 Head/HeadMosquitos_Btm
-  rotate: true
+  rotate: false
   xy: 2250,3520
   size: 275,183
   orig: 275,183
   offset: 0,0
   index: -1
 Head/HeadMosquitos_Btm2
-  rotate: true
+  rotate: false
   xy: 3064,3360
   size: 267,182
   orig: 267,182
@@ -7971,7 +7971,7 @@ Head/HeadMosquitos_Top
   offset: 0,0
   index: -1
 Head/HeadMosquitos_Top2
-  rotate: true
+  rotate: false
   xy: 1693,3352
   size: 267,182
   orig: 267,182
@@ -7992,7 +7992,7 @@ Head/HeadMushroom_Markings
   offset: 0,0
   index: -1
 Head/HeadMushroom_Top
-  rotate: true
+  rotate: false
   xy: 2709,2233
   size: 204,164
   orig: 204,164
@@ -8027,7 +8027,7 @@ Head/HeadNarwal_Btm
   offset: 0,0
   index: -1
 Head/HeadNarwal_Btm2
-  rotate: true
+  rotate: false
   xy: 197,1903
   size: 193,172
   orig: 193,172
@@ -8069,14 +8069,14 @@ Head/HeadNightwolfBack_Top2
   offset: 0,0
   index: -1
 Head/HeadNightwolf_Btm
-  rotate: true
+  rotate: false
   xy: 3365,1212
   size: 175,162
   orig: 175,162
   offset: 0,0
   index: -1
 Head/HeadNightwolf_Btm2
-  rotate: true
+  rotate: false
   xy: 371,1211
   size: 175,162
   orig: 175,162
@@ -8090,14 +8090,14 @@ Head/HeadNightwolf_Btm3
   offset: 0,0
   index: -1
 Head/HeadNightwolf_Markings
-  rotate: true
+  rotate: false
   xy: 2807,2150
   size: 106,81
   orig: 106,81
   offset: 0,0
   index: -1
 Head/HeadNightwolf_Top2
-  rotate: true
+  rotate: false
   xy: 5277,1210
   size: 175,162
   orig: 175,162
@@ -8111,28 +8111,28 @@ Head/HeadNightwolf_Top3
   offset: 0,0
   index: -1
 Head/HeadOtterBack_Btm
-  rotate: true
+  rotate: false
   xy: 5674,518
   size: 142,117
   orig: 142,117
   offset: 0,0
   index: -1
 Head/HeadOtterBack_Top
-  rotate: true
+  rotate: false
   xy: 4285,517
   size: 142,117
   orig: 142,117
   offset: 0,0
   index: -1
 Head/HeadOtter_Btm
-  rotate: true
+  rotate: false
   xy: 2182,969
   size: 166,117
   orig: 166,117
   offset: 0,0
   index: -1
 Head/HeadOtter_Btm2
-  rotate: true
+  rotate: false
   xy: 520,961
   size: 166,117
   orig: 166,117
@@ -8146,77 +8146,77 @@ Head/HeadOtter_Markings
   offset: 0,0
   index: -1
 Head/HeadOtter_Top
-  rotate: true
+  rotate: false
   xy: 7447,959
   size: 166,117
   orig: 166,117
   offset: 0,0
   index: -1
 Head/HeadOtter_Top2
-  rotate: true
+  rotate: false
   xy: 2715,956
   size: 166,117
   orig: 166,117
   offset: 0,0
   index: -1
 Head/HeadPandaBack_Btm
-  rotate: true
+  rotate: false
   xy: 5631,1097
   size: 171,135
   orig: 171,135
   offset: 0,0
   index: -1
 Head/HeadPandaBack_Btm2
-  rotate: true
+  rotate: false
   xy: 7383,1100
   size: 171,132
   orig: 171,132
   offset: 0,0
   index: -1
 Head/HeadPandaBack_Btm3
-  rotate: true
+  rotate: false
   xy: 1838,868
   size: 161,123
   orig: 161,123
   offset: 0,0
   index: -1
 Head/HeadPandaBack_Top
-  rotate: true
+  rotate: false
   xy: 3008,1096
   size: 171,135
   orig: 171,135
   offset: 0,0
   index: -1
 Head/HeadPandaBack_Top2
-  rotate: true
+  rotate: false
   xy: 6578,1216
   size: 174,132
   orig: 174,132
   offset: 0,0
   index: -1
 Head/HeadPandaBack_Top3
-  rotate: true
+  rotate: false
   xy: 4214,856
   size: 161,123
   orig: 161,123
   offset: 0,0
   index: -1
 Head/HeadPanda_Btm
-  rotate: true
+  rotate: false
   xy: 3718,1161
   size: 173,142
   orig: 174,142
   offset: 0,0
   index: -1
 Head/HeadPanda_Btm2
-  rotate: true
+  rotate: false
   xy: 3893,1099
   size: 171,132
   orig: 171,132
   offset: 0,0
   index: -1
 Head/HeadPanda_Btm3
-  rotate: true
+  rotate: false
   xy: 1421,852
   size: 161,123
   orig: 161,123
@@ -8230,49 +8230,49 @@ Head/HeadPanda_Markings
   offset: 0,0
   index: -1
 Head/HeadPanda_Top
-  rotate: true
+  rotate: false
   xy: 6930,1158
   size: 173,142
   orig: 174,142
   offset: 0,0
   index: -1
 Head/HeadPanda_Top2
-  rotate: true
+  rotate: false
   xy: 1281,1098
   size: 171,132
   orig: 171,132
   offset: 0,0
   index: -1
 Head/HeadPanda_Top3
-  rotate: true
+  rotate: false
   xy: 1584,844
   size: 161,123
   orig: 161,123
   offset: 0,0
   index: -1
 Head/HeadPangolinBack_Btm
-  rotate: true
+  rotate: false
   xy: 2,464
   size: 139,130
   orig: 139,130
   offset: 0,0
   index: -1
 Head/HeadPangolin_Btm
-  rotate: true
+  rotate: false
   xy: 7967,1719
   size: 189,131
   orig: 189,131
   offset: 0,0
   index: -1
 Head/HeadPangolin_Btm3
-  rotate: true
+  rotate: false
   xy: 7967,1719
   size: 189,131
   orig: 189,131
   offset: 0,0
   index: -1
 Head/HeadPangolin_Btm2
-  rotate: true
+  rotate: false
   xy: 1431,1717
   size: 189,131
   orig: 189,131
@@ -8286,84 +8286,84 @@ Head/HeadPangolin_Markings
   offset: 0,0
   index: -1
 Head/HeadPangolin_Top
-  rotate: true
+  rotate: false
   xy: 7709,1717
   size: 189,131
   orig: 189,131
   offset: 0,0
   index: -1
 Head/HeadPangolin_Top2
-  rotate: true
+  rotate: false
   xy: 2250,1710
   size: 189,131
   orig: 189,131
   offset: 0,0
   index: -1
 Head/HeadPangolin_Top3
-  rotate: true
+  rotate: false
   xy: 585,1709
   size: 189,131
   orig: 189,131
   offset: 0,0
   index: -1
 Head/HeadPelicanBack_Btm
-  rotate: true
+  rotate: false
   xy: 4775,465
   size: 137,121
   orig: 137,121
   offset: 0,0
   index: -1
 Head/HeadPelican_Btm
-  rotate: true
+  rotate: false
   xy: 2239,3385
   size: 257,133
   orig: 257,133
   offset: 0,0
   index: -1
 Head/HeadPelican_Btm2
-  rotate: true
+  rotate: false
   xy: 7600,3313
   size: 249,134
   orig: 249,134
   offset: 0,0
   index: -1
 Head/HeadPelican_Markings
-  rotate: true
+  rotate: false
   xy: 6787,3297
   size: 249,134
   orig: 249,134
   offset: 0,0
   index: -1
 Head/HeadPelican_Top
-  rotate: true
+  rotate: false
   xy: 4617,3378
   size: 257,133
   orig: 257,133
   offset: 0,0
   index: -1
 Head/HeadPelican_Top2
-  rotate: true
+  rotate: false
   xy: 7310,3297
   size: 249,134
   orig: 249,134
   offset: 0,0
   index: -1
 Head/HeadPenguin2_Beak
-  rotate: true
+  rotate: false
   xy: 5615,2092
   size: 30,35
   orig: 30,35
   offset: 0,0
   index: -1
 Head/HeadPenguin2_Btm
-  rotate: true
+  rotate: false
   xy: 5378,917
   size: 163,122
   orig: 163,122
   offset: 0,0
   index: -1
 Head/HeadPenguin2_Top
-  rotate: true
+  rotate: false
   xy: 4415,916
   size: 163,122
   orig: 163,122
@@ -8377,21 +8377,21 @@ Head/HeadPenguin3_Beak
   offset: 0,0
   index: -1
 Head/HeadPenguin3_Btm
-  rotate: true
+  rotate: false
   xy: 4560,1353
   size: 179,138
   orig: 179,138
   offset: 0,0
   index: -1
 Head/HeadPenguin3_Top
-  rotate: true
+  rotate: false
   xy: 3184,1350
   size: 179,138
   orig: 179,138
   offset: 0,0
   index: -1
 Head/HeadPenguinBack_Back
-  rotate: true
+  rotate: false
   xy: 2005,444
   size: 134,122
   orig: 134,122
@@ -8405,14 +8405,14 @@ Head/HeadPenguin_Beak
   offset: 0,0
   index: -1
 Head/HeadPenguin_Btm
-  rotate: true
+  rotate: false
   xy: 6401,1241
   size: 175,131
   orig: 175,131
   offset: 0,0
   index: -1
 Head/HeadPenguin_Top
-  rotate: true
+  rotate: false
   xy: 4083,1234
   size: 175,131
   orig: 175,131
@@ -8426,14 +8426,14 @@ Head/HeadPig
   offset: 0,0
   index: -1
 Head/HeadPig2
-  rotate: true
+  rotate: false
   xy: 2325,1363
   size: 180,133
   orig: 180,133
   offset: 0,0
   index: -1
 Head/HeadPig3
-  rotate: true
+  rotate: false
   xy: 189,1342
   size: 180,153
   orig: 180,153
@@ -8447,14 +8447,14 @@ Head/HeadPigBack
   offset: 0,0
   index: -1
 Head/HeadPigBack2
-  rotate: true
+  rotate: false
   xy: 7580,1078
   size: 172,155
   orig: 172,155
   offset: 0,0
   index: -1
 Head/HeadPig_Coloured
-  rotate: true
+  rotate: false
   xy: 949,1362
   size: 180,133
   orig: 180,133
@@ -8468,98 +8468,98 @@ Head/HeadPig_Markings
   offset: 0,0
   index: -1
 Head/HeadPoopBack_Btm
-  rotate: true
+  rotate: false
   xy: 2505,684
   size: 156,149
   orig: 156,149
   offset: 0,0
   index: -1
 Head/HeadPoop_Btm
-  rotate: true
+  rotate: false
   xy: 4538,684
   size: 156,149
   orig: 156,149
   offset: 0,0
   index: -1
 Head/HeadPoop_Btm2
-  rotate: true
+  rotate: false
   xy: 493,692
   size: 156,128
   orig: 156,128
   offset: 0,0
   index: -1
 Head/HeadPoppyBack_Btm
-  rotate: true
+  rotate: false
   xy: 2345,721
   size: 158,153
   orig: 158,153
   offset: 0,0
   index: -1
 Head/HeadPoppyBack_Btm2
-  rotate: true
+  rotate: false
   xy: 5062,1120
   size: 173,168
   orig: 173,168
   offset: 0,0
   index: -1
 Head/HeadPoppyBack_Top
-  rotate: true
+  rotate: false
   xy: 3170,721
   size: 158,153
   orig: 158,153
   offset: 0,0
   index: -1
 Head/HeadPoppyBack_Top2
-  rotate: true
+  rotate: false
   xy: 4260,1111
   size: 173,168
   orig: 173,168
   offset: 0,0
   index: -1
 Head/HeadPoppy_Btm
-  rotate: true
+  rotate: false
   xy: 6575,1061
   size: 171,153
   orig: 171,153
   offset: 0,0
   index: -1
 Head/HeadPoppy_Btm2
-  rotate: true
+  rotate: false
   xy: 6924,1757
   size: 191,174
   orig: 191,174
   offset: 0,0
   index: -1
 Head/HeadPoppy_Markings
-  rotate: true
+  rotate: false
   xy: 6045,2052
   size: 26,26
   orig: 26,26
   offset: 0,0
   index: -1
 Head/HeadPoppy_Top
-  rotate: true
+  rotate: false
   xy: 3358,1057
   size: 171,153
   orig: 171,153
   offset: 0,0
   index: -1
 Head/HeadPoppy_Top2
-  rotate: true
+  rotate: false
   xy: 1009,1755
   size: 191,174
   orig: 191,174
   offset: 0,0
   index: -1
 Head/HeadPossomBack_Btm
-  rotate: true
+  rotate: false
   xy: 163,627
   size: 152,121
   orig: 152,121
   offset: 0,0
   index: -1
 Head/HeadPossom_Btm
-  rotate: true
+  rotate: false
   xy: 3091,2551
   size: 215,121
   orig: 215,121
@@ -8573,35 +8573,35 @@ Head/HeadPossom_Btm2
   offset: 0,0
   index: -1
 Head/HeadPossom_Markings
-  rotate: true
+  rotate: false
   xy: 7561,2551
   size: 215,121
   orig: 215,121
   offset: 0,0
   index: -1
 Head/HeadPossom_Markings2
-  rotate: true
+  rotate: false
   xy: 4854,2834
   size: 226,131
   orig: 226,131
   offset: 0,0
   index: -1
 Head/HeadPossom_Top
-  rotate: true
+  rotate: false
   xy: 7250,2549
   size: 215,121
   orig: 215,121
   offset: 0,0
   index: -1
 Head/HeadPossom_Top2
-  rotate: true
+  rotate: false
   xy: 3430,2828
   size: 226,131
   orig: 226,131
   offset: 0,0
   index: -1
 Head/HeadPossom_Top3
-  rotate: true
+  rotate: false
   xy: 6372,2828
   size: 226,131
   orig: 226,131
@@ -8678,56 +8678,56 @@ Head/HeadRabbit_Top3
   offset: 0,0
   index: -1
 Head/HeadRacoonBack_Btm
-  rotate: true
+  rotate: false
   xy: 6027,639
   size: 153,135
   orig: 153,135
   offset: 0,0
   index: -1
 Head/HeadRacoonBack_Top
-  rotate: true
+  rotate: false
   xy: 7510,632
   size: 153,135
   orig: 153,135
   offset: 0,0
   index: -1
 Head/HeadRacoon_Btm
-  rotate: true
+  rotate: false
   xy: 553,1248
   size: 176,134
   orig: 176,134
   offset: 0,0
   index: -1
 Head/HeadRacoon_Btm2
-  rotate: true
+  rotate: false
   xy: 2128,1234
   size: 176,142
   orig: 176,142
   offset: 0,0
   index: -1
 Head/HeadRacoon_Top
-  rotate: true
+  rotate: false
   xy: 2867,1242
   size: 176,134
   orig: 176,134
   offset: 0,0
   index: -1
 Head/HeadRacoon_Top2
-  rotate: true
+  rotate: false
   xy: 7402,1234
   size: 176,142
   orig: 176,142
   offset: 0,0
   index: -1
 Head/HeadRedPandaBack_Btm
-  rotate: true
+  rotate: false
   xy: 1480,570
   size: 149,135
   orig: 149,135
   offset: 0,0
   index: -1
 Head/HeadRedPandaBack_Top
-  rotate: true
+  rotate: false
   xy: 2063,568
   size: 149,135
   orig: 149,135
@@ -8741,56 +8741,56 @@ Head/HeadRedPanda_Btm
   offset: 0,0
   index: -1
 Head/HeadRedPanda_Btm2
-  rotate: true
+  rotate: false
   xy: 1747,731
   size: 158,135
   orig: 158,135
   offset: 0,0
   index: -1
 Head/HeadRedPanda_Markings
-  rotate: true
+  rotate: false
   xy: 8153,3496
   size: 26,49
   orig: 26,49
   offset: 0,0
   index: -1
 Head/HeadRedPanda_Top
-  rotate: true
+  rotate: false
   xy: 5867,731
   size: 158,135
   orig: 158,135
   offset: 0,0
   index: -1
 Head/HeadRedPanda_Top2
-  rotate: true
+  rotate: false
   xy: 3502,730
   size: 158,135
   orig: 158,135
   offset: 0,0
   index: -1
 Head/HeadRhinoBack_Btm
-  rotate: true
+  rotate: false
   xy: 7902,736
   size: 158,128
   orig: 158,129
   offset: 0,1
   index: -1
 Head/HeadRhinoBack_Btm2
-  rotate: true
+  rotate: false
   xy: 6877,720
   size: 158,140
   orig: 158,140
   offset: 0,0
   index: -1
 Head/HeadRhino_Btm
-  rotate: true
+  rotate: false
   xy: 2817,1411
   size: 182,137
   orig: 182,137
   offset: 0,0
   index: -1
 Head/HeadRhino_Btm2
-  rotate: true
+  rotate: false
   xy: 7036,1482
   size: 183,142
   orig: 183,142
@@ -8804,133 +8804,133 @@ Head/HeadRhino_Markings
   offset: 0,0
   index: -1
 Head/HeadRhino_Top
-  rotate: true
+  rotate: false
   xy: 4913,1411
   size: 182,137
   orig: 182,137
   offset: 0,0
   index: -1
 Head/HeadRhino_Top2
-  rotate: true
+  rotate: false
   xy: 1957,1475
   size: 183,142
   orig: 183,142
   offset: 0,0
   index: -1
 Head/HeadScorpionBack_Btm
-  rotate: true
+  rotate: false
   xy: 5914,3027
   size: 238,125
   orig: 238,125
   offset: 0,0
   index: -1
 Head/HeadScorpion_Btm
-  rotate: true
+  rotate: false
   xy: 6154,3027
   size: 238,125
   orig: 238,125
   offset: 0,0
   index: -1
 Head/HeadScorpion_Top
-  rotate: true
+  rotate: false
   xy: 1905,3019
   size: 238,125
   orig: 238,125
   offset: 0,0
   index: -1
 Head/HeadScuttleTurretBack_Btm
-  rotate: true
+  rotate: false
   xy: 258,3242
   size: 254,213
   orig: 254,213
   offset: 0,0
   index: -1
 Head/HeadScuttleTurretBack_Top
-  rotate: true
+  rotate: false
   xy: 514,3242
   size: 254,213
   orig: 254,213
   offset: 0,0
   index: -1
 Head/HeadScuttleTurret_Btm
-  rotate: true
+  rotate: false
   xy: 770,3242
   size: 254,213
   orig: 254,213
   offset: 0,0
   index: -1
 Head/HeadScuttleTurret_Top
-  rotate: true
+  rotate: false
   xy: 1026,3242
   size: 254,213
   orig: 254,213
   offset: 0,0
   index: -1
 Head/HeadSeahorseBack_Btm
-  rotate: true
+  rotate: false
   xy: 143,375
   size: 124,123
   orig: 124,123
   offset: 0,0
   index: -1
 Head/HeadSeahorseBack_Top
-  rotate: true
+  rotate: false
   xy: 5959,374
   size: 124,123
   orig: 124,123
   offset: 0,0
   index: -1
 Head/HeadSeahorse_Btm
-  rotate: true
+  rotate: false
   xy: 6850,1640
   size: 187,115
   orig: 187,115
   offset: 0,0
   index: -1
 Head/HeadSeahorse_Btm2
-  rotate: true
+  rotate: false
   xy: 986,1632
   size: 187,121
   orig: 187,121
   offset: 0,0
   index: -1
 Head/HeadSeahorse_Markings
-  rotate: true
+  rotate: false
   xy: 4745,282
   size: 95,78
   orig: 95,78
   offset: 0,0
   index: -1
 Head/HeadSeahorse_Top
-  rotate: true
+  rotate: false
   xy: 4194,1626
   size: 187,115
   orig: 187,115
   offset: 0,0
   index: -1
 Head/HeadSeahorse_Top2
-  rotate: true
+  rotate: false
   xy: 2021,1619
   size: 187,121
   orig: 187,121
   offset: 0,0
   index: -1
 Head/HeadSealBack_Btm
-  rotate: true
+  rotate: false
   xy: 167,900
   size: 162,118
   orig: 162,118
   offset: 0,0
   index: -1
 Head/HeadSeal_Btm
-  rotate: true
+  rotate: false
   xy: 3413,1376
   size: 180,118
   orig: 180,118
   offset: 0,0
   index: -1
 Head/HeadSeal_Btm2
-  rotate: true
+  rotate: false
   xy: 2851,1550
   size: 186,129
   orig: 186,129
@@ -8944,91 +8944,91 @@ Head/HeadSeal_Markings
   offset: 0,0
   index: -1
 Head/HeadSeal_Top
-  rotate: true
+  rotate: false
   xy: 371,1375
   size: 180,118
   orig: 180,118
   offset: 0,0
   index: -1
 Head/HeadSeal_Top2
-  rotate: true
+  rotate: false
   xy: 4928,1550
   size: 186,129
   orig: 186,129
   offset: 0,0
   index: -1
 Head/HeadShamuraBack_Btm
-  rotate: true
+  rotate: false
   xy: 2404,2110
   size: 200,196
   orig: 214,196
   offset: 14,0
   index: -1
 Head/HeadShamuraBack_Btm2
-  rotate: true
+  rotate: false
   xy: 1271,2101
   size: 200,196
   orig: 214,196
   offset: 14,0
   index: -1
 Head/HeadShamuraBack_Extra
-  rotate: true
+  rotate: false
   xy: 3669,2093
   size: 200,196
   orig: 214,196
   offset: 14,0
   index: -1
 Head/HeadShamuraBack_Extra2
-  rotate: true
+  rotate: false
   xy: 5872,2080
   size: 200,196
   orig: 214,196
   offset: 14,0
   index: -1
 Head/HeadShamuraBack_Top
-  rotate: true
+  rotate: false
   xy: 415,2078
   size: 200,196
   orig: 214,196
   offset: 14,0
   index: -1
 Head/HeadShamuraBack_Top2
-  rotate: true
+  rotate: false
   xy: 2,2077
   size: 200,196
   orig: 214,196
   offset: 14,0
   index: -1
 Head/HeadShamura_Btm
-  rotate: true
+  rotate: false
   xy: 204,2077
   size: 200,196
   orig: 214,196
   offset: 14,0
   index: -1
 Head/HeadShamura_Btm2
-  rotate: true
+  rotate: false
   xy: 5647,2077
   size: 200,196
   orig: 214,196
   offset: 14,0
   index: -1
 Head/HeadShamura_Extra
-  rotate: true
+  rotate: false
   xy: 6733,2054
   size: 200,196
   orig: 214,196
   offset: 14,0
   index: -1
 Head/HeadShamura_Extra2
-  rotate: true
+  rotate: false
   xy: 4144,2053
   size: 200,196
   orig: 214,196
   offset: 14,0
   index: -1
 Head/HeadShamura_Top
-  rotate: true
+  rotate: false
   xy: 4346,2052
   size: 200,196
   orig: 214,196
@@ -9042,56 +9042,56 @@ Head/HeadShamura_Top2
   offset: 14,0
   index: -1
 Head/HeadShrewBack_Btm
-  rotate: true
+  rotate: false
   xy: 7739,720
   size: 157,120
   orig: 157,120
   offset: 0,0
   index: -1
 Head/HeadShrew_Btm
-  rotate: true
+  rotate: false
   xy: 6748,2387
   size: 208,120
   orig: 208,120
   offset: 0,0
   index: -1
 Head/HeadShrew_Btm2
-  rotate: true
+  rotate: false
   xy: 2133,2837
   size: 225,121
   orig: 225,121
   offset: 0,0
   index: -1
 Head/HeadShrew_Btm3
-  rotate: true
+  rotate: false
   xy: 2275,1843
   size: 192,120
   orig: 192,120
   offset: 0,0
   index: -1
 Head/HeadShrew_Markings
-  rotate: true
+  rotate: false
   xy: 5078,317
   size: 100,85
   orig: 100,85
   offset: 0,0
   index: -1
 Head/HeadShrew_Top
-  rotate: true
+  rotate: false
   xy: 4219,2386
   size: 208,120
   orig: 208,120
   offset: 0,0
   index: -1
 Head/HeadShrew_Top2
-  rotate: true
+  rotate: false
   xy: 1633,2835
   size: 225,121
   orig: 225,121
   offset: 0,0
   index: -1
 Head/HeadShrew_Top3
-  rotate: true
+  rotate: false
   xy: 601,1842
   size: 192,120
   orig: 192,120
@@ -9105,14 +9105,14 @@ Head/HeadShrimp2_Btm
   offset: 0,0
   index: -1
 Head/HeadShrimp3_Btm
-  rotate: true
+  rotate: false
   xy: 2306,2529
   size: 215,139
   orig: 215,139
   offset: 0,0
   index: -1
 Head/HeadShrimpBack2_Btm
-  rotate: true
+  rotate: false
   xy: 4078,457
   size: 138,131
   orig: 138,131
@@ -9133,70 +9133,70 @@ Head/HeadShrimpBack_Btm
   offset: 0,0
   index: -1
 Head/HeadShrimp_Btm
-  rotate: true
+  rotate: false
   xy: 682,2620
   size: 219,183
   orig: 219,183
   offset: 0,0
   index: -1
 Head/HeadShrimp_Markings
-  rotate: true
+  rotate: false
   xy: 1389,316
   size: 109,101
   orig: 109,101
   offset: 0,0
   index: -1
 Head/HeadSkunkBack_Btm
-  rotate: true
+  rotate: false
   xy: 2350,876
   size: 162,138
   orig: 162,138
   offset: 0,0
   index: -1
 Head/HeadSkunkBack_Btm2
-  rotate: true
+  rotate: false
   xy: 3662,711
   size: 157,128
   orig: 157,128
   offset: 0,0
   index: -1
 Head/HeadSkunkBack_Top
-  rotate: true
+  rotate: false
   xy: 3177,876
   size: 162,138
   orig: 162,138
   offset: 0,0
   index: -1
 Head/HeadSkunkBack_Top2
-  rotate: true
+  rotate: false
   xy: 4742,709
   size: 157,128
   orig: 157,128
   offset: 0,0
   index: -1
 Head/HeadSkunk_Btm
-  rotate: true
+  rotate: false
   xy: 4779,966
   size: 169,138
   orig: 169,138
   offset: 0,0
   index: -1
 Head/HeadSkunk_Btm2
-  rotate: true
+  rotate: false
   xy: 1492,1267
   size: 177,128
   orig: 177,128
   offset: 0,0
   index: -1
 Head/HeadSkunk_Btm3
-  rotate: true
+  rotate: false
   xy: 3902,1350
   size: 179,134
   orig: 179,134
   offset: 0,0
   index: -1
 Head/HeadSkunk_Markings
-  rotate: true
+  rotate: false
   xy: 7754,966
   size: 169,138
   orig: 169,138
@@ -9210,21 +9210,21 @@ Head/HeadSkunk_Markings2
   offset: 0,0
   index: -1
 Head/HeadSkunk_Top
-  rotate: true
+  rotate: false
   xy: 7276,960
   size: 169,138
   orig: 169,138
   offset: 0,0
   index: -1
 Head/HeadSkunk_Top2
-  rotate: true
+  rotate: false
   xy: 7854,1266
   size: 177,128
   orig: 177,128
   offset: 0,0
   index: -1
 Head/HeadSkunk_Top3
-  rotate: true
+  rotate: false
   xy: 6704,1350
   size: 179,134
   orig: 179,134
@@ -9273,7 +9273,7 @@ Head/HeadSnail_Btm2
   offset: 0,0
   index: -1
 Head/HeadSnail_Markings
-  rotate: true
+  rotate: false
   xy: 2512,314
   size: 102,89
   orig: 102,89
@@ -9308,91 +9308,91 @@ Head/HeadSnakeBack_Btm2
   offset: 0,0
   index: -1
 Head/HeadSnakeBack_Btm3
-  rotate: true
+  rotate: false
   xy: 8049,439
   size: 131,117
   orig: 131,117
   offset: 0,0
   index: -1
 Head/HeadSnakeBack_Top3
-  rotate: true
+  rotate: false
   xy: 7143,436
   size: 131,117
   orig: 131,117
   offset: 0,0
   index: -1
 Head/HeadSnake_Btm
-  rotate: true
+  rotate: false
   xy: 5372,579
   size: 149,124
   orig: 149,124
   offset: 0,0
   index: -1
 Head/HeadSnake_Btm2
-  rotate: true
+  rotate: false
   xy: 484,566
   size: 149,124
   orig: 149,124
   offset: 0,0
   index: -1
 Head/HeadSnake_Btm3
-  rotate: true
+  rotate: false
   xy: 358,1090
   size: 171,119
   orig: 171,119
   offset: 0,0
   index: -1
 Head/HeadSnake_Markings
-  rotate: true
+  rotate: false
   xy: 1116,566
   size: 149,124
   orig: 149,124
   offset: 0,0
   index: -1
 Head/HeadSnake_Markings2
-  rotate: true
+  rotate: false
   xy: 5237,1089
   size: 171,119
   orig: 171,119
   offset: 0,0
   index: -1
 Head/HeadSnake_Top
-  rotate: true
+  rotate: false
   xy: 5523,562
   size: 149,124
   orig: 149,124
   offset: 0,0
   index: -1
 Head/HeadSnake_Top3
-  rotate: true
+  rotate: false
   xy: 2199,1088
   size: 171,119
   orig: 171,119
   offset: 0,0
   index: -1
 Head/HeadSphynxBack_Btm
-  rotate: true
+  rotate: false
   xy: 905,1049
   size: 171,157
   orig: 171,157
   offset: 0,0
   index: -1
 Head/HeadSphynx_Btm
-  rotate: true
+  rotate: false
   xy: 5410,1041
   size: 171,157
   orig: 171,157
   offset: 0,0
   index: -1
 Head/HeadSphynx_Btm2
-  rotate: true
+  rotate: false
   xy: 4435,1040
   size: 171,157
   orig: 171,157
   offset: 0,0
   index: -1
 Head/HeadSphynx_Markings
-  rotate: true
+  rotate: false
   xy: 178,1020
   size: 171,157
   orig: 171,157
@@ -9455,28 +9455,28 @@ Head/HeadSpikerBoss_Top
   offset: 0,0
   index: -1
 Head/HeadSquirrel2_Btm
-  rotate: true
+  rotate: false
   xy: 3874,956
   size: 169,141
   orig: 169,141
   offset: 0,0
   index: -1
 Head/HeadSquirrelBack2_Btm
-  rotate: true
+  rotate: false
   xy: 7304,536
   size: 148,143
   orig: 148,143
   offset: 0,0
   index: -1
 Head/HeadSquirrelBack_Btm
-  rotate: true
+  rotate: false
   xy: 2,596
   size: 152,149
   orig: 152,149
   offset: 0,0
   index: -1
 Head/HeadSquirrel_Btm
-  rotate: true
+  rotate: false
   xy: 3531,1015
   size: 170,148
   orig: 170,148
@@ -9504,7 +9504,7 @@ Head/HeadStarBunny_Btm
   offset: 1,0
   index: -1
 Head/HeadStarBunny_Markings
-  rotate: true
+  rotate: false
   xy: 4866,426
   size: 38,37
   orig: 38,37
@@ -9518,42 +9518,42 @@ Head/HeadStarBunny_Top
   offset: 1,0
   index: -1
 Head/HeadStarfishBack_Btm2
-  rotate: true
+  rotate: false
   xy: 3519,867
   size: 162,146
   orig: 162,146
   offset: 0,0
   index: -1
 Head/HeadStarfishBack_Btm3
-  rotate: true
+  rotate: false
   xy: 2,897
   size: 163,139
   orig: 164,139
   offset: 1,0
   index: -1
 Head/HeadStarfish_Btm
-  rotate: true
+  rotate: false
   xy: 2012,945
   size: 168,149
   orig: 168,149
   offset: 0,0
   index: -1
 Head/HeadStarfish_Btm2
-  rotate: true
+  rotate: false
   xy: 6713,859
   size: 162,146
   orig: 162,146
   offset: 0,0
   index: -1
 Head/HeadStarfish_Btm3
-  rotate: true
+  rotate: false
   xy: 5753,896
   size: 163,139
   orig: 164,139
   offset: 1,0
   index: -1
 Head/HeadStarfish_Markings
-  rotate: true
+  rotate: false
   xy: 1251,1122
   size: 28,54
   orig: 28,54
@@ -9574,133 +9574,133 @@ Head/HeadTapirBack_Top
   offset: 0,0
   index: -1
 Head/HeadTapir_Btm
-  rotate: true
+  rotate: false
   xy: 3683,841
   size: 162,160
   orig: 162,160
   offset: 0,0
   index: -1
 Head/HeadTapir_Btm2
-  rotate: true
+  rotate: false
   xy: 5918,868
   size: 163,153
   orig: 163,153
   offset: 0,0
   index: -1
 Head/HeadTapir_Markings
-  rotate: true
+  rotate: false
   xy: 1952,255
   size: 93,85
   orig: 93,85
   offset: 0,0
   index: -1
 Head/HeadTapir_Top
-  rotate: true
+  rotate: false
   xy: 7090,839
   size: 162,160
   orig: 162,160
   offset: 0,0
   index: -1
 Head/HeadTapir_Top2
-  rotate: true
+  rotate: false
   xy: 7925,866
   size: 163,153
   orig: 163,153
   offset: 0,0
   index: -1
 Head/HeadTigerBack_Btm
-  rotate: true
+  rotate: false
   xy: 5615,1944
   size: 193,131
   orig: 193,131
   offset: 0,0
   index: -1
 Head/HeadTigerBack_Btm2
-  rotate: true
+  rotate: false
   xy: 1043,1931
   size: 193,140
   orig: 193,140
   offset: 0,0
   index: -1
 Head/HeadTigerBack_Top
-  rotate: true
+  rotate: false
   xy: 3426,1939
   size: 193,131
   orig: 193,131
   offset: 0,0
   index: -1
 Head/HeadTigerBack_Top2
-  rotate: true
+  rotate: false
   xy: 5009,1929
   size: 193,140
   orig: 193,140
   offset: 0,0
   index: -1
 Head/HeadTiger_Btm
-  rotate: true
+  rotate: false
   xy: 6935,1933
   size: 193,131
   orig: 193,131
   offset: 0,0
   index: -1
 Head/HeadTiger_Btm2
-  rotate: true
+  rotate: false
   xy: 4548,1916
   size: 193,140
   orig: 193,140
   offset: 0,0
   index: -1
 Head/HeadTiger_Markings
-  rotate: true
+  rotate: false
   xy: 3005,1922
   size: 193,131
   orig: 193,131
   offset: 0,0
   index: -1
 Head/HeadTiger_Markings2
-  rotate: true
+  rotate: false
   xy: 7359,1913
   size: 193,140
   orig: 193,140
   offset: 0,0
   index: -1
 Head/HeadTiger_Markings3
-  rotate: true
+  rotate: false
   xy: 6729,1912
   size: 193,140
   orig: 193,140
   offset: 0,0
   index: -1
 Head/HeadTiger_Top
-  rotate: true
+  rotate: false
   xy: 4069,1920
   size: 193,131
   orig: 193,131
   offset: 0,0
   index: -1
 Head/HeadTiger_Top2
-  rotate: true
+  rotate: false
   xy: 7130,1911
   size: 193,140
   orig: 193,140
   offset: 0,0
   index: -1
 Head/HeadTiger_Top3
-  rotate: true
+  rotate: false
   xy: 2566,1910
   size: 193,140
   orig: 193,140
   offset: 0,0
   index: -1
 Head/HeadTurtleBack_Btm
-  rotate: true
+  rotate: false
   xy: 2306,1209
   size: 175,152
   orig: 175,152
   offset: 0,0
   index: -1
 Head/HeadTurtleBack_Btm2
-  rotate: true
+  rotate: false
   xy: 928,1208
   size: 175,152
   orig: 175,152
@@ -9714,14 +9714,14 @@ Head/HeadTurtleBack_Btm3
   offset: 0,0
   index: -1
 Head/HeadTurtleBack_Top
-  rotate: true
+  rotate: false
   xy: 5454,1200
   size: 175,152
   orig: 175,152
   offset: 0,0
   index: -1
 Head/HeadTurtleBack_Top2
-  rotate: true
+  rotate: false
   xy: 4552,1199
   size: 175,152
   orig: 175,152
@@ -9735,14 +9735,14 @@ Head/HeadTurtleBack_Top3
   offset: 0,0
   index: -1
 Head/HeadTurtle_Btm
-  rotate: true
+  rotate: false
   xy: 7221,1329
   size: 179,152
   orig: 179,152
   offset: 0,0
   index: -1
 Head/HeadTurtle_Btm2
-  rotate: true
+  rotate: false
   xy: 3595,1328
   size: 179,152
   orig: 179,152
@@ -9763,14 +9763,14 @@ Head/HeadTurtle_Markings
   offset: 0,0
   index: -1
 Head/HeadTurtle_Top
-  rotate: true
+  rotate: false
   xy: 6885,1328
   size: 179,152
   orig: 179,152
   offset: 0,0
   index: -1
 Head/HeadTurtle_Top2
-  rotate: true
+  rotate: false
   xy: 1947,1321
   size: 179,152
   orig: 179,152
@@ -9784,21 +9784,21 @@ Head/HeadTurtle_Top3
   offset: 0,0
   index: -1
 Head/HeadTwitchCatBack_Btm
-  rotate: true
+  rotate: false
   xy: 3341,752
   size: 159,148
   orig: 159,148
   offset: 0,0
   index: -1
 Head/HeadTwitchCat_Btm
-  rotate: true
+  rotate: false
   xy: 167,750
   size: 159,148
   orig: 159,148
   offset: 0,0
   index: -1
 Head/HeadTwitchCat_Btm2
-  rotate: true
+  rotate: false
   xy: 2,747
   size: 159,148
   orig: 159,148
@@ -9819,21 +9819,21 @@ Head/HeadTwitchCat_Markings2
   offset: 0,0
   index: -1
 Head/HeadTwitchCat_Top
-  rotate: true
+  rotate: false
   xy: 5706,746
   size: 159,148
   orig: 159,148
   offset: 0,0
   index: -1
 Head/HeadTwitchCat_Top2
-  rotate: true
+  rotate: false
   xy: 850,744
   size: 159,148
   orig: 159,148
   offset: 0,0
   index: -1
 Head/HeadTwitchCat_Top3
-  rotate: true
+  rotate: false
   xy: 1011,740
   size: 159,148
   orig: 159,148
@@ -9854,70 +9854,70 @@ Head/HeadTwitchDogBack_Btm2
   offset: 0,0
   index: -1
 Head/HeadTwitchDogBack_Top
-  rotate: true
+  rotate: false
   xy: 3045,1233
   size: 175,115
   orig: 175,115
   offset: 0,0
   index: -1
 Head/HeadTwitchDogBack_Top2
-  rotate: true
+  rotate: false
   xy: 3893,1233
   size: 175,115
   orig: 175,115
   offset: 0,0
   index: -1
 Head/HeadTwitchDog_Btm
-  rotate: true
+  rotate: false
   xy: 4937,1812
   size: 191,115
   orig: 191,115
   offset: 0,0
   index: -1
 Head/HeadTwitchDog_Btm2
-  rotate: true
+  rotate: false
   xy: 4937,1812
   size: 191,115
   orig: 191,115
   offset: 0,0
   index: -1
 Head/HeadTwitchDog_Top
-  rotate: true
+  rotate: false
   xy: 5785,1808
   size: 191,115
   orig: 191,115
   offset: 0,0
   index: -1
 Head/HeadTwitchDog_Top2
-  rotate: true
+  rotate: false
   xy: 2955,1805
   size: 191,115
   orig: 191,115
   offset: 0,0
   index: -1
 Head/HeadTwitchMouseBack_Btm
-  rotate: true
+  rotate: false
   xy: 1361,1404
   size: 182,143
   orig: 182,143
   offset: 0,0
   index: -1
 Head/HeadTwitchMouse_Btm
-  rotate: true
+  rotate: false
   xy: 5417,1984
   size: 196,143
   orig: 196,143
   offset: 0,0
   index: -1
 Head/HeadTwitchMouse_Btm2
-  rotate: true
+  rotate: false
   xy: 1473,1981
   size: 196,143
   orig: 196,143
   offset: 0,0
   index: -1
 Head/HeadTwitchMouse_Markings
-  rotate: true
+  rotate: false
   xy: 6734,347
   size: 114,91
   orig: 114,91
@@ -9931,14 +9931,14 @@ Head/HeadTwitchMouse_Markings2
   offset: 0,0
   index: -1
 Head/HeadTwitchMouse_Top
-  rotate: true
+  rotate: false
   xy: 2368,1965
   size: 196,143
   orig: 196,143
   offset: 0,0
   index: -1
 Head/HeadTwitchMouse_Top2
-  rotate: true
+  rotate: false
   xy: 1247,1956
   size: 196,143
   orig: 196,143
@@ -9952,21 +9952,21 @@ Head/HeadTwitchPoggersBack_Btm
   offset: 0,0
   index: -1
 Head/HeadTwitchPoggers_Btm
-  rotate: true
+  rotate: false
   xy: 2025,1096
   size: 172,136
   orig: 172,136
   offset: 0,0
   index: -1
 Head/HeadTwitchPoggers_Top
-  rotate: true
+  rotate: false
   xy: 4070,1096
   size: 172,136
   orig: 172,136
   offset: 0,0
   index: -1
 Head/HeadUnicornBack_Btm
-  rotate: true
+  rotate: false
   xy: 2527,2597
   size: 105,217
   orig: 105,217
@@ -9987,28 +9987,28 @@ Head/HeadUnicorn_Btm
   offset: 0,0
   index: -1
 Head/HeadUnicorn_Extra1
-  rotate: true
+  rotate: false
   xy: 3198,3079
   size: 49,126
   orig: 49,126
   offset: 0,0
   index: -1
 Head/HeadUnicorn_Extra1_2
-  rotate: true
+  rotate: false
   xy: 1343,2673
   size: 51,126
   orig: 51,126
   offset: 0,0
   index: -1
 Head/HeadUnicorn_Extra2
-  rotate: true
+  rotate: false
   xy: 7808,3196
   size: 39,115
   orig: 39,115
   offset: 0,0
   index: -1
 Head/HeadUnicorn_Extra2_2
-  rotate: true
+  rotate: false
   xy: 5123,3282
   size: 39,118
   orig: 39,118
@@ -10029,7 +10029,7 @@ Head/HeadUnicorn_Top
   offset: 0,0
   index: -1
 Head/HeadVolvy
-  rotate: true
+  rotate: false
   xy: 7892,2330
   size: 208,170
   orig: 208,170
@@ -10050,70 +10050,70 @@ Head/HeadWebberBack_Btm
   offset: 0,0
   index: -1
 Head/HeadWebberBack_Btm2
-  rotate: true
+  rotate: false
   xy: 6787,3433
   size: 269,168
   orig: 269,168
   offset: 0,0
   index: -1
 Head/HeadWebberBack_Btm3
-  rotate: true
+  rotate: false
   xy: 6513,3603
   size: 289,168
   orig: 289,168
   offset: 0,0
   index: -1
 Head/HeadWebberBack_Top3
-  rotate: true
+  rotate: false
   xy: 6804,3603
   size: 289,168
   orig: 289,168
   offset: 0,0
   index: -1
 Head/HeadWebber_Btm
-  rotate: true
+  rotate: false
   xy: 7058,3449
   size: 269,152
   orig: 269,152
   offset: 0,0
   index: -1
 Head/HeadWebber_Btm2
-  rotate: true
+  rotate: false
   xy: 7329,3433
   size: 269,168
   orig: 269,168
   offset: 0,0
   index: -1
 Head/HeadWebber_Btm3
-  rotate: true
+  rotate: false
   xy: 7095,3603
   size: 289,168
   orig: 289,168
   offset: 0,0
   index: -1
 Head/HeadWebber_Markings3
-  rotate: true
+  rotate: false
   xy: 7386,3603
   size: 289,168
   orig: 289,168
   offset: 0,0
   index: -1
 Head/HeadWebber_Top
-  rotate: true
+  rotate: false
   xy: 7600,3449
   size: 269,152
   orig: 269,152
   offset: 0,0
   index: -1
 Head/HeadWebber_Top2
-  rotate: true
+  rotate: false
   xy: 4893,3402
   size: 269,168
   orig: 269,168
   offset: 0,0
   index: -1
 Head/HeadWebber_Top3
-  rotate: true
+  rotate: false
   xy: 7677,3603
   size: 289,168
   orig: 289,168
@@ -10127,21 +10127,21 @@ Head/HeadWormBack_Btm
   offset: 0,0
   index: -1
 Head/HeadWormBack_Btm2
-  rotate: true
+  rotate: false
   xy: 4083,1367
   size: 106,117
   orig: 106,117
   offset: 0,0
   index: -1
 Head/HeadWorm_Btm
-  rotate: true
+  rotate: false
   xy: 2974,522
   size: 144,118
   orig: 144,118
   offset: 0,0
   index: -1
 Head/HeadWorm_Btm2
-  rotate: true
+  rotate: false
   xy: 635,558
   size: 149,124
   orig: 149,124
@@ -10155,63 +10155,63 @@ Head/HeadWorm_Markings
   offset: 0,0
   index: -1
 Head/Head_Skeleton
-  rotate: true
+  rotate: false
   xy: 3447,449
   size: 137,134
   orig: 137,134
   offset: 0,0
   index: -1
 Head/Head_Sozo
-  rotate: true
+  rotate: false
   xy: 2887,2839
   size: 228,216
   orig: 228,216
   offset: 0,0
   index: -1
 Head/Head_Sozo2
-  rotate: true
+  rotate: false
   xy: 2415,2816
   size: 228,216
   orig: 228,216
   offset: 0,0
   index: -1
 Head/Head_Sozo_Up
-  rotate: true
+  rotate: false
   xy: 5086,2814
   size: 228,216
   orig: 228,216
   offset: 0,0
   index: -1
 Head/OwlHead2_Btm
-  rotate: true
+  rotate: false
   xy: 6620,1501
   size: 184,133
   orig: 184,133
   offset: 0,0
   index: -1
 Head/OwlHead2_Markings
-  rotate: true
+  rotate: false
   xy: 1924,3303
   size: 31,47
   orig: 31,47
   offset: 0,0
   index: -1
 Head/OwlHead2_Top
-  rotate: true
+  rotate: false
   xy: 189,1497
   size: 184,133
   orig: 184,133
   offset: 0,0
   index: -1
 Head/OwlHead3_Top
-  rotate: true
+  rotate: false
   xy: 965,1497
   size: 184,133
   orig: 184,133
   offset: 0,0
   index: -1
 Head/OwlHeadBack2_Btm
-  rotate: true
+  rotate: false
   xy: 1078,1045
   size: 171,131
   orig: 171,133
@@ -10225,7 +10225,7 @@ Head/OwlHeadBack_Btm
   offset: 0,0
   index: -1
 Head/OwlHead_Btm
-  rotate: true
+  rotate: false
   xy: 1830,1702
   size: 189,132
   orig: 189,132
@@ -10239,7 +10239,7 @@ Head/OwlHead_Markings
   offset: 0,0
   index: -1
 Head/OwlHead_Top
-  rotate: true
+  rotate: false
   xy: 5130,1702
   size: 189,132
   orig: 189,132
@@ -10253,35 +10253,35 @@ Head/SpikerBossExtra1
   offset: 0,0
   index: -1
 Head/_custom_BackBtm
-  rotate: true
+  rotate: false
   xy: 2588,405
   size: 128,128
   orig: 128,128
   offset: 0,0
   index: -1
 Head/_custom_Top
-  rotate: true
+  rotate: false
   xy: 2588,405
   size: 128,128
   orig: 128,128
   offset: 0,0
   index: -1
 Head/_custom_BackTop
-  rotate: true
+  rotate: false
   xy: 5052,404
   size: 128,128
   orig: 128,128
   offset: 0,0
   index: -1
 Head/_custom_Btm
-  rotate: true
+  rotate: false
   xy: 298,395
   size: 128,128
   orig: 128,128
   offset: 0,0
   index: -1
 Necklaces/Necklace_1
-  rotate: true
+  rotate: false
   xy: 5506,60
   size: 72,68
   orig: 72,68
@@ -10302,7 +10302,7 @@ Necklaces/Necklace_11
   offset: 0,0
   index: -1
 Necklaces/Necklace_12
-  rotate: true
+  rotate: false
   xy: 7409,40
   size: 68,68
   orig: 68,68
@@ -10337,42 +10337,42 @@ Necklaces/Necklace_5
   offset: 0,0
   index: -1
 Necklaces/Necklace_6
-  rotate: true
+  rotate: false
   xy: 4772,57
   size: 72,69
   orig: 72,69
   offset: 0,0
   index: -1
 Necklaces/Necklace_7
-  rotate: true
+  rotate: false
   xy: 5284,81
   size: 70,74
   orig: 70,74
   offset: 0,0
   index: -1
 Necklaces/Necklace_8
-  rotate: true
+  rotate: false
   xy: 2142,1534
   size: 66,83
   orig: 66,83
   offset: 0,0
   index: -1
 Necklaces/Necklace_9
-  rotate: true
+  rotate: false
   xy: 7724,58
   size: 72,68
   orig: 72,68
   offset: 0,0
   index: -1
 Other/Angry_Colouring
-  rotate: true
+  rotate: false
   xy: 3040,1725
   size: 106,78
   orig: 106,78
   offset: 0,0
   index: -1
 Other/AttackSlash1
-  rotate: true
+  rotate: false
   xy: 1972,3570
   size: 276,133
   orig: 276,133
@@ -10393,7 +10393,7 @@ Other/BlackGoo1
   offset: 0,0
   index: -1
 Other/BlackGoo2
-  rotate: true
+  rotate: false
   xy: 3024,2239
   size: 28,28
   orig: 28,28
@@ -10407,49 +10407,49 @@ Other/BlackGoo3
   offset: 0,0
   index: -1
 Other/BlackGoo4
-  rotate: true
+  rotate: false
   xy: 3046,3431
   size: 16,16
   orig: 16,16
   offset: 0,0
   index: -1
 Other/Bubble
-  rotate: true
+  rotate: false
   xy: 1174,2801
   size: 228,228
   orig: 228,228
   offset: 0,0
   index: -1
 Other/Cannibal_Spit1
-  rotate: true
+  rotate: false
   xy: 5285,3671
   size: 312,100
   orig: 312,100
   offset: 0,0
   index: -1
 Other/Cannibal_Spit2
-  rotate: true
+  rotate: false
   xy: 3510,3560
   size: 372,211
   orig: 372,211
   offset: 0,0
   index: -1
 Other/Coffin_Back
-  rotate: true
+  rotate: false
   xy: 2527,3476
   size: 267,57
   orig: 267,57
   offset: 0,0
   index: -1
 Other/Coffin_front
-  rotate: true
+  rotate: false
   xy: 1693,3536
   size: 274,74
   orig: 274,74
   offset: 0,0
   index: -1
 Other/ConvertParticle1
-  rotate: true
+  rotate: false
   xy: 1705,737
   size: 39,38
   orig: 39,38
@@ -10463,21 +10463,21 @@ Other/ConvertParticle2
   offset: 0,0
   index: -1
 Other/ConvertParticle3
-  rotate: true
+  rotate: false
   xy: 4429,2481
   size: 27,25
   orig: 27,25
   offset: 0,0
   index: -1
 Other/ConvertParticle4
-  rotate: true
+  rotate: false
   xy: 4876,3468
   size: 13,11
   orig: 13,11
   offset: 0,0
   index: -1
 Other/Convert_Circle
-  rotate: true
+  rotate: false
   xy: 2171,2960
   size: 242,242
   orig: 242,242
@@ -10491,7 +10491,7 @@ Other/Convert_burst
   offset: 3,0
   index: -1
 Other/Corpse
-  rotate: true
+  rotate: false
   xy: 3888,2723
   size: 221,125
   orig: 221,125
@@ -10505,21 +10505,21 @@ Other/Crucifix_Btm
   offset: 0,0
   index: -1
 Other/Crucifix_Rope
-  rotate: true
+  rotate: false
   xy: 5561,3525
   size: 35,21
   orig: 35,21
   offset: 0,0
   index: -1
 Other/Crucifix_Top
-  rotate: true
+  rotate: false
   xy: 2629,3720
   size: 444,51
   orig: 444,51
   offset: 0,0
   index: -1
 Other/Egg
-  rotate: true
+  rotate: false
   xy: 5586,688
   size: 107,152
   orig: 107,152
@@ -10533,7 +10533,7 @@ Other/Egg_Cracked
   offset: 0,0
   index: -1
 Other/Egg_Drips
-  rotate: true
+  rotate: false
   xy: 722,83
   size: 75,68
   orig: 75,69
@@ -10561,7 +10561,7 @@ Other/Egg_Gold_Uncracked
   offset: 0,0
   index: -1
 Other/Egg_Shell_1
-  rotate: true
+  rotate: false
   xy: 2005,589
   size: 53,75
   orig: 53,75
@@ -10575,21 +10575,21 @@ Other/Egg_Shell_1_Gold
   offset: 0,0
   index: -1
 Other/Egg_Shell_2
-  rotate: true
+  rotate: false
   xy: 665,355
   size: 64,99
   orig: 65,99
   offset: 0,0
   index: -1
 Other/Egg_Shell_2_Gold
-  rotate: true
+  rotate: false
   xy: 7208,335
   size: 65,99
   orig: 65,99
   offset: 0,0
   index: -1
 Other/Egg_Shell_3
-  rotate: true
+  rotate: false
   xy: 5130,1837
   size: 70,90
   orig: 70,90
@@ -10610,7 +10610,7 @@ Other/Egg_Shell_4
   offset: 0,0
   index: -1
 Other/Egg_Shell_4_Gold
-  rotate: true
+  rotate: false
   xy: 1477,3095
   size: 42,89
   orig: 42,89
@@ -10638,7 +10638,7 @@ Other/Embarrassed_Colouring
   offset: 0,0
   index: -1
 Other/Flute
-  rotate: true
+  rotate: false
   xy: 1661,2958
   size: 242,239
   orig: 242,239
@@ -10673,7 +10673,7 @@ Other/Gift_2_1
   offset: 0,0
   index: -1
 Other/Gift_2_2
-  rotate: true
+  rotate: false
   xy: 734,383
   size: 125,123
   orig: 125,124
@@ -10694,49 +10694,49 @@ Other/Gift_3_2
   offset: 0,0
   index: -1
 Other/Gift_Burst_1
-  rotate: true
+  rotate: false
   xy: 7037,718
   size: 157,119
   orig: 157,119
   offset: 0,0
   index: -1
 Other/Gift_Burst_2
-  rotate: true
+  rotate: false
   xy: 6245,796
   size: 160,126
   orig: 160,126
   offset: 0,0
   index: -1
 Other/Gift_Burst_3
-  rotate: true
+  rotate: false
   xy: 2182,842
   size: 161,125
   orig: 161,125
   offset: 0,0
   index: -1
 Other/Gift_Burst_4
-  rotate: true
+  rotate: false
   xy: 786,508
   size: 142,125
   orig: 142,125
   offset: 0,0
   index: -1
 Other/Gift_Burst_5
-  rotate: true
+  rotate: false
   xy: 4901,717
   size: 157,119
   orig: 157,119
   offset: 0,0
   index: -1
 Other/Gift_Burst_6
-  rotate: true
+  rotate: false
   xy: 5265,789
   size: 160,126
   orig: 160,126
   offset: 0,0
   index: -1
 Other/Gift_Burst_7
-  rotate: true
+  rotate: false
   xy: 5543,842
   size: 161,125
   orig: 161,125
@@ -10750,7 +10750,7 @@ Other/Glasses
   offset: 0,0
   index: -1
 Other/Halo
-  rotate: true
+  rotate: false
   xy: 4608,1143
   size: 118,54
   orig: 118,54
@@ -10778,7 +10778,7 @@ Other/Icicle_1
   offset: 0,0
   index: -1
 Other/Icicle_2
-  rotate: true
+  rotate: false
   xy: 4876,3481
   size: 15,30
   orig: 15,30
@@ -10792,21 +10792,21 @@ Other/Icicle_3
   offset: 0,0
   index: -1
 Other/Knucklebones_Dice4
-  rotate: true
+  rotate: false
   xy: 2838,915
   size: 41,39
   orig: 41,39
   offset: 0,0
   index: -1
 Other/Lightning_BodyBurnt
-  rotate: true
+  rotate: false
   xy: 1868,45
   size: 68,62
   orig: 68,62
   offset: 0,0
   index: -1
 Other/Lightning_Flash1
-  rotate: true
+  rotate: false
   xy: 4251,3455
   size: 364,316
   orig: 369,319
@@ -10820,14 +10820,14 @@ Other/Lightning_Skeleton
   offset: 0,0
   index: -1
 Other/MushroomBit1
-  rotate: true
+  rotate: false
   xy: 2817,1551
   size: 32,32
   orig: 32,32
   offset: 0,0
   index: -1
 Other/MushroomBit2
-  rotate: true
+  rotate: false
   xy: 2145,3059
   size: 21,21
   orig: 21,21
@@ -10855,14 +10855,14 @@ Other/MushroomGoop
   offset: 0,0
   index: -1
 Other/MushroomGoop_Particle1
-  rotate: true
+  rotate: false
   xy: 6045,2024
   size: 26,26
   orig: 26,26
   offset: 0,0
   index: -1
 Other/MushroomGoop_Particle2
-  rotate: true
+  rotate: false
   xy: 3046,3413
   size: 16,16
   orig: 16,16
@@ -10890,35 +10890,35 @@ Other/MushroomGoop_Particle5
   offset: 0,0
   index: -1
 Other/Possessed_Colouring
-  rotate: true
+  rotate: false
   xy: 4637,337
   size: 106,78
   orig: 106,78
   offset: 0,0
   index: -1
 Other/PumpkinRitual
-  rotate: true
+  rotate: false
   xy: 861,389
   size: 122,105
   orig: 122,105
   offset: 0,0
   index: -1
 Other/Sacrifice Icon
-  rotate: true
+  rotate: false
   xy: 5599,3521
   size: 309,250
   orig: 325,268
   offset: 8,10
   index: -1
 Other/Sherpa_Back
-  rotate: true
+  rotate: false
   xy: 3120,470
   size: 137,109
   orig: 137,109
   offset: 0,0
   index: -1
 Other/Sherpa_Back_Up
-  rotate: true
+  rotate: false
   xy: 6513,3401
   size: 272,200
   orig: 272,200
@@ -10946,14 +10946,14 @@ Other/Sherpa_lantern
   offset: 0,0
   index: -1
 Other/Sick_Colouring
-  rotate: true
+  rotate: false
   xy: 5310,336
   size: 106,78
   orig: 106,78
   offset: 0,0
   index: -1
 Other/Soaked_Drips
-  rotate: true
+  rotate: false
   xy: 2582,83
   size: 75,68
   orig: 75,69
@@ -10967,14 +10967,14 @@ Other/Soaked_Drips_Head
   offset: 0,0
   index: -1
 Other/Sozo_Backpack
-  rotate: true
+  rotate: false
   xy: 4374,2633
   size: 222,218
   orig: 222,218
   offset: 0,0
   index: -1
 Other/Sozo_Backpack_Up
-  rotate: true
+  rotate: false
   xy: 4622,2858
   size: 230,208
   orig: 230,208
@@ -10988,14 +10988,14 @@ Other/Spider
   offset: 0,0
   index: -1
 Other/SpiderNestTrap
-  rotate: true
+  rotate: false
   xy: 3075,3544
   size: 433,227
   orig: 433,227
   offset: 0,0
   index: -1
 Other/Stocks
-  rotate: true
+  rotate: false
   xy: 3884,3551
   size: 365,220
   orig: 365,220
@@ -11016,7 +11016,7 @@ Other/StringParticle_2
   offset: 0,0
   index: -1
 Other/StringParticle_3
-  rotate: true
+  rotate: false
   xy: 2754,3451
   size: 40,23
   orig: 40,23
@@ -11030,14 +11030,14 @@ Other/StringParticle_4
   offset: 0,0
   index: -1
 Other/Tear
-  rotate: true
+  rotate: false
   xy: 7038,3414
   size: 17,17
   orig: 17,17
   offset: 0,0
   index: -1
 Other/Teleport_1
-  rotate: true
+  rotate: false
   xy: 4003,2635
   size: 99,38
   orig: 160,55
@@ -11051,14 +11051,14 @@ Other/Teleport_2
   offset: 11,7
   index: -1
 Other/Teleport_3
-  rotate: true
+  rotate: false
   xy: 4572,1672
   size: 152,50
   orig: 160,55
   offset: 4,3
   index: -1
 Other/Teleport_4
-  rotate: true
+  rotate: false
   xy: 1477,3038
   size: 158,53
   orig: 160,55
@@ -11086,7 +11086,7 @@ Other/Tentacle_end
   offset: 0,0
   index: -1
 Other/WebParticle1
-  rotate: true
+  rotate: false
   xy: 6808,136
   size: 85,80
   orig: 85,80
@@ -11107,14 +11107,14 @@ Other/WebParticle3
   offset: 0,0
   index: -1
 Other/Yolk
-  rotate: true
+  rotate: false
   xy: 7851,3409
   size: 17,17
   orig: 17,17
   offset: 0,0
   index: -1
 Other/chunder_1
-  rotate: true
+  rotate: false
   xy: 3383,342
   size: 115,105
   orig: 138,108
@@ -11128,21 +11128,21 @@ Other/chunder_2
   offset: 0,1
   index: -1
 Other/chunder_3
-  rotate: true
+  rotate: false
   xy: 1856,413
   size: 127,106
   orig: 138,108
   offset: 5,2
   index: -1
 Other/conversion_glow
-  rotate: true
+  rotate: false
   xy: 6218,3478
   size: 293,293
   orig: 299,299
   offset: 2,4
   index: -1
 Other/dummy-clip
-  rotate: true
+  rotate: false
   xy: 8186,3770
   size: 1,1
   orig: 1,1
@@ -11156,35 +11156,35 @@ Other/fly
   offset: 0,0
   index: -1
 Other/possessed_chunder_1
-  rotate: true
+  rotate: false
   xy: 3776,412
   size: 127,106
   orig: 127,106
   offset: 0,0
   index: -1
 Other/possessed_chunder_2
-  rotate: true
+  rotate: false
   xy: 3636,486
   size: 138,101
   orig: 138,101
   offset: 0,0
   index: -1
 Other/possessed_chunder_3
-  rotate: true
+  rotate: false
   xy: 7276,341
   size: 115,105
   orig: 115,105
   offset: 0,0
   index: -1
 Resources/Beetroot
-  rotate: true
+  rotate: false
   xy: 5867,356
   size: 90,115
   orig: 90,115
   offset: 0,0
   index: -1
 Resources/Berries
-  rotate: true
+  rotate: false
   xy: 4415,320
   size: 111,108
   orig: 111,108
@@ -11198,14 +11198,14 @@ Resources/BlackGold
   offset: 0,0
   index: -1
 Resources/Bloodstone
-  rotate: true
+  rotate: false
   xy: 6274,405
   size: 123,90
   orig: 124,90
   offset: 1,0
   index: -1
 Resources/Bone
-  rotate: true
+  rotate: false
   xy: 2025,1246
   size: 101,73
   orig: 101,73
@@ -11233,7 +11233,7 @@ Resources/Drink_Beer
   offset: 0,0
   index: -1
 Resources/Drink_Cocktail
-  rotate: true
+  rotate: false
   xy: 3871,2131
   size: 66,158
   orig: 66,158
@@ -11254,28 +11254,28 @@ Resources/Drink_Gin
   offset: 0,0
   index: -1
 Resources/Drink_Mushroom
-  rotate: true
+  rotate: false
   xy: 7221,1486
   size: 81,138
   orig: 81,138
   offset: 0,0
   index: -1
 Resources/Drink_Poop_Juice
-  rotate: true
+  rotate: false
   xy: 8089,1557
   size: 75,160
   orig: 75,160
   offset: 0,0
   index: -1
 Resources/Drink_Wine
-  rotate: true
+  rotate: false
   xy: 4937,1935
   size: 68,110
   orig: 70,110
   offset: 0,0
   index: -1
 Resources/Fish
-  rotate: true
+  rotate: false
   xy: 6083,957
   size: 118,64
   orig: 118,64
@@ -11296,35 +11296,35 @@ Resources/Fish Small
   offset: 0,0
   index: -1
 Resources/Flower_Red
-  rotate: true
+  rotate: false
   xy: 7463,179
   size: 91,82
   orig: 91,82
   offset: 0,0
   index: -1
 Resources/Food
-  rotate: true
+  rotate: false
   xy: 7276,1101
   size: 104,56
   orig: 104,56
   offset: 0,0
   index: -1
 Resources/GiftMedium
-  rotate: true
+  rotate: false
   xy: 3586,386
   size: 121,98
   orig: 121,98
   offset: 0,0
   index: -1
 Resources/GiftSmall
-  rotate: true
+  rotate: false
   xy: 5432,332
   size: 110,96
   orig: 110,96
   offset: 0,0
   index: -1
 Resources/Grapes
-  rotate: true
+  rotate: false
   xy: 7003,464
   size: 138,123
   orig: 138,123
@@ -11338,7 +11338,7 @@ Resources/Hops
   offset: 0,0
   index: -1
 Resources/MeatLarge
-  rotate: true
+  rotate: false
   xy: 7276,448
   size: 131,86
   orig: 131,86
@@ -11352,14 +11352,14 @@ Resources/Mushroom
   offset: 0,0
   index: -1
 Resources/Poop
-  rotate: true
+  rotate: false
   xy: 2,362
   size: 119,100
   orig: 119,100
   offset: 0,0
   index: -1
 Resources/Poop_Devotion
-  rotate: true
+  rotate: false
   xy: 6972,361
   size: 119,101
   orig: 119,101
@@ -11373,21 +11373,21 @@ Resources/Poop_Glow
   offset: 2,2
   index: -1
 Resources/Poop_Gold
-  rotate: true
+  rotate: false
   xy: 1985,342
   size: 115,100
   orig: 115,100
   offset: 0,0
   index: -1
 Resources/Poop_Rainbow
-  rotate: true
+  rotate: false
   xy: 7986,337
   size: 115,100
   orig: 115,100
   offset: 0,0
   index: -1
 Resources/Pumpkin
-  rotate: true
+  rotate: false
   xy: 3259,383
   size: 122,105
   orig: 122,105
@@ -11415,7 +11415,7 @@ Resources/Seed Beetroot
   offset: 0,0
   index: -1
 Resources/Seed Cauliflower
-  rotate: true
+  rotate: false
   xy: 3112,181
   size: 92,84
   orig: 92,84
@@ -11436,7 +11436,7 @@ Resources/SeedCotton
   offset: 0,0
   index: -1
 Resources/SeedGrapes
-  rotate: true
+  rotate: false
   xy: 6610,332
   size: 110,86
   orig: 110,86
@@ -11450,63 +11450,63 @@ Resources/SeedHops
   offset: 0,0
   index: -1
 Resources/SeedMushroom
-  rotate: true
+  rotate: false
   xy: 547,297
   size: 96,73
   orig: 96,73
   offset: 0,0
   index: -1
 Resources/SeedRedFlower
-  rotate: true
+  rotate: false
   xy: 1618,315
   size: 97,70
   orig: 97,70
   offset: 0,0
   index: -1
 Resources/SeedWhiteFlower
-  rotate: true
+  rotate: false
   xy: 3580,314
   size: 97,70
   orig: 97,70
   offset: 0,0
   index: -1
 Resources/SozoShroom_SeedSad
-  rotate: true
+  rotate: false
   xy: 4429,430
   size: 132,127
   orig: 132,127
   offset: 0,0
   index: -1
 Resources/StainedGlass
-  rotate: true
+  rotate: false
   xy: 5346,476
   size: 135,101
   orig: 135,101
   offset: 0,0
   index: -1
 Resources/Stone
-  rotate: true
+  rotate: false
   xy: 547,372
   size: 116,82
   orig: 116,82
   offset: 0,0
   index: -1
 Resources/VileBones
-  rotate: true
+  rotate: false
   xy: 7093,340
   size: 113,94
   orig: 113,94
   offset: 0,0
   index: -1
 Resources/Vine
-  rotate: true
+  rotate: false
   xy: 600,456
   size: 132,100
   orig: 133,100
   offset: 0,0
   index: -1
 Resources/Wheat
-  rotate: true
+  rotate: false
   xy: 2845,390
   size: 67,110
   orig: 67,110
@@ -11520,14 +11520,14 @@ Resources/Wood
   offset: 0,0
   index: -1
 Tools/Axe
-  rotate: true
+  rotate: false
   xy: 8098,3172
   size: 74,145
   orig: 74,145
   offset: 0,0
   index: -1
 Tools/Book_closed
-  rotate: true
+  rotate: false
   xy: 7489,94
   size: 77,77
   orig: 77,77
@@ -11541,7 +11541,7 @@ Tools/Book_open
   offset: 0,0
   index: -1
 Tools/BowlBtm
-  rotate: true
+  rotate: false
   xy: 5086,3035
   size: 106,31
   orig: 106,31
@@ -11597,7 +11597,7 @@ Tools/BowlFood_BadMixed
   offset: 3,8
   index: -1
 Tools/BowlFood_Berries
-  rotate: true
+  rotate: false
   xy: 5493,1616
   size: 80,49
   orig: 90,49
@@ -11618,21 +11618,21 @@ Tools/BowlFood_Deadly
   offset: 3,1
   index: -1
 Tools/BowlFood_Egg
-  rotate: true
+  rotate: false
   xy: 5677,1553
   size: 97,60
   orig: 97,67
   offset: 0,7
   index: -1
 Tools/BowlFood_Fish
-  rotate: true
+  rotate: false
   xy: 7208,3147
   size: 100,71
   orig: 101,87
   offset: 0,16
   index: -1
 Tools/BowlFood_FishBad
-  rotate: true
+  rotate: false
   xy: 1849,1327
   size: 94,56
   orig: 94,59
@@ -11646,7 +11646,7 @@ Tools/BowlFood_FishGreat
   offset: 0,7
   index: -1
 Tools/BowlFood_Follower_Meat
-  rotate: true
+  rotate: false
   xy: 5544,331
   size: 99,68
   orig: 99,69
@@ -11667,7 +11667,7 @@ Tools/BowlFood_Great
   offset: 0,13
   index: -1
 Tools/BowlFood_Meat
-  rotate: true
+  rotate: false
   xy: 269,331
   size: 99,62
   orig: 99,69
@@ -11681,7 +11681,7 @@ Tools/BowlFood_MeatBad
   offset: 0,4
   index: -1
 Tools/BowlFood_MeatGreat
-  rotate: true
+  rotate: false
   xy: 2102,339
   size: 105,71
   orig: 105,82
@@ -11695,7 +11695,7 @@ Tools/BowlFood_MediumMixed
   offset: 0,7
   index: -1
 Tools/BowlFood_MediumVeg
-  rotate: true
+  rotate: false
   xy: 4213,329
   size: 99,62
   orig: 99,69
@@ -11709,7 +11709,7 @@ Tools/BowlFood_MixedGreat
   offset: 0,11
   index: -1
 Tools/BowlFood_Mushrooms
-  rotate: true
+  rotate: false
   xy: 2718,318
   size: 97,64
   orig: 97,72
@@ -11730,28 +11730,28 @@ Tools/BowlFood_Rotten
   offset: 3,1
   index: -1
 Tools/BowlFront
-  rotate: true
+  rotate: false
   xy: 2263,362
   size: 107,55
   orig: 107,55
   offset: 0,0
   index: -1
 Tools/BowlFront_Bad
-  rotate: true
+  rotate: false
   xy: 2544,1120
   size: 109,53
   orig: 109,53
   offset: 0,0
   index: -1
 Tools/BowlFront_Burnt
-  rotate: true
+  rotate: false
   xy: 4866,360
   size: 107,57
   orig: 107,57
   offset: 0,0
   index: -1
 Tools/BowlFront_Deadly
-  rotate: true
+  rotate: false
   xy: 7729,359
   size: 107,57
   orig: 107,57
@@ -11772,14 +11772,14 @@ Tools/BowlFront_Great
   offset: 0,0
   index: -1
 Tools/BowlFront_Rotten
-  rotate: true
+  rotate: false
   xy: 4528,358
   size: 107,57
   orig: 107,57
   offset: 0,0
   index: -1
 Tools/Brush
-  rotate: true
+  rotate: false
   xy: 5321,1673
   size: 64,161
   orig: 64,161
@@ -11793,7 +11793,7 @@ Tools/Chalice
   offset: 0,0
   index: -1
 Tools/Chalice2
-  rotate: true
+  rotate: false
   xy: 645,260
   size: 79,93
   orig: 79,93
@@ -11807,7 +11807,7 @@ Tools/CocktailShaker
   offset: 0,0
   index: -1
 Tools/CookingFork
-  rotate: true
+  rotate: false
   xy: 2706,3220
   size: 45,120
   orig: 45,120
@@ -11821,7 +11821,7 @@ Tools/FishingRod
   offset: 0,0
   index: -1
 Tools/FishingRod2
-  rotate: true
+  rotate: false
   xy: 317,525
   size: 146,139
   orig: 146,139
@@ -11835,14 +11835,14 @@ Tools/Hammer
   offset: 0,0
   index: -1
 Tools/Machete
-  rotate: true
+  rotate: false
   xy: 1991,2458
   size: 47,121
   orig: 47,121
   offset: 0,0
   index: -1
 Tools/Megaphone
-  rotate: true
+  rotate: false
   xy: 1630,387
   size: 121,96
   orig: 121,96
@@ -11863,28 +11863,28 @@ Tools/Pickaxe
   offset: 0,0
   index: -1
 Tools/Quill
-  rotate: true
+  rotate: false
   xy: 5706,896
   size: 45,71
   orig: 45,71
   offset: 0,0
   index: -1
 Tools/SPADE
-  rotate: true
+  rotate: false
   xy: 8102,2331
   size: 64,169
   orig: 64,169
   offset: 0,0
   index: -1
 Tools/Undertaker_Bag
-  rotate: true
+  rotate: false
   xy: 7166,2382
   size: 61,98
   orig: 61,98
   offset: 0,0
   index: -1
 Tools/Undertaker_BagEnd
-  rotate: true
+  rotate: false
   xy: 2834,1244
   size: 31,34
   orig: 31,34
@@ -11898,14 +11898,14 @@ Tools/Undertaker_BagFull
   offset: 0,0
   index: -1
 Tools/WATERING_CAN
-  rotate: true
+  rotate: false
   xy: 731,313
   size: 97,68
   orig: 97,68
   offset: 0,0
   index: -1
 Tools/WalkingStick
-  rotate: true
+  rotate: false
   xy: 3888,2884
   size: 30,94
   orig: 30,94
@@ -11919,28 +11919,28 @@ Weapons/Arrow
   offset: 0,0
   index: -1
 Weapons/Backpack
-  rotate: true
+  rotate: false
   xy: 2360,2824
   size: 53,134
   orig: 53,134
   offset: 0,0
   index: -1
 Weapons/Bow
-  rotate: true
+  rotate: false
   xy: 2527,3538
   size: 73,165
   orig: 73,165
   offset: 0,0
   index: -1
 Weapons/Bowstring
-  rotate: true
+  rotate: false
   xy: 8153,3572
   size: 7,199
   orig: 7,199
   offset: 0,0
   index: -1
 Weapons/Dagger2
-  rotate: true
+  rotate: false
   xy: 3340,1759
   size: 47,99
   orig: 47,99
@@ -11961,7 +11961,7 @@ Weapons/Weapon_Baal
   offset: 0,0
   index: -1
 Weapons/sword
-  rotate: true
+  rotate: false
   xy: 3117,2866
   size: 76,189
   orig: 77,189
@@ -11988,7 +11988,7 @@ EYE-OUTLINE
   offset: 0,0
   index: -1
 EYE-PUPIL
-  rotate: true
+  rotate: false
   xy: 48,2
   size: 9,26
   orig: 60,59

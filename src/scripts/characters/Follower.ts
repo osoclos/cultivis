@@ -1,7 +1,7 @@
 import { followerAnimationData, followerData } from "../../data/files";
 import type { ColorSet, FollowerId, ClothingId, ClothingData, FormData, NecklaceId, HatId, NecklaceData, HatData, FollowerAnimationId } from "../../data/types";
 
-import { Color, MoreMath } from "../../utils";
+import { MoreMath } from "../../utils";
 
 import { Actor, type ActorObject } from "../Actor";
 
@@ -72,8 +72,8 @@ export class Follower extends Actor implements FollowerObject {
     #isBefuddled: boolean;
 
     private indexes: FollowerIndexes
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = followerData.forms.Deer.name, form: FollowerId = "Deer", clothing: ClothingId = "Default_Clothing") {
-        super(skeleton, animationState, id, label);
+    constructor(skeletonData: spine.SkeletonData, atlas: spine.TextureAtlas, id?: string, label: string = followerData.forms.Deer.name, form: FollowerId = "Deer", clothing: ClothingId = "Default_Clothing") {
+        super(skeletonData, atlas, id, label);
 
         this.#animationId = "Idle";
 
@@ -320,9 +320,9 @@ export class Follower extends Actor implements FollowerObject {
     }
 
     clone(id?: string, label?: string, form: FollowerId = this.form, clothing: ClothingId = this.clothing) {
-        const { skeleton, animationState } = this;
+        const { skeleton, atlas } = this;
 
-        const follower = new Follower(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, form, clothing);
+        const follower = new Follower(skeleton.data, atlas, id, label, form, clothing);
         follower.copyFromObj(this.toObj());
 
         follower.form = form;
@@ -354,7 +354,7 @@ export class Follower extends Actor implements FollowerObject {
 
         isHooded ? ageState !== FollowerAgeState.Elder && this.applyColors(followerData.clothing.Default_Clothing.sets![clothingColorSetIdx]) : clothingData.sets && this.applyColors(clothingData.sets[clothingColorSetIdx]);
         formData.canBeTinted && this.applyColors(colorSetData[formColorSetIdx]);
-
+        
         necklaceData && this.addSkins(necklaceData.variant);
         hatData && this.addSkins(hatData.variant);
 
@@ -463,21 +463,7 @@ export class Follower extends Actor implements FollowerObject {
         return { ...super.toObj(), type: TYPE, animationId, form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, possessionState, sickState, beliefState, isDisciple, isHooded, isTired, isSweating, isBefuddled };
     }
 
-    applyColors(set: ColorSet) {
-        for (const { color, slots } of set) {
-            for (const slot of slots) {
-                const attachments: spine.SkinEntry[] = [];
-                this.skeleton.skin.getAttachmentsForSlot(this.skeleton.findSlotIndex(slot), attachments);
-
-                for (const { attachment } of attachments) {
-                    const { r, g, b, a } = Color.fromObj(color).normalize();
-                    const spineColor = new spine.Color(r, g, b, a);
-
-                    if ("color" in attachment) attachment.color = spineColor;
-                }
-            }
-        }
-    }
+    
 
     private clampIndexes() {
         const { formData, formVariantIdx, clothingData, clothingVariantIdx, colorSetData, formColorSetIdx, clothingColorSetIdx, isHooded} = this;

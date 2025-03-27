@@ -11,8 +11,8 @@ export class Heretic extends Actor implements HereticObject {
     #stage: number;
     #isBackFacing: boolean | null;
 
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = hereticData.Green_Bagworm.name, readonly heretic: HereticId = "Green_Bagworm") {
-        super(skeleton, animationState, id, label);
+    constructor(skeletonData: spine.SkeletonData, atlas: spine.TextureAtlas, id?: string, label: string = hereticData.Green_Bagworm.name, readonly heretic: HereticId = "Green_Bagworm") {
+        super(skeletonData, atlas, id, label);
 
         this.#stage = 0;
         this.#isBackFacing = "backSkins" in hereticData[heretic] ? false : null;
@@ -44,9 +44,9 @@ export class Heretic extends Actor implements HereticObject {
     }
 
     clone(id?: string, label?: string) {
-        const { skeleton, animationState, heretic: hereticId } = this;
+        const { skeleton, atlas, heretic: hereticId } = this;
 
-        const heretic = new Heretic(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, hereticId);
+        const heretic = new Heretic(skeleton.data, atlas, id, label, hereticId);
         heretic.copyFromObj(this.toObj());
 
         return heretic;

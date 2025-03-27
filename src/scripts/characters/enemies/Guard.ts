@@ -11,8 +11,8 @@ export class Guard extends Actor implements GuardObject {
     static readonly SKELETON_FILENAME: string = "DoorGuardians_2.skel";
 
     #guard: GuardId;
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = guardData.Guardian.name, guard: GuardId = "Guardian") {
-        super(skeleton, animationState, id, label);
+    constructor(skeletonData: spine.SkeletonData, atlas: spine.TextureAtlas, id?: string, label: string = guardData.Guardian.name, guard: GuardId = "Guardian") {
+        super(skeletonData, atlas, id, label);
         this.#guard = guard;
 
         this.update();
@@ -28,9 +28,9 @@ export class Guard extends Actor implements GuardObject {
     }
 
     clone(id?: string, label?: string, guardId: GuardId = this.guard) {
-        const { skeleton, animationState } = this;
+        const { skeleton, atlas } = this;
 
-        const guard = new Guard(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, guardId);
+        const guard = new Guard(skeleton.data, atlas, id, label, guardId);
         guard.copyFromObj(this.toObj());
 
         guard.guard = guardId;

@@ -11,8 +11,8 @@ export class Occultist extends Actor implements OccultistObject {
     static readonly SKELETON_FILENAME: string = "Sorcerer.skel";
 
     #occultist: OccultistId;
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = occultistData.Summoner.name, occultist: OccultistId = "Summoner") {
-        super(skeleton, animationState, id, label);
+    constructor(skeletonData: spine.SkeletonData, atlas: spine.TextureAtlas, id?: string, label: string = occultistData.Summoner.name, occultist: OccultistId = "Summoner") {
+        super(skeletonData, atlas, id, label);
         this.#occultist = occultist;
 
         this.update();
@@ -28,9 +28,9 @@ export class Occultist extends Actor implements OccultistObject {
     }
 
     clone(id?: string, label?: string, occultistId: OccultistId = this.occultist) {
-        const { skeleton, animationState } = this;
+        const { skeleton, atlas } = this;
 
-        const occultist = new Occultist(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, occultistId);
+        const occultist = new Occultist(skeleton.data, atlas, id, label, occultistId);
         occultist.copyFromObj(this.toObj());
 
         occultist.occultist = occultistId;

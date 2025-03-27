@@ -13,7 +13,7 @@
     import { CreationDetails, SpecialThanks, HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME, NarinderPetter, HAS_PET_NARINDER_LOCAL_STORAGE_NAME } from "./components/credits";
 
     import { Actor, Exporter, Factory, FORMAT_IDS, Scene, type ActorObject, type FormatData, type FormatId } from "./scripts";
-    import { Bishop, isBishopObj, Follower, isFollowerObj, Guard, isGuardObj, Heretic, isHereticObj, Machine, isMachineObj, MiniBoss, isMiniBossObj, Occultist, isOccultistObj, Player, isPlayerObj, Soldier, isSoldierObj, TOWW, isTOWW_Obj, Witness, isWitnessObj, KnucklebonesPlayer, isKnucklebonesPlayerObj } from "./scripts/characters";
+    import { Bishop, isBishopObj, Follower, isFollowerObj, Guard, isGuardObj, Heretic, isHereticObj, Machine, isMachineObj, MiniBoss, isMiniBossObj, ModdedFollower, isModdedFollowerObj, Occultist, isOccultistObj, Player, isPlayerObj, Soldier, isSoldierObj, TOWW, isTOWW_Obj, Witness, isWitnessObj, KnucklebonesPlayer, isKnucklebonesPlayerObj } from "./scripts/characters";
     import { soundManager, newsManager, NewsManager, type NewsLoader, serverManager } from "./scripts/managers";
 
     import { bishopData, hereticData, knucklebonesPlayerData, machineData, miniBossData, towwData } from "./data/files";
@@ -62,7 +62,7 @@
 
     let loadingActor: typeof Actor | null = $state(null);
     let showActorMenu: boolean = $state(false);
-    let useExperimentalAnimations: boolean = $state(true);
+    let useExperimentalAnimations: boolean = $state(false);
 
     let actor: Actor | null = $state(null);
     let actorObj: ActorObject | null = $state(null);
@@ -177,14 +177,14 @@
 
         loadingState = LOADING_STATES.indexOf("LoadingAssets");
 
-        await factory.load(Follower, Player);
+        await factory.load(ModdedFollower, Player);
 
         exporter = await Exporter.create();
-        await exporter.factory.load(Follower, Player);
+        await exporter.factory.load(ModdedFollower, Player);
 
         loadingState = LOADING_STATES.indexOf("SceneSetup");
     
-        const deer = factory.follower("Deer", "Default_Clothing");
+        const deer = factory.moddedFollower("Deer", "Default_Clothing");
         deer.label = "Deer";
         deer.setRawAnimation("idle");
 
@@ -223,11 +223,14 @@
         let addedActor: Actor;
 
         switch (actor) {
-            case Follower: {
-                !factory.hasLoadedFollower() && await factory.loadFollower() && await exporter.factory.loadFollower();
+            case Follower:
+            case ModdedFollower: {
+                const isModdedFollower = actor === ModdedFollower;
+
+                isModdedFollower ? !factory.hasLoadedModdedFollower() && await factory.loadModdedFollower() || await exporter.factory.loadModdedFollower() : !factory.hasLoadedFollower() && await factory.loadFollower() || await exporter.factory.loadFollower();
                 const [form, formVariantIdx, formColorSetIdx] = getRandomFollowerAppearance();
 
-                const follower = factory.follower(form, "Default_Clothing", undefined, getSpecialFollowerName(form, formVariantIdx));
+                const follower = factory[isModdedFollower ? "moddedFollower" : "follower"](form, "Default_Clothing", undefined, getSpecialFollowerName(form, formVariantIdx));
                 follower.setRawAnimation("idle");
 
                 follower.formVariantIdx = formVariantIdx;
@@ -238,7 +241,7 @@
             }
 
             case Player: {
-                !factory.hasLoadedPlayer() && await factory.loadPlayer() && await exporter.factory.loadPlayer();
+                !factory.hasLoadedPlayer() && await factory.loadPlayer() || await exporter.factory.loadPlayer();
 
                 const player = factory.player("Lamb", "Lamb");
                 player.setRawAnimation("idle");
@@ -249,7 +252,7 @@
 
             case Soldier: {
                 const id = Random.item(SOLDIER_IDS);
-                !factory.hasLoadedSoldier() && await factory.loadSoldier() && await exporter.factory.loadSoldier();
+                !factory.hasLoadedSoldier() && await factory.loadSoldier() || await exporter.factory.loadSoldier();
 
                 const soldier = factory.soldier(id);
                 soldier.setRawAnimation("idle");
@@ -260,7 +263,7 @@
 
             case Occultist: {
                 const id = Random.item(OCCULTIST_IDS);
-                !factory.hasLoadedOccultist() && await factory.loadOccultist() && await exporter.factory.loadOccultist();
+                !factory.hasLoadedOccultist() && await factory.loadOccultist() || await exporter.factory.loadOccultist();
 
                 const occultist = factory.occultist(id);
                 occultist.setRawAnimation("idle");
@@ -271,7 +274,7 @@
 
             case Guard: {
                 const id = Random.item(GUARD_IDS);
-                !factory.hasLoadedGuard() && await factory.loadGuard() && await exporter.factory.loadGuard();
+                !factory.hasLoadedGuard() && await factory.loadGuard() || await exporter.factory.loadGuard();
 
                 const guard = factory.guard(id);
                 guard.setRawAnimation("idle");
@@ -282,7 +285,7 @@
 
             case Heretic: {
                 const id = Random.item(HERETIC_IDS);
-                !factory.hasLoadedHeretic(id) && await factory.loadHeretic(id) && await exporter.factory.loadHeretic(id);
+                !factory.hasLoadedHeretic(id) && await factory.loadHeretic(id) || await exporter.factory.loadHeretic(id);
 
                 const heretic = factory.heretic(id);
                 heretic.setRawAnimation(hereticData[id].animation);
@@ -293,7 +296,7 @@
 
             case Machine: {
                 const id = Random.item(MACHINE_IDS);
-                !factory.hasLoadedMachine(id) && await factory.loadMachine(id) && await exporter.factory.loadMachine(id);
+                !factory.hasLoadedMachine(id) && await factory.loadMachine(id) || await exporter.factory.loadMachine(id);
 
                 const machine = factory.machine(id);
                 machine.setRawAnimation(machineData[id].animation);
@@ -304,7 +307,7 @@
 
             case Bishop: {
                 const id = Random.item(BISHOP_IDS);
-                !factory.hasLoadedBishop(id, false) && await factory.loadBishop(id, false) && await exporter.factory.loadBishop(id, false);
+                !factory.hasLoadedBishop(id, false) && await factory.loadBishop(id, false) || await exporter.factory.loadBishop(id, false);
 
                 const bishop = factory.bishop(id, false);
                 bishop.setRawAnimation(bishopData[id].animation);
@@ -314,7 +317,7 @@
             }
 
             case TOWW: {
-                !factory.hasLoadedTOWW("Bishop") && await factory.loadTOWW("Bishop") && await exporter.factory.loadTOWW("Bishop");
+                !factory.hasLoadedTOWW("Bishop") && await factory.loadTOWW("Bishop") || await exporter.factory.loadTOWW("Bishop");
                 const toww = factory.TOWW("Bishop");
                 
                 const { attributes, animation } = towwData.Bishop;
@@ -334,7 +337,7 @@
 
             case MiniBoss: {
                 const id = Random.item(MINI_BOSS_IDS);
-                !factory.hasLoadedMiniBoss(id) && await factory.loadMiniBoss(id) && await exporter.factory.loadMiniBoss(id);
+                !factory.hasLoadedMiniBoss(id) && await factory.loadMiniBoss(id) || await exporter.factory.loadMiniBoss(id);
 
                 const boss = factory.miniBoss(id, false);
                 boss.setRawAnimation(miniBossData[id].animation);
@@ -344,7 +347,7 @@
             }
 
             case Witness: {
-                !factory.hasLoadedWitness() && await factory.loadWitness() && await exporter.factory.loadWitness();
+                !factory.hasLoadedWitness() && await factory.loadWitness() || await exporter.factory.loadWitness();
                 const id = Random.item(WITNESS_IDS);
 
                 const witness = factory.witness(id, false);
@@ -356,7 +359,7 @@
 
             case KnucklebonesPlayer: {
                 const id = Random.item(KNUCKLEBONES_PLAYER_IDS);
-                !factory.hasLoadedKnucklebonesPlayer(id) && await factory.loadKnucklebonesPlayer(id) && await exporter.factory.loadKnucklebonesPlayer(id);
+                !factory.hasLoadedKnucklebonesPlayer(id) && await factory.loadKnucklebonesPlayer(id) || await exporter.factory.loadKnucklebonesPlayer(id);
 
                 const knucklebonesPlayer = factory.knucklebonesPlayer(id);
                 knucklebonesPlayer.setRawAnimation(knucklebonesPlayerData[id].animation);
@@ -588,7 +591,7 @@
 
                 <div class={["lg:absolute z-90 lg:top-0 w-full lg:w-160 lg:h-full bg-secondary transition-[left,_filter] motion-reduce:transition-opacity duration-500", !showActorMenu ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
                     {#if actor && actorObj && actorMenu}
-                        {#if isFollowerObj(actorObj) && isStrFollowerMenuName(actorMenu)}
+                        {#if (isFollowerObj(actorObj) || isModdedFollowerObj(actorObj)) && isStrFollowerMenuName(actorMenu)}
                             <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={actorMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
                         {:else if isPlayerObj(actorObj) && isStrPlayerMenuName(actorMenu)}
                             <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={actorMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />

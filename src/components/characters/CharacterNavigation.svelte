@@ -80,7 +80,7 @@
     import { MultiList } from "../utils";
 
     import { Actor, Factory, Scene, type ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isKnucklebonesPlayerObj, isMachineObj, isMiniBossObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isKnucklebonesPlayerObj, isMachineObj, isMiniBossObj, isModdedFollowerObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
     import { soundManager } from "../../scripts/managers";
 
     import { bishopData, forbiddenAnimations, hereticData, machineData, miniBossData, soldierData } from "../../data/files";
@@ -344,7 +344,7 @@
                     <BannerButton label="Randomize" src="/static/ui/dice-6.png" onclick={() => updateName(Random.percent(1) ? getSpecialFollowerName(obj.form, obj.formVariantIdx, true) : getRandomFollowerName())} />
                 {/if}
             {:else if i === 1}
-                {#if isFollowerObj(obj)}
+                {#if isFollowerObj(obj) || isModdedFollowerObj(obj)}
                     <BannerButton label="Choose Form" playClickSound={false} onclick={() => proceed("form")} />
                     <BannerButton label="Choose Robes" playClickSound={false} onclick={() => proceed("clothing")} />
                     <BannerButton label="Choose Accessory" playClickSound={false} onclick={() => proceed("accessory")} />
@@ -387,7 +387,7 @@
                             <LabelTitle title="Attributes" />
                         
                             <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
-                                {#if isFollowerObj(obj) && isFollowerObj(actor)}
+                                {#if (isFollowerObj(obj) && isFollowerObj(actor)) || (isModdedFollowerObj(obj) && isModdedFollowerObj(actor))}
                                     <Label label="Level">
                                         <Slider class="ml-12" label="Level" bind:value={obj.level} min={1} max={10} step={1} displayValues={["O", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]} oninput={(level) => actor.level = level} />
                                     </Label>

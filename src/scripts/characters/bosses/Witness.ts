@@ -21,8 +21,8 @@ export class Witness extends Actor implements WitnessObject {
     #isUpgraded: boolean;
     #isPurged: boolean;
 
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = witnessData.Darkwood.name, witness: WitnessId = "Darkwood", isUpgraded: boolean = false) {
-        super(skeleton, animationState, id, label);
+    constructor(skeletonData: spine.SkeletonData, atlas: spine.TextureAtlas, id?: string, label: string = witnessData.Darkwood.name, witness: WitnessId = "Darkwood", isUpgraded: boolean = false) {
+        super(skeletonData, atlas, id, label);
         this.#witness = witness;
 
         this.#isUpgraded = isUpgraded;
@@ -59,9 +59,9 @@ export class Witness extends Actor implements WitnessObject {
     }
 
     clone(id?: string, label?: string, witnessId: WitnessId = this.witness, isUpgraded: boolean = this.isUpgraded) {
-        const { skeleton, animationState } = this;
+        const { skeleton, atlas } = this;
 
-        const witness = new Witness(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, witnessId, isUpgraded);
+        const witness = new Witness(skeleton.data, atlas, id, label, witnessId, isUpgraded);
         witness.copyFromObj(this.toObj());
 
         witness.witness = witnessId;

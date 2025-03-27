@@ -7,8 +7,8 @@ const TYPE: string = "knucklebones-player";
 
 export class KnucklebonesPlayer extends Actor implements KnucklebonesPlayerObject {
     #isOnlyHead: boolean;
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = knucklebonesPlayerData.Ratau.name, readonly player: KnucklebonesPlayerId = "Ratau") {
-        super(skeleton, animationState, id, label);
+    constructor(skeletonData: spine.SkeletonData, atlas: spine.TextureAtlas, id?: string, label: string = knucklebonesPlayerData.Ratau.name, readonly player: KnucklebonesPlayerId = "Ratau") {
+        super(skeletonData, atlas, id, label);
         this.#isOnlyHead = false;
 
         this.update();
@@ -24,9 +24,9 @@ export class KnucklebonesPlayer extends Actor implements KnucklebonesPlayerObjec
     }
 
     clone(id?: string, label?: string) {
-        const { skeleton, animationState, player } = this;
+        const { skeleton, atlas, player } = this;
 
-        const knucklebonesPlayer = new KnucklebonesPlayer(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, player);
+        const knucklebonesPlayer = new KnucklebonesPlayer(skeleton.data, atlas, id, label, player);
         knucklebonesPlayer.copyFromObj(this.toObj());
 
         return knucklebonesPlayer;

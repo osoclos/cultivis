@@ -14,8 +14,8 @@ export class Bishop extends Actor implements BishopObject {
     #isPurged: boolean;
     #isBandaged: boolean | null;
 
-    constructor(skeleton: spine.Skeleton, animationState: spine.AnimationState, id?: string, label: string = bishopData.Worm.name, readonly bishop: BishopId = "Worm", readonly isBoss: boolean = false) {
-        super(skeleton, animationState, id, label);
+    constructor(skeletonData: spine.SkeletonData, atlas: spine.TextureAtlas, id?: string, label: string = bishopData.Worm.name, readonly bishop: BishopId = "Worm", readonly isBoss: boolean = false) {
+        super(skeletonData, atlas, id, label);
 
         this.#isPurged = false;
         this.#isBandaged = bishop === "Spider" ? true : null;
@@ -42,9 +42,9 @@ export class Bishop extends Actor implements BishopObject {
     }
 
     clone(id?: string, label?: string) {
-        const { skeleton, animationState, bishop: bishopId, isBoss } = this;
+        const { skeleton, atlas, bishop: bishopId, isBoss } = this;
 
-        const bishop = new Bishop(new spine.Skeleton(skeleton.data), new spine.AnimationState(animationState.data), id, label, bishopId, isBoss);
+        const bishop = new Bishop(skeleton.data, atlas, id, label, bishopId, isBoss);
         bishop.copyFromObj(this.toObj());
 
         return bishop;
