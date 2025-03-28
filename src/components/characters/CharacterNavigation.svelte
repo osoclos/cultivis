@@ -262,11 +262,10 @@
     async function updateToModdedFollower() {
         if (!isFollowerObj(obj) || !isFollowerObj(actor)) return;
 
-        const { form, clothing, formColorSetIdx, animation, animationId } = obj;
+        const { form, clothing, animation, animationId } = obj;
         if (!factory.hasLoadedModdedFollower()) await factory.loadModdedFollower();
 
         const follower = factory.moddedFollower(form, clothing);
-        follower.formColorSetIdx = formColorSetIdx;
         follower.copyFromObj({ ...obj, colors: follower.colors });
 
         if (useExperimentalAnimations) {
@@ -282,7 +281,6 @@
                 }
             }
         } else follower.setRawAnimation(animation.name);
-
         change(follower);
 
         obj.animation = follower.animation;
@@ -303,8 +301,8 @@
         const { animation, bossAnimation = animation } = bishopData[id];
 
         bishop.setRawAnimation(isBoss ? bossAnimation : animation);
-        
         change(bishop);
+
         obj.animation = bishop.animation;
     }
 

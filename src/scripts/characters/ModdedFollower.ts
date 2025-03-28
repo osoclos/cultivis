@@ -77,10 +77,10 @@ export class ModdedFollower extends Follower implements ModdedFollowerObject {
     }
 
     copyFromObj(obj: ModdedFollowerObject) {
+        super.copyFromObj(obj);
+
         const { colors } = obj;
         for (const color in colors) this.setColor(<AllModdedFollowerSlotId>color, Color.fromObj(colors[<AllModdedFollowerSlotId>color]));
-
-        super.copyFromObj(obj);
     }
 
     toObj(): ModdedFollowerObject {
