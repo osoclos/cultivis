@@ -8,4 +8,8 @@ import MultiGrid from "./MultiGrid.svelte";
 import SpritesheetImage from "./SpritesheetImage.svelte";
 import InteractiveCanvas from "./InteractiveCanvas.svelte";
 
-export { List, Grid, Pagination, MultiList, MultiGrid, SpritesheetImage, InteractiveCanvas };
+import ColorDot from "./ColorDot.svelte";
+import ColorRows from "./ColorRows.svelte";
+import ColorWheel from "./ColorWheel.svelte";
+
+export { List, Grid, Pagination, MultiList, MultiGrid, SpritesheetImage, InteractiveCanvas, ColorDot, ColorRows, ColorWheel };

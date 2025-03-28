@@ -1,4 +1,27 @@
 <script lang="ts" module>
+    import type { AllModdedFollowerSlotId } from "../../../scripts/characters";
+    export const MODDED_FOLLOWER_SLOT_NAMES: Partial<Record<AllModdedFollowerSlotId, string>> = {
+        HEAD_SKIN_BTM: "Head",
+        HEAD_SKIN_TOP: "Head Details",
+
+        ARM_LEFT_SKIN: "Left Arm",
+        ARM_RIGHT_SKIN: "Right Arm",
+
+        LEG_LEFT_SKIN: "Left Leg",
+        LEG_RIGHT_SKIN: "Right Leg",
+
+        BODY_NAKED: "Body",
+        MARKINGS: "Markings",
+
+        "EYE_LEFT/IRIS": "Left Iris",
+        "EYE_LEFT/PUPIL": "Left Pupil",
+        "EYE_LEFT/SCHLERA": "Left Eye White",
+
+        "EYE_RIGHT/IRIS": "Right Iris",
+        "EYE_RIGHT/PUPIL": "Right Pupil",
+        "EYE_RIGHT/SCHLERA": "Right Eye White",
+    };
+
     export const FOLLOWER_MENU_NAMES = ["form", "clothing", "accessory", "color", "variant"] as const;
     export type FollowerMenuName = typeof FOLLOWER_MENU_NAMES[number];
 
@@ -12,7 +35,7 @@
 
     import { BoxOption } from "..";
     import { Header } from "../../base";
-    import { MultiGrid, SpritesheetImage } from "../../utils";
+    import { ColorDot, MultiGrid, SpritesheetImage } from "../../utils";
 
     import { followerData } from "../../../data/files";
     import { CLOTHING_IDS, clothingIdsByCategory, FOLLOWER_IDS, followerIdsByCategory, HATS_ID, necklaceIdsByCategory, type ClothingCategoryName, type ClothingData, type ClothingId, type ColorSet, type FollowerCategoryName, type FollowerId, type FormData, type HatId, type NecklaceCategoryName, type NecklaceData, type NecklaceId } from "../../../data/types";
@@ -203,7 +226,7 @@
         
                     {#each followerColorSets as set, i (i) }
                         <BoxOption label="Follower Form Color {i}" selected={i === obj.formColorSetIdx} onclick={() => updateFormColorSetIdx(i)}>
-                            <div class="m-3 w-10 h-10 rounded-full border-2 border-[#00000030]" style:background-color={Color.fromObj(findMostPopularColor(set)).toRGB_Str()}></div>
+                            <div class="m-3 w-10 h-10 rounded-full border-2 border-[#00000030]" style:background-color={Color.fromObj(findMostPopularColor(set)).toCSS_Str()}></div>
                         </BoxOption>
                     {/each}
                 {:else if y === +!!followerColorSets.length && followerData.forms[obj.form].canBeTinted}
@@ -213,7 +236,7 @@
         
                     {#each generalColorSets as set, i (i) }
                         <BoxOption label="General Follower Color {i}" selected={i + followerColorSets.length === obj.formColorSetIdx} onclick={() => updateFormColorSetIdx(i + followerColorSets.length)}>
-                            <div class="m-3 w-10 h-10 rounded-full border-2 border-[#00000030]" style:background-color={Color.fromObj(findMostPopularColor(set)).toRGB_Str()}></div>
+                            <div class="m-3 w-10 h-10 rounded-full border-2 border-[#00000030]" style:background-color={Color.fromObj(findMostPopularColor(set)).toCSS_Str()}></div>
                         </BoxOption>
                     {/each}
                 {:else if y === +!!followerColorSets.length + +followerData.forms[obj.form].canBeTinted && clothingColorSets?.length}
@@ -223,7 +246,7 @@
         
                     {#each clothingColorSets as set, i (i) }
                         <BoxOption label="Clothing Color {i}" selected={i === obj.clothingColorSetIdx} onclick={() => updateClothingColorSetIdx(i)}>
-                            <div class="m-3 w-10 h-10 rounded-full border-2 border-[#00000030]" style:background-color={Color.fromObj(findMostPopularColor(set)).toRGB_Str()}></div>
+                            <ColorDot class="m-3" color={findMostPopularColor(set)} />
                         </BoxOption>
                     {/each}
                 {/if}

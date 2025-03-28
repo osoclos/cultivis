@@ -177,14 +177,14 @@
 
         loadingState = LOADING_STATES.indexOf("LoadingAssets");
 
-        await factory.load(ModdedFollower, Player);
+        await factory.load(Follower, Player);
 
         exporter = await Exporter.create();
-        await exporter.factory.load(ModdedFollower, Player);
+        await exporter.factory.load(Follower, Player);
 
         loadingState = LOADING_STATES.indexOf("SceneSetup");
     
-        const deer = factory.moddedFollower("Deer", "Default_Clothing");
+        const deer = factory.follower("Deer", "Default_Clothing");
         deer.label = "Deer";
         deer.setRawAnimation("idle");
 

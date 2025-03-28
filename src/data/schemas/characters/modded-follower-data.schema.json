@@ -1,0 +1,46 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "modded-follower-data.schema.json",
+
+    "title": "Modded Follower Data",
+    "description": "Information on modded followers that provides metadata on additional slots and colors",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/SlotId" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "regions": {
+                "type": "object",
+                "description": "A list of regions that is associated with the target slot that connect to different regions of the added slot.",
+
+                "propertyNames": { "type": "string" },
+                "additionalProperties": { "$ref": "#/definitions/RegionId" }
+            },
+
+            "slot": {
+                "type": "string",
+                "description": "The target slot that the added slot track."
+            },
+
+            "color": {
+                "$ref": "../globals.schema.json#/definitions/Color",
+                "description": "The default color of the added slot."
+            }
+        },
+
+        "required": ["regions", "slot"]
+    },
+
+    "definitions": {
+        "SlotId": {
+            "type": "string",
+            "enum": ["EYE_LEFT/IRIS", "EYE_LEFT/PUPIL", "EYE_LEFT/SCHLERA", "EYE_LEFT/OUTLINE", "EYE_RIGHT/IRIS", "EYE_RIGHT/PUPIL", "EYE_RIGHT/SCHLERA", "EYE_RIGHT/OUTLINE"]
+        },
+
+        "RegionId": {
+            "type": "string",
+            "enum": ["colorful-eyes/EYE/iris", "colorful-eyes/EYE/pupil", "colorful-eyes/EYE/schlera", "colorful-eyes/EYE/outline"]
+        }
+    }
+}

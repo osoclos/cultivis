@@ -18,7 +18,7 @@
         const lastChild = container.lastElementChild as HTMLElement;
         const inputGrandchild = [...lastChild.children].find((child) => child instanceof HTMLInputElement || child instanceof HTMLSelectElement);
 
-        (inputGrandchild ?? lastChild)[target === lastChild ? "focus" : "click"]();
+        (inputGrandchild ?? lastChild)[target === (inputGrandchild ?? lastChild) ? "focus" : "click"]();
     }
 
     function onpointerenter() {

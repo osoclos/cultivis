@@ -4,28 +4,28 @@ size: 63,149
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
-EYE-IRIS
+colorful-eyes/EYE/iris
   rotate: true
   xy: 2, 30
   size: 55, 54
   orig: 60, 59
   offset: 5, 0
   index: -1
-EYE-OUTLINE
+colorful-eyes/EYE/outline
   rotate: true
   xy: 2, 87
   size: 60, 59
   orig: 60, 59
   offset: 0, 0
   index: -1
-EYE-PUPIL
+colorful-eyes/EYE/pupil
   rotate: false
   xy: 48, 2
   size: 9, 26
   orig: 60, 59
   offset: 15, 16
   index: -1
-EYE-SCHLERA
+colorful-eyes/EYE/schlera
   rotate: true
   xy: 2, 10
   size: 18, 44

@@ -1,78 +1,12 @@
-import type { ClothingId, FollowerId } from "../../data/types";
-import { Color } from "../../utils";
+import type { ClothingId, FollowerId, ModdedFollowerSlotId } from "../../data/types";
+import { moddedFollowerData } from "../../data/files";
+
+import { Color, type ColorObject } from "../../utils";
 
 import type { ActorObject } from "../Actor";
 import { Follower, type FollowerObject } from "./Follower";
 
 const TYPE: string = "modded-follower";
-
-export const enum ModdedFollowerSlots {
-    Head = "HEAD_SKIN_BTM",
-    HeadDetails = "HEAD_SKIN_TOP",
-
-    LeftArm = "ARM_LEFT_SKIN",
-    RightArm = "ARM_RIGHT_SKIN",
-
-    LeftLeg = "LEG_LEFT_SKIN",
-    RightLeg = "LEG_RIGHT_SKIN",
-
-    Body = "BODY_NAKED",
-    Markings = "MARKINGS",
-
-    LeftIris = "left-iris",
-    RightIris = "right-iris",
-
-    LeftPupil = "left-pupil",
-    RightPupil = "right-pupil",
-
-    LeftSchlera = "left-schlera",
-    RightSchlera = "right-schlera",
-
-    LeftEyeOutline = "left-eye-outline",
-    RightEyeOutline = "right-eye-outline"
-}
-
-export const enum ModdedFollowerRegions {
-    NormalIris = "EYE-IRIS",
-    NormalPupil = "EYE-PUPIL",
-    NormalSchlera = "EYE-SCHLERA",
-    NormalEyeOutline = "EYE-OUTLINE"
-}
-
-export const MODDED_FOLLOWER_SLOT_NAMES: Record<ModdedFollowerSlots, string> = {
-    [ModdedFollowerSlots.Head]: "Head",
-    [ModdedFollowerSlots.HeadDetails]: "Head Details",
-
-    [ModdedFollowerSlots.LeftArm]: "Left Arm",
-    [ModdedFollowerSlots.RightArm]: "Right Arm",
-
-    [ModdedFollowerSlots.LeftLeg]: "Left Leg",
-    [ModdedFollowerSlots.RightLeg]: "Right Leg",
-
-    [ModdedFollowerSlots.Body]: "Body",
-    [ModdedFollowerSlots.Markings]: "Markings",
-
-    [ModdedFollowerSlots.LeftIris]: "Left Iris",
-    [ModdedFollowerSlots.RightIris]: "Right Iris",
-
-    [ModdedFollowerSlots.LeftPupil]: "Left Pupil",
-    [ModdedFollowerSlots.RightPupil]: "Right Pupil",
-
-    [ModdedFollowerSlots.LeftSchlera]: "Left Eye White",
-    [ModdedFollowerSlots.RightSchlera]: "Right Eye White",
-
-    [ModdedFollowerSlots.LeftEyeOutline]: "Left Eye Outline",
-    [ModdedFollowerSlots.RightEyeOutline]: "Right Eye Outline",
-} as const;
-
-export type ModdedFollowerSlotName = typeof MODDED_FOLLOWER_SLOT_NAMES[ModdedFollowerSlots];
-
-export const DEFAULT_MODDED_FOLLOWER_REGION_COLORS: Record<ModdedFollowerRegions, number> = {
-    [ModdedFollowerRegions.NormalIris]: 0x120d0d,
-    [ModdedFollowerRegions.NormalPupil]: 0xffffff,
-    [ModdedFollowerRegions.NormalSchlera]: 0xffffff,
-    [ModdedFollowerRegions.NormalEyeOutline]: 0xffffff,
-};
 
 export class ModdedFollower extends Follower implements ModdedFollowerObject {
     static readonly TEXTURE_PATHS: string[] = [Follower.TEXTURE_FILENAME, "modded/colorful-eyes.png"];
@@ -81,45 +15,48 @@ export class ModdedFollower extends Follower implements ModdedFollowerObject {
     static readonly LEFT_EYE_SLOT_NAME: string = "EYE_LEFT";
     static readonly RIGHT_EYE_SLOT_NAME: string = "EYE_RIGHT";
 
-    #colors: Record<ModdedFollowerSlots, Color>;
+    private _colors: Record<AllModdedFollowerSlotId, Color>;
     constructor(skeletonData: spine.SkeletonData, atlas: spine.TextureAtlas, id?: string, label?: string, form?: FollowerId, clothing?: ClothingId) {
         super(skeletonData, atlas, id, label, form, clothing);
         const { skeleton, colorSetData, formColorSetIdx } = this;
         
-        this.#colors = Color.fromColorSet(colorSetData[formColorSetIdx]);
+        this._colors = <Record<AllModdedFollowerSlotId, Color>>{ ...Color.fromColorSet(colorSetData[formColorSetIdx]) };
 
-        const leftEyeSlot = skeleton.slots.find(({ data: { name }}) => name === ModdedFollower.LEFT_EYE_SLOT_NAME)!;
-        const { bone: leftEyeBone } = leftEyeSlot;
-        
-        const rightEyeSlot = skeleton.slots.find(({ data: { name }}) => name === ModdedFollower.RIGHT_EYE_SLOT_NAME)!;
-        const { bone: rightEyeBone } = rightEyeSlot;
-        
-        // move all of these to a data file
-        this.addSlot(ModdedFollowerSlots.LeftIris, leftEyeBone);
-        this.addSlot(ModdedFollowerSlots.LeftPupil, leftEyeBone);
-        this.addSlot(ModdedFollowerSlots.LeftSchlera, leftEyeBone);
-        this.addSlot(ModdedFollowerSlots.LeftEyeOutline, leftEyeBone);
+        for (const dataSlotName in moddedFollowerData) {
+            const newSlotName = <ModdedFollowerSlotId>dataSlotName;
+            const { regions, slot: targetSlotName, color } = moddedFollowerData[newSlotName];
 
-        this.addRegionToSlot({ "Face/EYE": ModdedFollowerRegions.NormalIris }, ModdedFollowerSlots.LeftIris, ModdedFollower.LEFT_EYE_SLOT_NAME);
-        this.addRegionToSlot({ "Face/EYE": ModdedFollowerRegions.NormalPupil }, ModdedFollowerSlots.LeftPupil, ModdedFollower.LEFT_EYE_SLOT_NAME);
-        this.addRegionToSlot({ "Face/EYE": ModdedFollowerRegions.NormalSchlera }, ModdedFollowerSlots.LeftSchlera, ModdedFollower.LEFT_EYE_SLOT_NAME);
-        this.addRegionToSlot({ "Face/EYE": ModdedFollowerRegions.NormalEyeOutline }, ModdedFollowerSlots.LeftEyeOutline, ModdedFollower.LEFT_EYE_SLOT_NAME);
+            const targetSlot = skeleton.findSlot(targetSlotName);
+            const { bone } = targetSlot;
 
-        this.addSlot(ModdedFollowerSlots.RightIris, rightEyeBone);
-        this.addSlot(ModdedFollowerSlots.RightPupil, rightEyeBone);
-        this.addSlot(ModdedFollowerSlots.RightSchlera, rightEyeBone);
-        this.addSlot(ModdedFollowerSlots.RightEyeOutline, rightEyeBone);
+            this.addSlot(newSlotName, bone);
+            this.addRegionToSlot(regions, newSlotName, targetSlotName);
 
-        this.addRegionToSlot({ "Face/EYE": ModdedFollowerRegions.NormalIris }, ModdedFollowerSlots.RightIris, ModdedFollower.RIGHT_EYE_SLOT_NAME);
-        this.addRegionToSlot({ "Face/EYE": ModdedFollowerRegions.NormalPupil }, ModdedFollowerSlots.RightPupil, ModdedFollower.RIGHT_EYE_SLOT_NAME);
-        this.addRegionToSlot({ "Face/EYE": ModdedFollowerRegions.NormalSchlera }, ModdedFollowerSlots.RightSchlera, ModdedFollower.RIGHT_EYE_SLOT_NAME);
-        this.addRegionToSlot({ "Face/EYE": ModdedFollowerRegions.NormalEyeOutline }, ModdedFollowerSlots.RightEyeOutline, ModdedFollower.RIGHT_EYE_SLOT_NAME);
+            this._colors[newSlotName] = color ? Color.fromObj(color) : Color.White;
+        }
 
         this.update();
     }
 
-    get colors(): Record<ModdedFollowerSlots, Color> {
-        return this.#colors;
+    get colors(): Record<AllModdedFollowerSlotId, Color> {
+        return this._colors;
+    }
+
+    get formColorSetIdx(): number {
+        return super.formColorSetIdx;
+    }
+
+    set formColorSetIdx(formColorSetIdx: number) {;
+        const colors = Color.fromColorSet(this.colorSetData[formColorSetIdx]);
+        for (const color in colors) this.setColor(<AllModdedFollowerSlotId>color, Color.fromObj(colors[<AllModdedFollowerSlotId>color]));
+        
+        super.formColorSetIdx = formColorSetIdx;
+        this.update();
+    }
+
+    setColor(slot: AllModdedFollowerSlotId, color: Color) {
+        this._colors[slot].copy(color);
+        this.update();
     }
 
     clone(id?: string, label?: string, form: FollowerId = this.form, clothing: ClothingId = this.clothing): ModdedFollower {
@@ -134,20 +71,34 @@ export class ModdedFollower extends Follower implements ModdedFollowerObject {
         return follower;
     }
 
+    update() {
+        super.update();
+        this.applyColors(Color.toColorSet(this.colors));
+    }
+
     copyFromObj(obj: ModdedFollowerObject) {
         const { colors } = obj;
-        this.#colors = colors;
+        for (const color in colors) this.setColor(<AllModdedFollowerSlotId>color, Color.fromObj(colors[<AllModdedFollowerSlotId>color]));
 
         super.copyFromObj(obj);
     }
 
     toObj(): ModdedFollowerObject {
-        const { colors } = this;
+        const { colors: originalColors } = this;
+
+        const colors = <Record<AllModdedFollowerSlotId, ColorObject>>{};
+        for (const color in originalColors) colors[<AllModdedFollowerSlotId>color] = originalColors[<AllModdedFollowerSlotId>color].toObj();
+
         return { ...super.toObj(), type: TYPE, colors };
     }
 }
 
-export interface ModdedFollowerObject extends FollowerObject { colors: Record<ModdedFollowerSlots, Color>; };
+export interface ModdedFollowerObject extends FollowerObject { colors: Record<AllModdedFollowerSlotId, ColorObject>; };
 export function isModdedFollowerObj(obj: ActorObject): obj is ModdedFollowerObject {
     return obj instanceof ModdedFollower || obj.type === TYPE;
 }
+
+export const EXISTING_MODDED_FOLLOWER_SLOT_IDS = ["HEAD_SKIN_BTM", "HEAD_SKIN_TOP", "ARM_LEFT_SKIN", "ARM_RIGHT_SKIN", "LEG_LEFT_SKIN", "LEG_RIGHT_SKIN", "BODY_NAKED", "MARKINGS"] as const;
+export type ExistingModdedFollowerSlotId = typeof EXISTING_MODDED_FOLLOWER_SLOT_IDS[number];
+
+export type AllModdedFollowerSlotId = ModdedFollowerSlotId | ExistingModdedFollowerSlotId;

@@ -1,8 +1,16 @@
 <script lang="ts">
+    import { twMerge } from "tailwind-merge";
     import { MoreMath, Vector } from "../../utils";
 
-    interface Props { oninput?: (color: string) => void; }
-    const { oninput: input = () => {} }: Props = $props();
+    interface Props {
+        class?: string;
+        oninput?: (color: string) => void;
+    }
+
+    const {
+        class: className,
+        oninput: input = () => {}
+    }: Props = $props();
 
     let container: HTMLDivElement;
     let triangle: HTMLDivElement;
@@ -66,7 +74,7 @@
     }
 </script>
 
-<div bind:this={container} class="aspect-square grid place-items-center w-24 bg-conic-[in_hsl_longer_hue] from-[#ff0000] to-[#ff0000] rounded-full" {onpointerdown} {onpointermove} {onpointerup}>
+<div bind:this={container} class={twMerge("aspect-square grid place-items-center w-24 bg-conic-[in_hsl_longer_hue] from-[#ff0000] to-[#ff0000] rounded-full", className)} {onpointerdown} {onpointermove} {onpointerup}>
     <div bind:this={triangle} class="aspect-square grid relative justify-center w-20 bg-secondary rounded-full" style:transform="rotate({hue}deg)" onpointerdown={onTrianglePointerDown} onpointermove={onTrianglePointerMove}>
         <div class="triangle aspect-square w-16" style:background-color="hsl({hue}deg 100% 50%)"></div>
         <div class="triangle aspect-square absolute top-0 left-1/2 w-16 bg-gradient-to-br from-transparent from-33% to-white -translate-x-1/2"></div>

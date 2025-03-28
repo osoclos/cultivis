@@ -35,6 +35,24 @@
                 "type": "array",
                 "items": { "type": "string" }
             }
+        },
+
+        "Color": {
+            "type": "object",
+            "properties": {
+                "r": { "$ref": "#/definitions/ColorValue" },
+                "g": { "$ref": "#/definitions/ColorValue" },
+                "b": { "$ref": "#/definitions/ColorValue" },
+                "a": { "$ref": "#/definitions/ColorValue" }
+            },
+
+            "required": ["r", "g", "b", "a"]
+        },
+
+        "ColorValue": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 255
         }
     }
 }

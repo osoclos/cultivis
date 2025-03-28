@@ -107,6 +107,11 @@
             "url": "/src/data/schemas/characters/follower-data.schema.json"
         },
         {
+            "fileMatch": ["/modded-follower-data.json"],
+            "url": "/src/data/schemas/characters/modded-follower-data.schema.json"
+        },
+
+        {
             "fileMatch": ["/player-data.json"],
             "url": "/src/data/schemas/characters/player-data.schema.json"
         },

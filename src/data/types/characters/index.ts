@@ -1,4 +1,6 @@
 export * from "./Follower";
+export * from "./ModdedFollower";
+
 export * from "./Player";
 
 export * from "./enemies";

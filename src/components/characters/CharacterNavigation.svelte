@@ -72,19 +72,20 @@
     }
 </script>
 
+<!-- svelte-ignore state_referenced_locally -->
 <script lang="ts">
     import { twMerge } from "tailwind-merge";
 
     import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, ArrowSelection, Slider, Toggle, Notice } from "../base";
-    import { BISHOP_MENU_NAME, GUARD_MENU_NAME, HERETIC_MENU_NAME, KNUCKLEBONES_PLAYER_MENU_NAME, MACHINE_MENU_NAME, MINI_BOSS_MENU_NAME, OCCULTIST_MENU_NAME, SOLDIER_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
-    import { MultiList } from "../utils";
+    import { BISHOP_MENU_NAME, GUARD_MENU_NAME, HERETIC_MENU_NAME, KNUCKLEBONES_PLAYER_MENU_NAME, MACHINE_MENU_NAME, MINI_BOSS_MENU_NAME, MODDED_FOLLOWER_SLOT_NAMES, OCCULTIST_MENU_NAME, SOLDIER_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
+    import { ColorDot, ColorRows, MultiList } from "../utils";
 
     import { Actor, Factory, Scene, type ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isKnucklebonesPlayerObj, isMachineObj, isMiniBossObj, isModdedFollowerObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isKnucklebonesPlayerObj, isMachineObj, isMiniBossObj, isModdedFollowerObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj, ModdedFollower, type AllModdedFollowerSlotId } from "../../scripts/characters";
     import { soundManager } from "../../scripts/managers";
 
     import { bishopData, forbiddenAnimations, hereticData, machineData, miniBossData, soldierData } from "../../data/files";
-    import { Random, Vector, type VectorObject } from "../../utils";
+    import { Color, Random, Vector, type ColorObject, type VectorObject } from "../../utils";
 
     interface Props {
         actor: Actor;
@@ -130,13 +131,30 @@
         onexit: exit = () => {}
     }: Props = $props();
 
+    let selectedSlot: string | null = $state(null);
+    const customSlots: Record<string, string> = $derived.by(() => {
+        switch (true) {
+            case isModdedFollowerObj(obj): return MODDED_FOLLOWER_SLOT_NAMES;
+            default: return {};
+        }
+    });
+
+    const selectedColor: ColorObject = $derived.by(() => {
+        switch (true) {
+            case isModdedFollowerObj(obj): return obj.colors[(selectedSlot ?? Object.keys(customSlots)[0]) as AllModdedFollowerSlotId];
+            default: return Color.Black.toObj();
+        }
+    });
+
     const animations: string[] = $derived.by(() => {
         const { follower, player, soldier, occultist, guard } = forbiddenAnimations;
         const { animationNames } = actor;
         
         const actorForbiddenAnimations: string[] = (() => {
             switch (true) {
-                case isFollowerObj(actor): return follower;
+                case isFollowerObj(actor):
+                case isModdedFollowerObj(actor): return follower;
+
                 case isPlayerObj(actor): return player;
 
                 case isSoldierObj(actor): return soldier;
@@ -152,7 +170,9 @@
 
     const experimentalAnimations: Record<string, string> = $derived.by(() => {
         switch (true) {
-            case isFollowerObj(actor): return Object.fromEntries(FOLLOWER_ANIMATION_IDS.map((id) => [id, followerAnimationData[id].name]));
+            case isFollowerObj(actor):
+            case isModdedFollowerObj(actor): return Object.fromEntries(FOLLOWER_ANIMATION_IDS.map((id) => [id, followerAnimationData[id].name]));
+            
             default: return {};
         }
     });
@@ -172,7 +192,8 @@
 
     function randomizeFollowerAppearance() {
         switch (true) {
-            case isFollowerObj(actor) && isFollowerObj(obj): {
+            case isFollowerObj(actor) && isFollowerObj(obj):
+            case isModdedFollowerObj(actor) && isModdedFollowerObj(obj): {
                 const [form, formVariantIdx, formColorSetIdx] = getRandomFollowerAppearance();
 
                 actor.form = form;
@@ -209,7 +230,7 @@
     }
     
     function updateFollowerPossessionState(possessionState: number) {
-        if (!isFollowerObj(obj) || !isFollowerObj(actor)) return;
+        if ((!isFollowerObj(obj) || !isFollowerObj(actor)) && !isModdedFollowerObj(obj) || !isModdedFollowerObj(actor)) return;
         possessionState--;
 
         obj.possessionState = possessionState < 0 ? null : possessionState;
@@ -219,7 +240,7 @@
     }
 
     function updateFollowerSickState(sickState: number) {
-        if (!isFollowerObj(obj) || !isFollowerObj(actor)) return;
+        if ((!isFollowerObj(obj) || !isFollowerObj(actor)) && !isModdedFollowerObj(obj) || !isModdedFollowerObj(actor)) return;
         sickState--;
 
         obj.sickState = sickState < 0 ? null : sickState;
@@ -229,13 +250,42 @@
     }
 
     function updateFollowerBeliefState(beliefState: number) {
-        if (!isFollowerObj(obj) || !isFollowerObj(actor)) return;
+        if ((!isFollowerObj(obj) || !isFollowerObj(actor)) && !isModdedFollowerObj(obj) || !isModdedFollowerObj(actor)) return;
         beliefState--;
 
         obj.beliefState = beliefState < 0 ? null : beliefState;
         actor.beliefState = beliefState < 0 ? null : beliefState;
 
         update();
+    }
+
+    async function updateToModdedFollower() {
+        if (!isFollowerObj(obj) || !isFollowerObj(actor)) return;
+
+        const { form, clothing, formColorSetIdx, animation, animationId } = obj;
+        if (!factory.hasLoadedModdedFollower()) await factory.loadModdedFollower();
+
+        const follower = factory.moddedFollower(form, clothing);
+        follower.formColorSetIdx = formColorSetIdx;
+        follower.copyFromObj({ ...obj, colors: follower.colors });
+
+        if (useExperimentalAnimations) {
+            switch (true) {
+                case isFollowerObj(actor):
+                case isModdedFollowerObj(actor): {
+                    const id = animationId as FollowerAnimationId;
+
+                    await soundManager.load(...followerAnimationData[id].sounds.map(({ sound }) => sound));
+                    actor.animationId = id;
+
+                    break;
+                }
+            }
+        } else follower.setRawAnimation(animation.name);
+
+        change(follower);
+
+        obj.animation = follower.animation;
     }
 
     async function updateBishopIsBoss(isBoss: boolean) {
@@ -253,9 +303,14 @@
         const { animation, bossAnimation = animation } = bishopData[id];
 
         bishop.setRawAnimation(isBoss ? bossAnimation : animation);
-        obj.animation = bishop.animation;
-
+        
         change(bishop);
+        obj.animation = bishop.animation;
+    }
+
+    function updateCustomSlotColor() {
+        if (!isModdedFollowerObj(obj) || !isModdedFollowerObj(actor)) return;
+        (actor as ModdedFollower).setColor((selectedSlot ?? Object.keys(customSlots)[0]) as AllModdedFollowerSlotId, Color.fromObj(selectedColor));
     }
 
     function updateStage(stage: number) {
@@ -305,14 +360,15 @@
         update();
     }
 
-    function updateUseExperimentalAnimation(useExperimentalAnimations: boolean) {
-        useExperimentalAnimations ? updateExperimentalAnimation(experimentalAnimations[0]) : updateAnimation(animations[0]);
+    async function updateUseExperimentalAnimation(useExperimentalAnimations: boolean) {
+        useExperimentalAnimations ? await updateExperimentalAnimation(Object.keys(experimentalAnimations)[0]) : updateAnimation(animations[0]);
         obj.animationId = actor.animationId;
     }
 
     async function updateExperimentalAnimation(animationId: string) {
         switch (true) {
-            case isFollowerObj(actor): {
+            case isFollowerObj(actor):
+            case isModdedFollowerObj(actor): {
                 const id = animationId as FollowerAnimationId;
 
                 await soundManager.load(...followerAnimationData[id].sounds.map(({ sound }) => sound));
@@ -320,8 +376,9 @@
 
                 break;
             }
-        } 
+        }
 
+        obj.animation = actor.animation;
         update();
     }
     
@@ -431,6 +488,10 @@
                                     <Label label="Is Befuddled?">
                                         <Toggle label="Is Befuddled?" bind:enabled={obj.isBefuddled} oninput={(isBefuddled) => actor.isBefuddled = isBefuddled} />
                                     </Label>
+
+                                    {#if isFollowerObj(obj) && isFollowerObj(actor)}
+                                        <BannerButton label="Add Colors++" onclick={updateToModdedFollower} />
+                                    {/if}
                                 {:else if isPlayerObj(obj) && isPlayerObj(actor)}
                                     <Label label="Hurt State">
                                         <ArrowSelection class="ml-6" label="Hurt State" options={["Normal", "Bruised", "Injured"]} bind:i={obj.hurtState} oninput={(_, i) => actor.hurtState = i} />
@@ -550,6 +611,24 @@
                         </div>
                     {/if}
 
+                    {#if Object.keys(customSlots).length}
+                        <div class="flex flex-col gap-6 items-center mx-8">
+                            <LabelTitle title="Colors++" />
+
+                            <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
+                                <Label class="h-24" label="Selected Part">
+                                    <Dropdown class="ml-4"  options={customSlots} value={selectedSlot ?? Object.keys(customSlots)[0]} label="Selected Part" oninput={(slot) => selectedSlot = slot} />
+                                </Label>
+
+                                <Label label="Preview Color">
+                                    <ColorDot color={selectedColor} />
+                                </Label>
+
+                                <ColorRows class="w-80 sm:w-90" bind:r={selectedColor.r} bind:g={selectedColor.g} bind:b={selectedColor.b} oninput={updateCustomSlotColor} />
+                            </div>
+                        </div>
+                    {/if}
+
                     <div class="flex flex-col gap-6 items-center mx-8">
                         <LabelTitle title="Positioning" />
                     
@@ -578,21 +657,17 @@
                         </div>
                     </div>
 
-                    <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
+                    <div class="flex flex-col gap-8 items-center mx-8">
                         <LabelTitle title="Animations" />
 
                         {#if Object.keys(experimentalAnimations).length}
-                            <Label label="Use Experimental Animations">
+                            <Label class="w-80 sm:w-90" label="Use Experimental Animations">
                                 <Toggle label="Use Experimental Animations" bind:enabled={useExperimentalAnimations} oninput={updateUseExperimentalAnimation} />
                             </Label>
                         {/if}
 
-                        <Label class="h-24" label="Selected Animation">
-                            {#if useExperimentalAnimations && Object.keys(experimentalAnimations).length}
-                                <Dropdown options={experimentalAnimations} bind:value={obj.animationId} label="Select Animation" oninput={updateExperimentalAnimation} />
-                            {:else}
-                                <Dropdown options={animations} bind:value={obj.animationId} label="Select Animation" oninput={updateAnimation} />
-                            {/if}
+                        <Label class="w-80 sm:w-90 h-24" label="Selected Animation">
+                            <Dropdown class="ml-4" options={useExperimentalAnimations && Object.keys(experimentalAnimations).length ? experimentalAnimations : animations} bind:value={obj.animationId} label="Selected Animation" oninput={useExperimentalAnimations && Object.keys(experimentalAnimations).length ? updateExperimentalAnimation : updateAnimation} />
                         </Label>
 
                         {#if useExperimentalAnimations && Object.keys(experimentalAnimations).length}
@@ -600,18 +675,18 @@
                         {/if}
                     </div>
 
-                    <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
+                    <div class="flex flex-col gap-8 items-center mx-8">
                         <LabelTitle title="Miscellaneous" />
 
-                        <Label label="Flip Character">
+                        <Label class="w-80 sm:w-90" label="Flip Character">
                             <Toggle label="Flip Character" bind:enabled={obj.flipX} oninput={(flipX) => actor.flipX = flipX} />
                         </Label>
 
-                        <Label label="Hide Character">
+                        <Label class="w-80 sm:w-90" label="Hide Character">
                             <Toggle label="Hide Character" bind:enabled={obj.hidden} oninput={(hidden) => actor.hidden = hidden} />
                         </Label>
 
-                        <Label label="Mute Character">
+                        <Label class="w-80 sm:w-90" label="Mute Character">
                             <Toggle label="Mute Character" bind:enabled={obj.muted} oninput={(muted) => actor.muted = muted} />
                         </Label>
                     </div>

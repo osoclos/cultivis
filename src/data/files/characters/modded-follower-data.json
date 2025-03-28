@@ -1,0 +1,55 @@
+{
+    "EYE_LEFT/IRIS": {
+        "regions": { "Face/EYE": "colorful-eyes/EYE/iris" },
+        "slot": "EYE_LEFT",
+
+        "color": {
+            "r": 18,
+            "g": 13,
+            "b": 13,
+            "a": 255
+        }
+    },
+
+    "EYE_LEFT/PUPIL": {
+        "regions": { "Face/EYE": "colorful-eyes/EYE/pupil" },
+        "slot": "EYE_LEFT"
+    },
+
+    "EYE_LEFT/SCHLERA": {
+        "regions": { "Face/EYE": "colorful-eyes/EYE/schlera" },
+        "slot": "EYE_LEFT"
+    },
+
+    "EYE_LEFT/OUTLINE": {
+        "regions": { "Face/EYE": "colorful-eyes/EYE/outline" },
+        "slot": "EYE_LEFT"
+    },
+
+    "EYE_RIGHT/IRIS": {
+        "regions": { "Face/EYE": "colorful-eyes/EYE/iris" },
+        "slot": "EYE_RIGHT",
+
+        "color": {
+            "r": 18,
+            "g": 13,
+            "b": 13,
+            "a": 255
+        }
+    },
+
+    "EYE_RIGHT/PUPIL": {
+        "regions": { "Face/EYE": "colorful-eyes/EYE/pupil" },
+        "slot": "EYE_RIGHT"
+    },
+
+    "EYE_RIGHT/SCHLERA": {
+        "regions": { "Face/EYE": "colorful-eyes/EYE/schlera" },
+        "slot": "EYE_RIGHT"
+    },
+
+    "EYE_RIGHT/OUTLINE": {
+        "regions": { "Face/EYE": "colorful-eyes/EYE/outline" },
+        "slot": "EYE_RIGHT"
+    }
+}

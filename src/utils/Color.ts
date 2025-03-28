@@ -45,7 +45,7 @@ export class Color implements ColorObject {
     static create(r: number, g: number, b: number): Color;
     static create(r: number, g: number, b: number, a: number): Color;
     static create(r: number, g: number, b: number, a: number, forceVal: boolean): Color;
-    static create(r: number = 0x00, g: number = r, b: number = r * +(r !== g), a: number = 0xff, forceVal: boolean = false) {
+    static create(r: number = 0x00, g: number = r, b: number = r * +(r === g), a: number = 0xff, forceVal: boolean = false) {
         return new Color(r, g, b, a, forceVal);
     }
 
@@ -362,7 +362,7 @@ export class Color implements ColorObject {
         return [Color.VAR_R, Color.VAR_G, Color.VAR_B, Color.VAR_A].reduce((str, name, i) => str.replace(name, `${this[i as keyof this]}`), format);;
     }
 
-    toRGB_Str(): string {
+    toCSS_Str(): string {
         return this.toStr(this.hasTransparency ? `rgba(${Color.DEFAULT_ALPHA_STR_FORMAT})` : `rgb(${Color.DEFAULT_NON_ALPHA_STR_FORMAT})`);
     }
 
