@@ -80,7 +80,7 @@
     import { BISHOP_MENU_NAME, GUARD_MENU_NAME, HERETIC_MENU_NAME, KNUCKLEBONES_PLAYER_MENU_NAME, MACHINE_MENU_NAME, MINI_BOSS_MENU_NAME, MODDED_FOLLOWER_SLOT_NAMES, OCCULTIST_MENU_NAME, SOLDIER_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
     import { ColorDot, ColorRows, MultiList } from "../utils";
 
-    import { Actor, Factory, Scene, type ActorObject } from "../../scripts";
+    import { Actor, Exporter, Factory, Scene, type ActorObject } from "../../scripts";
     import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isKnucklebonesPlayerObj, isMachineObj, isMiniBossObj, isModdedFollowerObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj, ModdedFollower, type AllModdedFollowerSlotId } from "../../scripts/characters";
     import { soundManager } from "../../scripts/managers";
 
@@ -95,6 +95,7 @@
         actorIdx: number;
 
         factory: Factory;
+        exporter: Exporter;
 
         class?: string;
         enableKeyInput?: boolean;
@@ -117,6 +118,7 @@
         actorIdx,
 
         factory,
+        exporter,
 
         class: className,
         enableKeyInput = false,
@@ -263,7 +265,7 @@
         if (!isFollowerObj(obj) || !isFollowerObj(actor)) return;
 
         const { form, clothing, animation, animationId } = obj;
-        if (!factory.hasLoadedModdedFollower()) await factory.loadModdedFollower();
+        !factory.hasLoadedModdedFollower() && await factory.loadModdedFollower() && await exporter.factory.loadModdedFollower();
 
         const follower = factory.moddedFollower(form, clothing);
         follower.copyFromObj({ ...obj, colors: follower.colors });

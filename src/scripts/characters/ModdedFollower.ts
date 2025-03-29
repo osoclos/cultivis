@@ -32,7 +32,7 @@ export class ModdedFollower extends Follower implements ModdedFollowerObject {
             this.addSlot(newSlotName, bone);
             this.addRegionToSlot(regions, newSlotName, targetSlotName);
 
-            this._colors[newSlotName] = color ? Color.fromObj(color) : Color.White;
+            this.setColor(newSlotName, color ? Color.fromObj(color) : Color.White);
         }
 
         this.update();
@@ -55,7 +55,9 @@ export class ModdedFollower extends Follower implements ModdedFollowerObject {
     }
 
     setColor(slot: AllModdedFollowerSlotId, color: Color) {
-        this._colors[slot].copy(color);
+        const { colors } = this;
+        slot in colors ? colors[slot].copy(color) : colors[slot] = color.clone();
+
         this.applyColors(Color.toColorSet(this.colors));
     }
 

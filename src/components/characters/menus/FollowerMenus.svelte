@@ -1,5 +1,5 @@
 <script lang="ts" module>
-    import type { AllModdedFollowerSlotId } from "../../../scripts/characters";
+    import type { AllModdedFollowerSlotId, ModdedFollower } from "../../../scripts/characters";
     export const MODDED_FOLLOWER_SLOT_NAMES: Partial<Record<AllModdedFollowerSlotId, string>> = {
         HEAD_SKIN_BTM: "Head",
         HEAD_SKIN_TOP: "Head Details",
@@ -40,7 +40,7 @@
     import { followerData } from "../../../data/files";
     import { CLOTHING_IDS, clothingIdsByCategory, FOLLOWER_IDS, followerIdsByCategory, HATS_ID, necklaceIdsByCategory, type ClothingCategoryName, type ClothingData, type ClothingId, type ColorSet, type FollowerCategoryName, type FollowerId, type FormData, type HatId, type NecklaceCategoryName, type NecklaceData, type NecklaceId } from "../../../data/types";
 
-    import { Follower, type FollowerObject } from "../../../scripts/characters";
+    import { Follower, isModdedFollowerObj, type FollowerObject } from "../../../scripts/characters";
     import { Color, Random } from "../../../utils";
 
     interface Props {
@@ -136,26 +136,54 @@
         follower.formColorSetIdx = i;
         obj.formColorSetIdx = i;
 
+        if (isModdedFollowerObj(follower) && isModdedFollowerObj(obj)) for (const slot in follower.colors) (follower.colors[slot as AllModdedFollowerSlotId] as Color).cloneObj(obj.colors[slot as AllModdedFollowerSlotId]);
         update();
     }
 
     function updateClothingColorSetIdx(i: number) {
+        const { colors = null } = isModdedFollowerObj(follower) ? follower : {};
+        
         follower.clothingColorSetIdx = i;
         obj.clothingColorSetIdx = i;
+
+        if (colors && isModdedFollowerObj(follower) && isModdedFollowerObj(obj)) for (const slot in colors) {
+            const color = colors[slot as AllModdedFollowerSlotId] as Color;
+
+            (follower as ModdedFollower).setColor(slot as AllModdedFollowerSlotId, color);
+            color.cloneObj(obj.colors[slot as AllModdedFollowerSlotId]);
+        }
 
         update();
     }
 
     function updateFormVariantIdx(i: number) {
+        const { colors = null } = isModdedFollowerObj(follower) ? follower : {};
+        
         follower.formVariantIdx = i;
         obj.formVariantIdx = i;
+
+        if (colors && isModdedFollowerObj(follower) && isModdedFollowerObj(obj)) for (const slot in colors) {
+            const color = colors[slot as AllModdedFollowerSlotId] as Color;
+
+            (follower as ModdedFollower).setColor(slot as AllModdedFollowerSlotId, color);
+            color.cloneObj(obj.colors[slot as AllModdedFollowerSlotId]);
+        }
 
         update();
     }
 
     function updateClothingVariantIdx(i: number) {
+        const { colors = null } = isModdedFollowerObj(follower) ? follower : {};
+        
         follower.clothingVariantIdx = i;
         obj.clothingVariantIdx = i;
+
+        if (colors && isModdedFollowerObj(follower) && isModdedFollowerObj(obj)) for (const slot in colors) {
+            const color = colors[slot as AllModdedFollowerSlotId] as Color;
+
+            (follower as ModdedFollower).setColor(slot as AllModdedFollowerSlotId, color);
+            color.cloneObj(obj.colors[slot as AllModdedFollowerSlotId]);
+        }
 
         update();
     }

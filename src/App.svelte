@@ -30,7 +30,7 @@
     let scene: Scene = $state(Scene.prototype);
     let factory: Factory = $state(Factory.prototype);
 
-    let exporter: Exporter;
+    let exporter: Exporter = $state(Exporter.prototype);
     
     let categoryIdx: number = $state(0);
     let categoryMenu: HTMLDivElement = $state(document.createElement("div"));
@@ -585,7 +585,7 @@
 
                 <div class={["lg:absolute z-90 lg:top-0 w-full lg:w-160 lg:h-full bg-secondary transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                     {#if actor && actorObj}
-                        <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {scene} {actorIdx} {factory} enableKeyInput={actorIdx >= 0 && !showActorMenu} bind:useExperimentalAnimations onupdate={updateSceneFromChanges} onchange={swapActor} onreorder={reorderActor} onproceed={selectMenu} onexit={exitMenu} />
+                        <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {scene} {actorIdx} {factory} {exporter} enableKeyInput={actorIdx >= 0 && !showActorMenu} bind:useExperimentalAnimations onupdate={updateSceneFromChanges} onchange={swapActor} onreorder={reorderActor} onproceed={selectMenu} onexit={exitMenu} />
                     {/if}
                 </div>
 
