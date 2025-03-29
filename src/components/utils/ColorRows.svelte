@@ -63,7 +63,7 @@
     }
 
     function onpointermove({ offsetX, currentTarget }: PointerEvent) {
-        if (pointerBar !== currentTarget) return;
+        if (currentTarget && pointerBar !== currentTarget) return;
 
         const bar = currentTarget as HTMLDivElement;
         
