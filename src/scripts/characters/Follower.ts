@@ -416,12 +416,15 @@ export class Follower extends Actor implements FollowerObject {
 
         animationState.setAnimation(Follower.EMOTION_STATE_TRACK_INDEX, emotionStateAnimation, true);
 
-        possessionStateAnimation ? animationState.setAnimation(Follower.POSSESSION_STATE_TRACK_INDEX, possessionStateAnimation, true) : animationState.setEmptyAnimation(Follower.POSSESSION_STATE_TRACK_INDEX, 0);
-        sickStateAnimation ? animationState.setAnimation(Follower.SICK_STATE_TRACK_INDEX, sickStateAnimation, true) : animationState.setEmptyAnimation(Follower.SICK_STATE_TRACK_INDEX, 0);
-        beliefStateAnimation ? animationState.setAnimation(Follower.BELIEF_STATE_TRACK_INDEX, beliefStateAnimation, true) : animationState.setEmptyAnimation(Follower.BELIEF_STATE_TRACK_INDEX, 0);
+        possessionStateAnimation ? animationState.setAnimation(Follower.POSSESSION_STATE_TRACK_INDEX, possessionStateAnimation, true) : animationState.clearTrack(Follower.POSSESSION_STATE_TRACK_INDEX);
+        sickStateAnimation ? animationState.setAnimation(Follower.SICK_STATE_TRACK_INDEX, sickStateAnimation, true) : animationState.clearTrack(Follower.SICK_STATE_TRACK_INDEX);
+        beliefStateAnimation ? animationState.setAnimation(Follower.BELIEF_STATE_TRACK_INDEX, beliefStateAnimation, true) : animationState.clearTrack(Follower.BELIEF_STATE_TRACK_INDEX);
 
-        isTired ? animationState.setAnimation(Follower.TIRED_TRACK_INDEX, `${Follower.EMOTIONS_ANIMATION_PREFIX}/${Follower.TIRED_ANIMATION_NAME}`, true) : animationState.setEmptyAnimation(Follower.TIRED_TRACK_INDEX, 0);
-        isSweating ? animationState.setAnimation(Follower.SWEATING_TRACK_INDEX, `${Follower.EMOTIONS_ANIMATION_PREFIX}/${Follower.SWEATING_ANIMATION_NAME}`, true) : animationState.setEmptyAnimation(Follower.SWEATING_TRACK_INDEX, 0);
+        isTired ? animationState.setAnimation(Follower.TIRED_TRACK_INDEX, `${Follower.EMOTIONS_ANIMATION_PREFIX}/${Follower.TIRED_ANIMATION_NAME}`, true) : animationState.clearTrack(Follower.TIRED_TRACK_INDEX);
+        isSweating ? animationState.setAnimation(Follower.SWEATING_TRACK_INDEX, `${Follower.EMOTIONS_ANIMATION_PREFIX}/${Follower.SWEATING_ANIMATION_NAME}`, true) : animationState.clearTrack(Follower.SWEATING_TRACK_INDEX);
+
+        this.skeleton.setToSetupPose();
+        this.tick(0, false);
     }
 
     copyFromObj(obj: FollowerObject) {
@@ -462,8 +465,6 @@ export class Follower extends Actor implements FollowerObject {
         const { animationId, form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, possessionState, sickState, beliefState, isDisciple, isHooded, isTired, isSweating, isBefuddled } = this;
         return { ...super.toObj(), type: TYPE, animationId, form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, possessionState, sickState, beliefState, isDisciple, isHooded, isTired, isSweating, isBefuddled };
     }
-
-    
 
     private clampIndexes() {
         const { formData, formVariantIdx, clothingData, clothingVariantIdx, colorSetData, formColorSetIdx, clothingColorSetIdx, isHooded} = this;

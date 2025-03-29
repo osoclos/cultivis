@@ -78,6 +78,11 @@ export class ModdedFollower extends Follower implements ModdedFollowerObject {
         this.applyColors(Color.toColorSet(this.colors));
     }
 
+    resetAnimation() {
+        super.resetAnimation();
+        this.applyColors(Color.toColorSet(this.colors));
+    }
+
     copyFromObj(obj: ModdedFollowerObject) {
         super.copyFromObj(obj);
 
