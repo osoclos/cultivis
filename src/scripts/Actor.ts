@@ -286,10 +286,18 @@ export class Actor implements ActorObject {
     }
 
     applyColors(set: ColorSet) {
+        const { skeleton, slotEntries } = this;
+
         for (const { color, slots } of set) {
-            for (const slot of slots) {
+            for (const slotName of slots) {
+                const { slot } = [...slotEntries].find(({ name }) => name === slotName) ?? {};
+                if (slot) {
+                    spine.Color.rgba8888ToColor(slot.color, Color.fromObj(color).toNum(true));
+                    continue;
+                }
+                
                 const attachments: spine.SkinEntry[] = [];
-                this.skeleton.skin.getAttachmentsForSlot(this.skeleton.findSlotIndex(slot), attachments);
+                this.skeleton.skin.getAttachmentsForSlot(skeleton.findSlotIndex(slotName), attachments);
 
                 for (const { attachment } of attachments) if ("color" in attachment && attachment.color instanceof spine.Color) spine.Color.rgba8888ToColor(attachment.color, Color.fromObj(color).toNum(true));
             }
@@ -379,12 +387,17 @@ export class Actor implements ActorObject {
         skeleton.updateWorldTransform();
         for (const { slot, targetSlot, attachments } of slotEntries) {
             const { name: targetName } = targetSlot.getAttachment() ?? {};
+
             const isAttachmentAvailable = targetName in attachments;
 
             const attachment = attachments[targetName];
+            const attachmentName = attachment?.name;
 
             slot.color.a = +!!isAttachmentAvailable;
-            isAttachmentAvailable && skeleton.skin.setAttachment(slot.data.index, attachments[targetName].name, attachment);
+            if (!isAttachmentAvailable) continue;
+
+            skeleton.skin.setAttachment(slot.data.index, attachmentName, attachment);
+            slot.setAttachment(attachment);
         }
     }
 

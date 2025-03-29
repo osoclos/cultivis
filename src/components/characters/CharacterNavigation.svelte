@@ -275,7 +275,7 @@
                     const id = animationId as FollowerAnimationId;
 
                     await soundManager.load(...followerAnimationData[id].sounds.map(({ sound }) => sound));
-                    actor.animationId = id;
+                    follower.animationId = id;
 
                     break;
                 }

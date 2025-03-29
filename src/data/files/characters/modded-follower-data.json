@@ -1,6 +1,16 @@
 {
     "EYE_LEFT/IRIS": {
-        "regions": { "Face/EYE": "colorful-eyes/EYE/iris" },
+        "regions": {
+            "Face/EYE": "colorful-eyes/EYE/iris",
+
+            "Face/EYE_ANGRY": "colorful-eyes/EYE_ANGRY/iris",
+            "Face/EYE_ANGRY_HURT": "colorful-eyes/EYE_ANGRY_HURT/iris",
+            "Face/EYE_ANGRY_LEFT": "colorful-eyes/EYE_ANGRY_LEFT/iris",
+            "Face/EYE_ANGRY_UP": "colorful-eyes/EYE_ANGRY_UP/iris",
+            "Face/EYE_ANGRY_UP_HURT": "colorful-eyes/EYE_ANGRY_UP_HURT/iris",
+            "Face/EYE_ANGRY_UP_LEFT": "colorful-eyes/EYE_ANGRY_UP_LEFT/iris"
+        },
+        
         "slot": "EYE_LEFT",
 
         "color": {
@@ -12,22 +22,60 @@
     },
 
     "EYE_LEFT/PUPIL": {
-        "regions": { "Face/EYE": "colorful-eyes/EYE/pupil" },
+        "regions": {
+            "Face/EYE": "colorful-eyes/EYE/pupil",
+
+            "Face/EYE_ANGRY": "colorful-eyes/EYE_ANGRY/pupil",
+            "Face/EYE_ANGRY_HURT": "colorful-eyes/EYE_ANGRY_HURT/pupil",
+            "Face/EYE_ANGRY_LEFT": "colorful-eyes/EYE_ANGRY_LEFT/pupil",
+            "Face/EYE_ANGRY_UP": "colorful-eyes/EYE_ANGRY_UP/pupil",
+            "Face/EYE_ANGRY_UP_HURT": "colorful-eyes/EYE_ANGRY_UP_HURT/pupil",
+            "Face/EYE_ANGRY_UP_LEFT": "colorful-eyes/EYE_ANGRY_UP_LEFT/pupil"
+        },
+        
         "slot": "EYE_LEFT"
     },
 
     "EYE_LEFT/SCHLERA": {
-        "regions": { "Face/EYE": "colorful-eyes/EYE/schlera" },
+        "regions": {
+            "Face/EYE": "colorful-eyes/EYE/schlera",
+
+            "Face/EYE_ANGRY": "colorful-eyes/EYE_ANGRY/schlera",
+            "Face/EYE_ANGRY_LEFT": "colorful-eyes/EYE_ANGRY_LEFT/schlera",
+            "Face/EYE_ANGRY_UP": "colorful-eyes/EYE_ANGRY_UP/schlera",
+            "Face/EYE_ANGRY_UP_LEFT": "colorful-eyes/EYE_ANGRY_UP_LEFT/schlera"
+        },
+        
         "slot": "EYE_LEFT"
     },
 
     "EYE_LEFT/OUTLINE": {
-        "regions": { "Face/EYE": "colorful-eyes/EYE/outline" },
+        "regions": {
+            "Face/EYE": "colorful-eyes/EYE/outline",
+
+            "Face/EYE_ANGRY": "colorful-eyes/EYE_ANGRY/outline",
+            "Face/EYE_ANGRY_HURT": "colorful-eyes/EYE_ANGRY_HURT/outline",
+            "Face/EYE_ANGRY_LEFT": "colorful-eyes/EYE_ANGRY_LEFT/outline",
+            "Face/EYE_ANGRY_UP": "colorful-eyes/EYE_ANGRY_UP/outline",
+            "Face/EYE_ANGRY_UP_HURT": "colorful-eyes/EYE_ANGRY_UP_HURT/outline",
+            "Face/EYE_ANGRY_UP_LEFT": "colorful-eyes/EYE_ANGRY_UP_LEFT/outline"
+        },
+        
         "slot": "EYE_LEFT"
     },
 
     "EYE_RIGHT/IRIS": {
-        "regions": { "Face/EYE": "colorful-eyes/EYE/iris" },
+        "regions": {
+            "Face/EYE": "colorful-eyes/EYE/iris",
+
+            "Face/EYE_ANGRY": "colorful-eyes/EYE_ANGRY/iris",
+            "Face/EYE_ANGRY_HURT": "colorful-eyes/EYE_ANGRY_HURT/iris",
+            "Face/EYE_ANGRY_LEFT": "colorful-eyes/EYE_ANGRY_LEFT/iris",
+            "Face/EYE_ANGRY_UP": "colorful-eyes/EYE_ANGRY_UP/iris",
+            "Face/EYE_ANGRY_UP_HURT": "colorful-eyes/EYE_ANGRY_UP_HURT/iris",
+            "Face/EYE_ANGRY_UP_LEFT": "colorful-eyes/EYE_ANGRY_UP_LEFT/iris"
+        },
+        
         "slot": "EYE_RIGHT",
 
         "color": {
@@ -39,17 +87,45 @@
     },
 
     "EYE_RIGHT/PUPIL": {
-        "regions": { "Face/EYE": "colorful-eyes/EYE/pupil" },
+        "regions": {
+            "Face/EYE": "colorful-eyes/EYE/pupil",
+
+            "Face/EYE_ANGRY": "colorful-eyes/EYE_ANGRY/pupil",
+            "Face/EYE_ANGRY_HURT": "colorful-eyes/EYE_ANGRY_HURT/pupil",
+            "Face/EYE_ANGRY_LEFT": "colorful-eyes/EYE_ANGRY_LEFT/pupil",
+            "Face/EYE_ANGRY_UP": "colorful-eyes/EYE_ANGRY_UP/pupil",
+            "Face/EYE_ANGRY_UP_HURT": "colorful-eyes/EYE_ANGRY_UP_HURT/pupil",
+            "Face/EYE_ANGRY_UP_LEFT": "colorful-eyes/EYE_ANGRY_UP_LEFT/pupil"
+        },
+        
         "slot": "EYE_RIGHT"
     },
 
     "EYE_RIGHT/SCHLERA": {
-        "regions": { "Face/EYE": "colorful-eyes/EYE/schlera" },
+        "regions": {
+            "Face/EYE": "colorful-eyes/EYE/schlera",
+
+            "Face/EYE_ANGRY": "colorful-eyes/EYE_ANGRY/schlera",
+            "Face/EYE_ANGRY_LEFT": "colorful-eyes/EYE_ANGRY_LEFT/schlera",
+            "Face/EYE_ANGRY_UP": "colorful-eyes/EYE_ANGRY_UP/schlera",
+            "Face/EYE_ANGRY_UP_LEFT": "colorful-eyes/EYE_ANGRY_UP_LEFT/schlera"
+        },
+        
         "slot": "EYE_RIGHT"
     },
 
     "EYE_RIGHT/OUTLINE": {
-        "regions": { "Face/EYE": "colorful-eyes/EYE/outline" },
+        "regions": {
+            "Face/EYE": "colorful-eyes/EYE/outline",
+
+            "Face/EYE_ANGRY": "colorful-eyes/EYE_ANGRY/outline",
+            "Face/EYE_ANGRY_HURT": "colorful-eyes/EYE_ANGRY_HURT/outline",
+            "Face/EYE_ANGRY_LEFT": "colorful-eyes/EYE_ANGRY_LEFT/outline",
+            "Face/EYE_ANGRY_UP": "colorful-eyes/EYE_ANGRY_UP/outline",
+            "Face/EYE_ANGRY_UP_HURT": "colorful-eyes/EYE_ANGRY_UP_HURT/outline",
+            "Face/EYE_ANGRY_UP_LEFT": "colorful-eyes/EYE_ANGRY_UP_LEFT/outline"
+        },
+        
         "slot": "EYE_RIGHT"
     }
 }

@@ -23,7 +23,7 @@
         oninput: input = () => {}
     }: Props = $props();
 
-    let isPointerDown: boolean = false;
+    let pointerBar: HTMLDivElement | null = null;
 
     let redBar: HTMLDivElement;
     let greenBar: HTMLDivElement;
@@ -53,7 +53,7 @@
     function onpointerdown({ pointerId, offsetX, currentTarget, target }: PointerEvent) {
         const bar = currentTarget as HTMLDivElement;
         
-        isPointerDown = true;
+        pointerBar = bar;
         bar.setPointerCapture(pointerId);
 
         if (bar !== target) return;
@@ -63,7 +63,7 @@
     }
 
     function onpointermove({ offsetX, currentTarget }: PointerEvent) {
-        if (!isPointerDown) return;
+        if (pointerBar !== currentTarget) return;
 
         const bar = currentTarget as HTMLDivElement;
         
@@ -74,7 +74,7 @@
     function onpointerup({ pointerId, currentTarget }: PointerEvent) {
         const bar = currentTarget as HTMLDivElement;
         
-        isPointerDown = false;
+        pointerBar = null;
         bar.releasePointerCapture(pointerId);
     }
 </script>

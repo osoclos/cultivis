@@ -56,7 +56,7 @@ export class ModdedFollower extends Follower implements ModdedFollowerObject {
 
     setColor(slot: AllModdedFollowerSlotId, color: Color) {
         this._colors[slot].copy(color);
-        this.update();
+        this.applyColors(Color.toColorSet(this.colors));
     }
 
     clone(id?: string, label?: string, form: FollowerId = this.form, clothing: ClothingId = this.clothing): ModdedFollower {
@@ -71,8 +71,8 @@ export class ModdedFollower extends Follower implements ModdedFollowerObject {
         return follower;
     }
 
-    update() {
-        super.update();
+    resetSkin() {
+        super.resetSkin();
         this.applyColors(Color.toColorSet(this.colors));
     }
 
