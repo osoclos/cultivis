@@ -257,6 +257,8 @@ export class Actor implements ActorObject {
             const regionName = regions[name];
 
             const region = atlas.findRegion(regionName);
+            if (!region) continue;
+
             region.renderObject = region;
 
             const { originalWidth, originalHeight } = region;

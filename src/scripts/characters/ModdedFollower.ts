@@ -24,10 +24,26 @@ export class ModdedFollower extends Follower implements ModdedFollowerObject {
 
         for (const dataSlotName in moddedFollowerData) {
             const newSlotName = <ModdedFollowerSlotId>dataSlotName;
-            const { regions, slot: targetSlotName, color } = moddedFollowerData[newSlotName];
+            const { slot: targetSlotName, fileName, folderPaths, color } = moddedFollowerData[newSlotName];
 
             const targetSlot = skeleton.findSlot(targetSlotName);
             const { bone } = targetSlot;
+
+            const regions: Record<string, string> = {};
+            for (const skin of skeleton.data.skins) {
+                const attachments: spine.SkinEntry[] = [];
+                skin.getAttachmentsForSlot(targetSlot.data.index, attachments);
+
+                for (const { attachment: { name } } of attachments) {
+                    const entries = name.split("/");
+    
+                    const slotFolderPath = entries.pop();
+                    const mainFolderPath = folderPaths[entries.join("/")];
+    
+                    const regionPath = `${[mainFolderPath, slotFolderPath].join("/")}${fileName}`;
+                    regions[name] = regionPath;
+                }
+            }
 
             this.addSlot(newSlotName, bone);
             this.addRegionToSlot(regions, newSlotName, targetSlotName);
