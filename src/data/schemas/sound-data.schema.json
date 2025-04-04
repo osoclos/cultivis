@@ -47,7 +47,7 @@
     "definitions": {
         "Id": {
             "type": "string",
-            "enum": ["Click", "Flicker", "Option_Change", "Menu_Open", "Menu_Close", "River_Boy_Mourning_Music", "Greet", "Grunt", "Laugh"]
+            "enum": ["Click", "Flicker", "Option_Change", "Menu_Open", "Menu_Close", "River_Boy_Obituary_Music", "Greet", "Grunt", "Laugh"]
         }
     }
 }

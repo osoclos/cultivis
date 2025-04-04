@@ -50,8 +50,8 @@
     "Menu_Close": {
         "src": "ui/menu-close.wav"
     },
-    "River_Boy_Mourning_Music": {
-        "src": "misc/river-boy-mourning-music.wav"
+    "River_Boy_Obituary_Music": {
+        "src": "misc/river-boy-obituary-music.wav"
     },
     "Greet": {
         "src": "characters/follower/greet.wav",

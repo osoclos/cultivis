@@ -55,8 +55,8 @@
     let hasNoticedTutorial: boolean = $state(!!localStorage.getItem(HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME));
     let hasPetNarinder: boolean = $state(!!localStorage.getItem(HAS_PET_NARINDER_LOCAL_STORAGE_NAME));
 
-    let showRiverBoyMourner: boolean = $state(false);
-    let isRiverBoyMournerVisible: boolean = $state(false);
+    let showRiverBoyObituary: boolean = $state(false);
+    let isRiverBoyObituaryVisible: boolean = $state(false);
 
     let actors: ActorObject[] | null = $state(null);
     let actorIdx: number = $state(-1);
@@ -127,13 +127,13 @@
                 return;
             }
 
-            if (hasUserCompliedToTOS && !showRiverBoyMourner && code === "KeyF" && shiftKey && altKey) {
-                isRiverBoyMournerVisible = true;
-                showRiverBoyMourner = true;
+            if (hasUserCompliedToTOS && !showRiverBoyObituary && code === "KeyF" && shiftKey && altKey) {
+                isRiverBoyObituaryVisible = true;
+                showRiverBoyObituary = true;
 
                 setTimeout(async () => {
-                    await soundManager.load("River_Boy_Mourning_Music");
-                    soundManager.play("River_Boy_Mourning_Music");
+                    await soundManager.load("River_Boy_Obituary_Music");
+                    soundManager.play("River_Boy_Obituary_Music");
                 }, 2000);
 
                 return;
@@ -561,9 +561,9 @@
         await serverManager.addNewPet();
     }
 
-    function closeRiverBoyMourner() {
-        showRiverBoyMourner = false;
-        soundManager.stop("River_Boy_Mourning_Music");
+    function closeRiverBoyObituary() {
+        showRiverBoyObituary = false;
+        soundManager.stop("River_Boy_Obituary_Music");
     }
 </script>
 
@@ -602,40 +602,40 @@
         <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:hasNoticedTutorial bind:hasPetNarinder enableKeyInput={(actorIdx < 0 || isMobile)} onclick={selectCategoryMenu} />
         <div bind:this={categoryMenu} class="no-scrollbar lg:overflow-y-auto flex flex-col {[1, 3].includes(categoryIdx) ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] select-none">
             {#if categoryIdx === 0}
-                <CharacterList bind:actors bind:loadingActor enableKeyInput={actorIdx < 0} onadd={addActor} onremove={(indexes) => [...indexes].sort((a, b) => b - a).forEach((i) => removeActor(scene.actors[i], i))} onclone={(indexes) => indexes.forEach((i) => cloneActor(scene.actors[i]))} onactorclick={selectActor} />
+                <CharacterList bind:actors bind:loadingActor enableKeyInput={actorIdx < 0 && !isRiverBoyObituaryVisible} onadd={addActor} onremove={(indexes) => [...indexes].sort((a, b) => b - a).forEach((i) => removeActor(scene.actors[i], i))} onclone={(indexes) => indexes.forEach((i) => cloneActor(scene.actors[i]))} onactorclick={selectActor} />
 
                 <div class={["lg:absolute z-90 lg:top-0 w-full lg:w-160 lg:h-full bg-secondary transition-[left,_filter] motion-reduce:transition-opacity duration-500", actorIdx < 0 ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": actorIdx < 0 }]}>
                     {#if actor && actorObj}
-                        <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {scene} {actorIdx} {factory} {exporter} enableKeyInput={actorIdx >= 0 && !showActorMenu} bind:useExperimentalAnimations onupdate={updateSceneFromChanges} onchange={swapActor} onreorder={reorderActor} onproceed={selectMenu} onexit={exitMenu} />
+                        <CharacterNavigation class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" {actor} obj={actorObj} {scene} {actorIdx} {factory} {exporter} enableKeyInput={actorIdx >= 0 && !showActorMenu && !isRiverBoyObituaryVisible} bind:useExperimentalAnimations onupdate={updateSceneFromChanges} onchange={swapActor} onreorder={reorderActor} onproceed={selectMenu} onexit={exitMenu} />
                     {/if}
                 </div>
 
                 <div class={["lg:absolute z-90 lg:top-0 w-full lg:w-160 lg:h-full bg-secondary transition-[left,_filter] motion-reduce:transition-opacity duration-500", !showActorMenu ? "lg:-left-210 lg:motion-reduce:left-0 lg:brightness-0 lg:motion-reduce:brightness-100 lg:motion-reduce:opacity-0 lg:ease-in lg:motion-reduce:pointer-events-none" : "lg:left-0 lg:brightness-100 lg:motion-reduce:opacity-100 lg:ease-out", { "not-lg:hidden": !showActorMenu }]}>
                     {#if actor && actorObj && actorMenu}
                         {#if (isFollowerObj(actorObj) || isModdedFollowerObj(actorObj)) && isStrFollowerMenuName(actorMenu)}
-                            <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={actorMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                            <FollowerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" follower={actor as Follower} obj={actorObj} menu={actorMenu} enableKeyInput={actorIdx >= 0 && showActorMenu && !isRiverBoyObituaryVisible} onupdate={updateSceneFromChanges} />
                         {:else if isPlayerObj(actorObj) && isStrPlayerMenuName(actorMenu)}
-                            <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={actorMenu} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                            <PlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" player={actor as Player} obj={actorObj} menu={actorMenu} enableKeyInput={actorIdx >= 0 && showActorMenu && !isRiverBoyObituaryVisible} onupdate={updateSceneFromChanges} />
                         {:else if isSoldierObj(actorObj) && actorMenu === SOLDIER_MENU_NAME}
-                            <SoldierMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" soldier={actor as Soldier} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                            <SoldierMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" soldier={actor as Soldier} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu && !isRiverBoyObituaryVisible} onupdate={updateSceneFromChanges} />
                         {:else if isOccultistObj(actorObj) && actorMenu === OCCULTIST_MENU_NAME}
-                            <OccultistMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" occultist={actor as Occultist} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                            <OccultistMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" occultist={actor as Occultist} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu && !isRiverBoyObituaryVisible} onupdate={updateSceneFromChanges} />
                         {:else if isGuardObj(actorObj) && actorMenu === GUARD_MENU_NAME}
-                            <GuardMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" guard={actor as Guard} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                            <GuardMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" guard={actor as Guard} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu && !isRiverBoyObituaryVisible} onupdate={updateSceneFromChanges} />
                         {:else if isHereticObj(actorObj) && actorMenu === HERETIC_MENU_NAME}
-                            <HereticMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
+                            <HereticMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu && !isRiverBoyObituaryVisible} onupdate={updateSceneFromChanges} onchange={swapActor} />
                         {:else if isMachineObj(actorObj) && actorMenu === MACHINE_MENU_NAME}
-                            <MachineMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
+                            <MachineMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu && !isRiverBoyObituaryVisible} onupdate={updateSceneFromChanges} onchange={swapActor} />
                         {:else if isBishopObj(actorObj) && actorMenu === BISHOP_MENU_NAME}
-                            <BishopMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
+                            <BishopMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu && !isRiverBoyObituaryVisible} onupdate={updateSceneFromChanges} onchange={swapActor} />
                         {:else if isTOWW_Obj(actorObj) && actorMenu === TOWW_MENU_NAME}
-                            <TOWW_Menus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
+                            <TOWW_Menus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu && !isRiverBoyObituaryVisible} onupdate={updateSceneFromChanges} onchange={swapActor} />
                         {:else if isMiniBossObj(actorObj) && actorMenu === MINI_BOSS_MENU_NAME}
-                            <MiniBossMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
+                            <MiniBossMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu && !isRiverBoyObituaryVisible} onupdate={updateSceneFromChanges} onchange={swapActor} />
                         {:else if isWitnessObj(actorObj) && actorMenu === WITNESS_MENU_NAME}
-                            <WitnessMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" witness={actor as Witness} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} />
+                            <WitnessMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" witness={actor as Witness} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu && !isRiverBoyObituaryVisible} onupdate={updateSceneFromChanges} />
                         {:else if isKnucklebonesPlayerObj(actorObj) && actorMenu === KNUCKLEBONES_PLAYER_MENU_NAME}
-                            <KnucklebonesPlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu} onupdate={updateSceneFromChanges} onchange={swapActor} />
+                            <KnucklebonesPlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu && !isRiverBoyObituaryVisible} onupdate={updateSceneFromChanges} onchange={swapActor} />
                         {/if}
                     {/if}
                 </div>
@@ -704,12 +704,16 @@
         {/if}
     </div>
     
-    {#if isRiverBoyMournerVisible}
-        <div class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-[#00000060] {showRiverBoyMourner ? "opacity-100" : "opacity-0"} transition-opacity duration-450 select-none" ontransitionend={() => isRiverBoyMournerVisible = showRiverBoyMourner}>
-            <Dialog childClass="mt-2 sm:mt-4" title="RIP. River Boy" description="Narayana Johnson (aka. River Boy) has tragically passed away on 4th April 2025. He was the audio director of Cult of the Lamb and the composer of the beloved soundtracks that many of us have grown fond of. I, as well as the rest of the C.O.T.L community are deeply saddened by his passing. Rest in peace and farewell, River Boy.">
+    {#if isRiverBoyObituaryVisible}
+        <div class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-[#00000060] {showRiverBoyObituary ? "opacity-100" : "opacity-0"} transition-opacity duration-450 select-none" ontransitionend={() => isRiverBoyObituaryVisible = showRiverBoyObituary}>
+            <Dialog childClass="mt-2" title="RIP. River Boy" description="It is with great sorrow to announce that Narayana Johnson (aka. River Boy) has tragically passed away in the early hours of 2nd April 2025. He was the audio director of Cult of the Lamb and the composer of the beloved soundtracks that many of us have grown fond of. I, as well as the rest of the C.O.T.L community are deeply saddened by his passing. Rest in peace and farewell, River Boy.">
                 <div class="flex flex-col justify-center items-center gap-2">
                     <img src="/static/assets/misc/rip-river-boy.png" alt="RIP. River Boy" class="w-17 h-13.5 sm:w-23 sm:h-18" width={69 + 23 * +isOnPhone} height={54 + 19 * +isOnPhone} draggable="false" role="presentation" aria-hidden="true" />
-                    <BannerButton label="Close" onclick={closeRiverBoyMourner} />
+                    
+                    <List class="flex flex-row justify-center items-center scale-60 sm:scale-80" label="River Boy Obituary Disclaimer Options" enableKeyInput focusFirst>
+                        <BannerButton label="View Official Post" href="https://www.reddit.com/r/CultOfTheLamb/comments/1jqu0uv/a_heartbreaking_update_from_our_development_team" />
+                        <BannerButton label="Close" onclick={closeRiverBoyObituary} />
+                    </List>
                 </div>
             </Dialog>
         </div>
