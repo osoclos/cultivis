@@ -66,6 +66,8 @@
     let showActorMenu: boolean = $state(false);
     let useExperimentalAnimations: boolean = $state(false);
 
+    let soundManagerUpdateIntervalId: number = $state(-1);
+
     let actor: Actor | null = $state(null);
     let actorObj: ActorObject | null = $state(null);
 
@@ -114,7 +116,7 @@
     });
 
     onMount(async () => {
-        window.addEventListener("keydown", (evt) => {
+        window.addEventListener("keydown", async (evt) => {
             const { code, shiftKey, ctrlKey, altKey } = evt;
             if (!["KeyE", "KeyF"].includes(code) || document.activeElement instanceof HTMLInputElement) return;
             
@@ -131,10 +133,11 @@
                 isRiverBoyObituaryVisible = true;
                 showRiverBoyObituary = true;
 
-                setTimeout(async () => {
-                    await soundManager.load("River_Boy_Obituary_Music");
-                    if (showRiverBoyObituary) soundManager.play("River_Boy_Obituary_Music");
-                }, 2000);
+                if (!soundManager.hasLoaded("River_Boy_Obituary_Music")) await soundManager.load("River_Boy_Obituary_Music");
+                if (soundManager.isPlaying("River_Boy_Obituary_Music")) return; 
+
+                soundManager.get("River_Boy_Obituary_Music").volume(0.2);
+                if (showRiverBoyObituary) soundManager.play("River_Boy_Obituary_Music");
 
                 return;
             }
@@ -162,6 +165,17 @@
 
         loadingState = LOADING_STATES.indexOf("ToSAcknowledgement");
         if (await newsManager.areTermsAcknowledged()) hasUserCompliedToTOS = true;
+
+        soundManagerUpdateIntervalId = setInterval(() => {
+            if (!soundManager.hasLoaded("River_Boy_Obituary_Music") || !soundManager.isPlaying("River_Boy_Obituary_Music")) return;
+            const obituaryMusicHowl = soundManager.get("River_Boy_Obituary_Music");
+
+            const prevVol = obituaryMusicHowl.volume();
+            obituaryMusicHowl.volume(prevVol + (+showRiverBoyObituary * 0.7 - prevVol) / 24);
+
+            const vol = obituaryMusicHowl.volume();
+            if (vol < 0.01) soundManager.stop("River_Boy_Obituary_Music");
+        }, 1000 / 30);
     });
 
     onDestroy(async () => {
@@ -171,6 +185,8 @@
         
         scene?.dispose();
         exporter?.dispose();
+
+        if (soundManagerUpdateIntervalId >= 0) clearInterval(soundManagerUpdateIntervalId);
     });
 
     function acknowledgeTerms() {
@@ -560,11 +576,6 @@
         numOfPets++;
         await serverManager.addNewPet();
     }
-
-    function closeRiverBoyObituary() {
-        showRiverBoyObituary = false;
-        soundManager.stop("River_Boy_Obituary_Music");
-    }
 </script>
 
 <div class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-secondary {hasFinishedLoading ? "opacity-0" : "opacity-100"} not-motion-reduce:transition-opacity not-motion-reduce:duration-900 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
@@ -712,7 +723,7 @@
                     
                     <List class="flex flex-row justify-center items-center scale-60 sm:scale-80" label="River Boy Obituary Disclaimer Options" enableKeyInput focusFirst>
                         <BannerButton label="View Official Post" href="https://www.reddit.com/r/CultOfTheLamb/comments/1jqu0uv/a_heartbreaking_update_from_our_development_team" />
-                        <BannerButton label="Close" onclick={closeRiverBoyObituary} />
+                        <BannerButton label="Close" onclick={() => showRiverBoyObituary = false} />
                     </List>
                 </div>
             </Dialog>

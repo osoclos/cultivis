@@ -63,16 +63,21 @@ export class SoundManager {
         return this.howlers.has(id);
     }
 
-    play<I extends SoundId>(id: I, key: keyof (typeof soundData[I]["timeRanges"] & {}) = Random.item(Object.keys(soundData[id].timeRanges ?? {}))): number {       
+    get<I extends SoundId>(id: I) {
         if (!this.hasLoaded(id)) throw new Error(`Sound ${id} has not been loaded`);
+        return this.howlers.get(id)!;
+    }
 
-        const playbackId = this.howlers.get(id)!.play(Object.keys(soundData[id].timeRanges ?? {}).length ? <string>key : undefined);
-        return playbackId;
+    play<I extends SoundId>(id: I, key: keyof (typeof soundData[I]["timeRanges"] & {}) = Random.item(Object.keys(soundData[id].timeRanges ?? {}))): number {       
+        return this.get(id).play(Object.keys(soundData[id].timeRanges ?? {}).length ? <string>key : undefined);
     }
 
     stop<I extends SoundId>(id: I, playbackId?: number) {       
-        if (!this.hasLoaded(id)) throw new Error(`Sound ${id} has not been loaded`);
-        this.howlers.get(id)!.stop(playbackId);
+        this.get(id).stop(playbackId);
+    }
+
+    isPlaying<I extends SoundId>(id: I, playbackId?: number): boolean {
+        return this.get(id).playing(playbackId);
     }
 }
 
