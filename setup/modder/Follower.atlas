@@ -6,91 +6,91 @@ filter: Linear,Linear
 repeat: none
 colorful-eyes/EYE/iris
   rotate: true
-  xy: 845, 68
+  xy: 906, 174
   size: 55, 54
   orig: 60, 59
   offset: 5, 0
   index: -1
 colorful-eyes/EYE/outline
   rotate: true
-  xy: 673, 61
+  xy: 853, 450
   size: 60, 59
   orig: 60, 59
   offset: 0, 0
   index: -1
 colorful-eyes/EYE/pupil
   rotate: true
-  xy: 269, 230
+  xy: 216, 140
   size: 9, 26
   orig: 60, 59
   offset: 15, 16
   index: -1
 colorful-eyes/EYE/schlera
   rotate: false
-  xy: 347, 2
+  xy: 1095, 7
   size: 18, 44
   orig: 60, 59
   offset: 36, 8
   index: -1
 colorful-eyes/EYE_ANGRY/iris
-  rotate: false
-  xy: 179, 319
+  rotate: true
+  xy: 1135, 144
   size: 37, 27
   orig: 73, 42
   offset: 17, 4
   index: -1
 colorful-eyes/EYE_ANGRY/outline
-  rotate: true
-  xy: 276, 48
+  rotate: false
+  xy: 290, 2
   size: 72, 42
   orig: 73, 42
   offset: 1, 0
   index: -1
 colorful-eyes/EYE_ANGRY/pupil
   rotate: true
-  xy: 813, 325
+  xy: 954, 390
   size: 7, 21
   orig: 73, 42
   offset: 26, 6
   index: -1
 colorful-eyes/EYE_ANGRY/schlera
   rotate: true
-  xy: 903, 390
+  xy: 1175, 87
   size: 18, 26
   orig: 73, 42
   offset: 49, 9
   index: -1
 colorful-eyes/EYE_ANGRY_HURT/iris
-  rotate: true
-  xy: 1028, 436
+  rotate: false
+  xy: 1150, 183
   size: 36, 17
   orig: 73, 56
   offset: 17, 29
   index: -1
 colorful-eyes/EYE_ANGRY_HURT/outline
   rotate: true
-  xy: 333, 244
+  xy: 337, 79
   size: 73, 55
   orig: 73, 56
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_ANGRY_HURT/pupil
   rotate: false
-  xy: 941, 326
+  xy: 947, 53
   size: 29, 13
   orig: 73, 56
   offset: 22, 31
   index: -1
 colorful-eyes/EYE_ANGRY_LEFT/iris
   rotate: true
-  xy: 290, 2
+  xy: 1061, 231
   size: 44, 30
   orig: 73, 42
   offset: 7, 5
   index: -1
 colorful-eyes/EYE_ANGRY_LEFT/outline
   rotate: true
-  xy: 364, 48
+  xy: 385, 438
   size: 72, 41
   orig: 73, 42
   offset: 0, 0
@@ -103,22 +103,22 @@ colorful-eyes/EYE_ANGRY_LEFT/pupil
   offset: 16, 10
   index: -1
 colorful-eyes/EYE_ANGRY_LEFT/schlera
-  rotate: true
-  xy: 989, 74
+  rotate: false
+  xy: 669, 229
   size: 16, 20
   orig: 73, 42
   offset: 39, 6
   index: -1
 colorful-eyes/EYE_ANGRY_UP/iris
-  rotate: false
-  xy: 295, 122
+  rotate: true
+  xy: 983, 2
   size: 49, 29
   orig: 73, 42
   offset: 18, 6
   index: -1
 colorful-eyes/EYE_ANGRY_UP/outline
-  rotate: true
-  xy: 320, 48
+  rotate: false
+  xy: 364, 2
   size: 72, 42
   orig: 73, 42
   offset: 1, 0
@@ -132,28 +132,28 @@ colorful-eyes/EYE_ANGRY_UP/pupil
   index: -1
 colorful-eyes/EYE_ANGRY_UP/schlera
   rotate: true
-  xy: 842, 125
+  xy: 1076, 184
   size: 45, 18
   orig: 73, 42
   offset: 20, 6
   index: -1
 colorful-eyes/EYE_ANGRY_UP_HURT/iris
-  rotate: true
-  xy: 867, 338
+  rotate: false
+  xy: 1031, 327
   size: 49, 18
   orig: 73, 56
   offset: 18, 31
   index: -1
 colorful-eyes/EYE_ANGRY_UP_HURT/outline
   rotate: true
-  xy: 416, 438
+  xy: 384, 364
   size: 72, 55
   orig: 73, 56
   offset: 1, 0
   index: -1
 colorful-eyes/EYE_ANGRY_UP_HURT/pupil
   rotate: false
-  xy: 836, 326
+  xy: 263, 347
   size: 23, 6
   orig: 73, 56
   offset: 21, 37
@@ -166,8 +166,8 @@ colorful-eyes/EYE_ANGRY_UP_LEFT/iris
   offset: 7, 13
   index: -1
 colorful-eyes/EYE_ANGRY_UP_LEFT/outline
-  rotate: true
-  xy: 336, 156
+  rotate: false
+  xy: 438, 2
   size: 72, 42
   orig: 73, 42
   offset: 0, 0
@@ -180,120 +180,120 @@ colorful-eyes/EYE_ANGRY_UP_LEFT/pupil
   offset: 15, 20
   index: -1
 colorful-eyes/EYE_ANGRY_UP_LEFT/schlera
-  rotate: true
-  xy: 322, 2
+  rotate: false
+  xy: 760, 230
   size: 44, 23
   orig: 73, 42
   offset: 9, 6
   index: -1
 colorful-eyes/EYE_BRAINWASHED/iris
   rotate: true
-  xy: 952, 144
+  xy: 1178, 114
   size: 32, 27
   orig: 61, 62
   offset: 14, 18
   index: -1
 colorful-eyes/EYE_BRAINWASHED/outline
   rotate: false
-  xy: 651, 381
+  xy: 780, 381
   size: 61, 62
   orig: 61, 62
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_BRAINWASHED/schlera
   rotate: false
-  xy: 900, 125
+  xy: 980, 460
   size: 50, 50
   orig: 61, 62
   offset: 5, 5
   index: -1
 colorful-eyes/EYE_BRAINWASHED_ANGRY/iris
   rotate: true
-  xy: 946, 2
+  xy: 1078, 53
   size: 31, 29
   orig: 70, 69
   offset: 23, 16
   index: -1
 colorful-eyes/EYE_BRAINWASHED_ANGRY/outline
   rotate: true
-  xy: 407, 50
+  xy: 372, 247
   size: 70, 69
   orig: 70, 69
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_BRAINWASHED_ANGRY/schlera
   rotate: true
-  xy: 438, 2
+  xy: 465, 319
   size: 46, 47
   orig: 70, 69
   offset: 18, 6
   index: -1
 colorful-eyes/EYE_BRAINWASHED_ANGRY_UP/iris
   rotate: false
-  xy: 1042, 45
+  xy: 1223, 219
   size: 27, 27
   orig: 70, 69
   offset: 27, 27
   index: -1
 colorful-eyes/EYE_BRAINWASHED_ANGRY_UP/outline
   rotate: true
-  xy: 390, 247
+  xy: 441, 367
   size: 70, 69
   orig: 70, 69
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_BRAINWASHED_ANGRY_UP/schlera
   rotate: false
-  xy: 879, 461
+  xy: 1084, 410
   size: 47, 49
   orig: 70, 69
   offset: 17, 5
   index: -1
 colorful-eyes/EYE_BRAINWASHED_DISSENTER/iris
   rotate: true
-  xy: 963, 92
+  xy: 1229, 53
   size: 32, 27
   orig: 61, 62
   offset: 14, 18
   index: -1
 colorful-eyes/EYE_BRAINWASHED_DISSENTER/outline
   rotate: false
-  xy: 655, 448
+  xy: 790, 448
   size: 61, 62
   orig: 61, 62
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_BRAINWASHED_HURT/iris
-  rotate: false
-  xy: 987, 390
+  rotate: true
+  xy: 1144, 17
   size: 35, 26
   orig: 61, 76
   offset: 13, 35
   index: -1
 colorful-eyes/EYE_BRAINWASHED_HURT/outline
   rotate: false
-  xy: 208, 241
+  xy: 263, 355
   size: 61, 76
   orig: 61, 76
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_CRAZY/iris
-  rotate: false
-  xy: 694, 230
+  rotate: true
+  xy: 1054, 53
   size: 23, 22
   orig: 76, 71
   offset: 12, 38
   index: -1
 colorful-eyes/EYE_CRAZY/outline
   rotate: true
-  xy: 253, 434
+  xy: 208, 241
   size: 76, 71
   orig: 76, 71
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_CRAZY_HURT/iris
-  rotate: false
-  xy: 964, 178
+  rotate: true
+  xy: 806, 230
   size: 24, 21
   orig: 76, 87
   offset: 41, 54
@@ -306,99 +306,99 @@ colorful-eyes/EYE_CRAZY_HURT/outline
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_DEAD/iris
-  rotate: true
-  xy: 713, 125
+  rotate: false
+  xy: 1025, 78
   size: 41, 47
   orig: 59, 60
   offset: 13, 6
   index: -1
 colorful-eyes/EYE_DEAD/outline
   rotate: false
-  xy: 708, 168
+  xy: 728, 38
   size: 59, 60
   orig: 59, 60
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_DEAD/schlera
   rotate: false
-  xy: 829, 461
+  xy: 1082, 461
   size: 48, 49
   orig: 59, 60
   offset: 6, 5
   index: -1
 colorful-eyes/EYE_DISSENTER/iris
   rotate: false
-  xy: 939, 35
+  xy: 1203, 17
   size: 25, 33
   orig: 61, 62
   offset: 23, 13
   index: -1
 colorful-eyes/EYE_DISSENTER/outline
   rotate: false
-  xy: 714, 384
+  xy: 665, 32
   size: 61, 62
   orig: 61, 62
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_DISSENTER_ANGRY/iris
-  rotate: true
-  xy: 876, 2
+  rotate: false
+  xy: 1201, 52
   size: 26, 33
   orig: 70, 69
   offset: 31, 14
   index: -1
 colorful-eyes/EYE_DISSENTER_ANGRY/outline
   rotate: true
-  xy: 441, 158
+  xy: 489, 440
   size: 70, 69
   orig: 70, 69
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_DISSENTER_ANGRY_UP/iris
   rotate: false
-  xy: 1007, 9
+  xy: 1230, 21
   size: 26, 30
   orig: 70, 69
   offset: 32, 27
   index: -1
 colorful-eyes/EYE_DISSENTER_ANGRY_UP/outline
   rotate: true
-  xy: 478, 50
+  xy: 395, 157
   size: 70, 69
   orig: 70, 69
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_HALF_CLOSED/iris
   rotate: false
-  xy: 444, 230
+  xy: 581, 2
   size: 37, 15
   orig: 69, 26
   offset: 7, 6
   index: -1
 colorful-eyes/EYE_HALF_CLOSED/outline
   rotate: true
-  xy: 473, 441
+  xy: 510, 248
   size: 69, 25
   orig: 69, 26
   offset: 0, 1
   index: -1
 colorful-eyes/EYE_HALF_CLOSED/pupil
   rotate: true
-  xy: 1017, 205
+  xy: 1218, 286
   size: 9, 13
   orig: 69, 26
   offset: 15, 6
   index: -1
 colorful-eyes/EYE_HALF_CLOSED/schlera
   rotate: true
-  xy: 1035, 102
+  xy: 1251, 194
   size: 23, 14
   orig: 69, 26
   offset: 40, 7
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_ANGRY/iris
   rotate: false
-  xy: 901, 326
+  xy: 321, 229
   size: 38, 11
   orig: 71, 30
   offset: 7, 6
@@ -412,14 +412,14 @@ colorful-eyes/EYE_HALF_CLOSED_ANGRY/outline
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_ANGRY/pupil
   rotate: false
-  xy: 1043, 141
+  xy: 1242, 181
   size: 9, 9
   orig: 71, 30
   offset: 17, 6
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_ANGRY/schlera
   rotate: false
-  xy: 343, 230
+  xy: 1115, 2
   size: 22, 12
   orig: 71, 30
   offset: 43, 7
@@ -433,7 +433,7 @@ colorful-eyes/EYE_HALF_CLOSED_ANGRY_BRAINWASHED/iris
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_ANGRY_BRAINWASHED/outline
   rotate: true
-  xy: 326, 434
+  xy: 281, 241
   size: 76, 29
   orig: 76, 29
   offset: 0, 0
@@ -447,7 +447,7 @@ colorful-eyes/EYE_HALF_CLOSED_ANGRY_BRAINWASHED/schlera
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_ANGRY_DISSENTER/iris
   rotate: false
-  xy: 961, 72
+  xy: 464, 229
   size: 26, 16
   orig: 76, 29
   offset: 31, 5
@@ -461,315 +461,315 @@ colorful-eyes/EYE_HALF_CLOSED_ANGRY_DISSENTER/outline
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_ANGRY_HURT/iris
   rotate: true
-  xy: 1010, 473
+  xy: 1145, 105
   size: 37, 14
   orig: 76, 57
   offset: 13, 34
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_ANGRY_HURT/outline
   rotate: true
-  xy: 270, 356
+  xy: 216, 151
   size: 76, 55
   orig: 76, 57
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_ANGRY_HURT/pupil
   rotate: true
-  xy: 256, 229
+  xy: 276, 34
   size: 10, 11
   orig: 76, 57
   offset: 24, 36
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_ANGRY_LEFT/iris
-  rotate: false
-  xy: 297, 230
+  rotate: true
+  xy: 1093, 281
   size: 44, 12
   orig: 70, 32
   offset: 8, 6
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_ANGRY_LEFT/outline
-  rotate: false
-  xy: 346, 122
+  rotate: true
+  xy: 560, 440
   size: 70, 32
   orig: 70, 32
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_ANGRY_LEFT/pupil
-  rotate: true
-  xy: 1032, 205
+  rotate: false
+  xy: 1221, 3
   size: 9, 12
   orig: 70, 32
   offset: 15, 6
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_ANGRY_LEFT/schlera
-  rotate: false
-  xy: 947, 273
+  rotate: true
+  xy: 698, 229
   size: 20, 9
   orig: 70, 32
   offset: 41, 7
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_BRAINWASHED/iris
   rotate: false
-  xy: 526, 230
+  xy: 430, 229
   size: 32, 16
   orig: 69, 26
   offset: 15, 5
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_BRAINWASHED/outline
   rotate: true
-  xy: 500, 441
+  xy: 537, 248
   size: 69, 25
   orig: 69, 26
   offset: 0, 1
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_BRAINWASHED/schlera
   rotate: false
-  xy: 560, 230
+  xy: 515, 229
   size: 54, 17
   orig: 69, 26
   offset: 9, 5
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_DISSENTER/iris
   rotate: false
-  xy: 998, 126
+  xy: 620, 2
   size: 26, 20
   orig: 69, 26
   offset: 24, 1
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_DISSENTER/outline
   rotate: true
-  xy: 507, 370
+  xy: 564, 248
   size: 69, 25
   orig: 69, 26
   offset: 0, 1
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_HURT/iris
   rotate: true
-  xy: 895, 31
+  xy: 1161, 107
   size: 35, 15
   orig: 69, 54
   offset: 7, 33
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_HURT/outline
   rotate: true
-  xy: 549, 51
+  xy: 522, 87
   size: 69, 54
   orig: 69, 54
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_HURT/pupil
-  rotate: false
-  xy: 1038, 191
+  rotate: true
+  xy: 1228, 181
   size: 9, 12
   orig: 69, 54
   offset: 18, 35
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_OLD/iris
   rotate: true
-  xy: 1024, 392
+  xy: 1169, 203
   size: 37, 15
   orig: 80, 50
   offset: 11, 30
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_OLD/outline
   rotate: false
-  xy: 367, 3
+  xy: 345, 319
   size: 69, 43
   orig: 80, 50
   offset: 5, 7
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_OLD/pupil
   rotate: true
-  xy: 241, 229
+  xy: 1203, 285
   size: 10, 13
   orig: 80, 50
   offset: 19, 30
   index: -1
 colorful-eyes/EYE_HALF_CLOSED_OLD/schlera
   rotate: true
-  xy: 910, 177
+  xy: 964, 459
   size: 51, 14
   orig: 80, 50
   offset: 17, 31
   index: -1
 colorful-eyes/EYE_HURT/iris
   rotate: false
-  xy: 1026, 474
+  xy: 1172, 247
   size: 36, 36
   orig: 60, 72
   offset: 6, 29
   index: -1
 colorful-eyes/EYE_HURT/outline
   rotate: false
-  xy: 380, 157
+  xy: 428, 439
   size: 59, 71
   orig: 60, 72
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_HURT/pupil
-  rotate: true
-  xy: 992, 205
+  rotate: false
+  xy: 829, 231
   size: 26, 23
   orig: 60, 72
   offset: 15, 36
   index: -1
 colorful-eyes/EYE_INSANE/iris
   rotate: true
-  xy: 997, 41
+  xy: 1109, 53
   size: 31, 26
   orig: 57, 39
   offset: 19, 8
   index: -1
 colorful-eyes/EYE_INSANE/outline
   rotate: false
-  xy: 360, 319
+  xy: 478, 46
   size: 57, 38
   orig: 57, 39
   offset: 0, 1
   index: -1
 colorful-eyes/EYE_INSANE/pupil
   rotate: false
-  xy: 384, 230
+  xy: 1191, 3
   size: 14, 12
   orig: 57, 39
   offset: 30, 20
   index: -1
 colorful-eyes/EYE_INSANE/schlera
-  rotate: true
-  xy: 487, 2
+  rotate: false
+  xy: 212, 319
   size: 46, 26
   orig: 57, 39
   offset: 6, 5
   index: -1
 colorful-eyes/EYE_INSANE_LEFT/iris
   rotate: true
-  xy: 496, 319
+  xy: 1071, 136
   size: 45, 30
   orig: 59, 47
   offset: 8, 5
   index: -1
 colorful-eyes/EYE_INSANE_LEFT/outline
   rotate: false
-  xy: 592, 2
+  xy: 514, 319
   size: 59, 47
   orig: 59, 47
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_INSANE_LEFT/schlera
   rotate: true
-  xy: 887, 339
+  xy: 996, 181
   size: 48, 38
   orig: 59, 47
   offset: 5, 5
   index: -1
 colorful-eyes/EYE_LEFT_HURT/iris
   rotate: false
-  xy: 419, 319
+  xy: 1093, 236
   size: 36, 43
   orig: 60, 57
   offset: 6, 5
   index: -1
 colorful-eyes/EYE_LEFT_HURT/outline
-  rotate: false
-  xy: 711, 2
+  rotate: true
+  xy: 844, 258
   size: 59, 57
   orig: 60, 57
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_LEFT_HURT/pupil
   rotate: true
-  xy: 216, 140
+  xy: 241, 229
   size: 10, 27
   orig: 60, 57
   offset: 14, 15
   index: -1
 colorful-eyes/EYE_LEFT_HURT/schlera
-  rotate: false
-  xy: 678, 123
+  rotate: true
+  xy: 571, 229
   size: 17, 42
   orig: 60, 57
   offset: 37, 7
   index: -1
 colorful-eyes/EYE_OLD/iris
   rotate: true
-  xy: 933, 418
+  xy: 1170, 375
   size: 41, 32
   orig: 73, 60
   offset: 6, 23
   index: -1
 colorful-eyes/EYE_OLD/outline
   rotate: true
-  xy: 271, 244
+  xy: 333, 154
   size: 73, 60
   orig: 73, 60
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_OLD/pupil
   rotate: true
-  xy: 998, 418
+  xy: 1233, 285
   size: 11, 23
   orig: 73, 60
   offset: 16, 24
   index: -1
 colorful-eyes/EYE_OLD/schlera
   rotate: false
-  xy: 1026, 127
+  xy: 1212, 154
   size: 15, 23
   orig: 73, 60
   offset: 41, 26
   index: -1
 colorful-eyes/EYE_OLD_ANGRY/iris
   rotate: false
-  xy: 948, 390
+  xy: 260, 319
   size: 37, 26
   orig: 81, 57
   offset: 17, 21
   index: -1
 colorful-eyes/EYE_OLD_ANGRY/outline
   rotate: true
-  xy: 195, 431
+  xy: 203, 431
   size: 79, 56
   orig: 81, 57
   offset: 1, 0
   index: -1
 colorful-eyes/EYE_OLD_ANGRY/pupil
   rotate: false
-  xy: 901, 69
+  xy: 1250, 138
   size: 14, 18
   orig: 81, 57
   offset: 22, 25
   index: -1
 colorful-eyes/EYE_OLD_ANGRY/schlera
   rotate: true
-  xy: 932, 90
+  xy: 1164, 148
   size: 33, 29
   orig: 81, 57
   offset: 34, 21
   index: -1
 colorful-eyes/EYE_OLD_ANGRY_LEFT/iris
   rotate: true
-  xy: 966, 286
+  xy: 1103, 143
   size: 38, 30
   orig: 73, 57
   offset: 6, 20
   index: -1
 colorful-eyes/EYE_OLD_ANGRY_LEFT/outline
   rotate: true
-  xy: 357, 438
+  xy: 326, 438
   size: 72, 57
   orig: 73, 57
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_OLD_ANGRY_LEFT/pupil
-  rotate: true
-  xy: 925, 273
+  rotate: false
+  xy: 687, 229
   size: 9, 20
   orig: 73, 57
   offset: 16, 25
   index: -1
 colorful-eyes/EYE_OLD_ANGRY_LEFT/schlera
   rotate: true
-  xy: 952, 126
+  xy: 492, 229
   size: 16, 21
   orig: 73, 57
   offset: 40, 21
@@ -783,147 +783,147 @@ colorful-eyes/EYE_OLD_ANGRY_UP/iris
   index: -1
 colorful-eyes/EYE_OLD_ANGRY_UP/outline
   rotate: true
-  xy: 137, 429
+  xy: 137, 345
   size: 81, 56
   orig: 81, 57
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_OLD_ANGRY_UP/pupil
-  rotate: false
-  xy: 1033, 152
+  rotate: true
+  xy: 1174, 2
   size: 13, 15
   orig: 81, 57
   offset: 34, 33
   index: -1
 colorful-eyes/EYE_OLD_ANGRY_UP/schlera
   rotate: false
-  xy: 852, 389
+  xy: 709, 230
   size: 49, 19
   orig: 81, 57
   offset: 17, 21
   index: -1
 colorful-eyes/EYE_OLD_ANGRY_UP_LEFT/iris
-  rotate: false
-  xy: 616, 230
+  rotate: true
+  xy: 1044, 408
   size: 50, 22
   orig: 73, 57
   offset: 6, 28
   index: -1
 colorful-eyes/EYE_OLD_ANGRY_UP_LEFT/outline
   rotate: true
-  xy: 384, 364
+  xy: 326, 364
   size: 72, 56
   orig: 73, 57
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_OLD_ANGRY_UP_LEFT/pupil
   rotate: false
-  xy: 276, 34
+  xy: 1207, 3
   size: 12, 12
   orig: 73, 57
   offset: 15, 35
   index: -1
 colorful-eyes/EYE_OLD_ANGRY_UP_LEFT/schlera
   rotate: true
-  xy: 697, 123
+  xy: 1107, 283
   size: 42, 14
   orig: 73, 57
   offset: 11, 20
   index: -1
 colorful-eyes/EYE_OLD_LEFT/iris
   rotate: false
-  xy: 268, 319
+  xy: 436, 46
   size: 40, 31
   orig: 66, 60
   offset: 11, 23
   index: -1
 colorful-eyes/EYE_OLD_LEFT/outline
   rotate: true
-  xy: 589, 377
+  xy: 728, 445
   size: 65, 60
   orig: 66, 60
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_OLD_LEFT/pupil
   rotate: true
-  xy: 827, 389
+  xy: 963, 325
   size: 9, 23
   orig: 66, 60
   offset: 21, 24
   index: -1
 colorful-eyes/EYE_OLD_LEFT/schlera
-  rotate: true
-  xy: 515, 2
+  rotate: false
+  xy: 857, 231
   size: 46, 25
   orig: 66, 60
   offset: 14, 25
   index: -1
 colorful-eyes/EYE_OLD_SLEEPY_LEFT/iris
   rotate: true
-  xy: 762, 125
+  xy: 1123, 284
   size: 41, 38
   orig: 63, 63
   offset: 8, 20
   index: -1
 colorful-eyes/EYE_OLD_SLEEPY_LEFT/outline
   rotate: false
-  xy: 595, 254
+  xy: 646, 96
   size: 63, 63
   orig: 63, 63
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_OLD_SLEEPY_LEFT/pupil
   rotate: false
-  xy: 1019, 96
+  xy: 1212, 179
   size: 14, 28
   orig: 63, 63
   offset: 16, 23
   index: -1
 colorful-eyes/EYE_OLD_SLEEPY_LEFT/schlera
-  rotate: true
-  xy: 744, 230
+  rotate: false
+  xy: 1115, 16
   size: 27, 35
   orig: 63, 63
   offset: 31, 22
   index: -1
 colorful-eyes/EYE_OLD_SLEEPY_RIGHT/iris
   rotate: true
-  xy: 925, 284
+  xy: 1131, 242
   size: 40, 39
   orig: 70, 63
   offset: 5, 20
   index: -1
 colorful-eyes/EYE_OLD_SLEEPY_RIGHT/outline
   rotate: true
-  xy: 442, 366
+  xy: 512, 368
   size: 70, 63
   orig: 70, 63
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_OLD_SLEEPY_RIGHT/pupil
-  rotate: false
-  xy: 1035, 12
+  rotate: true
+  xy: 978, 53
   size: 13, 29
   orig: 70, 63
   offset: 13, 26
   index: -1
 colorful-eyes/EYE_OLD_SLEEPY_RIGHT/schlera
   rotate: false
-  xy: 601, 122
+  xy: 960, 231
   size: 50, 38
   orig: 70, 63
   offset: 5, 20
   index: -1
 colorful-eyes/EYE_OLD_SMILE/iris
   rotate: false
-  xy: 251, 122
+  xy: 293, 122
   size: 42, 28
   orig: 73, 55
   offset: 5, 22
   index: -1
 colorful-eyes/EYE_OLD_SMILE/outline
   rotate: true
-  xy: 327, 359
+  xy: 394, 79
   size: 73, 55
   orig: 73, 55
   offset: 0, 0
@@ -937,147 +937,147 @@ colorful-eyes/EYE_OLD_SMILE/pupil
   index: -1
 colorful-eyes/EYE_OLD_SMILE/schlera
   rotate: false
-  xy: 1003, 252
+  xy: 1234, 131
   size: 14, 21
   orig: 73, 55
   offset: 42, 25
   index: -1
 colorful-eyes/EYE_OLD_SMILE_DOWN/iris
   rotate: true
-  xy: 893, 410
+  xy: 1132, 461
   size: 49, 38
   orig: 69, 65
   offset: 5, 22
   index: -1
 colorful-eyes/EYE_OLD_SMILE_DOWN/outline
   rotate: true
-  xy: 512, 159
+  xy: 466, 158
   size: 69, 65
   orig: 69, 65
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_OLD_SMILE_DOWN/pupil
   rotate: false
-  xy: 1017, 216
+  xy: 1237, 96
   size: 14, 16
   orig: 69, 65
   offset: 10, 24
   index: -1
 colorful-eyes/EYE_OLD_SMILE_DOWN/schlera
   rotate: false
-  xy: 483, 230
+  xy: 387, 229
   size: 41, 16
   orig: 69, 65
   offset: 7, 44
   index: -1
 colorful-eyes/EYE_OLD_SMILE_DOWN_LEFT/iris
   rotate: true
-  xy: 927, 341
+  xy: 1061, 4
   size: 47, 32
   orig: 58, 65
   offset: 6, 22
   index: -1
 colorful-eyes/EYE_OLD_SMILE_DOWN_LEFT/outline
   rotate: false
-  xy: 595, 445
+  xy: 605, 24
   size: 58, 65
   orig: 58, 65
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_OLD_SMILE_DOWN_LEFT/pupil
   rotate: true
-  xy: 976, 233
+  xy: 1114, 183
   size: 9, 16
   orig: 58, 65
   offset: 12, 24
   index: -1
 colorful-eyes/EYE_OLD_SMILE_DOWN_LEFT/schlera
   rotate: true
-  xy: 653, 123
+  xy: 512, 2
   size: 42, 23
   orig: 58, 65
   offset: 9, 38
   index: -1
 colorful-eyes/EYE_OLD_SMILE_LEFT/iris
   rotate: false
-  xy: 137, 319
+  xy: 251, 122
   size: 40, 27
   orig: 66, 53
   offset: 11, 21
   index: -1
 colorful-eyes/EYE_OLD_SMILE_LEFT/outline
-  rotate: true
-  xy: 534, 376
+  rotate: false
+  xy: 693, 319
   size: 66, 53
   orig: 66, 53
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_OLD_SMILE_LEFT/pupil
   rotate: false
-  xy: 944, 71
+  xy: 1232, 2
   size: 15, 17
   orig: 66, 53
   offset: 14, 24
   index: -1
 colorful-eyes/EYE_OLD_SMILE_LEFT/schlera
   rotate: true
-  xy: 975, 126
+  xy: 1107, 86
   size: 16, 21
   orig: 66, 53
   offset: 45, 21
   index: -1
 colorful-eyes/EYE_SACRIFICE_1/iris
   rotate: false
-  xy: 1011, 74
+  xy: 1130, 86
   size: 16, 16
   orig: 63, 63
   offset: 9, 35
   index: -1
 colorful-eyes/EYE_SACRIFICE_1/outline
   rotate: false
-  xy: 660, 254
+  xy: 667, 164
   size: 63, 63
   orig: 63, 63
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SACRIFICE_1/schlera
   rotate: true
-  xy: 813, 334
+  xy: 934, 119
   size: 53, 52
   orig: 63, 63
   offset: 5, 5
   index: -1
 colorful-eyes/EYE_SACRIFICE_1_HURT/iris
   rotate: true
-  xy: 1012, 234
+  xy: 1249, 3
   size: 16, 14
   orig: 63, 77
   offset: 38, 50
   index: -1
 colorful-eyes/EYE_SACRIFICE_1_HURT/outline
   rotate: false
-  xy: 205, 352
+  xy: 261, 433
   size: 63, 77
   orig: 63, 77
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SACRIFICE_2/iris
-  rotate: false
-  xy: 719, 230
+  rotate: true
+  xy: 1188, 184
   size: 23, 22
   orig: 69, 69
   offset: 12, 38
   index: -1
 colorful-eyes/EYE_SACRIFICE_2/outline
   rotate: false
-  xy: 461, 248
+  xy: 451, 86
   size: 69, 69
   orig: 69, 69
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SACRIFICE_2_HURT/iris
   rotate: false
-  xy: 1029, 74
+  xy: 648, 2
   size: 23, 20
   orig: 69, 86
   offset: 34, 56
@@ -1091,77 +1091,77 @@ colorful-eyes/EYE_SACRIFICE_2_HURT/outline
   index: -1
 colorful-eyes/EYE_SHOCKED/iris
   rotate: true
-  xy: 861, 326
+  xy: 288, 347
   size: 6, 13
   orig: 66, 66
   offset: 20, 25
   index: -1
 colorful-eyes/EYE_SHOCKED/outline
   rotate: false
-  xy: 579, 162
+  xy: 537, 19
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SHOCKED/schlera
   rotate: false
-  xy: 584, 319
+  xy: 761, 319
   size: 56, 55
   orig: 66, 66
   offset: 5, 5
   index: -1
 colorful-eyes/EYE_SHOCKED_BRAINWASHED/iris
   rotate: true
-  xy: 966, 38
+  xy: 1172, 17
   size: 32, 29
   orig: 66, 66
   offset: 15, 18
   index: -1
 colorful-eyes/EYE_SHOCKED_BRAINWASHED/outline
   rotate: false
-  xy: 605, 54
+  xy: 578, 91
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SHOCKED_BRAINWASHED/schlera
   rotate: false
-  xy: 642, 319
+  xy: 889, 53
   size: 56, 56
   orig: 66, 66
   offset: 5, 5
   index: -1
 colorful-eyes/EYE_SHOCKED_DISSENTER/iris
   rotate: false
-  xy: 912, 33
+  xy: 933, 231
   size: 25, 34
   orig: 66, 66
   offset: 25, 14
   index: -1
 colorful-eyes/EYE_SHOCKED_DISSENTER/outline
   rotate: false
-  xy: 527, 444
+  xy: 599, 161
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SHOCKED_HURT/iris
   rotate: true
-  xy: 995, 275
+  xy: 1096, 183
   size: 9, 16
   orig: 66, 79
   offset: 18, 36
   index: -1
 colorful-eyes/EYE_SHOCKED_HURT/outline
   rotate: false
-  xy: 137, 348
+  xy: 195, 347
   size: 66, 79
   orig: 66, 79
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SICK_2_LEFT/iris
-  rotate: false
-  xy: 781, 230
+  rotate: true
+  xy: 962, 177
   size: 52, 32
   orig: 65, 97
   offset: 7, 54
@@ -1175,14 +1175,14 @@ colorful-eyes/EYE_SICK_2_LEFT/outline
   index: -1
 colorful-eyes/EYE_SICK_2_LEFT/schlera
   rotate: false
-  xy: 528, 319
+  xy: 927, 2
   size: 54, 49
   orig: 65, 97
   offset: 6, 42
   index: -1
 colorful-eyes/EYE_SICK_2_LEFT_BRAINWASHED/iris
-  rotate: true
-  xy: 977, 4
+  rotate: false
+  xy: 712, 2
   size: 32, 28
   orig: 66, 95
   offset: 16, 48
@@ -1196,14 +1196,14 @@ colorful-eyes/EYE_SICK_2_LEFT_BRAINWASHED/outline
   index: -1
 colorful-eyes/EYE_SICK_2_LEFT_BRAINWASHED/schlera
   rotate: false
-  xy: 653, 2
+  xy: 635, 319
   size: 56, 50
   orig: 66, 95
   offset: 5, 40
   index: -1
 colorful-eyes/EYE_SICK_2_LEFT_DISSENTER/iris
   rotate: false
-  xy: 964, 201
+  xy: 1116, 327
   size: 26, 28
   orig: 66, 95
   offset: 15, 49
@@ -1217,7 +1217,7 @@ colorful-eyes/EYE_SICK_2_LEFT_DISSENTER/outline
   index: -1
 colorful-eyes/EYE_SICK_2_RIGHT/iris
   rotate: true
-  xy: 875, 272
+  xy: 1006, 271
   size: 52, 48
   orig: 65, 96
   offset: 7, 41
@@ -1231,14 +1231,14 @@ colorful-eyes/EYE_SICK_2_RIGHT/outline
   index: -1
 colorful-eyes/EYE_SICK_2_RIGHT/schlera
   rotate: true
-  xy: 824, 271
+  xy: 955, 271
   size: 52, 49
   orig: 65, 96
   offset: 7, 41
   index: -1
 colorful-eyes/EYE_SICK_2_RIGHT_BRAINWASHED/iris
-  rotate: false
-  xy: 911, 2
+  rotate: true
+  xy: 1172, 51
   size: 33, 27
   orig: 66, 94
   offset: 15, 48
@@ -1252,14 +1252,14 @@ colorful-eyes/EYE_SICK_2_RIGHT_BRAINWASHED/outline
   index: -1
 colorful-eyes/EYE_SICK_2_RIGHT_BRAINWASHED/schlera
   rotate: true
-  xy: 819, 172
+  xy: 903, 267
   size: 56, 50
   orig: 66, 94
   offset: 5, 39
   index: -1
 colorful-eyes/EYE_SICK_2_RIGHT_DISSENTER/iris
   rotate: false
-  xy: 981, 148
+  xy: 1207, 123
   size: 25, 28
   orig: 66, 94
   offset: 25, 48
@@ -1273,7 +1273,7 @@ colorful-eyes/EYE_SICK_2_RIGHT_DISSENTER/outline
   index: -1
 colorful-eyes/EYE_SICK_LEFT/iris
   rotate: false
-  xy: 968, 470
+  xy: 1096, 194
   size: 40, 40
   orig: 70, 88
   offset: 17, 35
@@ -1287,21 +1287,21 @@ colorful-eyes/EYE_SICK_LEFT/outline
   index: -1
 colorful-eyes/EYE_SICK_LEFT/pupil
   rotate: false
-  xy: 1025, 43
+  xy: 1195, 153
   size: 15, 29
   orig: 70, 88
   offset: 32, 36
   index: -1
 colorful-eyes/EYE_SICK_LEFT/schlera
-  rotate: false
-  xy: 532, 122
+  rotate: true
+  xy: 1187, 335
   size: 38, 35
   orig: 70, 88
   offset: 27, 39
   index: -1
 colorful-eyes/EYE_SICK_LEFT_BRAINWASHED/iris
-  rotate: true
-  xy: 998, 431
+  rotate: false
+  xy: 673, 2
   size: 37, 28
   orig: 66, 93
   offset: 19, 42
@@ -1315,14 +1315,14 @@ colorful-eyes/EYE_SICK_LEFT_BRAINWASHED/outline
   index: -1
 colorful-eyes/EYE_SICK_LEFT_BRAINWASHED/schlera
   rotate: true
-  xy: 843, 410
+  xy: 1080, 357
   size: 49, 48
   orig: 66, 93
   offset: 13, 33
   index: -1
 colorful-eyes/EYE_SICK_LEFT_DISSENTER/iris
-  rotate: false
-  xy: 668, 230
+  rotate: true
+  xy: 188, 319
   size: 24, 22
   orig: 66, 93
   offset: 19, 41
@@ -1336,7 +1336,7 @@ colorful-eyes/EYE_SICK_LEFT_DISSENTER/outline
   index: -1
 colorful-eyes/EYE_SICK_RIGHT/iris
   rotate: true
-  xy: 862, 129
+  xy: 1133, 418
   size: 41, 36
   orig: 67, 88
   offset: 5, 37
@@ -1350,21 +1350,21 @@ colorful-eyes/EYE_SICK_RIGHT/outline
   index: -1
 colorful-eyes/EYE_SICK_RIGHT/pupil
   rotate: false
-  xy: 990, 178
+  xy: 1252, 233
   size: 14, 21
   orig: 67, 88
   offset: 16, 41
   index: -1
 colorful-eyes/EYE_SICK_RIGHT/schlera
   rotate: true
-  xy: 967, 418
+  xy: 1172, 469
   size: 41, 29
   orig: 67, 88
   offset: 12, 37
   index: -1
 colorful-eyes/EYE_SICK_RIGHT_BRAINWASHED/iris
   rotate: false
-  xy: 492, 122
+  xy: 746, 2
   size: 38, 34
   orig: 64, 93
   offset: 7, 43
@@ -1377,15 +1377,15 @@ colorful-eyes/EYE_SICK_RIGHT_BRAINWASHED/outline
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SICK_RIGHT_BRAINWASHED/schlera
-  rotate: false
-  xy: 542, 3
+  rotate: true
+  xy: 1014, 3
   size: 48, 45
   orig: 64, 93
   offset: 4, 35
   index: -1
 colorful-eyes/EYE_SICK_RIGHT_DISSENTER/iris
-  rotate: false
-  xy: 972, 327
+  rotate: true
+  xy: 1228, 192
   size: 25, 21
   orig: 64, 93
   offset: 23, 40
@@ -1398,71 +1398,71 @@ colorful-eyes/EYE_SICK_RIGHT_DISSENTER/outline
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SLEEPY_BRAINWASHED/iris
-  rotate: true
-  xy: 418, 122
+  rotate: false
+  xy: 1137, 54
   size: 33, 30
   orig: 61, 60
   offset: 13, 19
   index: -1
 colorful-eyes/EYE_SLEEPY_BRAINWASHED/outline
-  rotate: false
-  xy: 700, 319
+  rotate: true
+  xy: 782, 256
   size: 61, 60
   orig: 61, 60
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SLEEPY_BRAINWASHED/schlera
   rotate: true
-  xy: 871, 177
+  xy: 954, 399
   size: 51, 37
   orig: 61, 60
   offset: 5, 17
   index: -1
 colorful-eyes/EYE_SLEEPY_DISSENTER/iris
-  rotate: false
-  xy: 992, 92
+  rotate: true
+  xy: 1203, 87
   size: 25, 32
   orig: 61, 60
   offset: 22, 17
   index: -1
 colorful-eyes/EYE_SLEEPY_DISSENTER/outline
-  rotate: true
-  xy: 718, 449
+  rotate: false
+  xy: 819, 319
   size: 61, 60
   orig: 61, 60
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SLEEPY_HURT/iris
   rotate: false
-  xy: 450, 122
+  xy: 303, 319
   size: 40, 34
   orig: 61, 68
   offset: 6, 29
   index: -1
 colorful-eyes/EYE_SLEEPY_HURT/outline
   rotate: false
-  xy: 532, 249
+  xy: 591, 249
   size: 61, 68
   orig: 61, 68
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SLEEPY_HURT/pupil
   rotate: true
-  xy: 994, 233
+  xy: 1132, 183
   size: 9, 16
   orig: 61, 68
   offset: 16, 36
   index: -1
 colorful-eyes/EYE_SLEEPY_LEFT/iris
   rotate: true
-  xy: 457, 319
+  xy: 1068, 86
   size: 45, 37
   orig: 61, 59
   offset: 6, 16
   index: -1
 colorful-eyes/EYE_SLEEPY_LEFT/outline
   rotate: true
-  xy: 647, 167
+  xy: 843, 385
   size: 61, 59
   orig: 61, 59
   offset: 0, 0
@@ -1476,28 +1476,28 @@ colorful-eyes/EYE_SLEEPY_LEFT/pupil
   index: -1
 colorful-eyes/EYE_SLEEPY_LEFT/schlera
   rotate: false
-  xy: 901, 89
+  xy: 786, 2
   size: 29, 34
   orig: 61, 59
   offset: 27, 19
   index: -1
 colorful-eyes/EYE_SLEEPY_RIGHT/iris
   rotate: true
-  xy: 936, 231
+  xy: 1163, 285
   size: 40, 38
   orig: 60, 59
   offset: 5, 16
   index: -1
 colorful-eyes/EYE_SLEEPY_RIGHT/outline
   rotate: true
-  xy: 734, 63
+  xy: 774, 104
   size: 60, 59
   orig: 60, 59
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SLEEPY_RIGHT/pupli
   rotate: false
-  xy: 1006, 178
+  xy: 1229, 154
   size: 15, 25
   orig: 60, 59
   offset: 10, 22
@@ -1511,232 +1511,519 @@ colorful-eyes/EYE_SLEEPY_RIGHT/schlera
   index: -1
 colorful-eyes/EYE_SMILE/iris
   rotate: true
-  xy: 802, 127
+  xy: 1130, 367
   size: 41, 38
   orig: 58, 47
   offset: 7, 4
   index: -1
 colorful-eyes/EYE_SMILE/outline
-  rotate: true
-  xy: 780, 452
+  rotate: false
+  xy: 575, 319
   size: 58, 47
   orig: 58, 47
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SMILE/pupil
   rotate: true
-  xy: 969, 273
+  xy: 361, 229
   size: 11, 24
   orig: 58, 47
   offset: 13, 5
   index: -1
 colorful-eyes/EYE_SMILE/schlera
   rotate: false
-  xy: 876, 30
+  xy: 1203, 297
   size: 17, 36
   orig: 58, 47
   offset: 36, 5
   index: -1
 colorful-eyes/EYE_SMILE_BRAINWASHED/iris
   rotate: true
-  xy: 961, 350
+  xy: 1138, 202
   size: 38, 29
   orig: 58, 48
   offset: 5, 4
   index: -1
 colorful-eyes/EYE_SMILE_BRAINWASHED/outline
   rotate: true
-  xy: 795, 65
+  xy: 904, 390
   size: 58, 48
   orig: 58, 48
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SMILE_BRAINWASHED/schlera
   rotate: false
-  xy: 885, 230
+  xy: 817, 2
   size: 49, 40
   orig: 58, 48
   offset: 5, 4
   index: -1
 colorful-eyes/EYE_SMILE_DISSENTER/iris
   rotate: false
-  xy: 976, 244
+  xy: 1244, 256
   size: 25, 27
   orig: 58, 48
   offset: 21, 7
   index: -1
 colorful-eyes/EYE_SMILE_DISSENTER/outline
   rotate: true
-  xy: 826, 5
+  xy: 914, 452
   size: 58, 48
   orig: 58, 48
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SMILE_DOWN/iris
-  rotate: false
-  xy: 310, 319
+  rotate: true
+  xy: 1056, 277
   size: 48, 35
   orig: 58, 48
   offset: 6, 6
   index: -1
 colorful-eyes/EYE_SMILE_DOWN/outline
   rotate: true
-  xy: 725, 259
+  xy: 789, 44
   size: 58, 48
   orig: 58, 48
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SMILE_DOWN/pupil
-  rotate: false
-  xy: 1023, 187
+  rotate: true
+  xy: 1009, 53
   size: 13, 16
   orig: 58, 48
   offset: 10, 7
   index: -1
 colorful-eyes/EYE_SMILE_DOWN/schlera
   rotate: false
-  xy: 400, 230
+  xy: 537, 2
   size: 42, 15
   orig: 58, 48
   offset: 8, 28
   index: -1
 colorful-eyes/EYE_SMILE_DOWN_BRAINWASHED/iris
   rotate: false
-  xy: 917, 70
+  xy: 1148, 86
   size: 25, 17
   orig: 58, 52
   offset: 18, 10
   index: -1
 colorful-eyes/EYE_SMILE_DOWN_BRAINWASHED/outline
   rotate: true
-  xy: 772, 3
+  xy: 882, 325
   size: 58, 52
   orig: 58, 52
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SMILE_DOWN_BRAINWASHED/schlera
-  rotate: false
-  xy: 835, 230
+  rotate: true
+  xy: 988, 127
   size: 48, 39
   orig: 58, 52
   offset: 5, 8
   index: -1
 colorful-eyes/EYE_SMILE_DOWN_DISSENTER/iris
   rotate: true
-  xy: 367, 230
+  xy: 1139, 2
   size: 12, 15
   orig: 58, 48
   offset: 34, 7
   index: -1
 colorful-eyes/EYE_SMILE_DOWN_DISSENTER/outline
   rotate: true
-  xy: 769, 170
+  xy: 835, 109
   size: 58, 48
   orig: 58, 48
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SMILE_DOWN_HURT/iris
   rotate: false
-  xy: 218, 319
+  xy: 337, 46
   size: 48, 31
   orig: 58, 75
   offset: 5, 33
   index: -1
 colorful-eyes/EYE_SMILE_DOWN_HURT/outline
   rotate: false
-  xy: 216, 152
+  xy: 273, 152
   size: 58, 75
   orig: 58, 75
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SMILE_DOWN_HURT/pupil
-  rotate: false
-  xy: 1033, 169
+  rotate: true
+  xy: 1156, 2
   size: 13, 16
   orig: 58, 75
   offset: 10, 36
   index: -1
 colorful-eyes/EYE_SMILE_HURT/iris
   rotate: true
-  xy: 992, 351
+  xy: 1107, 104
   size: 37, 36
   orig: 58, 75
   offset: 6, 34
   index: -1
 colorful-eyes/EYE_SMILE_HURT/outline
   rotate: false
-  xy: 276, 153
+  xy: 312, 242
   size: 58, 75
   orig: 58, 75
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SMILE_HURT/pupil
-  rotate: false
-  xy: 931, 390
+  rotate: true
+  xy: 1234, 114
   size: 15, 18
   orig: 58, 75
   offset: 8, 35
   index: -1
 colorful-eyes/EYE_SMILE_UP/iris
   rotate: true
-  xy: 926, 178
+  xy: 1042, 356
   size: 50, 36
   orig: 58, 48
   offset: 4, 7
   index: -1
 colorful-eyes/EYE_SMILE_UP/outline
   rotate: true
-  xy: 775, 264
+  xy: 885, 111
   size: 58, 47
   orig: 58, 48
   offset: 0, 1
   index: -1
 colorful-eyes/EYE_SMILE_UP/pupil
   rotate: true
-  xy: 876, 327
+  xy: 988, 325
   size: 9, 23
   orig: 58, 48
   offset: 14, 17
   index: -1
 colorful-eyes/EYE_SMILE_UP/schlera
   rotate: true
-  xy: 827, 400
+  xy: 1068, 408
   size: 50, 14
   orig: 58, 48
   offset: 4, 5
   index: -1
 colorful-eyes/EYE_SMILE_UP_BRAINWASHED/iris
   rotate: true
-  xy: 572, 122
+  xy: 1222, 298
   size: 35, 27
   orig: 58, 48
   offset: 9, 18
   index: -1
 colorful-eyes/EYE_SMILE_UP_BRAINWASHED/outline
   rotate: true
-  xy: 763, 324
+  xy: 856, 171
   size: 58, 48
   orig: 58, 48
   offset: 0, 0
   index: -1
 colorful-eyes/EYE_SMILE_UP_BRAINWASHED/schlera
   rotate: true
-  xy: 928, 461
+  xy: 947, 68
   size: 49, 38
   orig: 58, 48
   offset: 5, 4
   index: -1
 colorful-eyes/EYE_SMILE_UP_DISSENTER/iris
   rotate: true
-  xy: 1008, 152
+  xy: 163, 319
   size: 24, 23
   orig: 58, 48
   offset: 21, 21
   index: -1
 colorful-eyes/EYE_SMILE_UP_DISSENTER/outline
   rotate: true
-  xy: 777, 389
+  xy: 839, 49
   size: 58, 48
   orig: 58, 48
   offset: 0, 0
+  index: -1
+colorful-eyes/EYE_STARS/iris
+  rotate: true
+  xy: 868, 2
+  size: 45, 57
+  orig: 66, 67
+  offset: 5, 5
+  index: -1
+colorful-eyes/EYE_STARS/outline
+  rotate: false
+  xy: 577, 371
+  size: 66, 67
+  orig: 66, 67
+  offset: 0, 0
+  index: -1
+colorful-eyes/EYE_STARS/pupil
+  rotate: false
+  xy: 1171, 418
+  size: 30, 41
+  orig: 66, 67
+  offset: 8, 13
+  index: -1
+colorful-eyes/EYE_STARS/schlera
+  rotate: true
+  xy: 615, 229
+  size: 18, 52
+  orig: 66, 67
+  offset: 43, 7
+  index: -1
+colorful-eyes/EYE_UP/iris
+  rotate: false
+  xy: 387, 46
+  size: 47, 31
+  orig: 59, 60
+  offset: 6, 24
+  index: -1
+colorful-eyes/EYE_UP/outline
+  rotate: false
+  xy: 795, 169
+  size: 59, 59
+  orig: 59, 60
+  offset: 0, 1
+  index: -1
+colorful-eyes/EYE_UP/pupil
+  rotate: false
+  xy: 936, 325
+  size: 25, 9
+  orig: 59, 60
+  offset: 15, 35
+  index: -1
+colorful-eyes/EYE_UP/schlera
+  rotate: true
+  xy: 1036, 183
+  size: 46, 18
+  orig: 59, 60
+  offset: 7, 6
+  index: -1
+colorful-eyes/EYE_UP_BRAINWASHED/iris
+  rotate: false
+  xy: 1082, 327
+  size: 32, 28
+  orig: 61, 62
+  offset: 13, 27
+  index: -1
+colorful-eyes/EYE_UP_BRAINWASHED/outline
+  rotate: false
+  xy: 711, 100
+  size: 61, 62
+  orig: 61, 62
+  offset: 0, 0
+  index: -1
+colorful-eyes/EYE_UP_BRAINWASHED/schlera
+  rotate: false
+  xy: 936, 336
+  size: 52, 52
+  orig: 61, 62
+  offset: 4, 5
+  index: -1
+colorful-eyes/EYE_UP_DISSENTER/iris
+  rotate: false
+  xy: 905, 231
+  size: 26, 34
+  orig: 61, 62
+  offset: 22, 21
+  index: -1
+colorful-eyes/EYE_UP_DISSENTER/outline
+  rotate: false
+  xy: 732, 166
+  size: 61, 62
+  orig: 61, 62
+  offset: 0, 0
+  index: -1
+colorful-eyes/EYE_UP_HURT/iris
+  rotate: true
+  xy: 987, 68
+  size: 49, 36
+  orig: 59, 74
+  offset: 5, 33
+  index: -1
+colorful-eyes/EYE_UP_HURT/outline
+  rotate: false
+  xy: 276, 46
+  size: 59, 74
+  orig: 59, 74
+  offset: 0, 0
+  index: -1
+colorful-eyes/EYE_UP_HURT/pupil
+  rotate: false
+  xy: 1013, 326
+  size: 16, 19
+  orig: 59, 74
+  offset: 21, 36
+  index: -1
+colorful-eyes/EYE_VERY_ANGRY/Layer 1
+  rotate: true
+  xy: 719, 255
+  size: 62, 61
+  orig: 70, 65
+  offset: 0, 0
+  index: -1
+colorful-eyes/EYE_VERY_ANGRY/iris
+  rotate: true
+  xy: 1029, 133
+  size: 46, 40
+  orig: 70, 65
+  offset: 8, 11
+  index: -1
+colorful-eyes/EYE_VERY_ANGRY/outline
+  rotate: true
+  xy: 443, 247
+  size: 70, 65
+  orig: 70, 65
+  offset: 0, 0
+  index: -1
+colorful-eyes/EYE_VERY_ANGRY/schlera
+  rotate: false
+  xy: 990, 347
+  size: 50, 50
+  orig: 70, 65
+  offset: 5, 4
+  index: -1
+colorful-eyes/EYE_WORRIED_LEFT/iris
+  rotate: true
+  xy: 416, 319
+  size: 43, 47
+  orig: 66, 67
+  offset: 14, 6
+  index: -1
+colorful-eyes/EYE_WORRIED_LEFT/outline
+  rotate: false
+  xy: 713, 376
+  size: 65, 65
+  orig: 66, 67
+  offset: 0, 0
+  index: -1
+colorful-eyes/EYE_WORRIED_LEFT/pupil
+  rotate: true
+  xy: 990, 336
+  size: 9, 21
+  orig: 66, 67
+  offset: 21, 16
+  index: -1
+colorful-eyes/EYE_WORRIED_LEFT/schlera
+  rotate: false
+  xy: 1056, 183
+  size: 18, 46
+  orig: 66, 67
+  offset: 42, 7
+  index: -1
+colorful-eyes/EYE_WORRIED_LEFT_BRAINWASHED/iris
+  rotate: false
+  xy: 1186, 209
+  size: 35, 36
+  orig: 66, 68
+  offset: 21, 17
+  index: -1
+colorful-eyes/EYE_WORRIED_LEFT_BRAINWASHED/outline
+  rotate: false
+  xy: 594, 443
+  size: 66, 67
+  orig: 66, 68
+  offset: 0, 0
+  index: -1
+colorful-eyes/EYE_WORRIED_LEFT_BRAINWASHED/schlera
+  rotate: false
+  xy: 993, 408
+  size: 49, 50
+  orig: 66, 68
+  offset: 13, 5
+  index: -1
+colorful-eyes/EYE_WORRIED_LEFT_DISSENTER/iris
+  rotate: false
+  xy: 137, 319
+  size: 24, 24
+  orig: 66, 68
+  offset: 19, 14
+  index: -1
+colorful-eyes/EYE_WORRIED_LEFT_DISSENTER/outline
+  rotate: false
+  xy: 645, 374
+  size: 66, 67
+  orig: 66, 68
+  offset: 0, 0
+  index: -1
+colorful-eyes/EYE_WORRIED_RIGHT/iris
+  rotate: true
+  xy: 1012, 231
+  size: 38, 47
+  orig: 63, 67
+  offset: 5, 5
+  index: -1
+colorful-eyes/EYE_WORRIED_RIGHT/outline
+  rotate: false
+  xy: 654, 251
+  size: 63, 66
+  orig: 63, 67
+  offset: 0, 0
+  index: -1
+colorful-eyes/EYE_WORRIED_RIGHT/pupil
+  rotate: true
+  xy: 270, 229
+  size: 10, 26
+  orig: 63, 67
+  offset: 14, 16
+  index: -1
+colorful-eyes/EYE_WORRIED_RIGHT/schlera
+  rotate: false
+  xy: 1246, 158
+  size: 14, 21
+  orig: 63, 67
+  offset: 37, 7
+  index: -1
+colorful-eyes/EYE_WORRIED_RIGHT_BRAINWASHED/iris
+  rotate: false
+  xy: 1210, 248
+  size: 32, 35
+  orig: 64, 68
+  offset: 13, 17
+  index: -1
+colorful-eyes/EYE_WORRIED_RIGHT_BRAINWASHED/outline
+  rotate: false
+  xy: 533, 159
+  size: 64, 68
+  orig: 64, 68
+  offset: 0, 0
+  index: -1
+colorful-eyes/EYE_WORRIED_RIGHT_BRAINWASHED/schlera
+  rotate: false
+  xy: 1032, 460
+  size: 48, 50
+  orig: 64, 68
+  offset: 4, 5
+  index: -1
+colorful-eyes/EYE_WORRIED_RIGHT_DISSENTER/iris
+  rotate: false
+  xy: 1027, 53
+  size: 25, 23
+  orig: 64, 68
+  offset: 23, 14
+  index: -1
+colorful-eyes/EYE_WORRIED_RIGHT_DISSENTER/outline
+  rotate: false
+  xy: 662, 443
+  size: 64, 67
+  orig: 64, 68
+  offset: 0, 0
+  index: -1
+colorful-eyes/EYE_WORRIED_RIGHT_HURT/iris
+  rotate: true
+  xy: 1144, 327
+  size: 38, 41
+  orig: 64, 82
+  offset: 5, 28
+  index: -1
+colorful-eyes/EYE_WORRIED_RIGHT_HURT/outline
+  rotate: false
+  xy: 137, 428
+  size: 64, 82
+  orig: 64, 82
+  offset: 0, 0
+  index: -1
+colorful-eyes/EYE_WORRIED_RIGHT_HURT/pupil
+  rotate: true
+  xy: 298, 229
+  size: 10, 21
+  orig: 64, 82
+  offset: 15, 31
   index: -1
