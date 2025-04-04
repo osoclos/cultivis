@@ -13,6 +13,8 @@
     "Menu_Open": { "dest": "ui/menu-open.wav" },
     "Menu_Close": { "dest": "ui/menu-close.wav" },
 
+    "River_Boy_Mourning_Music": { "dest": "misc/river-boy-mourning-music.wav" },
+
     "Greet": {
         "src": ["characters/follower/greet1.wav", "characters/follower/greet2.wav", "characters/follower/greet3.wav", "characters/follower/greet4.wav", "characters/follower/greet5.wav", "characters/follower/greet6.wav", "characters/follower/greet7.wav"],
         "dest": "characters/follower/greet.wav"

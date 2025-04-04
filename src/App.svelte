@@ -1,6 +1,5 @@
 <script lang="ts">
     import { onDestroy, onMount } from "svelte";
-    import { twMerge } from "tailwind-merge";
 
     import { ArrowSelection, BannerButton, Dialog, Header, Label, LabelTitle, NavTip, Notice, ProgressRing } from "./components/base";
     import { SceneCanvas, Categories, LoadingThrobber, LoadingSymbol, CloudShaders } from "./components/misc";
@@ -55,6 +54,9 @@
 
     let hasNoticedTutorial: boolean = $state(!!localStorage.getItem(HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME));
     let hasPetNarinder: boolean = $state(!!localStorage.getItem(HAS_PET_NARINDER_LOCAL_STORAGE_NAME));
+
+    let showRiverBoyMourner: boolean = $state(false);
+    let isRiverBoyMournerVisible: boolean = $state(false);
 
     let actors: ActorObject[] | null = $state(null);
     let actorIdx: number = $state(-1);
@@ -112,19 +114,33 @@
     });
 
     onMount(async () => {
-        window.addEventListener("keydown", (evt: KeyboardEvent) => {
-            const { code, ctrlKey, altKey } = evt;
-            if (!["KeyE", "KeyF"].includes(code) || ctrlKey || altKey || document.activeElement instanceof HTMLInputElement) return;
+        window.addEventListener("keydown", (evt) => {
+            const { code, shiftKey, ctrlKey, altKey } = evt;
+            if (!["KeyE", "KeyF"].includes(code) || document.activeElement instanceof HTMLInputElement) return;
             
             evt.preventDefault();
             
-            if (code === "KeyE") {
+            if (code === "KeyE" && !ctrlKey && !altKey) {
                 const element = document.activeElement as HTMLElement;
                 element.click();
 
                 return;
             }
+
+            if (hasUserCompliedToTOS && !showRiverBoyMourner && code === "KeyF" && shiftKey && altKey) {
+                isRiverBoyMournerVisible = true;
+                showRiverBoyMourner = true;
+
+                setTimeout(async () => {
+                    await soundManager.load("River_Boy_Mourning_Music");
+                    soundManager.play("River_Boy_Mourning_Music");
+                }, 2000);
+
+                return;
+            }
             
+            if (ctrlKey || altKey) return;
+
             if (showActorMenu) {
                 showActorMenu = false;
                 soundManager.play("Menu_Close");
@@ -544,6 +560,11 @@
         numOfPets++;
         await serverManager.addNewPet();
     }
+
+    function closeRiverBoyMourner() {
+        showRiverBoyMourner = false;
+        soundManager.stop("River_Boy_Mourning_Music");
+    }
 </script>
 
 <div class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-secondary {hasFinishedLoading ? "opacity-0" : "opacity-100"} not-motion-reduce:transition-opacity not-motion-reduce:duration-900 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
@@ -559,7 +580,7 @@
         {#if !areTermsAcknowledged}
             {#await Promise.all([newsManager.getTermsSummary(), newsManager.getTermsUnix()]) then [changesSummary, termsUnix]}
                 <div class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-[#00000060] {hasUserCompliedToTOS ? "opacity-0" : "opacity-100"} transition-opacity duration-450 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
-                    <Dialog childClass={twMerge("mt-2 sm:mt-4")} title="Disclaimer" description={localStorage.getItem(NewsManager.TERMS_LOCAL_STORAGE_NAME) ? `CultiVis has updated its terms of service${termsUnix ? ` on ${unixToDate(termsUnix)}` : ""}. ${changesSummary ? `${changesSummary.slice(0, -changesSummary.endsWith("."))}. ` : ""}You may view the new terms below or close this popup.` : "CultiVis requires you to agree and acknowledge the CultiVis Terms of Service. You may view the terms below or close this popup."}>
+                    <Dialog childClass="mt-2 sm:mt-4" title="Disclaimer" description={localStorage.getItem(NewsManager.TERMS_LOCAL_STORAGE_NAME) ? `CultiVis has updated its terms of service${termsUnix ? ` on ${unixToDate(termsUnix)}` : ""}. ${changesSummary ? `${changesSummary.slice(0, -changesSummary.endsWith("."))}. ` : ""}You may view the new terms below or close this popup.` : "CultiVis requires you to agree and acknowledge the CultiVis Terms of Service. You may view the terms below or close this popup."}>
                         <Notice class="px-8 pb-2 sm:pb-4 sm:mt-4 text-xs sm:text-sm" label="Closing this popup will mean you agree with the Terms of Service." />
                         <List class="flex flex-col justify-center items-center" label="Terms of Service Disclaimer Options" enableKeyInput focusFirst>
                             <BannerButton label="View Terms" href="https://github.com/osoclos/cultivis/blob/main/ToS.md" />
@@ -674,15 +695,26 @@
 
         <CloudShaders bind:disabled={isFullScreen} />
     </div>
-{/if}
 
-<div class="not-lg:hidden flex fixed bottom-0 left-0 z-90 flex-row gap-8 p-6 pt-4 max-w-160 bg-black">
-    <NavTip key="E" code="KeyE" label="Accept" />
+    <div class="not-lg:hidden flex fixed bottom-0 left-0 z-90 flex-row gap-8 p-6 pt-4 max-w-160 bg-black">
+        <NavTip key="E" code="KeyE" label="Accept" />
+        
+        {#if categoryIdx === 0 && actorIdx >= 0}
+            <NavTip key="F" code="KeyF" label="Back" />
+        {/if}
+    </div>
     
-    {#if categoryIdx === 0 && actorIdx >= 0}
-        <NavTip key="F" code="KeyF" label="Back" />
+    {#if isRiverBoyMournerVisible}
+        <div class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-[#00000060] {showRiverBoyMourner ? "opacity-100" : "opacity-0"} transition-opacity duration-450 select-none" ontransitionend={() => isRiverBoyMournerVisible = showRiverBoyMourner}>
+            <Dialog childClass="mt-2 sm:mt-4" title="RIP. River Boy" description="Narayana Johnson (aka. River Boy) has tragically passed away on 4th April 2025. He was the audio director of Cult of the Lamb and the composer of the beloved soundtracks that many of us have grown fond of. I, as well as the rest of the C.O.T.L community are deeply saddened by his passing. Rest in peace and farewell, River Boy.">
+                <div class="flex flex-col justify-center items-center gap-2">
+                    <img src="/static/assets/misc/rip-river-boy.png" alt="RIP. River Boy" class="w-17 h-13.5 sm:w-23 sm:h-18" width={69 + 23 * +isOnPhone} height={54 + 19 * +isOnPhone} draggable="false" role="presentation" aria-hidden="true" />
+                    <BannerButton label="Close" onclick={closeRiverBoyMourner} />
+                </div>
+            </Dialog>
+        </div>
     {/if}
-</div>
+{/if}
 
 <style>
     :global(.no-scrollbar) { scrollbar-width: none; }

@@ -26,8 +26,10 @@
 
     let dialog: HTMLDivElement;
     onMount(() => requestAnimationFrame(() => {
-        dialog.classList.replace("opacity-0", "opacity-100");
-        dialog.classList.replace("scale-125", "scale-100");
+        requestAnimationFrame(() => {
+            dialog.classList.replace("opacity-0", "opacity-100");
+            dialog.classList.replace("scale-125", "scale-100");
+        });
     }));
 </script>
 
