@@ -706,7 +706,7 @@
     
     {#if isRiverBoyObituaryVisible}
         <div class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-[#00000060] {showRiverBoyObituary ? "opacity-100" : "opacity-0"} transition-opacity duration-450 select-none" ontransitionend={() => isRiverBoyObituaryVisible = showRiverBoyObituary}>
-            <Dialog childClass="mt-2" title="RIP. River Boy" description="It is with great sorrow to announce that Narayana Johnson (aka. River Boy) has tragically passed away in the early hours of 2nd April 2025. He was the audio director of Cult of the Lamb and the composer of the beloved soundtracks that many of us have grown fond of. I, as well as the rest of the C.O.T.L community are deeply saddened by his passing. Rest in peace and farewell, River Boy.">
+            <Dialog childClass="mt-2" title="RIP. River Boy" description="It is with great sorrow to announce that Narayana Johnson (aka. River Boy) has tragically passed away in the early hours of 2nd April 2025. He was the audio director of Cult of the Lamb and the composer of the beloved soundtracks that many of us have grown fond of. I, as well as the rest of the C.O.T.L community, are deeply saddened by his passing. Rest in peace and farewell, River Boy.">
                 <div class="flex flex-col justify-center items-center gap-2">
                     <img src="/static/assets/misc/rip-river-boy.png" alt="RIP. River Boy" class="w-17 h-13.5 sm:w-23 sm:h-18" width={69 + 23 * +isOnPhone} height={54 + 19 * +isOnPhone} draggable="false" role="presentation" aria-hidden="true" />
                     
