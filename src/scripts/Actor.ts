@@ -388,7 +388,8 @@ export class Actor implements ActorObject {
 
         skeleton.updateWorldTransform();
         for (const { slot, targetSlot, attachments } of slotEntries) {
-            const { name: targetName } = targetSlot.getAttachment() ?? {};
+            const targetAttachment = targetSlot.getAttachment() ?? {};
+            const { name: targetName } = targetAttachment;
 
             const isAttachmentAvailable = targetName in attachments;
 
@@ -400,6 +401,18 @@ export class Actor implements ActorObject {
 
             skeleton.skin.setAttachment(slot.data.index, attachmentName, attachment);
             slot.setAttachment(attachment);
+
+            if (attachment instanceof spine.RegionAttachment && targetAttachment instanceof spine.RegionAttachment) {
+                attachment.x = targetAttachment.x;
+                attachment.y = targetAttachment.y;
+
+                attachment.scaleX = targetAttachment.scaleX;
+                attachment.scaleY = targetAttachment.scaleY;
+
+                attachment.rotation = targetAttachment.rotation;
+
+                attachment.updateOffset();
+            }
         }
     }
 

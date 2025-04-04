@@ -232,7 +232,7 @@
     }
     
     function updateFollowerPossessionState(possessionState: number) {
-        if ((!isFollowerObj(obj) || !isFollowerObj(actor)) && !isModdedFollowerObj(obj) || !isModdedFollowerObj(actor)) return;
+        if ((!isFollowerObj(obj) || !isFollowerObj(actor)) && (!isModdedFollowerObj(obj) || !isModdedFollowerObj(actor))) return;
         possessionState--;
 
         obj.possessionState = possessionState < 0 ? null : possessionState;
@@ -242,7 +242,7 @@
     }
 
     function updateFollowerSickState(sickState: number) {
-        if ((!isFollowerObj(obj) || !isFollowerObj(actor)) && !isModdedFollowerObj(obj) || !isModdedFollowerObj(actor)) return;
+        if ((!isFollowerObj(obj) || !isFollowerObj(actor)) && (!isModdedFollowerObj(obj) || !isModdedFollowerObj(actor))) return;
         sickState--;
 
         obj.sickState = sickState < 0 ? null : sickState;
@@ -252,7 +252,7 @@
     }
 
     function updateFollowerBeliefState(beliefState: number) {
-        if ((!isFollowerObj(obj) || !isFollowerObj(actor)) && !isModdedFollowerObj(obj) || !isModdedFollowerObj(actor)) return;
+        if ((!isFollowerObj(obj) || !isFollowerObj(actor)) && (!isModdedFollowerObj(obj) || !isModdedFollowerObj(actor))) return;
         beliefState--;
 
         obj.beliefState = beliefState < 0 ? null : beliefState;
@@ -462,7 +462,7 @@
                                     </Label>
 
                                     <Label label="Sick State">
-                                        <ArrowSelection class="ml-6" label="Sick State" options={["Well", "Sick", "Traumatized", "Zombie", "Scared"]} oninput={(_, i) => updateFollowerSickState(i)} />
+                                        <ArrowSelection class="ml-6" label="Sick State" options={["Well", "Sick", "Traumatized", "Zombie", "Possessed"]} oninput={(_, i) => updateFollowerSickState(i)} />
                                     </Label>
 
                                     <Label label="Belief State">
