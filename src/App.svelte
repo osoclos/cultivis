@@ -133,7 +133,7 @@
 
                 setTimeout(async () => {
                     await soundManager.load("River_Boy_Obituary_Music");
-                    soundManager.play("River_Boy_Obituary_Music");
+                    if (showRiverBoyObituary) soundManager.play("River_Boy_Obituary_Music");
                 }, 2000);
 
                 return;
