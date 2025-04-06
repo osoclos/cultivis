@@ -1,7 +1,7 @@
-import { followerData, playerData, soldierData, occultistData, guardData, hereticData, machineData, bishopData, towwData, miniBossData, witnessData, knucklebonesPlayerData } from "../data/files";
-import { type FollowerId, type ClothingId, type PlayerCreatureId, type PlayerFleeceId, type SoldierId, type OccultistId, type GuardId, type HereticId, type MachineId, type BishopId, type TOWW_Id, type MiniBossId, type WitnessId, type KnucklebonesPlayerId, HERETIC_IDS, MACHINE_IDS, BISHOP_IDS, TOWW_IDS, MINI_BOSS_IDS, KNUCKLEBONES_PLAYER_IDS } from "../data/types";
+import { followerData, playerData, soldierData, occultistData, guardData, hereticData, machineData, bishopData, towwData, miniBossData, witnessData, knucklebonesPlayerData, questGiverData } from "../data/files";
+import { type FollowerId, type ClothingId, type PlayerCreatureId, type PlayerFleeceId, type SoldierId, type OccultistId, type GuardId, type HereticId, type MachineId, type BishopId, type TOWW_Id, type MiniBossId, type WitnessId, type KnucklebonesPlayerId, HERETIC_IDS, MACHINE_IDS, BISHOP_IDS, TOWW_IDS, MINI_BOSS_IDS, KNUCKLEBONES_PLAYER_IDS, type QuestGiverId, QUEST_GIVER_IDS } from "../data/types";
 
-import { Follower, ModdedFollower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer } from "./characters";
+import { Follower, ModdedFollower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer, QuestGiver } from "./characters";
 import { AssetManager } from "./managers";
 
 import { Actor } from "./Actor";
@@ -28,6 +28,7 @@ export class Factory {
     private _witness?: Witness;
 
     private _knucklebonesPlayers: Map<KnucklebonesPlayerId, KnucklebonesPlayer>;
+    private _questGivers: Map<QuestGiverId, QuestGiver>;
 
     private constructor(private assetManager: AssetManager) {
         this._heretics = new Map();
@@ -41,6 +42,7 @@ export class Factory {
         this._miniBosses = new Map();
 
         this._knucklebonesPlayers = new Map();
+        this._questGivers = new Map();
     }
 
     static async create(gl: WebGLRenderingContext, root: string = "/", actorsToPreload: (typeof Actor)[] = []) {
@@ -102,6 +104,10 @@ export class Factory {
 
     hasLoadedKnucklebonesPlayer(player: KnucklebonesPlayerId): boolean {
         return this._knucklebonesPlayers.has(player);
+    }
+
+    hasLoadedQuestGiver(giver: QuestGiverId): boolean {
+        return this._questGivers.has(giver);
     }
 
     async fetchData(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string): Promise<[spine.SkeletonData, spine.TextureAtlas]> {
@@ -197,12 +203,17 @@ export class Factory {
                     await Promise.all(KNUCKLEBONES_PLAYER_IDS.filter((id) => !this.hasLoadedKnucklebonesPlayer(id)).map(this.loadKnucklebonesPlayer.bind(this)));
                     break;
                 }
+
+                case QuestGiver: {
+                    await Promise.all(QUEST_GIVER_IDS.filter((id) => !this.hasLoadedQuestGiver(id)).map(this.loadQuestGiver.bind(this)));
+                    break;
+                }
             }
         }
     }
 
     async loadAll() {
-        await this.load(Follower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer);
+        await this.load(Follower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer, QuestGiver);
     }
 
     async loadFollower() {
@@ -344,6 +355,23 @@ export class Factory {
         this._knucklebonesPlayers.set(id, knucklebonesPlayer);
     }
 
+    async loadQuestGiver(id: QuestGiverId) {
+        const data = questGiverData[id];
+        const { name, src } = data;
+
+        const {
+            textures,
+            atlas: atlasPath,
+            
+            skeleton: skeletonPath
+        } = src;
+        
+        const [skeletonData, atlas] = await this.fetchData(textures, atlasPath, skeletonPath);
+
+        const questGiver = new QuestGiver(skeletonData, atlas, undefined, name, id);
+        this._questGivers.set(id, questGiver);
+    }
+
     async custom(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string, id?: string, label: string = "Custom Actor") {
         const [skeletonData, atlas] = await this.fetchData(texturePaths, atlasPath, skeletonPath);
         return new Actor(skeletonData, atlas, id, label);
@@ -412,5 +440,10 @@ export class Factory {
     knucklebonesPlayer(player: KnucklebonesPlayerId, id?: string, label: string = knucklebonesPlayerData[player].name) {
         if (!this.hasLoadedKnucklebonesPlayer(player)) throw new Error(`Knucklebones Player ${player} has not been loaded.`);
         return this._knucklebonesPlayers.get(player)!.clone(id, label);
+    }
+
+    questGiver(giver: QuestGiverId, id?: string, label: string = questGiverData[giver].name) {
+        if (!this.hasLoadedQuestGiver(giver)) throw new Error(`Quest Giver ${giver} has not been loaded.`);
+        return this._questGivers.get(giver)!.clone(id, label);
     }
 }

@@ -1,5 +1,9 @@
-import type { KnucklebonesPlayerDataJSON } from "../../../types";
+import type { KnucklebonesPlayerDataJSON, QuestGiverDataJSON } from "../../../types";
+
 import knucklebonesPlayerDataJSON from "./knucklebones-player-data.json";
+import questGiverDataJSON from "./quest-giver-data.json";
 
 const knucklebonesPlayerData: KnucklebonesPlayerDataJSON = knucklebonesPlayerDataJSON;
-export { knucklebonesPlayerData };
+const questGiverData: QuestGiverDataJSON = questGiverDataJSON;
+
+export { knucklebonesPlayerData, questGiverData };

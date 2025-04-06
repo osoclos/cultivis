@@ -1,6 +1,6 @@
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
 
-import { isFollowerObj, isModdedFollowerObj, isPlayerObj, isSoldierObj, isOccultistObj, isGuardObj, isHereticObj, isMachineObj, isBishopObj, isTOWW_Obj, isMiniBossObj, isWitnessObj, isKnucklebonesPlayerObj } from "./characters";
+import { isFollowerObj, isModdedFollowerObj, isPlayerObj, isSoldierObj, isOccultistObj, isGuardObj, isHereticObj, isMachineObj, isBishopObj, isTOWW_Obj, isMiniBossObj, isWitnessObj, isKnucklebonesPlayerObj, isQuestGiverObj } from "./characters";
 import { APNG_Manager, GIF_Manager } from "./managers";
 
 import { Vector } from "../utils";
@@ -264,6 +264,16 @@ export class Exporter {
 
                 const knucklebonesPlayer = this.factory.knucklebonesPlayer(player, id, label);
                 actor = knucklebonesPlayer;
+
+                break;
+            }
+
+            case isQuestGiverObj(obj): {
+                const { giver } = obj;
+                if (!this.factory.hasLoadedQuestGiver(giver)) await this.factory.loadQuestGiver(giver);
+
+                const questGiver = this.factory.questGiver(giver, id, label);
+                actor = questGiver;
 
                 break;
             }

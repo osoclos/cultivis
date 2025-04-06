@@ -5,11 +5,11 @@
     import { SpritesheetImage } from "../utils";
 
     import type { ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isKnucklebonesPlayerObj, isMachineObj, isMiniBossObj, isModdedFollowerObj, isOccultistObj, isPlayerObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isKnucklebonesPlayerObj, isMachineObj, isMiniBossObj, isModdedFollowerObj, isOccultistObj, isPlayerObj, isQuestGiverObj, isSoldierObj, isTOWW_Obj, isWitnessObj } from "../../scripts/characters";
     import { soundManager } from "../../scripts/managers";
 
-    import { bishopData, followerData, guardData, hereticData, knucklebonesPlayerData, machineData, miniBossData, occultistData, playerData, soldierData, towwData, witnessData } from "../../data/files";
-    import { BISHOP_IDS, followerIdsByCategory, FOLLOWER_CATEGORIES, guardIdsByCategory, GUARD_CATEGORIES, hereticIdsByCategory, HERETIC_CATEGORIES, KNUCKLEBONES_PLAYER_IDS, machineIdsByCategory, MACHINE_CATEGORIES, miniBossIdsByCategory, MINI_BOSS_CATEGORIES, OCCULTIST_IDS, PLAYER_CREATURE_IDS, SOLDIER_IDS, WITNESS_IDS } from "../../data/types";
+    import { bishopData, followerData, guardData, hereticData, knucklebonesPlayerData, machineData, miniBossData, occultistData, playerData, questGiverData, soldierData, towwData, witnessData } from "../../data/files";
+    import { BISHOP_IDS, followerIdsByCategory, FOLLOWER_CATEGORIES, guardIdsByCategory, GUARD_CATEGORIES, hereticIdsByCategory, HERETIC_CATEGORIES, KNUCKLEBONES_PLAYER_IDS, machineIdsByCategory, MACHINE_CATEGORIES, miniBossIdsByCategory, MINI_BOSS_CATEGORIES, OCCULTIST_IDS, PLAYER_CREATURE_IDS, SOLDIER_IDS, WITNESS_IDS, QUEST_GIVER_IDS } from "../../data/types";
 
     interface Props {
         actor: ActorObject;
@@ -61,6 +61,7 @@
             case isWitnessObj(actor): return "Witness";
 
             case isKnucklebonesPlayerObj(actor): return "K.B. Player";
+            case isQuestGiverObj(actor): return "Quest Giver";
             
             default: return "Actor";
         }
@@ -87,6 +88,7 @@
             case isWitnessObj(actor): return `Witness: ${witnessData[actor.witness].name}`;
 
             case isKnucklebonesPlayerObj(actor): return `Player: ${knucklebonesPlayerData[actor.player].name}`;
+            case isQuestGiverObj(actor): return `Giver: ${questGiverData[actor.giver].name}`;
             
             default: return "";
         }
@@ -113,7 +115,8 @@
             case isWitnessObj(actor): return "/static/assets/characters/witnesses.png";
 
             case isKnucklebonesPlayerObj(actor): return "/static/assets/characters/knucklebones-players.png";
-            
+            case isQuestGiverObj(actor): return "/static/assets/characters/quest-givers.png";
+
             default: return "/static/ui/cancel.png";
         }
     });
@@ -139,6 +142,7 @@
             case isWitnessObj(actor): return WITNESS_IDS.indexOf(actor.witness);
 
             case isKnucklebonesPlayerObj(actor): return KNUCKLEBONES_PLAYER_IDS.indexOf(actor.player);
+            case isQuestGiverObj(actor): return QUEST_GIVER_IDS.indexOf(actor.giver);
 
             default: return 0;
         }
@@ -167,6 +171,7 @@
             case isWitnessObj(actor):
 
             case isKnucklebonesPlayerObj(actor):
+            case isQuestGiverObj(actor):
             
             default: return 0;
         }

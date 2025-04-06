@@ -5,18 +5,18 @@
     import { SceneCanvas, Categories, LoadingThrobber, LoadingSymbol, CloudShaders } from "./components/misc";
     import { List } from "./components/utils";
     
-    import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, GuardMenus, GUARD_MENU_NAME, HereticMenus, HERETIC_MENU_NAME, MachineMenus, MACHINE_MENU_NAME, MiniBossMenus, MINI_BOSS_MENU_NAME, OccultistMenus, OCCULTIST_MENU_NAME, SoldierMenus, SOLDIER_MENU_NAME, TOWW_Menus, TOWW_MENU_NAME, WitnessMenus, WITNESS_MENU_NAME, KnucklebonesPlayerMenus, KNUCKLEBONES_PLAYER_MENU_NAME } from "./components/characters";
+    import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, GuardMenus, GUARD_MENU_NAME, HereticMenus, HERETIC_MENU_NAME, MachineMenus, MACHINE_MENU_NAME, MiniBossMenus, MINI_BOSS_MENU_NAME, OccultistMenus, OCCULTIST_MENU_NAME, SoldierMenus, SOLDIER_MENU_NAME, TOWW_Menus, TOWW_MENU_NAME, WitnessMenus, WITNESS_MENU_NAME, KnucklebonesPlayerMenus, KNUCKLEBONES_PLAYER_MENU_NAME, QuestGiverMenus, QUEST_GIVER_MENU_NAME } from "./components/characters";
     import { FormatOptions, SizeOptions, TimingOptions } from "./components/exporting";
 
     import { News } from "./components/news";
     import { CreationDetails, SpecialThanks, HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME, NarinderPetter, HAS_PET_NARINDER_LOCAL_STORAGE_NAME } from "./components/credits";
 
     import { Actor, Exporter, Factory, FORMAT_IDS, Scene, type ActorObject, type FormatData, type FormatId } from "./scripts";
-    import { Bishop, isBishopObj, Follower, isFollowerObj, Guard, isGuardObj, Heretic, isHereticObj, Machine, isMachineObj, MiniBoss, isMiniBossObj, ModdedFollower, isModdedFollowerObj, Occultist, isOccultistObj, Player, isPlayerObj, Soldier, isSoldierObj, TOWW, isTOWW_Obj, Witness, isWitnessObj, KnucklebonesPlayer, isKnucklebonesPlayerObj } from "./scripts/characters";
+    import { Bishop, isBishopObj, Follower, isFollowerObj, Guard, isGuardObj, Heretic, isHereticObj, Machine, isMachineObj, MiniBoss, isMiniBossObj, ModdedFollower, isModdedFollowerObj, Occultist, isOccultistObj, Player, isPlayerObj, Soldier, isSoldierObj, TOWW, isTOWW_Obj, Witness, isWitnessObj, KnucklebonesPlayer, isKnucklebonesPlayerObj, QuestGiver, isQuestGiverObj } from "./scripts/characters";
     import { soundManager, newsManager, NewsManager, type NewsLoader, serverManager } from "./scripts/managers";
 
-    import { bishopData, hereticData, knucklebonesPlayerData, machineData, miniBossData, towwData } from "./data/files";
-    import { BISHOP_IDS, GUARD_IDS, HERETIC_IDS, KNUCKLEBONES_PLAYER_IDS, MACHINE_IDS, MINI_BOSS_IDS, OCCULTIST_IDS, SOLDIER_IDS, WITNESS_IDS } from "./data/types";
+    import { bishopData, hereticData, knucklebonesPlayerData, machineData, miniBossData, questGiverData, towwData } from "./data/files";
+    import { BISHOP_IDS, GUARD_IDS, HERETIC_IDS, KNUCKLEBONES_PLAYER_IDS, MACHINE_IDS, MINI_BOSS_IDS, OCCULTIST_IDS, QUEST_GIVER_IDS, SOLDIER_IDS, WITNESS_IDS } from "./data/types";
 
     import { MoreMath, Random, unixToDate, Vector } from "./utils";
 
@@ -229,6 +229,9 @@
 
         player.pos.setX(180);
 
+        // const npc = await factory.custom(["MidasNPC.png"], "MidasNPC.atlas", "MidasNPC.skel");
+        // console.log(npc.skinNames, npc.animationNames);
+
         scene.addActors(deer, player);
         actors = scene.actors.map((actor) => actor.toObj());
         
@@ -397,6 +400,17 @@
                 knucklebonesPlayer.setRawAnimation(knucklebonesPlayerData[id].animation);
 
                 addedActor = knucklebonesPlayer;
+                break;
+            }
+
+            case QuestGiver: {
+                const id = Random.item(QUEST_GIVER_IDS);
+                !factory.hasLoadedQuestGiver(id) && await factory.loadQuestGiver(id) && await exporter.factory.loadQuestGiver(id);
+
+                const questGiver = factory.questGiver(id);
+                questGiver.setRawAnimation(questGiverData[id].animation);
+
+                addedActor = questGiver;
                 break;
             }
 
@@ -647,6 +661,8 @@
                             <WitnessMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" witness={actor as Witness} obj={actorObj} enableKeyInput={actorIdx >= 0 && showActorMenu && !isRiverBoyObituaryVisible} onupdate={updateSceneFromChanges} />
                         {:else if isKnucklebonesPlayerObj(actorObj) && actorMenu === KNUCKLEBONES_PLAYER_MENU_NAME}
                             <KnucklebonesPlayerMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu && !isRiverBoyObituaryVisible} onupdate={updateSceneFromChanges} onchange={swapActor} />
+                        {:else if isQuestGiverObj(actorObj) && actorMenu === QUEST_GIVER_MENU_NAME}
+                            <QuestGiverMenus class="no-scrollbar lg:overflow-y-auto lg:pt-12 lg:pb-8 lg:w-160 lg:h-[calc(100%_-_68px)]" obj={actorObj} {factory} enableKeyInput={actorIdx >= 0 && showActorMenu && !isRiverBoyObituaryVisible} onupdate={updateSceneFromChanges} onchange={swapActor} />
                         {/if}
                     {/if}
                 </div>

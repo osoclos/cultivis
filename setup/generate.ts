@@ -235,6 +235,14 @@ app.post("/knucklebones-players", data.array("files"), (req) => {
     createSpritesheets([buffers], "knucklebones-players");
 });
 
+app.post("/quest-givers", data.array("files"), (req) => {
+    const { files } = req;
+    if (!files) return;
+
+    const buffers: Buffer[] = (<Express.Multer.File[]>files).map(({ buffer }) => buffer);
+    createSpritesheets([buffers], "quest-givers");
+});
+
 async function createSpritesheets(buffers: Buffer[][], name: string = "spritesheet") {
     const sheetWidth = Math.max(...buffers.map(({ length }) => length));
     const sheetHeight = buffers.length;

@@ -2,8 +2,8 @@ import "./style.css";
 
 import { Scene, Factory, Exporter, Actor } from "@/scripts";
 
-import { followerData, hereticData, knucklebonesPlayerData, machineData, miniBossData, playerData, towwData } from "@/data/files";
-import { CLOTHING_IDS, FOLLOWER_IDS, GUARD_IDS, HATS_ID, HERETIC_IDS, KNUCKLEBONES_PLAYER_IDS, MACHINE_IDS, MINI_BOSS_IDS, NECKLACE_IDS, OCCULTIST_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, SOLDIER_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
+import { followerData, hereticData, knucklebonesPlayerData, machineData, miniBossData, playerData, questGiverData, towwData } from "@/data/files";
+import { CLOTHING_IDS, FOLLOWER_IDS, GUARD_IDS, HATS_ID, HERETIC_IDS, KNUCKLEBONES_PLAYER_IDS, MACHINE_IDS, MINI_BOSS_IDS, NECKLACE_IDS, OCCULTIST_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, QUEST_GIVER_IDS, SOLDIER_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
 
 import { Player } from "@/scripts/characters";
 
@@ -466,6 +466,24 @@ knucklebonesPlayerExporter.addEventListener("click", () => {
     }
 
     sendForm(form, "/knucklebones-players");
+});
+
+const questGiverExporter = document.querySelector<HTMLButtonElement>("button#export-quest-givers")!;
+questGiverExporter.addEventListener("click", () => {
+    const form = new FormData();
+
+    for (const id of QUEST_GIVER_IDS) {
+        const questGiver = factory.questGiver(id);
+
+        const { animation } = questGiverData[id];
+        questGiver.setRawAnimation(animation);
+
+        setupScene(questGiver);
+
+        appendPixelsToForm(form, id);
+    }
+
+    sendForm(form, "/quest-givers");
 });
 
 function setupScene(actor: Actor) {

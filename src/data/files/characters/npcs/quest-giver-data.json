@@ -1,0 +1,85 @@
+{
+    "Fish_Man": {
+        "name": "Fisherman",
+        "src": {
+            "textures": ["Fisherman.png"],
+            "atlas": "Fisherman.atlas",
+            "skeleton": "Fisherman.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "fishing"
+    },
+
+    "Lighthouse_Keeper": {
+        "name": "Lighthouse Keeper",
+        "src": {
+            "textures": ["LighthouseKeeper.png"],
+            "atlas": "LighthouseKeeper.atlas",
+            "skeleton": "LighthouseKeeper.skel"
+        },
+
+        "skins": ["Axolotl"],
+        "animation": "animation"
+    },
+
+    "Lighthouse_Follower": {
+        "name": "Lighthouse Follower",
+        "src": {
+            "textures": ["LighthouseFollower.png"],
+            "atlas": "LighthouseFollower.atlas",
+            "skeleton": "LighthouseFollower.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "animation"
+    },
+
+    "Sozo": {
+        "name": "Sozo",
+        "src": {
+            "textures": ["mushroomNPC.png"],
+            "atlas": "mushroomNPC.atlas",
+            "skeleton": "mushroomNPC.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "animation"
+    },
+
+    "Mushroom_Follower": {
+        "name": "Mushroom Follower",
+        "src": {
+            "textures": ["LighthouseKeeper.png"],
+            "atlas": "LighthouseKeeper.atlas",
+            "skeleton": "LighthouseKeeper.skel"
+        },
+
+        "skins": ["Mushroom"],
+        "animation": "animation"
+    },
+
+    "Plimbo": {
+        "name": "Plimbo",
+        "src": {
+            "textures": ["DecorationShopGuy.png"],
+            "atlas": "DecorationShopGuy.atlas",
+            "skeleton": "DecorationShopGuy.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "idle"
+    },
+
+    "Midas": {
+        "name": "Midas",
+        "src": {
+            "textures": ["MidasNPC.png"],
+            "atlas": "MidasNPC.atlas",
+            "skeleton": "MidasNPC.skel"
+        },
+
+        "skins": ["Normal", "Beaten"],
+        "animation": "idle"
+    }
+}

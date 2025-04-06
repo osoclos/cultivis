@@ -4,7 +4,7 @@
     import { List, MultiList } from "../utils";
 
     import type { Actor, ActorObject } from "../../scripts";
-    import { Bishop, Follower, Guard, Heretic, KnucklebonesPlayer, Machine, MiniBoss, Occultist, Player, Soldier, TOWW, Witness } from "../../scripts/characters";
+    import { Bishop, Follower, Guard, Heretic, KnucklebonesPlayer, Machine, MiniBoss, Occultist, Player, QuestGiver, Soldier, TOWW, Witness } from "../../scripts/characters";
 
     interface Props {
         actors: ActorObject[] | null;
@@ -62,7 +62,7 @@
         <Header title="Add Character" />
 
         <List class="no-scrollbar overflow-x-auto flex-row gap-4 p-2 w-90 sm:w-100" label="List of Characters" {enableKeyInput} isHorizontal isTabbable={false}>
-            {#each [Follower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer] as actor, i (i)} 
+            {#each [Follower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer, QuestGiver] as actor, i (i)} 
                 <CharacterItem {actor} isLoading={actor === loadingActor} onclick={() => add(actor)} />
             {/each}
         </List>

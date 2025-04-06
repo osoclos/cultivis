@@ -1,0 +1,45 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "quest-giver-data.schema.json",
+
+    "title": "Quest Giver Data",
+    "description": "Information on quest givers that provides metadata and other related information, such as source files and animations",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/Id" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The display name of this quest giver."
+            },
+
+            "src": {
+                "$ref": "../../globals.schema.json#/definitions/Sources",
+                "description": "The source paths to the files needed to load the quest giver."
+            },
+
+            "skins": {
+                "type": "array",
+                "description": "The list of skins needed to fully create the quest giver correctly.",
+
+                "items": { "type": "string" }
+            },
+
+            "animation": {
+                "type": "string",
+                "description": "The default animation it should play when this quest giver is loaded."
+            }
+        },
+
+        "required": ["name", "src", "skins", "animation"]
+    },
+
+    "definitions": {
+        "Id": {
+            "type": "string",
+            "enum": ["Fish_Man", "Lighthouse_Keeper", "Lighthouse_Follower", "Sozo", "Mushroom_Follower", "Plimbo", "Midas"]
+        }
+    }
+}

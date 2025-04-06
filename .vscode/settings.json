@@ -66,6 +66,7 @@
         "onreorder",
         "onshift",
         "pageerror",
+        "Plimbo",
         "pocams",
         "Poggers",
         "POUNCERBOSS",
@@ -159,6 +160,14 @@
         {
             "fileMatch": ["/knucklebones-player-data.json"],
             "url": "/src/data/schemas/characters/npcs/knucklebones-player-data.schema.json"
+        },
+        {
+            "fileMatch": ["/quest-giver-data.json"],
+            "url": "/src/data/schemas/characters/npcs/quest-giver-data.schema.json"
+        },
+        {
+            "fileMatch": ["/shopkeeper-data.json"],
+            "url": "/src/data/schemas/characters/npcs/shopkeeper-data.schema.json"
         },
 
         {
