@@ -59,11 +59,11 @@
 </script>
 
 <div class={twMerge("flex flex-col gap-2 items-center w-full", className)}>
-    <Header title="Choose Giver" />
+    <Header title="Choose Shopkeeper" />
 
     <MultiGrid gridClass="mx-1" titles={Object.keys(shopkeeperIdsByCategory)} minColumns={4} maxColumns={6} tileWidth={64} tileHeight={64} gapWidth={20} gapHeight={12} {enableKeyInput} focusFirst>
         {#snippet children(category, y)}
-            <BoxOption label="Select Random Mini Boss" hideBackground onclick={() => updateShopkeeper(Random.item(shopkeeperIdsByCategory[category as ShopkeeperCategoryName]))}>
+            <BoxOption label="Select Random Shopkeeper" hideBackground onclick={() => updateShopkeeper(Random.item(shopkeeperIdsByCategory[category as ShopkeeperCategoryName]))}>
                 <img src="/static/ui/dice-6.png" alt="" width="64" height="64" draggable="false" role="presentation" aria-hidden="true" />
             </BoxOption>
 
