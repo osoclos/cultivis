@@ -1,0 +1,211 @@
+{
+    "Rakshasa": {
+        "name": "Rakshasa",
+        "category": 0,
+
+        "src": {
+            "textures": ["chefSeller.png"],
+            "atlas": "chefSeller.atlas",
+            "skeleton": "chefSeller.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "animation"
+    },
+
+    "Forneus": {
+        "name": "Forneus",
+        "category": 0,
+
+        "src": {
+            "textures": ["catSeller.png"],
+            "atlas": "catSeller.atlas",
+            "skeleton": "catSeller.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "animation"
+    },
+
+    "Helob": {
+        "name": "Helob",
+        "category": 0,
+
+        "src": {
+            "textures": ["SpiderFollowerSeller.png"],
+            "atlas": "SpiderFollowerSeller.atlas",
+            "skeleton": "SpiderFollowerSeller.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "animation"
+    },
+
+    "Fox": {
+        "name": "Fox",
+        "category": 0,
+
+        "src": {
+            "textures": ["Fox.png"],
+            "atlas": "Fox.atlas",
+            "skeleton": "Fox.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "animation"
+    },
+
+    "Ratoo": {
+        "name": "Ratoo",
+        "category": 0,
+
+        "src": {
+            "textures": ["Ratoo.png"],
+            "atlas": "Ratoo.atlas",
+            "skeleton": "Ratoo.skel"
+        },
+
+        "skins": ["normal"],
+        "animation": "animation"
+    },
+
+    "Berith": {
+        "name": "Berith",
+        "category": 0,
+
+        "src": {
+            "textures": ["ClothesSeller.png"],
+            "atlas": "ClothesSeller.atlas",
+            "skeleton": "ClothesSeller.skel"
+        },
+
+        "skins": ["1", "2", "3", "4"],
+        "animation": "animation"
+    },
+
+    "Monch": {
+        "name": "Monch",
+        "category": 0,
+
+        "src": {
+            "textures": ["FireCultMoth.png"],
+            "atlas": "FireCultMoth.atlas",
+            "skeleton": "FireCultMoth.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "idle"
+    },
+
+    "Clauneck": {
+        "name": "Clauneck",
+        "category": 1,
+
+        "src": {
+            "textures": ["TarotSeller.png"],
+            "atlas": "TarotSeller.atlas",
+            "skeleton": "TarotSeller.skel"
+        },
+
+        "skins": ["red"],
+        "animation": "idle"
+    },
+
+    "Kudaai": {
+        "name": "Kudaai",
+        "category": 1,
+
+        "src": {
+            "textures": ["TarotSeller.png"],
+            "atlas": "TarotSeller.atlas",
+            "skeleton": "TarotSeller.skel"
+        },
+
+        "skins": ["blue"],
+        "animation": "idle"
+    },
+
+    "Chemach": {
+        "name": "Chemach",
+        "category": 1,
+
+        "src": {
+            "textures": ["RelicSeller.png"],
+            "atlas": "RelicSeller.atlas",
+            "skeleton": "RelicSeller.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "idle"
+    },
+
+    "Haro": {
+        "name": "Haro",
+        "category": 1,
+
+        "src": {
+            "textures": ["Haro.png"],
+            "atlas": "Haro.atlas",
+            "skeleton": "Haro.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "idle"
+    },
+
+    "Mystic_Seller": {
+        "name": "Mystic Seller",
+        "category": 2,
+
+        "src": {
+            "textures": ["MysticShopKeeper.png"],
+            "atlas": "MysticShopKeeper.atlas",
+            "skeleton": "MysticShopKeeper.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "animation"
+    },
+
+    "Rakshasa_Customer": {
+        "name": "Rakshasa's Customer",
+        "category": 2,
+
+        "src": {
+            "textures": ["RestaurantWorms.png"],
+            "atlas": "RestaurantWorms.atlas",
+            "skeleton": "RestaurantWorms.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "idle1"
+    },
+
+    "Rakshasa_Wife": {
+        "name": "Rakshasa's Wife",
+        "category": 2,
+
+        "src": {
+            "textures": ["snailSeller.png"],
+            "atlas": "snailSeller.atlas",
+            "skeleton": "snailSeller.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "animation"
+    },
+
+    "Berith_Record_Player": {
+        "name": "Berith's Record Player",
+        "category": 2,
+
+        "src": {
+            "textures": ["RecordPlayer.png"],
+            "atlas": "RecordPlayer.atlas",
+            "skeleton": "RecordPlayer.skel"
+        },
+
+        "skins": ["default"],
+        "animation": "animation"
+    }
+}

@@ -16,8 +16,9 @@ import WitnessMenus from "./WitnessMenus.svelte";
 
 import KnucklebonesPlayerMenus from "./KnucklebonesPlayerMenus.svelte";
 import QuestGiverMenus from "./QuestGiverMenus.svelte";
+import ShopkeeperMenus from "./ShopkeeperMenus.svelte";
 
-export { FollowerMenus, PlayerMenus, SoldierMenus, OccultistMenus, GuardMenus, HereticMenus, MachineMenus, BishopMenus, TOWW_Menus, MiniBossMenus, WitnessMenus, KnucklebonesPlayerMenus, QuestGiverMenus };
+export { FollowerMenus, PlayerMenus, SoldierMenus, OccultistMenus, GuardMenus, HereticMenus, MachineMenus, BishopMenus, TOWW_Menus, MiniBossMenus, WitnessMenus, KnucklebonesPlayerMenus, QuestGiverMenus, ShopkeeperMenus };
 
 export * from "./FollowerMenus.svelte";
 export * from "./PlayerMenus.svelte";
@@ -37,3 +38,4 @@ export * from "./WitnessMenus.svelte";
 
 export * from "./KnucklebonesPlayerMenus.svelte";
 export * from "./QuestGiverMenus.svelte";
+export * from "./ShopkeeperMenus.svelte";

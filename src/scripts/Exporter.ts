@@ -1,6 +1,6 @@
 import { Scene, Factory, type SceneObject, type ActorObject, Actor } from ".";
 
-import { isFollowerObj, isModdedFollowerObj, isPlayerObj, isSoldierObj, isOccultistObj, isGuardObj, isHereticObj, isMachineObj, isBishopObj, isTOWW_Obj, isMiniBossObj, isWitnessObj, isKnucklebonesPlayerObj, isQuestGiverObj } from "./characters";
+import { isFollowerObj, isModdedFollowerObj, isPlayerObj, isSoldierObj, isOccultistObj, isGuardObj, isHereticObj, isMachineObj, isBishopObj, isTOWW_Obj, isMiniBossObj, isWitnessObj, isKnucklebonesPlayerObj, isQuestGiverObj, isShopkeeperObj } from "./characters";
 import { APNG_Manager, GIF_Manager } from "./managers";
 
 import { Vector } from "../utils";
@@ -274,6 +274,16 @@ export class Exporter {
 
                 const questGiver = this.factory.questGiver(giver, id, label);
                 actor = questGiver;
+
+                break;
+            }
+
+            case isShopkeeperObj(obj): {
+                const { shopkeeper: shopkeeperId } = obj;
+                if (!this.factory.hasLoadedShopkeeper(shopkeeperId)) await this.factory.loadShopkeeper(shopkeeperId);
+
+                const shopkeeper = this.factory.shopkeeper(shopkeeperId, id, label);
+                actor = shopkeeper;
 
                 break;
             }

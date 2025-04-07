@@ -1,7 +1,7 @@
-import { followerData, playerData, soldierData, occultistData, guardData, hereticData, machineData, bishopData, towwData, miniBossData, witnessData, knucklebonesPlayerData, questGiverData } from "../data/files";
-import { type FollowerId, type ClothingId, type PlayerCreatureId, type PlayerFleeceId, type SoldierId, type OccultistId, type GuardId, type HereticId, type MachineId, type BishopId, type TOWW_Id, type MiniBossId, type WitnessId, type KnucklebonesPlayerId, HERETIC_IDS, MACHINE_IDS, BISHOP_IDS, TOWW_IDS, MINI_BOSS_IDS, KNUCKLEBONES_PLAYER_IDS, type QuestGiverId, QUEST_GIVER_IDS } from "../data/types";
+import { followerData, playerData, soldierData, occultistData, guardData, hereticData, machineData, bishopData, towwData, miniBossData, witnessData, knucklebonesPlayerData, questGiverData, shopkeeperData } from "../data/files";
+import { type FollowerId, type ClothingId, type PlayerCreatureId, type PlayerFleeceId, type SoldierId, type OccultistId, type GuardId, type HereticId, type MachineId, type BishopId, type TOWW_Id, type MiniBossId, type WitnessId, type KnucklebonesPlayerId, HERETIC_IDS, MACHINE_IDS, BISHOP_IDS, TOWW_IDS, MINI_BOSS_IDS, KNUCKLEBONES_PLAYER_IDS, type QuestGiverId, QUEST_GIVER_IDS, type ShopkeeperId, SHOPKEEPER_IDS } from "../data/types";
 
-import { Follower, ModdedFollower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer, QuestGiver } from "./characters";
+import { Follower, ModdedFollower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer, QuestGiver, Shopkeeper } from "./characters";
 import { AssetManager } from "./managers";
 
 import { Actor } from "./Actor";
@@ -29,6 +29,7 @@ export class Factory {
 
     private _knucklebonesPlayers: Map<KnucklebonesPlayerId, KnucklebonesPlayer>;
     private _questGivers: Map<QuestGiverId, QuestGiver>;
+    private _shopkeepers: Map<ShopkeeperId, Shopkeeper>;
 
     private constructor(private assetManager: AssetManager) {
         this._heretics = new Map();
@@ -43,6 +44,7 @@ export class Factory {
 
         this._knucklebonesPlayers = new Map();
         this._questGivers = new Map();
+        this._shopkeepers = new Map();
     }
 
     static async create(gl: WebGLRenderingContext, root: string = "/", actorsToPreload: (typeof Actor)[] = []) {
@@ -108,6 +110,10 @@ export class Factory {
 
     hasLoadedQuestGiver(giver: QuestGiverId): boolean {
         return this._questGivers.has(giver);
+    }
+
+    hasLoadedShopkeeper(shopkeeper: ShopkeeperId): boolean {
+        return this._shopkeepers.has(shopkeeper);
     }
 
     async fetchData(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string): Promise<[spine.SkeletonData, spine.TextureAtlas]> {
@@ -208,12 +214,17 @@ export class Factory {
                     await Promise.all(QUEST_GIVER_IDS.filter((id) => !this.hasLoadedQuestGiver(id)).map(this.loadQuestGiver.bind(this)));
                     break;
                 }
+
+                case Shopkeeper: {
+                    await Promise.all(SHOPKEEPER_IDS.filter((id) => !this.hasLoadedShopkeeper(id)).map(this.loadShopkeeper.bind(this)));
+                    break;
+                }
             }
         }
     }
 
     async loadAll() {
-        await this.load(Follower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer, QuestGiver);
+        await this.load(Follower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer, QuestGiver, Shopkeeper);
     }
 
     async loadFollower() {
@@ -372,6 +383,23 @@ export class Factory {
         this._questGivers.set(id, questGiver);
     }
 
+    async loadShopkeeper(id: ShopkeeperId) {
+        const data = shopkeeperData[id];
+        const { name, src } = data;
+
+        const {
+            textures,
+            atlas: atlasPath,
+            
+            skeleton: skeletonPath
+        } = src;
+        
+        const [skeletonData, atlas] = await this.fetchData(textures, atlasPath, skeletonPath);
+
+        const shopkeeper = new Shopkeeper(skeletonData, atlas, undefined, name, id);
+        this._shopkeepers.set(id, shopkeeper);
+    }
+
     async custom(texturePaths: string[] | Record<string, string>, atlasPath: string, skeletonPath: string, id?: string, label: string = "Custom Actor") {
         const [skeletonData, atlas] = await this.fetchData(texturePaths, atlasPath, skeletonPath);
         return new Actor(skeletonData, atlas, id, label);
@@ -445,5 +473,10 @@ export class Factory {
     questGiver(giver: QuestGiverId, id?: string, label: string = questGiverData[giver].name) {
         if (!this.hasLoadedQuestGiver(giver)) throw new Error(`Quest Giver ${giver} has not been loaded.`);
         return this._questGivers.get(giver)!.clone(id, label);
+    }
+
+    shopkeeper(shopkeeper: ShopkeeperId, id?: string, label: string = shopkeeperData[shopkeeper].name) {
+        if (!this.hasLoadedShopkeeper(shopkeeper)) throw new Error(`Shopkeeper ${shopkeeper} has not been loaded.`);
+        return this._shopkeepers.get(shopkeeper)!.clone(id, label);
     }
 }

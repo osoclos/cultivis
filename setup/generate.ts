@@ -6,8 +6,8 @@ import ViteExpress from "vite-express";
 import multer from "multer";
 import sharp from "sharp";
 
-import { followerData, guardData, hereticData, machineData, miniBossData, playerData } from "../src/data/files";
-import { CLOTHING_CATEGORY_LENGTH, CLOTHING_IDS, type ClothingId, FOLLOWER_CATEGORY_LENGTH, FOLLOWER_IDS, type FollowerId, GUARD_CATEGORY_LENGTH, type GuardId, HERETIC_CATEGORY_LENGTH, type HereticId, MACHINE_CATEGORY_LENGTH, type MachineId, MINI_BOSS_CATEGORY_LENGTH, type MiniBossId, NECKLACE_CATEGORY_LENGTH, type NecklaceId, PLAYER_BELL_CATEGORY_LENGTH, PLAYER_FLEECE_CATEGORY_LENGTH, type PlayerBellId, type PlayerFleeceId } from "../src/data/types";
+import { followerData, guardData, hereticData, machineData, miniBossData, playerData, shopkeeperData } from "../src/data/files";
+import { CLOTHING_CATEGORY_LENGTH, CLOTHING_IDS, type ClothingId, FOLLOWER_CATEGORY_LENGTH, FOLLOWER_IDS, type FollowerId, GUARD_CATEGORY_LENGTH, type GuardId, HERETIC_CATEGORY_LENGTH, type HereticId, MACHINE_CATEGORY_LENGTH, type MachineId, MINI_BOSS_CATEGORY_LENGTH, type MiniBossId, NECKLACE_CATEGORY_LENGTH, type NecklaceId, PLAYER_BELL_CATEGORY_LENGTH, PLAYER_FLEECE_CATEGORY_LENGTH, type PlayerBellId, type PlayerFleeceId, SHOPKEEPER_CATEGORY_LENGTH, type ShopkeeperId } from "../src/data/types";
 
 const PORT: number = 3000;
 const OUTPUT_DIR: string = path.join(__dirname, "../public/static/assets/characters");
@@ -241,6 +241,21 @@ app.post("/quest-givers", data.array("files"), (req) => {
 
     const buffers: Buffer[] = (<Express.Multer.File[]>files).map(({ buffer }) => buffer);
     createSpritesheets([buffers], "quest-givers");
+});
+
+app.post("/shopkeepers", data.array("files"), (req) => {
+    const { files } = req;
+    if (!files) return;
+
+    const buffers: Buffer[][] = Array(SHOPKEEPER_CATEGORY_LENGTH).fill(null).map(() => []);
+    for (const { buffer, originalname } of <Express.Multer.File[]>files) {
+        const id = <ShopkeeperId>originalname.replace(".dat", "");
+        const { category } = shopkeeperData[id];
+
+        buffers[category].push(buffer);
+    }
+
+    createSpritesheets(buffers, "shopkeepers");
 });
 
 async function createSpritesheets(buffers: Buffer[][], name: string = "spritesheet") {

@@ -2,8 +2,8 @@ import "./style.css";
 
 import { Scene, Factory, Exporter, Actor } from "@/scripts";
 
-import { followerData, hereticData, knucklebonesPlayerData, machineData, miniBossData, playerData, questGiverData, towwData } from "@/data/files";
-import { CLOTHING_IDS, FOLLOWER_IDS, GUARD_IDS, HATS_ID, HERETIC_IDS, KNUCKLEBONES_PLAYER_IDS, MACHINE_IDS, MINI_BOSS_IDS, NECKLACE_IDS, OCCULTIST_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, QUEST_GIVER_IDS, SOLDIER_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
+import { followerData, hereticData, knucklebonesPlayerData, machineData, miniBossData, playerData, questGiverData, shopkeeperData, towwData } from "@/data/files";
+import { CLOTHING_IDS, FOLLOWER_IDS, GUARD_IDS, HATS_ID, HERETIC_IDS, KNUCKLEBONES_PLAYER_IDS, MACHINE_IDS, MINI_BOSS_IDS, NECKLACE_IDS, OCCULTIST_IDS, PLAYER_BELL_IDS, PLAYER_CREATURE_IDS, PLAYER_CROWN_IDS, PLAYER_FLEECE_IDS, QUEST_GIVER_IDS, SHOPKEEPER_IDS, SOLDIER_IDS, TOWW_IDS, WITNESS_IDS } from "@/data/types";
 
 import { Player } from "@/scripts/characters";
 
@@ -297,7 +297,6 @@ occultistExporter.addEventListener("click", () => {
         occultist.setRawAnimation("idle");
 
         setupScene(occultist);
-
         appendPixelsToForm(form, id);
     }
 
@@ -479,11 +478,32 @@ questGiverExporter.addEventListener("click", () => {
         questGiver.setRawAnimation(animation);
 
         setupScene(questGiver);
-
         appendPixelsToForm(form, id);
     }
 
     sendForm(form, "/quest-givers");
+});
+
+const shopkeeperExporter = document.querySelector<HTMLButtonElement>("button#export-shopkeepers")!;
+shopkeeperExporter.addEventListener("click", () => {
+    const form = new FormData();
+
+    for (const id of SHOPKEEPER_IDS) {
+        const shopkeeper = factory.shopkeeper(id);
+
+        const { animation } = shopkeeperData[id];
+        shopkeeper.setRawAnimation(animation);
+
+        setupScene(shopkeeper);
+        if (id === "Chemach") {
+            scene.scale *= 0.54;
+            shopkeeper.pos.set(0, 168);
+        }
+
+        appendPixelsToForm(form, id);
+    }
+
+    sendForm(form, "/shopkeepers");
 });
 
 function setupScene(actor: Actor) {

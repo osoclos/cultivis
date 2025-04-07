@@ -77,11 +77,11 @@
     import { twMerge } from "tailwind-merge";
 
     import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, ArrowSelection, Slider, Toggle, Notice } from "../base";
-    import { BISHOP_MENU_NAME, GUARD_MENU_NAME, HERETIC_MENU_NAME, KNUCKLEBONES_PLAYER_MENU_NAME, MACHINE_MENU_NAME, MINI_BOSS_MENU_NAME, MODDED_FOLLOWER_SLOT_NAMES, OCCULTIST_MENU_NAME, QUEST_GIVER_MENU_NAME, SOLDIER_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
+    import { BISHOP_MENU_NAME, GUARD_MENU_NAME, HERETIC_MENU_NAME, KNUCKLEBONES_PLAYER_MENU_NAME, MACHINE_MENU_NAME, MINI_BOSS_MENU_NAME, MODDED_FOLLOWER_SLOT_NAMES, OCCULTIST_MENU_NAME, QUEST_GIVER_MENU_NAME, SHOPKEEPER_MENU_NAME, SOLDIER_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
     import { ColorDot, ColorRows, MultiList } from "../utils";
 
     import { Actor, Exporter, Factory, Scene, type ActorObject } from "../../scripts";
-    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isKnucklebonesPlayerObj, isMachineObj, isMiniBossObj, isModdedFollowerObj, isOccultistObj, isPlayerObj, isQuestGiverObj, isSoldierObj, isTOWW_Obj, isWitnessObj, ModdedFollower, type AllModdedFollowerSlotId } from "../../scripts/characters";
+    import { isBishopObj, isFollowerObj, isGuardObj, isHereticObj, isKnucklebonesPlayerObj, isMachineObj, isMiniBossObj, isModdedFollowerObj, isOccultistObj, isPlayerObj, isQuestGiverObj, isShopkeeperObj, isSoldierObj, isTOWW_Obj, isWitnessObj, ModdedFollower, type AllModdedFollowerSlotId } from "../../scripts/characters";
     import { soundManager } from "../../scripts/managers";
 
     import { bishopData, forbiddenAnimations, hereticData, machineData, miniBossData, soldierData } from "../../data/files";
@@ -189,6 +189,7 @@
             case isMachineObj(obj) && isMachineObj(actor): return machineData[obj.machine].skins.length > 1;
 
             case isQuestGiverObj(obj) && isQuestGiverObj(actor): return obj.giver === "Midas";
+            case isShopkeeperObj(obj) && isShopkeeperObj(actor): return obj.shopkeeper === "Berith";
 
             default: return true;
         }
@@ -316,7 +317,7 @@
     }
 
     function updateStage(stage: number) {
-        if ((!isHereticObj(obj) || !isHereticObj(actor)) && (!isMachineObj(obj) || !isMachineObj(actor)) && (!isMiniBossObj(obj) || !isMiniBossObj(actor)) && (!isQuestGiverObj(obj) || !isQuestGiverObj(actor))) return;
+        if ((!isHereticObj(obj) || !isHereticObj(actor)) && (!isMachineObj(obj) || !isMachineObj(actor)) && (!isMiniBossObj(obj) || !isMiniBossObj(actor)) && (!isQuestGiverObj(obj) || !isQuestGiverObj(actor)) && (!isShopkeeperObj(obj) || !isShopkeeperObj(actor))) return;
         stage--;
 
         obj.stage = stage;
@@ -440,6 +441,8 @@
                     <BannerButton label="Choose Player" playClickSound={false} onclick={() => proceed(KNUCKLEBONES_PLAYER_MENU_NAME)} />
                 {:else if isQuestGiverObj(obj)}
                     <BannerButton label="Choose Giver" playClickSound={false} onclick={() => proceed(QUEST_GIVER_MENU_NAME)} />
+                {:else if isShopkeeperObj(obj)}
+                    <BannerButton label="Choose Shopkeeper" playClickSound={false} onclick={() => proceed(SHOPKEEPER_MENU_NAME)} />
                 {/if}
             {:else if i === 2}
                 <div class="flex flex-col gap-12 pt-6 pb-8">
@@ -614,6 +617,12 @@
                                     {#if obj.giver === "Midas"}
                                         <Label label="Is Hurt?">
                                             <Toggle label="Is Hurt?" enabled={!!obj.stage} oninput={(isHurt) => updateStage(+isHurt + 1)} />
+                                        </Label>
+                                    {/if}
+                                {:else if isShopkeeperObj(obj) && isShopkeeperObj(actor)}
+                                    {#if obj.shopkeeper === "Berith"}
+                                        <Label label="Clothing Style">
+                                            <ArrowSelection class="ml-6" label="Clothing Style" options={["Flowery", "Autumn", "Fantasy", "Natural"]} bind:i={obj.stage} oninput={(_, i) => actor.stage = i} />
                                         </Label>
                                     {/if}
                                 {/if}

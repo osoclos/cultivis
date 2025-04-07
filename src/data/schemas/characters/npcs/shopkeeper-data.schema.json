@@ -1,0 +1,53 @@
+{
+    "$schema": "https://json-schema.org/draft-07/schema",
+    "$id": "shopkeeper-data.schema.json",
+
+    "title": "Shopkeeper Data",
+    "description": "Information on shopkeepers that provides metadata and other related information, such as source files and animations",
+
+    "type": "object",
+    "propertyNames": { "$ref": "#/definitions/Id" },
+    "additionalProperties": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The display name of this shopkeeper."
+            },
+
+            "category": {
+                "type": "integer",
+                "description": "The category index this shopkeeper belongs to.",
+
+                "minimum": 0,
+                "maximum": 2
+            },
+
+            "src": {
+                "$ref": "../../globals.schema.json#/definitions/Sources",
+                "description": "The source paths to the files needed to load the shopkeeper."
+            },
+
+            "skins": {
+                "type": "array",
+                "description": "The list of skins needed to fully create the quest giver correctly.",
+
+                "items": { "type": "string" }
+            },
+
+            "animation": {
+                "type": "string",
+                "description": "The default animation it should play when this shopkeeper is loaded."
+            }
+        },
+
+        "required": ["name", "category", "src", "skins", "animation"]
+    },
+
+    "definitions": {
+        "Id": {
+            "type": "string",
+            "enum": ["Rakshasa", "Forneus", "Helob", "Fox", "Ratoo", "Berith", "Monch", "Clauneck", "Kudaai", "Chemach", "Haro", "Mystic_Seller", "Rakshasa_Customer", "Rakshasa_Wife", "Berith_Record_Player"]
+        }
+    }
+}
