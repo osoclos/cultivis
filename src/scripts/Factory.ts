@@ -120,7 +120,7 @@ export class Factory {
         if (Array.isArray(texturePaths)) texturePaths = Object.fromEntries(texturePaths.map((path) => Array<string>(2).fill(path)));
         
         const textures: Record<string, spine.webgl.GLTexture> = {};
-        for (const path in texturePaths) textures[path] = await this.assetManager.fetchTexture(path);
+        for (const path in texturePaths) textures[path] = await this.assetManager.fetchTexture((<Record<string, string>>texturePaths)[path]);
 
         const atlas = await this.assetManager.fetchAtlas(atlasPath, textures);
         const skeletonData = await this.assetManager.fetchSkeletonData(skeletonPath, atlas);
@@ -228,7 +228,7 @@ export class Factory {
     }
 
     async loadFollower() {
-        const [skeletonData, atlas] = await this.fetchData([Follower.TEXTURE_FILENAME], Follower.ATLAS_FILENAME, Follower.SKELETON_FILENAME);
+        const [skeletonData, atlas] = await this.fetchData({ [Follower.TEXTURE_FILENAME]: Follower.TEXTURE_FILE_PATH }, Follower.ATLAS_FILENAME, Follower.SKELETON_FILENAME);
         this._follower = new Follower(skeletonData, atlas);
     }
 
@@ -238,7 +238,7 @@ export class Factory {
     }
 
     async loadPlayer() {
-        const [skeletonData, atlas] = await this.fetchData([Player.TEXTURE_FILENAME], Player.ATLAS_FILENAME, Player.SKELETON_FILENAME);
+        const [skeletonData, atlas] = await this.fetchData({ [Player.TEXTURE_FILENAME]: Player.TEXTURE_FILE_PATH }, Player.ATLAS_FILENAME, Player.SKELETON_FILENAME);
         this._player = new Player(skeletonData, atlas);
     }
 
@@ -345,7 +345,7 @@ export class Factory {
     }
 
     async loadWitness() {
-        const [skeletonData, atlas] = await this.fetchData([Witness.TEXTURE_FILENAME], Witness.ATLAS_FILENAME, Witness.SKELETON_FILENAME);
+        const [skeletonData, atlas] = await this.fetchData({ [Witness.TEXTURE_FILENAME]: Witness.TEXTURE_FILE_PATH }, Witness.ATLAS_FILENAME, Witness.SKELETON_FILENAME);
         this._witness = new Witness(skeletonData, atlas);
     }
 

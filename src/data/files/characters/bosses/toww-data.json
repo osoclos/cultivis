@@ -7,7 +7,7 @@
         },
 
         "src": {
-            "textures": ["DeathBig.png"],
+            "textures": { "DeathBig.png": "compressed/DeathBig.png" },
             "atlas": "DeathBig.atlas",
             "skeleton": "DeathBig.skel"
         },
@@ -33,7 +33,7 @@
         "attributes": { "eyeState": 0 },
 
         "src": {
-            "textures": ["DeathCat_Boss.png"],
+            "textures": { "DeathCat_Boss.png": "compressed/DeathCat_Boss.png" },
             "atlas": "DeathCat_Boss.atlas",
             "skeleton": "DeathCat_Boss.skel"
         },

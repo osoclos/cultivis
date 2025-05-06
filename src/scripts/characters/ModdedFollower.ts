@@ -9,7 +9,7 @@ import { Follower, type FollowerObject } from "./Follower";
 const TYPE: string = "modded-follower";
 
 export class ModdedFollower extends Follower implements ModdedFollowerObject {
-    static readonly TEXTURE_PATHS: string[] = [Follower.TEXTURE_FILENAME, "modded/colorful-eyes.png"];
+    static readonly TEXTURE_PATHS: Record<string, string> = { [Follower.TEXTURE_FILENAME]: Follower.TEXTURE_FILE_PATH, "modded/colorful-eyes.png": "modded/colorful-eyes.png" };
     static readonly ATLAS_FILENAME: string = "modded/Follower.atlas";
 
     static readonly LEFT_EYE_SLOT_NAME: string = "EYE_LEFT";

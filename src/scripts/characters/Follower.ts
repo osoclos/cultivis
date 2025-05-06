@@ -12,6 +12,8 @@ export class Follower extends Actor implements FollowerObject {
     static readonly ATLAS_FILENAME: string = "Follower.atlas";
     static readonly SKELETON_FILENAME: string = "Follower.skel";
 
+    static readonly TEXTURE_FILE_PATH: string = "compressed/Follower.png";
+
     static readonly BABY_SKIN_NAME: string = "Other/Baby";
     static readonly ELDER_SKIN_NAME: string = "Other/Old";
 

@@ -8,7 +8,7 @@
         },
 
         "bossSrc": {
-            "textures": ["ForestWormBoss.png"],
+            "textures": { "ForestWormBoss.png": "compressed/ForestWormBoss.png" },
             "atlas": "ForestWormBoss.atlas",
             "skeleton": "ForestWormBoss.skel"
         },
@@ -25,7 +25,7 @@
         },
 
         "bossSrc": {
-            "textures": ["FrogBoss.png"],
+            "textures": { "FrogBoss.png": "compressed/FrogBoss.png" },
             "atlas": "FrogBoss.atlas",
             "skeleton": "FrogBoss.skel"
         },
@@ -36,7 +36,7 @@
     "Jelly": {
         "name": "Kallamar",
         "src": {
-            "textures": ["JellyBoss.png"],
+            "textures": { "JellyBoss.png": "compressed/JellyBoss.png" },
             "atlas": "JellyBoss.atlas",
             "skeleton": "JellyBoss.skel"
         },
@@ -48,7 +48,7 @@
     "Spider": {
         "name": "Shamura",
         "src": {
-            "textures": ["Spider.png"],
+            "textures": { "Spider.png": "compressed/Spider.png" },
             "atlas": "Spider.atlas",
             "skeleton": "Spider.skel"
         },

@@ -9,6 +9,8 @@ export class Witness extends Actor implements WitnessObject {
     static readonly TEXTURE_FILENAME: string = "Beholder.png";
     static readonly ATLAS_FILENAME: string = "Beholder.atlas";
     static readonly SKELETON_FILENAME: string = "Beholder.skel";
+
+    static readonly TEXTURE_FILE_PATH: string = "compressed/Beholder.png"
     
     static readonly TEMPLATE_SKIN_NAME: string = "Dungeon";
     static readonly SKIN_INDEX_OFFSET: number = 1;

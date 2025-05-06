@@ -10,6 +10,8 @@ export class Player extends Actor implements PlayerObject {
     static readonly ATLAS_FILENAME: string = "player-main.atlas";
     static readonly SKELETON_FILENAME: string = "player-main.skel";
 
+    static readonly TEXTURE_FILE_PATH: string = "compressed/player-main.png";
+
     static readonly CREATURE_SKIN_NAME: string = "Creature";
     static readonly CROWN_SKIN_NAME: string = "Crown";
 
