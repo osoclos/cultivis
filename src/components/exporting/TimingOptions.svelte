@@ -34,8 +34,8 @@
             {/if}
         {/if}
 
-        <Label class="my-2" label="Trim to Longest">
-            <Toggle label="Trim to Longest" bind:enabled={trimLongest} {oninput} />
+        <Label class="my-2" label="Auto-Trim Animation">
+            <Toggle label="Auto-Trim Animation" bind:enabled={trimLongest} {oninput} />
         </Label>
 
         {#if duration > 60 && trimLongest}
