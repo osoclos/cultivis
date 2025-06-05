@@ -22,7 +22,8 @@
         "scarify",
         "!spawn-in",
         "static",
-        "summon-demon-reverse"
+        "summon-demon-reverse",
+        "turn"
     ],
 
     "player": [
