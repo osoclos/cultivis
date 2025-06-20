@@ -7,6 +7,7 @@ A: This is usually an issue with your browser not loading the texture properly/c
 ## Q: My animation does not loop properly
 
 A: Ensure that the "Auto-trim Animation" is checked under the "Timing" section in the "Exporting" tab.
+
 Note: If your animation contains more than one character which has different animations, it is recommended that you export them separately and use an external tool to combine them together.
 
 ## Q: My animation has blank spaces on the sides
