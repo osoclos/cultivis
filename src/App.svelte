@@ -712,6 +712,8 @@
                         <ProgressRing progress={exportProgress} label={exportText} />
                     </Label>
                 {/if}
+
+                <BannerButton label="Exporting Issues?" href="https://github.com/osoclos/cultivis/blob/main/frequent-exporting-issues.md" />
             {:else if categoryIdx === 2}
                 <News {news} {fullyLoadedFolders} onloadmore={loadMoreNews} />
             {:else if categoryIdx === 3}
