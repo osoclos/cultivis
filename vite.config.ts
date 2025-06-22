@@ -54,7 +54,9 @@ export default defineConfig({
         https: {
             cert: ".certs/cert.pem",
             key: ".certs/dev.pem"
-        }
+        },
+
+        hmr: { overlay: false }
     },
 
     resolve: { external: ["extraction", "setup", "markdown", "dev-guides"] },
