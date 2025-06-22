@@ -16,4 +16,4 @@ A: Check the "Auto-Crop" option under the "Sizing" section in the "Exporting" ta
 
 ## Q: My character is not centred properly 
 
-A: You can click on the "Reset Position" in the "Positioning" section after you have selected your desired character in the "Characters" tab to place it in the center.
+A: You can click on the "Reset Position" button in the "Positioning" section after you have selected your desired character in the "Characters" tab to place it in the center.
