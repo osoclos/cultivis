@@ -600,7 +600,7 @@
     }
 </script>
 
-<div class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-secondary {hasFinishedLoading ? "opacity-0" : "opacity-100"} not-motion-reduce:transition-opacity not-motion-reduce:duration-900 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
+<div class="{hasFinishedLoading ? "hidden" : "grid"} fixed top-0 left-0 z-100 place-items-center w-full h-full bg-secondary {hasFinishedLoading ? "opacity-0" : "opacity-100"} not-motion-reduce:transition-opacity not-motion-reduce:duration-900 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
     <LoadingSymbol {isMobile} />
     <div class="flex absolute {isMobile ? "bottom-4 left-6" : "bottom-10 left-16"} flex-row gap-6 items-center">
         <LoadingThrobber percent={((loadingState + 1) / LOADING_STATES.length) * 100} {isOnPhone} {isMobile} />
