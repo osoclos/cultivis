@@ -26,6 +26,8 @@
     const EXPORTING_TEXTS: string[] = ["Rendering Scene", "Encoding Frames", "Downloading Scene"];
     const FIRST_LOAD_NEWS_NUM_OF_FILES: number = 3;
 
+    let loadingScreen!: HTMLDivElement;
+
     let scene: Scene = $state(Scene.prototype);
     let factory: Factory = $state(Factory.prototype);
 
@@ -43,7 +45,12 @@
     const loadingText: string = $derived(LOADING_TEXTS[MoreMath.clamp(loadingState, 0, LOADING_TEXTS.length - 1)]);
 
     let hasUserCompliedToTOS: boolean = $state(false);
-    const hasFinishedLoading: boolean = $derived(loadingState === LOADING_STATES.length);
+    const hasFinishedLoading: boolean = $derived.by(() => {
+        const hasFinishedLoading = loadingState === LOADING_STATES.length;
+        hasFinishedLoading && setTimeout(() => loadingScreen.remove(), 900);
+        
+        return hasFinishedLoading;
+    });
 
     let news: Record<string, string[]> = $state({});
     let fullyLoadedFolders: string[] = $state([]);
@@ -600,7 +607,7 @@
     }
 </script>
 
-<div class="{hasFinishedLoading ? "hidden" : "grid"} fixed top-0 left-0 z-100 place-items-center w-full h-full bg-secondary {hasFinishedLoading ? "opacity-0" : "opacity-100"} not-motion-reduce:transition-opacity not-motion-reduce:duration-900 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
+<div bind:this={loadingScreen} class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-secondary {hasFinishedLoading ? "opacity-0" : "opacity-100"} not-motion-reduce:transition-opacity not-motion-reduce:duration-900 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
     <LoadingSymbol {isMobile} />
     <div class="flex absolute {isMobile ? "bottom-4 left-6" : "bottom-10 left-16"} flex-row gap-6 items-center">
         <LoadingThrobber percent={((loadingState + 1) / LOADING_STATES.length) * 100} {isOnPhone} {isMobile} />
