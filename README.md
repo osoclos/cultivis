@@ -85,7 +85,7 @@ There are a few options you can modify to change how you want your exported anim
 | Options | Description | Type |
 | ------- | ----------- | ---- |
 | Duration | How long will the animation lasts | number |
-| Trim to Longest | Set the duration of the animation to the character with the longest animation's duration | on/off |
+| Auto-trim Animation | Set the duration of the animation to the character with the longest animation's duration | on/off |
 
 There are also different formats that the exported animation can come in, the two formats and their respective changeable settings are listed below:
 
