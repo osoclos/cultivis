@@ -9,21 +9,17 @@
     "scripts": {
         "dev": "vite --open -c vite.config.ts",
         "dev-host": "vite --host --open -c vite.config.ts",
-
         "build": "vite build --mode production",
         "check": "svelte-check --tsconfig ./tsconfig.json && tsc -p tsconfig.node.json",
         "preview": "vite preview --host --open -c vite.config.ts",
-
         "extract": "python extraction/assets.py && python extraction/worshipper-data.py && python extraction/clothing-data.py",
         "parse": "bun run setup/parse.ts",
-
         "combine": "bun run setup/combine.ts",
         "modify": "bun run setup/modify.ts",
-
         "generate": "bun run --watch setup/generate.ts"
     },
     "dependencies": {
-        "apng-fest": "^1.1.0",
+        "@pdf-lib/upng": "^1.0.1",
         "gifenc": "^1.0.3",
         "howler": "^2.2.4",
         "svelte": "^5.19.6",
