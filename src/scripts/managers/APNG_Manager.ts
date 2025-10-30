@@ -1,5 +1,3 @@
-import UPNG from "@pdf-lib/upng";
-
 export class APNG_Manager {
     private frames: ArrayBuffer[];
     constructor(private width: number, private height: number, private delayMs: number, private performOptimisation: boolean) {

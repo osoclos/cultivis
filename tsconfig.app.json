@@ -15,7 +15,7 @@
         "moduleResolution": "bundler",
         "noUncheckedSideEffectImports": true,
         "paths": { "/*": ["./*", "./public/*"] },
-        "types": ["@webgpu/types", "./lib/spine-ts/build/spine-webgl.d.ts"],
+        "types": ["@webgpu/types", "./lib/upng-js/UPNG.d.ts", "./lib/spine-ts/build/spine-webgl.d.ts"],
 
         // Emit
         "noEmit": true,

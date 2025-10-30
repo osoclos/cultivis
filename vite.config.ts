@@ -22,7 +22,7 @@ const scriptTagRepather = (paths: Record<string, string>, srcFolder: string, des
 
         for (const [src, dest] of Object.entries(paths)) {
             if (!dest) return;
-            
+
             const input = await fs.readFile(path.join(__dirname, srcFolder, src), "utf-8");
             const { code: output = "" } = await minify(input);
 
@@ -40,7 +40,7 @@ const scriptTagRepather = (paths: Record<string, string>, srcFolder: string, des
             html = html.replace(`\n        <script src="${srcPath}"></script>`, "");
             if (destPath) html = html.replace("</title>", `</title>\n        <script src="${destPath}" defer></script>`);
         }
-        
+
         html = html.replace("</title>", "</title>\n");
         return html.replaceAll(/\n      </g, "\n        <");
     }
@@ -48,7 +48,6 @@ const scriptTagRepather = (paths: Record<string, string>, srcFolder: string, des
 
 // https://vite.dev/config/
 export default defineConfig({
-    optimizeDeps: { exclude: ["extraction", "setup", "markdown", "dev-guides"] },
     server: {
         fs: { deny: ["extraction", "setup", "markdown", "dev-guides"] },
         https: {

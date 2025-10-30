@@ -38,6 +38,10 @@
         <div id="app" class="flex flex-col lg:flex-row bg-white dark:bg-night"></div>
 
         <script src="lib/spine-ts/build/spine-webgl.js"></script>
+
+        <script src="lib/pako/pako.min.js"></script>
+        <script src="lib/upng-js/UPNG.js"></script>
+
         <script type="module" src="src/main.ts" defer></script>
 
         <noscript>
@@ -55,7 +59,7 @@
                 .font-subtitle { font-family: "Fira Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
                 .text-inactive { color: #545454; }
                 .text-active { color: #f5edd5; }
-                
+
                 * { font-family: "Lapture Bold", Georgia, "Times New Roman", Times, serif; }
                 html, body {
                     display: grid;
@@ -68,7 +72,7 @@
                     width: 100%;
                     height: 100dvh;
 
-                    
+
                     background-color: #f32002;
 
                     user-select: none;
@@ -169,10 +173,10 @@
                             <img src="/static/ui/open-eye.png" srcset="/static/ui/open-eye.webp, /static/ui/open-eye.png" alt="" width="52" height="26" draggable="false" role="presentation" aria-hidden="true" />
                             <h1>ERROR</h1>
                         </div>
-        
+
                         <p class="description font-subtitle text-active">You will need to turn on Javascript in order to access CultiVis. You can access the links below to learn how to turn on Javascript on your browser.</p>
                     </div>
-    
+
                     <div class="links">
                         <a href="https://support.google.com/adsense/answer/12654" target="_blank"><button class="banner">Google Chrome</button></a>
                         <a href="https://support.microsoft.com/en-us/office/enable-javascript-7bb9ee74-6a9e-4dd1-babf-b0a1bb136361#ID0EH-panel" target="_blank"><button class="banner">Microsoft Edge</button></a>
