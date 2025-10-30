@@ -1,13 +1,8 @@
-<script lang="ts" module>
-    import type { HastElement } from "svelte-exmarkdown/types";
-    declare const $ctx: HastElement;
-</script>
-
 <script lang="ts">
-    import { getAstNode } from "svelte-exmarkdown/contexts";
-    
+    import { getAstNode } from "svelte-exmarkdown";
+
     const ctx = getAstNode();
-    const { children } = $derived($ctx);
+    const { children } = $derived(ctx.current);
 </script>
 
 <ul class="flex flex-col gap-1 font-subtitle list-image-[url('/static/ui/list-bullet.png')] text-active">
