@@ -5,6 +5,7 @@
         "Amdusias",
         "Anchordeep",
         "Anura",
+        "Apng",
         "Astaroth",
         "Baalzebub",
         "Barbatos",
@@ -112,7 +113,7 @@
         "YIPEEEEEEEE",
         "Zepar"
     ],
-    
+
     "json.schemas": [
         {
             "fileMatch": ["/follower-data.json"],
@@ -140,7 +141,7 @@
             "fileMatch": ["/guard-data.json"],
             "url": "/src/data/schemas/characters/enemies/guard-data.schema.json"
         },
-        
+
         {
             "fileMatch": ["/heretic-data.json"],
             "url": "/src/data/schemas/characters/enemies/heretic-data.schema.json"

@@ -1,29 +1,30 @@
-import APNG, { Frame } from "apng-fest";
+import UPNG from "@pdf-lib/upng";
 
 export class APNG_Manager {
-    private constructor(public apng: APNG) {}
-    static async create() {
-        const apng = await APNG.create(1, 1);
-        return new APNG_Manager(apng);
+    private frames: ArrayBuffer[];
+    constructor(private width: number, private height: number, private delayMs: number, private performOptimisation: boolean) {
+        this.frames = [];
     }
 
-    async addFrame(pixels: Uint8Array, fps: number) {
-        const { width, height } = this.apng;
-
-        const frame = Frame.fromPixels(pixels.buffer, { width, height, delay: 1 / fps });
-        await this.apng.writeFrame(frame);
+    addFrame(pixels: Uint8Array) {
+        this.frames.push(<ArrayBuffer>pixels.buffer);
     }
 
     end() {
-        return this.apng.writeFooter();
+        const { frames, width, height, delayMs, performOptimisation } = this;
+        const delayArr = Array(frames.length).fill(delayMs);
+
+        return performOptimisation ? UPNG.encode(frames, width, height, 0, delayArr) : UPNG.encodeLL(frames, width, height, 3, 1, 8, delayArr);
     }
 
-    reset(width: number, height: number) {
-        this.apng.reset();
+    reset(width: number, height: number, delayMs: number, performOptimisation: boolean) {
+        this.frames = [];
 
-        this.apng.width = width;
-        this.apng.height = height;
+        this.width = width;
+        this.height = height;
 
-        this.apng.writeHeader();
+        this.delayMs = delayMs;
+
+        this.performOptimisation = performOptimisation;
     }
 }

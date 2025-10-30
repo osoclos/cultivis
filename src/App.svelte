@@ -11,7 +11,7 @@
     import { News } from "./components/news";
     import { CreationDetails, SpecialThanks, HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME, NarinderPetter, HAS_PET_NARINDER_LOCAL_STORAGE_NAME } from "./components/credits";
 
-    import { Actor, Exporter, Factory, FORMAT_IDS, Scene, type ActorObject, type FormatData, type FormatId } from "./scripts";
+    import { Actor, Exporter, Factory, Scene, type ActorObject, type ExporterState, type FormatData, type FormatType } from "./scripts";
     import { Bishop, isBishopObj, Follower, isFollowerObj, Guard, isGuardObj, Heretic, isHereticObj, Machine, isMachineObj, MiniBoss, isMiniBossObj, ModdedFollower, isModdedFollowerObj, Occultist, isOccultistObj, Player, isPlayerObj, Soldier, isSoldierObj, TOWW, isTOWW_Obj, Witness, isWitnessObj, KnucklebonesPlayer, isKnucklebonesPlayerObj, QuestGiver, isQuestGiverObj, Shopkeeper, isShopkeeperObj } from "./scripts/characters";
     import { soundManager, newsManager, NewsManager, type NewsLoader, serverManager } from "./scripts/managers";
 
@@ -23,7 +23,11 @@
     const LOADING_STATES = ["ToSAcknowledgement", "LoadingAssets", "SceneSetup", "FetchingNews"] as const;
     const LOADING_TEXTS: string[] = ["Checking ToS Acknowledgement", "Loading Assets", "Setting Up Scene", "Fetching News"];
 
-    const EXPORTING_TEXTS: string[] = ["Rendering Scene", "Encoding Frames", "Downloading Scene"];
+    const EXPORTING_TEXTS: Record<ExporterState, string> = {
+        "ENCODING_FRAMES": "Encoding Frames...",
+        "PREPARING_DOWNLOAD": "Preparing Download..."
+    };
+
     const FIRST_LOAD_NEWS_NUM_OF_FILES: number = 3;
 
     let loadingScreen!: HTMLDivElement;
@@ -87,27 +91,29 @@
     let duration: number = $state(5);
     let trimLongest: boolean = $state(false);
 
-    let exportFormat: FormatId = $state("gif");
+    let exportFormat: FormatType = $state("GIF");
     let exportName: string = $state("cultivis-export");
 
-    const exportData: Record<FormatId, FormatData> = $state({
-        "gif": {
-            type: "gif",
+    const exportData: Record<FormatType, FormatData> = $state({
+        "GIF": {
+            type: "GIF",
 
-            delay: 20,
+            delayMs: 20,
             useAccurateColors: false
         },
 
-        "apng": {
-            type: "apng",
-            fps: 60
+        "APNG": {
+            type: "APNG",
+            delayMs: 1000 / 60,
+
+            performOptimisation: true
         }
     });
 
     let exportProgress: number = $state(-1);
 
-    let exportState: number = $state(-1);
-    const exportText: string = $derived(EXPORTING_TEXTS[MoreMath.clamp(exportState, 0, EXPORTING_TEXTS.length - 1)]);
+    let exportState: ExporterState | null = $state(null);
+    const exportText: string = $derived(exportState === null ? "" : EXPORTING_TEXTS[exportState]);
 
     let numOfPets: number = $state(-1);
 
@@ -539,7 +545,7 @@
         const format = exportFormat;
 
         const sceneObj = scene.toObj();
-        const buffer = await exporter.exportScene(sceneObj, duration, Vector.fromObj(size), format, exportData[format], (progress, state) => {
+        const buffer = await exporter.exportScene(sceneObj, duration, Vector.fromObj(size), exportData[format], (progress, state) => {
             exportProgress = progress;
             exportState = state;
         });
@@ -547,17 +553,17 @@
         const name = exportName || "cultivis-export";
         await serverManager.sendExport(sceneObj, name, duration, exportData[format]);
 
-        const blob = new Blob([buffer as Uint8Array<ArrayBuffer>], { type: `image/${format}` });
+        const blob = new Blob([buffer as Uint8Array<ArrayBuffer>], { type: `image/${format.toLowerCase()}` });
         const url = URL.createObjectURL(blob);
 
         const link = document.createElement("a");
         link.href = url;
-        link.download = `${name}.${format}`;
+        link.download = `${name}.${format.toLowerCase()}`;
 
         link.click();
 
         exportProgress = -1;
-        exportState = -1;
+        exportState = null;
     }
 
     function updateSceneFromChanges() {
@@ -696,10 +702,10 @@
 
                     <div class="flex flex-col gap-8 w-80 sm:w-90">
                         <Label label="Format">
-                            <ArrowSelection class="ml-6" options={[...FORMAT_IDS].map((format) => format.toUpperCase())} i={FORMAT_IDS.indexOf(exportFormat)} label="Format" oninput={(_, i) => exportFormat = FORMAT_IDS[i]} />
+                            <ArrowSelection class="ml-6" options={Object.keys(exportData)} i={Object.keys(exportData).indexOf(exportFormat)} label="Format" oninput={(format) => exportFormat = format as FormatType} />
                         </Label>
 
-                        <FormatOptions bind:format={exportFormat} data={exportData[exportFormat]}  />
+                        <FormatOptions data={exportData[exportFormat]}  />
                     </div>
                 </div>
 

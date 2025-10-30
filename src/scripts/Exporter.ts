@@ -23,59 +23,53 @@ export class Exporter {
         const factory = initFactory ?? await Factory.create(gl, this.ASSETS_ROOT);
 
         const gifManager = new GIF_Manager();
-        const apngManager = await APNG_Manager.create();
+        const apngManager = new APNG_Manager(1, 1, 1000 / 60, true);
 
         return new Exporter(canvas, gl, scene, factory, gifManager, apngManager);
     }
 
-    async exportScene(obj: SceneObject, duration: number, size: Vector, format: FormatId, data: FormatData, onProgress: (progress: number, state: number) => void = () => {}) {
+    async exportScene(obj: SceneObject, duration: number, size: Vector, data: FormatData, onProgress: (progress: number, state: ExporterState) => void = () => {}) {
         const [width, height] = size;
 
         this.resetScene();
         await this.setupScene(obj, size);
 
-        const encodeInGif = format === "gif" && isDataGIF_Data(data);
-        encodeInGif ? this.gifManager.reset() : this.apngManager.reset(width, height);
+        const { type, delayMs } = data;
+
+        const encodeInGif = type === "GIF";
+        encodeInGif ? this.gifManager.reset() : this.apngManager.reset(width, height, delayMs, data.performOptimisation);
 
         return new Promise<Uint8Array>((res) => {
-            const fps = encodeInGif ? 1000 / data.delay : (<APNG_Data>data).fps;
-
-            const delayMs = encodeInGif ? data.delay : 1000 / fps;
             const delaySecs = delayMs / 1000;
 
-            const useAccurateColors = encodeInGif ? data.useAccurateColors : false;
+            const encode = encodeInGif ? (pixels: Uint8Array) => {
+                const palette = this.gifManager.quantizeFrame(pixels, data.useAccurateColors);
+                const indices = this.gifManager.mapFrameToPalette(pixels, palette, data.useAccurateColors);
 
-            const encodeGifFrame = (pixels: Uint8Array) => {
-                const palette = this.gifManager.quantizeFrame(pixels, useAccurateColors);
-                const indices = this.gifManager.mapFrameToPalette(pixels, palette, useAccurateColors);
-
-                this.gifManager.addFrame(indices, palette, width, height, delayMs, +useAccurateColors - 1);
-            };
-
-            const encodeApngFrame = async (pixels: Uint8Array) => {
-                await this.apngManager.addFrame(pixels, fps);
-            };
-
-            const encode: (pixels: Uint8Array) => void | Promise<void> = encodeInGif ? encodeGifFrame : encodeApngFrame;
+                this.gifManager.addFrame(indices, palette, width, height, delayMs, +data.useAccurateColors - 1);
+            } : this.apngManager.addFrame.bind(this.apngManager);
 
             let time: number = 0;
-            const tick = async () => {
+            const tick = () => {
                 if (time > duration) {
-                    const bfr = this[encodeInGif ? "gifManager" : "apngManager"].end();
+                    onProgress(1.0, "PREPARING_DOWNLOAD");
 
-                    onProgress(1.0, EXPORTING_STATES.indexOf("DownloadScene"));
+                    // Ensures that the progress bar updates with the preparing download title
+                    setTimeout(() => {
+                        const bfr = this[encodeInGif ? "gifManager" : "apngManager"].end();
+                        res(bfr);
+                    }, 100);
 
-                    res(bfr);
                     return;
                 }
 
                 this.scene.render(delaySecs);
 
                 const pixels = this.getPixels();
-                await encode(pixels);
+                encode(pixels);
 
                 time += delaySecs;
-                onProgress(time / duration, EXPORTING_STATES.indexOf("ReadingPixels"));
+                onProgress(time / duration, "ENCODING_FRAMES");
 
                 setTimeout(tick);
             };
@@ -304,34 +298,21 @@ export class Exporter {
     }
 }
 
-export const EXPORTING_STATES = ["ReadingPixels", "EncodeFrames", "DownloadScene"] as const;
-export type ExportingState = typeof EXPORTING_STATES[number];
+export type ExporterState = "ENCODING_FRAMES" | "PREPARING_DOWNLOAD";
 
-export interface GIF_Data extends FormatData {
-    type: "gif";
+export type FormatType = FormatData["type"];
+export type FormatData = GifFormatData | ApngFormatData;
 
-    delay: number;
+export interface GifFormatData {
+    type: "GIF";
+
+    delayMs: number;
     useAccurateColors: boolean;
 }
 
-export interface APNG_Data extends FormatData {
-    type: "apng";
-    fps: number;
-}
+export interface ApngFormatData {
+    type: "APNG";
 
-export interface FormatData { type: FormatId; }
-
-export function isDataGIF_Data(data: FormatData): data is GIF_Data {
-    return data.type === "gif";
-}
-
-export function isDataAPNG_Data(data: FormatData): data is APNG_Data {
-    return data.type === "apng";
-}
-
-export const FORMAT_IDS = ["gif", "apng"] as const; // TODO: add mp4/webp when possible
-export type FormatId = typeof FORMAT_IDS[number];
-
-export function isStrFormatId(str: string): str is FormatId {
-    return FORMAT_IDS.includes(<FormatId>str);
+    delayMs: number;
+    performOptimisation: boolean;
 }
