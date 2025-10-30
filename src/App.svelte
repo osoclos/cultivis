@@ -4,7 +4,7 @@
     import { ArrowSelection, BannerButton, Dialog, Header, Label, LabelTitle, NavTip, Notice, ProgressRing } from "./components/base";
     import { SceneCanvas, Categories, LoadingThrobber, LoadingSymbol, CloudShaders } from "./components/misc";
     import { List } from "./components/utils";
-    
+
     import { CharacterList, FollowerMenus, PlayerMenus, getRandomFollowerAppearance, getSpecialFollowerName, CharacterNavigation, isStrFollowerMenuName, isStrPlayerMenuName, BishopMenus, BISHOP_MENU_NAME, GuardMenus, GUARD_MENU_NAME, HereticMenus, HERETIC_MENU_NAME, MachineMenus, MACHINE_MENU_NAME, MiniBossMenus, MINI_BOSS_MENU_NAME, OccultistMenus, OCCULTIST_MENU_NAME, SoldierMenus, SOLDIER_MENU_NAME, TOWW_Menus, TOWW_MENU_NAME, WitnessMenus, WITNESS_MENU_NAME, KnucklebonesPlayerMenus, KNUCKLEBONES_PLAYER_MENU_NAME, QuestGiverMenus, QUEST_GIVER_MENU_NAME, ShopkeeperMenus, SHOPKEEPER_MENU_NAME } from "./components/characters";
     import { FormatOptions, SizeOptions, TimingOptions } from "./components/exporting";
 
@@ -22,7 +22,7 @@
 
     const LOADING_STATES = ["ToSAcknowledgement", "LoadingAssets", "SceneSetup", "FetchingNews"] as const;
     const LOADING_TEXTS: string[] = ["Checking ToS Acknowledgement", "Loading Assets", "Setting Up Scene", "Fetching News"];
-    
+
     const EXPORTING_TEXTS: string[] = ["Rendering Scene", "Encoding Frames", "Downloading Scene"];
     const FIRST_LOAD_NEWS_NUM_OF_FILES: number = 3;
 
@@ -32,7 +32,7 @@
     let factory: Factory = $state(Factory.prototype);
 
     let exporter: Exporter = $state(Exporter.prototype);
-    
+
     let categoryIdx: number = $state(0);
     let categoryMenu: HTMLDivElement = $state(document.createElement("div"));
 
@@ -48,7 +48,7 @@
     const hasFinishedLoading: boolean = $derived.by(() => {
         const hasFinishedLoading = loadingState === LOADING_STATES.length;
         hasFinishedLoading && setTimeout(() => loadingScreen.remove(), 900);
-        
+
         return hasFinishedLoading;
     });
 
@@ -103,7 +103,7 @@
             fps: 60
         }
     });
-    
+
     let exportProgress: number = $state(-1);
 
     let exportState: number = $state(-1);
@@ -126,9 +126,9 @@
         window.addEventListener("keydown", async (evt) => {
             const { code, shiftKey, ctrlKey, altKey } = evt;
             if (!["KeyE", "KeyF"].includes(code) || document.activeElement instanceof HTMLInputElement) return;
-            
+
             evt.preventDefault();
-            
+
             if (code === "KeyE" && !ctrlKey && !altKey) {
                 const element = document.activeElement as HTMLElement;
                 element.click();
@@ -141,14 +141,14 @@
                 showRiverBoyObituary = true;
 
                 if (!soundManager.hasLoaded("River_Boy_Obituary_Music")) await soundManager.load("River_Boy_Obituary_Music");
-                if (soundManager.isPlaying("River_Boy_Obituary_Music")) return; 
+                if (soundManager.isPlaying("River_Boy_Obituary_Music")) return;
 
                 soundManager.get("River_Boy_Obituary_Music").volume(0.2);
                 if (showRiverBoyObituary) soundManager.play("River_Boy_Obituary_Music");
 
                 return;
             }
-            
+
             if (ctrlKey || altKey) return;
 
             if (showActorMenu) {
@@ -157,7 +157,7 @@
 
                 return;
             }
-            
+
             if (actorIdx >= 0) {
                 actorIdx = -1;
                 soundManager.play("Menu_Close");
@@ -187,9 +187,9 @@
 
     onDestroy(async () => {
         abortController.abort();
-        
+
         resizer.disconnect();
-        
+
         scene?.dispose();
         exporter?.dispose();
 
@@ -199,7 +199,7 @@
     function acknowledgeTerms() {
         if (hasUserCompliedToTOS) return;
         hasUserCompliedToTOS = true;
-        
+
         if (scene instanceof Scene) init();
     }
 
@@ -222,7 +222,7 @@
         await exporter.factory.load(Follower, Player);
 
         loadingState = LOADING_STATES.indexOf("SceneSetup");
-    
+
         const deer = factory.follower("Deer", "Default_Clothing");
         deer.label = "Deer";
         deer.setRawAnimation("idle");
@@ -238,16 +238,16 @@
 
         scene.addActors(deer, player);
         actors = scene.actors.map((actor) => actor.toObj());
-        
+
         scene.resetCamera();
         scene.scale *= 1.5;
 
         lastUpdatedUnix = await newsManager.getLastUpdatedUnix();
         import.meta.env.PROD && await serverManager.addNewVisitor();
-        
+
         await soundManager.load("Menu_Close", "Menu_Open", "Option_Change", "Laugh");
         numOfPets = await serverManager.getPets();
-        
+
         loadingState = LOADING_STATES.indexOf("FetchingNews");
         loadNews = await newsManager.getNews();
 
@@ -328,7 +328,7 @@
 
                 const heretic = factory.heretic(id);
                 heretic.setRawAnimation(hereticData[id].animation);
-                
+
                 addedActor = heretic;
                 break;
             }
@@ -339,7 +339,7 @@
 
                 const machine = factory.machine(id);
                 machine.setRawAnimation(machineData[id].animation);
-                
+
                 addedActor = machine;
                 break;
             }
@@ -358,7 +358,7 @@
             case TOWW: {
                 !factory.hasLoadedTOWW("Bishop") && await factory.loadTOWW("Bishop") && await exporter.factory.loadTOWW("Bishop");
                 const toww = factory.TOWW("Bishop");
-                
+
                 const { attributes, animation } = towwData.Bishop;
                 const {
                     hasCrown = null,
@@ -431,7 +431,7 @@
 
             default: return;
         }
-        
+
         addRawActor(addedActor, updateActorIdx);
         loadingActor = null;
     }
@@ -461,7 +461,7 @@
 
         addRawActor(clonedActor);
     }
-    
+
     function selectActor(i: number) {
         actorIdx = i;
 
@@ -547,7 +547,7 @@
         const name = exportName || "cultivis-export";
         await serverManager.sendExport(sceneObj, name, duration, exportData[format]);
 
-        const blob = new Blob([buffer], { type: `image/${format}` });
+        const blob = new Blob([buffer as Uint8Array<ArrayBuffer>], { type: `image/${format}` });
         const url = URL.createObjectURL(blob);
 
         const link = document.createElement("a");
@@ -607,7 +607,7 @@
     }
 </script>
 
-<div bind:this={loadingScreen} class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-secondary {hasFinishedLoading ? "opacity-0" : "opacity-100"} not-motion-reduce:transition-opacity not-motion-reduce:duration-900 select-none" ontransitionend={({ target }) => (target as HTMLDivElement).classList.replace("grid", "hidden")}>
+<div bind:this={loadingScreen} class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-secondary {hasFinishedLoading ? "opacity-0" : "opacity-100"} not-motion-reduce:transition-opacity not-motion-reduce:duration-900 select-none" ontransitionend={({ target }) => (target as HTMLElement).classList.replace("grid", "hidden")}>
     <LoadingSymbol {isMobile} />
     <div class="flex absolute {isMobile ? "bottom-4 left-6" : "bottom-10 left-16"} flex-row gap-6 items-center">
         <LoadingThrobber percent={((loadingState + 1) / LOADING_STATES.length) * 100} {isOnPhone} {isMobile} />
@@ -698,7 +698,7 @@
                         <Label label="Format">
                             <ArrowSelection class="ml-6" options={[...FORMAT_IDS].map((format) => format.toUpperCase())} i={FORMAT_IDS.indexOf(exportFormat)} label="Format" oninput={(_, i) => exportFormat = FORMAT_IDS[i]} />
                         </Label>
-                        
+
                         <FormatOptions bind:format={exportFormat} data={exportData[exportFormat]}  />
                     </div>
                 </div>
@@ -713,7 +713,7 @@
                 {/if}
 
                 <BannerButton class="mt-2" label={exportProgress < 0 ? "Export Scene" : "Exporting..."} disabled={exportProgress >= 0} onclick={exportScene} />
-                
+
                 {#if exportProgress >= 0}
                     <Label class="w-80 sm:w-90" label={exportText}>
                         <ProgressRing progress={exportProgress} label={exportText} />
@@ -744,18 +744,18 @@
 
     <div class="not-lg:hidden flex fixed bottom-0 left-0 z-90 flex-row gap-8 p-6 pt-4 max-w-160 bg-black">
         <NavTip key="E" code="KeyE" label="Accept" />
-        
+
         {#if categoryIdx === 0 && actorIdx >= 0}
             <NavTip key="F" code="KeyF" label="Back" />
         {/if}
     </div>
-    
+
     {#if isRiverBoyObituaryVisible}
         <div class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-[#00000060] {showRiverBoyObituary ? "opacity-100" : "opacity-0"} transition-opacity duration-450 select-none" ontransitionend={() => isRiverBoyObituaryVisible = showRiverBoyObituary}>
             <Dialog childClass="mt-2" title="RIP. River Boy" description="It is with great sorrow to announce that Narayana Johnson (aka. River Boy) has tragically passed away in the early hours of 2nd April 2025. He was the audio director of Cult of the Lamb and the composer of the beloved soundtracks that many of us have grown fond of. I, as well as the rest of the C.O.T.L community, are deeply saddened by his passing. Rest in peace and farewell, River Boy.">
                 <div class="flex flex-col justify-center items-center gap-2">
                     <img src="/static/assets/misc/rip-river-boy.png" alt="RIP. River Boy" class="w-17 h-13.5 sm:w-23 sm:h-18" width={69 + 23 * +isOnPhone} height={54 + 19 * +isOnPhone} draggable="false" role="presentation" aria-hidden="true" />
-                    
+
                     <List class="flex flex-row justify-center items-center scale-60 sm:scale-80" label="River Boy Obituary Disclaimer Options" enableKeyInput focusFirst>
                         <BannerButton label="View Official Post" href="https://www.reddit.com/r/CultOfTheLamb/comments/1jqu0uv/a_heartbreaking_update_from_our_development_team" />
                         <BannerButton label="Close" onclick={() => showRiverBoyObituary = false} />

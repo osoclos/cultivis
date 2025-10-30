@@ -34,74 +34,53 @@ export class Exporter {
         this.resetScene();
         await this.setupScene(obj, size);
 
-        return new Promise<Uint8Array>((resolve) => {
-            this.gifManager.reset();
-            this.apngManager.reset(width, height);
+        const encodeInGif = format === "gif" && isDataGIF_Data(data);
+        encodeInGif ? this.gifManager.reset() : this.apngManager.reset(width, height);
 
-            const frames: Uint8Array[] = [];
-            let time: number = 0;
+        return new Promise<Uint8Array>((res) => {
+            const fps = encodeInGif ? 1000 / data.delay : (<APNG_Data>data).fps;
 
-            const draw = async () => {
-                if (time > duration) {
-                    encode();
-                    return;
-                }
+            const delayMs = encodeInGif ? data.delay : 1000 / fps;
+            const delaySecs = delayMs / 1000;
 
-                const delay =
-                    isDataGIF_Data(data)
-                        ? data.delay / 1000 :
-                    isDataAPNG_Data(data) 
-                    ? 1 / data.fps
-                    : 1 / 60;
+            const useAccurateColors = encodeInGif ? data.useAccurateColors : false;
 
-                this.scene.render(delay);
+            const encodeGifFrame = (pixels: Uint8Array) => {
+                const palette = this.gifManager.quantizeFrame(pixels, useAccurateColors);
+                const indices = this.gifManager.mapFrameToPalette(pixels, palette, useAccurateColors);
 
-                const pixels = this.getPixels();
-                frames.push(pixels);
-
-                onProgress(time / duration / 2, EXPORTING_STATES.indexOf("ReadingPixels"));
-                time += delay;
-                
-                setTimeout(() => draw());
+                this.gifManager.addFrame(indices, palette, width, height, delayMs, +useAccurateColors - 1);
             };
 
-            let i: number = 0;
-            const encode = async () => {
-                if (i >= frames.length) {
-                    const buffer = this[format === "gif" ? "gifManager" : "apngManager"].end();
-                    resolve(buffer);
+            const encodeApngFrame = async (pixels: Uint8Array) => {
+                await this.apngManager.addFrame(pixels, fps);
+            };
+
+            const encode: (pixels: Uint8Array) => void | Promise<void> = encodeInGif ? encodeGifFrame : encodeApngFrame;
+
+            let time: number = 0;
+            const tick = async () => {
+                if (time > duration) {
+                    const bfr = this[encodeInGif ? "gifManager" : "apngManager"].end();
 
                     onProgress(1.0, EXPORTING_STATES.indexOf("DownloadScene"));
+
+                    res(bfr);
                     return;
                 }
 
-                const pixels = frames[i];
-                switch (true) {
-                    case format === "gif" && isDataGIF_Data(data): {
-                        const { delay, useAccurateColors } = data;
+                this.scene.render(delaySecs);
 
-                        const palette = this.gifManager.quantizeFrame(pixels, useAccurateColors);
-                        const indices = this.gifManager.mapFrameToPalette(pixels, palette, useAccurateColors);
+                const pixels = this.getPixels();
+                await encode(pixels);
 
-                        this.gifManager.addFrame(indices, palette, width, height, delay, +useAccurateColors - 1);
-                        break;
-                    }
+                time += delaySecs;
+                onProgress(time / duration, EXPORTING_STATES.indexOf("ReadingPixels"));
 
-                    case format === "apng" && isDataAPNG_Data(data): {
-                        const { fps } = data;
-                        await this.apngManager.addFrame(pixels, fps);
-
-                        break;
-                    }
-                }
-
-                onProgress(i / frames.length / 2 + 0.5, EXPORTING_STATES.indexOf("EncodeFrames"));
-                i++;
-
-                setTimeout(encode);
+                setTimeout(tick);
             };
 
-            draw();
+            tick();
         });
     }
 
@@ -111,7 +90,7 @@ export class Exporter {
 
     private async setupScene(obj: SceneObject, exportSize: Vector) {
         const { actors: actorObjects, translation, scale, backgroundColor } = obj;
-    
+
         this.scene.translation.copyObj(translation);
         this.scene.scale = scale;
 
@@ -141,7 +120,7 @@ export class Exporter {
             case isFollowerObj(obj): {
                 const { form, clothing } = obj;
                 if (!this.factory.hasLoadedFollower()) await this.factory.loadFollower();
-                
+
                 const follower = this.factory.follower(form, clothing, id, label);
                 actor = follower;
 
@@ -151,17 +130,17 @@ export class Exporter {
             case isModdedFollowerObj(obj): {
                 const { form, clothing } = obj;
                 if (!this.factory.hasLoadedModdedFollower()) await this.factory.loadModdedFollower();
-                
+
                 const follower = this.factory.moddedFollower(form, clothing, id, label);
                 actor = follower;
-                
+
                 break;
             }
 
             case isPlayerObj(obj): {
                 const { creature, fleece } = obj;
                 if (!this.factory.hasLoadedPlayer()) await this.factory.loadPlayer();
-                
+
                 const player = this.factory.player(creature, fleece, id, label);
                 actor = player;
 
@@ -175,7 +154,7 @@ export class Exporter {
                 const soldier = this.factory.soldier(soldierId, id, label);
                 actor = soldier;
 
-                break; 
+                break;
             }
 
             case isOccultistObj(obj): {
@@ -185,7 +164,7 @@ export class Exporter {
                 const occultist = this.factory.occultist(occultistId, id, label);
                 actor = occultist;
 
-                break; 
+                break;
             }
 
             case isGuardObj(obj): {
@@ -195,7 +174,7 @@ export class Exporter {
                 const guard = this.factory.guard(guardId, id, label);
                 actor = guard;
 
-                break; 
+                break;
             }
 
             case isHereticObj(obj): {
@@ -251,7 +230,7 @@ export class Exporter {
             case isWitnessObj(obj): {
                 const { witness: witnessId, isUpgraded } = obj;
                 if (!this.factory.hasLoadedWitness()) await this.factory.loadWitness();
-                
+
                 const witness = this.factory.witness(witnessId, isUpgraded, id, label);
                 actor = witness;
 
@@ -290,18 +269,18 @@ export class Exporter {
 
             default: throw new Error("Invalid or unknown actor object used to create actor");
         }
-        
+
         actor.copyFromObj(obj);
-        
+
         actor.muted = true;
         actor.setAnimation(animation);
-        
+
         return actor;
     }
 
     getPixels(x: number = 0, y: number = 0, width: number = this.gl.drawingBufferWidth, height: number = this.gl.drawingBufferHeight, flipY: boolean = true) {
         const bufferSize = width * height * 4; // width * height * 4 RGBA values
-        
+
         const pixels = new Uint8Array(bufferSize);
         this.gl.readPixels(x, y, width, height, this.gl.RGBA, this.gl.UNSIGNED_BYTE, pixels);
 
