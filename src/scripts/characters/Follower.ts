@@ -33,14 +33,14 @@ export class Follower extends Actor implements FollowerObject {
 
     static readonly HALO_SLOT_NAME: string = "halo";
     static readonly HALO_ATTACHMENT_NAME: string = "Other/Halo";
-    
+
     static readonly HOOD_SKIN_PREFIX: string = "Clothes/Hooded_Lvl";
     static readonly ELDER_HOOD_SKIN_NAME: string = "Clothes/Hooded_HorseTown";
     static readonly MAX_HOOD_LEVEL: number = 5;
 
     static readonly ROBES_SKIN_PREFIX: string = "Clothes/Robes_Lvl";
     static readonly ELDER_ROBES_SKIN_NAME: string = "Clothes/Robes_Old";
-    
+
     static readonly ROBES_STARTING_LEVEL: number = 3;
     static readonly LEVELS_PER_ROBES_UPGRADE: number = 2;
     static readonly MAX_ROBES_FOLLOWER_LEVEL: number = (5 - this.ROBES_STARTING_LEVEL + 1) * this.LEVELS_PER_ROBES_UPGRADE; // highest robes level is 5.
@@ -136,7 +136,7 @@ export class Follower extends Actor implements FollowerObject {
 
         this.update();
     }
-    
+
     get clothing(): ClothingId {
         return this.#clothing;
     }
@@ -156,7 +156,7 @@ export class Follower extends Actor implements FollowerObject {
         this.#necklace = necklace;
         this.update();
     }
-    
+
     get hat(): HatId | null{
         return this.#hat;
     }
@@ -226,7 +226,9 @@ export class Follower extends Actor implements FollowerObject {
 
     set isDisciple(isDisciple: boolean) {
         this.#isDisciple = isDisciple;
+
         this.update();
+        this.resetSkin();
     }
 
     get isHooded(): boolean {
@@ -334,16 +336,16 @@ export class Follower extends Actor implements FollowerObject {
     }
 
     update() {
-        const { formData, clothingData, necklaceData, hatData, colorSetData, formVariantIdx, formColorSetIdx, clothingVariantIdx, clothingColorSetIdx, level, ageState, isDisciple, isHooded } = this;
+        const { formData, clothingData, necklaceData, hatData, colorSetData, formVariantIdx, formColorSetIdx, clothingVariantIdx, clothingColorSetIdx, level, ageState, isHooded } = this;
 
         this.setSkin(formData.variants[formVariantIdx]);
         ageState !== FollowerAgeState.Adult && this.addSkins(Follower[ageState === FollowerAgeState.Baby ? "BABY_SKIN_NAME" : "ELDER_SKIN_NAME"]);
 
         isHooded && this.addSkins(ageState === FollowerAgeState.Elder ? Follower.ELDER_HOOD_SKIN_NAME : `${Follower.HOOD_SKIN_PREFIX}${Math.min(level, Follower.MAX_HOOD_LEVEL)}`)
-        
+
         if ("attachments" in clothingData) {
             const clothingSkin = new spine.Skin(clothingData.variants[clothingVariantIdx]);
-            
+
             this.skeleton.data.findSkin(clothingData.variants[clothingVariantIdx]).getAttachments().filter(({ name }) => clothingData.attachments!.some((str) => name.includes(str))).forEach(({ name, attachment, slotIndex }) => clothingSkin.setAttachment(slotIndex, name, attachment));
             this.addCustomSkin(clothingSkin);
         } else this.addSkins(
@@ -356,19 +358,26 @@ export class Follower extends Actor implements FollowerObject {
 
         isHooded ? ageState !== FollowerAgeState.Elder && this.applyColors(followerData.clothing.Default_Clothing.sets![clothingColorSetIdx]) : clothingData.sets && this.applyColors(clothingData.sets[clothingColorSetIdx]);
         formData.canBeTinted && this.applyColors(colorSetData[formColorSetIdx]);
-        
+
         necklaceData && this.addSkins(necklaceData.variant);
         hatData && this.addSkins(hatData.variant);
-
-        isDisciple && this.skeleton.setAttachment(Follower.HALO_SLOT_NAME, Follower.HALO_ATTACHMENT_NAME);
 
         this.resetAnimation();
         this.tick();
     }
 
     resetSkin() {
+        const { form, isDisciple } = this;
+
         super.resetSkin();
-        this.form === "Deer" && this.skeleton.slots[this.skeleton.findSlotIndex(Follower.BODY_EXTRA_SLOT_NAME)].setAttachment(null as unknown as spine.Attachment);
+
+        form === "Deer" && this.skeleton.findSlot(Follower.BODY_EXTRA_SLOT_NAME).setAttachment(null as unknown as spine.Attachment);
+        if (!isDisciple) return;
+
+        const slotIdx = this.skeleton.findSlotIndex(Follower.HALO_SLOT_NAME);
+        const attachment = this.skeleton.getAttachment(slotIdx, Follower.HALO_ATTACHMENT_NAME);
+
+        this.skeleton.slots[slotIdx].setAttachment(attachment);
     }
 
     resetAnimation() {
@@ -390,7 +399,7 @@ export class Follower extends Actor implements FollowerObject {
             switch (possessionState) {
                 case FollowerPossessionState.Enlightened: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-enlightened`;
                 case FollowerPossessionState.Sinned: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-sin`;
-                
+
                 default: return null;
             }
         })();
@@ -399,10 +408,10 @@ export class Follower extends Actor implements FollowerObject {
             switch (sickState) {
                 case FollowerSickState.Sick: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-sick`;
                 case FollowerSickState.Traumatized: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-dread`;
-                
+
                 case FollowerSickState.Zombie: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-zombie`;
                 case FollowerSickState.Possessed: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-possessed`;
-                
+
                 default: return null;
             }
         })();
@@ -411,7 +420,7 @@ export class Follower extends Actor implements FollowerObject {
             switch (beliefState) {
                 case FollowerBeliefState.Brainwashed: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-brainwashed`;
                 case FollowerBeliefState.Dissenting: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-dissenter`;
-                
+
                 default: return null;
             }
         })();
@@ -431,7 +440,7 @@ export class Follower extends Actor implements FollowerObject {
 
     copyFromObj(obj: FollowerObject) {
         const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, possessionState, sickState, beliefState, isDisciple, isHooded, isTired, isSweating, isBefuddled } = obj;
-        
+
         this.form = form;
         this.formVariantIdx = formVariantIdx;
         this.formColorSetIdx = formColorSetIdx;
@@ -444,7 +453,7 @@ export class Follower extends Actor implements FollowerObject {
         this.hat = hat;
 
         this.level = level;
-        
+
         this.ageState = ageState;
         this.emotionState = emotionState;
 
@@ -457,7 +466,7 @@ export class Follower extends Actor implements FollowerObject {
 
         this.isTired = isTired;
         this.isSweating = isSweating;
-        
+
         this.isBefuddled = isBefuddled;
 
         super.copyFromObj(obj);
@@ -556,7 +565,7 @@ export const enum FollowerPossessionState {
 export const enum FollowerSickState {
     Sick,
     Traumatized,
-    
+
     Zombie,
     Possessed
 }
