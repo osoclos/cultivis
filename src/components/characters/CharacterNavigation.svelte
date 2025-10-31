@@ -54,7 +54,7 @@
     export function getRandomFollowerAppearance(): [FollowerId, number, number] {
         const form = Random.item(FOLLOWER_IDS);
         const { variants, sets } = followerData.forms[form];
-        
+
         const formVariantIdx = Random.int(variants.length);
         const formColorSetIdx = Random.int(sets.length + followerData.generalColorSets.length);
 
@@ -151,7 +151,7 @@
     const animations: string[] = $derived.by(() => {
         const { follower, player, soldier, occultist, guard } = forbiddenAnimations;
         const { animationNames } = actor;
-        
+
         const actorForbiddenAnimations: string[] = (() => {
             switch (true) {
                 case isFollowerObj(actor):
@@ -166,7 +166,7 @@
                 default: return [];
             }
         })();
-        
+
         return animationNames.filter((name) => !(actorForbiddenAnimations.includes(`!${name}`) || actorForbiddenAnimations.some((keyword) => !keyword.startsWith("!") && name.includes(keyword)))).sort();
     });
 
@@ -174,7 +174,7 @@
         switch (true) {
             case isFollowerObj(actor):
             case isModdedFollowerObj(actor): return Object.fromEntries(FOLLOWER_ANIMATION_IDS.map((id) => [id, followerAnimationData[id].name]));
-            
+
             default: return {};
         }
     });
@@ -182,7 +182,7 @@
     const hasAttributes: boolean = $derived.by(() => {
         switch (true) {
             case isSoldierObj(obj) && isSoldierObj(actor): return soldierData[obj.soldier].canHoldShield;
-            case isOccultistObj(obj) && isOccultistObj(actor): 
+            case isOccultistObj(obj) && isOccultistObj(actor):
             case isGuardObj(obj) && isGuardObj(actor): return false;
 
             case isHereticObj(obj) && isHereticObj(actor): return (hereticData[obj.heretic].skins.length > 1 && obj.heretic !== "Mega_Blue_Spider") || obj.heretic === "Mega_Blue_Spider" || "backSkins" in hereticData[obj.heretic];
@@ -214,13 +214,13 @@
 
             case isPlayerObj(actor) && isPlayerObj(obj): {
                 const [creature, crown, fleece, bell] = getRandomPlayerAppearance();
-    
+
                 actor.creature = creature;
                 actor.crown = crown;
-                
+
                 actor.fleece = fleece;
                 actor.bell = bell;
-                
+
                 obj.creature = creature;
                 obj.crown = crown;
 
@@ -233,7 +233,7 @@
 
         update();
     }
-    
+
     function updateFollowerPossessionState(possessionState: number) {
         if ((!isFollowerObj(obj) || !isFollowerObj(actor)) && (!isModdedFollowerObj(obj) || !isModdedFollowerObj(actor))) return;
         possessionState--;
@@ -384,11 +384,11 @@
         obj.animation = actor.animation;
         update();
     }
-    
+
     function updateAnimation(animation: string) {
         actor.setRawAnimation(animation);
         obj.animation = actor.animation;
-        
+
         update();
     }
 </script>
@@ -417,7 +417,7 @@
                     <BannerButton label="Choose Crown" playClickSound={false} onclick={() => proceed("crown")} />
                     <BannerButton label="Choose Fleece" playClickSound={false} onclick={() => proceed("fleece")} />
                     <BannerButton label="Choose Bell" playClickSound={false} onclick={() => proceed("bell")} />
-                    
+
                     <BannerButton label="Randomize" src="/static/ui/dice-6.png" onclick={randomizeFollowerAppearance} />
                 {:else if isSoldierObj(obj)}
                     <BannerButton label="Choose Role" playClickSound={false} onclick={() => proceed(SOLDIER_MENU_NAME)} />
@@ -449,7 +449,7 @@
                     {#if hasAttributes}
                         <div class="flex flex-col gap-6 items-center">
                             <LabelTitle title="Attributes" />
-                        
+
                             <div class="flex flex-col gap-8 items-center mx-8 w-80 sm:w-90">
                                 {#if (isFollowerObj(obj) && isFollowerObj(actor)) || (isModdedFollowerObj(obj) && isModdedFollowerObj(actor))}
                                     <Label label="Level">
@@ -492,6 +492,10 @@
                                         <Toggle label="Is Sweating?" bind:enabled={obj.isSweating} oninput={(isSweating) => actor.isSweating = isSweating} />
                                     </Label>
 
+                                    <Label label="Is Injured?">
+                                        <Toggle label="Is Injured?" bind:enabled={obj.isInjured} oninput={(isInjured) => actor.isInjured = isInjured} />
+                                    </Label>
+
                                     <Label label="Is Befuddled?">
                                         <Toggle label="Is Befuddled?" bind:enabled={obj.isBefuddled} oninput={(isBefuddled) => actor.isBefuddled = isBefuddled} />
                                     </Label>
@@ -529,7 +533,7 @@
                                             <Toggle label="Has Eggs?" enabled={!!obj.stage} oninput={(hasEggs) => updateStage(+hasEggs + 1)} />
                                         </Label>
                                     {/if}
-            
+
                                     {#if "backSkins" in hereticData[obj.heretic]}
                                         <Label label="Is Facing the Back?">
                                             <Toggle label="Is Facing the Back?" bind:enabled={obj.isBackFacing!} oninput={(isBackFacing) => actor.isBackFacing = isBackFacing} />
@@ -553,11 +557,11 @@
                                             <Toggle label="Is in Boss Form?" bind:enabled={obj.isBoss} oninput={updateBishopIsBoss} />
                                         </Label>
                                     {/if}
-            
+
                                     <Label label="Is Purged?">
                                         <Toggle label="Is Purged?" bind:enabled={obj.isPurged} oninput={(isPurged) => actor.isPurged = isPurged} />
                                     </Label>
-            
+
                                     {#if obj.bishop === "Spider"}
                                         <Label label="Is Bandaged?">
                                             <Toggle label="Is Bandaged?" bind:enabled={obj.isBandaged!} oninput={(isBandaged) => actor.isBandaged = isBandaged} />
@@ -568,7 +572,7 @@
                                         <Label label="Has Crown?">
                                             <Toggle label="Has Crown?" bind:enabled={obj.hasCrown!} oninput={(hasCrown) => actor.hasCrown = hasCrown} />
                                         </Label>
-            
+
                                         <Label label="Has Chains?">
                                             <Toggle label="Has Chains?" bind:enabled={obj.hasChains!} oninput={(hasChains) => actor.hasChains = hasChains} />
                                         </Label>
@@ -595,7 +599,7 @@
                                     <Label label="Is Upgraded?">
                                         <Toggle label="Is Upgraded?" bind:enabled={obj.isUpgraded} oninput={(isUpgraded) => actor.isUpgraded = isUpgraded} />
                                     </Label>
-            
+
                                     {#if ["backSkins", "backUpgradedSkins"].every((key) => key in miniBossData[obj.miniBoss])}
                                         <Label label="Is Facing the Back?">
                                             <Toggle label="Is Facing the Back?" bind:enabled={obj.isBackFacing!} oninput={(isBackFacing) => actor.isBackFacing = isBackFacing} />
@@ -605,7 +609,7 @@
                                     <Label label="Is Upgraded?">
                                         <Toggle label="Is Upgraded?" bind:enabled={obj.isUpgraded} oninput={(isUpgraded) => actor.isUpgraded = isUpgraded} />
                                     </Label>
-            
+
                                     <Label label="Is Purged?">
                                         <Toggle label="Is Purged?" bind:enabled={obj.isPurged} oninput={(isPurged) => actor.isPurged = isPurged} />
                                     </Label>
@@ -650,7 +654,7 @@
 
                     <div class="flex flex-col gap-6 items-center mx-8">
                         <LabelTitle title="Positioning" />
-                    
+
                         <div class="flex flex-col gap-2 w-80 sm:w-90">
                             <Label label="X Position">
                                 <NumberInput label="X Position" bind:value={obj.pos.x} unit="px" min={-Infinity} max={Infinity} oninput={() => updatePosition()} />
@@ -664,7 +668,7 @@
 
                     <div class="flex flex-col gap-6 items-center mx-8">
                         <LabelTitle title="Scaling" />
-                    
+
                         <div class="flex flex-col gap-2 w-80 sm:w-90">
                             <Label label="Scale X">
                                 <NumberInput label="Scale X" value={obj.scale.x * 100} unit="%" step={0.01} max={Infinity} oninput={updateScaleX} />
