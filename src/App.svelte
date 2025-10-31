@@ -461,9 +461,12 @@
     function cloneActor(actor: Actor) {
         const { label, animation } = actor;
 
+        console.log(animation);
+
+
         const clonedActor = actor.clone();
         clonedActor.label = label;
-        clonedActor.setAnimation(animation);
+        clonedActor.setAnimation(animation, animation.name);
 
         addRawActor(clonedActor);
     }
