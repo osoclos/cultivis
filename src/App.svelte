@@ -9,7 +9,7 @@
     import { FormatOptions, SizeOptions, TimingOptions } from "./components/exporting";
 
     import { News } from "./components/news";
-    import { CreationDetails, SpecialThanks, HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME, NarinderPetter, HAS_PET_NARINDER_LOCAL_STORAGE_NAME } from "./components/credits";
+    import { CreationDetails, SpecialThanks, HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME, NarinderPetter } from "./components/credits";
 
     import { Actor, Exporter, Factory, Scene, type ActorObject, type ExporterState, type FormatData, type FormatType } from "./scripts";
     import { Bishop, isBishopObj, Follower, isFollowerObj, Guard, isGuardObj, Heretic, isHereticObj, Machine, isMachineObj, MiniBoss, isMiniBossObj, ModdedFollower, isModdedFollowerObj, Occultist, isOccultistObj, Player, isPlayerObj, Soldier, isSoldierObj, TOWW, isTOWW_Obj, Witness, isWitnessObj, KnucklebonesPlayer, isKnucklebonesPlayerObj, QuestGiver, isQuestGiverObj, Shopkeeper, isShopkeeperObj } from "./scripts/characters";
@@ -66,7 +66,6 @@
     let lastUpdatedUnix: number = $state(-1);
 
     let hasNoticedTutorial: boolean = $state(!!localStorage.getItem(HAS_NOTICED_TUTORIAL_LOCAL_STORAGE_NAME));
-    let hasPetNarinder: boolean = $state(!!localStorage.getItem(HAS_PET_NARINDER_LOCAL_STORAGE_NAME));
 
     let showRiverBoyObituary: boolean = $state(false);
     let isRiverBoyObituaryVisible: boolean = $state(false);
@@ -652,7 +651,7 @@
     </div>
 
     <div class={["overflow-hidden lg:h-dvh bg-secondary", { "hidden": !hasFinishedLoading }]}>
-        <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:hasNoticedTutorial bind:hasPetNarinder enableKeyInput={(actorIdx < 0 || isMobile)} onclick={selectCategoryMenu} />
+        <Categories class="justify-center items-center pt-6 pb-3 w-full lg:w-160 select-none" bind:hasNoticedTutorial enableKeyInput={(actorIdx < 0 || isMobile)} onclick={selectCategoryMenu} />
         <div bind:this={categoryMenu} class="no-scrollbar lg:overflow-y-auto flex flex-col {[1, 3].includes(categoryIdx) ? "gap-6" : "gap-12"} items-center px-8 pt-6 pb-4 lg:h-[calc(100dvh_-_146px)] select-none">
             {#if categoryIdx === 0}
                 <CharacterList bind:actors bind:loadingActor enableKeyInput={actorIdx < 0 && !isRiverBoyObituaryVisible} onadd={addActor} onremove={(indexes) => [...indexes].sort((a, b) => b - a).forEach((i) => removeActor(scene.actors[i], i))} onclone={(indexes) => indexes.forEach((i) => cloneActor(scene.actors[i]))} onactorclick={selectActor} />
@@ -743,7 +742,7 @@
                     <Header title="Pet Narinder" />
 
                     <LabelTitle class="mb-2" title="Pets Today: {numOfPets}" />
-                    <NarinderPetter bind:hasPetNarinder onclick={petNarinder} />
+                    <NarinderPetter onclick={petNarinder} />
 
                     <LabelTitle title="Click them to pet Narinder." />
                 </div>
