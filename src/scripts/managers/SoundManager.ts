@@ -16,8 +16,13 @@ export class SoundManager {
     static readonly DEFAULT_POOL_SIZE: number = 6;
 
     private howlers: Map<SoundId, Howl>;
+    private hasUserInteracted: boolean;
+
     private constructor(private cache: Cache) {
         this.howlers = new Map();
+        this.hasUserInteracted = false;
+
+        addEventListener("click", () => this.hasUserInteracted = true, { once: true });
     }
 
     static async create() {
@@ -32,22 +37,22 @@ export class SoundManager {
 
             const blob = await fetchAndCache(resolvePath(src, SoundManager.SOUNDS_FOLDER_NAME), this.cache).then((res) => res.blob());
             const url = URL.createObjectURL(blob);
-    
+
             const sprite = <SoundSpriteDefinitions>{};
             for (const [key, { start, duration }] of Object.entries(timeRanges)) sprite[key] = [start, duration];
-    
+
             const howler = new Howl({
                 src: url,
                 format: "wav",
-    
+
                 sprite,
                 pool: SoundManager.DEFAULT_POOL_SIZE,
-    
+
                 volume: SoundManager.DEFAULT_VOLUME
             });
-    
+
             this.howlers.set(id, howler);
-    
+
             await new Promise((resolve, reject) => {
                 howler.once("load", resolve);
                 howler.on("loaderror", (_, err) => reject(err));
@@ -68,11 +73,11 @@ export class SoundManager {
         return this.howlers.get(id)!;
     }
 
-    play<I extends SoundId>(id: I, key: keyof (typeof soundData[I]["timeRanges"] & {}) = Random.item(Object.keys(soundData[id].timeRanges ?? {}))): number {       
-        return this.get(id).play(Object.keys(soundData[id].timeRanges ?? {}).length ? <string>key : undefined);
+    play<I extends SoundId>(id: I, key: keyof (typeof soundData[I]["timeRanges"] & {}) = Random.item(Object.keys(soundData[id].timeRanges ?? {}))): number {
+        return this.hasUserInteracted ? this.get(id).play(Object.keys(soundData[id].timeRanges ?? {}).length ? <string>key : undefined) : -1;
     }
 
-    stop<I extends SoundId>(id: I, playbackId?: number) {       
+    stop<I extends SoundId>(id: I, playbackId?: number) {
         this.get(id).stop(playbackId);
     }
 
