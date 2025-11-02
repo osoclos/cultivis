@@ -45,6 +45,8 @@
 
     let isFullScreen: boolean = $state(false);
 
+    let isMotionReduced: boolean = $state(false);
+
     let loadingState: number = $state(-1);
     const loadingText: string = $derived(LOADING_TEXTS[MoreMath.clamp(loadingState, 0, LOADING_TEXTS.length - 1)]);
 
@@ -118,7 +120,7 @@
     let numOfPets: number = $state(-1);
 
     // svelte-ignore state_referenced_locally
-    matchMedia("(max-width: 64rem)").matches && Vector.fromObj(size).swap().cloneObj(size);
+    isMobile && Vector.fromObj(size).swap().cloneObj(size);
 
     const abortController = new AbortController();
     const resizer = new ResizeObserver(() => {
@@ -126,6 +128,8 @@
 
         isMobile = matchMedia("(max-width: 64rem)").matches;
         isFullScreen = matchMedia("(max-width: 80rem)").matches;
+
+        isMotionReduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     });
 
     onMount(async () => {
@@ -619,7 +623,7 @@
 <div bind:this={loadingScreen} class="grid fixed top-0 left-0 z-100 place-items-center w-full h-full bg-secondary {hasFinishedLoading ? "opacity-0" : "opacity-100"} not-motion-reduce:transition-opacity not-motion-reduce:duration-900 select-none" ontransitionend={({ target }) => (target as HTMLElement).classList.replace("grid", "hidden")}>
     <LoadingSymbol {isMobile} />
     <div class="flex absolute {isMobile ? "bottom-4 left-6" : "bottom-10 left-16"} flex-row gap-6 items-center">
-        <LoadingThrobber percent={((loadingState + 1) / LOADING_STATES.length) * 100} {isOnPhone} {isMobile} />
+        <LoadingThrobber percent={((loadingState + 1) / LOADING_STATES.length) * 100} {isOnPhone} {isMobile} {isMotionReduced} />
         <p class={["text-highlight", isMobile ? "text-lg" : "text-2xl", {"hidden": loadingState < 0 }]}>{loadingText}... {MoreMath.clamp(loadingState + 1, 1, LOADING_STATES.length)}/{LOADING_STATES.length}</p>
     </div>
 </div>

@@ -22,7 +22,7 @@
         radius = 16,
         width = 6,
 
-        rotation = 0,
+        rotation = $bindable(0),
         showGradient = false,
 
         class: className,

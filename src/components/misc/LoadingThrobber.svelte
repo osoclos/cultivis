@@ -7,19 +7,36 @@
 
         isOnPhone?: boolean;
         isMobile?: boolean;
+
+        isMotionReduced?: boolean;
     }
 
     const {
         percent = 0,
 
         isOnPhone = false,
-        isMobile = false
+        isMobile = false,
+
+        isMotionReduced = false
     }: Props = $props();
 
     const progress: number = $derived(percent / 100);
+    let rotation: number = $state(0);
 
     let outline: HTMLImageElement;
-    onMount(() => requestAnimationFrame(() => outline.classList.replace("scale-60", "scale-100")));
+    onMount(() => {
+        let lastElapsedMs: number = -1;
+        !isMotionReduced && requestAnimationFrame(function tick(elapsedMs: number) {
+            const deltaMs = lastElapsedMs < 0 ? 0 : elapsedMs - lastElapsedMs;
+            lastElapsedMs = elapsedMs;
+
+            rotation += 0.24 * deltaMs;
+
+            requestAnimationFrame(tick);
+        });
+
+        requestAnimationFrame(() => outline.classList.replace("scale-60", "scale-100"));
+    });
 </script>
 
 <div class="relative">
@@ -29,7 +46,7 @@
         isMobile
             ? "w-28"
             : "w-36"
-    } not-motion-reduce:animate-spin" style="animation-duration: 1500ms" label="Loading Bar" {progress} radius={72 - 16 * +isMobile - 8 * +isOnPhone} width={10 - 3 * +isMobile - +isOnPhone} showGradient />
+    }" label="Loading Bar" {progress} bind:rotation radius={72 - 16 * +isMobile - 8 * +isOnPhone} width={10 - 3 * +isMobile - +isOnPhone} showGradient />
 
     <div class="aspect-square absolute top-1/2 left-1/2 {
         isOnPhone
