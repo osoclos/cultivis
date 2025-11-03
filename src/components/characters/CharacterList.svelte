@@ -1,6 +1,6 @@
 <script lang="ts">
     import { CharacterBox, CharacterItem } from ".";
-    import { BannerButton, Header } from "../base";
+    import { BannerButton, Header, SearchBox } from "../base";
     import { List, MultiList } from "../utils";
 
     import type { Actor, ActorObject } from "../../scripts";
@@ -11,9 +11,9 @@
         loadingActor?: typeof Actor | null;
 
         enableKeyInput?: boolean;
-        
+
         onadd?: (actor: typeof Actor) => void;
-        
+
         onremove?: (indexes: Set<number>) => void;
         onclone?: (indexes: Set<number>) => void;
 
@@ -43,6 +43,14 @@
     const isRemoving: boolean = $derived(manipulateState === MANIPULATE_STATES.indexOf("REMOVE"));
     const isCloning: boolean = $derived(manipulateState === MANIPULATE_STATES.indexOf("CLONE"));
 
+    let filterTerm: string = $state("");
+    const filteredActors: ActorObject[] = $derived.by(() => {
+        if (!Array.isArray(actors)) return [];
+
+        const lowercasedFilterTerm = filterTerm.toLowerCase();
+        return actors.filter(({ type, label }) => label.toLowerCase().includes(lowercasedFilterTerm) || type.toLowerCase().includes(lowercasedFilterTerm));
+    });
+
     function toggleItem(ticked: boolean, i: number) {
         ticked ? manipulateIndexes?.add(i) : manipulateIndexes?.delete(i);
         tickedItems[i] = ticked;
@@ -62,7 +70,7 @@
         <Header title="Add Character" />
 
         <List class="no-scrollbar overflow-x-auto flex-row gap-4 p-2 w-90 sm:w-100" label="List of Characters" {enableKeyInput} isHorizontal isTabbable={false}>
-            {#each [Follower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer, QuestGiver, Shopkeeper] as actor, i (i)} 
+            {#each [Follower, Player, Soldier, Occultist, Guard, Heretic, Machine, Bishop, TOWW, MiniBoss, Witness, KnucklebonesPlayer, QuestGiver, Shopkeeper] as actor, i (i)}
                 <CharacterItem {actor} isLoading={actor === loadingActor} onclick={() => add(actor)} />
             {/each}
         </List>
@@ -87,10 +95,11 @@
                 } onclick={() => onButtonClick(MANIPULATE_STATES.indexOf("CLONE"))}/>
             {:else if i === 1}
                 <Header class="mb-6" title="Choose Character" />
+                <SearchBox class="px-12 lg:px-20" bind:val={filterTerm} />
 
                 {#if Array.isArray(actors)}
-                    {#each actors.keys() as i (i)}
-                        <CharacterBox class={i ? "mt-4" : ""} bind:actor={actors[i]} hasTickbox={isRemoving || isCloning} bind:ticked={tickedItems[i]} onclick={() => click(i)} oninput={(ticked) => toggleItem(ticked, i)} />
+                    {#each filteredActors.keys() as i}
+                        <CharacterBox class={i ? "mt-4" : ""} bind:actor={filteredActors[i]} hasTickbox={isRemoving || isCloning} bind:ticked={tickedItems[i]} onclick={() => click(i)} oninput={(ticked) => toggleItem(ticked, i)} />
                     {/each}
                 {:else}
                     <p class="font-subtitle text-center text-active">Loading...</p>
