@@ -148,6 +148,9 @@
         }
     });
 
+    let selectedAnimationId: string | null = $state(useExperimentalAnimations ? null : actor.animationId)
+    let selectedExperimentalAnimationId: string | null = $state(useExperimentalAnimations ? actor.animationId : null);
+
     const animations: string[] = $derived.by(() => {
         const { follower, player, soldier, occultist, guard } = forbiddenAnimations;
         const { animationNames } = actor;
@@ -364,7 +367,7 @@
     }
 
     async function updateUseExperimentalAnimation(useExperimentalAnimations: boolean) {
-        useExperimentalAnimations ? await updateExperimentalAnimation(Object.keys(experimentalAnimations)[0]) : updateAnimation(animations[0]);
+        useExperimentalAnimations ? await updateExperimentalAnimation(selectedExperimentalAnimationId ?? Object.keys(experimentalAnimations)[0]) : updateAnimation(selectedAnimationId ?? animations[0]);
         obj.animationId = actor.animationId;
     }
 
@@ -381,12 +384,16 @@
             }
         }
 
+        selectedExperimentalAnimationId = actor.animationId;
         obj.animation = actor.animation;
+
         update();
     }
 
     function updateAnimation(animation: string) {
         actor.setRawAnimation(animation);
+
+        selectedAnimationId = actor.animationId;
         obj.animation = actor.animation;
 
         update();
