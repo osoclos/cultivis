@@ -76,7 +76,7 @@
 <script lang="ts">
     import { twMerge } from "tailwind-merge";
 
-    import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, ArrowSelection, Slider, Toggle, Notice } from "../base";
+    import { BannerButton, Dropdown, Header, Label, LabelTitle, NumberInput, ArrowSelection, Slider, Toggle, Notice, SearchBox } from "../base";
     import { BISHOP_MENU_NAME, GUARD_MENU_NAME, HERETIC_MENU_NAME, KNUCKLEBONES_PLAYER_MENU_NAME, MACHINE_MENU_NAME, MINI_BOSS_MENU_NAME, MODDED_FOLLOWER_SLOT_NAMES, OCCULTIST_MENU_NAME, QUEST_GIVER_MENU_NAME, SHOPKEEPER_MENU_NAME, SOLDIER_MENU_NAME, TOWW_MENU_NAME, WITNESS_MENU_NAME } from "./menus";
     import { ColorDot, ColorRows, MultiList } from "../utils";
 
@@ -86,6 +86,7 @@
 
     import { bishopData, forbiddenAnimations, hereticData, machineData, miniBossData, soldierData } from "../../data/files";
     import { Color, Random, Vector, type ColorObject, type VectorObject } from "../../utils";
+    import { onDestroy, onMount } from "svelte";
 
     interface Props {
         actor: Actor;
@@ -148,8 +149,7 @@
         }
     });
 
-    let selectedAnimationId: string | null = $state(useExperimentalAnimations ? null : actor.animationId)
-    let selectedExperimentalAnimationId: string | null = $state(useExperimentalAnimations ? actor.animationId : null);
+    let animationFilterTerm: string = $state("");
 
     const animations: string[] = $derived.by(() => {
         const { follower, player, soldier, occultist, guard } = forbiddenAnimations;
@@ -173,14 +173,29 @@
         return animationNames.filter((name) => !(actorForbiddenAnimations.includes(`!${name}`) || actorForbiddenAnimations.some((keyword) => !keyword.startsWith("!") && name.includes(keyword)))).sort();
     });
 
-    const experimentalAnimations: Record<string, string> = $derived.by(() => {
+    const experimentalAnimations: string[] = $derived.by(() => {
         switch (true) {
             case isFollowerObj(actor):
-            case isModdedFollowerObj(actor): return Object.fromEntries(FOLLOWER_ANIMATION_IDS.map((id) => [id, followerAnimationData[id].name]));
+            case isModdedFollowerObj(actor): return FOLLOWER_ANIMATION_IDS;
 
-            default: return {};
+            default: return [];
         }
     });
+
+    const displayedAnimationNames: [string, string][] = $derived(useExperimentalAnimations && experimentalAnimations.length ? experimentalAnimations.map((id) => [id, followerAnimationData[id as FollowerAnimationId].name]).filter(([id]) => id.includes(animationFilterTerm)) as [string, string][] : animations.filter((id) => id.includes(animationFilterTerm)).map((id) => [id, id]));
+
+    let selectedAnimationId: string | null = $state(useExperimentalAnimations && experimentalAnimations.length ? null : actor.animationId)
+    let selectedExperimentalAnimationId: string | null = $state(useExperimentalAnimations && experimentalAnimations.length ? actor.animationId : null);
+
+    let animationList: HTMLUListElement = $state(HTMLUListElement.prototype);
+    let animationListAborter: AbortController;
+    let animationListScrollerId: number;
+
+    let isAnimationListScrolling: boolean = $state(false);
+    let isAnimationListIdleTicks: number = 0;
+
+    let lastAnimationListScrollTop: number = -1;
+    const lastAnimationListScrollTopDiffs: number[] = [];
 
     const hasAttributes: boolean = $derived.by(() => {
         switch (true) {
@@ -196,6 +211,37 @@
 
             default: return true;
         }
+    });
+
+    onMount(() => {
+        animationListAborter = new AbortController();
+
+        [...animationList.children].find(({ ariaSelected }) => ariaSelected === "true")?.scrollIntoView({
+            behavior: "instant",
+            block: "center"
+        });
+
+        animationList.addEventListener("scroll", () => {
+            if (isAnimationListScrolling || isAnimationListIdleTicks > 3) return; // prevent flickering
+            isAnimationListScrolling = true;
+        }, animationListAborter);
+
+        animationListScrollerId = setInterval(() => {
+            const lastAnimationListScrollTopsDiffsAvg = lastAnimationListScrollTopDiffs.reduce((a, b) => a + b, 0) / lastAnimationListScrollTopDiffs.length;
+
+            isAnimationListScrolling = Math.abs(lastAnimationListScrollTopsDiffsAvg) > 12;
+            isAnimationListScrolling ? isAnimationListIdleTicks = 0 : isAnimationListIdleTicks++;
+
+            lastAnimationListScrollTopDiffs.push(animationList.scrollTop - (lastAnimationListScrollTop < 0 ? 0 : lastAnimationListScrollTop));
+            lastAnimationListScrollTop = animationList.scrollTop;
+
+            if (lastAnimationListScrollTopDiffs.length > 5) lastAnimationListScrollTopDiffs.shift();
+        }, 50);
+    });
+
+    onDestroy(() => {
+        clearInterval(animationListScrollerId);
+        animationListAborter.abort();
     });
 
     function randomizeFollowerAppearance() {
@@ -276,7 +322,7 @@
         const follower = factory.moddedFollower(form, clothing);
         follower.copyFromObj({ ...obj, colors: follower.colors });
 
-        if (useExperimentalAnimations) {
+        if (useExperimentalAnimations && experimentalAnimations.length) {
             switch (true) {
                 case isFollowerObj(actor):
                 case isModdedFollowerObj(actor): {
@@ -367,7 +413,7 @@
     }
 
     async function updateUseExperimentalAnimation(useExperimentalAnimations: boolean) {
-        useExperimentalAnimations ? await updateExperimentalAnimation(selectedExperimentalAnimationId ?? Object.keys(experimentalAnimations)[0]) : updateAnimation(selectedAnimationId ?? animations[0]);
+        useExperimentalAnimations && experimentalAnimations.length ? await updateExperimentalAnimation(selectedExperimentalAnimationId ?? experimentalAnimations[0]) : updateAnimation(selectedAnimationId ?? animations[0]);
         obj.animationId = actor.animationId;
     }
 
@@ -690,18 +736,36 @@
                     <div class="flex flex-col gap-8 items-center mx-8">
                         <LabelTitle title="Animations" />
 
-                        {#if Object.keys(experimentalAnimations).length}
-                            <Label class="w-80 sm:w-90" label="Use Experimental Animations">
-                                <Toggle label="Use Experimental Animations" bind:enabled={useExperimentalAnimations} oninput={updateUseExperimentalAnimation} />
-                            </Label>
-                        {/if}
-
-                        <Label class="w-80 sm:w-90 h-24" label="Selected Animation">
-                            <Dropdown class="ml-4" options={useExperimentalAnimations && Object.keys(experimentalAnimations).length ? experimentalAnimations : animations} bind:value={obj.animationId} label="Selected Animation" oninput={useExperimentalAnimations && Object.keys(experimentalAnimations).length ? updateExperimentalAnimation : updateAnimation} />
+                        <Label class="group w-80 sm:w-90" label="Selected Animation">
+                            <span class="w-48 font-subtitle text-inactive hover:text-active group-hover:text-active text-ellipsis">{useExperimentalAnimations && experimentalAnimations.length ? selectedExperimentalAnimationId : selectedAnimationId}</span>
                         </Label>
 
-                        {#if useExperimentalAnimations && Object.keys(experimentalAnimations).length}
-                            <Notice label="Experimental Animations may be buggy and introduce unforeseen issues. Use them with caution." />
+                        <div class="w-full" role="search">
+                            <SearchBox label="Search Animations" bind:val={animationFilterTerm} />
+
+                            <ul bind:this={animationList} class="no-scrollbar overflow-x-clip overflow-y-auto px-2 py-1 h-30 font-subtitle text-sm text-center {isAnimationListScrolling ? "text-active outline-3" : "text-inactive outline-0"}  hover:text-active focus:text-active text-ellipsis bg-dark rounded-xs hover:outline-3 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75" role={animationFilterTerm === "" ? "list" : "listbox"}>
+                                {#if displayedAnimationNames.length}
+                                    {#each displayedAnimationNames as [id, name], i}
+                                        <li role="option" aria-selected={id === (useExperimentalAnimations && experimentalAnimations.length ? selectedExperimentalAnimationId : selectedAnimationId)}>
+                                            <button class="p-1 my-1 w-full {id === (useExperimentalAnimations && experimentalAnimations.length ? selectedExperimentalAnimationId : selectedAnimationId) ? "text-active bg-gradient-to-r from-highlight to-highlight" : `${i % 2 ? "bg-secondary" : "bg-dark"} hover:outline-3`} rounded-xs outline-0 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75" onclick={() => useExperimentalAnimations && experimentalAnimations.length ? updateExperimentalAnimation(id) : updateAnimation(id)}>{name}</button>
+                                        </li>
+                                    {/each}
+                                {:else}
+                                    <li>
+                                        <p class="font-heading text-[1rem]">No Animations Found</p>
+                                    </li>
+                                {/if}
+                            </ul>
+                        </div>
+
+                        {#if experimentalAnimations.length}
+                            <Label class="mt-2 w-80 sm:w-90" label="Use Experimental Animations">
+                                <Toggle label="Use Experimental Animations" bind:enabled={useExperimentalAnimations} oninput={updateUseExperimentalAnimation} />
+                            </Label>
+
+                            {#if useExperimentalAnimations}
+                                <Notice label="Development on Experimental Animations have stopped and is no longer being worked on. It may be removed in the near future." />
+                            {/if}
                         {/if}
                     </div>
 
