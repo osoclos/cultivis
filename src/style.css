@@ -19,16 +19,16 @@
     src: url("/static/fonts/Open-Sans.ttf");
 
     font-display: swap;
-    
+
     unicode-range: U+00A9;
 }
 
 @theme {
     --default-font-family: "Copyright Symbol", "Lapture Bold", Georgia, "Times New Roman", Times, serif;
-    
+
     --color-primary: #01d5a2;
     --color-secondary: #000000;
-    
+
     --color-inactive: #757575;
     --color-active: #f5edd5;
 
@@ -47,6 +47,7 @@
 
     --color-misty: #232823;
 
+    --font-heading: var(--default-font-family);
     --font-subtitle: "Copyright Symbol", "Fira Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
