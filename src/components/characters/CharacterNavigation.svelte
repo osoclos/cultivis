@@ -747,7 +747,7 @@
                         <LabelTitle title="Animations" />
 
                         <Label class="group w-80 sm:w-90" label="Selected Animation">
-                            <span class="w-48 font-subtitle text-inactive hover:text-active group-hover:text-active text-ellipsis">{useExperimentalAnimations && experimentalAnimations.length ? selectedExperimentalAnimationId : selectedAnimationId}</span>
+                            <span class="w-48 font-subtitle text-end text-inactive hover:text-active group-hover:text-active text-ellipsis">{useExperimentalAnimations && experimentalAnimations.length ? selectedExperimentalAnimationId : selectedAnimationId}</span>
                         </Label>
 
                         <div class="w-full" role="search">
