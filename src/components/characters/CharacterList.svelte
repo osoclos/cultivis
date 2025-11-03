@@ -95,7 +95,7 @@
                 } onclick={() => onButtonClick(MANIPULATE_STATES.indexOf("CLONE"))}/>
             {:else if i === 1}
                 <Header class="mb-6" title="Choose Character" />
-                <SearchBox class="px-12 lg:px-20" bind:val={filterTerm} />
+                <SearchBox class="px-12 lg:px-20" bind:val={filterTerm} label="Search Characters" />
 
                 {#if Array.isArray(actors)}
                     {#each filteredActors.keys() as i}
