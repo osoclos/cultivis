@@ -17,16 +17,17 @@ export class Follower extends Actor implements FollowerObject {
     static readonly BABY_SKIN_NAME: string = "Other/Baby";
     static readonly ELDER_SKIN_NAME: string = "Other/Old";
 
-    static readonly EMOTIONS_ANIMATION_PREFIX: string = "Emotions"
+    static readonly EMOTIONS_ANIMATION_PREFIX: string = "Emotions";
 
     static readonly EMOTION_STATE_TRACK_INDEX: number = 100;
 
-    static readonly POSSESSION_STATE_TRACK_INDEX: number = 101;
-    static readonly SICK_STATE_TRACK_INDEX: number = 102;
-    static readonly BELIEF_STATE_TRACK_INDEX: number = 103;
+    static readonly TEMPERATURE_STATE_TRACK_INDEX: number = 101;
+    static readonly POSSESSION_STATE_TRACK_INDEX: number = 102;
+    static readonly SICK_STATE_TRACK_INDEX: number = 103;
+    static readonly BELIEF_STATE_TRACK_INDEX: number = 104;
 
-    static readonly TIRED_TRACK_INDEX: number = 104;
-    static readonly SWEATING_TRACK_INDEX: number = 105;
+    static readonly TIRED_TRACK_INDEX: number = 105;
+    static readonly SWEATING_TRACK_INDEX: number = 106;
 
     static readonly TIRED_ANIMATION_NAME: string = "emotion-tired";
     static readonly SWEATING_ANIMATION_NAME: string = "emotion-soaked";
@@ -63,6 +64,7 @@ export class Follower extends Actor implements FollowerObject {
     #ageState: FollowerAgeState;
     #emotionState: FollowerEmotionState;
 
+    #temperatureState: FollowerTemperatureState | null;
     #possessionState: FollowerPossessionState | null;
     #sickState: FollowerSickState | null;
     #beliefState: FollowerBeliefState | null;
@@ -94,6 +96,7 @@ export class Follower extends Actor implements FollowerObject {
         this.#ageState = FollowerAgeState.Adult;
         this.#emotionState = FollowerEmotionState.Normal;
 
+        this.#temperatureState = null
         this.#possessionState = null;
         this.#sickState = null;
         this.#beliefState = null;
@@ -196,6 +199,15 @@ export class Follower extends Actor implements FollowerObject {
 
     set emotionState(emotionState: FollowerEmotionState) {
         this.#emotionState = emotionState;
+        this.update();
+    }
+
+    get temperatureState(): FollowerTemperatureState | null {
+        return this.#temperatureState;
+    }
+
+    set temperatureState(temperatureState: FollowerTemperatureState | null) {
+        this.#temperatureState = temperatureState;
         this.update();
     }
 
@@ -400,7 +412,7 @@ export class Follower extends Actor implements FollowerObject {
     resetAnimation() {
         super.resetAnimation();
 
-        const { animationState, emotionState, possessionState, sickState, beliefState, isTired, isBefuddled, isSweating } = this;
+        const { animationState, emotionState, temperatureState, possessionState, sickState, beliefState, isTired, isBefuddled, isSweating } = this;
 
         const emotionStateAnimation: string = (() => {
             switch (emotionState) {
@@ -409,6 +421,15 @@ export class Follower extends Actor implements FollowerObject {
                 case FollowerEmotionState.Sad: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-${isBefuddled ? "drunk-sad" : "unhappy"}`;
                 case FollowerEmotionState.Angry: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-${isBefuddled ? "drunk-angry" : "angry"}`;
                 case FollowerEmotionState.Scared: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-${isBefuddled ? "drunk" : "scared"}`;
+            }
+        })();
+
+        const temperatureStateAnimation: string | null = (() => {
+            switch (temperatureState) {
+                case FollowerTemperatureState.Hot: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-overheated`;
+                case FollowerTemperatureState.Cold: return `${Follower.EMOTIONS_ANIMATION_PREFIX}/emotion-freezing`;
+
+                default: return null;
             }
         })();
 
@@ -444,6 +465,7 @@ export class Follower extends Actor implements FollowerObject {
 
         animationState.setAnimation(Follower.EMOTION_STATE_TRACK_INDEX, emotionStateAnimation, true);
 
+        temperatureStateAnimation ? animationState.setAnimation(Follower.TEMPERATURE_STATE_TRACK_INDEX, temperatureStateAnimation, true) : animationState.clearTrack(Follower.TEMPERATURE_STATE_TRACK_INDEX);
         possessionStateAnimation ? animationState.setAnimation(Follower.POSSESSION_STATE_TRACK_INDEX, possessionStateAnimation, true) : animationState.clearTrack(Follower.POSSESSION_STATE_TRACK_INDEX);
         sickStateAnimation ? animationState.setAnimation(Follower.SICK_STATE_TRACK_INDEX, sickStateAnimation, true) : animationState.clearTrack(Follower.SICK_STATE_TRACK_INDEX);
         beliefStateAnimation ? animationState.setAnimation(Follower.BELIEF_STATE_TRACK_INDEX, beliefStateAnimation, true) : animationState.clearTrack(Follower.BELIEF_STATE_TRACK_INDEX);
@@ -490,8 +512,8 @@ export class Follower extends Actor implements FollowerObject {
     }
 
     toObj(): FollowerObject {
-        const { animationId, form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, possessionState, sickState, beliefState, isDisciple, isHooded, isTired, isSweating, isInjured, isBefuddled } = this;
-        return { ...super.toObj(), type: TYPE, animationId, form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, possessionState, sickState, beliefState, isDisciple, isHooded, isTired, isSweating, isInjured, isBefuddled };
+        const { animationId, form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, temperatureState, possessionState, sickState, beliefState, isDisciple, isHooded, isTired, isSweating, isInjured, isBefuddled } = this;
+        return { ...super.toObj(), type: TYPE, animationId, form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, temperatureState, possessionState, sickState, beliefState, isDisciple, isHooded, isTired, isSweating, isInjured, isBefuddled };
     }
 
     private clampIndexes() {
@@ -524,6 +546,7 @@ export interface FollowerObject extends ActorObject {
     ageState: FollowerAgeState;
     emotionState: FollowerEmotionState;
 
+    temperatureState: FollowerTemperatureState | null;
     possessionState: FollowerPossessionState | null;
     sickState: FollowerSickState | null;
     beliefState: FollowerBeliefState | null;
@@ -574,6 +597,11 @@ export const enum FollowerEmotionState {
     Sad,
     Angry,
     Scared
+}
+
+export const enum FollowerTemperatureState {
+    Hot,
+    Cold
 }
 
 export const enum FollowerPossessionState {

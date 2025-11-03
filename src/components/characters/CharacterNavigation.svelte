@@ -290,6 +290,16 @@
         update();
     }
 
+    function updateFollowerTemperatureState(temperatureState: number) {
+        if ((!isFollowerObj(obj) || !isFollowerObj(actor)) && (!isModdedFollowerObj(obj) || !isModdedFollowerObj(actor))) return;
+        temperatureState--;
+
+        obj.temperatureState = temperatureState < 0 ? null : temperatureState;
+        actor.temperatureState = temperatureState < 0 ? null : temperatureState;
+
+        update();
+    }
+
     function updateFollowerPossessionState(possessionState: number) {
         if ((!isFollowerObj(obj) || !isFollowerObj(actor)) && (!isModdedFollowerObj(obj) || !isModdedFollowerObj(actor))) return;
         possessionState--;
@@ -522,6 +532,10 @@
 
                                     <Label label="Emotion State">
                                         <ArrowSelection class="ml-6" label="Emotion State" options={["Normal", "Happy", "Sad", "Angry", "Scared"]} bind:i={obj.emotionState} oninput={(_, i) => actor.emotionState = i} />
+                                    </Label>
+
+                                    <Label label="Temperature State">
+                                        <ArrowSelection class="ml-6" label="Temperature State" options={["Normal", "Warm", "Freezing"]} oninput={(_, i) => updateFollowerTemperatureState(i)} />
                                     </Label>
 
                                     <Label label="Possession State">
