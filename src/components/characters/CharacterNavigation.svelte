@@ -182,7 +182,7 @@
         }
     });
 
-    const displayedAnimationNames: [string, string][] = $derived(useExperimentalAnimations && experimentalAnimations.length ? experimentalAnimations.map((id) => [id, followerAnimationData[id as FollowerAnimationId].name]).filter(([id]) => id.includes(animationFilterTerm)) as [string, string][] : animations.filter((id) => id.includes(animationFilterTerm)).map((id) => [id, id]));
+    const filteredAnimations: [string, string][] = $derived(useExperimentalAnimations && experimentalAnimations.length ? experimentalAnimations.map((id) => [id, followerAnimationData[id as FollowerAnimationId].name]).filter(([id]) => id.toLowerCase().includes(animationFilterTerm.toLowerCase())) as [string, string][] : animations.filter((id) => id.toLowerCase().includes(animationFilterTerm.toLowerCase())).map((id) => [id, id]));
 
     let selectedAnimationId: string | null = $state(useExperimentalAnimations && experimentalAnimations.length ? null : actor.animationId)
     let selectedExperimentalAnimationId: string | null = $state(useExperimentalAnimations && experimentalAnimations.length ? actor.animationId : null);
@@ -192,7 +192,7 @@
     let animationListScrollerId: number;
 
     let isAnimationListScrolling: boolean = $state(false);
-    let isAnimationListIdleTicks: number = 0;
+    let isAnimationListIdleTicks: number = 4;
 
     let lastAnimationListScrollTop: number = -1;
     const lastAnimationListScrollTopDiffs: number[] = [];
@@ -213,13 +213,23 @@
         }
     });
 
-    onMount(() => {
-        animationListAborter = new AbortController();
+    $effect(() => {
+        animationFilterTerm; // run when animationFilterTerm changes
 
-        [...animationList.children].find(({ ariaSelected }) => ariaSelected === "true")?.scrollIntoView({
+        const selectedAnimationItem = [...animationList.children].find(({ ariaSelected }) => ariaSelected === "true") ?? null;
+        selectedAnimationItem === null ? animationList.scrollTo({
+            top: 0,
+            behavior: "instant"
+        }) : selectedAnimationItem.scrollIntoView({
             behavior: "instant",
             block: "center"
         });
+
+        lastAnimationListScrollTop = animationList.scrollTop;
+    });
+
+    onMount(() => {
+        animationListAborter = new AbortController();
 
         animationList.addEventListener("scroll", () => {
             if (isAnimationListScrolling || isAnimationListIdleTicks > 3) return; // prevent flickering
@@ -744,8 +754,8 @@
                             <SearchBox label="Search Animations" bind:val={animationFilterTerm} />
 
                             <ul bind:this={animationList} class="no-scrollbar overflow-x-clip overflow-y-auto px-2 py-1 h-30 font-subtitle text-sm text-center {isAnimationListScrolling ? "text-active outline-3" : "text-inactive outline-0"}  hover:text-active focus:text-active text-ellipsis bg-dark rounded-xs hover:outline-3 focus:outline-3 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75" role={animationFilterTerm === "" ? "list" : "listbox"}>
-                                {#if displayedAnimationNames.length}
-                                    {#each displayedAnimationNames as [id, name], i}
+                                {#if filteredAnimations.length}
+                                    {#each filteredAnimations as [id, name], i}
                                         <li role="option" aria-selected={id === (useExperimentalAnimations && experimentalAnimations.length ? selectedExperimentalAnimationId : selectedAnimationId)}>
                                             <button class="p-1 my-1 w-full {id === (useExperimentalAnimations && experimentalAnimations.length ? selectedExperimentalAnimationId : selectedAnimationId) ? "text-active bg-gradient-to-r from-highlight to-highlight" : `${i % 2 ? "bg-secondary" : "bg-dark"} hover:outline-3`} rounded-xs outline-0 outline-highlight not-motion-reduce:transition-[outline] not-motion-reduce:duration-75" onclick={() => useExperimentalAnimations && experimentalAnimations.length ? updateExperimentalAnimation(id) : updateAnimation(id)}>{name}</button>
                                         </li>
