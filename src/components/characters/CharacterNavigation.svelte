@@ -239,14 +239,14 @@
         animationListScrollerId = setInterval(() => {
             const lastAnimationListScrollTopsDiffsAvg = lastAnimationListScrollTopDiffs.reduce((a, b) => a + b, 0) / lastAnimationListScrollTopDiffs.length;
 
-            isAnimationListScrolling = Math.abs(lastAnimationListScrollTopsDiffsAvg) > 12;
+            isAnimationListScrolling = Math.abs(lastAnimationListScrollTopsDiffsAvg) > 4;
             isAnimationListScrolling ? isAnimationListIdleTicks = 0 : isAnimationListIdleTicks++;
 
             lastAnimationListScrollTopDiffs.push(animationList.scrollTop - (lastAnimationListScrollTop < 0 ? 0 : lastAnimationListScrollTop));
             lastAnimationListScrollTop = animationList.scrollTop;
 
             if (lastAnimationListScrollTopDiffs.length > 5) lastAnimationListScrollTopDiffs.shift();
-        }, 50);
+        }, 20);
     });
 
     onDestroy(() => {
