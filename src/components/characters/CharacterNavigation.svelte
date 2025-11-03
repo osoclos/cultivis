@@ -217,12 +217,9 @@
         animationFilterTerm; // run when animationFilterTerm changes
 
         const selectedAnimationItem = [...animationList.children].find(({ ariaSelected }) => ariaSelected === "true") ?? null;
-        selectedAnimationItem === null ? animationList.scrollTo({
-            top: 0,
+        animationList.scrollTo({
+            top: selectedAnimationItem === null ? 0 : selectedAnimationItem.getBoundingClientRect().top - animationList.getBoundingClientRect().top + animationList.scrollTop - animationList.clientHeight / 2 + selectedAnimationItem.clientHeight / 2,
             behavior: "instant"
-        }) : selectedAnimationItem.scrollIntoView({
-            behavior: "instant",
-            block: "center"
         });
 
         lastAnimationListScrollTop = animationList.scrollTop;
@@ -239,14 +236,14 @@
         animationListScrollerId = setInterval(() => {
             const lastAnimationListScrollTopsDiffsAvg = lastAnimationListScrollTopDiffs.reduce((a, b) => a + b, 0) / lastAnimationListScrollTopDiffs.length;
 
-            isAnimationListScrolling = Math.abs(lastAnimationListScrollTopsDiffsAvg) > 4;
+            isAnimationListScrolling = Math.abs(lastAnimationListScrollTopsDiffsAvg) > 12;
             isAnimationListScrolling ? isAnimationListIdleTicks = 0 : isAnimationListIdleTicks++;
 
             lastAnimationListScrollTopDiffs.push(animationList.scrollTop - (lastAnimationListScrollTop < 0 ? 0 : lastAnimationListScrollTop));
             lastAnimationListScrollTop = animationList.scrollTop;
 
             if (lastAnimationListScrollTopDiffs.length > 5) lastAnimationListScrollTopDiffs.shift();
-        }, 20);
+        }, 50);
     });
 
     onDestroy(() => {
@@ -747,7 +744,7 @@
                         <LabelTitle title="Animations" />
 
                         <Label class="group w-80 sm:w-90" label="Selected Animation">
-                            <span class="w-48 font-subtitle text-end text-inactive hover:text-active group-hover:text-active text-ellipsis">{useExperimentalAnimations && experimentalAnimations.length ? selectedExperimentalAnimationId : selectedAnimationId}</span>
+                            <span class="w-48 font-subtitle text-inactive hover:text-active group-hover:text-active text-ellipsis">{useExperimentalAnimations && experimentalAnimations.length ? selectedExperimentalAnimationId : selectedAnimationId}</span>
                         </Label>
 
                         <div class="w-full" role="search">
