@@ -11,7 +11,12 @@ import mkcert from "vite-plugin-mkcert";
 const LIB_SRC_FOLDER_NAME: string = "lib";
 const LIB_DEST_FOLDER_NAME: string = "scripts/lib";
 
-const LIB_PATHS: Record<string, string> = { "spine-ts/build/spine-webgl.js": "spine-webgl.min.js" };
+const LIB_PATHS: Record<string, string> = {
+    "spine-ts/build/spine-webgl.js": "spine-webgl.min.js",
+
+    "pako/pako.js": "pako.min.js",
+    "upng-js/UPNG.js": "UPNG.js"
+};
 
 const scriptTagRepather = (paths: Record<string, string>, srcFolder: string, destFolder: string): Plugin => ({
     name: "script-tag-repather",
@@ -37,12 +42,14 @@ const scriptTagRepather = (paths: Record<string, string>, srcFolder: string, des
             const srcPath = path.join(srcFolder, src).replaceAll("\\", "/");
             const destPath = dest ? path.join(destFolder, dest).replaceAll("\\", "/") : "";
 
-            html = html.replace(`\n        <script src="${srcPath}"></script>`, "");
+            html = html.replace(`        <script src="${srcPath}"></script>`, "");
             if (destPath) html = html.replace("</title>", `</title>\n        <script src="${destPath}" defer></script>`);
         }
 
-        html = html.replace("</title>", "</title>\n");
-        return html.replaceAll(/\n      </g, "\n        <");
+        html = html.replace("</title>", "</title>\n")
+            .replaceAll(/\n      </g, "\n        <");
+
+        return html;
     }
 });
 
