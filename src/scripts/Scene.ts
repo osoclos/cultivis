@@ -16,7 +16,9 @@ export class Scene implements SceneObject {
 
     backgroundColor: Color;
     drawDebug: boolean;
-    
+
+    #isContextLost: boolean;
+
     constructor(public gl: WebGLRenderingContext) {
         this.renderer = new spine.webgl.SceneRenderer(<HTMLCanvasElement>this.canvas, gl, true);
         this.#actors = new Set();
@@ -29,7 +31,8 @@ export class Scene implements SceneObject {
         let clientHeight = height;
 
         if (this.canvas instanceof HTMLCanvasElement) ({ clientWidth, clientHeight } = this.canvas);
-            
+        this.canvas.addEventListener("webglcontextlost", () => this.#isContextLost = true, { once: true });
+
         this.size = new Vector(clientWidth, clientHeight);
         this.renderSize = new Vector(width, height);
 
@@ -38,6 +41,8 @@ export class Scene implements SceneObject {
 
         this.backgroundColor = new Color(0, 0, 0, 0);
         this.drawDebug = false;
+
+        this.#isContextLost = false;
     }
 
     get canvas() {
@@ -65,6 +70,8 @@ export class Scene implements SceneObject {
     }
 
     render(delta: number) {
+        if (this.#isContextLost) return;
+
         const { r, g, b, a } = this.backgroundColor.normalize();
         this.gl.clearColor(r, g, b, a);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT);
@@ -87,6 +94,8 @@ export class Scene implements SceneObject {
 
     renderActor(actor: Actor, delta: number, updateCamera: boolean = true, startRenderer: boolean = true, endRenderer: boolean = true) {
         const { skeleton, hidden } = actor;
+        if (this.#isContextLost) return;
+
         actor.tick(delta);
 
         if (updateCamera) {
@@ -101,7 +110,7 @@ export class Scene implements SceneObject {
             this.renderer.camera.zoom = this.scale;
             this.renderer.camera.update();
         }
-        
+
         startRenderer && this.renderer.begin();
 
         !hidden && this.renderer.drawSkeleton(skeleton, false);
@@ -111,17 +120,17 @@ export class Scene implements SceneObject {
     }
 
     async dispose() {
-        this.gl.getExtension("WEBGL_lose_context")?.loseContext();
-        
         this.removeActors(...this.actors);
         this.renderer.dispose();
+
+        this.gl.getExtension("WEBGL_lose_context")?.loseContext();
     }
 
     toObj(): SceneObject {
         const { actors, translation, scale, size, renderSize, backgroundColor, drawDebug } = this;
         return {
             actors: actors.map((actor) => actor.toObj()),
-            
+
             translation: translation.toObj(),
             scale,
 
