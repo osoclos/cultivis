@@ -19,7 +19,7 @@
 
     let vertBuffer: GPUBuffer;
     let timeBuffer: GPUBuffer;
-    
+
     let bindGroup: GPUBindGroup;
 
     async function start() {
@@ -82,7 +82,7 @@
         const textureData = await new Promise<Uint8Array>((resolve, reject) => {
             const image = new Image();
             image.src = "/static/assets/misc/clouds-texture.png";
-            
+
             image.addEventListener("load", () => {
                 ({ naturalWidth: textureWidth, naturalHeight: textureHeight } = image);
 
@@ -106,7 +106,7 @@
             usage: GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST | GPUTextureUsage.RENDER_ATTACHMENT
         });
 
-        device.queue.writeTexture({ texture }, textureData, { bytesPerRow: textureWidth * 4 }, [textureWidth, textureHeight, 1]);
+        device.queue.writeTexture({ texture }, textureData as Uint8Array<ArrayBuffer>, { bytesPerRow: textureWidth * 4 }, [textureWidth, textureHeight, 1]);
 
         const sampler = device.createSampler({
             label: "Clouds Texture Sampler",
@@ -139,7 +139,10 @@
 
     let frameId: number;
     function render(time: number) {
-        const { width, height } = canvas;
+        const {
+            width = 0,
+            height = 0
+        } = canvas ?? {};
 
         if (disabled || !width || !height) {
             frameId = requestAnimationFrame(render);
