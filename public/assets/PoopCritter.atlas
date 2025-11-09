@@ -1,0 +1,41 @@
+
+PoopCritter.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/PoopPet_Body
+  rotate: false
+  xy: 2, 2
+  size: 88, 71
+  orig: 88, 71
+  offset: 0, 0
+  index: -1
+images/PoopPet_Eyes
+  rotate: false
+  xy: 45, 75
+  size: 40, 9
+  orig: 40, 9
+  offset: 0, 0
+  index: -1
+images/PoopPet_Leg
+  rotate: true
+  xy: 2, 77
+  size: 7, 13
+  orig: 7, 13
+  offset: 0, 0
+  index: -1
+images/PoopPet_Mouth
+  rotate: false
+  xy: 17, 77
+  size: 12, 7
+  orig: 12, 7
+  offset: 0, 0
+  index: -1
+images/PoopPet_Mouth2
+  rotate: false
+  xy: 31, 76
+  size: 12, 8
+  orig: 12, 8
+  offset: 0, 0
+  index: -1

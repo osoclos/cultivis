@@ -1,0 +1,188 @@
+
+crown.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+effects/CrownFlourish
+  rotate: true
+  xy: 2, 104
+  size: 404, 402
+  orig: 404, 402
+  offset: 0, 0
+  index: -1
+effects/whiteball
+  rotate: false
+  xy: 550, 281
+  size: 111, 111
+  orig: 111, 111
+  offset: 0, 0
+  index: -1
+images/Crown
+  rotate: false
+  xy: 406, 203
+  size: 53, 74
+  orig: 53, 74
+  offset: 0, 0
+  index: -1
+images/CrownEye
+  rotate: false
+  xy: 321, 2
+  size: 33, 16
+  orig: 33, 16
+  offset: 0, 0
+  index: -1
+images/CrownEyeShut
+  rotate: false
+  xy: 549, 2
+  size: 32, 10
+  orig: 32, 10
+  offset: 0, 0
+  index: -1
+images/CrownEyeShut2
+  rotate: false
+  xy: 468, 7
+  size: 30, 19
+  orig: 30, 19
+  offset: 0, 0
+  index: -1
+images/CrownEyeShut2_Goat
+  rotate: false
+  xy: 480, 28
+  size: 30, 19
+  orig: 30, 19
+  offset: 0, 0
+  index: -1
+images/CrownEyeShut3
+  rotate: true
+  xy: 549, 14
+  size: 33, 13
+  orig: 33, 13
+  offset: 0, 0
+  index: -1
+images/CrownEyeShut3_Goat
+  rotate: true
+  xy: 564, 14
+  size: 33, 13
+  orig: 33, 13
+  offset: 0, 0
+  index: -1
+images/CrownEyeShut_Goat
+  rotate: true
+  xy: 579, 15
+  size: 32, 10
+  orig: 32, 10
+  offset: 0, 0
+  index: -1
+images/CrownEye_GOAT
+  rotate: false
+  xy: 356, 2
+  size: 33, 16
+  orig: 33, 16
+  offset: 0, 0
+  index: -1
+images/CrownEye_SNAKE
+  rotate: true
+  xy: 391, 2
+  size: 24, 23
+  orig: 24, 23
+  offset: 0, 0
+  index: -1
+images/CrownGlow
+  rotate: true
+  xy: 2, 2
+  size: 100, 120
+  orig: 103, 123
+  offset: 2, 1
+  index: -1
+images/CrownMouth
+  rotate: false
+  xy: 416, 3
+  size: 50, 23
+  orig: 50, 23
+  offset: 0, 0
+  index: -1
+images/CrownMouthOpen
+  rotate: true
+  xy: 512, 4
+  size: 43, 35
+  orig: 43, 35
+  offset: 0, 0
+  index: -1
+images/CrownSmear
+  rotate: true
+  xy: 621, 173
+  size: 106, 48
+  orig: 106, 48
+  offset: 0, 0
+  index: -1
+images/CrownSpikes
+  rotate: true
+  xy: 194, 10
+  size: 92, 125
+  orig: 93, 125
+  offset: 1, 0
+  index: -1
+images/Crown_GOAT
+  rotate: false
+  xy: 124, 3
+  size: 68, 99
+  orig: 68, 99
+  offset: 0, 0
+  index: -1
+images/Crown_SERMON
+  rotate: false
+  xy: 406, 127
+  size: 53, 74
+  orig: 53, 74
+  offset: 0, 0
+  index: -1
+images/Crown_SERMON_Yeehaw
+  rotate: true
+  xy: 550, 394
+  size: 114, 74
+  orig: 114, 74
+  offset: 0, 0
+  index: -1
+images/Crown_SNAKE
+  rotate: false
+  xy: 321, 20
+  size: 41, 82
+  orig: 41, 82
+  offset: 0, 0
+  index: -1
+images/Crown_White
+  rotate: false
+  xy: 663, 318
+  size: 53, 74
+  orig: 53, 74
+  offset: 0, 0
+  index: -1
+images/Crown_White_Yeehaw
+  rotate: true
+  xy: 626, 394
+  size: 114, 74
+  orig: 114, 74
+  offset: 0, 0
+  index: -1
+images/Crown_Yeehaw
+  rotate: false
+  xy: 364, 28
+  size: 114, 74
+  orig: 114, 74
+  offset: 0, 0
+  index: -1
+images/Crown_wings
+  rotate: true
+  xy: 480, 49
+  size: 228, 139
+  orig: 228, 139
+  offset: 0, 0
+  index: -1
+images/Crown_wings2
+  rotate: true
+  xy: 406, 279
+  size: 229, 142
+  orig: 229, 142
+  offset: 0, 0
+  index: -1

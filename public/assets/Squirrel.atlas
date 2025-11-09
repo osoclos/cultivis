@@ -1,0 +1,83 @@
+
+Squirrel.png
+size: 1024,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/DigMound_1
+  rotate: false
+  xy: 244, 4
+  size: 166, 66
+  orig: 166, 66
+  offset: 0, 0
+  index: -1
+images/DigMound_2
+  rotate: false
+  xy: 412, 5
+  size: 168, 65
+  orig: 168, 65
+  offset: 0, 0
+  index: -1
+images/DigMound_3
+  rotate: false
+  xy: 2, 2
+  size: 164, 68
+  orig: 164, 68
+  offset: 0, 0
+  index: -1
+images/DigParticle_1
+  rotate: true
+  xy: 858, 33
+  size: 37, 39
+  orig: 37, 39
+  offset: 0, 0
+  index: -1
+images/DigParticle_2
+  rotate: true
+  xy: 899, 12
+  size: 24, 25
+  orig: 24, 25
+  offset: 0, 0
+  index: -1
+images/DigParticle_3
+  rotate: false
+  xy: 858, 12
+  size: 16, 19
+  orig: 16, 19
+  offset: 0, 0
+  index: -1
+images/Squirrel_Body
+  rotate: false
+  xy: 683, 11
+  size: 102, 59
+  orig: 102, 59
+  offset: 0, 0
+  index: -1
+images/Squirrel_Head
+  rotate: false
+  xy: 168, 3
+  size: 74, 67
+  orig: 74, 67
+  offset: 0, 0
+  index: -1
+images/Squirrel_Leg
+  rotate: true
+  xy: 787, 30
+  size: 40, 69
+  orig: 40, 69
+  offset: 0, 0
+  index: -1
+images/Squirrel_Paw
+  rotate: false
+  xy: 899, 38
+  size: 18, 32
+  orig: 18, 32
+  offset: 0, 0
+  index: -1
+images/Squirrel_Tail
+  rotate: false
+  xy: 582, 10
+  size: 99, 60
+  orig: 99, 60
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,90 @@
+
+CrownBig.png
+size: 1024,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/CrownSnake_Body
+  rotate: true
+  xy: 2, 263
+  size: 114, 901
+  orig: 114, 901
+  offset: 0, 0
+  index: -1
+images/CrownSnake_Head
+  rotate: false
+  xy: 626, 74
+  size: 164, 169
+  orig: 164, 169
+  offset: 0, 0
+  index: -1
+images/Crown_Back
+  rotate: true
+  xy: 330, 34
+  size: 227, 294
+  orig: 227, 294
+  offset: 0, 0
+  index: -1
+images/Crown_Back_Outline
+  rotate: true
+  xy: 2, 2
+  size: 259, 326
+  orig: 512, 512
+  offset: 126, 93
+  index: -1
+images/Crown_Eye
+  rotate: true
+  xy: 905, 245
+  size: 132, 67
+  orig: 132, 67
+  offset: 0, 0
+  index: -1
+images/Crown_Eye_Closed
+  rotate: true
+  xy: 792, 30
+  size: 134, 36
+  orig: 134, 36
+  offset: 0, 0
+  index: -1
+images/Crown_Pupil
+  rotate: false
+  xy: 626, 29
+  size: 19, 43
+  orig: 19, 43
+  offset: 0, 0
+  index: -1
+images/Crown_Pupil2
+  rotate: true
+  xy: 974, 230
+  size: 43, 40
+  orig: 43, 40
+  offset: 0, 0
+  index: -1
+images/Crown_Pupil3
+  rotate: true
+  xy: 792, 232
+  size: 29, 49
+  orig: 29, 49
+  offset: 0, 0
+  index: -1
+images/Crown_Pupil4
+  rotate: true
+  xy: 974, 322
+  size: 55, 44
+  orig: 55, 44
+  offset: 0, 0
+  index: -1
+images/Crown_Pupil5
+  rotate: true
+  xy: 974, 275
+  size: 45, 41
+  orig: 45, 41
+  offset: 0, 0
+  index: -1
+images/Crown_Pupil6
+  rotate: true
+  xy: 792, 166
+  size: 62, 39
+  orig: 62, 39
+  offset: 0, 0
+  index: -1

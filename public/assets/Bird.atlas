@@ -1,0 +1,62 @@
+
+Bird.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/Bird_Body
+  rotate: false
+  xy: 94, 56
+  size: 86, 73
+  orig: 86, 73
+  offset: 0, 0
+  index: -1
+images/Bird_Body2
+  rotate: false
+  xy: 2, 6
+  size: 86, 66
+  orig: 86, 66
+  offset: 0, 0
+  index: -1
+images/Bird_Eye
+  rotate: false
+  xy: 242, 113
+  size: 9, 16
+  orig: 9, 16
+  offset: 0, 0
+  index: -1
+images/Bird_Head
+  rotate: false
+  xy: 2, 74
+  size: 90, 55
+  orig: 90, 55
+  offset: 0, 0
+  index: -1
+images/Bird_Wing
+  rotate: false
+  xy: 182, 42
+  size: 57, 41
+  orig: 57, 41
+  offset: 0, 0
+  index: -1
+images/Bird_Wing2
+  rotate: true
+  xy: 90, 13
+  size: 41, 56
+  orig: 41, 56
+  offset: 0, 0
+  index: -1
+images/Bird_Wing3
+  rotate: true
+  xy: 148, 2
+  size: 38, 53
+  orig: 38, 53
+  offset: 0, 0
+  index: -1
+images/SeedShoot
+  rotate: false
+  xy: 182, 85
+  size: 58, 44
+  orig: 58, 44
+  offset: 0, 0
+  index: -1
