@@ -3,7 +3,7 @@
     import { twMerge } from "tailwind-merge";
 
     import { InteractiveCanvas } from "../utils";
-    
+
     import { Factory, Scene } from "../../scripts";
     import { Vector } from "../../utils";
 
@@ -23,7 +23,7 @@
         style?: string;
 
         onload?: (scene: Scene, factory: Factory, canvas: HTMLCanvasElement) => void;
-        
+
         onshift?: (delta: Vector) => void;
         onscroll?: (delta: Vector) => void;
 
@@ -34,7 +34,7 @@
     const {
         disableManipulation = false,
         manipulationIdx = -1,
-        
+
         class: className,
         style,
 
@@ -58,16 +58,17 @@
         frameId = requestAnimationFrame(draw);
     }
 
-    onDestroy(() => gl.getExtension("WEBGL_lose_context")?.loseContext());
+    onDestroy(() => cancelAnimationFrame(frameId));
+
     async function onload(tempCanvas: HTMLCanvasElement) {
         canvas = tempCanvas;
 
         const tempGL = canvas.getContext("webgl");
         if (!tempGL) throw new Error("Unable to retrieve context from canvas");
-        
+
         gl = tempGL;
         scene = new Scene(gl);
-        
+
         factory = await Factory.create(gl, FACTORY_ASSETS_ROOT);
 
         load(scene, factory, canvas);
@@ -124,7 +125,7 @@
         if (disableManipulation) return;
 
         const delta = Vector.mulVal(pos, scene.scale).negY();
-        
+
         if (manipulationIdx < 0) {
             scene.translation.add(delta);
             scene.scale /= factor;
@@ -134,7 +135,7 @@
             actor.pos.add(delta);
             actor.scale.mulVal(factor);
         }
-        
+
         pinch(factor, pos);
     }
 </script>
