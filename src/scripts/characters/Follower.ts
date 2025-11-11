@@ -456,7 +456,7 @@ export class Follower extends Actor implements FollowerObject {
     }
 
     copyFromObj(obj: FollowerObject) {
-        const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, possessionState, sickState, beliefState, isDisciple, isHooded, isTired, isSweating, isBefuddled } = obj;
+        const { form, formVariantIdx, formColorSetIdx, clothing, clothingVariantIdx, clothingColorSetIdx, necklace, hat, level, ageState, emotionState, temperatureState, possessionState, sickState, beliefState, isDisciple, isHooded, isTired, isSweating, isInjured, isBefuddled } = obj;
 
         this.form = form;
         this.formVariantIdx = formVariantIdx;
@@ -474,6 +474,8 @@ export class Follower extends Actor implements FollowerObject {
         this.ageState = ageState;
         this.emotionState = emotionState;
 
+        this.temperatureState = temperatureState;
+
         this.possessionState = possessionState;
         this.sickState = sickState;
         this.beliefState = beliefState;
@@ -483,6 +485,8 @@ export class Follower extends Actor implements FollowerObject {
 
         this.isTired = isTired;
         this.isSweating = isSweating;
+
+        this.isInjured = isInjured;
 
         this.isBefuddled = isBefuddled;
 
