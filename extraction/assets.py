@@ -7,9 +7,7 @@ import UnityPy.classes
 import UnityPy.files
 
 ENV_DIR = "C:/Program Files (x86)/Steam/steamapps/common/Cult of the Lamb/Cult Of The Lamb_Data"
-OUTPUT_DIR = "public/assets"
-
-OVERRIDABLE_FILES = ["MutantShroom1.png", "MutantShroom2.png"]
+OUTPUT_DIR = "setup/extracted/assets"
 
 class Done:
     pass
@@ -32,7 +30,7 @@ for root, _, files in os.walk(ENV_DIR):
                     output.write(data.m_Script.encode("utf-8", "surrogateescape"))
 
                 continue
-            
+
             if obj.type.name != "Texture2D":
                 continue
 
@@ -87,9 +85,9 @@ for root, _, files in os.walk(ENV_DIR):
                 filename = f"{data.m_Name}.png"
                 path = os.path.join(OUTPUT_DIR, filename)
 
-                if filename not in OVERRIDABLE_FILES and os.path.exists(path):
+                if os.path.exists(path):
                     path = os.path.join(OUTPUT_DIR, f"{data.m_Name}-{filename}.png")
-                    
+
                 print(f"Extracting {filename} from {env_path}")
                 data.image.save(path)
 

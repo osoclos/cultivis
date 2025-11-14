@@ -24,6 +24,9 @@ dist-ssr
 *.sln
 *.sw?
 
+setup/extracted/assets/*
+!setup/extracted/assets/README.md
+
 .env
 .env.*
 
