@@ -1,0 +1,251 @@
+
+Demon.png
+size: 2048,512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/CatEye_Left
+  rotate: false
+  xy: 330, 73
+  size: 46, 37
+  orig: 46, 37
+  offset: 0, 0
+  index: -1
+images/CatEye_Right
+  rotate: false
+  xy: 378, 73
+  size: 46, 37
+  orig: 46, 37
+  offset: 0, 0
+  index: -1
+images/DemonArrows_Body
+  rotate: false
+  xy: 802, 340
+  size: 115, 169
+  orig: 115, 169
+  offset: 0, 0
+  index: -1
+images/DemonArrows_Body_Plus
+  rotate: false
+  xy: 919, 340
+  size: 115, 169
+  orig: 115, 169
+  offset: 0, 0
+  index: -1
+images/DemonArrows_Mouth_Closed
+  rotate: false
+  xy: 88, 2
+  size: 23, 15
+  orig: 23, 15
+  offset: 0, 0
+  index: -1
+images/DemonArrows_Mouth_Open
+  rotate: false
+  xy: 417, 33
+  size: 28, 38
+  orig: 28, 41
+  offset: 0, 0
+  index: -1
+images/DemonChomp_Body
+  rotate: false
+  xy: 947, 192
+  size: 133, 146
+  orig: 133, 146
+  offset: 0, 0
+  index: -1
+images/DemonChomp_Body_Plus
+  rotate: false
+  xy: 1036, 363
+  size: 133, 146
+  orig: 133, 146
+  offset: 0, 0
+  index: -1
+images/DemonExplode_Body
+  rotate: false
+  xy: 934, 2
+  size: 140, 138
+  orig: 140, 138
+  offset: 0, 0
+  index: -1
+images/DemonExplode_Body_Plus
+  rotate: false
+  xy: 1076, 52
+  size: 140, 138
+  orig: 140, 138
+  offset: 0, 0
+  index: -1
+images/DemonExplode_Eye
+  rotate: false
+  xy: 384, 18
+  size: 31, 53
+  orig: 31, 53
+  offset: 0, 0
+  index: -1
+images/DemonExplode_Mouth
+  rotate: false
+  xy: 88, 19
+  size: 23, 18
+  orig: 23, 18
+  offset: 0, 0
+  index: -1
+images/DemonEyeBig
+  rotate: false
+  xy: 278, 20
+  size: 51, 46
+  orig: 51, 46
+  offset: 0, 0
+  index: -1
+images/DemonEyeBig_Plus
+  rotate: false
+  xy: 331, 25
+  size: 51, 46
+  orig: 51, 46
+  offset: 0, 0
+  index: -1
+images/DemonEye_angry
+  rotate: false
+  xy: 2, 3
+  size: 38, 34
+  orig: 38, 34
+  offset: 0, 0
+  index: -1
+images/DemonGrowing
+  rotate: false
+  xy: 447, 19
+  size: 97, 91
+  orig: 103, 96
+  offset: 3, 2
+  index: -1
+images/DemonHeart_Body
+  rotate: false
+  xy: 1082, 223
+  size: 135, 138
+  orig: 135, 138
+  offset: 0, 0
+  index: -1
+images/DemonHeart_Body_Plus
+  rotate: false
+  xy: 1171, 371
+  size: 135, 138
+  orig: 135, 138
+  offset: 0, 0
+  index: -1
+images/DemonHeart_Eyes
+  rotate: false
+  xy: 177, 12
+  size: 99, 54
+  orig: 99, 54
+  offset: 0, 0
+  index: -1
+images/DemonHeart_Mouth
+  rotate: false
+  xy: 42, 17
+  size: 44, 20
+  orig: 44, 20
+  offset: 0, 0
+  index: -1
+images/DemonHidden
+  rotate: false
+  xy: 1218, 83
+  size: 129, 138
+  orig: 134, 146
+  offset: 2, 3
+  index: -1
+images/DemonMist_Btm
+  rotate: false
+  xy: 570, 275
+  size: 230, 234
+  orig: 235, 239
+  offset: 3, 3
+  index: -1
+images/DemonMist_Top
+  rotate: false
+  xy: 2, 39
+  size: 173, 175
+  orig: 182, 185
+  offset: 5, 6
+  index: -1
+images/DemonProjectile_Body
+  rotate: false
+  xy: 788, 6
+  size: 144, 131
+  orig: 144, 131
+  offset: 0, 0
+  index: -1
+images/DemonProjectile_Body_Plus
+  rotate: false
+  xy: 801, 142
+  size: 144, 131
+  orig: 144, 131
+  offset: 0, 0
+  index: -1
+images/DemonSpirit_Body
+  rotate: false
+  xy: 1338, 360
+  size: 99, 149
+  orig: 99, 149
+  offset: 0, 0
+  index: -1
+images/DemonSpirit_Body_Plus
+  rotate: false
+  xy: 1349, 209
+  size: 99, 149
+  orig: 99, 149
+  offset: 0, 0
+  index: -1
+images/Demon_Aym
+  rotate: false
+  xy: 517, 112
+  size: 122, 119
+  orig: 122, 119
+  offset: 0, 0
+  index: -1
+images/Demon_Baal
+  rotate: false
+  xy: 1219, 257
+  size: 117, 112
+  orig: 117, 112
+  offset: 0, 0
+  index: -1
+images/Demon_Heket
+  rotate: false
+  xy: 641, 6
+  size: 145, 131
+  orig: 145, 131
+  offset: 0, 0
+  index: -1
+images/Demon_Kallamar
+  rotate: false
+  xy: 641, 139
+  size: 158, 134
+  orig: 158, 134
+  offset: 0, 0
+  index: -1
+images/Demon_Leshy
+  rotate: false
+  xy: 330, 112
+  size: 185, 119
+  orig: 185, 119
+  offset: 0, 0
+  index: -1
+images/Demon_Shamura
+  rotate: false
+  xy: 177, 68
+  size: 151, 146
+  orig: 151, 146
+  offset: 0, 0
+  index: -1
+images/conversion_glow
+  rotate: false
+  xy: 2, 216
+  size: 293, 293
+  orig: 299, 299
+  offset: 2, 4
+  index: -1
+images/sunburst
+  rotate: false
+  xy: 297, 233
+  size: 271, 276
+  orig: 280, 277
+  offset: 1, 1
+  index: -1

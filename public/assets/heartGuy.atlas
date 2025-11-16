@@ -1,0 +1,48 @@
+
+heartGuy.png
+size: 256,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Heart_Arm_Left
+  rotate: true
+  xy: 160, 56
+  size: 39, 45
+  orig: 41, 45
+  offset: 0, 0
+  index: -1
+Heart_Arm_Right
+  rotate: true
+  xy: 113, 54
+  size: 41, 45
+  orig: 41, 45
+  offset: 0, 0
+  index: -1
+Heart_Body
+  rotate: false
+  xy: 2, 7
+  size: 109, 88
+  orig: 109, 88
+  offset: 0, 0
+  index: -1
+Heart_Face
+  rotate: true
+  xy: 207, 32
+  size: 63, 27
+  orig: 63, 27
+  offset: 0, 0
+  index: -1
+Heart_Leg_Left
+  rotate: false
+  xy: 160, 5
+  size: 30, 49
+  orig: 30, 49
+  offset: 0, 0
+  index: -1
+Heart_Leg_Right
+  rotate: false
+  xy: 113, 2
+  size: 28, 50
+  orig: 28, 50
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,13 @@
+
+Crab.png
+size: 128,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/Fish_Crab
+  rotate: false
+  xy: 2, 2
+  size: 114, 94
+  orig: 150, 150
+  offset: 15, 3
+  index: -1
