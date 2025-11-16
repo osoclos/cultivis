@@ -377,10 +377,11 @@ export class Follower extends Actor implements FollowerObject {
             this.addCustomSkin(clothingSkin);
         } else this.addSkins(
             isHooded
-            ? ageState === FollowerAgeState.Elder
-            ? Follower.ELDER_ROBES_SKIN_NAME
-            : `${Follower.ROBES_SKIN_PREFIX}${level > Follower.MAX_ROBES_FOLLOWER_LEVEL ? Follower.ROBES_LEVEL_WHEN_EXCEEDED : (((level - 1) / Follower.LEVELS_PER_ROBES_UPGRADE) | 0) + Follower.ROBES_STARTING_LEVEL}`
-            : clothingData.variants[clothingVariantIdx]
+                ? ageState === FollowerAgeState.Elder
+                    ? Follower.ELDER_ROBES_SKIN_NAME
+                    : `${Follower.ROBES_SKIN_PREFIX}${level > Follower.MAX_ROBES_FOLLOWER_LEVEL ? Follower.ROBES_LEVEL_WHEN_EXCEEDED
+                : (((level - 1) / Follower.LEVELS_PER_ROBES_UPGRADE) | 0) + Follower.ROBES_STARTING_LEVEL}`
+                    : clothingData.variants[clothingVariantIdx]
         );
 
         isInjured && this.addSkins(Follower.INJURED_SKIN_NAME);
@@ -392,6 +393,8 @@ export class Follower extends Actor implements FollowerObject {
         hatData && this.addSkins(hatData.variant);
 
         this.resetAnimation();
+        this.resetSkin();
+
         this.tick();
     }
 
